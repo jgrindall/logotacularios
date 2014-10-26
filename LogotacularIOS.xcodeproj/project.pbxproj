@@ -1,0 +1,429 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		52B5B31619FD7D4600EF531F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B5B31519FD7D4600EF531F /* main.m */; };
+		52B5B31919FD7D4600EF531F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B5B31819FD7D4600EF531F /* AppDelegate.m */; };
+		52B5B31C19FD7D4600EF531F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B5B31B19FD7D4600EF531F /* ViewController.m */; };
+		52B5B31F19FD7D4600EF531F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52B5B31D19FD7D4600EF531F /* Main.storyboard */; };
+		52B5B32119FD7D4600EF531F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52B5B32019FD7D4600EF531F /* Images.xcassets */; };
+		52B5B32419FD7D4600EF531F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52B5B32219FD7D4600EF531F /* LaunchScreen.xib */; };
+		52B5B33019FD7D4600EF531F /* LogotacularIOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B5B32F19FD7D4600EF531F /* LogotacularIOSTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		52B5B32A19FD7D4600EF531F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52B5B30819FD7D4600EF531F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 52B5B30F19FD7D4600EF531F;
+			remoteInfo = LogotacularIOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		52B5B31019FD7D4600EF531F /* LogotacularIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LogotacularIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		52B5B31419FD7D4600EF531F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52B5B31519FD7D4600EF531F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		52B5B31719FD7D4600EF531F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		52B5B31819FD7D4600EF531F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		52B5B31A19FD7D4600EF531F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		52B5B31B19FD7D4600EF531F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		52B5B31E19FD7D4600EF531F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		52B5B32019FD7D4600EF531F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		52B5B32319FD7D4600EF531F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		52B5B32919FD7D4600EF531F /* LogotacularIOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LogotacularIOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		52B5B32E19FD7D4600EF531F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52B5B32F19FD7D4600EF531F /* LogotacularIOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogotacularIOSTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		52B5B30D19FD7D4600EF531F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52B5B32619FD7D4600EF531F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		52B5B30719FD7D4600EF531F = {
+			isa = PBXGroup;
+			children = (
+				52B5B31219FD7D4600EF531F /* LogotacularIOS */,
+				52B5B32C19FD7D4600EF531F /* LogotacularIOSTests */,
+				52B5B31119FD7D4600EF531F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		52B5B31119FD7D4600EF531F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				52B5B31019FD7D4600EF531F /* LogotacularIOS.app */,
+				52B5B32919FD7D4600EF531F /* LogotacularIOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		52B5B31219FD7D4600EF531F /* LogotacularIOS */ = {
+			isa = PBXGroup;
+			children = (
+				52B5B31719FD7D4600EF531F /* AppDelegate.h */,
+				52B5B31819FD7D4600EF531F /* AppDelegate.m */,
+				52B5B31A19FD7D4600EF531F /* ViewController.h */,
+				52B5B31B19FD7D4600EF531F /* ViewController.m */,
+				52B5B31D19FD7D4600EF531F /* Main.storyboard */,
+				52B5B32019FD7D4600EF531F /* Images.xcassets */,
+				52B5B32219FD7D4600EF531F /* LaunchScreen.xib */,
+				52B5B31319FD7D4600EF531F /* Supporting Files */,
+			);
+			path = LogotacularIOS;
+			sourceTree = "<group>";
+		};
+		52B5B31319FD7D4600EF531F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				52B5B31419FD7D4600EF531F /* Info.plist */,
+				52B5B31519FD7D4600EF531F /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		52B5B32C19FD7D4600EF531F /* LogotacularIOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				52B5B32F19FD7D4600EF531F /* LogotacularIOSTests.m */,
+				52B5B32D19FD7D4600EF531F /* Supporting Files */,
+			);
+			path = LogotacularIOSTests;
+			sourceTree = "<group>";
+		};
+		52B5B32D19FD7D4600EF531F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				52B5B32E19FD7D4600EF531F /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		52B5B30F19FD7D4600EF531F /* LogotacularIOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52B5B33319FD7D4600EF531F /* Build configuration list for PBXNativeTarget "LogotacularIOS" */;
+			buildPhases = (
+				52B5B30C19FD7D4600EF531F /* Sources */,
+				52B5B30D19FD7D4600EF531F /* Frameworks */,
+				52B5B30E19FD7D4600EF531F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LogotacularIOS;
+			productName = LogotacularIOS;
+			productReference = 52B5B31019FD7D4600EF531F /* LogotacularIOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		52B5B32819FD7D4600EF531F /* LogotacularIOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52B5B33619FD7D4600EF531F /* Build configuration list for PBXNativeTarget "LogotacularIOSTests" */;
+			buildPhases = (
+				52B5B32519FD7D4600EF531F /* Sources */,
+				52B5B32619FD7D4600EF531F /* Frameworks */,
+				52B5B32719FD7D4600EF531F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				52B5B32B19FD7D4600EF531F /* PBXTargetDependency */,
+			);
+			name = LogotacularIOSTests;
+			productName = LogotacularIOSTests;
+			productReference = 52B5B32919FD7D4600EF531F /* LogotacularIOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		52B5B30819FD7D4600EF531F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = jgrindall;
+				TargetAttributes = {
+					52B5B30F19FD7D4600EF531F = {
+						CreatedOnToolsVersion = 6.0.1;
+					};
+					52B5B32819FD7D4600EF531F = {
+						CreatedOnToolsVersion = 6.0.1;
+						TestTargetID = 52B5B30F19FD7D4600EF531F;
+					};
+				};
+			};
+			buildConfigurationList = 52B5B30B19FD7D4600EF531F /* Build configuration list for PBXProject "LogotacularIOS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 52B5B30719FD7D4600EF531F;
+			productRefGroup = 52B5B31119FD7D4600EF531F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				52B5B30F19FD7D4600EF531F /* LogotacularIOS */,
+				52B5B32819FD7D4600EF531F /* LogotacularIOSTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		52B5B30E19FD7D4600EF531F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52B5B31F19FD7D4600EF531F /* Main.storyboard in Resources */,
+				52B5B32419FD7D4600EF531F /* LaunchScreen.xib in Resources */,
+				52B5B32119FD7D4600EF531F /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52B5B32719FD7D4600EF531F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		52B5B30C19FD7D4600EF531F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52B5B31C19FD7D4600EF531F /* ViewController.m in Sources */,
+				52B5B31919FD7D4600EF531F /* AppDelegate.m in Sources */,
+				52B5B31619FD7D4600EF531F /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52B5B32519FD7D4600EF531F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52B5B33019FD7D4600EF531F /* LogotacularIOSTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		52B5B32B19FD7D4600EF531F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 52B5B30F19FD7D4600EF531F /* LogotacularIOS */;
+			targetProxy = 52B5B32A19FD7D4600EF531F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		52B5B31D19FD7D4600EF531F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				52B5B31E19FD7D4600EF531F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		52B5B32219FD7D4600EF531F /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				52B5B32319FD7D4600EF531F /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		52B5B33119FD7D4600EF531F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		52B5B33219FD7D4600EF531F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		52B5B33419FD7D4600EF531F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = LogotacularIOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		52B5B33519FD7D4600EF531F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = LogotacularIOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		52B5B33719FD7D4600EF531F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = LogotacularIOSTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LogotacularIOS.app/LogotacularIOS";
+			};
+			name = Debug;
+		};
+		52B5B33819FD7D4600EF531F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = LogotacularIOSTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LogotacularIOS.app/LogotacularIOS";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		52B5B30B19FD7D4600EF531F /* Build configuration list for PBXProject "LogotacularIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52B5B33119FD7D4600EF531F /* Debug */,
+				52B5B33219FD7D4600EF531F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		52B5B33319FD7D4600EF531F /* Build configuration list for PBXNativeTarget "LogotacularIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52B5B33419FD7D4600EF531F /* Debug */,
+				52B5B33519FD7D4600EF531F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		52B5B33619FD7D4600EF531F /* Build configuration list for PBXNativeTarget "LogotacularIOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52B5B33719FD7D4600EF531F /* Debug */,
+				52B5B33819FD7D4600EF531F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 52B5B30819FD7D4600EF531F /* Project object */;
+}
