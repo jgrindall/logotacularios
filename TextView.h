@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  TextView.h
 //  LogotacularIOS
 //
 //  Created by John on 26/10/2014.
@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface TextView : UIView
 
+- (NSString*) getText;
+
+- (void) setText:(NSString*) text;
 
 @end
-
