@@ -12,12 +12,12 @@
 #import "PFileBrowserModel.h"
 #import <Objection/Objection.h>
 #import "PFileListModel.h"
+#import "FileLoader.h"
 
 @interface FilesController ()
 
 @property NSString* cellIdent;
 @property Class cellClass;
-@property UIGestureRecognizer* longPress;
 @property (nonatomic) NSArray* files;
 
 @end
@@ -55,23 +55,10 @@
 	self.view.backgroundColor = [UIColor clearColor];
 	self.collectionView.backgroundColor = [UIColor clearColor];
 	[self.collectionView registerClass:[self cellClass] forCellWithReuseIdentifier:self.cellIdent];
-	self.longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
-	self.longPress.delegate = self;
-	[self.collectionView addGestureRecognizer:self.longPress];
 }
 
 - (id<PFileBrowserModel>) getFileBrowserModel{
 	return [[JSObjection defaultInjector] getObject:@protocol(PFileBrowserModel)];
-}
-
--(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer{
-	if (gestureRecognizer.state != UIGestureRecognizerStateEnded) {
-		return;
-	}
-	CGPoint p = [gestureRecognizer locationInView:self.collectionView];
-	NSIndexPath* indexPath = [self.collectionView indexPathForItemAtPoint:p];
-	[[self getFileBrowserModel] setVal:[NSNumber numberWithInteger:indexPath.item] forKey:BROWSER_SELECTED_INDEX];
-	[[self getFileBrowserModel] setVal:[NSNumber numberWithBool:YES] forKey:BROWSER_SELECTED_OPEN];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -87,19 +74,15 @@
 	return [n integerValue];
 }
 
-- (BOOL) getIsOpen{
-	NSNumber* n = (NSNumber*)[[self getFileBrowserModel] getVal:BROWSER_SELECTED_OPEN];
-	return [n boolValue];
-}
-
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 	FileCell* cell = (FileCell*)[collectionView dequeueReusableCellWithReuseIdentifier:self.cellIdent forIndexPath:indexPath];
 	if(!cell) {
 		cell = [[FileCell alloc] init];
 	}
+	NSURL* url = [self.files objectAtIndex:indexPath.item];
 	UIImage* img = [UIImage imageNamed:@"assets/cat.jpg"];
 	cell.image = img;
-	cell.filename = [NSString stringWithFormat:@"Filename %i", indexPath.item];
+	cell.filename = [[FileLoader sharedInstance] getFileNameFromPath:url];
 	cell.alpha = ([self getSelected] == indexPath.item ? 1 : 0.4);
 	cell.clipsToBounds = YES;
 	return cell;
@@ -119,9 +102,7 @@
 
 - (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
 	NSNumber* index = [NSNumber numberWithInteger:indexPath.item];
-	NSNumber* isOpen = [NSNumber numberWithBool:NO];
 	[[self getFileBrowserModel] setVal:index forKey:BROWSER_SELECTED_INDEX];
-	[[self getFileBrowserModel] setVal:isOpen forKey:BROWSER_SELECTED_OPEN];
 }
 
 - (void) dealloc{

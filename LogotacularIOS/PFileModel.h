@@ -15,4 +15,6 @@ extern NSString* const FILE_FILENAME;
 extern NSString* const FILE_DIRTY;
 extern NSString* const FILE_REAL;
 
+- (void) reset;
+
 @end

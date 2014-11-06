@@ -47,10 +47,12 @@
 
 - (void) onClickNew{
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_MENU withData:nil];
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_NEW withData:nil];
 }
 
 - (void) onClickHelp{
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_MENU withData:nil];
+	
 }
 
 - (void) onClickSave{
@@ -73,7 +75,7 @@
 	btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
 	btn.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
 	btn.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
-	btn.frame = CGRectMake(0, 45*num, 160, 30);
+	btn.frame = CGRectMake(0, 45*num + 10, 160, 30);
 	[btn setImage:img forState:UIControlStateNormal];
 	[btn setTitle:label forState:UIControlStateNormal];
 	[btn addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];

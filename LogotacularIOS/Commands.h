@@ -21,6 +21,7 @@
 #import "PerformDelCommand.h"
 #import "PerformSaveCommand.h"
 #import "TextEditedCommand.h"
+#import "ClickNewCommand.h"
 
 @interface Commands : NSObject
 

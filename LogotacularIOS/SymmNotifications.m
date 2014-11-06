@@ -15,6 +15,7 @@ NSString* const SYMM_NOTIF_HIDE_SPINNER =		@"Symm::hideSpinner";
 NSString* const SYMM_NOTIF_CLICK_MENU =			@"Symm::menu";
 NSString* const SYMM_NOTIF_HIDE_MENU =			@"Symm::hideMenu";
 NSString* const SYMM_NOTIF_CLICK_PLAY =			@"Symm::clickPlay";
+NSString* const SYMM_NOTIF_CLICK_NEW =			@"Symm::clickNew";
 NSString* const SYMM_NOTIF_STORE_TEXT =			@"Symm::storeText";
 NSString* const SYMM_NOTIF_START =				@"Symm::start";
 NSString* const SYMM_NOTIF_STOP =				@"Symm::stop";
@@ -35,5 +36,6 @@ NSString* const SYMM_NOTIF_PERFORM_SAVE =		@"Symm::performSave";
 NSString* const SYMM_NOTIF_CLICK_SAVE =			@"Symm:clickSave";
 NSString* const SYMM_NOTIF_SHOW_FILENAME =		@"Symm::showFilename";
 NSString* const SYMM_NOTIF_TEXT_EDITED =		@"Symm:textEdited";
+NSString* const  SYMM_NOTIF_FILE_LOADED =		@"Symm:fileLoaded";
 
 @end

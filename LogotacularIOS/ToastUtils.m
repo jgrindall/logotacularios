@@ -19,11 +19,20 @@
 	else if(type == TSMessageNotificationTypeError){
 		title = @"ERROR";
 	}
-	UIViewController* presenter = [controller navigationController];
-	if(!presenter){
-		presenter = controller;
+	UIViewController* presenter;
+	if(controller){
+		presenter = [controller navigationController];
+		if(!presenter){
+			presenter = controller;
+		}
 	}
-	[TSMessage showNotificationInViewController:presenter title:title subtitle:subtitle type:type duration:3.0f canBeDismissedByUser:YES];
+	else{
+		AppDelegate* delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+		presenter = [delegate navigationController];
+	}
+	if(presenter){
+		[TSMessage showNotificationInViewController:presenter title:title subtitle:subtitle type:type duration:3.0f canBeDismissedByUser:YES];
+	}
 }
 
 + (NSString*) getOpenFileErrorMessage{

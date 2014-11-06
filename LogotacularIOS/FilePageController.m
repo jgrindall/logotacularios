@@ -34,39 +34,26 @@
 	if(self){
 		[[self getFileListModel] addListener:@selector(filesChanged) forKey:FILE_LIST_LIST withTarget:self];
 		[[self getFileBrowserModel] addGlobalListener:@selector(selChanged) withTarget:self];
+		[[self getEventDispatcher] addListener:SYMM_NOTIF_FILE_LOADED toFunction:@selector(fileLoaded) withContext:self];
 	}
 	return self;
 }
 
 - (void) selChanged{
-	BOOL allowOpen = NO;
-	BOOL allowDelete = NO;
-	BOOL isOpen = [self getIsOpen];
+	BOOL allowOpenDelete = NO;
 	NSInteger index = [self getSelected];
 	if(index >= 0){
-		if(isOpen){
-			allowOpen = YES;
-			allowDelete = NO;
-		}
-		else{
-			allowOpen = NO;
-			allowDelete = YES;
-		}
+		allowOpenDelete = YES;
 	}
-	[self.openButton setEnabled:allowOpen];
-	[self.delButton setEnabled:allowDelete];
-	[[self.openButton customView] setHidden:!allowOpen];
-	[[self.delButton customView] setHidden:!allowDelete];
+	[self.openButton setEnabled:allowOpenDelete];
+	[self.delButton setEnabled:allowOpenDelete];
+	[[self.openButton customView] setHidden:!allowOpenDelete];
+	[[self.delButton customView] setHidden:!allowOpenDelete];
 }
 
 - (NSInteger) getSelected{
 	NSNumber* n = (NSNumber*)[[self getFileBrowserModel] getVal:BROWSER_SELECTED_INDEX];
 	return [n integerValue];
-}
-
-- (BOOL) getIsOpen{
-	NSNumber* n = (NSNumber*)[[self getFileBrowserModel] getVal:BROWSER_SELECTED_OPEN];
-	return [n boolValue];
 }
 
 - (id<PFileBrowserModel>) getFileBrowserModel{
@@ -113,6 +100,10 @@
 -(void)onClickOpen{
 	NSNumber* n = [NSNumber numberWithInteger:[self getSelected]];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_PERFORM_OPEN withData:n];
+}
+
+- (void) fileLoaded{
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 -(UIButton*)getBarButton: (UIBarButtonItem*) item{
@@ -167,6 +158,7 @@
 - (void) dealloc{
 	[[self getFileListModel] removeListener:@selector(filesChanged) forKey:FILE_LIST_LIST withTarget:self];
 	[[self getFileBrowserModel] removeGlobalListener:@selector(selChanged) withTarget:self];
+	[[self getEventDispatcher] removeListener:SYMM_NOTIF_FILE_LOADED toFunction:@selector(fileLoaded) withContext:self];
 }
 
 @end

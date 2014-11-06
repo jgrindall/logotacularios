@@ -24,7 +24,6 @@
 		[[self getMenuModel] setVal:[NSNumber numberWithBool:NO] forKey:MENU_SHOWN];
 		[[self getEventDispatcher] dispatch:SYMM_NOTIF_DISMISS_KEY withData:nil];
 		[[self getEventDispatcher] dispatch:SYMM_NOTIF_RESET withData:nil];
-		[[self getEventDispatcher] dispatch:SYMM_NOTIF_STORE_TEXT withData:nil];
 		[[self getEventDispatcher] dispatch:SYMM_NOTIF_START withData:nil];
 	}
 }

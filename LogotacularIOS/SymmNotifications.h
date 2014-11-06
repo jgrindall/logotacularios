@@ -35,6 +35,8 @@ extern NSString* const SYMM_NOTIF_CLICK_SAVE;
 extern NSString* const SYMM_NOTIF_SHOW_FILENAME;
 extern NSString* const SYMM_NOTIF_PERFORM_SAVE;
 extern NSString* const SYMM_NOTIF_TEXT_EDITED;
+extern NSString* const SYMM_NOTIF_FILE_LOADED;
+extern NSString* const SYMM_NOTIF_CLICK_NEW;
 
 @end
 

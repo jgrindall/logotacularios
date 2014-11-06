@@ -12,7 +12,6 @@
 @protocol PFileBrowserModel <PAbstractModel>
 
 extern NSString* const BROWSER_SELECTED_INDEX;
-extern NSString* const BROWSER_SELECTED_OPEN;
 
 - (void) reset;
 

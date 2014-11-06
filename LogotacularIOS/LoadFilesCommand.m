@@ -14,13 +14,11 @@
 @implementation LoadFilesCommand
 
 - (void) execute:(id) payload{
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_SHOW_SPINNER withData:nil];
 	[[FileLoader sharedInstance] getYourFilesWithCallback:^(FileLoaderResults result, id data) {
 		if(result == FileLoaderResultOk){
 			NSArray* files = (NSArray*)data;
 			NSLog(@"files loaded %@", files);
 			[[self getFileListModel] setVal:files forKey:FILE_LIST_LIST];
-			[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_SPINNER withData:nil];
 		}
 	}];
 }

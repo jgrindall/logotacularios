@@ -125,6 +125,7 @@
 
 - (void)textViewDidEndEditing:(UITextView*)textView{
 	NSString* text = self.logoText.text;
+	NSLog(@"did end");
 	if(![self.cachedText isEqualToString:text]){
 		[[self getEventDispatcher] dispatch:SYMM_NOTIF_TEXT_EDITED withData:text];
 	}

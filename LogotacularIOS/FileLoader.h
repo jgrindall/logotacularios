@@ -21,6 +21,7 @@
 - (void) getYourFilesWithCallback:(void(^)(FileLoaderResults result, id data))callback;
 - (BOOL) filenameOk:(NSString*)name;
 - (void) getFileNameAtIndex:(NSInteger)i withCallback:(void(^)(FileLoaderResults result, id data))callback;
+- (NSString*)getFileNameFromPath:(NSURL*)path;
 
 @property (readonly) BOOL enabled;
 

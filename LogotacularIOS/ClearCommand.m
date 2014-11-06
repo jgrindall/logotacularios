@@ -19,12 +19,7 @@
 		[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_PLAY withData:nil];
 	}
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_RESET withData:nil];
-	id<PLogoModel> logoModel = [self getLogoModel];
-	[logoModel add:@""];
-}
-
-- (id<PLogoModel>) getLogoModel{
-	return [[JSObjection defaultInjector] getObject:@protocol(PLogoModel)];
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_TEXT_EDITED withData:@""];
 }
 
 - (id<PDrawingModel>) getDrawingModel{

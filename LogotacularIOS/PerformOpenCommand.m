@@ -10,6 +10,7 @@
 #import "FileLoader.h"
 #import "PFileModel.h"
 #import "PLogoModel.h"
+#import "SymmNotifications.h"
 
 @implementation PerformOpenCommand
 
@@ -28,6 +29,7 @@
 					[fileModel setVal:[NSNumber numberWithBool:NO] forKey:FILE_DIRTY];
 					[fileModel setVal:[NSNumber numberWithBool:YES] forKey:FILE_REAL];
 					[logoModel reset:logo];
+					[[self getEventDispatcher] dispatch:SYMM_NOTIF_FILE_LOADED withData:nil];
 				}
 			}];
 		}
