@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Objection/Objection.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
-@property UINavigationController *navigationController;
+@property (strong, nonatomic) UIWindow*		window;
+@property UINavigationController*			navigationController;
 
 @end
 

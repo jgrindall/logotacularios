@@ -15,5 +15,7 @@
 + (BOOL) createContextWithSize:(CGSize)size;
 + (UIImage *)imageWithOverlayColor:(UIImage*)src withColor:(UIColor *)color;
 + (void) bounceAnimateView:(UIView*) view from:(float) fromPos to:(float) toPos withKeyPath:(NSString*) keyPath withKey:(NSString*) key withDelegate:(id)delegate withDuration:(float)duration withImmediate:(BOOL)immediate;
++ (UIImage*) shadowImage:(CGSize)size withCurlX:(int)cx withCurlY:(int)cy;
++ (void)shakeView:(UIView*)view;
 
 @end

@@ -1,11 +1,17 @@
 
 LG.stop = function(){
-	//this.worker.terminate();
+	alert("stopping!");
+	try{
+		LG.worker.terminate();
+	}
+	catch(e){
+		
+	}
+	LG.active = false;
 };
 
 LG.onError = function(e){
-	window.alert("onError " + e);
-	iosCallback("onError " + e);
+	iosCallback({"error":e});
 };
 
 LG.onMessage = function(msg){
@@ -18,7 +24,7 @@ LG.getTree = function(s){
 		tree = LG.logoParser.parse(s);
 	}
 	catch(e){
-		alert("getTree error " + e.message);
+		LG.onMessage({"error":e});
 	}
 	return tree;
 };
@@ -28,19 +34,19 @@ LG.draw = function(logo){
 	tree = LG.getTree(logo);
 	if(tree){
 		try{
+			LG.active = true;
 			LG.process(tree);
 		}
 		catch(e){
-			alert("error2 " + e);
+			LG.onMessage({"error":e});
 		}
 	}
-	return tree;
 };
 
 LG.process = function(tree){
-	var worker = new Worker("visit.js");
-	worker.onmessage =		this.onMessage.bind(this);
-	worker.onerror =		this.onError.bind(this);
-	worker.postMessage(  {"type":"tree", "tree":tree}  );
+	LG.worker = new Worker("visit.js");
+	LG.worker.onmessage =		this.onMessage.bind(this);
+	LG.worker.onerror =		this.onError.bind(this);
+	LG.worker.postMessage(  {"type":"tree", "tree":tree}  );
 };
 

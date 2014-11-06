@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Objection/Objection.h>
 
 @interface NavController : UINavigationController
 
 @end
+

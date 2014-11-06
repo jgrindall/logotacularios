@@ -7,21 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ADrawer.h"
 
-@interface DrawingObject : NSObject <NSCoding>
+@interface FileObject : NSObject <NSCoding>
 
-@property NSMutableArray* lines;
-@property UIColor* color;
-@property NSNumber* alpha;
-@property NSInteger width;
-@property UIColor* bgColor;
-@property NSInteger drawerNum;
-@property ADrawer* drawer;
-@property UIImage* baseImage;
-
-- (void) clear;
-- (void) setSize:(CGSize)size;
-- (void) loadDefaultColors;
+@property NSString* logo;
 
 @end

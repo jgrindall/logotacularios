@@ -9,6 +9,7 @@
 #import "ImageUtils.h"
 #import "Appearance.h"
 #import "SKBounceAnimation.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface ImageUtils()
 
@@ -84,5 +85,79 @@ static CGFloat edgeSizeFromCornerRadius(CGFloat cornerRadius) {
 	[view.layer setValue:finalValue forKeyPath:keyPath];
 }
 
++ (UIImage*) shadowImage:(CGSize)size withCurlX:(int)cx withCurlY:(int)cy{
+	UIImage* shadow;
+	BOOL c = [ImageUtils createContextWithSize:size];
+	if(c){
+		CGContextRef context = UIGraphicsGetCurrentContext();
+		if(context){
+			CGMutablePathRef ref = CGPathCreateMutable();
+			CGPathMoveToPoint(ref, NULL, 0, size.height - cy);
+			CGPathAddLineToPoint(ref, NULL, cx, size.height);
+			CGPathAddQuadCurveToPoint(ref, NULL, size.width/2, size.height - 2*cy, size.width - cx, size.height);
+			CGPathAddLineToPoint(ref, NULL, size.width, size.height - cy);
+			CGPathCloseSubpath(ref);
+			CGContextSetFillColorWithColor(context, [UIColor grayColor].CGColor);
+			CGContextAddPath(context, ref);
+			CGContextFillPath(context);
+			shadow = UIGraphicsGetImageFromCurrentImageContext();
+			CGPathRelease(ref);
+		}
+		UIGraphicsEndImageContext();
+	}
+	return [ImageUtils blur:shadow];
+}
+
++ (UIImage*) blur:(UIImage*)src {
+	if(!src){
+		return nil;
+	}
+	UIImage* result = src;
+	int num = 1;
+	for(int i = 1; i<= num; i++){
+		result = [ImageUtils imageWithGaussianBlur9:result];
+	}
+	return result;
+}
+
++ (void)shakeView:(UIView*)view{
+	CABasicAnimation *shake = [CABasicAnimation animationWithKeyPath:@"position"];
+	[shake setDuration:0.1];
+	[shake setRepeatCount:2];
+	[shake setAutoreverses:YES];
+	[shake setFromValue:[NSValue valueWithCGPoint: CGPointMake(view.center.x - 5, view.center.y)]];
+	[shake setToValue:[NSValue valueWithCGPoint: CGPointMake(view.center.x + 5, view.center.y)]];
+	[view.layer addAnimation:shake forKey:@"position"];
+}
+
++ (UIImage*)imageWithGaussianBlur9:(UIImage*)src {
+	if(!src){
+		return nil;
+	}
+	float weight[5] = {0.2270270270, 0.1945945946, 0.1216216216, 0.0540540541, 0.0162162162};
+	UIImage *horizBlurredImage;
+	UIImage *blurredImage;
+	BOOL c = [ImageUtils createContextWithSize:src.size];
+	if(c){
+		[src drawInRect:CGRectMake(0, 0, src.size.width, src.size.height) blendMode:kCGBlendModePlusLighter alpha:weight[0]];
+		for (int x = 1; x < 5; ++x) {
+			[src drawInRect:CGRectMake(x, 0, src.size.width, src.size.height) blendMode:kCGBlendModePlusLighter alpha:weight[x]];
+			[src drawInRect:CGRectMake(-x, 0, src.size.width, src.size.height) blendMode:kCGBlendModePlusLighter alpha:weight[x]];
+		}
+		horizBlurredImage = UIGraphicsGetImageFromCurrentImageContext();
+		UIGraphicsEndImageContext();
+	}
+	c = [ImageUtils createContextWithSize:src.size];
+	if(c){
+		[horizBlurredImage drawInRect:CGRectMake(0, 0, src.size.width, src.size.height) blendMode:kCGBlendModePlusLighter alpha:weight[0]];
+		for (int y = 1; y < 5; ++y) {
+			[horizBlurredImage drawInRect:CGRectMake(0, y, src.size.width, src.size.height) blendMode:kCGBlendModePlusLighter alpha:weight[y]];
+			[horizBlurredImage drawInRect:CGRectMake(0, -y, src.size.width, src.size.height) blendMode:kCGBlendModePlusLighter alpha:weight[y]];
+		}
+		blurredImage = UIGraphicsGetImageFromCurrentImageContext();
+		UIGraphicsEndImageContext();
+	}
+	return blurredImage;
+}
 
 @end

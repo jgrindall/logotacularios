@@ -46,6 +46,18 @@
     }
 }
 
++ (UIBarButtonItem*) getBarButton:(NSString*) imageUrl{
+	UIImage* img = [UIImage imageNamed:imageUrl];
+	UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
+	btn.bounds = CGRectMake(0, 0, 30, 30);
+	btn.frame = CGRectMake(-15, 0, 80, 30);
+	[btn setImage:img forState:UIControlStateNormal];
+	UIView* container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
+	[container addSubview:btn];
+	UIBarButtonItem* buttonItem = [[UIBarButtonItem alloc] initWithCustomView:container];
+	return buttonItem;
+}
+
 + (void) applyToolBarStyleInWindow:(UIWindow*) window{
 	[[UIToolbar appearance] setBackgroundColor:[UIColor whiteColor]];
 }
@@ -64,8 +76,8 @@
 	[[UIView appearanceWhenContainedIn:[UICollectionView class], nil] setBackgroundColor:[UIColor clearColor]];
 	[[UIView appearanceWhenContainedIn:[UICollectionViewController class], nil] setBackgroundColor:[UIColor clearColor]];
 	[[UIImageView appearance] setBackgroundColor:[UIColor clearColor]];
-	NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:[Appearance fontOfSize:16], NSFontAttributeName,  [UIColor orangeColor], NSForegroundColorAttributeName, nil];
-	NSDictionary* dic1 = [NSDictionary dictionaryWithObjectsAndKeys:[Appearance fontOfSize:16], NSFontAttributeName, [UIColor purpleColor], NSForegroundColorAttributeName, nil];
+	NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:[Appearance fontOfSize:20], NSFontAttributeName,  [UIColor whiteColor], NSForegroundColorAttributeName, nil];
+	NSDictionary* dic1 = [NSDictionary dictionaryWithObjectsAndKeys:[Appearance fontOfSize:20], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, nil];
 	[[UIBarButtonItem appearance] setTitleTextAttributes:dic forState:UIControlStateNormal];
 	[[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTitleTextAttributes:dic1 forState:UIControlStateNormal];
 }
@@ -79,39 +91,11 @@
 }
 
 + (UIFont*) fontOfSize:(SymmFontSizes)s{
-	static dispatch_once_t onceToken0;
-	NSString* fontName = @"Lato-Regular";
-	NSURL* url = [[NSBundle mainBundle] URLForResource:fontName withExtension:@"ttf" subdirectory:@"assets/fonts"];
-	if(url){
-		dispatch_once(&onceToken0, ^{
-			CFErrorRef error;
-			if(!CTFontManagerRegisterFontsForURL((__bridge CFURLRef)url, kCTFontManagerScopeNone, &error)){
-				NSLog(@"failed to register 0 %@", error);
-			}
-		});
-	}
-	else{
-		NSLog(@"failed to register 0 url");
-	}
-	return [UIFont fontWithName:fontName size:s];
+	return [UIFont fontWithName:@"Lato-Regular" size:s];
 }
 
 + (UIFont*) monospaceFontOfSize:(SymmFontSizes)s{
-	static dispatch_once_t onceToken1;
-	NSString* fontName = @"Inconsolata-Regular";
-	NSURL* url = [[NSBundle mainBundle] URLForResource:fontName withExtension:@"ttf" subdirectory:@"assets/fonts"];
-	if(url){
-		dispatch_once(&onceToken1, ^{
-			CFErrorRef error;
-			if(!CTFontManagerRegisterFontsForURL((__bridge CFURLRef)url, kCTFontManagerScopeNone, &error)){
-				NSLog(@"failed to register 1 %@", error);
-			}
-		});
-	}
-	else{
-		NSLog(@"failed to register 1 url");
-	}
-	return [UIFont fontWithName:fontName size:s];
+	return [UIFont fontWithName:@"DroidSansMono" size:s];
 }
 
 @end

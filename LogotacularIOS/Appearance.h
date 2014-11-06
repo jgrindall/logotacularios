@@ -26,5 +26,7 @@ typedef enum  {
 + (void) styleCollectionView:(UICollectionView*) collectionView;
 + (NSDictionary*) navTextAttributes;
 + (UIFont*) monospaceFontOfSize:(SymmFontSizes)s;
++ (UIFont*) fontOfSize:(SymmFontSizes)s;
++ (UIBarButtonItem*) getBarButton:(NSString*) imageUrl;
 
 @end

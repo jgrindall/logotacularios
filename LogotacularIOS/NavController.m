@@ -8,6 +8,9 @@
 #import "NavController.h"
 #import "SymmNotifications.h"
 #import "SpinnerView.h"
+#import "AppDelegate.h"
+#import "PEventDispatcher.h"
+#import "PLogger.h"
 
 @interface NavController ()
 
@@ -16,10 +19,11 @@ typedef enum  {
 	SpinnerStatusShown
 } SpinnerStatus;
 
-
 @property SpinnerStatus spinnerShown;
 @property UIView* spinnerView;
 @property NSArray* spinnerConstraints;
+@property id<PEventDispatcher> eventDispatcher;
+@property id<PLogger> logger;
 
 @end
 
@@ -28,16 +32,29 @@ typedef enum  {
 - (id) initWithRootViewController:(UIViewController *)rootViewController{
 	self = [super initWithRootViewController:rootViewController];
 	if(self){
-		self.spinnerShown = SpinnerStatusNone;
+		[self setup];
 	}
 	return self;
 }
 
-- (void)viewDidLoad{
-    [super viewDidLoad];
-	//[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showSpinner) name:SYMM_NOTIF_SHOW_SPINNER object:nil];
-	//[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideSpinner) name:SYMM_NOTIF_HIDE_SPINNER object:nil];
-	//[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alert:) name:SYMM_NOTIF_ALERT object:nil];
+- (id<PLogger>) getLogger{
+	if(!self.logger){
+		self.logger = [[JSObjection defaultInjector] getObject:@protocol(PLogger)];
+	}
+	return self.logger;
+}
+
+- (id<PEventDispatcher>) getEventDispatcher{
+	if(!self.eventDispatcher){
+		self.eventDispatcher = [[JSObjection defaultInjector] getObject:@protocol(PEventDispatcher)];
+	}
+	return self.eventDispatcher;
+}
+
+- (void)setup{
+	self.spinnerShown = SpinnerStatusNone;
+	[[self getEventDispatcher] addListener:SYMM_NOTIF_SHOW_SPINNER toFunction:@selector(showSpinner) withContext:self];
+	[[self getEventDispatcher] addListener:SYMM_NOTIF_HIDE_SPINNER toFunction:@selector(hideSpinner) withContext:self];
 }
 
 - (void) alert:(NSNotification*) notification{
@@ -46,7 +63,7 @@ typedef enum  {
 	[alertView show];
 }
 
-- (void) performShowSpinner{
+- (void) showSpinner{
 	self.spinnerView = [[SpinnerView alloc] initWithFrame:self.view.frame];
 	[self.view addSubview:self.spinnerView];
 	[self layoutSpinner];
@@ -63,27 +80,19 @@ typedef enum  {
 	[self.view addConstraints:self.spinnerConstraints];
 }
 
-- (void) performHideSpinner{
+- (void) hideSpinner{
 	[self.view removeConstraints:self.spinnerConstraints];
 	[self.spinnerView removeFromSuperview];
 	self.spinnerView = nil;
 	self.spinnerShown = SpinnerStatusNone;
-	
-}
-
-- (void) showSpinner{
-	
-}
-
-- (void) hideSpinner{
-	
 }
 
 - (void) dealloc{
-	//[[NSNotificationCenter defaultCenter] removeObserver:self name:SYMM_NOTIF_SHOW_SPINNER object:nil];
-	//[[NSNotificationCenter defaultCenter] removeObserver:self name:SYMM_NOTIF_HIDE_SPINNER object:nil];
+	[self hideSpinner];
+	self.spinnerConstraints = nil;
+	[self.eventDispatcher removeListener:SYMM_NOTIF_SHOW_SPINNER toFunction:@selector(showSpinner) withContext:self];
+	[[self getEventDispatcher] removeListener:SYMM_NOTIF_HIDE_SPINNER toFunction:@selector(hideSpinner) withContext:self];
 }
-
 
 @end
 
