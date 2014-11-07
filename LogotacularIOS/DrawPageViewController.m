@@ -21,6 +21,7 @@
 #import "PLogoModel.h"
 #import "FilenameViewController.h"
 #import "FileLoader.h"
+#import "AlertManager.h"
 
 @interface DrawPageViewController ()
 
@@ -28,12 +29,11 @@
 @property UIView* paintContainer;
 @property UIView* webContainer;
 @property UIView* menuContainer;
-@property UIView* filenameContainer;
 @property TextViewController* textViewController;
 @property PaintViewController* paintViewController;
 @property WebViewController* webViewController;
 @property MenuViewController* menuViewController;
-@property FilenameViewController* filenameViewController;
+@property AbstractAlertController* alert;
 @property UIBarButtonItem* playButton;
 @property UIBarButtonItem* listButton;
 @property UIBarButtonItem* undoButton;
@@ -78,19 +78,11 @@
 }
 
 - (void) showFilename{
-	self.filenameContainer = [[UIView alloc] initWithFrame:self.view.frame];
-	self.filenameViewController = [[FilenameViewController alloc] init];
-	self.filenameViewController.delegate = self;
-	[self.view addSubview:self.filenameContainer];
-	[self addChildInto:self.filenameContainer withController:self.filenameViewController];
-	[self layoutFilename];
+	self.alert = [AlertManager addAlert:[FilenameViewController class] intoController:self withDelegate:self];
 }
 
 - (void) hideFilename{
-	[self removeChildFrom:self.filenameContainer withController:self.filenameViewController];
-	[self.filenameContainer removeFromSuperview];
-	self.filenameContainer = nil;
-	self.filenameViewController = nil;
+	[AlertManager removeAlert];
 }
 
 - (id<PFileModel>) getFileModel{
@@ -201,23 +193,28 @@
 	}
 }
 
-- (void) clickButtonAt:(NSInteger)i withPayload:(id)payload{
+- (void) filenameClosed:(id)payload{
 	if(i == 0){
 		NSString* name = (NSString*)payload;
 		[[FileLoader sharedInstance] filenameOk:name withCallback:^(FileLoaderResults result, id data) {
 			BOOL ok = [data boolValue];
-			NSLog(@"ok? %i", ok);
 			if(ok){
 				[self hideFilename];
 				[[self getEventDispatcher] dispatch:SYMM_NOTIF_PERFORM_SAVE withData:name];
 			}
 			else{
-				[self.filenameViewController error];
+				[(FilenameViewController*)self.alert error];
 			}
 		}];
 	}
 	else if(i == 1){
 		[self hideFilename];
+	}
+}
+
+- (void) clickButtonAt:(NSInteger)i withPayload:(id)payload{
+	if([self.alert class] == [FilenameViewController class]){
+		[self filenameClosed:payload];
 	}
 }
 
@@ -259,13 +256,6 @@
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.paintContainer attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.paintContainer attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.paintContainer attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.view				attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0]];
-}
-
--(void)layoutFilename{
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.filenameContainer attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view						attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.filenameContainer attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.filenameContainer attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.filenameContainer attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0]];
 }
 
 - (void) layoutText{
