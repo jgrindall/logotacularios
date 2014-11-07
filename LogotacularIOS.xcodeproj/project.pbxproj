@@ -73,6 +73,7 @@
 		52C687251A025011008FCBDB /* FileLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C687241A025011008FCBDB /* FileLoader.m */; };
 		52C687291A025232008FCBDB /* FileDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C687281A025232008FCBDB /* FileDocument.m */; };
 		52C6872C1A02527A008FCBDB /* FileObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C6872B1A02527A008FCBDB /* FileObject.m */; };
+		52CBC9BA1A0D2B1300C229C8 /* AbstractAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CBC9B91A0D2B1300C229C8 /* AbstractAlertController.m */; };
 		52CF55F61A0831D600F01D3A /* LogoErrorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CF55F51A0831D600F01D3A /* LogoErrorModel.m */; };
 		52CF55FB1A08411900F01D3A /* FileBrowserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CF55FA1A08411900F01D3A /* FileBrowserModel.m */; };
 /* End PBXBuildFile section */
@@ -228,6 +229,10 @@
 		52C687281A025232008FCBDB /* FileDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileDocument.m; sourceTree = "<group>"; };
 		52C6872A1A02527A008FCBDB /* FileObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileObject.h; sourceTree = "<group>"; };
 		52C6872B1A02527A008FCBDB /* FileObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileObject.m; sourceTree = "<group>"; };
+		52CBC9B71A0D227700C229C8 /* PLogoAlertDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLogoAlertDelegate.h; sourceTree = "<group>"; };
+		52CBC9B81A0D2B1300C229C8 /* AbstractAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractAlertController.h; sourceTree = "<group>"; };
+		52CBC9B91A0D2B1300C229C8 /* AbstractAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractAlertController.m; sourceTree = "<group>"; };
+		52CBC9BE1A0D2C9200C229C8 /* AbstractAlertController_protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AbstractAlertController_protected.h; sourceTree = "<group>"; };
 		52CF55F41A0831D600F01D3A /* LogoErrorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogoErrorModel.h; sourceTree = "<group>"; };
 		52CF55F51A0831D600F01D3A /* LogoErrorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogoErrorModel.m; sourceTree = "<group>"; };
 		52CF55F81A08322800F01D3A /* PLogoErrorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLogoErrorModel.h; sourceTree = "<group>"; };
@@ -372,8 +377,12 @@
 		527D42FE1A0ADEC4008AE82A /* Filename */ = {
 			isa = PBXGroup;
 			children = (
+				52CBC9BE1A0D2C9200C229C8 /* AbstractAlertController_protected.h */,
+				52CBC9B81A0D2B1300C229C8 /* AbstractAlertController.h */,
+				52CBC9B91A0D2B1300C229C8 /* AbstractAlertController.m */,
 				527D42FB1A0ADEBF008AE82A /* FilenameViewController.h */,
 				527D42FC1A0ADEBF008AE82A /* FilenameViewController.m */,
+				52CBC9B71A0D227700C229C8 /* PLogoAlertDelegate.h */,
 			);
 			name = Filename;
 			sourceTree = "<group>";
@@ -860,6 +869,7 @@
 				52B5B35B19FD7E1400EF531F /* SymmNotifications.m in Sources */,
 				52CF55FB1A08411900F01D3A /* FileBrowserModel.m in Sources */,
 				52B5B35619FD7E1400EF531F /* LinesView.m in Sources */,
+				52CBC9BA1A0D2B1300C229C8 /* AbstractAlertController.m in Sources */,
 				52B5B35219FD7E1400EF531F /* Appearance.m in Sources */,
 				52B228981A00E73D001CC355 /* MenuModel.m in Sources */,
 				52C687251A025011008FCBDB /* FileLoader.m in Sources */,

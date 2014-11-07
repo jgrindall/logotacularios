@@ -17,7 +17,6 @@
 	[[FileLoader sharedInstance] getYourFilesWithCallback:^(FileLoaderResults result, id data) {
 		if(result == FileLoaderResultOk){
 			NSArray* files = (NSArray*)data;
-			NSLog(@"files loaded %@", files);
 			[[self getFileListModel] setVal:files forKey:FILE_LIST_LIST];
 		}
 	}];

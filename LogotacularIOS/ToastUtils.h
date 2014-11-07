@@ -13,24 +13,12 @@
 
 + (void) showToastInController:(UIViewController*)controller withMessage:(NSString*) subtitle withType:(TSMessageNotificationType)type;
 
-+ (NSString*) getOpenFileErrorMessage;
++ (NSString*) getFileOpenErrorMessage;
 + (NSString*) getFileSaveSuccessMessage;
 + (NSString*) getFileSaveErrorMessage;
 + (NSString*) getFileDeleteSuccessMessage;
 + (NSString*) getFileDeleteErrorMessage;
-+ (NSString*) getStartFileErrorMessage;
-+ (NSString*) getNoFbErrorMessage;
-+ (NSString*) getFbErrorMessage;
-+ (NSString*) getNoTwitterErrorMessage;
-+ (NSString*) getTwitterErrorMessage;
-+ (NSString*) getCameraRollSuccessMessage;
-+ (NSString*) getGalleryViewNoInternetMessage;
-+ (NSString*) getGalleryViewInsuffFilesMessage;
-+ (NSString*) getGalleryViewErrorMessage;
-+ (NSString*) getGallerySubmitNoInternetMessage;
-+ (NSString*) getGallerySubmitErrorMessage;
-+ (NSString*) getGallerySubmitSuccessMessage;
-+ (NSString*) getFacebookSuccessMessage;
-+ (NSString*) getTwitterSuccessMessage;
++ (NSString*) getFileNameInvalidMessage;
++ (NSString*) getFileNameTakenMessage;
 
 @end

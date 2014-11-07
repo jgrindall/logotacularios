@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "AContainerViewController_Protected.h"
+#import "PLogoAlertDelegate.h"
 
-@interface DrawPageViewController : AContainerViewController
+@interface DrawPageViewController : AContainerViewController <PLogoAlertDelegate>
 
 @end
 

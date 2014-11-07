@@ -16,7 +16,6 @@ NSString* const SYMM_NOTIF_CLICK_MENU =			@"Symm::menu";
 NSString* const SYMM_NOTIF_HIDE_MENU =			@"Symm::hideMenu";
 NSString* const SYMM_NOTIF_CLICK_PLAY =			@"Symm::clickPlay";
 NSString* const SYMM_NOTIF_CLICK_NEW =			@"Symm::clickNew";
-NSString* const SYMM_NOTIF_STORE_TEXT =			@"Symm::storeText";
 NSString* const SYMM_NOTIF_START =				@"Symm::start";
 NSString* const SYMM_NOTIF_STOP =				@"Symm::stop";
 NSString* const SYMM_NOTIF_CLICK_STOP =			@"Symm::clickStop";

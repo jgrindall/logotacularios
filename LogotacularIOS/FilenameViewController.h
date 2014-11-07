@@ -6,9 +6,10 @@
 //  Copyright (c) 2014 jgrindall. All rights reserved.
 //
 
-#import "BaseViewController_protected.h"
+#import "AbstractAlertController_protected.h"
+#import "PLogoAlertDelegate.h"
 
-@interface FilenameViewController : BaseViewController <UITextFieldDelegate>
+@interface FilenameViewController : AbstractAlertController <UITextFieldDelegate>
 
 - (void) error;
 

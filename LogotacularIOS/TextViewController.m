@@ -33,7 +33,6 @@
 }
 
 - (void) addListeners{
-	[[self getEventDispatcher] addListener:SYMM_NOTIF_STORE_TEXT toFunction:@selector(storeText) withContext:self];
 	[[self getLogoModel] addGlobalListener:@selector(modelChanged) withTarget:self];
 	[[self getErrorModel] addListener:@selector(errorChanged) forKey:LOGO_ERROR_ERROR withTarget:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_DISMISS_KEY toFunction:@selector(dismissKeyboard) withContext:self];
@@ -78,9 +77,14 @@
 	self.logoText.autocapitalizationType = UITextAutocapitalizationTypeNone;
 	self.logoText.autocorrectionType = UITextAutocorrectionTypeNo;
 	self.logoText.delegate = self;
+	self.logoText.allowsEditingTextAttributes = YES;
 	self.logoText.backgroundColor = [UIColor clearColor];
 	[self.logoText setFont:[Appearance monospaceFontOfSize:SYMM_FONT_SIZE_MED]];
 	[self.view addSubview:self.logoText];
+}
+
+- (void) textViewDidChange:(UITextView *)textView{
+	[self checkChanged];
 }
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -124,8 +128,11 @@
 }
 
 - (void)textViewDidEndEditing:(UITextView*)textView{
+	[self checkChanged];
+}
+
+- (void) checkChanged{
 	NSString* text = self.logoText.text;
-	NSLog(@"did end");
 	if(![self.cachedText isEqualToString:text]){
 		[[self getEventDispatcher] dispatch:SYMM_NOTIF_TEXT_EDITED withData:text];
 	}
@@ -137,11 +144,6 @@
 
 - (id<PLogoModel>) getErrorModel{
 	return [[JSObjection defaultInjector] getObject:@protocol(PLogoErrorModel)];
-}
-
-- (void) storeText{
-	//NSString* text = [self getText];
-	//[[self getLogoModel] add:text];
 }
 
 - (void) dismissKeyboard{
@@ -168,7 +170,6 @@
 
 - (void) removeListeners{
 	[self.view removeGestureRecognizer:self.swipe];
-	[[self getEventDispatcher] removeListener:SYMM_NOTIF_STORE_TEXT toFunction:@selector(storeText) withContext:self];
 	[[self getLogoModel] removeGlobalListener:@selector(modelChanged) withTarget:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_DISMISS_KEY toFunction:@selector(dismissKeyboard) withContext:self];
 	[[self getErrorModel] removeListener:@selector(errorChanged) forKey:LOGO_ERROR_ERROR withTarget:self];

@@ -117,8 +117,21 @@
 	}];
 }
 
-- (BOOL) filenameOk:(NSString*)name{
-	return YES;
+- (void) filenameOk:(NSString*)name withCallback:(void(^)(FileLoaderResults result, id data))callback{
+	[self getYourFilesWithCallback:^(FileLoaderResults result, id data) {
+		NSNumber* ok = [NSNumber numberWithBool:YES];
+		NSArray* files = (NSArray*)data;
+		for(NSURL* url in files){
+			if(url){
+				NSString* filename = [self getFileNameFromPath:url];
+				if([filename isEqualToString:name]){
+					ok = [NSNumber numberWithBool:NO];
+					break;
+				}
+			}
+		}
+		callback(FileLoaderResultOk, ok);
+	}];
 }
 
 - (NSString*)getFileNameFromPath:(NSURL*)path{

@@ -14,53 +14,32 @@
 #import "ImageUtils.h"
 #import <TSMessages/TSMessageView.h>
 #import "ToastUtils.h"
+#import "Appearance.h"
+#import "PLogoAlertDelegate.h"
 
 @interface FilenameViewController ()
 
 @property UIButton* okButton;
 @property UIButton* cancelButton;
 @property UITextField* nameField;
-@property UIView* bg;
-@property UIView* panel;
 
 @end
 
 @implementation FilenameViewController
 
 - (void) viewDidLoad{
-	[self addBg];
-	[self addPanel];
+	[super viewDidLoad];
 	[self addButtons];
 	[self addText];
-	[self layoutBg];
 	[self layoutButtons];
-	[self layoutPanel];
 	[self layoutText];
-	[self addListeners];
-	[self showPanel];
-}
-
-- (void) addBg{
-	self.bg = [[UIView alloc] initWithFrame:self.view.frame];
-	self.bg.translatesAutoresizingMaskIntoConstraints = NO;
-	self.bg.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.6];
-	[self.view addSubview:self.bg];
-}
-
-- (void) showPanel{
-	[self show];
-}
-
-- (void) addPanel{
-	self.panel = [[UIView alloc] initWithFrame:self.view.frame];
-	self.panel.translatesAutoresizingMaskIntoConstraints = NO;
-	self.panel.backgroundColor = [UIColor colorWithRed:(52.0/255.0) green:(73.0/255.0) blue:(94.0/255.0) alpha:1];
-	[self.view addSubview:self.panel];
 }
 
 - (void) addText{
 	self.nameField = [[UITextField alloc] initWithFrame:CGRectZero];
 	self.nameField.translatesAutoresizingMaskIntoConstraints = NO;
+	self.nameField.autocorrectionType = UITextAutocorrectionTypeNo;
+	self.nameField.autocapitalizationType = UITextAutocapitalizationTypeNone;
 	self.nameField.textAlignment = NSTextAlignmentCenter;
 	self.nameField.delegate = self;
 	self.nameField.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.2];
@@ -80,12 +59,15 @@
 
 - (BOOL) validateText{
 	NSString* text = self.nameField.text;
-	return ([text length] >= 2);
+	NSError* error = nil;
+	NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[ \t\r\n]+" options:NSRegularExpressionCaseInsensitive error:&error];
+	NSString* modifiedString = [regex stringByReplacingMatchesInString:text options:0 range:NSMakeRange(0, [text length]) withTemplate:@""];
+	return ([text length] <= 16 && [modifiedString length] >= 2);
 }
 
 - (void) onClickOk{
 	if([self validateText]){
-		[self bubbleSelector:@"fileOk:" withObject:self.nameField.text];
+		[self.delegate clickButtonAt:0 withPayload:self.nameField.text];
 	}
 	else{
 		[self error];
@@ -98,48 +80,7 @@
 }
 
 - (void) onClickCancel{
-	[self bubbleSelector:@"fileCancel" withObject:nil];
-}
-
-- (UIButton*) getButton:(NSString*) imageUrl withAction:(SEL)action withLabel:(NSString*)label atNum:(int)num{
-	UIImage* img = [UIImage imageNamed:imageUrl];
-	UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
-	btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-	btn.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
-	btn.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
-	[btn setImage:img forState:UIControlStateNormal];
-	[btn setTitle:label forState:UIControlStateNormal];
-	[btn addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
-	btn.translatesAutoresizingMaskIntoConstraints = NO;
-	return btn;
-}
-
-- (void) addListeners{
-
-}
-
-- (void) show{
-	float y0 = -self.panel.frame.size.height/2;;
-	float y1 = self.panel.frame.size.height/2;
-	[ImageUtils bounceAnimateView:self.panel from:y0 to:y1 withKeyPath:@"position.y" withKey:@"panelBounce" withDelegate:nil withDuration:0.3 withImmediate:NO];
-}
-
-- (void) removeListeners{
-	
-}
-
--(void)layoutBg{
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.bg attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view						attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.bg attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.bg attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.bg attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.view				attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0]];
-}
-
--(void)layoutPanel{
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.panel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view				attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.panel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view				attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.panel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil						attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:300.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.panel attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil						attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:200.0]];
+	[self.delegate clickButtonAt:1 withPayload:nil];
 }
 
 -(void)layoutText{
@@ -167,9 +108,6 @@
 	[self layoutOk];
 	[self layoutCancel];
 }
-	
-- (void) dealloc{
-	[self removeListeners];
-}
+
 
 @end

@@ -80,6 +80,7 @@
 - (void) showFilename{
 	self.filenameContainer = [[UIView alloc] initWithFrame:self.view.frame];
 	self.filenameViewController = [[FilenameViewController alloc] init];
+	self.filenameViewController.delegate = self;
 	[self.view addSubview:self.filenameContainer];
 	[self addChildInto:self.filenameContainer withController:self.filenameViewController];
 	[self layoutFilename];
@@ -200,18 +201,23 @@
 	}
 }
 
--(void)fileCancel{
-	[self hideFilename];
-}
-
--(void)fileOk:(id)obj{
-	NSString* name = (NSString*)obj;
-	if([[FileLoader sharedInstance] filenameOk:name]){
-		[self hideFilename];
-		[[self getEventDispatcher] dispatch:SYMM_NOTIF_PERFORM_SAVE withData:name];
+- (void) clickButtonAt:(NSInteger)i withPayload:(id)payload{
+	if(i == 0){
+		NSString* name = (NSString*)payload;
+		[[FileLoader sharedInstance] filenameOk:name withCallback:^(FileLoaderResults result, id data) {
+			BOOL ok = [data boolValue];
+			NSLog(@"ok? %i", ok);
+			if(ok){
+				[self hideFilename];
+				[[self getEventDispatcher] dispatch:SYMM_NOTIF_PERFORM_SAVE withData:name];
+			}
+			else{
+				[self.filenameViewController error];
+			}
+		}];
 	}
-	else{
-		[self.filenameViewController error];
+	else if(i == 1){
+		[self hideFilename];
 	}
 }
 

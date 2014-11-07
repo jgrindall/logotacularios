@@ -20,7 +20,7 @@
 - (void) openFile: (NSString*) fileName withCallback:(void(^)(FileLoaderResults result, id data))callback;
 - (void) openFileAtIndex:(NSInteger)i withCallback:(void(^)(FileLoaderResults result, id data))callback;
 - (void) getYourFilesWithCallback:(void(^)(FileLoaderResults result, id data))callback;
-- (BOOL) filenameOk:(NSString*)name;
+- (void) filenameOk:(NSString*)name withCallback:(void(^)(FileLoaderResults result, id data))callback;
 - (void) getFileNameAtIndex:(NSInteger)i withCallback:(void(^)(FileLoaderResults result, id data))callback;
 - (NSString*)getFileNameFromPath:(NSURL*)path;
 - (NSString*)getImagePathFromPath:(NSURL*)path;

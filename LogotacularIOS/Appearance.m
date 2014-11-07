@@ -27,6 +27,10 @@
 	[[UIApplication sharedApplication] keyWindow].tintColor = [UIColor whiteColor];
 }
 
++ (UIColor*) bgColor{
+	return [UIColor colorWithRed:(252.0/255.0) green:(73.0/255.0) blue:(94.0/255.0) alpha:1];
+}
+
 + (NSDictionary*) navTextAttributes{
 	UIColor* textColor = [UIColor whiteColor];
 	UIFont* textFont = [Appearance fontOfSize:24];
