@@ -9,12 +9,20 @@
 #import "ClickNewCommand.h"
 #import "PFileModel.h"
 #import "PLogoModel.h"
+#import "SymmNotifications.h"
 
 @implementation ClickNewCommand
 
 - (void) execute:(id) payload{
-	[[self getLogoModel] reset:@""];
-	[[self getFileModel] reset];
+	BOOL isReal = [[[self getFileModel] getVal:FILE_REAL] boolValue];
+	BOOL isDirty = [[[self getFileModel] getVal:FILE_DIRTY] boolValue];
+	if(isDirty && isReal){
+		[[self getEventDispatcher] dispatch:SYMM_NOTIF_CHECK_SAVE withData:nil];
+	}
+	else{
+		[[self getLogoModel] reset:@""];
+		[[self getFileModel] reset];
+	}
 }
 
 - (id<PLogoModel>) getLogoModel{

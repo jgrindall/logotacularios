@@ -22,6 +22,7 @@
 #import "FilenameViewController.h"
 #import "FileLoader.h"
 #import "AlertManager.h"
+#import "SaveCurrentViewController.h"
 
 @interface DrawPageViewController ()
 
@@ -75,14 +76,15 @@
 	[[self getLogoModel] addGlobalListener:@selector(logoChanged) withTarget:self];
 	[[self getDrawingModel] addListener:@selector(drawingChanged) forKey:DRAWING_ISDRAWING withTarget:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_SHOW_FILENAME toFunction:@selector(showFilename) withContext:self];
+	[[self getEventDispatcher] addListener:SYMM_NOTIF_CHECK_SAVE toFunction:@selector(showCheckSave) withContext:self];
+}
+
+- (void) showCheckSave{
+	self.alert = [AlertManager addAlert:[SaveCurrentViewController class] intoController:self withDelegate:self];
 }
 
 - (void) showFilename{
 	self.alert = [AlertManager addAlert:[FilenameViewController class] intoController:self withDelegate:self];
-}
-
-- (void) hideFilename{
-	[AlertManager removeAlert];
 }
 
 - (id<PFileModel>) getFileModel{
@@ -193,13 +195,13 @@
 	}
 }
 
-- (void) filenameClosed:(id)payload{
+- (void) filenameClosed:(NSInteger)i withPayload:(id)payload{
 	if(i == 0){
 		NSString* name = (NSString*)payload;
 		[[FileLoader sharedInstance] filenameOk:name withCallback:^(FileLoaderResults result, id data) {
 			BOOL ok = [data boolValue];
 			if(ok){
-				[self hideFilename];
+				[AlertManager removeAlert];
 				[[self getEventDispatcher] dispatch:SYMM_NOTIF_PERFORM_SAVE withData:name];
 			}
 			else{
@@ -208,13 +210,26 @@
 		}];
 	}
 	else if(i == 1){
-		[self hideFilename];
+		[AlertManager removeAlert];
 	}
 }
 
+- (void) checkSaveClosed:(NSInteger)i withPayload:(id)payload{
+	[AlertManager removeAlert];
+	if(i == 0){
+		NSLog(@"save0");
+	}
+	else if(i == 1){
+		NSLog(@"save0");
+	}
+};
+
 - (void) clickButtonAt:(NSInteger)i withPayload:(id)payload{
 	if([self.alert class] == [FilenameViewController class]){
-		[self filenameClosed:payload];
+		[self filenameClosed:i withPayload:payload];
+	}
+	else if([self.alert class] == [SaveCurrentViewController class]){
+		[self checkSaveClosed:i withPayload:payload];
 	}
 }
 
@@ -271,6 +286,7 @@
 	[[self getDrawingModel] removeListener:@selector(drawingChanged) forKey:DRAWING_ISDRAWING withTarget:self];
 	[[self getLogoModel] removeGlobalListener:@selector(logoChanged) withTarget:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_SHOW_FILENAME toFunction:@selector(showFilename) withContext:self];
+	[[self getEventDispatcher] removeListener:SYMM_NOTIF_CHECK_SAVE toFunction:@selector(showCheckSave) withContext:self];
 }
 
 - (void) dealloc{

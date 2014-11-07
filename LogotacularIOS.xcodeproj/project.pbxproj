@@ -345,6 +345,8 @@
 				527D42F91A0ADBEF008AE82A /* ClickSaveCommand.m */,
 				5257F3411A012F9500757C77 /* ClickMenuCommand.h */,
 				5257F3421A012F9500757C77 /* ClickMenuCommand.m */,
+				52C171461A0C3F14000865DD /* ClickNewCommand.h */,
+				52C171471A0C3F14000865DD /* ClickNewCommand.m */,
 				5257F3441A0131F000757C77 /* HideMenuCommand.h */,
 				5257F3451A0131F000757C77 /* HideMenuCommand.m */,
 				5257F3471A01356C00757C77 /* UndoCommand.h */,
@@ -364,8 +366,6 @@
 				527D42F61A0ADB0B008AE82A /* PerformDelCommand.m */,
 				52B44EFF1A0BC93D00B99FD2 /* TextEditedCommand.h */,
 				52B44F001A0BC93D00B99FD2 /* TextEditedCommand.m */,
-				52C171461A0C3F14000865DD /* ClickNewCommand.h */,
-				52C171471A0C3F14000865DD /* ClickNewCommand.m */,
 			);
 			name = Commands;
 			sourceTree = "<group>";

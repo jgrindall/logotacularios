@@ -58,26 +58,30 @@
 }
 
 - (void) onClickNew{
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_DISMISS_KEY withData:nil];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_MENU withData:nil];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_NEW withData:nil];
 }
 
 - (void) onClickHelp{
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_DISMISS_KEY withData:nil];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_MENU withData:nil];
-	
 }
 
 - (void) onClickSave{
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_DISMISS_KEY withData:nil];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_MENU withData:nil];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_SAVE withData:nil];
 }
 
 - (void) onClickOpen{
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_DISMISS_KEY withData:nil];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_MENU withData:nil];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_OPEN withData:self.navigationController];
 }
 
 - (void) onClickDel{
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_DISMISS_KEY withData:nil];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_MENU withData:nil];
 }
 
