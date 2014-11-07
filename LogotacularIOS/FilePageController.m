@@ -130,7 +130,7 @@
 	self.filesContainer = [[UIView alloc] initWithFrame:self.view.frame];
 	self.filesContainer.backgroundColor = [UIColor clearColor];
 	self.filesContainer.translatesAutoresizingMaskIntoConstraints = NO;
-	self.view.backgroundColor = [UIColor colorWithRed:(52.0/255.0) green:(73.0/255.0) blue:(94.0/255.0) alpha:1];
+	self.view.backgroundColor = [Appearance bgColor];
 	[self.view addSubview:self.filesContainer];
 	UICollectionViewFlowLayout* aFlowLayout = [[UICollectionViewFlowLayout alloc] init];
 	[aFlowLayout setItemSize:CGSizeMake(100, 100)];

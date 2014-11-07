@@ -19,9 +19,8 @@
 
 @interface SaveCurrentViewController ()
 
-@property UIButton* okButton;
-@property UIButton* cancelButton;
-@property UITextField* nameField;
+@property UIButton* yesButton;
+@property UIButton* noButton;
 
 @end
 
@@ -34,13 +33,13 @@
 }
 
 - (void) addButtons{
-	self.okButton = [self getButton:TICK_ICON withAction:@selector(onClickOk)			withLabel:@" Ok"		atNum:0];
-	self.cancelButton = [self getButton:CLEAR_ICON withAction:@selector(onClickCancel)	withLabel:@" Cancel"	atNum:1];
-	[self.panel addSubview:self.okButton];
-	[self.panel addSubview:self.cancelButton];
+	self.yesButton = [self getButton:self.buttonLabels[1] withAction:@selector(onClickYes)			withLabel:self.buttonLabels[0]		atNum:0];
+	self.noButton = [self getButton:self.buttonLabels[3] withAction:@selector(onClickNo)	withLabel:self.buttonLabels[2]		atNum:1];
+	[self.panel addSubview:self.yesButton];
+	[self.panel addSubview:self.noButton];
 }
 
-- (void) onClickOk{
+- (void) onClickYes{
 	[self.delegate clickButtonAt:0 withPayload:nil];
 }
 
@@ -49,27 +48,27 @@
 	[ImageUtils shakeView:self.panel];
 }
 
-- (void) onClickCancel{
+- (void) onClickNo{
 	[self.delegate clickButtonAt:1 withPayload:nil];
 }
 
--(void) layoutOk{
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.okButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.panel			attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.okButton attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.panel			attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.okButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil					attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:120.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.okButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil					attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:50.0]];
+-(void) layoutYes{
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.yesButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.panel			attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.yesButton attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.panel		attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.yesButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil					attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:120.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.yesButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil					attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:50.0]];
 }
 
-- (void) layoutCancel{
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.cancelButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.panel			attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.cancelButton attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.okButton		attribute:NSLayoutAttributeLeading multiplier:1.0 constant:-15.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.cancelButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil					attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:120.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.cancelButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil					attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:50.0]];
+- (void) layoutNo{
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.noButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.panel			attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.noButton attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.yesButton		attribute:NSLayoutAttributeLeading multiplier:1.0 constant:-15.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.noButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil					attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:120.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.noButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil					attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:50.0]];
 }
 
 -(void)layoutButtons{
-	[self layoutOk];
-	[self layoutCancel];
+	[self layoutYes];
+	[self layoutNo];
 }
 
 
