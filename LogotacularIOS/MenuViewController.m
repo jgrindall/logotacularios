@@ -24,12 +24,24 @@
 
 @implementation MenuViewController
 
+- (id) init{
+	self = [super init];
+	if(self){
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardUp) name:UIKeyboardDidShowNotification object:nil];
+	}
+	return self;
+}
+
 - (void) viewDidLoad{
 	[self addButtons];
 	[self addListeners];
 	[self showMenuChanged:nil];
 	float c = 0.6;
 	self.view.backgroundColor = [UIColor colorWithRed:c green:c blue:c alpha:0.25];
+}
+
+- (void) keyboardUp{
+	[[self getMenuModel] setVal:[NSNumber numberWithBool:NO] forKey:MENU_SHOWN];
 }
 
 - (void) addButtons{
@@ -112,6 +124,7 @@
 }
 
 - (void) removeListeners{
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
 	[[self getMenuModel] removeListener:@selector(showMenuChanged:) forKey:MENU_SHOWN withTarget:self];
 }
 
