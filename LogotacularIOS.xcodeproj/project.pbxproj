@@ -76,6 +76,7 @@
 		52CBC9BA1A0D2B1300C229C8 /* AbstractAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CBC9B91A0D2B1300C229C8 /* AbstractAlertController.m */; };
 		52CBC9C11A0D2EBD00C229C8 /* AlertManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CBC9C01A0D2EBD00C229C8 /* AlertManager.m */; };
 		52CBC9C51A0D33A300C229C8 /* SaveCurrentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CBC9C41A0D33A300C229C8 /* SaveCurrentViewController.m */; };
+		52CBC9C91A0D3AD800C229C8 /* PerformNewCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CBC9C81A0D3AD800C229C8 /* PerformNewCommand.m */; };
 		52CF55F61A0831D600F01D3A /* LogoErrorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CF55F51A0831D600F01D3A /* LogoErrorModel.m */; };
 		52CF55FB1A08411900F01D3A /* FileBrowserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CF55FA1A08411900F01D3A /* FileBrowserModel.m */; };
 /* End PBXBuildFile section */
@@ -239,6 +240,8 @@
 		52CBC9C01A0D2EBD00C229C8 /* AlertManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertManager.m; sourceTree = "<group>"; };
 		52CBC9C31A0D33A300C229C8 /* SaveCurrentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveCurrentViewController.h; sourceTree = "<group>"; };
 		52CBC9C41A0D33A300C229C8 /* SaveCurrentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveCurrentViewController.m; sourceTree = "<group>"; };
+		52CBC9C71A0D3AD800C229C8 /* PerformNewCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerformNewCommand.h; sourceTree = "<group>"; };
+		52CBC9C81A0D3AD800C229C8 /* PerformNewCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerformNewCommand.m; sourceTree = "<group>"; };
 		52CF55F41A0831D600F01D3A /* LogoErrorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogoErrorModel.h; sourceTree = "<group>"; };
 		52CF55F51A0831D600F01D3A /* LogoErrorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogoErrorModel.m; sourceTree = "<group>"; };
 		52CF55F81A08322800F01D3A /* PLogoErrorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLogoErrorModel.h; sourceTree = "<group>"; };
@@ -366,6 +369,8 @@
 				527D42F61A0ADB0B008AE82A /* PerformDelCommand.m */,
 				52B44EFF1A0BC93D00B99FD2 /* TextEditedCommand.h */,
 				52B44F001A0BC93D00B99FD2 /* TextEditedCommand.m */,
+				52CBC9C71A0D3AD800C229C8 /* PerformNewCommand.h */,
+				52CBC9C81A0D3AD800C229C8 /* PerformNewCommand.m */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
@@ -870,6 +875,7 @@
 				52CF55F61A0831D600F01D3A /* LogoErrorModel.m in Sources */,
 				52815C721A04F3CC005AFA93 /* FileCell.m in Sources */,
 				5272DE4119FE518F006E717F /* BaseViewController.m in Sources */,
+				52CBC9C91A0D3AD800C229C8 /* PerformNewCommand.m in Sources */,
 				52B5B35419FD7E1400EF531F /* DrawPageViewController.m in Sources */,
 				525167E419FFC19F00814B16 /* Assets.m in Sources */,
 				527D42FD1A0ADEBF008AE82A /* FilenameViewController.m in Sources */,

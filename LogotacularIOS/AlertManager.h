@@ -14,7 +14,7 @@
 
 @interface AlertManager : NSObject
 
-+ (AbstractAlertController*) addAlert:(Class) class intoController:(AContainerViewController*) controller withDelegate:(id<PLogoAlertDelegate>)delegate;
++ (AbstractAlertController*) addAlert:(Class) class intoController:(AContainerViewController*) controller withDelegate:(id<PLogoAlertDelegate>)delegate withOptions:(id)options;
 + (void) removeAlert;
 
 @end

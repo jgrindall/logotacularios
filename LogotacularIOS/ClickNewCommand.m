@@ -20,8 +20,7 @@
 		[[self getEventDispatcher] dispatch:SYMM_NOTIF_CHECK_SAVE withData:nil];
 	}
 	else{
-		[[self getLogoModel] reset:@""];
-		[[self getFileModel] reset];
+		[[self getEventDispatcher] dispatch:SYMM_NOTIF_PERFORM_NEW withData:nil];
 	}
 }
 

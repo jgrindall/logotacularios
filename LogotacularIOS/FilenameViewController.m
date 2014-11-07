@@ -9,9 +9,7 @@
 #import "FilenameViewController.h"
 #import "PMenuModel.h"
 #import "ImageUtils.h"
-#import "Assets.h"
 #import "SymmNotifications.h"
-#import "ImageUtils.h"
 #import <TSMessages/TSMessageView.h>
 #import "ToastUtils.h"
 #import "Appearance.h"
@@ -47,8 +45,8 @@
 }
 
 - (void) addButtons{
-	self.okButton = [self getButton:TICK_ICON withAction:@selector(onClickOk)			withLabel:@" Ok"		atNum:0];
-	self.cancelButton = [self getButton:CLEAR_ICON withAction:@selector(onClickCancel)	withLabel:@" Cancel"	atNum:1];
+	self.okButton = [self getButton:self.buttonLabels[1] withAction:@selector(onClickOk)			withLabel:self.buttonLabels[0]		atNum:0];
+	self.cancelButton = [self getButton:self.buttonLabels[3] withAction:@selector(onClickCancel)	withLabel:self.buttonLabels[2]		atNum:1];
 	[self.panel addSubview:self.okButton];
 	[self.panel addSubview:self.cancelButton];
 }

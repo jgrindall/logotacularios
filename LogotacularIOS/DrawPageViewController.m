@@ -80,11 +80,13 @@
 }
 
 - (void) showCheckSave{
-	self.alert = [AlertManager addAlert:[SaveCurrentViewController class] intoController:self withDelegate:self];
+	NSArray* options = [NSArray arrayWithObjects:@"Yes", TICK_ICON, @"No", CLEAR_ICON, nil];
+	self.alert = [AlertManager addAlert:[SaveCurrentViewController class] intoController:self withDelegate:self withOptions:options];
 }
 
 - (void) showFilename{
-	self.alert = [AlertManager addAlert:[FilenameViewController class] intoController:self withDelegate:self];
+	NSArray* options = [NSArray arrayWithObjects:@"Ok", TICK_ICON, @"Cancel", CLEAR_ICON, nil];
+	self.alert = [AlertManager addAlert:[FilenameViewController class] intoController:self withDelegate:self withOptions:options];
 }
 
 - (id<PFileModel>) getFileModel{
@@ -217,10 +219,10 @@
 - (void) checkSaveClosed:(NSInteger)i withPayload:(id)payload{
 	[AlertManager removeAlert];
 	if(i == 0){
-		NSLog(@"save0");
+		[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_SAVE withData:nil];
 	}
 	else if(i == 1){
-		NSLog(@"save0");
+		[[self getEventDispatcher] dispatch:SYMM_NOTIF_PERFORM_NEW withData:nil];
 	}
 };
 

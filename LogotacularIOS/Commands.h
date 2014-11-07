@@ -22,6 +22,7 @@
 #import "PerformSaveCommand.h"
 #import "TextEditedCommand.h"
 #import "ClickNewCommand.h"
+#import "PerformNewCommand.h"
 
 @interface Commands : NSObject
 

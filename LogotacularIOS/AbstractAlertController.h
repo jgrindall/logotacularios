@@ -12,5 +12,6 @@
 @interface AbstractAlertController : BaseViewController
 
 @property id<PLogoAlertDelegate> delegate;
+@property id options;
 
 @end

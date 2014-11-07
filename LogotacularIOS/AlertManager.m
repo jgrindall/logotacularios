@@ -36,11 +36,12 @@ static AContainerViewController* _parent = nil;
 	return _container;
 }
 
-+ (AbstractAlertController*) addAlert:(Class) class intoController:(AContainerViewController*) controller withDelegate:(id<PLogoAlertDelegate>)delegate{
++ (AbstractAlertController*) addAlert:(Class) class intoController:(AContainerViewController*) controller withDelegate:(id<PLogoAlertDelegate>)delegate withOptions:(id)options{
 	_parent = controller;
 	_container = [[UIView alloc] initWithFrame:_parent.view.frame];
 	_alertController = [[class alloc] init];
 	_alertController.delegate = delegate;
+	_alertController.options = options;
 	[_parent.view addSubview:_container];
 	[_parent addChildInto:_container withController:_alertController];
 	[_parent.view addConstraint:[NSLayoutConstraint constraintWithItem:_container attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_parent.view						attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0]];

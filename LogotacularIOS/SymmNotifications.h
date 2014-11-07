@@ -38,6 +38,7 @@ extern NSString* const SYMM_NOTIF_FILE_LOADED;
 extern NSString* const SYMM_NOTIF_CLICK_NEW;
 extern NSString* const SYMM_NOTIF_SCREENGRAB;
 extern NSString* const SYMM_NOTIF_CHECK_SAVE;
+extern NSString* const SYMM_NOTIF_PERFORM_NEW;
 
 @end
 

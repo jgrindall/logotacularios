@@ -13,6 +13,8 @@
 @property UIView* bg;
 @property UIView* panel;
 @property NSArray* panelConstraints;
+@property NSArray* buttonLabels;
+@property NSArray* buttonIcons;
 
 - (UIButton*) getButton:(NSString*) imageUrl withAction:(SEL)action withLabel:(NSString*)label atNum:(int)num;
 - (void)layoutPanel:(float)dy;

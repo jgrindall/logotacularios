@@ -13,6 +13,7 @@
 @implementation AbstractAlertController
 
 - (void) viewDidLoad{
+	self.buttonLabels = (NSArray*)self.options;
 	[self addListeners];
 	[self addBg];
 	[self addPanel];
