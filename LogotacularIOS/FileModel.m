@@ -19,13 +19,9 @@ NSString* const FILE_REAL = @"file_real";
 }
 
 - (void) reset{
-	NSLog(@"a");
 	[self setVal:nil forKey:FILE_FILENAME];
-	NSLog(@"b");
 	[self setVal:[NSNumber numberWithBool:YES] forKey:FILE_DIRTY];
-	NSLog(@"c");
 	[self setVal:[NSNumber numberWithBool:NO] forKey:FILE_REAL];
-	NSLog(@"d");
 }
 
 - (NSArray*) getKeys{

@@ -24,7 +24,7 @@
 		if(result == FileLoaderResultOk){
 			NSString* fileNameAtI = (NSString*)data;
 			if([fileNameAtI isEqualToString:currentName]){
-				[ToastUtils showToastInController:nil withMessage:[ToastUtils getFileSaveSuccessMessage] withType:TSMessageNotificationTypeSuccess];
+				[ToastUtils showToastInController:nil withMessage:[ToastUtils getFileSaveSuccessMessage] withType:TSMessageNotificationTypeError];
 			}
 			else{
 				[[FileLoader sharedInstance] deleteFileAtItem:i withCallback:^(FileLoaderResults result) {

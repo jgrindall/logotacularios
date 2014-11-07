@@ -57,9 +57,8 @@
 	return YES;
 }
 
-- (NSString*)getImagePathFromPath:(NSURL*)path{
-	NSString* filename = [self getFileNameFromPath:path];
-	return [[self getAbsoluteImageURL:filename] absoluteString];
+- (NSString*)getImagePathFromPath:(NSURL*)url{
+	return [url.path stringByReplacingOccurrencesOfString:@".dat" withString:@".png"];
 }
 
 - (NSURL*) getAbsoluteURL:(NSString*) fileName{

@@ -45,7 +45,7 @@ CGContextRef cacheContext;
 
 - (void) addViews{
 	self.bgView = [[UIView alloc] initWithFrame:self.frame];
-	self.bgView.backgroundColor = [UIColor colorWithRed:(52.0/255.0) green:(73.0/255.0) blue:(94.0/255.0) alpha:1];
+	self.bgView.backgroundColor = [UIColor colorWithRed:(252.0/255.0) green:(73.0/255.0) blue:(94.0/255.0) alpha:1];
 	self.blurView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"assets/blur.png"]];
 	self.linesView = [[LinesView alloc] initWithFrame:self.frame];
 	[self addSubview:self.bgView];

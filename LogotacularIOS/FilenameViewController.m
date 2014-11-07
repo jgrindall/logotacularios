@@ -93,7 +93,7 @@
 }
 
 - (void) error{
-	[ToastUtils showToastInController:self withMessage:[ToastUtils getFileSaveSuccessMessage] withType:TSMessageNotificationTypeSuccess];
+	[ToastUtils showToastInController:self withMessage:[ToastUtils getFileSaveSuccessMessage] withType:TSMessageNotificationTypeError];
 	[ImageUtils shakeView:self.panel];
 }
 

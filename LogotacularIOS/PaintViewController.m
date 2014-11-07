@@ -42,6 +42,7 @@
 
 - (void) grab{
 	UIImage* img = [self getImage];
+	NSLog(@"grab %@ %f %f", img, img.size.width, img.size.height);
 	[[self getScreenGrabModel] setVal:img forKey:SCREEN_GRAB];
 }
 
