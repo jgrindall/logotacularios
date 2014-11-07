@@ -80,7 +80,9 @@
 		cell = [[FileCell alloc] init];
 	}
 	NSURL* url = [self.files objectAtIndex:indexPath.item];
-	UIImage* img = [UIImage imageNamed:@"assets/cat.jpg"];
+	NSString* imagePath = [[FileLoader sharedInstance] getImagePathFromPath:url];
+	NSLog(@"imagePath %@", imagePath);
+	UIImage* img = [UIImage imageWithContentsOfFile:imagePath];
 	cell.image = img;
 	cell.filename = [[FileLoader sharedInstance] getFileNameFromPath:url];
 	cell.alpha = ([self getSelected] == indexPath.item ? 1 : 0.4);

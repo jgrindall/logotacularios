@@ -18,7 +18,6 @@
 		[[self getEventDispatcher] dispatch:SYMM_NOTIF_SHOW_FILENAME withData:nil];
 	}
 	else{
-		// has a real filename
 		[[self getEventDispatcher] dispatch:SYMM_NOTIF_PERFORM_SAVE withData:[[self getFileModel] getVal:FILE_FILENAME]];
 	}
 }

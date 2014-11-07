@@ -21,6 +21,8 @@
 #import "FileBrowserModel.h"
 #import "FileListModel.h"
 #import "PFileListModel.h"
+#import "PScreenGrabModel.h"
+#import "ScreenGrabModel.h"
 
 @interface Models
 

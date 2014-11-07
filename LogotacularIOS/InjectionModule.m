@@ -27,6 +27,7 @@
 @property id<PLogoErrorModel> logoErrorModel;
 @property id<PFileBrowserModel> browserModel;
 @property id<PFileListModel> fileListModel;
+@property id<PScreenGrabModel> screenGrabModel;
 
 @end
 
@@ -73,6 +74,8 @@
 	[self bind:self.browserModel toProtocol:@protocol(PFileBrowserModel)];
 	self.fileListModel = [[FileListModel alloc] init];
 	[self bind:self.fileListModel toProtocol:@protocol(PFileListModel)];
+	self.screenGrabModel = [[ScreenGrabModel alloc] init];
+	[self bind:self.screenGrabModel toProtocol:@protocol(PScreenGrabModel)];
 }
 
 @end

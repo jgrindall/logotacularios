@@ -69,6 +69,7 @@
 		52B5B35A19FD7E1400EF531F /* SpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B5B34E19FD7E1400EF531F /* SpinnerView.m */; };
 		52B5B35B19FD7E1400EF531F /* SymmNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B5B35019FD7E1400EF531F /* SymmNotifications.m */; };
 		52C171481A0C3F14000865DD /* ClickNewCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C171471A0C3F14000865DD /* ClickNewCommand.m */; };
+		52C1714B1A0C4384000865DD /* ScreenGrabModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C1714A1A0C4384000865DD /* ScreenGrabModel.m */; };
 		52C687251A025011008FCBDB /* FileLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C687241A025011008FCBDB /* FileLoader.m */; };
 		52C687291A025232008FCBDB /* FileDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C687281A025232008FCBDB /* FileDocument.m */; };
 		52C6872C1A02527A008FCBDB /* FileObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C6872B1A02527A008FCBDB /* FileObject.m */; };
@@ -217,6 +218,9 @@
 		52B5B35019FD7E1400EF531F /* SymmNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SymmNotifications.m; sourceTree = "<group>"; };
 		52C171461A0C3F14000865DD /* ClickNewCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickNewCommand.h; sourceTree = "<group>"; };
 		52C171471A0C3F14000865DD /* ClickNewCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickNewCommand.m; sourceTree = "<group>"; };
+		52C171491A0C4384000865DD /* ScreenGrabModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenGrabModel.h; sourceTree = "<group>"; };
+		52C1714A1A0C4384000865DD /* ScreenGrabModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreenGrabModel.m; sourceTree = "<group>"; };
+		52C1714D1A0C43A3000865DD /* PScreenGrabModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PScreenGrabModel.h; sourceTree = "<group>"; };
 		52C687221A025011008FCBDB /* FileLoaderUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileLoaderUtils.h; sourceTree = "<group>"; };
 		52C687231A025011008FCBDB /* FileLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileLoader.h; sourceTree = "<group>"; };
 		52C687241A025011008FCBDB /* FileLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileLoader.m; sourceTree = "<group>"; };
@@ -288,6 +292,7 @@
 		525167ED19FFD37500814B16 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				52C1714C1A0C4387000865DD /* ScreenGrab */,
 				527D42EC1A0ABED8008AE82A /* FilesModel */,
 				52CF55FC1A08412000F01D3A /* FileBrowser */,
 				52CF55F71A0831DA00F01D3A /* LogoErrorModel */,
@@ -625,6 +630,16 @@
 			name = Spinner;
 			sourceTree = "<group>";
 		};
+		52C1714C1A0C4387000865DD /* ScreenGrab */ = {
+			isa = PBXGroup;
+			children = (
+				52C171491A0C4384000865DD /* ScreenGrabModel.h */,
+				52C1714A1A0C4384000865DD /* ScreenGrabModel.m */,
+				52C1714D1A0C43A3000865DD /* PScreenGrabModel.h */,
+			);
+			name = ScreenGrab;
+			sourceTree = "<group>";
+		};
 		52C687261A025014008FCBDB /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
@@ -823,6 +838,7 @@
 				52B5B35419FD7E1400EF531F /* DrawPageViewController.m in Sources */,
 				525167E419FFC19F00814B16 /* Assets.m in Sources */,
 				527D42FD1A0ADEBF008AE82A /* FilenameViewController.m in Sources */,
+				52C1714B1A0C4384000865DD /* ScreenGrabModel.m in Sources */,
 				52815C6E1A04F397005AFA93 /* FilesController.m in Sources */,
 				52B5B35319FD7E1400EF531F /* Colors.m in Sources */,
 				525167F019FFEE6400814B16 /* ClickPlayCommand.m in Sources */,

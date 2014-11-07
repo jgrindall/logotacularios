@@ -14,4 +14,6 @@
 
 - (void) executeCommand:(NSDictionary*)dic;
 
+- (UIImage*)getImage;
+
 @end

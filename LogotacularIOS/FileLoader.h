@@ -9,12 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "FileLoaderUtils.h"
 #import "FileObject.h"
+#import <UIKit/UIKit.h>
 
 @interface FileLoader : NSObject
 
 + (FileLoader*) sharedInstance;
 
-- (void) saveFile:(NSString*) logo withFileName:(NSString*) fileName withCallback:(void(^)(FileLoaderResults result))callback;
+- (void) saveFile:(NSString*) logo withFileName:(NSString*) fileName withImage:(UIImage*)img withCallback:(void(^)(FileLoaderResults result))callback;
 - (void) deleteFileAtItem:(NSInteger) item withCallback:(void(^)(FileLoaderResults result))callback;
 - (void) openFile: (NSString*) fileName withCallback:(void(^)(FileLoaderResults result, id data))callback;
 - (void) openFileAtIndex:(NSInteger)i withCallback:(void(^)(FileLoaderResults result, id data))callback;
@@ -22,6 +23,7 @@
 - (BOOL) filenameOk:(NSString*)name;
 - (void) getFileNameAtIndex:(NSInteger)i withCallback:(void(^)(FileLoaderResults result, id data))callback;
 - (NSString*)getFileNameFromPath:(NSURL*)path;
+- (NSString*)getImagePathFromPath:(NSURL*)path;
 
 @property (readonly) BOOL enabled;
 

@@ -36,6 +36,7 @@ NSString* const SYMM_NOTIF_PERFORM_SAVE =		@"Symm::performSave";
 NSString* const SYMM_NOTIF_CLICK_SAVE =			@"Symm:clickSave";
 NSString* const SYMM_NOTIF_SHOW_FILENAME =		@"Symm::showFilename";
 NSString* const SYMM_NOTIF_TEXT_EDITED =		@"Symm:textEdited";
-NSString* const  SYMM_NOTIF_FILE_LOADED =		@"Symm:fileLoaded";
+NSString* const SYMM_NOTIF_FILE_LOADED =		@"Symm:fileLoaded";
+NSString* const SYMM_NOTIF_SCREENGRAB =			@"Symm:screengrab";
 
 @end

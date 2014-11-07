@@ -10,19 +10,28 @@
 #import "FileLoader.h"
 #import "PLogoModel.h"
 #import "PFileModel.h"
+#import "SymmNotifications.h"
+#import "PScreenGrabModel.h"
+#import <UIKit/UIKit.h>
 
 @implementation PerformSaveCommand
 
 - (void) execute:(id) payload{
 	NSString* filename = (NSString*)payload;
 	NSString* logo = [[self getLogoModel] get];
-	[[FileLoader sharedInstance] saveFile:logo withFileName:filename withCallback:^(FileLoaderResults result) {
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_SCREENGRAB withData:nil];
+	UIImage* img = [[self getScreenGrabModel] getVal:SCREEN_GRAB];
+	[[FileLoader sharedInstance] saveFile:logo withFileName:filename withImage:img withCallback:^(FileLoaderResults result) {
 		if(result == FileLoaderResultOk){
 			[[self getFileModel] setVal:filename forKey:FILE_FILENAME];
 			[[self getFileModel] setVal:[NSNumber numberWithBool:NO] forKey:FILE_DIRTY];
 			[[self getFileModel] setVal:[NSNumber numberWithBool:YES] forKey:FILE_REAL];
 		}
 	}];
+}
+
+- (id<PScreenGrabModel>) getScreenGrabModel{
+	return [[JSObjection defaultInjector] getObject:@protocol(PScreenGrabModel)];
 }
 
 - (id<PLogoModel>) getLogoModel{

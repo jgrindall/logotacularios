@@ -9,6 +9,7 @@
 #import "PaintViewController.h"
 #import "PaintView.h"
 #import "SymmNotifications.h"
+#import "PScreenGrabModel.h"
 
 @interface PaintViewController ()
 
@@ -19,12 +20,37 @@
 
 @implementation PaintViewController
 
+- (id) init{
+	self = [super init];
+	if(self){
+		[self addListeners];
+	}
+	return self;
+}
+
 - (void) viewDidLoad{
 	self.paintView = [[PaintView alloc] initWithFrame:self.view.frame];
 	[self.view addSubview:self.paintView];
 	self.paintView.translatesAutoresizingMaskIntoConstraints = NO;
 	[self layoutPaint];
-	[self addListeners];
+	
+}
+
+- (id<PScreenGrabModel>) getScreenGrabModel{
+	return [[JSObjection defaultInjector] getObject:@protocol(PScreenGrabModel)];
+}
+
+- (void) grab{
+	UIImage* img = [self getImage];
+	[[self getScreenGrabModel] setVal:img forKey:SCREEN_GRAB];
+}
+
+- (UIImage*)getImage{
+	UIGraphicsBeginImageContext(self.view.bounds.size);
+	[self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+	UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	return image;
 }
 
 - (void) reset{
@@ -33,12 +59,14 @@
 }
 
 - (void) addListeners{
+	[[self getEventDispatcher] addListener:SYMM_NOTIF_SCREENGRAB toFunction:@selector(grab) withContext:self];
 	[[self getEventDispatcher] addListener: SYMM_NOTIF_CMD_RECEIVED toFunction:@selector(executeCommand:) withContext:self];
 	[[self getEventDispatcher] addListener: SYMM_NOTIF_STOP toFunction:@selector(stop) withContext:self];
 	[[self getEventDispatcher] addListener: SYMM_NOTIF_RESET toFunction:@selector(reset) withContext:self];
 }
 
 - (void) removeListeners{
+	[[self getEventDispatcher] removeListener:SYMM_NOTIF_SCREENGRAB toFunction:@selector(grab) withContext:self];
 	[[self getEventDispatcher] removeListener: SYMM_NOTIF_CMD_RECEIVED toFunction:@selector(executeCommand:) withContext:self];
 	[[self getEventDispatcher] removeListener: SYMM_NOTIF_STOP toFunction:@selector(stop) withContext:self];
 	[[self getEventDispatcher] removeListener: SYMM_NOTIF_RESET toFunction:@selector(reset) withContext:self];
@@ -73,3 +101,4 @@
 }
 
 @end
+

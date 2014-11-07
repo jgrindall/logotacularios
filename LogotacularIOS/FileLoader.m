@@ -57,15 +57,29 @@
 	return YES;
 }
 
+- (NSString*)getImagePathFromPath:(NSURL*)path{
+	NSString* filename = [self getFileNameFromPath:path];
+	return [[self getAbsoluteImageURL:filename] absoluteString];
+}
+
 - (NSURL*) getAbsoluteURL:(NSString*) fileName{
 	NSString* fullName = [NSString stringWithFormat:@"%@%@", fileName, @".dat"];
 	return [self.savesFolder URLByAppendingPathComponent:fullName];
 }
 
-- (void) saveFile:(NSString*) logo withFileName:(NSString*) fileName withCallback:(void(^)(FileLoaderResults result))callback{
+- (NSURL*) getAbsoluteImageURL:(NSString*) fileName{
+	NSString* fullName = [NSString stringWithFormat:@"%@%@", fileName, @".png"];
+	return [self.savesFolder URLByAppendingPathComponent:fullName];
+}
+
+- (void) saveFile:(NSString*) logo withFileName:(NSString*) fileName withImage:(UIImage*)img withCallback:(void(^)(FileLoaderResults result))callback{
 	NSURL* fullPath = [self getAbsoluteURL: fileName];
+	NSURL* fullImagePath = [self getAbsoluteImageURL: fileName];
 	NSError* error;
 	[logo writeToURL:fullPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+	NSData *imageData = UIImagePNGRepresentation(img);
+	[imageData writeToURL:fullImagePath atomically:YES];
+	NSLog(@"save image to %@", fullImagePath);
 	callback(FileLoaderResultOk);
 }
 
