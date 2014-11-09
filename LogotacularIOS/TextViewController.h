@@ -16,6 +16,6 @@
 
 - (NSString*) getText;
 
-- (void) setText:(NSString*) text;
+- (void) setText;
 
 @end

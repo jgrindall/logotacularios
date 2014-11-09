@@ -12,6 +12,8 @@
 #import "PLogoModel.h"
 #import "PLogoErrorModel.h"
 #import "SymmNotifications.h"
+#import <CoreText/CoreText.h>
+#import "Appearance.h"
 
 @interface TextViewController ()
 
@@ -28,12 +30,10 @@
 
 - (void) viewDidLoad{
 	[self addImg];
-	[self addError];
 	[self addText];
 	[self addListeners];
 	[self layoutText];
 	[self layoutImg];
-	[self layoutError:CGRectZero];
 }
 
 - (void) addListeners{
@@ -66,23 +66,6 @@
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.imgView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual	toItem:self.view			attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0]];
 }
 
-- (void) layoutError:(CGRect)rect{
-	self.errorView.translatesAutoresizingMaskIntoConstraints = NO;
-	if(self.errorConstraints && [self.errorConstraints count] >= 1){
-		[self.view removeConstraints:self.errorConstraints];
-		self.errorConstraints = nil;
-	}
-	NSLayoutConstraint* c0 = [NSLayoutConstraint constraintWithItem:self.errorView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual			toItem:self.view			attribute:NSLayoutAttributeTop multiplier:1.0 constant:rect.origin.x];
-	NSLayoutConstraint* c1 = [NSLayoutConstraint constraintWithItem:self.errorView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual		toItem:self.view			attribute:NSLayoutAttributeLeading multiplier:1.0 constant:rect.origin.y];
-	NSLayoutConstraint* c2 = [NSLayoutConstraint constraintWithItem:self.errorView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual			toItem:nil					attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:rect.size.width];
-	NSLayoutConstraint* c3 = [NSLayoutConstraint constraintWithItem:self.errorView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual		toItem:nil					attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:rect.size.height];
-	self.errorConstraints = [NSArray arrayWithObjects:c0, c1, c2, c3, nil];
-	[self.view addConstraint:c0];
-	[self.view addConstraint:c1];
-	[self.view addConstraint:c2];
-	[self.view addConstraint:c3];
-}
-
 - (void) textSwipe:(id) sender{
 	[self hide];
 }
@@ -90,12 +73,6 @@
 -(void)addImg{
 	self.imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"assets/paper.png"]];
 	[self.view addSubview:self.imgView];
-}
-
--(void)addError{
-	self.errorView = [[UIView alloc] initWithFrame:self.view.frame];
-	self.errorView.backgroundColor = [UIColor yellowColor];
-	[self.view addSubview:self.errorView];
 }
 
 -(void)addText{
@@ -129,34 +106,34 @@
 - (void) setText{
 	NSString* text = [[self getLogoModel] get];
 	NSDictionary* logoError = (NSDictionary*)[[self getErrorModel] getVal:LOGO_ERROR_ERROR];
+	int k = 0;
+	int start = 0;
+	int end = 0;
 	if(logoError){
-		NSNumber* line = [logoError valueForKey:@"line"];
-		NSInteger intLine = [line integerValue];
-		NSUInteger len = [self.logoText.text length];
-		__block NSInteger i = 1;
-		__block NSUInteger start = 0;
-		__block NSUInteger end = 0;
-		__block CGRect colourRect = CGRectZero;
-		[self.logoText setText:text];
-		[self.logoText.layoutManager enumerateLineFragmentsForGlyphRange:NSMakeRange(0, len) usingBlock:^(CGRect rect, CGRect usedRect, NSTextContainer *textContainer, NSRange glyphRange, BOOL *stop) {
-			start = glyphRange.location;
-			end = start + glyphRange.length;
-			colourRect = rect;
-			if(i == intLine){
-				*stop = YES;
-			}
-			i++;
-		}];
-		[self showErrorText:text withStart:start andEnd:end andRect:colourRect];
+		NSInteger intLine = [[logoError valueForKey:@"line"] integerValue];
+		NSArray* comps = [text componentsSeparatedByString:@"\\n"];
+		NSLog(@"intLine %i", intLine);
+		NSLog(@"comps %@", comps);
+		while(k <= intLine - 2){
+			start += [(NSString*)comps[k] length];
+			k++;
+		}
+		end = start + [(NSString*)comps[k] length];
+		[self showErrorText:text withStart:start andEnd:end];
 	}
 	else{
 		[self.logoText text];
 	}
 }
 
--(void) showErrorText:(NSString*) text withStart:(NSUInteger)start andEnd:(NSUInteger)end andRect:(CGRect)rect{
-	[self.logoText text];
-	[self layoutError:rect];
+-(void) showErrorText:(NSString*) text withStart:(NSUInteger)start andEnd:(NSUInteger)end{
+	NSMutableAttributedString* string = [[NSMutableAttributedString alloc] initWithString:text];
+	UIFont* font = [Appearance monospaceFontOfSize:SYMM_FONT_SIZE_MED];
+	int len = [string length];
+	[string addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, len)];
+	[string addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(start, len)];
+	[string addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(start, end)];
+	[self.logoText setAttributedText:string];
 }
 
 - (void) show{
