@@ -19,12 +19,7 @@
 		5257F34F1A01357F00757C77 /* ClearCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5257F34E1A01357F00757C77 /* ClearCommand.m */; };
 		5257F3561A014E4C00757C77 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 5257F3551A014E4C00757C77 /* assets */; };
 		5257F3631A0152AA00757C77 /* DroidSansMono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5257F3591A01519600757C77 /* DroidSansMono.ttf */; };
-		5257F3641A0152AA00757C77 /* FiraMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5257F35A1A01519600757C77 /* FiraMono-Regular.ttf */; };
-		5257F3651A0152AA00757C77 /* Inconsolata-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5257F35B1A01519600757C77 /* Inconsolata-Regular.ttf */; };
 		5257F3661A0152AA00757C77 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5257F35C1A01519600757C77 /* Lato-Regular.ttf */; };
-		5257F3671A0152AA00757C77 /* OxygenMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5257F35F1A01519600757C77 /* OxygenMono-Regular.ttf */; };
-		5257F3681A0152AA00757C77 /* SourceCodePro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5257F3611A01519600757C77 /* SourceCodePro-Regular.ttf */; };
-		5257F3691A0152AA00757C77 /* UbuntuMono-R.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5257F3621A01519600757C77 /* UbuntuMono-R.ttf */; };
 		5272DE3219FE45F5006E717F /* CommandMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 5272DE3119FE45F5006E717F /* CommandMap.m */; };
 		5272DE3B19FE485F006E717F /* EventDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 5272DE3A19FE485F006E717F /* EventDispatcher.m */; };
 		5272DE3E19FE487A006E717F /* AbstractCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5272DE3D19FE487A006E717F /* AbstractCommand.m */; };
@@ -71,12 +66,11 @@
 		52C171481A0C3F14000865DD /* ClickNewCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C171471A0C3F14000865DD /* ClickNewCommand.m */; };
 		52C1714B1A0C4384000865DD /* ScreenGrabModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C1714A1A0C4384000865DD /* ScreenGrabModel.m */; };
 		52C687251A025011008FCBDB /* FileLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C687241A025011008FCBDB /* FileLoader.m */; };
-		52C687291A025232008FCBDB /* FileDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C687281A025232008FCBDB /* FileDocument.m */; };
-		52C6872C1A02527A008FCBDB /* FileObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 52C6872B1A02527A008FCBDB /* FileObject.m */; };
 		52CBC9BA1A0D2B1300C229C8 /* AbstractAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CBC9B91A0D2B1300C229C8 /* AbstractAlertController.m */; };
 		52CBC9C11A0D2EBD00C229C8 /* AlertManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CBC9C01A0D2EBD00C229C8 /* AlertManager.m */; };
 		52CBC9C51A0D33A300C229C8 /* SaveCurrentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CBC9C41A0D33A300C229C8 /* SaveCurrentViewController.m */; };
 		52CBC9C91A0D3AD800C229C8 /* PerformNewCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CBC9C81A0D3AD800C229C8 /* PerformNewCommand.m */; };
+		52CF4A081A102414003197B2 /* ErrorHitCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CF4A071A102414003197B2 /* ErrorHitCommand.m */; };
 		52CF55F61A0831D600F01D3A /* LogoErrorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CF55F51A0831D600F01D3A /* LogoErrorModel.m */; };
 		52CF55FB1A08411900F01D3A /* FileBrowserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CF55FA1A08411900F01D3A /* FileBrowserModel.m */; };
 /* End PBXBuildFile section */
@@ -117,12 +111,7 @@
 		5257F3521A01467E00757C77 /* AbstractCommand+protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AbstractCommand+protected.h"; sourceTree = "<group>"; };
 		5257F3551A014E4C00757C77 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		5257F3591A01519600757C77 /* DroidSansMono.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = DroidSansMono.ttf; path = assets/fonts/DroidSansMono.ttf; sourceTree = "<group>"; };
-		5257F35A1A01519600757C77 /* FiraMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "FiraMono-Regular.ttf"; path = "assets/fonts/FiraMono-Regular.ttf"; sourceTree = "<group>"; };
-		5257F35B1A01519600757C77 /* Inconsolata-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inconsolata-Regular.ttf"; path = "assets/fonts/Inconsolata-Regular.ttf"; sourceTree = "<group>"; };
 		5257F35C1A01519600757C77 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Regular.ttf"; path = "assets/fonts/Lato-Regular.ttf"; sourceTree = "<group>"; };
-		5257F35F1A01519600757C77 /* OxygenMono-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OxygenMono-Regular.ttf"; path = "assets/fonts/OxygenMono-Regular.ttf"; sourceTree = "<group>"; };
-		5257F3611A01519600757C77 /* SourceCodePro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceCodePro-Regular.ttf"; path = "assets/fonts/SourceCodePro-Regular.ttf"; sourceTree = "<group>"; };
-		5257F3621A01519600757C77 /* UbuntuMono-R.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "UbuntuMono-R.ttf"; path = "assets/fonts/UbuntuMono-R.ttf"; sourceTree = "<group>"; };
 		5257F36D1A01AA4F00757C77 /* Commands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Commands.h; sourceTree = "<group>"; };
 		5272DE3019FE45F5006E717F /* CommandMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandMap.h; sourceTree = "<group>"; };
 		5272DE3119FE45F5006E717F /* CommandMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandMap.m; sourceTree = "<group>"; };
@@ -228,10 +217,6 @@
 		52C687221A025011008FCBDB /* FileLoaderUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileLoaderUtils.h; sourceTree = "<group>"; };
 		52C687231A025011008FCBDB /* FileLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileLoader.h; sourceTree = "<group>"; };
 		52C687241A025011008FCBDB /* FileLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileLoader.m; sourceTree = "<group>"; };
-		52C687271A025231008FCBDB /* FileDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileDocument.h; sourceTree = "<group>"; };
-		52C687281A025232008FCBDB /* FileDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileDocument.m; sourceTree = "<group>"; };
-		52C6872A1A02527A008FCBDB /* FileObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileObject.h; sourceTree = "<group>"; };
-		52C6872B1A02527A008FCBDB /* FileObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileObject.m; sourceTree = "<group>"; };
 		52CBC9B71A0D227700C229C8 /* PLogoAlertDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLogoAlertDelegate.h; sourceTree = "<group>"; };
 		52CBC9B81A0D2B1300C229C8 /* AbstractAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractAlertController.h; sourceTree = "<group>"; };
 		52CBC9B91A0D2B1300C229C8 /* AbstractAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractAlertController.m; sourceTree = "<group>"; };
@@ -242,6 +227,8 @@
 		52CBC9C41A0D33A300C229C8 /* SaveCurrentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveCurrentViewController.m; sourceTree = "<group>"; };
 		52CBC9C71A0D3AD800C229C8 /* PerformNewCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerformNewCommand.h; sourceTree = "<group>"; };
 		52CBC9C81A0D3AD800C229C8 /* PerformNewCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerformNewCommand.m; sourceTree = "<group>"; };
+		52CF4A061A102414003197B2 /* ErrorHitCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorHitCommand.h; sourceTree = "<group>"; };
+		52CF4A071A102414003197B2 /* ErrorHitCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorHitCommand.m; sourceTree = "<group>"; };
 		52CF55F41A0831D600F01D3A /* LogoErrorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogoErrorModel.h; sourceTree = "<group>"; };
 		52CF55F51A0831D600F01D3A /* LogoErrorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogoErrorModel.m; sourceTree = "<group>"; };
 		52CF55F81A08322800F01D3A /* PLogoErrorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLogoErrorModel.h; sourceTree = "<group>"; };
@@ -358,7 +345,6 @@
 				5257F34B1A01357500757C77 /* RedoCommand.m */,
 				5257F34D1A01357F00757C77 /* ClearCommand.h */,
 				5257F34E1A01357F00757C77 /* ClearCommand.m */,
-				5257F36D1A01AA4F00757C77 /* Commands.h */,
 				527D42E61A0ABE38008AE82A /* LoadFilesCommand.h */,
 				527D42E71A0ABE38008AE82A /* LoadFilesCommand.m */,
 				527D42EF1A0AD75D008AE82A /* PerformOpenCommand.h */,
@@ -371,6 +357,9 @@
 				52B44F001A0BC93D00B99FD2 /* TextEditedCommand.m */,
 				52CBC9C71A0D3AD800C229C8 /* PerformNewCommand.h */,
 				52CBC9C81A0D3AD800C229C8 /* PerformNewCommand.m */,
+				52CF4A061A102414003197B2 /* ErrorHitCommand.h */,
+				52CF4A071A102414003197B2 /* ErrorHitCommand.m */,
+				5257F36D1A01AA4F00757C77 /* Commands.h */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
@@ -551,12 +540,7 @@
 			isa = PBXGroup;
 			children = (
 				5257F3591A01519600757C77 /* DroidSansMono.ttf */,
-				5257F35A1A01519600757C77 /* FiraMono-Regular.ttf */,
-				5257F35B1A01519600757C77 /* Inconsolata-Regular.ttf */,
 				5257F35C1A01519600757C77 /* Lato-Regular.ttf */,
-				5257F35F1A01519600757C77 /* OxygenMono-Regular.ttf */,
-				5257F3611A01519600757C77 /* SourceCodePro-Regular.ttf */,
-				5257F3621A01519600757C77 /* UbuntuMono-R.ttf */,
 				5257F3551A014E4C00757C77 /* assets */,
 				52B5B31419FD7D4600EF531F /* Info.plist */,
 				52B5B31519FD7D4600EF531F /* main.m */,
@@ -661,10 +645,6 @@
 		52C687261A025014008FCBDB /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
-				52C6872A1A02527A008FCBDB /* FileObject.h */,
-				52C6872B1A02527A008FCBDB /* FileObject.m */,
-				52C687271A025231008FCBDB /* FileDocument.h */,
-				52C687281A025232008FCBDB /* FileDocument.m */,
 				52C687221A025011008FCBDB /* FileLoaderUtils.h */,
 				52C687231A025011008FCBDB /* FileLoader.h */,
 				52C687241A025011008FCBDB /* FileLoader.m */,
@@ -805,12 +785,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5257F3631A0152AA00757C77 /* DroidSansMono.ttf in Resources */,
-				5257F3641A0152AA00757C77 /* FiraMono-Regular.ttf in Resources */,
-				5257F3651A0152AA00757C77 /* Inconsolata-Regular.ttf in Resources */,
 				5257F3661A0152AA00757C77 /* Lato-Regular.ttf in Resources */,
-				5257F3671A0152AA00757C77 /* OxygenMono-Regular.ttf in Resources */,
-				5257F3681A0152AA00757C77 /* SourceCodePro-Regular.ttf in Resources */,
-				5257F3691A0152AA00757C77 /* UbuntuMono-R.ttf in Resources */,
 				5257F3561A014E4C00757C77 /* assets in Resources */,
 				52B5B32419FD7D4600EF531F /* LaunchScreen.xib in Resources */,
 				52B5B32119FD7D4600EF531F /* Images.xcassets in Resources */,
@@ -864,6 +839,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52CF4A081A102414003197B2 /* ErrorHitCommand.m in Sources */,
 				527D42F71A0ADB0B008AE82A /* PerformDelCommand.m in Sources */,
 				52B2289E1A00E751001CC355 /* LogoModel.m in Sources */,
 				5297CF061A01137100CC5CB3 /* PaintViewController.m in Sources */,
@@ -889,7 +865,6 @@
 				527D42FA1A0ADBEF008AE82A /* ClickSaveCommand.m in Sources */,
 				52B5B35A19FD7E1400EF531F /* SpinnerView.m in Sources */,
 				52C171481A0C3F14000865DD /* ClickNewCommand.m in Sources */,
-				52C687291A025232008FCBDB /* FileDocument.m in Sources */,
 				5297CF0A1A01240600CC5CB3 /* WebViewController.m in Sources */,
 				52B5B35719FD7E1400EF531F /* NavController.m in Sources */,
 				52B2289B1A00E749001CC355 /* FileModel.m in Sources */,
@@ -909,7 +884,6 @@
 				5257F34C1A01357500757C77 /* RedoCommand.m in Sources */,
 				52B5B31619FD7D4600EF531F /* main.m in Sources */,
 				5272DE4719FE5845006E717F /* Logger.m in Sources */,
-				52C6872C1A02527A008FCBDB /* FileObject.m in Sources */,
 				52A185451A01004C005D8208 /* TextViewController.m in Sources */,
 				5257F3461A0131F000757C77 /* HideMenuCommand.m in Sources */,
 				52B44F011A0BC93D00B99FD2 /* TextEditedCommand.m in Sources */,

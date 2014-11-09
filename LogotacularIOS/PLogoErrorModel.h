@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PAbstractModel.h"
 
 @protocol PLogoErrorModel <PAbstractModel>
 

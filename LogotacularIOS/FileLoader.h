@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "FileLoaderUtils.h"
-#import "FileObject.h"
 #import <UIKit/UIKit.h>
 
 @interface FileLoader : NSObject

@@ -12,9 +12,7 @@
 
 typedef enum  {
 	FileLoaderResultOk = 0,
-	FileLoaderResultAlreadyOpen,
-	FileLoaderResultUnknownError,
-	FileLoaderResultCheckSaveWanted
+	FileLoaderResultError,
 } FileLoaderResults;
 
 

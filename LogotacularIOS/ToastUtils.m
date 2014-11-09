@@ -62,4 +62,16 @@
 	return @"That filename is already taken";
 }
 
++ (NSString*) getFileDeleteCurrentFileErrorMessage{
+	return @"You cannot delete an open file, please close it first";
+}
+
++ (NSString*) getFileListLoadErrorMessage{
+	return @"Failed to load your files";
+}
+
++ (NSString*) getFileNameErrorMessage{
+	return @"An error occurred while saving your file";
+}
+
 @end

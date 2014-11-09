@@ -18,7 +18,6 @@
 @property UIButton* helpButton;
 @property UIButton* saveButton;
 @property UIButton* openButton;
-@property UIButton* delButton;
 
 @end
 
@@ -48,13 +47,11 @@
 	self.fileButton = [self getButton:ADD_ICON withAction:@selector(onClickNew)			withLabel:@" New file" atNum:0];
 	self.helpButton = [self getButton:BULB_ICON withAction:@selector(onClickHelp)		withLabel:@" Help" atNum:1];
 	self.saveButton = [self getButton:FLOPPY_ICON withAction:@selector(onClickSave)		withLabel:@" Save" atNum:2];
-	self.openButton = [self getButton:FOLDER_ICON withAction:@selector(onClickOpen)		withLabel:@" Open" atNum:3];
-	self.delButton = [self getButton:WASTE_ICON withAction:@selector(onClickDel)		withLabel:@" Delete" atNum:4];
+	self.openButton = [self getButton:FOLDER_ICON withAction:@selector(onClickOpen)		withLabel:@" Your files" atNum:3];
 	[self.view addSubview:self.fileButton];
 	[self.view addSubview:self.helpButton];
 	[self.view addSubview:self.saveButton];
 	[self.view addSubview:self.openButton];
-	[self.view addSubview:self.delButton];
 }
 
 - (void) onClickNew{
@@ -78,11 +75,6 @@
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_DISMISS_KEY withData:nil];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_MENU withData:nil];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_OPEN withData:self.navigationController];
-}
-
-- (void) onClickDel{
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_DISMISS_KEY withData:nil];
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_MENU withData:nil];
 }
 
 - (UIButton*) getButton:(NSString*) imageUrl withAction:(SEL)action withLabel:(NSString*)label atNum:(int)num{

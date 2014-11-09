@@ -23,7 +23,7 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cat.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="yQG-G0-T6G">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="assets/cat.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="yQG-G0-T6G">
                     <rect key="frame" x="109" y="196" width="240" height="128"/>
                     <accessibility key="accessibilityConfiguration">
                         <accessibilityTraits key="traits" none="YES" image="YES" notEnabled="YES"/>
@@ -45,6 +45,6 @@
         </view>
     </objects>
     <resources>
-        <image name="cat.jpg" width="580" height="476"/>
+        <image name="assets/cat.jpg" width="580" height="476"/>
     </resources>
 </document>

@@ -68,12 +68,17 @@
 		[self.delegate clickButtonAt:0 withPayload:self.nameField.text];
 	}
 	else{
-		[self error];
+		[self validateError];
 	}
 }
 
-- (void) error{
-	[ToastUtils showToastInController:self withMessage:[ToastUtils getFileSaveSuccessMessage] withType:TSMessageNotificationTypeError];
+- (void)fileNameUsedError{
+	[ToastUtils showToastInController:self withMessage:[ToastUtils getFileNameTakenMessage] withType:TSMessageNotificationTypeError];
+	[ImageUtils shakeView:self.panel];
+}
+
+- (void) validateError{
+	[ToastUtils showToastInController:self withMessage:[ToastUtils getFileNameInvalidMessage] withType:TSMessageNotificationTypeError];
 	[ImageUtils shakeView:self.panel];
 }
 

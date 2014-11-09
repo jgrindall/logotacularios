@@ -11,6 +11,6 @@
 
 @interface FilenameViewController : AbstractAlertController <UITextFieldDelegate>
 
-- (void) error;
+- (void) fileNameUsedError;
 
 @end

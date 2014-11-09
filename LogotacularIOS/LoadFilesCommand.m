@@ -10,6 +10,7 @@
 #import "FileLoader.h"
 #import "PFileListModel.h"
 #import "SymmNotifications.h"
+#import "ToastUtils.h"
 
 @implementation LoadFilesCommand
 
@@ -18,6 +19,9 @@
 		if(result == FileLoaderResultOk){
 			NSArray* files = (NSArray*)data;
 			[[self getFileListModel] setVal:files forKey:FILE_LIST_LIST];
+		}
+		else{
+			[ToastUtils showToastInController:nil withMessage:[ToastUtils getFileListLoadErrorMessage] withType:TSMessageNotificationTypeError];
 		}
 	}];
 }

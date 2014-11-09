@@ -11,6 +11,9 @@
 #import "PLogoModel.h"
 #import "SymmNotifications.h"
 #import "PDrawingModel.h"
+#import "ToastUtils.h"
+#import "PLogoErrorModel.h"
+#import <Objection/Objection.h>
 
 @interface WebViewController ()
 
@@ -43,14 +46,11 @@
 }
 
 - (void) iosCallback:(NSDictionary*) jsonObj{
-	NSLog(@"ioscallback %@", jsonObj);
-	NSString* errorMessage;
 	if ([jsonObj isKindOfClass:[NSDictionary class]]){
 		NSDictionary* data = jsonObj[@"data"];
 		NSDictionary* error = jsonObj[@"error"];
 		if(error){
-			errorMessage = [NSString stringWithFormat:@"Error on line %@, %@", error[@"line"], error[@"message"]];
-			[self error:errorMessage];
+			[self error:error];
 		}
 		else{
 			NSString* type = data[@"type"];
@@ -68,10 +68,13 @@
 	[[self getDrawingModel] setVal:[NSNumber numberWithBool:NO] forKey:DRAWING_ISDRAWING];
 }
 
-- (void) error:(NSString*)msg{
+- (void) error:(NSDictionary*)error{
 	[self finished];
-	UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-	[alert show];
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_ERROR_HIT withData:error];
+}
+
+- (id<PLogoErrorModel>) getErrorModel{
+	return [[JSObjection defaultInjector] getObject:@protocol(PLogoErrorModel)];
 }
 
 - (id<PLogoModel>) getLogoModel{

@@ -11,6 +11,7 @@
 #import "PFileModel.h"
 #import "PLogoModel.h"
 #import "SymmNotifications.h"
+#import "ToastUtils.h"
 
 @implementation PerformOpenCommand
 
@@ -31,7 +32,13 @@
 					[logoModel reset:logo];
 					[[self getEventDispatcher] dispatch:SYMM_NOTIF_FILE_LOADED withData:nil];
 				}
+				else{
+					[ToastUtils showToastInController:nil withMessage:[ToastUtils getFileOpenErrorMessage] withType:TSMessageNotificationTypeError];
+				}
 			}];
+		}
+		else{
+			[ToastUtils showToastInController:nil withMessage:[ToastUtils getFileOpenErrorMessage] withType:TSMessageNotificationTypeError];
 		}
 	}];
 }

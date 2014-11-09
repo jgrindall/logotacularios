@@ -19,6 +19,8 @@
 @property UIImageView* imgView;
 @property UIGestureRecognizer* swipe;
 @property NSString* cachedText;
+@property UIView* errorView;
+@property NSArray* errorConstraints;
 
 @end
 
@@ -26,10 +28,12 @@
 
 - (void) viewDidLoad{
 	[self addImg];
+	[self addError];
 	[self addText];
 	[self addListeners];
 	[self layoutText];
 	[self layoutImg];
+	[self layoutError:CGRectZero];
 }
 
 - (void) addListeners{
@@ -62,6 +66,23 @@
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.imgView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual	toItem:self.view			attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0]];
 }
 
+- (void) layoutError:(CGRect)rect{
+	self.errorView.translatesAutoresizingMaskIntoConstraints = NO;
+	if(self.errorConstraints && [self.errorConstraints count] >= 1){
+		[self.view removeConstraints:self.errorConstraints];
+		self.errorConstraints = nil;
+	}
+	NSLayoutConstraint* c0 = [NSLayoutConstraint constraintWithItem:self.errorView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual			toItem:self.view			attribute:NSLayoutAttributeTop multiplier:1.0 constant:rect.origin.x];
+	NSLayoutConstraint* c1 = [NSLayoutConstraint constraintWithItem:self.errorView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual		toItem:self.view			attribute:NSLayoutAttributeLeading multiplier:1.0 constant:rect.origin.y];
+	NSLayoutConstraint* c2 = [NSLayoutConstraint constraintWithItem:self.errorView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual			toItem:nil					attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:rect.size.width];
+	NSLayoutConstraint* c3 = [NSLayoutConstraint constraintWithItem:self.errorView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual		toItem:nil					attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:rect.size.height];
+	self.errorConstraints = [NSArray arrayWithObjects:c0, c1, c2, c3, nil];
+	[self.view addConstraint:c0];
+	[self.view addConstraint:c1];
+	[self.view addConstraint:c2];
+	[self.view addConstraint:c3];
+}
+
 - (void) textSwipe:(id) sender{
 	[self hide];
 }
@@ -69,6 +90,12 @@
 -(void)addImg{
 	self.imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"assets/paper.png"]];
 	[self.view addSubview:self.imgView];
+}
+
+-(void)addError{
+	self.errorView = [[UIView alloc] initWithFrame:self.view.frame];
+	self.errorView.backgroundColor = [UIColor yellowColor];
+	[self.view addSubview:self.errorView];
 }
 
 -(void)addText{
@@ -96,22 +123,40 @@
 }
 
 - (void) errorChanged{
-	NSString* text = [[self getLogoModel] get];
-	[self.logoText setText:text];
+	[self setText];
 }
 
-- (void) setText:(NSString*) text{
-	id logoError = [[self getErrorModel] getVal:LOGO_ERROR_ERROR];
-	/*
-	 NSMutableAttributedString* string = [[NSMutableAttributedString alloc] initWithString:@"firstsecondthird"];
-	 [string addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0,5)];
-	 [string addAttribute:NSForegroundColorAttributeName value:[UIColor greenColor] range:NSMakeRange(5,6)];
-	 [string addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(11,5)];
-	 [string addAttribute:NSFontAttributeName value:[Appearance monospaceFontOfSize:SYMM_FONT_SIZE_MED] range:NSMakeRange(0, 10)];
-	 [self.logoText setAttributedText:string];
+- (void) setText{
+	NSString* text = [[self getLogoModel] get];
+	NSDictionary* logoError = (NSDictionary*)[[self getErrorModel] getVal:LOGO_ERROR_ERROR];
+	if(logoError){
+		NSNumber* line = [logoError valueForKey:@"line"];
+		NSInteger intLine = [line integerValue];
+		NSUInteger len = [self.logoText.text length];
+		__block NSInteger i = 1;
+		__block NSUInteger start = 0;
+		__block NSUInteger end = 0;
+		__block CGRect colourRect = CGRectZero;
+		[self.logoText setText:text];
+		[self.logoText.layoutManager enumerateLineFragmentsForGlyphRange:NSMakeRange(0, len) usingBlock:^(CGRect rect, CGRect usedRect, NSTextContainer *textContainer, NSRange glyphRange, BOOL *stop) {
+			start = glyphRange.location;
+			end = start + glyphRange.length;
+			colourRect = rect;
+			if(i == intLine){
+				*stop = YES;
+			}
+			i++;
+		}];
+		[self showErrorText:text withStart:start andEnd:end andRect:colourRect];
+	}
+	else{
+		[self.logoText text];
+	}
+}
 
-	 */
-	[self.logoText setText:text];
+-(void) showErrorText:(NSString*) text withStart:(NSUInteger)start andEnd:(NSUInteger)end andRect:(CGRect)rect{
+	[self.logoText text];
+	[self layoutError:rect];
 }
 
 - (void) show{
@@ -123,18 +168,24 @@
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView{
-	self.cachedText = [self.logoText text];
 	[[self getErrorModel] setVal:nil forKey:LOGO_ERROR_ERROR];
+	self.cachedText = [self.logoText text];
 }
 
 - (void)textViewDidEndEditing:(UITextView*)textView{
-	[self checkChanged];
+	[self triggerEdit];
+}
+
+- (void) triggerEdit{
+	NSString* text = self.logoText.text;
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_TEXT_EDITED withData:text];
 }
 
 - (void) checkChanged{
 	NSString* text = self.logoText.text;
 	if(![self.cachedText isEqualToString:text]){
-		[[self getEventDispatcher] dispatch:SYMM_NOTIF_TEXT_EDITED withData:text];
+		[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(triggerEdit) object:nil];
+		[self performSelector:@selector(triggerEdit) withObject:nil afterDelay:0.5];
 	}
 }
 

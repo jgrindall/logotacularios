@@ -78,22 +78,26 @@
 	[logo writeToURL:fullPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
 	NSData *imageData = UIImagePNGRepresentation(img);
 	[imageData writeToURL:fullImagePath atomically:YES];
-	NSLog(@"save image to %@", fullImagePath);
 	callback(FileLoaderResultOk);
 }
 
 - (void) deleteFileAtItem:(NSInteger) item withCallback:(void(^)(FileLoaderResults result))callback{
 	[self getYourFilesWithCallback:^(FileLoaderResults result, id data) {
-		NSArray* files = (NSArray*)data;
-		NSURL* url = [files objectAtIndex:item];
-		NSError* error = nil;
-		// check if it is the open file!
-		[self.fileManager removeItemAtURL:url error:&error];
-		if(error){
-			callback(FileLoaderResultUnknownError);
+		if(result == FileLoaderResultOk){
+			NSArray* files = (NSArray*)data;
+			NSURL* url = [files objectAtIndex:item];
+			NSError* error = nil;
+			// check if it is the open file!
+			[self.fileManager removeItemAtURL:url error:&error];
+			if(error){
+				callback(FileLoaderResultError);
+			}
+			else{
+				callback(FileLoaderResultOk);
+			}
 		}
 		else{
-			callback(FileLoaderResultOk);
+			callback(FileLoaderResultError);
 		}
 	}];
 }
@@ -111,26 +115,36 @@
 
 - (void) openFileAtIndex:(NSInteger)i withCallback:(void(^)(FileLoaderResults result, id data))callback{
 	[self getYourFilesWithCallback:^(FileLoaderResults result, id data) {
-		NSArray* files = (NSArray*)data;
-		NSURL* url = [files objectAtIndex:i];
-		[self openFileAtURL:url withCallback:callback];
+		if(result == FileLoaderResultOk){
+			NSArray* files = (NSArray*)data;
+			NSURL* url = [files objectAtIndex:i];
+			[self openFileAtURL:url withCallback:callback];
+		}
+		else{
+			callback(FileLoaderResultError, nil);
+		}
 	}];
 }
 
 - (void) filenameOk:(NSString*)name withCallback:(void(^)(FileLoaderResults result, id data))callback{
 	[self getYourFilesWithCallback:^(FileLoaderResults result, id data) {
-		NSNumber* ok = [NSNumber numberWithBool:YES];
-		NSArray* files = (NSArray*)data;
-		for(NSURL* url in files){
-			if(url){
-				NSString* filename = [self getFileNameFromPath:url];
-				if([filename isEqualToString:name]){
-					ok = [NSNumber numberWithBool:NO];
-					break;
+		if(result == FileLoaderResultOk){
+			NSNumber* ok = [NSNumber numberWithBool:YES];
+			NSArray* files = (NSArray*)data;
+			for(NSURL* url in files){
+				if(url){
+					NSString* filename = [self getFileNameFromPath:url];
+					if([filename isEqualToString:name]){
+						ok = [NSNumber numberWithBool:NO];
+						break;
+					}
 				}
 			}
+			callback(FileLoaderResultOk, ok);
 		}
-		callback(FileLoaderResultOk, ok);
+		else{
+			callback(FileLoaderResultError, nil);
+		}
 	}];
 }
 
@@ -141,11 +155,16 @@
 
 - (void) getFileNameAtIndex:(NSInteger)i withCallback:(void(^)(FileLoaderResults result, id data))callback{
 	[self getYourFilesWithCallback:^(FileLoaderResults result, id data) {
-		NSArray* files = (NSArray*)data;
-		NSURL* url = (NSURL*)[files objectAtIndex:i];
-		if(url){
-			NSString* filename = [self getFileNameFromPath:url];
-			callback(FileLoaderResultOk, filename);
+		if(result == FileLoaderResultOk){
+			NSArray* files = (NSArray*)data;
+			NSURL* url = (NSURL*)[files objectAtIndex:i];
+			if(url){
+				NSString* filename = [self getFileNameFromPath:url];
+				callback(FileLoaderResultOk, filename);
+			}
+		}
+		else{
+			callback(FileLoaderResultError, nil);
 		}
 	}];
 }

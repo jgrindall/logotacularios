@@ -23,6 +23,7 @@
 #import "TextEditedCommand.h"
 #import "ClickNewCommand.h"
 #import "PerformNewCommand.h"
+#import "ErrorHitCommand.h"
 
 @interface Commands : NSObject
 

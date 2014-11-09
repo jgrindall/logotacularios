@@ -24,17 +24,23 @@
 		if(result == FileLoaderResultOk){
 			NSString* fileNameAtI = (NSString*)data;
 			if([fileNameAtI isEqualToString:currentName]){
-				[ToastUtils showToastInController:nil withMessage:[ToastUtils getFileSaveSuccessMessage] withType:TSMessageNotificationTypeError];
+				[ToastUtils showToastInController:nil withMessage:[ToastUtils getFileDeleteCurrentFileErrorMessage] withType:TSMessageNotificationTypeError];
 			}
 			else{
 				[[FileLoader sharedInstance] deleteFileAtItem:i withCallback:^(FileLoaderResults result) {
 					if(result == FileLoaderResultOk){
-						NSLog(@"ok, deleted");
+						[ToastUtils showToastInController:nil withMessage:[ToastUtils getFileDeleteSuccessMessage] withType:TSMessageNotificationTypeSuccess];
 						[[self getEventDispatcher] dispatch:SYMM_NOTIF_LOAD_FILES withData:nil];
 						[[self getFileBrowserModel] reset];
 					}
+					else{
+						[ToastUtils showToastInController:nil withMessage:[ToastUtils getFileDeleteErrorMessage] withType:TSMessageNotificationTypeError];
+					}
 				}];
 			}
+		}
+		else{
+			[ToastUtils showToastInController:nil withMessage:[ToastUtils getFileDeleteErrorMessage] withType:TSMessageNotificationTypeError];
 		}
 	}];
 }

@@ -20,5 +20,8 @@
 + (NSString*) getFileDeleteErrorMessage;
 + (NSString*) getFileNameInvalidMessage;
 + (NSString*) getFileNameTakenMessage;
++ (NSString*) getFileDeleteCurrentFileErrorMessage;
++ (NSString*) getFileListLoadErrorMessage;
++ (NSString*) getFileNameErrorMessage;
 
 @end

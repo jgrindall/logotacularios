@@ -23,6 +23,7 @@
 #import "FileLoader.h"
 #import "AlertManager.h"
 #import "SaveCurrentViewController.h"
+#import "ToastUtils.h"
 
 @interface DrawPageViewController ()
 
@@ -201,13 +202,18 @@
 	if(i == 0){
 		NSString* name = (NSString*)payload;
 		[[FileLoader sharedInstance] filenameOk:name withCallback:^(FileLoaderResults result, id data) {
-			BOOL ok = [data boolValue];
-			if(ok){
-				[AlertManager removeAlert];
-				[[self getEventDispatcher] dispatch:SYMM_NOTIF_PERFORM_SAVE withData:name];
+			if(result == FileLoaderResultOk){
+				BOOL ok = [data boolValue];
+				if(ok){
+					[AlertManager removeAlert];
+					[[self getEventDispatcher] dispatch:SYMM_NOTIF_PERFORM_SAVE withData:name];
+				}
+				else{
+					[(FilenameViewController*)self.alert fileNameUsedError];
+				}
 			}
 			else{
-				[(FilenameViewController*)self.alert error];
+				[ToastUtils showToastInController:nil withMessage:[ToastUtils getFileNameErrorMessage] withType:TSMessageNotificationTypeError];
 			}
 		}];
 	}
@@ -219,12 +225,18 @@
 - (void) checkSaveClosed:(NSInteger)i withPayload:(id)payload{
 	[AlertManager removeAlert];
 	if(i == 0){
+		[[self getEventDispatcher] addListener:SYMM_NOTIF_SAVED toFunction:@selector(onSaved) withContext:self];
 		[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_SAVE withData:nil];
 	}
 	else if(i == 1){
 		[[self getEventDispatcher] dispatch:SYMM_NOTIF_PERFORM_NEW withData:nil];
 	}
 };
+
+- (void) onSaved{
+	[[self getEventDispatcher] removeListener:SYMM_NOTIF_SAVED toFunction:@selector(onSaved) withContext:self];
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_PERFORM_NEW withData:nil];
+}
 
 - (void) clickButtonAt:(NSInteger)i withPayload:(id)payload{
 	if([self.alert class] == [FilenameViewController class]){

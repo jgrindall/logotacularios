@@ -13,6 +13,7 @@
 #import "SymmNotifications.h"
 #import "PScreenGrabModel.h"
 #import <UIKit/UIKit.h>
+#import "ToastUtils.h"
 
 @implementation PerformSaveCommand
 
@@ -23,9 +24,14 @@
 	UIImage* img = [[self getScreenGrabModel] getVal:SCREEN_GRAB];
 	[[FileLoader sharedInstance] saveFile:logo withFileName:filename withImage:img withCallback:^(FileLoaderResults result) {
 		if(result == FileLoaderResultOk){
+			[ToastUtils showToastInController:nil withMessage:[ToastUtils getFileSaveSuccessMessage] withType:TSMessageNotificationTypeSuccess];
 			[[self getFileModel] setVal:filename forKey:FILE_FILENAME];
 			[[self getFileModel] setVal:[NSNumber numberWithBool:NO] forKey:FILE_DIRTY];
 			[[self getFileModel] setVal:[NSNumber numberWithBool:YES] forKey:FILE_REAL];
+			[[self getEventDispatcher] dispatch:SYMM_NOTIF_SAVED withData:nil];
+		}
+		else{
+			[ToastUtils showToastInController:nil withMessage:[ToastUtils getFileSaveErrorMessage] withType:TSMessageNotificationTypeError];
 		}
 	}];
 }
