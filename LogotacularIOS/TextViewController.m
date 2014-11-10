@@ -129,8 +129,8 @@
 	int len = [string length];
 	[string addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, len)];
 	[string addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, len)];
-	[string addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(start, end)];
-	[string addAttribute:NSBackgroundColorAttributeName value:[UIColor yellowColor] range:NSMakeRange(start, end)];
+	[string addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:233.0/255.0 green:207.0/255.0 blue:236.0/255.0 alpha:1.0] range:NSMakeRange(start, end)];
+	[string addAttribute:NSBackgroundColorAttributeName value:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.05] range:NSMakeRange(start, end)];
 	[self.logoText setAttributedText:string];
 }
 
@@ -173,13 +173,13 @@
 
 - (void) checkChanged{
 	NSString* text = self.logoText.text;
-	[[self getErrorModel] setVal:nil forKey:LOGO_ERROR_ERROR];
 	if(![self.cachedText isEqualToString:text]){
 		[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(triggerEdit) object:nil];
 		[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(triggerCheck) object:nil];
 		[self performSelector:@selector(triggerEdit) withObject:nil afterDelay:0.5];
 		[self performSelector:@selector(triggerCheck) withObject:nil afterDelay:2.5];
 	}
+	[self clearAttributes:text];
 }
 
 - (id<PLogoModel>) getLogoModel{

@@ -27,6 +27,7 @@
 			errorMessage = @"Unknown error";
 		}
 		[[self getErrorModel] setVal:error forKey:LOGO_ERROR_ERROR];
+		[ToastUtils showToastInController:nil withMessage:errorMessage withType:TSMessageNotificationTypeError];
 	}
 	else{
 		[[self getErrorModel] setVal:nil forKey:LOGO_ERROR_ERROR];
