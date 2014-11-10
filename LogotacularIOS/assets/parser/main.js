@@ -39,7 +39,7 @@ LG.getTree = function(logo){
 		LG.onMessage({"syntaxerror":e});
 		return;
 	}
-	LG.onMessage({"syntaxerror":null});
+	LG.onMessage({"syntaxerror":{}});
 	return tree;
 };
 

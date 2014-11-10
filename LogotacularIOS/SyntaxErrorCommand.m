@@ -14,18 +14,23 @@
 
 - (void) execute:(id)payload{
 	NSDictionary* error = (NSDictionary*)payload;
-	NSLog(@"payload %@", payload);
+	NSLog(@"payload %@ error %@", payload, error);
 	NSString* errorMessage;
-	if(error[@"line"] && error[@"message"]){
-		errorMessage = [NSString stringWithFormat:@"Error on line %@, %@", error[@"line"], error[@"message"]];
-	}
-	else if(error[@"message"]){
-		errorMessage = [NSString stringWithFormat:@"Error %@", error[@"message"]];
+	if(payload && error){
+		if(error[@"line"] && error[@"message"]){
+			errorMessage = [NSString stringWithFormat:@"Error on line %@, %@", error[@"line"], error[@"message"]];
+		}
+		else if(error[@"message"]){
+			errorMessage = [NSString stringWithFormat:@"Error %@", error[@"message"]];
+		}
+		else{
+			errorMessage = @"Unknown error";
+		}
+		[[self getErrorModel] setVal:error forKey:LOGO_ERROR_ERROR];
 	}
 	else{
-		errorMessage = @"Unknown error";
+		[[self getErrorModel] setVal:nil forKey:LOGO_ERROR_ERROR];
 	}
-	[[self getErrorModel] setVal:error forKey:LOGO_ERROR_ERROR];
 }
 
 - (id<PLogoErrorModel>) getErrorModel{

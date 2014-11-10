@@ -151,6 +151,7 @@
 
 - (void)textViewDidEndEditing:(UITextView*)textView{
 	[self triggerEdit];
+	[self triggerCheck];
 	[self performSelector:@selector(editEnded) withObject:nil afterDelay:2.5];
 }
 
@@ -161,17 +162,23 @@
 	}];
 }
 
+- (void) triggerCheck{
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_SYNTAX_CHECK withData:nil];
+}
+
 - (void) triggerEdit{
 	NSString* text = self.logoText.text;
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_TEXT_EDITED withData:text];
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_SYNTAX_CHECK withData:nil];
 }
 
 - (void) checkChanged{
 	NSString* text = self.logoText.text;
+	[[self getErrorModel] setVal:nil forKey:LOGO_ERROR_ERROR];
 	if(![self.cachedText isEqualToString:text]){
 		[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(triggerEdit) object:nil];
+		[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(triggerCheck) object:nil];
 		[self performSelector:@selector(triggerEdit) withObject:nil afterDelay:0.5];
+		[self performSelector:@selector(triggerCheck) withObject:nil afterDelay:2.5];
 	}
 }
 
