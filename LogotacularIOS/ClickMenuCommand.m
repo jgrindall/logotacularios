@@ -9,12 +9,21 @@
 #import "ClickMenuCommand.h"
 #import "PMenuModel.h"
 #import <Objection/Objection.h>
+#import "LogoErrorModel.h"
 
 @implementation ClickMenuCommand
 
 - (void) execute:(id) payload{
 	id<PMenuModel> menuModel = [[JSObjection defaultInjector] getObject:@protocol(PMenuModel)];
 	[menuModel toggleBoolValForKey:MENU_SHOWN];
+	[[self getErrorModel] setVal:nil forKey:LOGO_ERROR_ERROR];
+}
+
+- (id<PLogoErrorModel>) getErrorModel{
+	return [[JSObjection defaultInjector] getObject:@protocol(PLogoErrorModel)];
 }
 
 @end
+
+
+

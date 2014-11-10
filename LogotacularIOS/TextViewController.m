@@ -120,8 +120,17 @@
 		[self showErrorText:text withStart:start andEnd:end];
 	}
 	else{
-		[self.logoText setText:text];
+		[self clearAttributes:text];
 	}
+}
+
+-(void) clearAttributes:(NSString*) text{
+	NSMutableAttributedString* string = [[NSMutableAttributedString alloc] initWithString:text];
+	UIFont* font = [Appearance monospaceFontOfSize:SYMM_FONT_SIZE_MED];
+	int len = [string length];
+	[string addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, len)];
+	[string addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, len)];
+	[self.logoText setAttributedText:string];
 }
 
 -(void) showErrorText:(NSString*) text withStart:(NSUInteger)start andEnd:(NSUInteger)end{
