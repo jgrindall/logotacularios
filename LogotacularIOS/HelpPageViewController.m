@@ -8,6 +8,7 @@
 
 #import "HelpPageViewController.h"
 #import "HelpViewController.h"
+#import "Appearance.h"
 
 @interface HelpPageViewController ()
 
@@ -26,24 +27,27 @@
 	return self;
 }
 
-- (void) viewDidLoad:(BOOL)animated{
+- (void) viewDidAppear:(BOOL)animated{
+	[super viewDidAppear:animated];
 	[self addPages];
 	[self layoutPages];
 }
 
 - (void) addPages{
-	self.helpContainer = [[UIView alloc] initWithFrame:CGRectZero];
+	NSLog(@"frame %@", NSStringFromCGRect(self.view.frame));
+	self.helpContainer = [[UIView alloc] initWithFrame:self.view.frame];
 	[self.view addSubview:self.helpContainer];
-	self.helpViewController = [[HelpViewController alloc] init];
+	self.helpViewController = [[HelpViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
 	[self addChildInto:self.helpContainer withController:self.helpViewController];
-	self.helpContainer.backgroundColor = [UIColor greenColor];
+	self.helpContainer.backgroundColor = [Appearance bgColor];
 }
 
 -(void)layoutPages{
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.helpContainer attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.topLayoutGuide			attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0]];
+	self.helpContainer.translatesAutoresizingMaskIntoConstraints = NO;
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.helpContainer attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view						attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.helpContainer attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.helpContainer attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.bottomLayoutGuide		attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.helpContainer attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:nil						attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.helpContainer attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0]];
 }
 
 @end

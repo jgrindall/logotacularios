@@ -74,7 +74,8 @@ CGContextRef cacheContext;
 	float dx = cosf(self.heading*3.14159/180) * [amount floatValue];
 	float dy = sinf(self.heading*3.14159/180) * [amount floatValue];
 	CGPoint newPoint = CGPointMake(self.pos.x + dx, self.pos.y + dy);
-	[self.linesView drawLineFrom:self.pos to:newPoint withColor:[UIColor colorWithRed:(231.0/255.0) green:(76.0/255.0) blue:(60.0/255.0) alpha:1] andThickness:3];
+	UIColor* lineColor = [UIColor colorWithRed:(11.0/255.0) green:(76.0/255.0) blue:(60.0/255.0) alpha:1];
+	[self.linesView drawLineFrom:self.pos to:newPoint withColor:lineColor andThickness:3];
 	self.pos = CGPointMake(newPoint.x, newPoint.y);
 }
 

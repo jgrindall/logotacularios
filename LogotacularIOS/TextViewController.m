@@ -14,26 +14,27 @@
 #import "SymmNotifications.h"
 #import <CoreText/CoreText.h>
 #import "Appearance.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface TextViewController ()
 
 @property UITextView* logoText;
-@property UIImageView* imgView;
 @property UIGestureRecognizer* swipe;
 @property NSString* cachedText;
-@property UIView* errorView;
-@property NSArray* errorConstraints;
 
 @end
 
 @implementation TextViewController
 
-- (void) viewDidLoad{
-	[self addImg];
+- (void) viewDidAppear:(BOOL)animated{
+	[super viewDidAppear:animated];
 	[self addText];
 	[self addListeners];
+	self.view.layer.cornerRadius = 10;
+	self.view.layer.masksToBounds = YES;
+	self.view.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.4];
+	self.view.alpha = 0.35;
 	[self layoutText];
-	[self layoutImg];
 }
 
 - (void) addListeners{
@@ -51,32 +52,20 @@
 }
 
 - (void) layoutText{
+	float p = 10;
 	self.logoText.translatesAutoresizingMaskIntoConstraints = NO;
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual		toItem:self.view			attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual	toItem:self.view			attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual		toItem:self.view			attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual	toItem:self.view			attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0]];
-}
-
-- (void) layoutImg{
-	self.imgView.translatesAutoresizingMaskIntoConstraints = NO;
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.imgView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual			toItem:self.view			attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.imgView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual		toItem:self.view			attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.imgView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual		toItem:self.view			attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.imgView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual	toItem:self.view			attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual		toItem:self.view			attribute:NSLayoutAttributeTop			multiplier:1.0 constant:p]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual		toItem:self.view			attribute:NSLayoutAttributeLeft			multiplier:1.0 constant:p]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual		toItem:self.view			attribute:NSLayoutAttributeBottom		multiplier:1.0 constant:-p]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual		toItem:self.view			attribute:NSLayoutAttributeRight		multiplier:1.0 constant:-p - 10]];
 }
 
 - (void) textSwipe:(id) sender{
 	[self hide];
 }
 
--(void)addImg{
-	self.imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"assets/paper.png"]];
-	[self.view addSubview:self.imgView];
-}
-
 -(void)addText{
-	self.logoText = [[UITextView alloc] initWithFrame:CGRectZero];
+	self.logoText = [[UITextView alloc] initWithFrame:self.view.frame];
 	self.logoText.editable = YES;
 	self.logoText.autocapitalizationType = UITextAutocapitalizationTypeNone;
 	self.logoText.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -84,6 +73,7 @@
 	self.logoText.allowsEditingTextAttributes = YES;
 	self.logoText.backgroundColor = [UIColor clearColor];
 	[self.logoText setFont:[Appearance monospaceFontOfSize:SYMM_FONT_SIZE_MED]];
+	self.logoText.textColor = [UIColor whiteColor];
 	[self.view addSubview:self.logoText];
 }
 
@@ -109,8 +99,8 @@
 	int k = 0;
 	int start = 0;
 	int end = 0;
-	if(logoError){
-		NSInteger intLine = [[logoError valueForKey:@"line"] integerValue];
+	if(logoError && logoError[@"line"]){
+		NSInteger intLine = [logoError[@"line"] integerValue];
 		NSArray* comps = [text componentsSeparatedByString:@"\\n"];
 		while(k <= intLine - 2){
 			start += [(NSString*)comps[k] length];
@@ -129,7 +119,7 @@
 	UIFont* font = [Appearance monospaceFontOfSize:SYMM_FONT_SIZE_MED];
 	int len = [string length];
 	[string addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, len)];
-	[string addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, len)];
+	[string addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, len)];
 	[self.logoText setAttributedText:string];
 }
 
@@ -138,7 +128,7 @@
 	UIFont* font = [Appearance monospaceFontOfSize:SYMM_FONT_SIZE_MED];
 	int len = [string length];
 	[string addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, len)];
-	[string addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, len)];
+	[string addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, len)];
 	[string addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(start, end)];
 	[string addAttribute:NSBackgroundColorAttributeName value:[UIColor yellowColor] range:NSMakeRange(start, end)];
 	[self.logoText setAttributedText:string];
@@ -155,15 +145,26 @@
 - (void)textViewDidBeginEditing:(UITextView *)textView{
 	[[self getErrorModel] setVal:nil forKey:LOGO_ERROR_ERROR];
 	self.cachedText = [self.logoText text];
+	[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(editEnded) object:nil];
+	self.view.alpha = 0.85;
 }
 
 - (void)textViewDidEndEditing:(UITextView*)textView{
 	[self triggerEdit];
+	[self performSelector:@selector(editEnded) withObject:nil afterDelay:2.5];
+}
+
+
+- (void) editEnded{
+	[UIView animateWithDuration:0.5 animations:^{
+		self.view.alpha = 0.35;
+	}];
 }
 
 - (void) triggerEdit{
 	NSString* text = self.logoText.text;
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_TEXT_EDITED withData:text];
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_SYNTAX_CHECK withData:nil];
 }
 
 - (void) checkChanged{

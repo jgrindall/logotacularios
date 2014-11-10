@@ -34,7 +34,8 @@
 }
 
 - (void) addText{
-	self.nameField = [[UITextField alloc] initWithFrame:CGRectZero];
+	self.nameField = [[UITextField alloc] initWithFrame:self.view.frame];
+	self.nameField.keyboardType = UIKeyboardTypeAlphabet;
 	self.nameField.translatesAutoresizingMaskIntoConstraints = NO;
 	self.nameField.autocorrectionType = UITextAutocorrectionTypeNo;
 	self.nameField.autocapitalizationType = UITextAutocapitalizationTypeNone;

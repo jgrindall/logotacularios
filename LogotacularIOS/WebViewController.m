@@ -30,7 +30,14 @@
 
 - (void) addListeners{
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_START toFunction:@selector(draw) withContext:self];
+	[[self getEventDispatcher] addListener:SYMM_NOTIF_SYNTAX_CHECK toFunction:@selector(check) withContext:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_STOP toFunction:@selector(stop) withContext:self];
+}
+
+- (void)check{
+	NSString* logo = [[self getLogoModel] get];
+	NSString* fnCall = [NSString stringWithFormat:@"LG.getTree('%@')", logo];
+	[self.webView stringByEvaluatingJavaScriptFromString:fnCall];
 }
 
 - (void) addWebView{
@@ -49,8 +56,12 @@
 	if ([jsonObj isKindOfClass:[NSDictionary class]]){
 		NSDictionary* data = jsonObj[@"data"];
 		NSDictionary* error = jsonObj[@"error"];
+		NSDictionary* syntaxError = jsonObj[@"syntaxerror"];
 		if(error){
 			[self error:error];
+		}
+		else if(syntaxError){
+			[self syntaxError:syntaxError];
 		}
 		else{
 			NSString* type = data[@"type"];
@@ -73,6 +84,10 @@
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_ERROR_HIT withData:error];
 }
 
+- (void) syntaxError:(NSDictionary*)syntaxError{
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_SYNTAX_ERROR withData:syntaxError];
+}
+
 - (id<PLogoErrorModel>) getErrorModel{
 	return [[JSObjection defaultInjector] getObject:@protocol(PLogoErrorModel)];
 }
@@ -86,7 +101,6 @@
 }
 
 - (void) stop{
-	NSLog(@"STOP!");
 	NSString* fnCall = @"LG.stop()";
 	[self.webView stringByEvaluatingJavaScriptFromString:fnCall];
 }
@@ -114,6 +128,7 @@
 - (void) removeListeners{
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_START toFunction:@selector(draw) withContext:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_STOP toFunction:@selector(stop) withContext:self];
+	[[self getEventDispatcher] removeListener:SYMM_NOTIF_SYNTAX_CHECK toFunction:@selector(check) withContext:self];
 }
 
 - (void) receivedCommand:(NSDictionary*) data{

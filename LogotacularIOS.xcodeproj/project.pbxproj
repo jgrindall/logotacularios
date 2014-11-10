@@ -45,6 +45,8 @@
 		52B2289B1A00E749001CC355 /* FileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B2289A1A00E749001CC355 /* FileModel.m */; };
 		52B2289E1A00E751001CC355 /* LogoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B2289D1A00E751001CC355 /* LogoModel.m */; };
 		52B228A11A00E75C001CC355 /* DrawingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B228A01A00E75C001CC355 /* DrawingModel.m */; };
+		52B274161A115D2D00D3EA3B /* HelpSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B274151A115D2D00D3EA3B /* HelpSectionViewController.m */; };
+		52B274541A11785200D3EA3B /* SyntaxErrorCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B274531A11785200D3EA3B /* SyntaxErrorCommand.m */; };
 		52B44EFE1A0B9D4800B99FD2 /* ToastUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B44EFD1A0B9D4800B99FD2 /* ToastUtils.m */; };
 		52B44F011A0BC93D00B99FD2 /* TextEditedCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B44F001A0BC93D00B99FD2 /* TextEditedCommand.m */; };
 		52B5B31619FD7D4600EF531F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B5B31519FD7D4600EF531F /* main.m */; };
@@ -177,6 +179,10 @@
 		52B228A51A00EBD6001CC355 /* PDrawingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDrawingModel.h; sourceTree = "<group>"; };
 		52B228A61A00EBF1001CC355 /* PAbstractModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAbstractModel.h; sourceTree = "<group>"; };
 		52B228AD1A00EE99001CC355 /* Models.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Models.h; sourceTree = "<group>"; };
+		52B274141A115D2C00D3EA3B /* HelpSectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpSectionViewController.h; sourceTree = "<group>"; };
+		52B274151A115D2D00D3EA3B /* HelpSectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpSectionViewController.m; sourceTree = "<group>"; };
+		52B274521A11785200D3EA3B /* SyntaxErrorCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyntaxErrorCommand.h; sourceTree = "<group>"; };
+		52B274531A11785200D3EA3B /* SyntaxErrorCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyntaxErrorCommand.m; sourceTree = "<group>"; };
 		52B44EFC1A0B9D4800B99FD2 /* ToastUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastUtils.h; sourceTree = "<group>"; };
 		52B44EFD1A0B9D4800B99FD2 /* ToastUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastUtils.m; sourceTree = "<group>"; };
 		52B44EFF1A0BC93D00B99FD2 /* TextEditedCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextEditedCommand.h; sourceTree = "<group>"; };
@@ -370,6 +376,8 @@
 				52CF4A071A102414003197B2 /* ErrorHitCommand.m */,
 				52CF4A101A103CB2003197B2 /* ClickHelpCommand.h */,
 				52CF4A111A103CB2003197B2 /* ClickHelpCommand.m */,
+				52B274521A11785200D3EA3B /* SyntaxErrorCommand.h */,
+				52B274531A11785200D3EA3B /* SyntaxErrorCommand.m */,
 				5257F36D1A01AA4F00757C77 /* Commands.h */,
 			);
 			name = Commands;
@@ -689,6 +697,8 @@
 		52CF4A0C1A103AF9003197B2 /* Help */ = {
 			isa = PBXGroup;
 			children = (
+				52B274141A115D2C00D3EA3B /* HelpSectionViewController.h */,
+				52B274151A115D2D00D3EA3B /* HelpSectionViewController.m */,
 				52CF4A0D1A103B5B003197B2 /* HelpViewController.h */,
 				52CF4A0E1A103B5B003197B2 /* HelpViewController.m */,
 				52CF4A091A103AF2003197B2 /* HelpPageViewController.h */,
@@ -882,6 +892,7 @@
 				52815C6E1A04F397005AFA93 /* FilesController.m in Sources */,
 				52B5B35319FD7E1400EF531F /* Colors.m in Sources */,
 				525167F019FFEE6400814B16 /* ClickPlayCommand.m in Sources */,
+				52B274541A11785200D3EA3B /* SyntaxErrorCommand.m in Sources */,
 				52CBC9C11A0D2EBD00C229C8 /* AlertManager.m in Sources */,
 				525167EC19FFD36C00814B16 /* AbstractModel.m in Sources */,
 				5257F3431A012F9500757C77 /* ClickMenuCommand.m in Sources */,
@@ -895,6 +906,7 @@
 				52B228A11A00E75C001CC355 /* DrawingModel.m in Sources */,
 				527D42EB1A0ABED5008AE82A /* FileListModel.m in Sources */,
 				52CF4A0B1A103AF2003197B2 /* HelpPageViewController.m in Sources */,
+				52B274161A115D2D00D3EA3B /* HelpSectionViewController.m in Sources */,
 				527D42F41A0ADAE6008AE82A /* PerformSaveCommand.m in Sources */,
 				5272DE3B19FE485F006E717F /* EventDispatcher.m in Sources */,
 				5272DE3219FE45F5006E717F /* CommandMap.m in Sources */,

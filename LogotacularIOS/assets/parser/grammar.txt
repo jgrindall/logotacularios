@@ -3,75 +3,77 @@
 
 start = sep* st:outsidestmt* sep*
 {
-	var obj={type:"start", children:[]};
-	for(var i=0;i<=st.length-1;i++){
-		obj.children.push(st[i]);
-	}
-	return obj;
+var obj={type:"start", children:[]};
+for(var i=0;i<=st.length-1;i++){
+obj.children.push(st[i]);
+}
+return obj;
 }
 
 
 outsidestmt =
 
-insidestmt
-/
 definefnstmt
+/
+insidestmt
+
+
 
 
 
 insidestmt =
 
-sep* f1:fdstmt sep* 
+sep* f1:fdstmt sep*
 {
-	return {type:"insidestmt", children:[f1]};
+return {type:"insidestmt", children:[f1]};
 }
 
 /
 sep* f2:rtstmt sep*
 {
-	return {type:"insidestmt", children:[f2]};
+return {type:"insidestmt", children:[f2]};
 }
 
 /
 sep* f3:rptstmt sep*
 {
-	return {type:"insidestmt", children:[f3]};
+return {type:"insidestmt", children:[f3]};
 }
 
 /
 sep* f4:makestmt sep*
 {
-	return {type:"insidestmt", children:[f4]};
+return {type:"insidestmt", children:[f4]};
 }
 /
 sep* p:penupstmt sep*
 {
-	return p;
+return p;
 }
 /
 sep* p:pendownstmt sep*
 {
-	return p;
+return p;
 }
 /
 sep* c:colorstmt sep*
 {
-	return c;
+return c;
 }
 /
 sep* b:bgstmt sep*
 {
-	return b;
+return b;
 }
 /
 sep* t:thickstmt sep*
 {
-	return t;
+return t;
 }
 /
 sep* f5:callfnstmt sep*
 {
-	return {type:"insidestmt", children:[f5]};
+return {type:"insidestmt", children:[f5]};
 }
 
 penupstmt = sep* 'penup' sep* '(' sep* ')' eoline
@@ -81,86 +83,89 @@ return {"type":"penupstmt"};
 
 pendownstmt = sep* ('pendown' / 'Pendown') sep* '(' sep* ')' eoline
 {
-	return {"type":"pendownstmt"};
+return {"type":"pendownstmt"};
 }
 
 colorstmt = sep* ('color' / 'Color')  sep* '(' sep* c:color sep* ')' eoline
 {
-	return {"type":"colorstmt", "color":c};
+return {"type":"colorstmt", "color":c};
 }
 bgstmt = sep* ('bg' / 'Bg')  sep* '(' sep* c:color sep* ')' eoline
 {
-	return {"type":"bgstmt", "color":c};
+return {"type":"bgstmt", "color":c};
 }
 
 thickstmt = sep* ('thickness'/'thick'/'Thick'/'Thickness')  sep* '(' sep* e:expression sep* ')' eoline
 {
-	return {"type":"thickstmt", "children":[e]};
+return {"type":"thickstmt", "children":[e]};
 }
 
 color = 'turquoise'/ 'turq'/ 'green'/ 'blue'/ 'purple'/ 'midnight'/ 'darkkturqoise'/ 'dkturq'/ 'dkturquoise'/ 'darkgreen'/ 'dkgreen'/ 'yellow'/ 'carrot'/ 'orange'/ 'org'/ 'red'/ 'snow'/ 'gray'/ 'grey'/ 'ltorange'/ 'lightorange'/ 'lightorg'/ 'ltorg'/ 'dkorange'/ 'darkorg'/ 'dkorg'/ 'darkorange'/ 'terracotta'/ 'dkred'/ 'darkred'/ 'ltgray'/ 'ltgrey'/ 'lightgray'/ 'lightgrey'/ 'darkgray'/ 'darkgrey'/ 'dkgrey'/ 'dkgray'/ 'white'/ 'black'
 
 
-callfnstmt = sep* f:fnname sep* '(' sep* a:expressionlist sep* ')' eoline
+callfnstmt = sep* f:fnname sep* a:expressionlist eoline
 {
-	return {type:"callfnstmt", name:f.name, args:a};
+return {type:"callfnstmt", name:f.name, args:a};
 }
 
 
-fdstmt  = ('fd' / 'Fd' / 'FD') sep* '(' num:expression  ')' eoline 
+fdstmt  = ('fd' / 'Fd' / 'FD') sep* num:expression eoline
 {
-	return {type:"fdstmt", children:[num]};
+return {type:"fdstmt", children:[num]};
 }
 
-rtstmt  = ('rt' / 'Rt' / 'RT') sep* '(' num:expression ')' eoline 
+rtstmt  = ('rt' / 'Rt' / 'RT') sep* num:expression eoline
 {
-	return {type:"rtstmt", children:[num]};
+return {type:"rtstmt", children:[num]};
 }
 
-rptstmt  = ('rpt' / 'Rpt' / 'RPT') sep* num:expression sep* list:insidefnlist sep* ('endrpt' / 'Endrpt') sep* 
+rptstmt  = ('rpt' / 'Rpt' / 'RPT') sep* num:expression sep* '[' sep* list:insidefnlist sep* ']' sep*
 {
-	return {type:"rptstmt", children:[num,list]};
+return {type:"rptstmt", children:[num,list]};
 }
 
 insidefnlist = sep* l:insidestmt*
 {
-    var obj={};
-	obj.type="insidefnlist";
-	obj.children=[];
-	for(var i=0;i<=l.length-1;i++){
-		obj.children.push(l[i]);
-	}
-	return obj;
+var obj={};
+obj.type="insidefnlist";
+obj.children=[];
+for(var i=0;i<=l.length-1;i++){
+obj.children.push(l[i]);
+}
+return obj;
 }
 
-makestmt = v:vardef sep* '=' sep* e:expression eoline
+makestmt = ('make' / 'Make') sep* v:vardef sep* e:expression eoline
 {
-	return {type:"makestmt", children:[v,e]};
+return {type:"makestmt", children:[v,e]};
 }
 
 definefnstmt =
-('proc' / 'Proc') sep+ f:fnname sep* '(' sep* a:arglist sep*')' sep* s:insidefnlist ('endproc' / 'Endproc') sep*
+('to' / 'To') sep+ f:fnname sep* a:arglist sep* s:insidefnlist 'end' sep*
 {
-         return {type:"definefnstmt", name:f.name, args:a, stmts:s};
+return {type:"definefnstmt", name:f.name, args:a, stmts:s};
 }
 /
-('proc' / 'Proc') sep+ f:fnname sep* s:insidefnlist ('endproc' / 'Endproc') sep*
+('to' / 'To') sep+ f:fnname sep* s:insidefnlist 'end' sep*
 {
-         return {type:"definefnstmt", name:f.name, args:null, stmts:s};
+return {type:"definefnstmt", name:f.name, args:null, stmts:s};
 }
 
 
-vardef = n:[a-z]
+vardef = '"' n:[a-z]
 {
-	return {type:"vardef", name:n.toString()};
-} 
+return {type:"vardef", name:n.toString()};
+}
 
 
-expressionlist = 
-c:csvexpressionlist e:expression sep*
+expressionlist =
+c:separatedexpressionlist e:expression? sep*
 {
 var allchildren = c.children;
-return {type:"expressionlist", children:allchildren.concat([e])};
+if(e){
+allchildren.push(e);
+}
+return {type:"expressionlist", children:allchildren};
 }
 /
 sep* e:expression sep*
@@ -175,13 +180,16 @@ return {type:"expressionlist", children:[]};
 
 
 arglist =
-c:csvarglist v:varname sep*
+c:separatedarglist v:usevar? sep*
 {
 var allchildren = c.children;
-return {type:"arglist", children:allchildren.concat([v])};
+if(v){
+allchildren.push(v);
+}
+return {type:"arglist", children:allchildren};
 }
 /
-sep* v:varname sep*
+sep* v:usevar sep*
 {
 return {type:"arglist", children:[v]};
 }
@@ -193,43 +201,45 @@ return {type:"arglist", children:[]};
 
 
 
-csvarglist = v:varnamecomma+
+separatedarglist = v:varnamespace+
 {
-return {type:"csvarglist", children:v};
+return {type:"separatedarglist", children:v};
 }
 
-csvexpressionlist = e:expressioncomma+
+separatedexpressionlist = e:expressionspace+
 {
-	return {type:"csvexpressionlist", children:e};
+return {type:"separatedexpressionlist", children:e};
 }
 
 
-varnamecomma = sep* v:varname sep* ',' sep*
+varnamespace = sep* v:usevar ' ' sep*
 {
-	return {type:"varname", name:v.name};
+return {type:"usevar", name:v.name};
 }
 
-expressioncomma = sep* e:expression sep* ',' sep*
+expressionspace = sep* e:expression ' '
 {
-	return e;
+return e;
 }
 
-fnname = c0:([a-zA-Z])+ c1:[a-zA-Z0-9_]*
+keyword = 'to' / 'fd' / 'rt' / 'end'
+
+fnname = !keyword c0:([a-zA-Z])+ c1:[a-zA-Z0-9_]*
 {
-	return {type:"fnname", name:c0.join("") + c1.join("")};
-} 
+return {type:"fnname", name:c0.join("") + c1.join("")};
+}
 
 
-expression = m:multexpression sep* pm:plusorminus*
+expression = m:multexpression pm:plusorminus*
 {
-	var obj={};
-	obj.type="expression";
-	obj.children=[];
-	obj.children.push(m);
-	for(var i=0;i<=pm.length-1;i++){
-		obj.children.push(pm[i]);
-	}
-	return obj;
+var obj={};
+obj.type="expression";
+obj.children=[];
+obj.children.push(m);
+for(var i=0;i<=pm.length-1;i++){
+obj.children.push(pm[i]);
+}
+return obj;
 }
 
 
@@ -237,100 +247,100 @@ plusorminus =
 
 p:plusexpression
 {
-	return {type:"plusorminus", children:[p]};
+return {type:"plusorminus", children:[p]};
 }
-/  m:minusexpression 
+/  m:minusexpression
 {
-	return {type:"plusorminus", children:[m]};
+return {type:"plusorminus", children:[m]};
 }
 
 
 multexpression = u:unaryexpression td:timesordivterms
 {
-	var obj={};
-	obj.type="multexpression";
-	obj.children=[];
-	obj.children.push(u);
-        if(td.children.length >= 1){
-	     obj.children.push(td);
-        }
-	return obj;
+var obj={};
+obj.type="multexpression";
+obj.children=[];
+obj.children.push(u);
+if(td.children.length >= 1){
+obj.children.push(td);
+}
+return obj;
 }
 
 
 timesordivterms = t:timesordivterm*
 {
-	var obj={};
-	obj.type="timesordivterms";
-	obj.children=[];
-	for(var i=0;i<=t.length-1;i++){
-		obj.children.push(t[i]);
-	}
-	return obj;
+var obj={};
+obj.type="timesordivterms";
+obj.children=[];
+for(var i=0;i<=t.length-1;i++){
+obj.children.push(t[i]);
+}
+return obj;
 }
 
 
 timesordivterm = sep* t:timesterm sep*
 {
-	return {type:"timesordivterm", children:[t]};
+return {type:"timesordivterm", children:[t]};
 }
 / d:divterm
 {
-	return {type:"timesordivterm", children:[d]};
+return {type:"timesordivterm", children:[d]};
 }
 
 
 plusexpression = sep* '+' sep* m:multexpression
 {
-	return {type:"plusexpression", children:[m]};
+return {type:"plusexpression", children:[m]};
 }
 
 
 minusexpression = sep* '-' sep* m:multexpression
 {
-	return {type:"minusexpression", children:[m]};
+return {type:"minusexpression", children:[m]};
 }
 
 
 unaryexpression = n:negate
 {
-	return {type:"unaryexpression", children:[n]};
+return {type:"unaryexpression", children:[n]};
 }
-/ num:numberexpression 
+/ num:numberexpression
 {
-	return {type:"unaryexpression", children:[num]};
+return {type:"unaryexpression", children:[num]};
 }
 
 
 negate = sep* '-' sep* n:numberexpression
 {
-	return {type:"negate", children:[n]};
+return {type:"negate", children:[n]};
 }
 
 
 timesterm = sep* '*' sep* u:unaryexpression
 {
-	return {type:"timesterm", children:[u]};
+return {type:"timesterm", children:[u]};
 }
 
 
 divterm =  sep* '/' sep* u:unaryexpression
 {
-	return {type:"divterm", children:[u]};
+return {type:"divterm", children:[u]};
 }
 
 
-numberexpression = sep* n:number sep*
+numberexpression = n:number
 {
-	return {type:"numberexpression", children:[n]};
+return {type:"numberexpression", children:[n]};
 }
 / '(' e:expression ')'
 {
-	return {type:"numberexpression", children:[e]};
+return {type:"numberexpression", children:[e]};
 }
-/ v:varname
+/ v:usevar
 {
-	return {type:"numberexpression", children:[v]};
+return {type:"numberexpression", children:[v]};
 }
 
 
@@ -338,38 +348,41 @@ numberexpression = sep* n:number sep*
 number =
 '.' d: ([0-9]+)
 {
-  	var s = "0.", i;
-  	for(i = 0; i <= d.length-1; i++){
-		s+=d[i];
-  	}   
-  	return {type:"number",value:parseFloat(s, 10)  };  
+var s = "0.", i;
+for(i = 0; i <= d.length-1; i++){
+s+=d[i];
+}
+return {type:"number",value:parseFloat(s, 10)  };
 }
 /
 d1:([0-9]+) '.' d2: ([0-9]+)
 {
-  	var s1 = "", s2 = "", i;
-  	for(i = 0; i<=d1.length-1;i++){
-    	s1+=d1[i];
-  	}   
- 	for(i = 0; i<=d2.length-1;i++){
-    	s2+=d2[i];
-  	}   
-  return {type:"number",value:parseFloat(s1+'.'+s2, 10)  };  
+var s1 = "", s2 = "", i;
+for(i = 0; i<=d1.length-1;i++){
+s1+=d1[i];
+}
+for(i = 0; i<=d2.length-1;i++){
+s2+=d2[i];
+}
+return {type:"number",value:parseFloat(s1+'.'+s2, 10)  };
 }
 /
 d: ([0-9]+)
 {
-	return {type:"number",value:parseInt(d.join(""), 10)};
+return {type:"number",value:parseInt(d.join(""), 10)};
 }
- 
 
-
-
-varname = c0:([a-zA-Z])+ c1:[a-zA-Z0-9_]*
+usevar = ':' v:varname
 {
-	return {type:"varname",name:c0.toString()+c1.toString()};
+return {type:"usevar",name:v.name};
 }
 
-sep = [ \t\r\n] 
 
-eoline = sep* 
+varname = !keyword c0:([a-zA-Z])+ c1:[a-zA-Z0-9_]*
+{
+return {type:"varname",name:c0.toString()+c1.toString()};
+}
+
+sep = [ \t\r\n]
+
+eoline = sep*
