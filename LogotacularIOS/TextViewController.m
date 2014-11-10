@@ -112,8 +112,6 @@
 	if(logoError){
 		NSInteger intLine = [[logoError valueForKey:@"line"] integerValue];
 		NSArray* comps = [text componentsSeparatedByString:@"\\n"];
-		NSLog(@"intLine %i", intLine);
-		NSLog(@"comps %@", comps);
 		while(k <= intLine - 2){
 			start += [(NSString*)comps[k] length];
 			k++;
@@ -122,7 +120,7 @@
 		[self showErrorText:text withStart:start andEnd:end];
 	}
 	else{
-		[self.logoText text];
+		[self.logoText setText:text];
 	}
 }
 
