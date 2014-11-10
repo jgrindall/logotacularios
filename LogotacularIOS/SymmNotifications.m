@@ -42,5 +42,7 @@ NSString* const SYMM_NOTIF_CHECK_SAVE =			@"Symm:checkSave";
 NSString* const SYMM_NOTIF_PERFORM_NEW =		@"Symm:performNew";
 NSString* const SYMM_NOTIF_SAVED =				@"Symm:saved";
 NSString* const SYMM_NOTIF_ERROR_HIT =			@"Symm:errorHit";
+NSString* const SYMM_NOTIF_SYNTAX_ERROR =		@"Symm:syntaxError";
+NSString* const SYMM_NOTIF_SYNTAX_CHECK =		@"Symm:syntaxCheck";
 
 @end

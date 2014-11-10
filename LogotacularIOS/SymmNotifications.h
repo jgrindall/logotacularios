@@ -42,6 +42,8 @@ extern NSString* const SYMM_NOTIF_CHECK_SAVE;
 extern NSString* const SYMM_NOTIF_PERFORM_NEW;
 extern NSString* const SYMM_NOTIF_SAVED;
 extern NSString* const SYMM_NOTIF_ERROR_HIT;
+extern NSString* const SYMM_NOTIF_SYNTAX_CHECK;
+extern NSString* const SYMM_NOTIF_SYNTAX_ERROR;
 
 @end
 

@@ -46,17 +46,21 @@
 
 @implementation DrawPageViewController
 
-- (void)viewDidLoad {
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	[self layoutAll];
+	[self fileTitleChanged:nil];
+	[self drawingChanged];
+}
+
+- (void) viewDidLoad{
 	[super viewDidLoad];
 	[self addPaint];
 	[self addText];
 	[self addWeb];
 	[self addMenu];
-	[self layoutAll];
 	[self addNavButtons];
 	[self addListeners];
-	[self fileTitleChanged:nil];
-	[self drawingChanged];
 }
 
 - (void) fileTitleChanged:(id)data{
@@ -161,7 +165,7 @@
 }
 
 - (void) addMenu{
-	self.menuContainer = [[UIView alloc] initWithFrame:CGRectZero];
+	self.menuContainer = [[UIView alloc] initWithFrame:self.view.frame];
 	[self.view addSubview:self.menuContainer];
 	self.menuContainer.translatesAutoresizingMaskIntoConstraints = NO;
 	self.menuViewController = [[MenuViewController alloc] init];
@@ -178,7 +182,7 @@
 }
 
 - (void) addText{
-	self.textContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+	self.textContainer = [[UIView alloc] initWithFrame:self.view.frame];
 	self.textContainer.translatesAutoresizingMaskIntoConstraints = NO;
 	[self.view addSubview:self.textContainer];
 	[self layoutText];
@@ -288,11 +292,11 @@
 }
 
 - (void) layoutText{
-	int padding = 7;
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.textContainer attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.topLayoutGuide			attribute:NSLayoutAttributeBottom multiplier:1.0 constant:padding]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.textContainer attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeTrailing multiplier:0.6667 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.textContainer attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.bottomLayoutGuide		attribute:NSLayoutAttributeTop multiplier:1.0 constant:-3*padding]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.textContainer attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0]];
+	int p = 7;
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.textContainer attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.topLayoutGuide			attribute:NSLayoutAttributeBottom multiplier:1.0 constant:p]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.textContainer attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view						attribute:NSLayoutAttributeRight multiplier:0.667 constant:0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.textContainer attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-p]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.textContainer attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeRight multiplier:1.0 constant:10]];
 }
 
 - (void) removeListeners{
