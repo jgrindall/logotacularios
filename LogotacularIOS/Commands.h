@@ -24,6 +24,7 @@
 #import "ClickNewCommand.h"
 #import "PerformNewCommand.h"
 #import "ErrorHitCommand.h"
+#import "ClickHelpCommand.h"
 
 @interface Commands : NSObject
 

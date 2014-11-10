@@ -55,6 +55,7 @@
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLICK_NEW toCommandClass:[ClickNewCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_PERFORM_NEW toCommandClass:[PerformNewCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_ERROR_HIT toCommandClass:[ErrorHitCommand class]];
+	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLICK_HELP toCommandClass:[ClickHelpCommand class]];
 }
 
 - (id<PCommandMap>)getCommandMap{

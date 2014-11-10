@@ -63,6 +63,7 @@
 - (void) onClickHelp{
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_DISMISS_KEY withData:nil];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_MENU withData:nil];
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_HELP withData:self.navigationController];
 }
 
 - (void) onClickSave{

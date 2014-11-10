@@ -71,6 +71,9 @@
 		52CBC9C51A0D33A300C229C8 /* SaveCurrentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CBC9C41A0D33A300C229C8 /* SaveCurrentViewController.m */; };
 		52CBC9C91A0D3AD800C229C8 /* PerformNewCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CBC9C81A0D3AD800C229C8 /* PerformNewCommand.m */; };
 		52CF4A081A102414003197B2 /* ErrorHitCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CF4A071A102414003197B2 /* ErrorHitCommand.m */; };
+		52CF4A0B1A103AF2003197B2 /* HelpPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CF4A0A1A103AF2003197B2 /* HelpPageViewController.m */; };
+		52CF4A0F1A103B5B003197B2 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CF4A0E1A103B5B003197B2 /* HelpViewController.m */; };
+		52CF4A121A103CB2003197B2 /* ClickHelpCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CF4A111A103CB2003197B2 /* ClickHelpCommand.m */; };
 		52CF55F61A0831D600F01D3A /* LogoErrorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CF55F51A0831D600F01D3A /* LogoErrorModel.m */; };
 		52CF55FB1A08411900F01D3A /* FileBrowserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CF55FA1A08411900F01D3A /* FileBrowserModel.m */; };
 /* End PBXBuildFile section */
@@ -229,6 +232,12 @@
 		52CBC9C81A0D3AD800C229C8 /* PerformNewCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerformNewCommand.m; sourceTree = "<group>"; };
 		52CF4A061A102414003197B2 /* ErrorHitCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorHitCommand.h; sourceTree = "<group>"; };
 		52CF4A071A102414003197B2 /* ErrorHitCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorHitCommand.m; sourceTree = "<group>"; };
+		52CF4A091A103AF2003197B2 /* HelpPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpPageViewController.h; sourceTree = "<group>"; };
+		52CF4A0A1A103AF2003197B2 /* HelpPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpPageViewController.m; sourceTree = "<group>"; };
+		52CF4A0D1A103B5B003197B2 /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
+		52CF4A0E1A103B5B003197B2 /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
+		52CF4A101A103CB2003197B2 /* ClickHelpCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickHelpCommand.h; sourceTree = "<group>"; };
+		52CF4A111A103CB2003197B2 /* ClickHelpCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickHelpCommand.m; sourceTree = "<group>"; };
 		52CF55F41A0831D600F01D3A /* LogoErrorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogoErrorModel.h; sourceTree = "<group>"; };
 		52CF55F51A0831D600F01D3A /* LogoErrorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogoErrorModel.m; sourceTree = "<group>"; };
 		52CF55F81A08322800F01D3A /* PLogoErrorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLogoErrorModel.h; sourceTree = "<group>"; };
@@ -359,6 +368,8 @@
 				52CBC9C81A0D3AD800C229C8 /* PerformNewCommand.m */,
 				52CF4A061A102414003197B2 /* ErrorHitCommand.h */,
 				52CF4A071A102414003197B2 /* ErrorHitCommand.m */,
+				52CF4A101A103CB2003197B2 /* ClickHelpCommand.h */,
+				52CF4A111A103CB2003197B2 /* ClickHelpCommand.m */,
 				5257F36D1A01AA4F00757C77 /* Commands.h */,
 			);
 			name = Commands;
@@ -599,6 +610,7 @@
 				5297CF0F1A01263700CC5CB3 /* Menu */,
 				527D42FE1A0ADEC4008AE82A /* Filename */,
 				52CBC9C61A0D33A600C229C8 /* SaveCurrent */,
+				52CF4A0C1A103AF9003197B2 /* Help */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -672,6 +684,17 @@
 				52CBC9C41A0D33A300C229C8 /* SaveCurrentViewController.m */,
 			);
 			name = SaveCurrent;
+			sourceTree = "<group>";
+		};
+		52CF4A0C1A103AF9003197B2 /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				52CF4A0D1A103B5B003197B2 /* HelpViewController.h */,
+				52CF4A0E1A103B5B003197B2 /* HelpViewController.m */,
+				52CF4A091A103AF2003197B2 /* HelpPageViewController.h */,
+				52CF4A0A1A103AF2003197B2 /* HelpPageViewController.m */,
+			);
+			name = Help;
 			sourceTree = "<group>";
 		};
 		52CF55F71A0831DA00F01D3A /* LogoErrorModel */ = {
@@ -871,6 +894,7 @@
 				52B5B35519FD7E1400EF531F /* ImageUtils.m in Sources */,
 				52B228A11A00E75C001CC355 /* DrawingModel.m in Sources */,
 				527D42EB1A0ABED5008AE82A /* FileListModel.m in Sources */,
+				52CF4A0B1A103AF2003197B2 /* HelpPageViewController.m in Sources */,
 				527D42F41A0ADAE6008AE82A /* PerformSaveCommand.m in Sources */,
 				5272DE3B19FE485F006E717F /* EventDispatcher.m in Sources */,
 				5272DE3219FE45F5006E717F /* CommandMap.m in Sources */,
@@ -893,6 +917,8 @@
 				52B5B35819FD7E1400EF531F /* PaintView.m in Sources */,
 				5272DE3E19FE487A006E717F /* AbstractCommand.m in Sources */,
 				525167E819FFCEB000814B16 /* AContainerViewController.m in Sources */,
+				52CF4A0F1A103B5B003197B2 /* HelpViewController.m in Sources */,
+				52CF4A121A103CB2003197B2 /* ClickHelpCommand.m in Sources */,
 				5257F3491A01356C00757C77 /* UndoCommand.m in Sources */,
 				5272DE4419FE5776006E717F /* InjectionModule.m in Sources */,
 				52815C751A050EB1005AFA93 /* ClickOpenCommand.m in Sources */,
