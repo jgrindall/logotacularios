@@ -129,8 +129,9 @@
 	UIFont* font = [Appearance monospaceFontOfSize:SYMM_FONT_SIZE_MED];
 	int len = [string length];
 	[string addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, len)];
-	[string addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(start, len)];
+	[string addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, len)];
 	[string addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(start, end)];
+	[string addAttribute:NSBackgroundColorAttributeName value:[UIColor yellowColor] range:NSMakeRange(start, end)];
 	[self.logoText setAttributedText:string];
 }
 
