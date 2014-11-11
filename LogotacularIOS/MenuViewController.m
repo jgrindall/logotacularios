@@ -35,8 +35,8 @@
 	[self addButtons];
 	[self addListeners];
 	[self showMenuChanged:nil];
-	float c = 0.6;
-	self.view.backgroundColor = [UIColor colorWithRed:c green:c blue:c alpha:0.25];
+	float c = 0.1;
+	self.view.backgroundColor = [UIColor colorWithRed:c green:c blue:c alpha:0.3];
 }
 
 - (void) keyboardUp{
