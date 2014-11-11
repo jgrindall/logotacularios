@@ -21,6 +21,8 @@
 @property UITextView* logoText;
 @property UIGestureRecognizer* swipe;
 @property NSString* cachedText;
+@property UIView* errorView;
+@property NSArray* errorConstraints;
 
 @end
 
@@ -29,12 +31,50 @@
 - (void) viewDidAppear:(BOOL)animated{
 	[super viewDidAppear:animated];
 	[self addText];
+	[self addErrorView];
 	[self addListeners];
 	self.view.layer.cornerRadius = 10;
 	self.view.layer.masksToBounds = YES;
 	self.view.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.4];
 	self.view.alpha = 0.35;
 	[self layoutText];
+	[self layoutError:CGRectZero];
+}
+
+- (void) clearError{
+	
+}
+
+- (void) layoutError:(CGRect)rect{
+	rect = CGRectOffset(rect, 10, 10);
+	NSLog(@"error %@", NSStringFromCGRect(rect));
+	self.errorView.frame = rect;
+	return;
+	/**
+	float x = rect.origin.x;
+	float y = rect.origin.y;
+	float w = rect.size.width;
+	float h = rect.size.height;
+	w = fmaxf(1, w);
+	h = fmaxf(1, h);
+	NSLog(@"layoutError %@   %f %f %f %f", NSStringFromCGRect(rect), x, y, w, h);
+	self.errorView.translatesAutoresizingMaskIntoConstraints = NO;
+	if(self.errorConstraints && [self.errorConstraints count]>=1){
+		[self.view removeConstraints:self.errorConstraints];
+	}
+	NSLayoutConstraint* c0 = [NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual		toItem:self.view			attribute:NSLayoutAttributeTop					multiplier:1.0 constant:x];
+	NSLayoutConstraint* c1 = [NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual		toItem:self.view			attribute:NSLayoutAttributeLeft					multiplier:1.0 constant:y];
+	NSLayoutConstraint* c2 = [NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual		toItem:nil					attribute:NSLayoutAttributeNotAnAttribute		multiplier:1.0 constant:w];
+	NSLayoutConstraint* c3 = [NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual		toItem:nil					attribute:NSLayoutAttributeNotAnAttribute		multiplier:1.0 constant:h];
+	self.errorConstraints = @[c0, c1, c2, c3];
+	[self.view addConstraints:self.errorConstraints];
+	 **/
+}
+
+- (void) addErrorView{
+	self.errorView = [[UIView alloc] initWithFrame:CGRectZero];
+	[self.view addSubview:self.errorView];
+	self.errorView.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.5];
 }
 
 - (void) addListeners{
@@ -44,6 +84,14 @@
 	self.swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(textSwipe:)];
 	self.swipe.delegate = self;
 	[self.view addGestureRecognizer:self.swipe];
+}
+
+- (void) drawErrorForStart:(NSInteger)start andEnd:(NSInteger)end{
+	NSLayoutManager *layoutManager = [self.logoText layoutManager];
+	NSTextContainer *textContainer = [self.logoText textContainer];
+	NSRange range = NSMakeRange(start, end - start);
+	CGRect r = [layoutManager boundingRectForGlyphRange:range inTextContainer:textContainer];
+	[self layoutError:r];
 }
 
 - (void) modelChanged{
@@ -75,6 +123,10 @@
 	[self.logoText setFont:[Appearance monospaceFontOfSize:SYMM_FONT_SIZE_MED]];
 	self.logoText.textColor = [UIColor whiteColor];
 	[self.view addSubview:self.logoText];
+	self.logoText.layer.borderColor = [UIColor blackColor].CGColor;
+	self.logoText.layer.borderWidth = 1.0f;
+	self.logoText.textContainer.lineFragmentPadding = 0;
+	self.logoText.textContainerInset = UIEdgeInsetsZero;
 }
 
 - (void) textViewDidChange:(UITextView *)textView{
@@ -96,6 +148,7 @@
 - (void) setText{
 	NSString* text = [[self getLogoModel] get];
 	NSDictionary* logoError = (NSDictionary*)[[self getErrorModel] getVal:LOGO_ERROR_ERROR];
+	NSLog(@"setText %@", logoError);
 	int k = 0;
 	int start = 0;
 	int end = 0;
@@ -107,31 +160,11 @@
 			k++;
 		}
 		end = start + [(NSString*)comps[k] length];
-		[self showErrorText:text withStart:start andEnd:end];
+		[self drawErrorForStart:start andEnd:end];
 	}
 	else{
-		[self clearAttributes:text];
+		[self clearError];
 	}
-}
-
--(void) clearAttributes:(NSString*) text{
-	NSMutableAttributedString* string = [[NSMutableAttributedString alloc] initWithString:text];
-	UIFont* font = [Appearance monospaceFontOfSize:SYMM_FONT_SIZE_MED];
-	int len = [string length];
-	[string addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, len)];
-	[string addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, len)];
-	[self.logoText setAttributedText:string];
-}
-
--(void) showErrorText:(NSString*) text withStart:(NSUInteger)start andEnd:(NSUInteger)end{
-	NSMutableAttributedString* string = [[NSMutableAttributedString alloc] initWithString:text];
-	UIFont* font = [Appearance monospaceFontOfSize:SYMM_FONT_SIZE_MED];
-	int len = [string length];
-	[string addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, len)];
-	[string addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, len)];
-	[string addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:233.0/255.0 green:207.0/255.0 blue:236.0/255.0 alpha:1.0] range:NSMakeRange(start, end)];
-	[string addAttribute:NSBackgroundColorAttributeName value:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.05] range:NSMakeRange(start, end)];
-	[self.logoText setAttributedText:string];
 }
 
 - (void) show{
@@ -179,7 +212,6 @@
 		[self performSelector:@selector(triggerEdit) withObject:nil afterDelay:0.5];
 		[self performSelector:@selector(triggerCheck) withObject:nil afterDelay:2.5];
 	}
-	[self clearAttributes:text];
 }
 
 - (id<PLogoModel>) getLogoModel{

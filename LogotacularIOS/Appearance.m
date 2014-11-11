@@ -39,8 +39,8 @@
 }
 
 + (void) applyNavBarStyleInWindow:(UIWindow*) window{
-	float c = 0.6;
-	UIColor* g = [UIColor colorWithRed:c green:c blue:c alpha:0.25];
+	float c = 0.1;
+	UIColor* g = [UIColor colorWithRed:c green:c blue:c alpha:0.15];
 	UINavigationController* navigationController = (UINavigationController*) (window.rootViewController);
 	UINavigationBar* bar = navigationController.navigationBar;
 	bar.titleTextAttributes = [Appearance navTextAttributes];
