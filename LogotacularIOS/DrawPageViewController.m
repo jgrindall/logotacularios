@@ -35,6 +35,7 @@
 @property PaintViewController* paintViewController;
 @property WebViewController* webViewController;
 @property MenuViewController* menuViewController;
+@property UIPopoverController* popController;
 @property AbstractAlertController* alert;
 @property UIBarButtonItem* playButton;
 @property UIBarButtonItem* listButton;
@@ -83,6 +84,7 @@
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_SHOW_FILENAME toFunction:@selector(showFilename) withContext:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_CHECK_SAVE toFunction:@selector(showCheckSave) withContext:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_SHOW_POPOVER toFunction:@selector(addPopover:) withContext:self];
+	[[self getEventDispatcher] addListener:SYMM_NOTIF_HIDE_POPOVER toFunction:@selector(hidePopover:) withContext:self];
 }
 
 - (void) showCheckSave{
@@ -148,13 +150,22 @@
 	return item;
 }
 
+- (void) hidePopover:(NSNotification*)notif{
+	if(self.popController){
+		[self.popController dismissPopoverAnimated:NO];
+		self.popController = nil;
+	}
+};
+
 - (void) addPopover:(NSNotification*)notif{
 	UIView* exclam = (UIView*)notif.object;
 	CGRect rect = exclam.frame;
 	CGRect globalFrame = [self.view convertRect:rect fromView:exclam.superview];
 	FilenameViewController* pop = [[FilenameViewController alloc] init];
-	UIPopoverController* popover = [[UIPopoverController alloc] initWithContentViewController:pop];
-	[popover presentPopoverFromRect:globalFrame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+	self.popController = [[UIPopoverController alloc] initWithContentViewController:pop];
+	pop.view.backgroundColor = [UIColor redColor];
+	self.popController.backgroundColor = [UIColor redColor];
+	[self.popController presentPopoverFromRect:globalFrame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:NO];
 }
 
 -(void)addNavButtons{
@@ -316,6 +327,7 @@
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_SHOW_FILENAME toFunction:@selector(showFilename) withContext:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_CHECK_SAVE toFunction:@selector(showCheckSave) withContext:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_SHOW_POPOVER toFunction:@selector(addPopover:) withContext:self];
+	[[self getEventDispatcher] removeListener:SYMM_NOTIF_HIDE_POPOVER toFunction:@selector(hidePopover:) withContext:self];
 }
 
 - (void) dealloc{

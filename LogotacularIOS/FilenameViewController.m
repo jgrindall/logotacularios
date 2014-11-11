@@ -31,6 +31,7 @@
 	[self addText];
 	[self layoutButtons];
 	[self layoutText];
+	self.preferredContentSize = CGSizeMake(300, 200);
 }
 
 - (void) addText{

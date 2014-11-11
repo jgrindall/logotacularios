@@ -54,6 +54,7 @@ int const EXCLAM_SIZE = 36;
 - (void) clearError{
 	self.errorView.frame = CGRectZero;
 	self.exclamView.frame = CGRectZero;
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_POPOVER withData:nil];
 }
 
 - (void) addExclam{

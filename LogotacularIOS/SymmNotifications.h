@@ -45,6 +45,7 @@ extern NSString* const SYMM_NOTIF_ERROR_HIT;
 extern NSString* const SYMM_NOTIF_SYNTAX_CHECK;
 extern NSString* const SYMM_NOTIF_SYNTAX_ERROR;
 extern NSString* const SYMM_NOTIF_SHOW_POPOVER;
+extern NSString* const SYMM_NOTIF_HIDE_POPOVER;
 
 @end
 
