@@ -14,6 +14,7 @@
 + (void) showToastInController:(UIViewController*)controller withMessage:(NSString*) subtitle withType:(TSMessageNotificationType)type;
 
 + (NSString*) getFileOpenErrorMessage;
++ (NSString*) getFileOpenAlreadyMessage;
 + (NSString*) getFileSaveSuccessMessage;
 + (NSString*) getFileSaveErrorMessage;
 + (NSString*) getFileDeleteSuccessMessage;

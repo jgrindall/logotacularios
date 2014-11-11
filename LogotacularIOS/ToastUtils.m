@@ -35,6 +35,10 @@
 	}
 }
 
++ (NSString*) getFileOpenAlreadyMessage{
+	return @"File already open";
+}
+
 + (NSString*) getFileOpenErrorMessage{
 	return @"An error occurred while opening your file";
 }

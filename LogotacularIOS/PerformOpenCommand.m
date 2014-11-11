@@ -25,12 +25,18 @@
 			id<PLogoModel> logoModel = [self getLogoModel];
 			[[FileLoader sharedInstance] openFileAtIndex:i withCallback:^(FileLoaderResults result, id data) {
 				if(result == FileLoaderResultOk){
-					NSString* logo = (NSString*)data;
-					[fileModel setVal:filename forKey:FILE_FILENAME];
-					[fileModel setVal:[NSNumber numberWithBool:NO] forKey:FILE_DIRTY];
-					[fileModel setVal:[NSNumber numberWithBool:YES] forKey:FILE_REAL];
-					[logoModel reset:logo];
-					[[self getEventDispatcher] dispatch:SYMM_NOTIF_FILE_LOADED withData:nil];
+					NSString* currentName = [fileModel getVal:FILE_FILENAME];
+					if([currentName isEqualToString:filename]){
+						[ToastUtils showToastInController:nil withMessage:[ToastUtils getFileOpenAlreadyMessage] withType:TSMessageNotificationTypeError];
+					}
+					else{
+						NSString* logo = (NSString*)data;
+						[fileModel setVal:filename forKey:FILE_FILENAME];
+						[fileModel setVal:[NSNumber numberWithBool:NO] forKey:FILE_DIRTY];
+						[fileModel setVal:[NSNumber numberWithBool:YES] forKey:FILE_REAL];
+						[logoModel reset:logo];
+						[[self getEventDispatcher] dispatch:SYMM_NOTIF_FILE_LOADED withData:nil];
+					}
 				}
 				else{
 					[ToastUtils showToastInController:nil withMessage:[ToastUtils getFileOpenErrorMessage] withType:TSMessageNotificationTypeError];
