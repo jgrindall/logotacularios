@@ -22,5 +22,6 @@ extern NSString* const WASTE_ICON;
 extern NSString* const CLEAR_ICON;
 extern NSString* const STOP_ICON;
 extern NSString* const TICK_ICON;
+extern NSString* const EXCLAM_ICON;
 
 @end

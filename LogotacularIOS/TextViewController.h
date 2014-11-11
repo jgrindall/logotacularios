@@ -10,12 +10,11 @@
 
 @interface TextViewController : BaseViewController <UIGestureRecognizerDelegate, UITextViewDelegate>
 
+extern int const TEXT_PADDING;
+extern int const HORIZ_PADDING;
+extern int const EXCLAM_SIZE;
+
 - (void) show;
-
 - (void) hide;
-
-- (NSString*) getText;
-
-- (void) setText;
 
 @end

@@ -24,7 +24,6 @@
 		}
 		if(![errorMessage isEqual:nil]){
 			[[self getErrorModel] setVal:error forKey:LOGO_ERROR_ERROR];
-			[ToastUtils showToastInController:nil withMessage:errorMessage withType:TSMessageNotificationTypeError];
 		}
 	}
 	else{

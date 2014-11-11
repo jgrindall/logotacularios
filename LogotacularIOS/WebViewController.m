@@ -36,6 +36,7 @@
 
 - (void)check{
 	NSString* logo = [[self getLogoModel] get];
+	logo = [self clean:logo];
 	NSString* fnCall = [NSString stringWithFormat:@"LG.getTree('%@')", logo];
 	[self.webView stringByEvaluatingJavaScriptFromString:fnCall];
 }
@@ -85,6 +86,7 @@
 }
 
 - (void) syntaxError:(NSDictionary*)syntaxError{
+	[self finished];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_SYNTAX_ERROR withData:syntaxError];
 }
 
@@ -106,15 +108,6 @@
 }
 
 - (NSString*) clean:(NSString*)logo{
-	NSError* error = nil;
-	NSRegularExpression* regex0 = [NSRegularExpression regularExpressionWithPattern:@"[\t]+" options:NSRegularExpressionCaseInsensitive error:&error];
-	NSRegularExpression* regex1 = [NSRegularExpression regularExpressionWithPattern:@"[\n]+" options:NSRegularExpressionCaseInsensitive error:&error];
-	logo = [regex0 stringByReplacingMatchesInString:logo options:0 range:NSMakeRange(0, [logo length]) withTemplate:@" "];
-	logo = [regex1 stringByReplacingMatchesInString:logo options:0 range:NSMakeRange(0, [logo length]) withTemplate:@"\n"];
-	return logo;
-};
-
-- (NSString*) clean2:(NSString*)logo{
 	const char *chars = [logo UTF8String];
 	NSMutableString *escapedString = [NSMutableString string];
 	while (*chars){
@@ -137,7 +130,7 @@
 
 - (void) draw{
 	NSString* logo = [[self getLogoModel] get];
-	logo = [self clean2:logo];
+	logo = [self clean:logo];
 	NSLog(@"draw %@", logo);
 	NSString* fnCall = [NSString stringWithFormat:@"LG.draw('%@')", logo];
 	[self.webView stringByEvaluatingJavaScriptFromString:fnCall];

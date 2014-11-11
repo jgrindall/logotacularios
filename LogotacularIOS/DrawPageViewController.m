@@ -82,6 +82,7 @@
 	[[self getDrawingModel] addListener:@selector(drawingChanged) forKey:DRAWING_ISDRAWING withTarget:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_SHOW_FILENAME toFunction:@selector(showFilename) withContext:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_CHECK_SAVE toFunction:@selector(showCheckSave) withContext:self];
+	[[self getEventDispatcher] addListener:SYMM_NOTIF_SHOW_POPOVER toFunction:@selector(addPopover:) withContext:self];
 }
 
 - (void) showCheckSave{
@@ -145,6 +146,15 @@
 	UIButton* btn = [self getBarButton:item];
 	[btn addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
 	return item;
+}
+
+- (void) addPopover:(NSNotification*)notif{
+	UIView* exclam = (UIView*)notif.object;
+	CGRect rect = exclam.frame;
+	CGRect globalFrame = [self.view convertRect:rect fromView:exclam.superview];
+	FilenameViewController* pop = [[FilenameViewController alloc] init];
+	UIPopoverController* popover = [[UIPopoverController alloc] initWithContentViewController:pop];
+	[popover presentPopoverFromRect:globalFrame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
 -(void)addNavButtons{
@@ -305,6 +315,7 @@
 	[[self getLogoModel] removeGlobalListener:@selector(logoChanged) withTarget:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_SHOW_FILENAME toFunction:@selector(showFilename) withContext:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_CHECK_SAVE toFunction:@selector(showCheckSave) withContext:self];
+	[[self getEventDispatcher] removeListener:SYMM_NOTIF_SHOW_POPOVER toFunction:@selector(addPopover:) withContext:self];
 }
 
 - (void) dealloc{

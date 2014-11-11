@@ -15,66 +15,66 @@
 #import <CoreText/CoreText.h>
 #import "Appearance.h"
 #import <QuartzCore/QuartzCore.h>
+#import <UIKit/UIKit.h>
+#import "Assets.h"
 
 @interface TextViewController ()
 
 @property UITextView* logoText;
 @property UIGestureRecognizer* swipe;
+@property UITapGestureRecognizer* exclamTap;
 @property NSString* cachedText;
 @property UIView* errorView;
-@property NSArray* errorConstraints;
+@property float scrollPos;
+@property UIImageView* exclamView;
+@property UIView* container;
 
 @end
 
 @implementation TextViewController
 
+int const TEXT_PADDING = 10;
+int const HORIZ_PADDING = 35;
+int const EXCLAM_SIZE = 36;
+
 - (void) viewDidAppear:(BOOL)animated{
 	[super viewDidAppear:animated];
-	[self addText];
+	self.scrollPos = 0;
+	[self addContainer];
 	[self addErrorView];
+	[self addText];
+	[self addExclam];
 	[self addListeners];
-	self.view.layer.cornerRadius = 10;
-	self.view.layer.masksToBounds = YES;
-	self.view.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.4];
-	self.view.alpha = 0.35;
 	[self layoutText];
-	[self layoutError:CGRectZero];
+	[self layoutContainer];
+	[self clearError];
+	self.view.alpha = 0.75;
 }
 
 - (void) clearError{
-	
+	self.errorView.frame = CGRectZero;
+	self.exclamView.frame = CGRectZero;
 }
 
-- (void) layoutError:(CGRect)rect{
-	rect = CGRectOffset(rect, 10, 10);
-	NSLog(@"error %@", NSStringFromCGRect(rect));
-	self.errorView.frame = rect;
-	return;
-	/**
-	float x = rect.origin.x;
-	float y = rect.origin.y;
-	float w = rect.size.width;
-	float h = rect.size.height;
-	w = fmaxf(1, w);
-	h = fmaxf(1, h);
-	NSLog(@"layoutError %@   %f %f %f %f", NSStringFromCGRect(rect), x, y, w, h);
-	self.errorView.translatesAutoresizingMaskIntoConstraints = NO;
-	if(self.errorConstraints && [self.errorConstraints count]>=1){
-		[self.view removeConstraints:self.errorConstraints];
-	}
-	NSLayoutConstraint* c0 = [NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual		toItem:self.view			attribute:NSLayoutAttributeTop					multiplier:1.0 constant:x];
-	NSLayoutConstraint* c1 = [NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual		toItem:self.view			attribute:NSLayoutAttributeLeft					multiplier:1.0 constant:y];
-	NSLayoutConstraint* c2 = [NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual		toItem:nil					attribute:NSLayoutAttributeNotAnAttribute		multiplier:1.0 constant:w];
-	NSLayoutConstraint* c3 = [NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual		toItem:nil					attribute:NSLayoutAttributeNotAnAttribute		multiplier:1.0 constant:h];
-	self.errorConstraints = @[c0, c1, c2, c3];
-	[self.view addConstraints:self.errorConstraints];
-	 **/
+- (void) addExclam{
+	self.exclamView = [[UIImageView alloc] initWithFrame:CGRectZero];
+	[self.view addSubview:self.exclamView];
+	self.exclamView.contentMode = UIViewContentModeScaleAspectFit;
+	self.exclamView.image = [UIImage imageNamed:EXCLAM_ICON];
 }
 
 - (void) addErrorView{
 	self.errorView = [[UIView alloc] initWithFrame:CGRectZero];
 	[self.view addSubview:self.errorView];
-	self.errorView.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.5];
+	self.errorView.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.1];
+}
+
+- (void) addContainer{
+	self.container = [[UIView alloc] initWithFrame:CGRectZero];
+	[self.view addSubview:self.container];
+	self.container.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.25];
+	self.container.layer.cornerRadius = 10;
+	self.container.layer.masksToBounds = YES;
 }
 
 - (void) addListeners{
@@ -84,6 +84,13 @@
 	self.swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(textSwipe:)];
 	self.swipe.delegate = self;
 	[self.view addGestureRecognizer:self.swipe];
+	self.exclamTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapExclam)];
+	[self.exclamView setUserInteractionEnabled:YES];
+	[self.exclamView addGestureRecognizer:self.exclamTap];
+}
+
+-(void)tapExclam{
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_SHOW_POPOVER withData:self.exclamView];
 }
 
 - (void) drawErrorForStart:(NSInteger)start andEnd:(NSInteger)end{
@@ -91,7 +98,11 @@
 	NSTextContainer *textContainer = [self.logoText textContainer];
 	NSRange range = NSMakeRange(start, end - start);
 	CGRect r = [layoutManager boundingRectForGlyphRange:range inTextContainer:textContainer];
-	[self layoutError:r];
+	NSLog(@"%@", NSStringFromCGRect(r));
+	r = CGRectOffset(r, self.logoText.frame.origin.x, self.logoText.frame.origin.y - self.scrollPos);
+	self.errorView.frame = r;
+	float dy = r.size.height/2 - 18;
+	self.exclamView.frame = CGRectMake(0, r.origin.y + dy, 36, 36);
 }
 
 - (void) modelChanged{
@@ -102,10 +113,18 @@
 - (void) layoutText{
 	float p = 10;
 	self.logoText.translatesAutoresizingMaskIntoConstraints = NO;
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual		toItem:self.view			attribute:NSLayoutAttributeTop			multiplier:1.0 constant:p]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual		toItem:self.view			attribute:NSLayoutAttributeLeft			multiplier:1.0 constant:p]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual		toItem:self.view			attribute:NSLayoutAttributeBottom		multiplier:1.0 constant:-p]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual		toItem:self.view			attribute:NSLayoutAttributeRight		multiplier:1.0 constant:-p - 10]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual		toItem:self.container			attribute:NSLayoutAttributeTop			multiplier:1.0 constant:p]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual		toItem:self.container			attribute:NSLayoutAttributeLeft			multiplier:1.0 constant:p]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual		toItem:self.container			attribute:NSLayoutAttributeBottom		multiplier:1.0 constant:-p]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual		toItem:self.container			attribute:NSLayoutAttributeRight		multiplier:1.0 constant:-p]];
+}
+
+- (void) layoutContainer{
+	self.container.translatesAutoresizingMaskIntoConstraints = NO;
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.container attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual		toItem:self.view			attribute:NSLayoutAttributeTop			multiplier:1.0 constant:TEXT_PADDING]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.container attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual		toItem:self.view			attribute:NSLayoutAttributeLeft			multiplier:1.0 constant:TEXT_PADDING + HORIZ_PADDING]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.container attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual	toItem:self.view			attribute:NSLayoutAttributeBottom		multiplier:1.0 constant:-TEXT_PADDING]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.container attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual		toItem:self.view			attribute:NSLayoutAttributeRight		multiplier:1.0 constant:0]];
 }
 
 - (void) textSwipe:(id) sender{
@@ -123,43 +142,32 @@
 	[self.logoText setFont:[Appearance monospaceFontOfSize:SYMM_FONT_SIZE_MED]];
 	self.logoText.textColor = [UIColor whiteColor];
 	[self.view addSubview:self.logoText];
-	self.logoText.layer.borderColor = [UIColor blackColor].CGColor;
-	self.logoText.layer.borderWidth = 1.0f;
 	self.logoText.textContainer.lineFragmentPadding = 0;
 	self.logoText.textContainerInset = UIEdgeInsetsZero;
 }
 
 - (void) textViewDidChange:(UITextView *)textView{
+	[self clearError];
 	[self checkChanged];
 }
 
-- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-	self.view.alpha = 1.0;
-}
-
-- (NSString*) getText{
-	return [self.logoText text];
-}
-
 - (void) errorChanged{
-	[self setText];
-}
-
-- (void) setText{
 	NSString* text = [[self getLogoModel] get];
 	NSDictionary* logoError = (NSDictionary*)[[self getErrorModel] getVal:LOGO_ERROR_ERROR];
-	NSLog(@"setText %@", logoError);
 	int k = 0;
 	int start = 0;
 	int end = 0;
+	NSLog(@"logoError %@", logoError);
 	if(logoError && logoError[@"line"]){
 		NSInteger intLine = [logoError[@"line"] integerValue];
-		NSArray* comps = [text componentsSeparatedByString:@"\\n"];
+		NSArray* comps = [text componentsSeparatedByString:@"\n"];
+		NSLog(@"text %@   comps %@", text, comps);
 		while(k <= intLine - 2){
-			start += [(NSString*)comps[k] length];
+			start += [(NSString*)comps[k] length] + 1; //for the newline
 			k++;
 		}
 		end = start + [(NSString*)comps[k] length];
+		NSLog(@"start %i   end %i", start, end);
 		[self drawErrorForStart:start andEnd:end];
 	}
 	else{
@@ -178,22 +186,13 @@
 - (void)textViewDidBeginEditing:(UITextView *)textView{
 	[[self getErrorModel] setVal:nil forKey:LOGO_ERROR_ERROR];
 	self.cachedText = [self.logoText text];
-	[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(editEnded) object:nil];
-	self.view.alpha = 0.85;
 }
 
 - (void)textViewDidEndEditing:(UITextView*)textView{
 	[self triggerEdit];
 	[self triggerCheck];
-	[self performSelector:@selector(editEnded) withObject:nil afterDelay:2.5];
 }
 
-
-- (void) editEnded{
-	[UIView animateWithDuration:0.5 animations:^{
-		self.view.alpha = 0.35;
-	}];
-}
 
 - (void) triggerCheck{
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_SYNTAX_CHECK withData:nil];
@@ -233,8 +232,8 @@
 - (void) move:(BOOL)show{
 	float x1t;
 	float time = 0.5;
-	float x0 = self.view.frame.size.width - self.logoText.frame.size.width/2;
-	float x1 = x0 + self.logoText.frame.size.width;
+	float x0 = self.view.frame.size.width/2;
+	float x1 = x0 + self.view.frame.size.width;
 	if(show){
 		x1t = x1;
 		x1 = x0;
@@ -249,6 +248,14 @@
 	[[self getLogoModel] removeGlobalListener:@selector(modelChanged) withTarget:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_DISMISS_KEY toFunction:@selector(dismissKeyboard) withContext:self];
 	[[self getErrorModel] removeListener:@selector(errorChanged) forKey:LOGO_ERROR_ERROR withTarget:self];
+	[self.exclamView removeGestureRecognizer:self.exclamTap];
+	[self.exclamView setUserInteractionEnabled:NO];
+	self.exclamTap = nil;
+}
+
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView{
+	self.scrollPos = scrollView.contentOffset.y;
+	[self textViewDidChange:self.logoText];
 }
 
 -(void) dealloc{
@@ -256,3 +263,4 @@
 }
 
 @end
+
