@@ -20,10 +20,9 @@
 @implementation ClickOpenCommand
 
 - (void) execute:(id)payload{
-	AppDelegate* delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-	UINavigationController* presenter = [delegate navigationController];
 	FilePageController* filesController = [[FilePageController alloc] init];
-	[presenter pushViewController:filesController animated:YES];
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CHANGE_PAGE withData:filesController];
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_LOAD_FILES withData:nil];
 }
 
 @end

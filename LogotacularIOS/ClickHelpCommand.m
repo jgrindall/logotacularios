@@ -17,10 +17,8 @@
 @implementation ClickHelpCommand
 
 -  (void) execute:(id)payload{
-	AppDelegate* delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-	UINavigationController* presenter = [delegate navigationController];
 	HelpPageViewController* helpController = [[HelpPageViewController alloc] init];
-	[presenter pushViewController:helpController animated:YES];
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CHANGE_PAGE withData:helpController];
 }
 
 @end

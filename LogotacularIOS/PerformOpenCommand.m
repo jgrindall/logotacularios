@@ -18,11 +18,10 @@
 - (void) execute:(id) payload{
 	NSNumber* index = (NSNumber*)payload;
 	NSInteger i = [index integerValue];
+	id<PFileModel> fileModel = [self getFileModel];
 	[[FileLoader sharedInstance] getFileNameAtIndex:[index integerValue] withCallback:^(FileLoaderResults result, id data) {
 		if(result == FileLoaderResultOk){
 			NSString* filename = (NSString*)data;
-			id<PFileModel> fileModel = [self getFileModel];
-			id<PLogoModel> logoModel = [self getLogoModel];
 			[[FileLoader sharedInstance] openFileAtIndex:i withCallback:^(FileLoaderResults result, id data) {
 				if(result == FileLoaderResultOk){
 					NSString* currentName = [fileModel getVal:FILE_FILENAME];
@@ -31,11 +30,7 @@
 					}
 					else{
 						NSString* logo = (NSString*)data;
-						[fileModel setVal:filename forKey:FILE_FILENAME];
-						[fileModel setVal:@NO forKey:FILE_DIRTY];
-						[fileModel setVal:@YES forKey:FILE_REAL];
-						[logoModel reset:logo];
-						[[self getEventDispatcher] dispatch:SYMM_NOTIF_FILE_LOADED withData:nil];
+						[[self getEventDispatcher] dispatch:SYMM_NOTIF_PERFORM_FILE_SETUP withData:@{@"filename":filename, @"logo":logo}];
 					}
 				}
 				else{
@@ -47,10 +42,6 @@
 			[ToastUtils showToastInController:nil withMessage:[ToastUtils getFileOpenErrorMessage] withType:TSMessageNotificationTypeError];
 		}
 	}];
-}
-
-- (id<PLogoModel>) getLogoModel{
-	return [[JSObjection defaultInjector] getObject:@protocol(PLogoModel)];
 }
 
 - (id<PFileModel>) getFileModel{

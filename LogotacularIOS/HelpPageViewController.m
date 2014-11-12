@@ -27,9 +27,13 @@
 	return self;
 }
 
+- (void) viewDidLoad{
+	[super viewDidLoad];
+	[self addPages];
+}
+
 - (void) viewDidAppear:(BOOL)animated{
 	[super viewDidAppear:animated];
-	[self addPages];
 	[self layoutPages];
 }
 

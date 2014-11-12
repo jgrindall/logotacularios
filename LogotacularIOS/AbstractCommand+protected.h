@@ -9,6 +9,8 @@
 #import "AbstractCommand.h"
 #import "PEventDispatcher.h"
 #import <Objection/Objection.h>
+#import "SymmNotifications.h"
+#import <UIKit/UIKit.h>
 
 @interface AbstractCommand ()
 

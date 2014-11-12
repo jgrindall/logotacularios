@@ -39,18 +39,22 @@ int const TEXT_PADDING = 10;
 int const HORIZ_PADDING = 35;
 int const EXCLAM_SIZE = 36;
 
-- (void) viewDidAppear:(BOOL)animated{
-	[super viewDidAppear:animated];
+- (void) viewDidLoad{
+	[super viewDidLoad];
 	self.scrollPos = 0;
 	[self addContainer];
 	[self addErrorView];
 	[self addText];
 	[self addExclam];
 	[self addListeners];
+	self.view.alpha = 0.75;
+}
+
+- (void) viewDidAppear:(BOOL)animated{
+	[super viewDidAppear:animated];
 	[self layoutText];
 	[self layoutContainer];
 	[self clearError];
-	self.view.alpha = 0.75;
 }
 
 - (void) clearError{
@@ -132,6 +136,7 @@ int const EXCLAM_SIZE = 36;
 
 - (void) textSwipe:(id) sender{
 	[self hide];
+	[self dismissKeyboard];
 }
 
 -(void)addText{

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController_protected.h"
 
-@interface HelpSectionViewController : UIViewController
+@interface HelpSectionViewController : BaseViewController
 
 @property NSInteger index;
 

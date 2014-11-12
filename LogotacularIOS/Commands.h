@@ -26,6 +26,8 @@
 #import "ErrorHitCommand.h"
 #import "SyntaxErrorCommand.h"
 #import "ClickHelpCommand.h"
+#import "ChangePageCommand.h"
+#import "PerformFileSetupCommand.h"
 
 @interface Commands : NSObject
 

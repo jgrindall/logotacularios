@@ -46,5 +46,7 @@ NSString* const SYMM_NOTIF_SYNTAX_ERROR =		@"Symm:syntaxError";
 NSString* const SYMM_NOTIF_SYNTAX_CHECK =		@"Symm:syntaxCheck";
 NSString* const SYMM_NOTIF_SHOW_POPOVER =		@"Symm:showPopover";
 NSString* const SYMM_NOTIF_HIDE_POPOVER =		@"Symm:hidePopover";
+NSString* const SYMM_NOTIF_CHANGE_PAGE =		@"Symm:changePage";
+NSString* const SYMM_NOTIF_PERFORM_FILE_SETUP =	@"Symm:performFileSetup";
 
 @end
