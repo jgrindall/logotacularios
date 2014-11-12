@@ -41,7 +41,7 @@
 	[self.view addConstraint:cy];
 	[self.view addConstraint:w];
 	[self.view addConstraint:h];
-	self.panelConstraints = [NSArray arrayWithObjects:cx, cy, w, h, nil];
+	self.panelConstraints = @[cx, cy, w, h];
 }
 
 - (UIButton*) getButton:(NSString*) imageUrl withAction:(SEL)action withLabel:(NSString*)label {

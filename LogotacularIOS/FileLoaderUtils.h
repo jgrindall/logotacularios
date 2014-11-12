@@ -10,10 +10,10 @@
 
 @interface FileLoaderUtils : NSObject
 
-typedef enum  {
+typedef NS_ENUM(NSInteger, FileLoaderResults)  {
 	FileLoaderResultOk = 0,
 	FileLoaderResultError,
-} FileLoaderResults;
+};
 
 
 @end

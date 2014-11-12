@@ -89,12 +89,12 @@
 }
 
 - (void) showCheckSave{
-	NSArray* options = [NSArray arrayWithObjects:@"Yes", TICK_ICON, @"No", CLEAR_ICON, nil];
+	NSArray* options = @[@"Yes", TICK_ICON, @"No", CLEAR_ICON];
 	self.alert = [AlertManager addAlert:[SaveCurrentViewController class] intoController:self withDelegate:self withOptions:options];
 }
 
 - (void) showFilename{
-	NSArray* options = [NSArray arrayWithObjects:@"Ok", TICK_ICON, @"Cancel", CLEAR_ICON, nil];
+	NSArray* options = @[@"Ok", TICK_ICON, @"Cancel", CLEAR_ICON];
 	self.alert = [AlertManager addAlert:[FilenameViewController class] intoController:self withDelegate:self withOptions:options];
 }
 
@@ -141,7 +141,7 @@
 }
 
 -(UIButton*)getBarButton: (UIBarButtonItem*) item{
-	return [[item.customView subviews] objectAtIndex:0];
+	return item.customView.subviews[0];
 }
 
 -(UIBarButtonItem*)getBarButtonItem: (NSString*) imageUrl withAction:(SEL)action{
@@ -175,8 +175,8 @@
 	self.redoButton = [self getBarButtonItem:REDO_ICON withAction:@selector(onClickRedo)];
 	self.undoButton = [self getBarButtonItem:UNDO_ICON withAction:@selector(onClickUndo)];
 	self.playButton = [self getBarButtonItem:PLAY_ICON withAction:@selector(onClickPlay)];
-	self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:self.listButton, nil];
-	self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:self.clearButton, self.redoButton, self.undoButton, self.playButton, nil];
+	self.navigationItem.leftBarButtonItems = @[self.listButton];
+	self.navigationItem.rightBarButtonItems = @[self.clearButton, self.redoButton, self.undoButton, self.playButton];
 }
 
 - (void) addWeb{

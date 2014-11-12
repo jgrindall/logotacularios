@@ -27,7 +27,7 @@
 
 - (void) initPage0{
 	HelpSectionViewController* initialViewController = [self viewControllerAtIndex:0];
-	NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
+	NSArray *viewControllers = @[initialViewController];
 	[self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
 }
 

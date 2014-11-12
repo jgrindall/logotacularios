@@ -113,7 +113,7 @@ SKBounceAnimationStiffness SKBounceAnimationStiffnessHeavy  = .001f;
 }
 
 - (void) setNumberOfBounces:(NSUInteger)newNumberOfBounces {
-	NSNumber* num = [NSNumber numberWithUnsignedInteger:newNumberOfBounces];
+	NSNumber* num = @(newNumberOfBounces);
 	[super setValue:num forKey:@"numberOfBouncesKey"];
 	[self createValueArray];
 }
@@ -132,7 +132,7 @@ SKBounceAnimationStiffness SKBounceAnimationStiffnessHeavy  = .001f;
 }
 
 - (void) setShouldOvershoot:(BOOL)newShouldOvershoot {
-	[super setValue:[NSNumber numberWithBool:newShouldOvershoot] forKey:@"shouldOvershootKey"];
+	[super setValue:@(newShouldOvershoot) forKey:@"shouldOvershootKey"];
 	[self createValueArray];
 }
 
@@ -141,7 +141,7 @@ SKBounceAnimationStiffness SKBounceAnimationStiffnessHeavy  = .001f;
 }
 
 - (void) setShake:(BOOL)newShake {
-	[super setValue:[NSNumber numberWithBool:newShake] forKey:@"shakeKey"];
+	[super setValue:@(newShake) forKey:@"shakeKey"];
 	[self createValueArray];
 }
 
@@ -253,10 +253,10 @@ SKBounceAnimationStiffness SKBounceAnimationStiffnessHeavy  = .001f;
 	
 	for (NSInteger i = 1; i < numberOfRects; i++) {
 		value = CGRectMake(
-					    [[xValues objectAtIndex:i] floatValue],
-					    [[yValues objectAtIndex:i] floatValue],
-					    [[widths objectAtIndex:i] floatValue],
-					    [[heights objectAtIndex:i] floatValue]
+					    [xValues[i] floatValue],
+					    [yValues[i] floatValue],
+					    [widths[i] floatValue],
+					    [heights[i] floatValue]
 					    );
 		[values addObject:[NSValue valueWithCGRect:value]];
 	}
@@ -267,11 +267,11 @@ static CGPathRef createPathFromXYValues(NSArray *xValues, NSArray *yValues) {
 	NSUInteger numberOfPoints = xValues.count;
 	CGMutablePathRef path = CGPathCreateMutable();
 	CGPoint value;
-	value = CGPointMake([[xValues objectAtIndex:0] floatValue], [[yValues objectAtIndex:0] floatValue]);
+	value = CGPointMake([xValues[0] floatValue], [yValues[0] floatValue]);
 	CGPathMoveToPoint(path, NULL, value.x, value.y);
 	
 	for (NSInteger i = 1; i < numberOfPoints; i++) {
-		value = CGPointMake([[xValues objectAtIndex:i] floatValue], [[yValues objectAtIndex:i] floatValue]);
+		value = CGPointMake([xValues[i] floatValue], [yValues[i] floatValue]);
 		CGPathAddLineToPoint(path, NULL, value.x, value.y);
 	}
 	return path;
@@ -287,25 +287,25 @@ static CGPathRef createPathFromXYValues(NSArray *xValues, NSArray *yValues) {
 	
 	for (NSInteger i = 1; i < numberOfTransforms; i++) {
 		value = CATransform3DIdentity;
-		value.m11 = [[m11 objectAtIndex:i] floatValue];
-		value.m12 = [[m12 objectAtIndex:i] floatValue];
-		value.m13 = [[m13 objectAtIndex:i] floatValue];
-		value.m14 = [[m14 objectAtIndex:i] floatValue];
+		value.m11 = [m11[i] floatValue];
+		value.m12 = [m12[i] floatValue];
+		value.m13 = [m13[i] floatValue];
+		value.m14 = [m14[i] floatValue];
 		
-		value.m21 = [[m21 objectAtIndex:i] floatValue];
-		value.m22 = [[m22 objectAtIndex:i] floatValue];
-		value.m23 = [[m23 objectAtIndex:i] floatValue];
-		value.m24 = [[m24 objectAtIndex:i] floatValue];
+		value.m21 = [m21[i] floatValue];
+		value.m22 = [m22[i] floatValue];
+		value.m23 = [m23[i] floatValue];
+		value.m24 = [m24[i] floatValue];
 		
-		value.m31 = [[m31 objectAtIndex:i] floatValue];
-		value.m32 = [[m32 objectAtIndex:i] floatValue];
-		value.m33 = [[m33 objectAtIndex:i] floatValue];
-		value.m44 = [[m34 objectAtIndex:i] floatValue];
+		value.m31 = [m31[i] floatValue];
+		value.m32 = [m32[i] floatValue];
+		value.m33 = [m33[i] floatValue];
+		value.m44 = [m34[i] floatValue];
 		
-		value.m41 = [[m41 objectAtIndex:i] floatValue];
-		value.m42 = [[m42 objectAtIndex:i] floatValue];
-		value.m43 = [[m43 objectAtIndex:i] floatValue];
-		value.m44 = [[m44 objectAtIndex:i] floatValue];
+		value.m41 = [m41[i] floatValue];
+		value.m42 = [m42[i] floatValue];
+		value.m43 = [m43[i] floatValue];
+		value.m44 = [m44[i] floatValue];
 		
 		[values addObject:[NSValue valueWithCATransform3D:value]];
 	}
@@ -320,10 +320,10 @@ static CGPathRef createPathFromXYValues(NSArray *xValues, NSArray *yValues) {
 	UIColor *value;
 	
 	for (NSInteger i = 1; i < numberOfColors; i++) {
-		value = [UIColor colorWithRed:[[redValues objectAtIndex:i] floatValue]
-						    green:[[greenValues objectAtIndex:i] floatValue]
-							blue:[[blueValues objectAtIndex:i] floatValue]
-						    alpha:[[alphaValues objectAtIndex:i] floatValue]];
+		value = [UIColor colorWithRed:[redValues[i] floatValue]
+						    green:[greenValues[i] floatValue]
+							blue:[blueValues[i] floatValue]
+						    alpha:[alphaValues[i] floatValue]];
 		[values addObject:(id)value.CGColor];
 	}
 	return values;
@@ -375,7 +375,7 @@ static CGPathRef createPathFromXYValues(NSArray *xValues, NSArray *yValues) {
 		
 		
 		
-		[values addObject:[NSNumber numberWithFloat:value]];
+		[values addObject:@(value)];
 	}
 	return values;
 }

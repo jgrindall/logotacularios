@@ -79,7 +79,7 @@
 	if(!cell) {
 		cell = [[FileCell alloc] init];
 	}
-	NSURL* url = [self.files objectAtIndex:indexPath.item];
+	NSURL* url = self.files[indexPath.item];
 	NSString* imagePath = [[FileLoader sharedInstance] getImagePathFromPath:url];
 	cell.image = [UIImage imageWithContentsOfFile:imagePath];
 	cell.filename = [[FileLoader sharedInstance] getFileNameFromPath:url];
@@ -101,7 +101,7 @@
 }
 
 - (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-	NSNumber* index = [NSNumber numberWithInteger:indexPath.item];
+	NSNumber* index = @(indexPath.item);
 	[[self getFileBrowserModel] setVal:index forKey:BROWSER_SELECTED_INDEX];
 }
 

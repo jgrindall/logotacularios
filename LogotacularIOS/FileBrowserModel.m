@@ -22,7 +22,7 @@ NSString* const BROWSER_SELECTED_INDEX = @"browser_selected";
 }
 
 - (NSArray*) getKeys{
-	return [NSArray arrayWithObjects:BROWSER_SELECTED_INDEX, nil];
+	return @[BROWSER_SELECTED_INDEX];
 }
 
 @end

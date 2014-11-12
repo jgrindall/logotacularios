@@ -25,7 +25,7 @@ NSString* const FILE_REAL = @"file_real";
 }
 
 - (NSArray*) getKeys{
-	return [NSArray arrayWithObjects:FILE_DIRTY, FILE_FILENAME, FILE_REAL, nil];
+	return @[FILE_DIRTY, FILE_FILENAME, FILE_REAL];
 }
 
 @end

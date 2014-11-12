@@ -85,7 +85,7 @@
 	[self getYourFilesWithCallback:^(FileLoaderResults result, id data) {
 		if(result == FileLoaderResultOk){
 			NSArray* files = (NSArray*)data;
-			NSURL* url = [files objectAtIndex:item];
+			NSURL* url = files[item];
 			NSError* error = nil;
 			// check if it is the open file!
 			[self.fileManager removeItemAtURL:url error:&error];
@@ -117,7 +117,7 @@
 	[self getYourFilesWithCallback:^(FileLoaderResults result, id data) {
 		if(result == FileLoaderResultOk){
 			NSArray* files = (NSArray*)data;
-			NSURL* url = [files objectAtIndex:i];
+			NSURL* url = files[i];
 			[self openFileAtURL:url withCallback:callback];
 		}
 		else{
@@ -157,7 +157,7 @@
 	[self getYourFilesWithCallback:^(FileLoaderResults result, id data) {
 		if(result == FileLoaderResultOk){
 			NSArray* files = (NSArray*)data;
-			NSURL* url = (NSURL*)[files objectAtIndex:i];
+			NSURL* url = (NSURL*)files[i];
 			if(url){
 				NSString* filename = [self getFileNameFromPath:url];
 				callback(FileLoaderResultOk, filename);

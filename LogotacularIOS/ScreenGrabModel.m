@@ -13,7 +13,7 @@
 NSString* const SCREEN_GRAB = @"screengrab";
 
 - (NSArray*) getKeys{
-	return [NSArray arrayWithObjects:SCREEN_GRAB, nil];
+	return @[SCREEN_GRAB];
 }
 
 @end

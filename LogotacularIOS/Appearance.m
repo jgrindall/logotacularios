@@ -38,7 +38,7 @@
 + (NSDictionary*) navTextAttributes{
 	UIColor* textColor = [UIColor whiteColor];
 	UIFont* textFont = [Appearance fontOfSize:24];
-	NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:textFont, NSFontAttributeName,  textColor, NSForegroundColorAttributeName, nil];
+	NSDictionary* dic = @{NSFontAttributeName:textFont, NSForegroundColorAttributeName:textColor};
 	return  dic;
 }
 
@@ -83,10 +83,9 @@
 	[[UIView appearanceWhenContainedIn:[UICollectionView class], nil] setBackgroundColor:[UIColor clearColor]];
 	[[UIView appearanceWhenContainedIn:[UICollectionViewController class], nil] setBackgroundColor:[UIColor clearColor]];
 	[[UIImageView appearance] setBackgroundColor:[UIColor clearColor]];
-	NSDictionary* dic = [NSDictionary dictionaryWithObjectsAndKeys:[Appearance fontOfSize:20], NSFontAttributeName,  [UIColor whiteColor], NSForegroundColorAttributeName, nil];
-	NSDictionary* dic1 = [NSDictionary dictionaryWithObjectsAndKeys:[Appearance fontOfSize:20], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, nil];
+	NSDictionary* dic = @{NSFontAttributeName:[Appearance fontOfSize:20], NSForegroundColorAttributeName:[UIColor whiteColor]};
 	[[UIBarButtonItem appearance] setTitleTextAttributes:dic forState:UIControlStateNormal];
-	[[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTitleTextAttributes:dic1 forState:UIControlStateNormal];
+	[[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTitleTextAttributes:dic forState:UIControlStateNormal];
 }
 
 + (void) flatToolbar:(UIToolbar*) toolbar{

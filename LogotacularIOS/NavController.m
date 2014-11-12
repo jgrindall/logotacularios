@@ -14,10 +14,10 @@
 
 @interface NavController ()
 
-typedef enum  {
+typedef NS_ENUM(NSInteger, SpinnerStatus)  {
 	SpinnerStatusNone = 0,
 	SpinnerStatusShown
-} SpinnerStatus;
+};
 
 @property SpinnerStatus spinnerShown;
 @property UIView* spinnerView;

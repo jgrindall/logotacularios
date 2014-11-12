@@ -89,16 +89,16 @@
 - (void) addRightBarButtons{
 	self.openButton = [self getBarButtonItem:WASTE_ICON withAction:@selector(onClickDelete)];
 	self.delButton = [self getBarButtonItem:TICK_ICON withAction:@selector(onClickOpen)];
-	self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:self.openButton, self.delButton, nil];
+	self.navigationItem.rightBarButtonItems = @[self.openButton, self.delButton];
 }
 
 -(void)onClickDelete{
-	NSNumber* n = [NSNumber numberWithInteger:[self getSelected]];
+	NSNumber* n = @([self getSelected]);
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_PERFORM_DEL withData:n];
 }
 
 -(void)onClickOpen{
-	NSNumber* n = [NSNumber numberWithInteger:[self getSelected]];
+	NSNumber* n = @([self getSelected]);
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_PERFORM_OPEN withData:n];
 }
 
@@ -107,7 +107,7 @@
 }
 
 -(UIButton*)getBarButton: (UIBarButtonItem*) item{
-	return [[item.customView subviews] objectAtIndex:0];
+	return item.customView.subviews[0];
 }
 
 -(UIBarButtonItem*)getBarButtonItem: (NSString*) imageUrl withAction:(SEL)action{

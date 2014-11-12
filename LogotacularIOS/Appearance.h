@@ -12,14 +12,14 @@
 
 @interface Appearance : NSObject
 
-typedef enum  {
+typedef NS_ENUM(NSInteger, SymmFontSizes)  {
 	SYMM_FONT_SIZE_V_SMALL =	12,
 	SYMM_FONT_SIZE_SMALL =		14,
 	SYMM_FONT_SIZE_BUTTON =		17,
 	SYMM_FONT_SIZE_MED =		27,
 	SYMM_FONT_SIZE_LARGE =		42,
 	SYMM_FONT_SIZE_NAV =		51
-} SymmFontSizes;
+};
 
 + (void) applyStylesInWindow:(UIWindow*) window;
 + (void) flatToolbar:(UIToolbar*) toolbar;

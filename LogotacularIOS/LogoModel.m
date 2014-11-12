@@ -20,7 +20,7 @@ NSString* const LOGO_HISTORY = @"logo_history";
 - (void) changePointerBy:(NSInteger) i{
 	NSInteger pointer = [[self getVal:LOGO_POINTER] integerValue];
 	NSInteger newPointer = pointer + i;
-	[self setVal:[NSNumber numberWithInteger:newPointer] forKey:LOGO_POINTER];
+	[self setVal:@(newPointer) forKey:LOGO_POINTER];
 }
 
 - (void) undo{
@@ -45,7 +45,7 @@ NSString* const LOGO_HISTORY = @"logo_history";
 - (NSString*) get{
 	NSMutableArray* history = (NSMutableArray*)[self getVal:LOGO_HISTORY];
 	NSInteger pointer = [[self getVal:LOGO_POINTER] integerValue];
-	return [history objectAtIndex:pointer];
+	return history[pointer];
 }
 
 - (void) reset:(NSString*)val{
@@ -65,7 +65,7 @@ NSString* const LOGO_HISTORY = @"logo_history";
 		[self pruneTop:top];
 	}
 	[history addObject:val];
-	[self setVal:[NSNumber numberWithInt:([history count] - 1)] forKey:LOGO_POINTER];
+	[self setVal:@([history count] - 1) forKey:LOGO_POINTER];
 }
 
 - (void) output:(NSString*)label{
@@ -73,7 +73,7 @@ NSString* const LOGO_HISTORY = @"logo_history";
 }
 
 - (NSArray*) getKeys{
-	return [NSArray arrayWithObjects:LOGO_POINTER, LOGO_HISTORY, nil];
+	return @[LOGO_POINTER, LOGO_HISTORY];
 }
 
 - (BOOL) undoEnabled{

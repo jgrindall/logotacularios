@@ -22,7 +22,7 @@ NSString* const MORE_SHOWN = @"moreshown";
 }
 
 - (NSArray*) getKeys{
-	return [NSArray arrayWithObjects:MORE_SHOWN, nil];
+	return @[MORE_SHOWN];
 }
 
 @end

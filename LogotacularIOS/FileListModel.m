@@ -13,7 +13,7 @@
 NSString* const FILE_LIST_LIST = @"filelist";
 
 - (NSArray*) getKeys{
-	return [NSArray arrayWithObjects:FILE_LIST_LIST, nil];
+	return @[FILE_LIST_LIST];
 }
 
 @end

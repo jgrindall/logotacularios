@@ -31,7 +31,7 @@
 		presenter = [delegate navigationController];
 	}
 	if(presenter){
-		[TSMessage showNotificationInViewController:presenter title:title subtitle:subtitle image:nil type:type duration:3.0f callback:nil buttonTitle:nil buttonCallback:nil atPosition:TSMessageNotificationPositionBottom canBeDismissedByUser:YES];
+		[TSMessage showNotificationInViewController:presenter title:title subtitle:subtitle image:nil type:type duration:3.0f callback:nil buttonTitle:nil buttonCallback:nil atPosition:TSMessageNotificationPositionTop canBeDismissedByUser:YES];
 	}
 }
 

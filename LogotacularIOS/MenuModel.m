@@ -17,7 +17,7 @@ NSString* const MENU_SHOWN = @"menu_shown";
 }
 
 - (NSArray*) getKeys{
-	return [NSArray arrayWithObjects:MENU_SHOWN, nil];
+	return @[MENU_SHOWN];
 }
 
 @end

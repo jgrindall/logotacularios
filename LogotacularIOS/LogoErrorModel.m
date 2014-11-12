@@ -13,7 +13,7 @@
 NSString* const LOGO_ERROR_ERROR = @"logo_error";
 
 - (NSArray*) getKeys{
-	return [NSArray arrayWithObjects:LOGO_ERROR_ERROR, nil];
+	return @[LOGO_ERROR_ERROR];
 }
 
 @end

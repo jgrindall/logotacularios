@@ -34,7 +34,6 @@
 }
 
 - (void) addPages{
-	NSLog(@"frame %@", NSStringFromCGRect(self.view.frame));
 	self.helpContainer = [[UIView alloc] initWithFrame:self.view.frame];
 	[self.view addSubview:self.helpContainer];
 	self.helpViewController = [[HelpViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];

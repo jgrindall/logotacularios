@@ -17,7 +17,7 @@ NSString* const DRAWING_ISDRAWING = @"drawing_isdrawing";
 }
 
 - (NSArray*) getKeys{
-	return [NSArray arrayWithObjects:DRAWING_ISDRAWING, nil];
+	return @[DRAWING_ISDRAWING];
 }
 
 @end

@@ -26,7 +26,7 @@
 - (void) toggleBoolValForKey:(NSString*)key{
 	BOOL currentVal = [[self getVal:key] boolValue];
 	BOOL newVal = !currentVal;
-	[self setVal:[NSNumber numberWithBool:newVal] forKey:key];
+	[self setVal:@(newVal) forKey:key];
 }
 
 - (void) incrementValForKey:(NSString*)key{
@@ -38,7 +38,7 @@
 }
 
 - (NSArray*) getKeys{
-	return [NSArray array];
+	return @[];
 }
 
 - (void) addGlobalListener:(SEL)action withTarget:(id)target{
@@ -55,7 +55,7 @@
 	NSValue* v = [NSValue valueWithPointer:action];
 	for (id t in self.globalTargets){
 		if([t isEqual:target]){
-			if([[self.globalListeners objectAtIndex:i] isEqualToValue:v]){
+			if([self.globalListeners[i] isEqualToValue:v]){
 				[self removeGlobalAt:i];
 				break;
 			}
@@ -98,8 +98,8 @@
 	NSValue* v = [NSValue valueWithPointer:action];
 	for (NSString* k in self.keys){
 		if([k isEqualToString:key]){
-			if([[self.listeners objectAtIndex:i] isEqualToValue:v]){
-				id t = [self.targets objectAtIndex:i];
+			if([self.listeners[i] isEqualToValue:v]){
+				id t = self.targets[i];
 				if([t isEqual:target]){
 					[self removeAt:i forKey:key];
 					break;
@@ -154,8 +154,8 @@
 	id target;
 	for (NSString* key in self.keys){
 		if([keyPath isEqualToString:key]){
-			sel = (SEL)[[self.listeners objectAtIndex:i] pointerValue];
-			target = [self.targets objectAtIndex:i];
+			sel = (SEL)[self.listeners[i] pointerValue];
+			target = self.targets[i];
 			[self call:target withSelector:sel withObject:change];
 		}
 		i++;
@@ -166,7 +166,7 @@
 	int i = 0;
 	SEL sel;
 	for (id target in self.globalTargets){
-		sel = (SEL)[[self.globalListeners objectAtIndex:i] pointerValue];
+		sel = (SEL)[self.globalListeners[i] pointerValue];
 		[self call:target withSelector:sel withObject:change];
 		i++;
 	}

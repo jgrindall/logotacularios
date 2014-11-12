@@ -27,11 +27,11 @@ objection_register(CommandMap)
 }
 
 - (void) mapEventName:(NSString*)eventName toCommandClass:(Class)class{
-	[self.dic setObject:class forKey:eventName];
+	self.dic[eventName] = class;
 }
 
 - (Class) getForEventName:(NSString*) eventName{
-	id val = [self.dic objectForKey:eventName];
+	id val = self.dic[eventName];
 	return (Class)val;
 }
 
