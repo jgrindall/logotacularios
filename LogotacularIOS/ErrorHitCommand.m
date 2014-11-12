@@ -9,23 +9,17 @@
 #import "ErrorHitCommand.h"
 #import "ToastUtils.h"
 #import "PLogoErrorModel.h"
+#import "ErrorObject.h"
 
 @implementation ErrorHitCommand
 
 - (void) execute:(id)payload{
-	NSDictionary* error = (NSDictionary*)payload;
-	NSString* errorMessage;
-	if(error[@"line"] && error[@"message"]){
-		errorMessage = [NSString stringWithFormat:@"Error on line %@, %@", error[@"line"], error[@"message"]];
+	NSDictionary* errorDic = (NSDictionary*)payload;
+	ErrorObject* errorObj = nil;
+	if(errorDic && errorDic[@"message"]){
+		errorObj = [[ErrorObject alloc] initWithNSDictionary:errorDic];
 	}
-	else if(error[@"message"]){
-		errorMessage = [NSString stringWithFormat:@"Error %@", error[@"message"]];
-	}
-	else{
-		errorMessage = @"Unknown error";
-	}
-
-	[[self getErrorModel] setVal:error forKey:LOGO_ERROR_ERROR];
+	[[self getErrorModel] setVal:errorObj forKey:LOGO_ERROR_ERROR];
 }
 
 - (id<PLogoErrorModel>) getErrorModel{

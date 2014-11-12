@@ -9,26 +9,17 @@
 #import "SyntaxErrorCommand.h"
 #import "ToastUtils.h"
 #import "PLogoErrorModel.h"
+#import "ErrorObject.h"
 
 @implementation SyntaxErrorCommand
 
 - (void) execute:(id)payload{
-	NSDictionary* error = (NSDictionary*)payload;
-	NSString* errorMessage = nil;
-	if(payload && error && error[@"message"]){
-		if(error[@"line"]){
-			errorMessage = [NSString stringWithFormat:@"Error on line %@, %@", error[@"line"], error[@"message"]];
-		}
-		else{
-			errorMessage = [NSString stringWithFormat:@"Error %@", error[@"message"]];
-		}
-		if(![errorMessage isEqual:nil]){
-			[[self getErrorModel] setVal:error forKey:LOGO_ERROR_ERROR];
-		}
+	NSDictionary* errorDic = (NSDictionary*)payload;
+	ErrorObject* errorObj = nil;
+	if(errorDic && errorDic[@"message"]){
+		errorObj = [[ErrorObject alloc] initWithNSDictionary:errorDic];
 	}
-	else{
-		[[self getErrorModel] setVal:nil forKey:LOGO_ERROR_ERROR];
-	}
+	[[self getErrorModel] setVal:errorObj forKey:LOGO_ERROR_ERROR];
 }
 
 - (id<PLogoErrorModel>) getErrorModel{
@@ -36,3 +27,5 @@
 }
 
 @end
+
+

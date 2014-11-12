@@ -17,6 +17,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <UIKit/UIKit.h>
 #import "Assets.h"
+#import "ErrorObject.h"
 
 @interface TextViewController ()
 
@@ -154,21 +155,18 @@ int const EXCLAM_SIZE = 36;
 
 - (void) errorChanged{
 	NSString* text = [[self getLogoModel] get];
-	NSDictionary* logoError = (NSDictionary*)[[self getErrorModel] getVal:LOGO_ERROR_ERROR];
+	ErrorObject* errorObj = (ErrorObject*)[[self getErrorModel] getVal:LOGO_ERROR_ERROR];
 	int k = 0;
 	int start = 0;
 	int end = 0;
-	NSLog(@"logoError %@", logoError);
-	if(logoError && logoError[@"line"]){
-		NSInteger intLine = [logoError[@"line"] integerValue];
+	if(errorObj){
+		NSInteger intLine = [[errorObj getLine] integerValue];
 		NSArray* comps = [text componentsSeparatedByString:@"\n"];
-		NSLog(@"text %@   comps %@", text, comps);
 		while(k <= intLine - 2){
 			start += [(NSString*)comps[k] length] + 1; //for the newline
 			k++;
 		}
 		end = start + [(NSString*)comps[k] length];
-		NSLog(@"start %i   end %i", start, end);
 		[self drawErrorForStart:start andEnd:end];
 	}
 	else{

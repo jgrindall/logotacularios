@@ -18,6 +18,7 @@
 #import "Assets.h"
 #import "PMoreLessModel.h"
 #import "PLogoErrorModel.h"
+#import "ErrorObject.h"
 
 @interface ErrorPopUpViewController ()
 
@@ -72,16 +73,21 @@
 	self.label.text = @"There is an error on this line";
 	self.label.translatesAutoresizingMaskIntoConstraints = NO;
 	[self.view addSubview:self.label];
+	self.label.textAlignment = NSTextAlignmentCenter;
 	self.label.textColor = [UIColor whiteColor];
 }
 
 - (void) addMoreText{
 	self.moreLabel = [[UILabel alloc] initWithFrame:self.view.frame];
 	self.moreLabel.text = @"No extra information";
-	NSDictionary* error = [[self getErrorModel] getVal:LOGO_ERROR_ERROR];
-	if(error && error[@"line"]){
-		self.moreLabel.text = [NSString stringWithFormat:@"%@", error[@"line"]];
+	self.moreLabel.lineBreakMode = NSLineBreakByWordWrapping;
+	self.moreLabel.numberOfLines = 0;
+	ErrorObject* errorObj = (ErrorObject*)[[self getErrorModel] getVal:LOGO_ERROR_ERROR];
+	if(errorObj){
+		self.moreLabel.text = [errorObj getHumanMessage];
 	}
+	self.moreLabel.backgroundColor = [UIColor clearColor];
+	self.moreLabel.textAlignment = NSTextAlignmentCenter;
 	self.moreLabel.translatesAutoresizingMaskIntoConstraints = NO;
 	[self.view addSubview:self.moreLabel];
 	self.moreLabel.textColor = [UIColor whiteColor];
@@ -122,17 +128,19 @@
 }
 
 -(void)layoutText{
+	float p = 5;
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.label attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view				attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.label attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view				attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.label attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view			attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.label attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view			attribute:NSLayoutAttributeHeight multiplier:0.5 constant:0.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.label attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view				attribute:NSLayoutAttributeLeft multiplier:1.0 constant:p]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.label attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view			attribute:NSLayoutAttributeWidth multiplier:1.0 constant:-2*p]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.label attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil					attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:50.0]];
 }
 
 - (void) layoutMoreLabel{
+	float p = 5;
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.moreLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.label				attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.moreLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view				attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.moreLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view			attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.moreLabel attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view			attribute:NSLayoutAttributeHeight multiplier:0.5 constant:0.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.moreLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view				attribute:NSLayoutAttributeLeft multiplier:1.0 constant:p]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.moreLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view			attribute:NSLayoutAttributeWidth multiplier:1.0 constant:-2*p]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.moreLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.moreButton		attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0]];
 }
 
 - (void) layoutMore{

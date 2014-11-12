@@ -164,8 +164,8 @@
 	CGRect globalFrame = [self.view convertRect:rect fromView:exclam.superview];
 	ErrorPopUpViewController* pop = [[ErrorPopUpViewController alloc] init];
 	self.popController = [[UIPopoverController alloc] initWithContentViewController:pop];
-	pop.view.backgroundColor = [UIColor redColor];
-	self.popController.backgroundColor = [UIColor redColor];
+	pop.view.backgroundColor = [Appearance bgColor];
+	self.popController.backgroundColor = [Appearance bgColor];
 	[self.popController presentPopoverFromRect:globalFrame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:NO];
 }
 

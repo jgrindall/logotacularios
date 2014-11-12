@@ -51,6 +51,7 @@
 		52B44F011A0BC93D00B99FD2 /* TextEditedCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B44F001A0BC93D00B99FD2 /* TextEditedCommand.m */; };
 		52B512301A13637700B14D0D /* ErrorPopUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B5122F1A13637700B14D0D /* ErrorPopUpViewController.m */; };
 		52B512341A13765500B14D0D /* MoreLessModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B512331A13765500B14D0D /* MoreLessModel.m */; };
+		52B512391A13855600B14D0D /* ErrorObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B512381A13855600B14D0D /* ErrorObject.m */; };
 		52B5B31619FD7D4600EF531F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B5B31519FD7D4600EF531F /* main.m */; };
 		52B5B32119FD7D4600EF531F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52B5B32019FD7D4600EF531F /* Images.xcassets */; };
 		52B5B32419FD7D4600EF531F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52B5B32219FD7D4600EF531F /* LaunchScreen.xib */; };
@@ -194,6 +195,8 @@
 		52B512321A13765500B14D0D /* MoreLessModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreLessModel.h; sourceTree = "<group>"; };
 		52B512331A13765500B14D0D /* MoreLessModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreLessModel.m; sourceTree = "<group>"; };
 		52B512361A13767200B14D0D /* PMoreLessModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMoreLessModel.h; sourceTree = "<group>"; };
+		52B512371A13855600B14D0D /* ErrorObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorObject.h; sourceTree = "<group>"; };
+		52B512381A13855600B14D0D /* ErrorObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorObject.m; sourceTree = "<group>"; };
 		52B5B31019FD7D4600EF531F /* LogotacularIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LogotacularIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52B5B31419FD7D4600EF531F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52B5B31519FD7D4600EF531F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -496,6 +499,8 @@
 				52B228A31A00EBC2001CC355 /* PFileModel.h */,
 				52B228991A00E749001CC355 /* FileModel.h */,
 				52B2289A1A00E749001CC355 /* FileModel.m */,
+				52B512371A13855600B14D0D /* ErrorObject.h */,
+				52B512381A13855600B14D0D /* ErrorObject.m */,
 			);
 			name = File;
 			sourceTree = "<group>";
@@ -937,6 +942,7 @@
 				52CF4A0B1A103AF2003197B2 /* HelpPageViewController.m in Sources */,
 				52B274161A115D2D00D3EA3B /* HelpSectionViewController.m in Sources */,
 				527D42F41A0ADAE6008AE82A /* PerformSaveCommand.m in Sources */,
+				52B512391A13855600B14D0D /* ErrorObject.m in Sources */,
 				5272DE3B19FE485F006E717F /* EventDispatcher.m in Sources */,
 				5272DE3219FE45F5006E717F /* CommandMap.m in Sources */,
 				52B5B35B19FD7E1400EF531F /* SymmNotifications.m in Sources */,
