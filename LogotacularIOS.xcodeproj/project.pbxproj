@@ -49,6 +49,8 @@
 		52B274541A11785200D3EA3B /* SyntaxErrorCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B274531A11785200D3EA3B /* SyntaxErrorCommand.m */; };
 		52B44EFE1A0B9D4800B99FD2 /* ToastUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B44EFD1A0B9D4800B99FD2 /* ToastUtils.m */; };
 		52B44F011A0BC93D00B99FD2 /* TextEditedCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B44F001A0BC93D00B99FD2 /* TextEditedCommand.m */; };
+		52B512301A13637700B14D0D /* ErrorPopUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B5122F1A13637700B14D0D /* ErrorPopUpViewController.m */; };
+		52B512341A13765500B14D0D /* MoreLessModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B512331A13765500B14D0D /* MoreLessModel.m */; };
 		52B5B31619FD7D4600EF531F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B5B31519FD7D4600EF531F /* main.m */; };
 		52B5B32119FD7D4600EF531F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52B5B32019FD7D4600EF531F /* Images.xcassets */; };
 		52B5B32419FD7D4600EF531F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52B5B32219FD7D4600EF531F /* LaunchScreen.xib */; };
@@ -187,6 +189,11 @@
 		52B44EFD1A0B9D4800B99FD2 /* ToastUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastUtils.m; sourceTree = "<group>"; };
 		52B44EFF1A0BC93D00B99FD2 /* TextEditedCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextEditedCommand.h; sourceTree = "<group>"; };
 		52B44F001A0BC93D00B99FD2 /* TextEditedCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextEditedCommand.m; sourceTree = "<group>"; };
+		52B5122E1A13637700B14D0D /* ErrorPopUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorPopUpViewController.h; sourceTree = "<group>"; };
+		52B5122F1A13637700B14D0D /* ErrorPopUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorPopUpViewController.m; sourceTree = "<group>"; };
+		52B512321A13765500B14D0D /* MoreLessModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreLessModel.h; sourceTree = "<group>"; };
+		52B512331A13765500B14D0D /* MoreLessModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreLessModel.m; sourceTree = "<group>"; };
+		52B512361A13767200B14D0D /* PMoreLessModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMoreLessModel.h; sourceTree = "<group>"; };
 		52B5B31019FD7D4600EF531F /* LogotacularIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LogotacularIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52B5B31419FD7D4600EF531F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52B5B31519FD7D4600EF531F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -308,6 +315,7 @@
 		525167ED19FFD37500814B16 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				52B512351A13765A00B14D0D /* MoreLess */,
 				52C1714C1A0C4387000865DD /* ScreenGrab */,
 				527D42EC1A0ABED8008AE82A /* FilesModel */,
 				52CF55FC1A08412000F01D3A /* FileBrowser */,
@@ -512,6 +520,25 @@
 			name = Drawing;
 			sourceTree = "<group>";
 		};
+		52B512311A13637B00B14D0D /* ErrorPopUp */ = {
+			isa = PBXGroup;
+			children = (
+				52B5122E1A13637700B14D0D /* ErrorPopUpViewController.h */,
+				52B5122F1A13637700B14D0D /* ErrorPopUpViewController.m */,
+			);
+			name = ErrorPopUp;
+			sourceTree = "<group>";
+		};
+		52B512351A13765A00B14D0D /* MoreLess */ = {
+			isa = PBXGroup;
+			children = (
+				52B512321A13765500B14D0D /* MoreLessModel.h */,
+				52B512331A13765500B14D0D /* MoreLessModel.m */,
+				52B512361A13767200B14D0D /* PMoreLessModel.h */,
+			);
+			name = MoreLess;
+			sourceTree = "<group>";
+		};
 		52B5B30719FD7D4600EF531F = {
 			isa = PBXGroup;
 			children = (
@@ -619,6 +646,7 @@
 				527D42FE1A0ADEC4008AE82A /* Filename */,
 				52CBC9C61A0D33A600C229C8 /* SaveCurrent */,
 				52CF4A0C1A103AF9003197B2 /* Help */,
+				52B512311A13637B00B14D0D /* ErrorPopUp */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -893,6 +921,7 @@
 				52B5B35319FD7E1400EF531F /* Colors.m in Sources */,
 				525167F019FFEE6400814B16 /* ClickPlayCommand.m in Sources */,
 				52B274541A11785200D3EA3B /* SyntaxErrorCommand.m in Sources */,
+				52B512341A13765500B14D0D /* MoreLessModel.m in Sources */,
 				52CBC9C11A0D2EBD00C229C8 /* AlertManager.m in Sources */,
 				525167EC19FFD36C00814B16 /* AbstractModel.m in Sources */,
 				5257F3431A012F9500757C77 /* ClickMenuCommand.m in Sources */,
@@ -922,6 +951,7 @@
 				5272DE4719FE5845006E717F /* Logger.m in Sources */,
 				52A185451A01004C005D8208 /* TextViewController.m in Sources */,
 				5257F3461A0131F000757C77 /* HideMenuCommand.m in Sources */,
+				52B512301A13637700B14D0D /* ErrorPopUpViewController.m in Sources */,
 				52B44F011A0BC93D00B99FD2 /* TextEditedCommand.m in Sources */,
 				527D42F11A0AD75D008AE82A /* PerformOpenCommand.m in Sources */,
 				52B5B35919FD7E1400EF531F /* SKBounceAnimation.m in Sources */,

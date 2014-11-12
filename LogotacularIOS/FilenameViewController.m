@@ -31,7 +31,6 @@
 	[self addText];
 	[self layoutButtons];
 	[self layoutText];
-	self.preferredContentSize = CGSizeMake(300, 200);
 }
 
 - (void) addText{
@@ -47,8 +46,8 @@
 }
 
 - (void) addButtons{
-	self.okButton = [self getButton:self.buttonLabels[1] withAction:@selector(onClickOk)			withLabel:self.buttonLabels[0]		atNum:0];
-	self.cancelButton = [self getButton:self.buttonLabels[3] withAction:@selector(onClickCancel)	withLabel:self.buttonLabels[2]		atNum:1];
+	self.okButton = [self getButton:self.buttonLabels[1] withAction:@selector(onClickOk)			withLabel:self.buttonLabels[0]		];
+	self.cancelButton = [self getButton:self.buttonLabels[3] withAction:@selector(onClickCancel)	withLabel:self.buttonLabels[2]		];
 	[self.panel addSubview:self.okButton];
 	[self.panel addSubview:self.cancelButton];
 }

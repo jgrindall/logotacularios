@@ -33,8 +33,8 @@
 }
 
 - (void) addButtons{
-	self.yesButton = [self getButton:self.buttonLabels[1] withAction:@selector(onClickYes)			withLabel:self.buttonLabels[0]		atNum:0];
-	self.noButton = [self getButton:self.buttonLabels[3] withAction:@selector(onClickNo)	withLabel:self.buttonLabels[2]		atNum:1];
+	self.yesButton = [self getButton:self.buttonLabels[1] withAction:@selector(onClickYes)	withLabel:self.buttonLabels[0]		];
+	self.noButton = [self getButton:self.buttonLabels[3] withAction:@selector(onClickNo)	withLabel:self.buttonLabels[2]		];
 	[self.panel addSubview:self.yesButton];
 	[self.panel addSubview:self.noButton];
 }

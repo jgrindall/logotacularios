@@ -16,7 +16,7 @@
 @property NSArray* buttonLabels;
 @property NSArray* buttonIcons;
 
-- (UIButton*) getButton:(NSString*) imageUrl withAction:(SEL)action withLabel:(NSString*)label atNum:(int)num;
+- (UIButton*) getButton:(NSString*) imageUrl withAction:(SEL)action withLabel:(NSString*)label;
 - (void)layoutPanel:(float)dy;
 
 @end

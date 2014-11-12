@@ -23,6 +23,8 @@
 #import "PFileListModel.h"
 #import "PScreenGrabModel.h"
 #import "ScreenGrabModel.h"
+#import "PMoreLessModel.h"
+#import "MoreLessModel.h"
 
 @interface Models
 

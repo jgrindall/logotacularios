@@ -44,7 +44,7 @@
 	self.panelConstraints = [NSArray arrayWithObjects:cx, cy, w, h, nil];
 }
 
-- (UIButton*) getButton:(NSString*) imageUrl withAction:(SEL)action withLabel:(NSString*)label atNum:(int)num{
+- (UIButton*) getButton:(NSString*) imageUrl withAction:(SEL)action withLabel:(NSString*)label {
 	UIImage* img = [UIImage imageNamed:imageUrl];
 	UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
 	btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;

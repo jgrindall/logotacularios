@@ -24,6 +24,7 @@
 #import "AlertManager.h"
 #import "SaveCurrentViewController.h"
 #import "ToastUtils.h"
+#import "ErrorPopUpViewController.h"
 
 @interface DrawPageViewController ()
 
@@ -161,7 +162,7 @@
 	UIView* exclam = (UIView*)notif.object;
 	CGRect rect = exclam.frame;
 	CGRect globalFrame = [self.view convertRect:rect fromView:exclam.superview];
-	FilenameViewController* pop = [[FilenameViewController alloc] init];
+	ErrorPopUpViewController* pop = [[ErrorPopUpViewController alloc] init];
 	self.popController = [[UIPopoverController alloc] initWithContentViewController:pop];
 	pop.view.backgroundColor = [UIColor redColor];
 	self.popController.backgroundColor = [UIColor redColor];
