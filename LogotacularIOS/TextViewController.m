@@ -189,7 +189,6 @@ int const EXCLAM_SIZE = 36;
 
 - (void)textViewDidEndEditing:(UITextView*)textView{
 	[self triggerEdit];
-	[self triggerCheck];
 }
 
 

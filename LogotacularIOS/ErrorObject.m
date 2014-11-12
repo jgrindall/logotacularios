@@ -44,17 +44,27 @@
 	return 	self.dic[@"message"];
 };
 
+- (NSString*) filterMessage{
+	NSString* message = [self getMessage];
+	if([[message substringWithRange:NSMakeRange(0, 5)] isEqualToString:@"Error"]){
+		message = [message substringFromIndex:6];
+	}
+	BOOL expected = [message rangeOfString:@"Expected"].location != NSNotFound;
+	BOOL endOfInput = [message rangeOfString:@"end of input but"].location != NSNotFound;
+	if(expected && endOfInput){
+		message = [NSString stringWithFormat:@"The %@ looks wrong", [self getFound]];
+	}
+	return message;
+}
+
 - (NSString*) getHumanMessage{
 	NSString* errorMessage;
 	NSNumber* line = [self getLine];
-	NSString* message = [self getMessage];
+	NSString* message = [self filterMessage];
 	if(line  && message){
-		errorMessage = [NSString stringWithFormat:@"Error on line %@, %@", line, message];
+		errorMessage = [NSString stringWithFormat:@"Error on line %@. %@", line, message];
 	}
 	else if(message){
-		if([[message substringWithRange:NSMakeRange(0, 5)] isEqualToString:@"Error"]){
-			message = [message substringFromIndex:6];
-		}
 		errorMessage = [NSString stringWithFormat:@"Error: %@", message];
 	}
 	else{
