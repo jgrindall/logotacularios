@@ -29,7 +29,7 @@
 
 @implementation FilePageController
 
-- (id) init{
+- (instancetype) init{
 	self = [super init];
 	if(self){
 		[[self getFileListModel] addListener:@selector(filesChanged) forKey:FILE_LIST_LIST withTarget:self];

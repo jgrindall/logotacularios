@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController_protected.h"
 
-@interface ErrorPopUpViewController : UIViewController
+@interface ErrorPopUpViewController : BaseViewController
 
 @end

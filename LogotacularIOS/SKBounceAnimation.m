@@ -78,7 +78,7 @@ SKBounceAnimationStiffness SKBounceAnimationStiffnessHeavy  = .001f;
 	return [[self alloc] initWithKeyPath:keyPath];
 }
 
-- (id) initWithKeyPath:(NSString*)keyPath {
+- (instancetype) initWithKeyPath:(NSString*)keyPath {
 	self = [super init];
 	if (self) {
 		super.keyPath = keyPath;

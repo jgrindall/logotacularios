@@ -29,7 +29,7 @@ typedef enum  {
 
 @implementation NavController
 
-- (id) initWithRootViewController:(UIViewController *)rootViewController{
+- (instancetype) initWithRootViewController:(UIViewController *)rootViewController{
 	self = [super initWithRootViewController:rootViewController];
 	if(self){
 		[self setup];

@@ -31,6 +31,10 @@
 	return [UIColor colorWithRed:(252.0/255.0) green:(73.0/255.0) blue:(94.0/255.0) alpha:1];
 }
 
++ (UIColor*) grayColor{
+	return [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.2];
+}
+
 + (NSDictionary*) navTextAttributes{
 	UIColor* textColor = [UIColor whiteColor];
 	UIFont* textFont = [Appearance fontOfSize:24];
@@ -39,8 +43,7 @@
 }
 
 + (void) applyNavBarStyleInWindow:(UIWindow*) window{
-	float c = 0.1;
-	UIColor* g = [UIColor colorWithRed:c green:c blue:c alpha:0.15];
+	UIColor* g = [Appearance grayColor];
 	UINavigationController* navigationController = (UINavigationController*) (window.rootViewController);
 	UINavigationBar* bar = navigationController.navigationBar;
 	bar.titleTextAttributes = [Appearance navTextAttributes];

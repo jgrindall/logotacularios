@@ -124,7 +124,8 @@
 }
 
 - (void) onClickHelp{
-	
+	NSLog(@"HLP %@", [self getEventDispatcher]);
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_HELP withData:nil];
 }
 
 -(void)layoutText{

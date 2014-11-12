@@ -10,7 +10,7 @@
 
 @implementation HelpSectionViewController
 
-- (id)init{
+- (instancetype)init{
 	self = [super init];
 	if(self){
 		self.view.backgroundColor = [UIColor colorWithRed:drand48() green:drand48() blue:drand48() alpha:1.0];

@@ -8,19 +8,19 @@
 
 #import "ClickHelpCommand.h"
 #import "HelpPageViewController.h"
+#import "AppDelegate.h"
 
 @interface ClickHelpCommand ()
-
-@property UINavigationController* navigationController;
 
 @end
 
 @implementation ClickHelpCommand
 
 -  (void) execute:(id)payload{
-	self.navigationController = (UINavigationController*) payload;
+	AppDelegate* delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+	UINavigationController* presenter = [delegate navigationController];
 	HelpPageViewController* helpController = [[HelpPageViewController alloc] init];
-	[self.navigationController pushViewController:helpController animated:YES];
+	[presenter pushViewController:helpController animated:YES];
 }
 
 @end

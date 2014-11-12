@@ -18,7 +18,7 @@ NSString* const BROWSER_SELECTED_INDEX = @"browser_selected";
 }
 
 - (void) reset{
-	[self.propHash setValue:[NSNumber numberWithInteger:-1] forKey:BROWSER_SELECTED_INDEX];
+	[self.propHash setValue:@-1 forKey:BROWSER_SELECTED_INDEX];
 }
 
 - (NSArray*) getKeys{

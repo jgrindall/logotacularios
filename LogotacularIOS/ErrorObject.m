@@ -50,9 +50,9 @@
 		message = [message substringFromIndex:6];
 	}
 	BOOL expected = [message rangeOfString:@"Expected"].location != NSNotFound;
-	BOOL endOfInput = [message rangeOfString:@"end of input but"].location != NSNotFound;
+	BOOL endOfInput = [message rangeOfString:@"but"].location != NSNotFound;
 	if(expected && endOfInput){
-		message = [NSString stringWithFormat:@"The %@ looks wrong", [self getFound]];
+		message = [NSString stringWithFormat:@"Check if you meant the '%@'", [self getFound]];
 	}
 	return message;
 }
@@ -60,8 +60,12 @@
 - (NSString*) getHumanMessage{
 	NSString* errorMessage;
 	NSNumber* line = [self getLine];
+	NSNumber* col = [self getColumn];
 	NSString* message = [self filterMessage];
-	if(line  && message){
+	if(line && col && message){
+		errorMessage = [NSString stringWithFormat:@"Error on line %@ at position %@. %@", line, col, message];
+	}
+	if(line && message){
 		errorMessage = [NSString stringWithFormat:@"Error on line %@. %@", line, message];
 	}
 	else if(message){
@@ -70,7 +74,6 @@
 	else{
 		errorMessage = @"Unknown error";
 	}
-	NSLog(@"!!!!! %@ \n\n errorMessage %@", self.dic, errorMessage);
 	return errorMessage;
 }
 

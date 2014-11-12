@@ -13,7 +13,7 @@
 NSString* const MENU_SHOWN = @"menu_shown";
 
 - (void) setDefaults{
-	[self setVal:[NSNumber numberWithBool:NO] forKey:MENU_SHOWN];
+	[self setVal:@NO forKey:MENU_SHOWN];
 }
 
 - (NSArray*) getKeys{

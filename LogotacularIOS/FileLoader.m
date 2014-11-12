@@ -29,7 +29,7 @@
     return loader;
 }
 
-- (id)init {
+- (instancetype)init {
 	if (self = [super init]) {
 		self.fileManager = [NSFileManager defaultManager];
 		self.enabled = [self makeFolders];
@@ -129,13 +129,13 @@
 - (void) filenameOk:(NSString*)name withCallback:(void(^)(FileLoaderResults result, id data))callback{
 	[self getYourFilesWithCallback:^(FileLoaderResults result, id data) {
 		if(result == FileLoaderResultOk){
-			NSNumber* ok = [NSNumber numberWithBool:YES];
+			NSNumber* ok = @YES;
 			NSArray* files = (NSArray*)data;
 			for(NSURL* url in files){
 				if(url){
 					NSString* filename = [self getFileNameFromPath:url];
 					if([filename isEqualToString:name]){
-						ok = [NSNumber numberWithBool:NO];
+						ok = @NO;
 						break;
 					}
 				}

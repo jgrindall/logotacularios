@@ -32,8 +32,8 @@
 					else{
 						NSString* logo = (NSString*)data;
 						[fileModel setVal:filename forKey:FILE_FILENAME];
-						[fileModel setVal:[NSNumber numberWithBool:NO] forKey:FILE_DIRTY];
-						[fileModel setVal:[NSNumber numberWithBool:YES] forKey:FILE_REAL];
+						[fileModel setVal:@NO forKey:FILE_DIRTY];
+						[fileModel setVal:@YES forKey:FILE_REAL];
 						[logoModel reset:logo];
 						[[self getEventDispatcher] dispatch:SYMM_NOTIF_FILE_LOADED withData:nil];
 					}

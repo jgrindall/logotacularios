@@ -24,7 +24,7 @@
 
 @implementation FilesController
 
-- (id)initWithCollectionViewLayout:(UICollectionViewLayout*) layout withCellIdent:(NSString*)ident withCellClass:(Class)class{
+- (instancetype)initWithCollectionViewLayout:(UICollectionViewLayout*) layout withCellIdent:(NSString*)ident withCellClass:(Class)class{
 	self = [super initWithCollectionViewLayout:layout];
 	if(self){
 		self.cellIdent = ident;

@@ -55,7 +55,7 @@
 
 - (void) iosCallback:(NSDictionary*) jsonObj{
 	if ([jsonObj isKindOfClass:[NSDictionary class]]){
-		NSLog(@">>  ios %@ \n\n <<<< ", jsonObj);
+		//NSLog(@">>  ios %@ \n\n <<<< ", jsonObj);
 		NSDictionary* data = jsonObj[@"data"];
 		NSDictionary* error = jsonObj[@"error"];
 		NSDictionary* syntaxError = jsonObj[@"syntaxerror"];
@@ -78,7 +78,7 @@
 }
 
 - (void) finished{
-	[[self getDrawingModel] setVal:[NSNumber numberWithBool:NO] forKey:DRAWING_ISDRAWING];
+	[[self getDrawingModel] setVal:@NO forKey:DRAWING_ISDRAWING];
 }
 
 - (void) error:(NSDictionary*)error{

@@ -11,6 +11,7 @@
 #import "ImageUtils.h"
 #import "Assets.h"
 #import "SymmNotifications.h"
+#import "Appearance.h"
 
 @interface MenuViewController ()
 
@@ -23,7 +24,7 @@
 
 @implementation MenuViewController
 
-- (id) init{
+- (instancetype) init{
 	self = [super init];
 	if(self){
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardUp) name:UIKeyboardWillShowNotification object:nil];
@@ -35,12 +36,11 @@
 	[self addButtons];
 	[self addListeners];
 	[self showMenuChanged:nil];
-	float c = 0.1;
-	self.view.backgroundColor = [UIColor colorWithRed:c green:c blue:c alpha:0.3];
+	self.view.backgroundColor = [Appearance grayColor];
 }
 
 - (void) keyboardUp{
-	[[self getMenuModel] setVal:[NSNumber numberWithBool:NO] forKey:MENU_SHOWN];
+	[[self getMenuModel] setVal:@NO forKey:MENU_SHOWN];
 }
 
 - (void) addButtons{
@@ -63,7 +63,7 @@
 - (void) onClickHelp{
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_DISMISS_KEY withData:nil];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_MENU withData:nil];
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_HELP withData:self.navigationController];
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_HELP withData:nil];
 }
 
 - (void) onClickSave{
@@ -75,7 +75,7 @@
 - (void) onClickOpen{
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_DISMISS_KEY withData:nil];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_MENU withData:nil];
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_OPEN withData:self.navigationController];
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_OPEN withData:nil];
 }
 
 - (UIButton*) getButton:(NSString*) imageUrl withAction:(SEL)action withLabel:(NSString*)label atNum:(int)num{

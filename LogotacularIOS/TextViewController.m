@@ -18,6 +18,7 @@
 #import <UIKit/UIKit.h>
 #import "Assets.h"
 #import "ErrorObject.h"
+#import "Appearance.h"
 
 @interface TextViewController ()
 
@@ -68,13 +69,13 @@ int const EXCLAM_SIZE = 36;
 - (void) addErrorView{
 	self.errorView = [[UIView alloc] initWithFrame:CGRectZero];
 	[self.view addSubview:self.errorView];
-	self.errorView.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.1];
+	self.errorView.backgroundColor = [UIColor clearColor];
 }
 
 - (void) addContainer{
 	self.container = [[UIView alloc] initWithFrame:CGRectZero];
 	[self.view addSubview:self.container];
-	self.container.backgroundColor = [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.25];
+	self.container.backgroundColor = [Appearance grayColor];
 	self.container.layer.cornerRadius = 10;
 	self.container.layer.masksToBounds = YES;
 }
@@ -188,9 +189,10 @@ int const EXCLAM_SIZE = 36;
 }
 
 - (void)textViewDidEndEditing:(UITextView*)textView{
+	[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(triggerEdit) object:nil];
+	[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(triggerCheck) object:nil];
 	[self triggerEdit];
 }
-
 
 - (void) triggerCheck{
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_SYNTAX_CHECK withData:nil];

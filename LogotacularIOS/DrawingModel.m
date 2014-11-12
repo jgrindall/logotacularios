@@ -13,7 +13,7 @@
 NSString* const DRAWING_ISDRAWING = @"drawing_isdrawing";
 
 - (void) setDefaults{
-	[self setVal:[NSNumber numberWithBool:NO] forKey:DRAWING_ISDRAWING];
+	[self setVal:@NO forKey:DRAWING_ISDRAWING];
 }
 
 - (NSArray*) getKeys{

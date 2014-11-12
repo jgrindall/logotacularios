@@ -15,7 +15,7 @@
 - (void) execute:(id) payload{
 	NSString* text = (NSString*)payload;
 	[[self getLogoModel] add:text];
-	[[self getFileModel] setVal:[NSNumber numberWithBool:YES] forKey:FILE_DIRTY];
+	[[self getFileModel] setVal:@YES forKey:FILE_DIRTY];
 }
 
 - (id<PLogoModel>) getLogoModel{

@@ -29,5 +29,6 @@ typedef enum  {
 + (UIFont*) fontOfSize:(SymmFontSizes)s;
 + (UIBarButtonItem*) getBarButton:(NSString*) imageUrl;
 + (UIColor*) bgColor;
++ (UIColor*) grayColor;
 
 @end

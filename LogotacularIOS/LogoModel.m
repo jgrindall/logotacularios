@@ -50,7 +50,7 @@ NSString* const LOGO_HISTORY = @"logo_history";
 
 - (void) reset:(NSString*)val{
 	NSMutableArray* history = [NSMutableArray arrayWithObjects:val, nil];
-	[self setVal:[NSNumber numberWithInt:0] forKey:LOGO_POINTER];
+	[self setVal:@0 forKey:LOGO_POINTER];
 	[self setVal:history forKey:LOGO_HISTORY];
 }
 

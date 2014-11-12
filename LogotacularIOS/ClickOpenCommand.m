@@ -9,6 +9,7 @@
 #import "ClickOpenCommand.h"
 #import "FilePageController.h"
 #import "SymmNotifications.h"
+#import "AppDelegate.h"
 
 @interface ClickOpenCommand ()
 
@@ -19,15 +20,10 @@
 @implementation ClickOpenCommand
 
 - (void) execute:(id)payload{
-	//TODO - change this!
-	self.navigationController = (UINavigationController*) payload;
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_LOAD_FILES withData:nil];
-	[self goToFiles];
-}
-
-- (void) goToFiles{
+	AppDelegate* delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+	UINavigationController* presenter = [delegate navigationController];
 	FilePageController* filesController = [[FilePageController alloc] init];
-	[self.navigationController pushViewController:filesController animated:YES];
+	[presenter pushViewController:filesController animated:YES];
 }
 
 @end

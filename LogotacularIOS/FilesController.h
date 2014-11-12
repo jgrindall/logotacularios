@@ -10,7 +10,7 @@
 
 @interface FilesController : UICollectionViewController <UIGestureRecognizerDelegate>
 
-- (id)initWithCollectionViewLayout:(UICollectionViewLayout*) layout withCellIdent:(NSString*)ident withCellClass:(Class)class;
+- (instancetype)initWithCollectionViewLayout:(UICollectionViewLayout*) layout withCellIdent:(NSString*)ident withCellClass:(Class)class;
 
 - (void) setFiles:(NSArray*) files;
 

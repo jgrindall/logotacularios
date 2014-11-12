@@ -11,7 +11,7 @@
 
 @implementation HelpViewController
 
-- (id) initWithTransitionStyle:(UIPageViewControllerTransitionStyle)style navigationOrientation:(UIPageViewControllerNavigationOrientation)navigationOrientation options:(NSDictionary *)options{
+- (instancetype) initWithTransitionStyle:(UIPageViewControllerTransitionStyle)style navigationOrientation:(UIPageViewControllerNavigationOrientation)navigationOrientation options:(NSDictionary *)options{
 	self = [super initWithTransitionStyle:style navigationOrientation:navigationOrientation options:options];
 	if(self){
 		self.dataSource = self;

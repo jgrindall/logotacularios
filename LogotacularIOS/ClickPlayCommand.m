@@ -22,7 +22,7 @@
 		[[self getEventDispatcher] dispatch:SYMM_NOTIF_STOP withData:nil];
 	}
 	else{
-		[[self getMenuModel] setVal:[NSNumber numberWithBool:NO] forKey:MENU_SHOWN];
+		[[self getMenuModel] setVal:@NO forKey:MENU_SHOWN];
 		[[self getEventDispatcher] dispatch:SYMM_NOTIF_DISMISS_KEY withData:nil];
 		[[self getEventDispatcher] dispatch:SYMM_NOTIF_RESET withData:nil];
 		[[self getErrorModel] setVal:nil forKey:LOGO_ERROR_ERROR];

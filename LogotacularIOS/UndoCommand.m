@@ -16,7 +16,7 @@
 - (void) execute:(id) payload{
 	[[self getErrorModel] setVal:nil forKey:LOGO_ERROR_ERROR];
 	[[self getLogoModel] undo];
-	[[self getFileModel] setVal:[NSNumber numberWithBool:YES] forKey:FILE_DIRTY];
+	[[self getFileModel] setVal:@YES forKey:FILE_DIRTY];
 }
 
 - (id<PLogoModel>) getLogoModel{

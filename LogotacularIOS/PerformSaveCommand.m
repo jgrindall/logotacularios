@@ -26,8 +26,8 @@
 		if(result == FileLoaderResultOk){
 			[ToastUtils showToastInController:nil withMessage:[ToastUtils getFileSaveSuccessMessage] withType:TSMessageNotificationTypeSuccess];
 			[[self getFileModel] setVal:filename forKey:FILE_FILENAME];
-			[[self getFileModel] setVal:[NSNumber numberWithBool:NO] forKey:FILE_DIRTY];
-			[[self getFileModel] setVal:[NSNumber numberWithBool:YES] forKey:FILE_REAL];
+			[[self getFileModel] setVal:@NO forKey:FILE_DIRTY];
+			[[self getFileModel] setVal:@YES forKey:FILE_REAL];
 			[[self getEventDispatcher] dispatch:SYMM_NOTIF_SAVED withData:nil];
 		}
 		else{

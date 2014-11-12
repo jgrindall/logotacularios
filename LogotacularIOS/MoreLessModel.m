@@ -18,7 +18,7 @@ NSString* const MORE_SHOWN = @"moreshown";
 }
 
 - (void) reset{
-	[self.propHash setValue:[NSNumber numberWithBool:NO] forKey:MORE_SHOWN];
+	[self.propHash setValue:@YES forKey:MORE_SHOWN];
 }
 
 - (NSArray*) getKeys{

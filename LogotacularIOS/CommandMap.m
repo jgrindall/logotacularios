@@ -18,7 +18,7 @@
 
 objection_register(CommandMap)
 
-- (id) init{
+- (instancetype) init{
 	self = [super init];
 	if(self){
 		self.dic = [[NSMutableDictionary alloc] init];
