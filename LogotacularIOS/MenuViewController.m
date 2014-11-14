@@ -19,6 +19,8 @@
 @property UIButton* helpButton;
 @property UIButton* saveButton;
 @property UIButton* openButton;
+@property UIButton* refButton;
+@property UIButton* egButton;
 
 @end
 
@@ -44,14 +46,28 @@
 }
 
 - (void) addButtons{
-	self.fileButton = [self getButton:ADD_ICON withAction:@selector(onClickNew)			withLabel:@" New file" atNum:0];
-	self.helpButton = [self getButton:BULB_ICON withAction:@selector(onClickHelp)		withLabel:@" Help" atNum:1];
-	self.saveButton = [self getButton:FLOPPY_ICON withAction:@selector(onClickSave)		withLabel:@" Save" atNum:2];
-	self.openButton = [self getButton:FOLDER_ICON withAction:@selector(onClickOpen)		withLabel:@" Your files" atNum:3];
+	self.fileButton = [self getButton:ADD_ICON withAction:@selector(onClickNew)				withLabel:@" New file" atNum:0];
+	self.helpButton = [self getButton:HELP_ICON withAction:@selector(onClickHelp)			withLabel:@" About / help" atNum:2];
+	self.saveButton = [self getButton:FLOPPY_ICON withAction:@selector(onClickSave)			withLabel:@" Save" atNum:1];
+	self.openButton = [self getButton:BRIEFCASE_ICON withAction:@selector(onClickOpen)		withLabel:@" Your files" atNum:3];
+	self.refButton = [self getButton:BOOK_ICON withAction:@selector(onClickRef)				withLabel:@" Quick reference" atNum:5];
+	self.egButton = [self getButton:BULB_ICON withAction:@selector(onClickEg)				withLabel:@" Examples" atNum:4];
 	[self.view addSubview:self.fileButton];
 	[self.view addSubview:self.helpButton];
 	[self.view addSubview:self.saveButton];
 	[self.view addSubview:self.openButton];
+	[self.view addSubview:self.refButton];
+	[self.view addSubview:self.egButton];
+}
+
+- (void) onClickRef{
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_DISMISS_KEY withData:nil];
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_MENU withData:nil];
+}
+
+- (void) onClickEg{
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_DISMISS_KEY withData:nil];
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_MENU withData:nil];
 }
 
 - (void) onClickNew{
@@ -84,7 +100,7 @@
 	btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
 	btn.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
 	btn.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
-	btn.frame = CGRectMake(0, 45*num + 10, 160, 30);
+	btn.frame = CGRectMake(0, 45*num + 10, 190, 30);
 	[btn setImage:img forState:UIControlStateNormal];
 	[btn setTitle:label forState:UIControlStateNormal];
 	[btn addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];

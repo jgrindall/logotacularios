@@ -77,9 +77,12 @@
 		52CBC9C11A0D2EBD00C229C8 /* AlertManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CBC9C01A0D2EBD00C229C8 /* AlertManager.m */; };
 		52CBC9C51A0D33A300C229C8 /* SaveCurrentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CBC9C41A0D33A300C229C8 /* SaveCurrentViewController.m */; };
 		52CBC9C91A0D3AD800C229C8 /* PerformNewCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CBC9C81A0D3AD800C229C8 /* PerformNewCommand.m */; };
+		52CC891D1A1642E00046615F /* AbstractHelpPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CC891C1A1642E00046615F /* AbstractHelpPageViewController.m */; };
+		52CC89201A1642FA0046615F /* AbstractHelpSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CC891F1A1642FA0046615F /* AbstractHelpSectionViewController.m */; };
+		52CC89231A1643170046615F /* AbstractHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CC89221A1643170046615F /* AbstractHelpViewController.m */; };
+		52CC89301A1681810046615F /* LoadFromHelpCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CC892F1A1681810046615F /* LoadFromHelpCommand.m */; };
 		52CF4A081A102414003197B2 /* ErrorHitCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CF4A071A102414003197B2 /* ErrorHitCommand.m */; };
 		52CF4A0B1A103AF2003197B2 /* HelpPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CF4A0A1A103AF2003197B2 /* HelpPageViewController.m */; };
-		52CF4A0F1A103B5B003197B2 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CF4A0E1A103B5B003197B2 /* HelpViewController.m */; };
 		52CF4A121A103CB2003197B2 /* ClickHelpCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CF4A111A103CB2003197B2 /* ClickHelpCommand.m */; };
 		52CF55F61A0831D600F01D3A /* LogoErrorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CF55F51A0831D600F01D3A /* LogoErrorModel.m */; };
 		52CF55FB1A08411900F01D3A /* FileBrowserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CF55FA1A08411900F01D3A /* FileBrowserModel.m */; };
@@ -252,12 +255,19 @@
 		52CBC9C41A0D33A300C229C8 /* SaveCurrentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveCurrentViewController.m; sourceTree = "<group>"; };
 		52CBC9C71A0D3AD800C229C8 /* PerformNewCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerformNewCommand.h; sourceTree = "<group>"; };
 		52CBC9C81A0D3AD800C229C8 /* PerformNewCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerformNewCommand.m; sourceTree = "<group>"; };
+		52CC891B1A1642E00046615F /* AbstractHelpPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractHelpPageViewController.h; sourceTree = "<group>"; };
+		52CC891C1A1642E00046615F /* AbstractHelpPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractHelpPageViewController.m; sourceTree = "<group>"; };
+		52CC891E1A1642FA0046615F /* AbstractHelpSectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractHelpSectionViewController.h; sourceTree = "<group>"; };
+		52CC891F1A1642FA0046615F /* AbstractHelpSectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractHelpSectionViewController.m; sourceTree = "<group>"; };
+		52CC89211A1643170046615F /* AbstractHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractHelpViewController.h; sourceTree = "<group>"; };
+		52CC89221A1643170046615F /* AbstractHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractHelpViewController.m; sourceTree = "<group>"; };
+		52CC89261A1646550046615F /* AbstractHelpPageViewController_protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractHelpPageViewController_protected.h; sourceTree = "<group>"; };
+		52CC892E1A1681810046615F /* LoadFromHelpCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadFromHelpCommand.h; sourceTree = "<group>"; };
+		52CC892F1A1681810046615F /* LoadFromHelpCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadFromHelpCommand.m; sourceTree = "<group>"; };
 		52CF4A061A102414003197B2 /* ErrorHitCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorHitCommand.h; sourceTree = "<group>"; };
 		52CF4A071A102414003197B2 /* ErrorHitCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorHitCommand.m; sourceTree = "<group>"; };
 		52CF4A091A103AF2003197B2 /* HelpPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpPageViewController.h; sourceTree = "<group>"; };
 		52CF4A0A1A103AF2003197B2 /* HelpPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpPageViewController.m; sourceTree = "<group>"; };
-		52CF4A0D1A103B5B003197B2 /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
-		52CF4A0E1A103B5B003197B2 /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
 		52CF4A101A103CB2003197B2 /* ClickHelpCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickHelpCommand.h; sourceTree = "<group>"; };
 		52CF4A111A103CB2003197B2 /* ClickHelpCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickHelpCommand.m; sourceTree = "<group>"; };
 		52CF55F41A0831D600F01D3A /* LogoErrorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogoErrorModel.h; sourceTree = "<group>"; };
@@ -399,6 +409,8 @@
 				52B5123B1A13C1E600B14D0D /* ChangePageCommand.m */,
 				52B5123D1A13C69D00B14D0D /* PerformFileSetupCommand.h */,
 				52B5123E1A13C69D00B14D0D /* PerformFileSetupCommand.m */,
+				52CC892E1A1681810046615F /* LoadFromHelpCommand.h */,
+				52CC892F1A1681810046615F /* LoadFromHelpCommand.m */,
 				5257F36D1A01AA4F00757C77 /* Commands.h */,
 			);
 			name = Commands;
@@ -737,13 +749,26 @@
 			name = SaveCurrent;
 			sourceTree = "<group>";
 		};
+		52CC89241A1643210046615F /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				52CC89261A1646550046615F /* AbstractHelpPageViewController_protected.h */,
+				52CC891B1A1642E00046615F /* AbstractHelpPageViewController.h */,
+				52CC891C1A1642E00046615F /* AbstractHelpPageViewController.m */,
+				52CC891E1A1642FA0046615F /* AbstractHelpSectionViewController.h */,
+				52CC891F1A1642FA0046615F /* AbstractHelpSectionViewController.m */,
+				52CC89211A1643170046615F /* AbstractHelpViewController.h */,
+				52CC89221A1643170046615F /* AbstractHelpViewController.m */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
 		52CF4A0C1A103AF9003197B2 /* Help */ = {
 			isa = PBXGroup;
 			children = (
+				52CC89241A1643210046615F /* Base */,
 				52B274141A115D2C00D3EA3B /* HelpSectionViewController.h */,
 				52B274151A115D2D00D3EA3B /* HelpSectionViewController.m */,
-				52CF4A0D1A103B5B003197B2 /* HelpViewController.h */,
-				52CF4A0E1A103B5B003197B2 /* HelpViewController.m */,
 				52CF4A091A103AF2003197B2 /* HelpPageViewController.h */,
 				52CF4A0A1A103AF2003197B2 /* HelpPageViewController.m */,
 			);
@@ -930,10 +955,12 @@
 				52CBC9C91A0D3AD800C229C8 /* PerformNewCommand.m in Sources */,
 				52B5B35419FD7E1400EF531F /* DrawPageViewController.m in Sources */,
 				525167E419FFC19F00814B16 /* Assets.m in Sources */,
+				52CC89231A1643170046615F /* AbstractHelpViewController.m in Sources */,
 				527D42FD1A0ADEBF008AE82A /* FilenameViewController.m in Sources */,
 				52C1714B1A0C4384000865DD /* ScreenGrabModel.m in Sources */,
 				52815C6E1A04F397005AFA93 /* FilesController.m in Sources */,
 				52B5B35319FD7E1400EF531F /* Colors.m in Sources */,
+				52CC891D1A1642E00046615F /* AbstractHelpPageViewController.m in Sources */,
 				525167F019FFEE6400814B16 /* ClickPlayCommand.m in Sources */,
 				52B274541A11785200D3EA3B /* SyntaxErrorCommand.m in Sources */,
 				52B512341A13765500B14D0D /* MoreLessModel.m in Sources */,
@@ -950,6 +977,7 @@
 				52B2289B1A00E749001CC355 /* FileModel.m in Sources */,
 				52B5B35519FD7E1400EF531F /* ImageUtils.m in Sources */,
 				52B228A11A00E75C001CC355 /* DrawingModel.m in Sources */,
+				52CC89301A1681810046615F /* LoadFromHelpCommand.m in Sources */,
 				527D42EB1A0ABED5008AE82A /* FileListModel.m in Sources */,
 				52CF4A0B1A103AF2003197B2 /* HelpPageViewController.m in Sources */,
 				52B274161A115D2D00D3EA3B /* HelpSectionViewController.m in Sources */,
@@ -977,12 +1005,12 @@
 				52B5B35819FD7E1400EF531F /* PaintView.m in Sources */,
 				5272DE3E19FE487A006E717F /* AbstractCommand.m in Sources */,
 				525167E819FFCEB000814B16 /* AContainerViewController.m in Sources */,
-				52CF4A0F1A103B5B003197B2 /* HelpViewController.m in Sources */,
 				52CF4A121A103CB2003197B2 /* ClickHelpCommand.m in Sources */,
 				5257F3491A01356C00757C77 /* UndoCommand.m in Sources */,
 				5272DE4419FE5776006E717F /* InjectionModule.m in Sources */,
 				52815C751A050EB1005AFA93 /* ClickOpenCommand.m in Sources */,
 				52CBC9C51A0D33A300C229C8 /* SaveCurrentViewController.m in Sources */,
+				52CC89201A1642FA0046615F /* AbstractHelpSectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

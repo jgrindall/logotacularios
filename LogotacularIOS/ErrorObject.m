@@ -52,7 +52,7 @@
 	BOOL expected = [message rangeOfString:@"Expected"].location != NSNotFound;
 	BOOL endOfInput = [message rangeOfString:@"but"].location != NSNotFound;
 	if(expected && endOfInput){
-		message = [NSString stringWithFormat:@"Check if you meant the '%@'", [self getFound]];
+		message = [NSString stringWithFormat:@"The '%@' here doesn't look right to me", [self getFound]];
 	}
 	return message;
 }

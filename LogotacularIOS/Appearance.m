@@ -28,7 +28,7 @@
 }
 
 + (UIColor*) bgColor{
-	return [UIColor colorWithRed:(252.0/255.0) green:(73.0/255.0) blue:(94.0/255.0) alpha:1];
+	return [UIColor colorWithRed:(252.0/255.0) green:(173.0/255.0) blue:(194.0/255.0) alpha:1];
 }
 
 + (UIColor*) grayColor{

@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 jgrindall. All rights reserved.
 //
 
-#import "AContainerViewController_Protected.h"
+#import "AbstractHelpPageViewController_protected.h"
 
-@interface HelpPageViewController : AContainerViewController
+@interface HelpPageViewController : AbstractHelpPageViewController
 
 @end

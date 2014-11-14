@@ -28,6 +28,7 @@
 #import "ClickHelpCommand.h"
 #import "ChangePageCommand.h"
 #import "PerformFileSetupCommand.h"
+#import "LoadFromHelpCommand.h"
 
 @interface Commands : NSObject
 

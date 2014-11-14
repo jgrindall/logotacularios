@@ -1,35 +1,38 @@
 //
-//  HelpPageViewController.m
+//  AbstractHelpPageViewController.m
 //  LogotacularIOS
 //
-//  Created by John on 10/11/2014.
+//  Created by John on 14/11/2014.
 //  Copyright (c) 2014 jgrindall. All rights reserved.
 //
 
-#import "HelpPageViewController.h"
-#import "HelpViewController.h"
+#import "AbstractHelpPageViewController_protected.h"
+#import "AbstractHelpViewController.h"
 #import "Appearance.h"
+#import "HelpSectionViewController.h"
 
-@interface HelpPageViewController ()
+@interface AbstractHelpPageViewController ()
 
-@property UIView* helpContainer;
-@property HelpViewController* helpViewController;
+@property NSInteger numPages;
+@property Class childClass;
 
 @end
 
-@implementation HelpPageViewController
+@implementation AbstractHelpPageViewController
 
-- (instancetype)init{
+- (instancetype)initWithChildClass:(Class) childClass andNumPages:(NSInteger)numPages{
 	self = [super init];
 	if(self){
-		
+		_numPages = numPages;
+		_childClass = childClass;
 	}
 	return self;
 }
 
 - (void) viewDidLoad{
 	[super viewDidLoad];
-	[self addPages];
+	[self addContainer];
+	[self makeController];
 }
 
 - (void) viewDidAppear:(BOOL)animated{
@@ -37,12 +40,15 @@
 	[self layoutPages];
 }
 
-- (void) addPages{
-	self.helpContainer = [[UIView alloc] initWithFrame:self.view.frame];
-	[self.view addSubview:self.helpContainer];
-	self.helpViewController = [[HelpViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+- (void) makeController{
+	self.helpViewController = [[AbstractHelpViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil withChildClass:self.childClass andNumPages:self.numPages];
 	[self addChildInto:self.helpContainer withController:self.helpViewController];
+}
+
+- (void) addContainer{
+	self.helpContainer = [[UIView alloc] initWithFrame:self.view.frame];
 	self.helpContainer.backgroundColor = [Appearance bgColor];
+	[self.view addSubview:self.helpContainer];
 }
 
 -(void)layoutPages{
@@ -53,5 +59,5 @@
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.helpContainer attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0]];
 }
 
-@end
 
+@end
