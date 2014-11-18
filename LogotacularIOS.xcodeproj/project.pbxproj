@@ -52,7 +52,6 @@
 		52B44EFE1A0B9D4800B99FD2 /* ToastUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B44EFD1A0B9D4800B99FD2 /* ToastUtils.m */; };
 		52B44F011A0BC93D00B99FD2 /* TextEditedCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B44F001A0BC93D00B99FD2 /* TextEditedCommand.m */; };
 		52B512301A13637700B14D0D /* ErrorPopUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B5122F1A13637700B14D0D /* ErrorPopUpViewController.m */; };
-		52B512341A13765500B14D0D /* MoreLessModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B512331A13765500B14D0D /* MoreLessModel.m */; };
 		52B512391A13855600B14D0D /* ErrorObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B512381A13855600B14D0D /* ErrorObject.m */; };
 		52B5123C1A13C1E700B14D0D /* ChangePageCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B5123B1A13C1E600B14D0D /* ChangePageCommand.m */; };
 		52B5123F1A13C69D00B14D0D /* PerformFileSetupCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B5123E1A13C69D00B14D0D /* PerformFileSetupCommand.m */; };
@@ -204,9 +203,6 @@
 		52B44F001A0BC93D00B99FD2 /* TextEditedCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextEditedCommand.m; sourceTree = "<group>"; };
 		52B5122E1A13637700B14D0D /* ErrorPopUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorPopUpViewController.h; sourceTree = "<group>"; };
 		52B5122F1A13637700B14D0D /* ErrorPopUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorPopUpViewController.m; sourceTree = "<group>"; };
-		52B512321A13765500B14D0D /* MoreLessModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreLessModel.h; sourceTree = "<group>"; };
-		52B512331A13765500B14D0D /* MoreLessModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreLessModel.m; sourceTree = "<group>"; };
-		52B512361A13767200B14D0D /* PMoreLessModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMoreLessModel.h; sourceTree = "<group>"; };
 		52B512371A13855600B14D0D /* ErrorObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorObject.h; sourceTree = "<group>"; };
 		52B512381A13855600B14D0D /* ErrorObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorObject.m; sourceTree = "<group>"; };
 		52B5123A1A13C1E600B14D0D /* ChangePageCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePageCommand.h; sourceTree = "<group>"; };
@@ -351,7 +347,6 @@
 		525167ED19FFD37500814B16 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				52B512351A13765A00B14D0D /* MoreLess */,
 				52C1714C1A0C4387000865DD /* ScreenGrab */,
 				527D42EC1A0ABED8008AE82A /* FilesModel */,
 				52CF55FC1A08412000F01D3A /* FileBrowser */,
@@ -574,16 +569,6 @@
 				52B5122F1A13637700B14D0D /* ErrorPopUpViewController.m */,
 			);
 			name = ErrorPopUp;
-			sourceTree = "<group>";
-		};
-		52B512351A13765A00B14D0D /* MoreLess */ = {
-			isa = PBXGroup;
-			children = (
-				52B512321A13765500B14D0D /* MoreLessModel.h */,
-				52B512331A13765500B14D0D /* MoreLessModel.m */,
-				52B512361A13767200B14D0D /* PMoreLessModel.h */,
-			);
-			name = MoreLess;
 			sourceTree = "<group>";
 		};
 		52B5B30719FD7D4600EF531F = {
@@ -984,7 +969,6 @@
 				52CC891D1A1642E00046615F /* AbstractHelpPageViewController.m in Sources */,
 				525167F019FFEE6400814B16 /* ClickPlayCommand.m in Sources */,
 				52B274541A11785200D3EA3B /* SyntaxErrorCommand.m in Sources */,
-				52B512341A13765500B14D0D /* MoreLessModel.m in Sources */,
 				52CBC9C11A0D2EBD00C229C8 /* AlertManager.m in Sources */,
 				52420E271A1ADF710069D4AC /* StartCommand.m in Sources */,
 				52B5123F1A13C69D00B14D0D /* PerformFileSetupCommand.m in Sources */,

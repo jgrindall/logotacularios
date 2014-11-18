@@ -109,17 +109,17 @@ return {type:"callfnstmt", name:f.name, args:a};
 }
 
 
-fdstmt  = ('fd' / 'Fd' / 'FD') sep* num:expression eoline
+fdstmt  = 'fd' sep* num:expression eoline
 {
 return {type:"fdstmt", children:[num]};
 }
 
-rtstmt  = ('rt' / 'Rt' / 'RT') sep* num:expression eoline
+rtstmt  = 'rt' sep* num:expression eoline
 {
 return {type:"rtstmt", children:[num]};
 }
 
-rptstmt  = ('rpt' / 'Rpt' / 'RPT') sep* num:expression sep* '[' sep* list:insidefnlist sep* ']' sep*
+rptstmt  = 'rpt' sep* num:expression sep* '[' sep* list:insidefnlist sep* ']' sep*
 {
 return {type:"rptstmt", children:[num,list]};
 }
@@ -135,26 +135,26 @@ obj.children.push(l[i]);
 return obj;
 }
 
-makestmt = ('make' / 'Make') sep* v:vardef sep* e:expression eoline
+makestmt = 'make' sep* v:vardef sep* e:expression eoline
 {
 return {type:"makestmt", children:[v,e]};
 }
 
 definefnstmt =
-('to' / 'To') sep+ f:fnname sep* a:arglist sep* s:insidefnlist 'end' sep*
+'to' sep+ f:fnname sep* a:arglist sep* s:insidefnlist 'end' sep*
 {
 return {type:"definefnstmt", name:f.name, args:a, stmts:s};
 }
 /
-('to' / 'To') sep+ f:fnname sep* s:insidefnlist 'end' sep*
+'to' sep+ f:fnname sep* s:insidefnlist 'end' sep*
 {
 return {type:"definefnstmt", name:f.name, args:null, stmts:s};
 }
 
 
-vardef = '"' n:[a-z]
+vardef = '"' !keyword c0:([a-zA-Z])+ c1:[a-zA-Z0-9_]*
 {
-return {type:"vardef", name:n.toString()};
+return {type:"vardef", name:c0.join("") + c1.join("")};
 }
 
 

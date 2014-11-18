@@ -110,13 +110,12 @@ int const EXCLAM_SIZE = 36;
 }
 
 - (void) drawErrorForStart:(NSInteger)start andEnd:(NSInteger)end{
-	float size = 36;
 	NSLayoutManager *layoutManager = [self.logoText layoutManager];
 	NSTextContainer *textContainer = [self.logoText textContainer];
 	NSRange range = NSMakeRange(start, end - start);
 	CGRect r = [layoutManager boundingRectForGlyphRange:range inTextContainer:textContainer];
 	r = CGRectOffset(r, self.logoText.frame.origin.x, self.logoText.frame.origin.y - self.scrollPos);
-	float dy = r.size.height/2 - size/2.0;
+	float dy = r.size.height/2 - EXCLAM_SIZE/2.0;
 	float exclamPos = r.origin.y + dy;
 	if(exclamPos < 0){
 		exclamPos = 0;
@@ -124,24 +123,26 @@ int const EXCLAM_SIZE = 36;
 	if(exclamPos > self.view.frame.size.height - 40){
 		exclamPos = self.view.frame.size.height - 40;
 	}
-	self.exclamView.frame = CGRectMake(0, exclamPos, size, size);
-	[self animateExclamAt:r.origin.y];
+	[self animateExclamAt:exclamPos withScreenPos:r.origin.y];
 }
 
-- (void) animateExclamAt:(float)y{
+- (void) animateExclamAt:(float)y0 withScreenPos:(float)y1{
 	float hiddenAlpha = 0.25;
 	float alpha = 1.0;
 	float rot = 0.0;
-	if(y < 0){
+	if(y1 < 0){
 		alpha = hiddenAlpha;
 		rot = -90.0;
 	}
-	else if (y > self.view.frame.size.height - 40){
+	else if (y1 > self.view.frame.size.height - 40){
 		alpha = hiddenAlpha;
 		rot = 90.0;
 	}
-	self.exclamView.alpha = alpha;
-	self.exclamView.transform = CGAffineTransformMakeRotation(rot*3.14159/180);
+	[UIView animateWithDuration:0.5 animations:^{
+		self.exclamView.frame = CGRectMake(0, y0, EXCLAM_SIZE, EXCLAM_SIZE);
+		self.exclamView.alpha = alpha;
+		self.exclamView.transform = CGAffineTransformMakeRotation(rot*3.14159/180);
+	}];
 }
 
 - (void) modelChanged{
