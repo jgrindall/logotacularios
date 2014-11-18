@@ -29,6 +29,7 @@
 @property id<PFileListModel> fileListModel;
 @property id<PScreenGrabModel> screenGrabModel;
 @property id<PMoreLessModel> moreLessModel;
+@property id<PTurtleModel> turtleModel;
 
 @end
 
@@ -79,6 +80,8 @@
 	[self bind:self.screenGrabModel toProtocol:@protocol(PScreenGrabModel)];
 	self.moreLessModel = [[MoreLessModel alloc] init];
 	[self bind:self.moreLessModel toProtocol:@protocol(PMoreLessModel)];
+	self.turtleModel = [[TurtleModel alloc] init];
+	[self bind:self.turtleModel toProtocol:@protocol(PTurtleModel)];
 }
 
 @end

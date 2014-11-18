@@ -26,10 +26,11 @@
 @property UIGestureRecognizer* swipe;
 @property UITapGestureRecognizer* exclamTap;
 @property NSString* cachedText;
-@property UIView* errorView;
 @property float scrollPos;
 @property UIImageView* exclamView;
 @property UIView* container;
+@property UIButton* undoButton;
+@property UIButton* redoButton;
 
 @end
 
@@ -43,7 +44,7 @@ int const EXCLAM_SIZE = 36;
 	[super viewDidLoad];
 	self.scrollPos = 0;
 	[self addContainer];
-	[self addErrorView];
+	[self addButtons];
 	[self addText];
 	[self addExclam];
 	[self addListeners];
@@ -54,26 +55,29 @@ int const EXCLAM_SIZE = 36;
 	[super viewDidAppear:animated];
 	[self layoutText];
 	[self layoutContainer];
+	[self layoutButtons];
 	[self clearError];
 }
 
+- (void) addButtons{
+	self.undoButton = [UIButton buttonWithType:UIButtonTypeSystem];
+	self.redoButton = [UIButton buttonWithType:UIButtonTypeSystem];
+	[self.view addSubview:self.undoButton];
+	[self.view addSubview:self.redoButton];
+	[self.undoButton setImage:[UIImage imageNamed:UNDO_ICON] forState:UIControlStateNormal];
+	[self.redoButton setImage:[UIImage imageNamed:REDO_ICON] forState:UIControlStateNormal];
+}
+
 - (void) clearError{
-	self.errorView.frame = CGRectZero;
 	self.exclamView.frame = CGRectZero;
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_POPOVER withData:nil];
 }
 
 - (void) addExclam{
-	self.exclamView = [[UIImageView alloc] initWithFrame:CGRectZero];
+	self.exclamView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
 	[self.view addSubview:self.exclamView];
 	self.exclamView.contentMode = UIViewContentModeScaleAspectFit;
 	self.exclamView.image = [UIImage imageNamed:EXCLAM_ICON];
-}
-
-- (void) addErrorView{
-	self.errorView = [[UIView alloc] initWithFrame:CGRectZero];
-	[self.view addSubview:self.errorView];
-	self.errorView.backgroundColor = [UIColor clearColor];
 }
 
 - (void) addContainer{
@@ -88,6 +92,7 @@ int const EXCLAM_SIZE = 36;
 	[[self getLogoModel] addGlobalListener:@selector(modelChanged) withTarget:self];
 	[[self getErrorModel] addListener:@selector(errorChanged) forKey:LOGO_ERROR_ERROR withTarget:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_DISMISS_KEY toFunction:@selector(dismissKeyboard) withContext:self];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardDidHide) name:UIKeyboardDidHideNotification object:nil];
 	self.swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(textSwipe:)];
 	self.swipe.delegate = self;
 	[self.view addGestureRecognizer:self.swipe];
@@ -96,25 +101,54 @@ int const EXCLAM_SIZE = 36;
 	[self.exclamView addGestureRecognizer:self.exclamTap];
 }
 
+- ( void) keyBoardDidHide{
+	[self editEnded];
+}
+
 -(void)tapExclam{
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_SHOW_POPOVER withData:self.exclamView];
 }
 
 - (void) drawErrorForStart:(NSInteger)start andEnd:(NSInteger)end{
+	float size = 36;
 	NSLayoutManager *layoutManager = [self.logoText layoutManager];
 	NSTextContainer *textContainer = [self.logoText textContainer];
 	NSRange range = NSMakeRange(start, end - start);
 	CGRect r = [layoutManager boundingRectForGlyphRange:range inTextContainer:textContainer];
-	NSLog(@"%@", NSStringFromCGRect(r));
 	r = CGRectOffset(r, self.logoText.frame.origin.x, self.logoText.frame.origin.y - self.scrollPos);
-	self.errorView.frame = r;
-	float dy = r.size.height/2 - 18;
-	self.exclamView.frame = CGRectMake(0, r.origin.y + dy, 36, 36);
+	float dy = r.size.height/2 - size/2.0;
+	float exclamPos = r.origin.y + dy;
+	if(exclamPos < 0){
+		exclamPos = 0;
+	}
+	if(exclamPos > self.view.frame.size.height - 40){
+		exclamPos = self.view.frame.size.height - 40;
+	}
+	self.exclamView.frame = CGRectMake(0, exclamPos, size, size);
+	[self animateExclamAt:r.origin.y];
+}
+
+- (void) animateExclamAt:(float)y{
+	float hiddenAlpha = 0.25;
+	float alpha = 1.0;
+	float rot = 0.0;
+	if(y < 0){
+		alpha = hiddenAlpha;
+		rot = -90.0;
+	}
+	else if (y > self.view.frame.size.height - 40){
+		alpha = hiddenAlpha;
+		rot = 90.0;
+	}
+	self.exclamView.alpha = alpha;
+	self.exclamView.transform = CGAffineTransformMakeRotation(rot*3.14159/180);
 }
 
 - (void) modelChanged{
 	NSString* text = [[self getLogoModel] get];
-	[self.logoText setText:text];
+	if(![text isEqualToString:[self.logoText text]]){
+		[self.logoText setText:text];
+	}
 }
 
 - (void) layoutText{
@@ -132,6 +166,19 @@ int const EXCLAM_SIZE = 36;
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.container attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual		toItem:self.view			attribute:NSLayoutAttributeLeft			multiplier:1.0 constant:TEXT_PADDING + HORIZ_PADDING]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.container attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual	toItem:self.view			attribute:NSLayoutAttributeBottom		multiplier:1.0 constant:-TEXT_PADDING]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.container attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual		toItem:self.view			attribute:NSLayoutAttributeRight		multiplier:1.0 constant:0]];
+}
+
+- (void) layoutButtons{
+	self.undoButton.translatesAutoresizingMaskIntoConstraints = NO;
+	self.redoButton.translatesAutoresizingMaskIntoConstraints = NO;
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.undoButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual		toItem:self.view			attribute:NSLayoutAttributeBottom				multiplier:1.0 constant:0.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.undoButton attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual		toItem:self.view			attribute:NSLayoutAttributeCenterX				multiplier:1.0 constant:-50.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.undoButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual		toItem:nil					attribute:NSLayoutAttributeNotAnAttribute		multiplier:0.0 constant:50.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.undoButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual		toItem:nil					attribute:NSLayoutAttributeNotAnAttribute		multiplier:0.0 constant:30.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.redoButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual		toItem:self.view			attribute:NSLayoutAttributeBottom				multiplier:1.0 constant:0.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.redoButton attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual		toItem:self.view			attribute:NSLayoutAttributeCenterX				multiplier:1.0 constant:-5.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.redoButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual		toItem:nil					attribute:NSLayoutAttributeNotAnAttribute		multiplier:0.0 constant:50.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.redoButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual		toItem:nil					attribute:NSLayoutAttributeNotAnAttribute		multiplier:0.0 constant:30.0]];
 }
 
 - (void) textSwipe:(id) sender{
@@ -155,16 +202,15 @@ int const EXCLAM_SIZE = 36;
 }
 
 - (void) textViewDidChange:(UITextView *)textView{
-	[self clearError];
 	[self checkChanged];
 }
 
 - (void) errorChanged{
 	NSString* text = [[self getLogoModel] get];
 	ErrorObject* errorObj = (ErrorObject*)[[self getErrorModel] getVal:LOGO_ERROR_ERROR];
-	int k = 0;
-	int start = 0;
-	int end = 0;
+	NSInteger k = 0;
+	NSInteger start = 0;
+	NSInteger end = 0;
 	if(errorObj){
 		NSInteger intLine = [[errorObj getLine] integerValue];
 		NSArray* comps = [text componentsSeparatedByString:@"\n"];
@@ -194,9 +240,16 @@ int const EXCLAM_SIZE = 36;
 }
 
 - (void)textViewDidEndEditing:(UITextView*)textView{
+	[self editEnded];
+}
+
+- (void)editEnded{
+	[self errorChanged];
 	[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(triggerEdit) object:nil];
-	[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(triggerCheck) object:nil];
 	[self triggerEdit];
+	[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(triggerCheck) object:nil];
+	[self triggerCheck];
+	[self performSelector:@selector(errorChanged) withObject:self afterDelay:0.5];
 }
 
 - (void) triggerCheck{
@@ -260,7 +313,7 @@ int const EXCLAM_SIZE = 36;
 
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView{
 	self.scrollPos = scrollView.contentOffset.y;
-	[self textViewDidChange:self.logoText];
+	[self errorChanged];
 }
 
 -(void) dealloc{

@@ -9,8 +9,6 @@
 #import "ClickPlayCommand.h"
 #import "SymmNotifications.h"
 #import "PDrawingModel.h"
-#import "PMenuModel.h"
-#import "LogoErrorModel.h"
 
 @implementation ClickPlayCommand
 
@@ -22,10 +20,6 @@
 		[[self getEventDispatcher] dispatch:SYMM_NOTIF_STOP withData:nil];
 	}
 	else{
-		[[self getMenuModel] setVal:@NO forKey:MENU_SHOWN];
-		[[self getEventDispatcher] dispatch:SYMM_NOTIF_DISMISS_KEY withData:nil];
-		[[self getEventDispatcher] dispatch:SYMM_NOTIF_RESET withData:nil];
-		[[self getErrorModel] setVal:nil forKey:LOGO_ERROR_ERROR];
 		[[self getEventDispatcher] dispatch:SYMM_NOTIF_START withData:nil];
 	}
 }
@@ -33,15 +27,6 @@
 - (id<PDrawingModel>) getDrawingModel{
 	return [[JSObjection defaultInjector] getObject:@protocol(PDrawingModel)];
 }
-
-- (id<PMenuModel>) getMenuModel{
-	return [[JSObjection defaultInjector] getObject:@protocol(PMenuModel)];
-}
-
-- (id<PLogoErrorModel>) getErrorModel{
-	return [[JSObjection defaultInjector] getObject:@protocol(PLogoErrorModel)];
-}
-
 
 @end
 

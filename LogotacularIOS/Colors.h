@@ -7,8 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface Colors : NSObject
+
++ (UIColor*) getColorForString:(NSString*)name;
+
++(NSDictionary*) dictionary;
 
 @end
 

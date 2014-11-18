@@ -144,8 +144,8 @@
 	return item.customView.subviews[0];
 }
 
--(UIBarButtonItem*)getBarButtonItem: (NSString*) imageUrl withAction:(SEL)action{
-	UIBarButtonItem* item = [Appearance getBarButton:imageUrl];
+-(UIBarButtonItem*)getBarButtonItem: (NSString*) imageUrl withAction:(SEL)action andLabel:(NSString*)label andOffsetX:(NSInteger)offset{
+	UIBarButtonItem* item = [Appearance getBarButton:imageUrl withLabel:label andOffsetX:offset];
 	UIButton* btn = [self getBarButton:item];
 	[btn addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
 	return item;
@@ -156,7 +156,7 @@
 		[self.popController dismissPopoverAnimated:NO];
 		self.popController = nil;
 	}
-};
+}
 
 - (void) addPopover:(NSNotification*)notif{
 	UIView* exclam = (UIView*)notif.object;
@@ -170,11 +170,11 @@
 }
 
 -(void)addNavButtons{
-	self.listButton = [self getBarButtonItem:LIST_ICON withAction:@selector(onClickList)];
-	self.clearButton = [self getBarButtonItem:CLEAR_ICON withAction:@selector(onClickClear)];
-	self.redoButton = [self getBarButtonItem:REDO_ICON withAction:@selector(onClickRedo)];
-	self.undoButton = [self getBarButtonItem:UNDO_ICON withAction:@selector(onClickUndo)];
-	self.playButton = [self getBarButtonItem:PLAY_ICON withAction:@selector(onClickPlay)];
+	self.listButton = [self getBarButtonItem:LIST_ICON withAction:@selector(onClickList) andLabel:nil andOffsetX:30];
+	self.clearButton = [self getBarButtonItem:CLEAR_ICON withAction:@selector(onClickClear) andLabel:@"Clear" andOffsetX:0];
+	self.redoButton = [self getBarButtonItem:REDO_ICON withAction:@selector(onClickRedo) andLabel:nil andOffsetX:0];
+	self.undoButton = [self getBarButtonItem:UNDO_ICON withAction:@selector(onClickUndo) andLabel:nil andOffsetX:0];
+	self.playButton = [self getBarButtonItem:PLAY_ICON withAction:@selector(onClickPlay) andLabel:@"Play" andOffsetX:0];
 	self.navigationItem.leftBarButtonItems = @[self.listButton];
 	self.navigationItem.rightBarButtonItems = @[self.clearButton, self.redoButton, self.undoButton, self.playButton];
 }
@@ -302,8 +302,8 @@
 -(void)layoutMenu{
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.menuContainer attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.topLayoutGuide			attribute:NSLayoutAttributeBottom multiplier:1.0 constant:1.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.menuContainer attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.menuContainer attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil							attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:250.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.menuContainer attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil							attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:250.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.menuContainer attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil							attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:280.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.menuContainer attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil							attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:220.0]];
 }
 
 -(void)layoutPaint{

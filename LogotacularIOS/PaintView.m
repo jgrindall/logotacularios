@@ -12,8 +12,6 @@
 
 @interface PaintView ()
 
-@property CGPoint pos;
-@property float heading;
 @property UIView* bgView;
 @property UIImageView* blurView;
 @property UIImageView* catView;
@@ -28,20 +26,13 @@ CGContextRef cacheContext;
 - (instancetype)initWithFrame:(CGRect)frame{
 	self = [super initWithFrame:frame];
 	if (self) {
-		[self initTurtle];
 		[self addViews];
 	}
 	return self;
 }
 
 - (void) reset{
-	[self initTurtle];
 	[self.linesView reset];
-}
-
-- (void) initTurtle{
-	self.pos = CGPointMake(300, 250);
-	self.heading = 90;
 }
 
 - (void) addViews{
@@ -55,28 +46,12 @@ CGContextRef cacheContext;
 	self.blurView.contentMode = UIViewContentModeScaleAspectFill;
 }
 
-- (void) execute:(NSDictionary*) data{
-	NSString* name = data[@"name"];
-	NSNumber* amount = data[@"amount"];
-	if([name isEqualToString:@"fd"]){
-		[self drawLine:amount];
-	}
-	else if([name isEqualToString:@"rt"]){
-		[self turn:amount];
-	}
+- (void) drawLineFrom:(CGPoint)p0 to:(CGPoint)p1 withColor:(UIColor *)clr andThickness:(NSInteger)thickness{
+	[self.linesView drawLineFrom:p0 to:p1 withColor:clr andThickness:thickness];
 }
 
-- (void) turn:(NSNumber*) amount{
-	self.heading += [amount floatValue];
-}
-
-- (void) drawLine:(NSNumber*) amount{
-	float dx = cosf(self.heading*3.14159/180) * [amount floatValue];
-	float dy = sinf(self.heading*3.14159/180) * [amount floatValue];
-	CGPoint newPoint = CGPointMake(self.pos.x + dx, self.pos.y + dy);
-	UIColor* lineColor = [UIColor colorWithRed:(11.0/255.0) green:(76.0/255.0) blue:(60.0/255.0) alpha:1];
-	[self.linesView drawLineFrom:self.pos to:newPoint withColor:lineColor andThickness:3];
-	self.pos = CGPointMake(newPoint.x, newPoint.y);
+- (void) bg:(UIColor*)clr{
+	self.bgView.backgroundColor = clr;
 }
 
 @end

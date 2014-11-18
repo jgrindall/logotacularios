@@ -111,7 +111,7 @@
 }
 
 -(UIBarButtonItem*)getBarButtonItem: (NSString*) imageUrl withAction:(SEL)action{
-	UIBarButtonItem* item = [Appearance getBarButton:imageUrl];
+	UIBarButtonItem* item = [Appearance getBarButton:imageUrl withLabel:nil];
 	UIButton* btn = [self getBarButton:item];
 	[btn addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
 	return item;

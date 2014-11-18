@@ -16,6 +16,7 @@ extern NSString* const SYMM_NOTIF_CLICK_MENU;
 extern NSString* const SYMM_NOTIF_HIDE_MENU;
 extern NSString* const SYMM_NOTIF_CLICK_PLAY;
 extern NSString* const SYMM_NOTIF_START;
+extern NSString* const SYMM_NOTIF_PARSE;
 extern NSString* const SYMM_NOTIF_STOP;
 extern NSString* const SYMM_NOTIF_UNDO;
 extern NSString* const SYMM_NOTIF_RESET;

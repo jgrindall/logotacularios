@@ -29,6 +29,7 @@
 #import "ChangePageCommand.h"
 #import "PerformFileSetupCommand.h"
 #import "LoadFromHelpCommand.h"
+#import "StartCommand.h"
 
 @interface Commands : NSObject
 

@@ -28,11 +28,32 @@
 }
 
 + (UIColor*) bgColor{
-	return [UIColor colorWithRed:(252.0/255.0) green:(173.0/255.0) blue:(194.0/255.0) alpha:1];
+	float r;
+	float g;
+	float b;
+	
+	//r = 230.0;
+	//g = 126.0;
+	//b = 34.0;
+	
+	//r = 155;
+	//g = 89;
+	//b = 182;
+	
+	//r = 52;
+	//g = 152;
+	//b = 219;
+	
+	r = 231;
+	g = 76;
+	b = 60;
+	
+	
+	return [UIColor colorWithRed:(r/255.0) green:(g/255.0) blue:(b/255.0) alpha:1];
 }
 
 + (UIColor*) grayColor{
-	return [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.2];
+	return [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.4];
 }
 
 + (NSDictionary*) navTextAttributes{
@@ -53,16 +74,25 @@
     }
 }
 
-+ (UIBarButtonItem*) getBarButton:(NSString*) imageUrl{
++ (UIBarButtonItem*) getBarButton:(NSString*) imageUrl withLabel:(NSString*)label andOffsetX:(NSInteger)offset{
+	float w = 80;
+	float h = 30;
 	UIImage* img = [UIImage imageNamed:imageUrl];
 	UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
-	btn.bounds = CGRectMake(0, 0, 30, 30);
-	btn.frame = CGRectMake(-15, 0, 80, 30);
+	btn.bounds = CGRectMake(0, 0, w, h);
+	btn.frame = CGRectMake(-offset, 0, w, h);
+	if(label){
+		[btn setTitle:[NSString stringWithFormat:@" %@", label] forState:UIControlStateNormal];
+	}
 	[btn setImage:img forState:UIControlStateNormal];
-	UIView* container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
+	UIView* container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, w, h)];
 	[container addSubview:btn];
 	UIBarButtonItem* buttonItem = [[UIBarButtonItem alloc] initWithCustomView:container];
 	return buttonItem;
+}
+
++ (UIBarButtonItem*) getBarButton:(NSString*) imageUrl withLabel:(NSString*)label{
+	return [self getBarButton:imageUrl withLabel:label];
 }
 
 + (void) applyToolBarStyleInWindow:(UIWindow*) window{

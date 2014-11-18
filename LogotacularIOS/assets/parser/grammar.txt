@@ -76,26 +76,26 @@ sep* f5:callfnstmt sep*
 return {type:"insidestmt", children:[f5]};
 }
 
-penupstmt = sep* 'penup' sep* '(' sep* ')' eoline
+penupstmt = sep* 'penup' eoline
 {
 return {"type":"penupstmt"};
 }
 
-pendownstmt = sep* ('pendown' / 'Pendown') sep* '(' sep* ')' eoline
+pendownstmt = sep* 'pendown' eoline
 {
 return {"type":"pendownstmt"};
 }
 
-colorstmt = sep* ('color' / 'Color')  sep* '(' sep* c:color sep* ')' eoline
+colorstmt = sep* 'color' sep* c:color eoline
 {
 return {"type":"colorstmt", "color":c};
 }
-bgstmt = sep* ('bg' / 'Bg')  sep* '(' sep* c:color sep* ')' eoline
+bgstmt = sep* 'bg' sep* c:color eoline
 {
 return {"type":"bgstmt", "color":c};
 }
 
-thickstmt = sep* ('thickness'/'thick'/'Thick'/'Thickness')  sep* '(' sep* e:expression sep* ')' eoline
+thickstmt = sep* 'thick'  sep* e:expression eoline
 {
 return {"type":"thickstmt", "children":[e]};
 }
@@ -222,7 +222,7 @@ expressionspace = sep* e:expression ' '
 return e;
 }
 
-keyword = 'to' / 'fd' / 'rt' / 'end'
+keyword = 'to' / 'fd' / 'rt' / 'end' / 'penup' / 'pendown' / 'color' / 'bg' / 'thick'
 
 fnname = !keyword c0:([a-zA-Z])+ c1:[a-zA-Z0-9_]*
 {

@@ -27,7 +27,8 @@ typedef NS_ENUM(NSInteger, SymmFontSizes)  {
 + (NSDictionary*) navTextAttributes;
 + (UIFont*) monospaceFontOfSize:(SymmFontSizes)s;
 + (UIFont*) fontOfSize:(SymmFontSizes)s;
-+ (UIBarButtonItem*) getBarButton:(NSString*) imageUrl;
++ (UIBarButtonItem*) getBarButton:(NSString*) imageUrl withLabel:(NSString*)label;
++ (UIBarButtonItem*) getBarButton:(NSString*) imageUrl withLabel:(NSString*)label andOffsetX:(NSInteger) offset;
 + (UIColor*) bgColor;
 + (UIColor*) grayColor;
 

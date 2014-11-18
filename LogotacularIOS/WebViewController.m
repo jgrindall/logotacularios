@@ -29,7 +29,7 @@
 }
 
 - (void) addListeners{
-	[[self getEventDispatcher] addListener:SYMM_NOTIF_START toFunction:@selector(draw) withContext:self];
+	[[self getEventDispatcher] addListener:SYMM_NOTIF_PARSE toFunction:@selector(parse) withContext:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_SYNTAX_CHECK toFunction:@selector(check) withContext:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_STOP toFunction:@selector(stop) withContext:self];
 }
@@ -55,7 +55,7 @@
 
 - (void) iosCallback:(NSDictionary*) jsonObj{
 	if ([jsonObj isKindOfClass:[NSDictionary class]]){
-		//NSLog(@">>  ios %@ \n\n <<<< ", jsonObj);
+		NSLog(@">>  ios %@ \n\n <<<< ", jsonObj);
 		NSDictionary* data = jsonObj[@"data"];
 		NSDictionary* error = jsonObj[@"error"];
 		NSDictionary* syntaxError = jsonObj[@"syntaxerror"];
@@ -129,7 +129,7 @@
 	return escapedString;
 }
 
-- (void) draw{
+- (void) parse{
 	NSString* logo = [[self getLogoModel] get];
 	logo = [self clean:logo];
 	NSLog(@"draw %@", logo);
@@ -152,7 +152,7 @@
 }
 
 - (void) removeListeners{
-	[[self getEventDispatcher] removeListener:SYMM_NOTIF_START toFunction:@selector(draw) withContext:self];
+	[[self getEventDispatcher] removeListener:SYMM_NOTIF_PARSE toFunction:@selector(parse) withContext:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_STOP toFunction:@selector(stop) withContext:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_SYNTAX_CHECK toFunction:@selector(check) withContext:self];
 }

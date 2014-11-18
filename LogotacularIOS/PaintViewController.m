@@ -10,6 +10,8 @@
 #import "PaintView.h"
 #import "SymmNotifications.h"
 #import "PScreenGrabModel.h"
+#import "PTurtleModel.h"
+#import "Colors.h"
 
 @interface PaintViewController ()
 
@@ -19,6 +21,14 @@
 @end
 
 @implementation PaintViewController
+
+NSString* const FD_KEYWORD				= @"fd";
+NSString* const RT_KEYWORD				= @"rt";
+NSString* const PENUP_KEYWORD			= @"penup";
+NSString* const PENDOWN_KEYWORD			= @"pendown";
+NSString* const BG_KEYWORD				= @"bg";
+NSString* const COLOR_KEYWORD			= @"color";
+NSString* const THICK_KEYWORD			= @"thick";
 
 - (instancetype) init{
 	self = [super init];
@@ -38,6 +48,10 @@
 
 - (id<PScreenGrabModel>) getScreenGrabModel{
 	return [[JSObjection defaultInjector] getObject:@protocol(PScreenGrabModel)];
+}
+
+- (id<PTurtleModel>) getTurtleModel{
+	return [[JSObjection defaultInjector] getObject:@protocol(PTurtleModel)];
 }
 
 - (void) grab{
@@ -76,9 +90,58 @@
 	
 }
 
+- (void) turn:(NSNumber*) amount{
+	[[self getTurtleModel] rotateBy:[amount floatValue]];
+}
+
+- (void) bg:(NSString*) clrName{
+	[self.paintView bg:[Colors getColorForString:clrName]];
+}
+
+- (void) color:(NSString*) clrName{
+	UIColor* clr = [Colors getColorForString:clrName];
+	[[self getTurtleModel] setVal:clr forKey:TURTLE_COLOR];
+}
+
+- (void) thick:(NSNumber*) amount{
+	[[self getTurtleModel] setVal:amount forKey:TURTLE_PEN_THICK];
+}
+
+- (void) fd:(NSNumber*) amount{
+	CGPoint p0 = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
+	[[self getTurtleModel] moveFdBy:[amount floatValue]];
+	if([[[self getTurtleModel] getVal:TURTLE_PEN_DOWN] boolValue]){
+		CGPoint p1 = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
+		NSNumber* thick = [[self getTurtleModel] getVal:TURTLE_PEN_THICK];
+		UIColor* clr = [[self getTurtleModel] getVal:TURTLE_COLOR];
+		[self.paintView drawLineFrom:p0 to:p1 withColor:clr andThickness:[thick integerValue]];
+	}
+}
+
 - (void) executeCommand:(NSNotification*)notif{
 	NSDictionary* dic = notif.object;
-	[self.paintView execute:dic];
+	NSString* name = (NSString*)dic[@"name"];
+	if([name isEqualToString:FD_KEYWORD]){
+		[self fd:(NSNumber*)dic[@"amount"]];
+	}
+	else if([name isEqualToString:RT_KEYWORD]){
+		[self turn:(NSNumber*)dic[@"amount"]];
+	}
+	else if([name isEqualToString:BG_KEYWORD]){
+		[self bg:(NSString*)dic[@"color"]];
+	}
+	else if([name isEqualToString:COLOR_KEYWORD]){
+		[self color:(NSString*)dic[@"color"]];
+	}
+	else if([name isEqualToString:THICK_KEYWORD]){
+		[self thick:(NSNumber*)dic[@"amount"]];
+	}
+	else if([name isEqualToString:PENUP_KEYWORD]){
+		[[self getTurtleModel] setVal:[NSNumber numberWithBool:NO] forKey:TURTLE_PEN_DOWN];
+	}
+	else if([name isEqualToString:PENDOWN_KEYWORD]){
+		[[self getTurtleModel] setVal:[NSNumber numberWithBool:YES] forKey:TURTLE_PEN_DOWN];
+	}
 }
 
 - (void) layoutPaint{

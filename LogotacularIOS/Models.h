@@ -25,6 +25,8 @@
 #import "ScreenGrabModel.h"
 #import "PMoreLessModel.h"
 #import "MoreLessModel.h"
+#import "PTurtleModel.h"
+#import "TurtleModel.h"
 
 @interface Models
 

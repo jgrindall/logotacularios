@@ -49,14 +49,15 @@ CGContextRef cacheContext;
 	return YES;
 }
 
-- (void) drawLineFrom:(CGPoint)fromPos to:(CGPoint) toPos withColor:(UIColor*) clr andThickness:(int)thickness {
-	float p = 2.0;
+- (void) drawLineFrom:(CGPoint)fromPos to:(CGPoint) toPos withColor:(UIColor*) clr andThickness:(NSInteger)thickness {
 	CGContextSetStrokeColorWithColor(cacheContext, [clr CGColor]);
 	CGContextSetLineCap(cacheContext, kCGLineCapRound);
+	NSLog(@"thick %i", thickness);
 	CGContextSetLineWidth(cacheContext, thickness);
 	CGContextMoveToPoint(cacheContext, fromPos.x, fromPos.y);
 	CGContextAddLineToPoint(cacheContext, toPos.x, toPos.y);
 	CGContextStrokePath(cacheContext);
+	float p = thickness/2.0;
 	[self setNeedsDisplayInRect:CGRectUnion(CGRectMake(fromPos.x - p, fromPos.y - p, 2*p, 2*p), CGRectMake(toPos.x - p, toPos.y - p, 2*p, 2*p))];
 }
 

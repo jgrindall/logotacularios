@@ -59,6 +59,7 @@
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_SYNTAX_ERROR toCommandClass:[SyntaxErrorCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_CHANGE_PAGE toCommandClass:[ChangePageCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_PERFORM_FILE_SETUP toCommandClass:[PerformFileSetupCommand class]];
+	[[self getCommandMap] mapEventName:SYMM_NOTIF_START toCommandClass:[StartCommand class]];
 }
 
 - (id<PCommandMap>)getCommandMap{

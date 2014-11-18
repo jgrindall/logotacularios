@@ -10,6 +10,14 @@
 
 @interface PaintViewController : BaseViewController
 
+extern NSString* const FD_KEYWORD;
+extern NSString* const RT_KEYWORD;
+extern NSString* const PENUP_KEYWORD;
+extern NSString* const PENDOWN_KEYWORD;
+extern NSString* const BG_KEYWORD;
+extern NSString* const COLOR_KEYWORD;
+extern NSString* const THICK_KEYWORD;
+
 - (void) reset;
 
 - (void) executeCommand:(NSDictionary*)dic;
