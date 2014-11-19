@@ -18,6 +18,7 @@
 #import "Assets.h"
 #import "PLogoErrorModel.h"
 #import "ErrorObject.h"
+#import "AlertLayout.h"
 
 @interface ErrorPopUpViewController ()
 
@@ -31,7 +32,7 @@
 
 - (void) viewDidLoad{
 	[super viewDidLoad];
-	self.preferredContentSize = CGSizeMake(300, 200);
+	self.preferredContentSize = CGSizeMake(ALERT_LAYOUT_WIDTH, ALERT_LAYOUT_HEIGHT);
 	[self addButtons];
 	[self layoutButtons];
 	[self addText];

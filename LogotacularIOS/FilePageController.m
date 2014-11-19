@@ -16,6 +16,7 @@
 #import "Appearance.h"
 #import "FileBrowserModel.h"
 #import "SymmNotifications.h"
+#import "FileLayout.h"
 
 @interface FilePageController ()
 
@@ -133,9 +134,9 @@
 	self.view.backgroundColor = [Appearance bgColor];
 	[self.view addSubview:self.filesContainer];
 	UICollectionViewFlowLayout* aFlowLayout = [[UICollectionViewFlowLayout alloc] init];
-	[aFlowLayout setItemSize:CGSizeMake(100, 100)];
+	[aFlowLayout setItemSize:CGSizeMake(FILE_LAYOUT_CELL_WIDTH, FILE_LAYOUT_CELL_HEIGHT)];
 	[aFlowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-	aFlowLayout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
+	aFlowLayout.sectionInset = UIEdgeInsetsMake(FILE_LAYOUT_CELL_PADDING, FILE_LAYOUT_CELL_PADDING, FILE_LAYOUT_CELL_PADDING, FILE_LAYOUT_CELL_PADDING);
 	self.filesController = [[FilesController alloc] initWithCollectionViewLayout:aFlowLayout withCellIdent:@"FileCell" withCellClass:[FileCell class]];
 	[self addChildInto:self.filesContainer withController:self.filesController];
 	[self layoutFiles];

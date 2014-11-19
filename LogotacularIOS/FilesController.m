@@ -13,6 +13,7 @@
 #import <Objection/Objection.h>
 #import "PFileListModel.h"
 #import "FileLoader.h"
+#import "FileLayout.h"
 
 @interface FilesController ()
 
@@ -83,21 +84,21 @@
 	NSString* imagePath = [[FileLoader sharedInstance] getImagePathFromPath:url];
 	cell.image = [UIImage imageWithContentsOfFile:imagePath];
 	cell.filename = [[FileLoader sharedInstance] getFileNameFromPath:url];
-	cell.alpha = ([self getSelected] == indexPath.item ? 1 : 0.4);
+	cell.isSelected = ([self getSelected] == indexPath.item);
 	cell.clipsToBounds = YES;
 	return cell;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionView *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-	return 10;
+	return FILE_LAYOUT_CELL_PADDING;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionView *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-	return 10;
+	return FILE_LAYOUT_CELL_PADDING;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return CGSizeMake(200, 200);
+	return CGSizeMake(FILE_LAYOUT_CELL_WIDTH, FILE_LAYOUT_CELL_HEIGHT);
 }
 
 - (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{

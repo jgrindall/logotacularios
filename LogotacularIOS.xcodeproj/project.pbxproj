@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		269A647FA28B48F688FF8E8B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 458B6A11F0F949A0B2010544 /* libPods.a */; };
+		522E91C71A1CA6C2000AB933 /* FileLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E91C61A1CA6C2000AB933 /* FileLayout.m */; };
+		522E91CA1A1CA9FC000AB933 /* MenuLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E91C91A1CA9FC000AB933 /* MenuLayout.m */; };
+		522E91CD1A1CAA60000AB933 /* AlertLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E91CC1A1CAA60000AB933 /* AlertLayout.m */; };
 		52420E221A1AD1D80069D4AC /* TurtleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52420E211A1AD1D80069D4AC /* TurtleModel.m */; };
 		52420E271A1ADF710069D4AC /* StartCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52420E261A1ADF710069D4AC /* StartCommand.m */; };
 		525167E419FFC19F00814B16 /* Assets.m in Sources */ = {isa = PBXBuildFile; fileRef = 525167E319FFC19F00814B16 /* Assets.m */; };
@@ -107,6 +110,12 @@
 
 /* Begin PBXFileReference section */
 		458B6A11F0F949A0B2010544 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		522E91C51A1CA6C2000AB933 /* FileLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileLayout.h; sourceTree = "<group>"; };
+		522E91C61A1CA6C2000AB933 /* FileLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileLayout.m; sourceTree = "<group>"; };
+		522E91C81A1CA9FC000AB933 /* MenuLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuLayout.h; sourceTree = "<group>"; };
+		522E91C91A1CA9FC000AB933 /* MenuLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuLayout.m; sourceTree = "<group>"; };
+		522E91CB1A1CAA60000AB933 /* AlertLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertLayout.h; sourceTree = "<group>"; };
+		522E91CC1A1CAA60000AB933 /* AlertLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertLayout.m; sourceTree = "<group>"; };
 		52420E201A1AD1D80069D4AC /* TurtleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TurtleModel.h; sourceTree = "<group>"; };
 		52420E211A1AD1D80069D4AC /* TurtleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TurtleModel.m; sourceTree = "<group>"; };
 		52420E241A1AD1F00069D4AC /* PTurtleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTurtleModel.h; sourceTree = "<group>"; };
@@ -492,6 +501,8 @@
 				52815C6D1A04F397005AFA93 /* FilesController.m */,
 				527D42E31A0ABBE3008AE82A /* FilePageController.h */,
 				527D42E41A0ABBE3008AE82A /* FilePageController.m */,
+				522E91C51A1CA6C2000AB933 /* FileLayout.h */,
+				522E91C61A1CA6C2000AB933 /* FileLayout.m */,
 			);
 			name = Files;
 			sourceTree = "<group>";
@@ -529,6 +540,8 @@
 			children = (
 				5297CF0C1A01263200CC5CB3 /* MenuViewController.h */,
 				5297CF0D1A01263200CC5CB3 /* MenuViewController.m */,
+				522E91C81A1CA9FC000AB933 /* MenuLayout.h */,
+				522E91C91A1CA9FC000AB933 /* MenuLayout.m */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -783,6 +796,8 @@
 				52CBC9B91A0D2B1300C229C8 /* AbstractAlertController.m */,
 				52CBC9BF1A0D2EBD00C229C8 /* AlertManager.h */,
 				52CBC9C01A0D2EBD00C229C8 /* AlertManager.m */,
+				522E91CB1A1CAA60000AB933 /* AlertLayout.h */,
+				522E91CC1A1CAA60000AB933 /* AlertLayout.m */,
 			);
 			name = Alert;
 			sourceTree = "<group>";
@@ -1028,6 +1043,7 @@
 				52B228A11A00E75C001CC355 /* DrawingModel.m in Sources */,
 				52CC89301A1681810046615F /* LoadFromHelpCommand.m in Sources */,
 				527D42EB1A0ABED5008AE82A /* FileListModel.m in Sources */,
+				522E91CD1A1CAA60000AB933 /* AlertLayout.m in Sources */,
 				52CF4A0B1A103AF2003197B2 /* HelpPageViewController.m in Sources */,
 				52B274161A115D2D00D3EA3B /* HelpSectionViewController.m in Sources */,
 				527D42F41A0ADAE6008AE82A /* PerformSaveCommand.m in Sources */,
@@ -1052,6 +1068,7 @@
 				52B512301A13637700B14D0D /* ErrorPopUpViewController.m in Sources */,
 				52B44F011A0BC93D00B99FD2 /* TextEditedCommand.m in Sources */,
 				527D42F11A0AD75D008AE82A /* PerformOpenCommand.m in Sources */,
+				522E91C71A1CA6C2000AB933 /* FileLayout.m in Sources */,
 				52B5B35919FD7E1400EF531F /* SKBounceAnimation.m in Sources */,
 				527D42E81A0ABE38008AE82A /* LoadFilesCommand.m in Sources */,
 				52B5B35819FD7E1400EF531F /* PaintView.m in Sources */,
@@ -1060,6 +1077,7 @@
 				52CF4A121A103CB2003197B2 /* ClickHelpCommand.m in Sources */,
 				5257F3491A01356C00757C77 /* UndoCommand.m in Sources */,
 				5272DE4419FE5776006E717F /* InjectionModule.m in Sources */,
+				522E91CA1A1CA9FC000AB933 /* MenuLayout.m in Sources */,
 				5287B9A71A1B7B4300082DE1 /* ClickSaveAsCommand.m in Sources */,
 				52815C751A050EB1005AFA93 /* ClickOpenCommand.m in Sources */,
 				52CBC9C51A0D33A300C229C8 /* SaveCurrentViewController.m in Sources */,

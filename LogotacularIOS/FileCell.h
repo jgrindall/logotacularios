@@ -12,5 +12,6 @@
 
 @property (nonatomic) UIImage* image;
 @property (nonatomic) NSString* filename;
+@property (nonatomic) BOOL isSelected;
 
 @end

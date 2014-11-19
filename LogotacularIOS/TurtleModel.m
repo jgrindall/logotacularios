@@ -8,6 +8,7 @@
 
 #import "TurtleModel.h"
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 
 @implementation TurtleModel
 
@@ -24,7 +25,15 @@ NSString* const TURTLE_POS = @"turtle_pos";
 	[self setVal:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1] forKey:TURTLE_BG_COLOR];
 	[self setVal:[NSNumber numberWithInteger:3] forKey:TURTLE_PEN_THICK];
 	[self setVal:[NSNumber numberWithInteger:0] forKey:TURTLE_HEADING];
-	[self setVal:[NSValue valueWithCGPoint:CGPointMake(400, 300)] forKey:TURTLE_POS];
+	CGPoint centre = [self getCentre];
+	[self setVal:[NSValue valueWithCGPoint:centre] forKey:TURTLE_POS];
+}
+
+- (CGPoint) getCentre{
+	AppDelegate* delegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+	UINavigationController* presenter = [delegate navigationController];
+	CGSize size = presenter.view.frame.size;
+	return CGPointMake(size.width/2.0, size.height/2.0);
 }
 
 - (void) reset{
