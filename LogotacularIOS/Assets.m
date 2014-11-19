@@ -15,6 +15,7 @@ NSString* const UNDO_ICON =			@"assets/icons/undo.png";
 NSString* const REDO_ICON =			@"assets/icons/redo.png";
 NSString* const BULB_ICON =			@"assets/icons/bulb.png";
 NSString* const FLOPPY_ICON =		@"assets/icons/save.png";
+NSString* const FLOPPY_ICON_AS =	@"assets/icons/saveas.png";
 NSString* const FOLDER_ICON =		@"assets/icons/load.png";
 NSString* const LIST_ICON =			@"assets/icons/list.png";
 NSString* const PLAY_ICON =			@"assets/icons/play.png";

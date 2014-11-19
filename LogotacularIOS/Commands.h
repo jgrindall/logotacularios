@@ -18,6 +18,7 @@
 #import "LoadFilesCommand.h"
 #import "PerformOpenCommand.h"
 #import "ClickSaveCommand.h"
+#import "ClickSaveAsCommand.h"
 #import "PerformDelCommand.h"
 #import "PerformSaveCommand.h"
 #import "TextEditedCommand.h"
@@ -30,6 +31,7 @@
 #import "PerformFileSetupCommand.h"
 #import "LoadFromHelpCommand.h"
 #import "StartCommand.h"
+#import "PerformSaveAsCommand.h"
 
 @interface Commands : NSObject
 

@@ -92,7 +92,7 @@
 }
 
 + (UIBarButtonItem*) getBarButton:(NSString*) imageUrl withLabel:(NSString*)label{
-	return [self getBarButton:imageUrl withLabel:label];
+	return [self getBarButton:imageUrl withLabel:label andOffsetX:0];
 }
 
 + (void) applyToolBarStyleInWindow:(UIWindow*) window{

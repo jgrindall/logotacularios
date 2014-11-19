@@ -25,6 +25,8 @@
 #import "SaveCurrentViewController.h"
 #import "ToastUtils.h"
 #import "ErrorPopUpViewController.h"
+#import "FilenameAsViewController.h"
+#import "PTextVisibleModel.h"
 
 @interface DrawPageViewController ()
 
@@ -40,8 +42,6 @@
 @property AbstractAlertController* alert;
 @property UIBarButtonItem* playButton;
 @property UIBarButtonItem* listButton;
-@property UIBarButtonItem* undoButton;
-@property UIBarButtonItem* redoButton;
 @property UIBarButtonItem* clearButton;
 
 @end
@@ -80,9 +80,9 @@
 
 - (void) addListeners{
 	[[self getFileModel] addGlobalListener:@selector(fileTitleChanged:) withTarget:self];
-	[[self getLogoModel] addGlobalListener:@selector(logoChanged) withTarget:self];
 	[[self getDrawingModel] addListener:@selector(drawingChanged) forKey:DRAWING_ISDRAWING withTarget:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_SHOW_FILENAME toFunction:@selector(showFilename) withContext:self];
+	[[self getEventDispatcher] addListener:SYMM_NOTIF_SHOW_FILENAME_AS toFunction:@selector(showFilenameAs) withContext:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_CHECK_SAVE toFunction:@selector(showCheckSave) withContext:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_SHOW_POPOVER toFunction:@selector(addPopover:) withContext:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_HIDE_POPOVER toFunction:@selector(hidePopover:) withContext:self];
@@ -98,6 +98,11 @@
 	self.alert = [AlertManager addAlert:[FilenameViewController class] intoController:self withDelegate:self withOptions:options];
 }
 
+- (void) showFilenameAs{
+	NSArray* options = @[@"Ok", TICK_ICON, @"Cancel", CLEAR_ICON];
+	self.alert = [AlertManager addAlert:[FilenameAsViewController class] intoController:self withDelegate:self withOptions:options];
+}
+
 - (id<PFileModel>) getFileModel{
 	return [[JSObjection defaultInjector] getObject:@protocol(PFileModel)];
 }
@@ -110,10 +115,6 @@
 	return [[JSObjection defaultInjector] getObject:@protocol(PLogoModel)];
 }
 
-- (void) logoChanged{
-	[self updateUndoRedo];
-}
-
 - (void) drawingChanged{
 	BOOL drawing = [[[self getDrawingModel] getVal:DRAWING_ISDRAWING] boolValue];
 	if(drawing){
@@ -123,21 +124,6 @@
 		[[self getBarButton:self.playButton] setImage:[UIImage imageNamed:PLAY_ICON] forState:UIControlStateNormal];
 	}
 	[[self getBarButton:self.listButton] setEnabled:!drawing];
-	[self updateUndoRedo];
-}
-
-- (void) updateUndoRedo{
-	BOOL drawing = [[[self getDrawingModel] getVal:DRAWING_ISDRAWING] boolValue];
-	[[self getBarButton:self.undoButton] setEnabled:(!drawing && [self undoEnabled])];
-	[[self getBarButton:self.redoButton] setEnabled:(!drawing && [self redoEnabled])];
-}
-
-- (BOOL) undoEnabled{
-	return [[self getLogoModel] undoEnabled];
-}
-
-- (BOOL) redoEnabled{
-	return [[self getLogoModel] redoEnabled];
 }
 
 -(UIButton*)getBarButton: (UIBarButtonItem*) item{
@@ -172,11 +158,9 @@
 -(void)addNavButtons{
 	self.listButton = [self getBarButtonItem:LIST_ICON withAction:@selector(onClickList) andLabel:nil andOffsetX:30];
 	self.clearButton = [self getBarButtonItem:CLEAR_ICON withAction:@selector(onClickClear) andLabel:@"Clear" andOffsetX:0];
-	self.redoButton = [self getBarButtonItem:REDO_ICON withAction:@selector(onClickRedo) andLabel:nil andOffsetX:0];
-	self.undoButton = [self getBarButtonItem:UNDO_ICON withAction:@selector(onClickUndo) andLabel:nil andOffsetX:0];
 	self.playButton = [self getBarButtonItem:PLAY_ICON withAction:@selector(onClickPlay) andLabel:@"Play" andOffsetX:0];
 	self.navigationItem.leftBarButtonItems = @[self.listButton];
-	self.navigationItem.rightBarButtonItems = @[self.clearButton, self.redoButton, self.undoButton, self.playButton];
+	self.navigationItem.rightBarButtonItems = @[self.clearButton, self.playButton];
 }
 
 - (void) addWeb{
@@ -217,11 +201,15 @@
 	CGPoint location = [touch locationInView:self.view];
 	int dx = self.view.frame.size.width - location.x;
 	if(abs(dx < 80)){
-		[self.textViewController show];
+		[[self getTextVisModel] setVal:[NSNumber numberWithBool:YES] forKey:TEXT_VISIBLE_VIS];
 	}
 	else{
 		[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_MENU withData:nil];
 	}
+}
+
+- (id<PTextVisibleModel>) getTextVisModel{
+	return [[JSObjection defaultInjector] getObject:@protocol(PTextVisibleModel)];
 }
 
 - (void) filenameClosed:(NSInteger)i withPayload:(id)payload{
@@ -233,6 +221,30 @@
 				if(ok){
 					[AlertManager removeAlert];
 					[[self getEventDispatcher] dispatch:SYMM_NOTIF_PERFORM_SAVE withData:name];
+				}
+				else{
+					[(FilenameViewController*)self.alert fileNameUsedError];
+				}
+			}
+			else{
+				[ToastUtils showToastInController:nil withMessage:[ToastUtils getFileNameErrorMessage] withType:TSMessageNotificationTypeError];
+			}
+		}];
+	}
+	else if(i == 1){
+		[AlertManager removeAlert];
+	}
+}
+
+- (void) filenameAsClosed:(NSInteger)i withPayload:(id)payload{
+	if(i == 0){
+		NSString* name = (NSString*)payload;
+		[[FileLoader sharedInstance] filenameOk:name withCallback:^(FileLoaderResults result, id data) {
+			if(result == FileLoaderResultOk){
+				BOOL ok = [data boolValue];
+				if(ok){
+					[AlertManager removeAlert];
+					[[self getEventDispatcher] dispatch:SYMM_NOTIF_PERFORM_SAVE_AS withData:name];
 				}
 				else{
 					[(FilenameViewController*)self.alert fileNameUsedError];
@@ -268,6 +280,9 @@
 	if([self.alert class] == [FilenameViewController class]){
 		[self filenameClosed:i withPayload:payload];
 	}
+	else if([self.alert class] == [FilenameAsViewController class]){
+		[self filenameAsClosed:i withPayload:payload];
+	}
 	else if([self.alert class] == [SaveCurrentViewController class]){
 		[self checkSaveClosed:i withPayload:payload];
 	}
@@ -275,14 +290,6 @@
 
 -(void)onClickList{
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_MENU withData:nil];
-}
-
--(void)onClickUndo{
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_UNDO withData:nil];
-}
-
--(void)onClickRedo{
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_REDO withData:nil];
 }
 
 -(void)onClickClear{
@@ -324,9 +331,9 @@
 - (void) removeListeners{
 	[[self getFileModel] removeGlobalListener:@selector(setTitle:) withTarget:self];
 	[[self getDrawingModel] removeListener:@selector(drawingChanged) forKey:DRAWING_ISDRAWING withTarget:self];
-	[[self getLogoModel] removeGlobalListener:@selector(logoChanged) withTarget:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_SHOW_FILENAME toFunction:@selector(showFilename) withContext:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_CHECK_SAVE toFunction:@selector(showCheckSave) withContext:self];
+	[[self getEventDispatcher] removeListener:SYMM_NOTIF_SHOW_FILENAME_AS toFunction:@selector(showFilenameAs) withContext:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_SHOW_POPOVER toFunction:@selector(addPopover:) withContext:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_HIDE_POPOVER toFunction:@selector(hidePopover:) withContext:self];
 }

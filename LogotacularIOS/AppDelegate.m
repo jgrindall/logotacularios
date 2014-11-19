@@ -51,6 +51,7 @@
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLICK_SAVE toCommandClass:[ClickSaveCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_PERFORM_DEL toCommandClass:[PerformDelCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_PERFORM_SAVE toCommandClass:[PerformSaveCommand class]];
+	[[self getCommandMap] mapEventName:SYMM_NOTIF_PERFORM_SAVE_AS toCommandClass:[PerformSaveAsCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_TEXT_EDITED toCommandClass:[TextEditedCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLICK_NEW toCommandClass:[ClickNewCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_PERFORM_NEW toCommandClass:[PerformNewCommand class]];
@@ -60,6 +61,7 @@
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_CHANGE_PAGE toCommandClass:[ChangePageCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_PERFORM_FILE_SETUP toCommandClass:[PerformFileSetupCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_START toCommandClass:[StartCommand class]];
+	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLICK_SAVE_AS toCommandClass:[ClickSaveAsCommand class]];
 }
 
 - (id<PCommandMap>)getCommandMap{

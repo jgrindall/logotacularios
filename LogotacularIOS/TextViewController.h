@@ -14,7 +14,4 @@ extern int const TEXT_PADDING;
 extern int const HORIZ_PADDING;
 extern int const EXCLAM_SIZE;
 
-- (void) show;
-- (void) hide;
-
 @end

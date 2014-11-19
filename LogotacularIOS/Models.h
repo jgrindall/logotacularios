@@ -25,6 +25,8 @@
 #import "ScreenGrabModel.h"
 #import "PTurtleModel.h"
 #import "TurtleModel.h"
+#import "PTextVisibleModel.h"
+#import "TextVisibleModel.h"
 
 @interface Models
 

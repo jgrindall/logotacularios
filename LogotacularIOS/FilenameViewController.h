@@ -6,11 +6,8 @@
 //  Copyright (c) 2014 jgrindall. All rights reserved.
 //
 
-#import "AbstractAlertController_protected.h"
-#import "PLogoAlertDelegate.h"
+#import "AbstractFileNameViewController.h"
 
-@interface FilenameViewController : AbstractAlertController <UITextFieldDelegate>
-
-- (void) fileNameUsedError;
+@interface FilenameViewController : AbstractFileNameViewController
 
 @end

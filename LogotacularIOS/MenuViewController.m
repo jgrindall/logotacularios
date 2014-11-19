@@ -18,6 +18,7 @@
 @property UIButton* fileButton;
 @property UIButton* helpButton;
 @property UIButton* saveButton;
+@property UIButton* saveAsButton;
 @property UIButton* openButton;
 @property UIButton* refButton;
 @property UIButton* egButton;
@@ -46,15 +47,18 @@
 }
 
 - (void) addButtons{
-	self.fileButton = [self getButton:ADD_ICON withAction:@selector(onClickNew)				withLabel:@" New file" atNum:0];
-	self.helpButton = [self getButton:HELP_ICON withAction:@selector(onClickHelp)			withLabel:@" About / help" atNum:2];
-	self.saveButton = [self getButton:FLOPPY_ICON withAction:@selector(onClickSave)			withLabel:@" Save" atNum:1];
-	self.openButton = [self getButton:BRIEFCASE_ICON withAction:@selector(onClickOpen)		withLabel:@" Your files" atNum:3];
-	self.refButton = [self getButton:BOOK_ICON withAction:@selector(onClickRef)				withLabel:@" Quick reference" atNum:5];
-	self.egButton = [self getButton:BULB_ICON withAction:@selector(onClickEg)				withLabel:@" Examples" atNum:4];
+	self.fileButton = [self getButton:ADD_ICON withAction:@selector(onClickNew)				withLabel:@" New file"			atNum:0];
+	self.saveButton = [self getButton:FLOPPY_ICON withAction:@selector(onClickSave)			withLabel:@" Save"				atNum:1];
+	self.saveAsButton = [self getButton:FLOPPY_ICON_AS withAction:@selector(onClickSaveAs)	withLabel:@" Save as"			atNum:2];
+	self.helpButton = [self getButton:HELP_ICON withAction:@selector(onClickHelp)			withLabel:@" About / help"		atNum:3];
+	self.openButton = [self getButton:BRIEFCASE_ICON withAction:@selector(onClickOpen)		withLabel:@" Your files"		atNum:4];
+	self.egButton = [self getButton:BULB_ICON withAction:@selector(onClickEg)				withLabel:@" Examples"			atNum:5];
+	self.refButton = [self getButton:BOOK_ICON withAction:@selector(onClickRef)				withLabel:@" Quick reference"	atNum:6];
+	
 	[self.view addSubview:self.fileButton];
 	[self.view addSubview:self.helpButton];
 	[self.view addSubview:self.saveButton];
+	[self.view addSubview:self.saveAsButton];
 	[self.view addSubview:self.openButton];
 	[self.view addSubview:self.refButton];
 	[self.view addSubview:self.egButton];
@@ -86,6 +90,12 @@
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_DISMISS_KEY withData:nil];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_MENU withData:nil];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_SAVE withData:nil];
+}
+
+- (void) onClickSaveAs{
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_DISMISS_KEY withData:nil];
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_MENU withData:nil];
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_SAVE_AS withData:nil];
 }
 
 - (void) onClickOpen{

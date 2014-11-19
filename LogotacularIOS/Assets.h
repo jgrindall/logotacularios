@@ -15,6 +15,7 @@ extern NSString* const UNDO_ICON;
 extern NSString* const REDO_ICON;
 extern NSString* const BULB_ICON;
 extern NSString* const FLOPPY_ICON;
+extern NSString* const FLOPPY_ICON_AS;
 extern NSString* const FOLDER_ICON;
 extern NSString* const LIST_ICON;
 extern NSString* const PLAY_ICON;

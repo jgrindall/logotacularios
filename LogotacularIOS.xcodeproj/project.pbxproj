@@ -39,6 +39,12 @@
 		52815C6E1A04F397005AFA93 /* FilesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52815C6D1A04F397005AFA93 /* FilesController.m */; };
 		52815C721A04F3CC005AFA93 /* FileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52815C711A04F3CC005AFA93 /* FileCell.m */; };
 		52815C751A050EB1005AFA93 /* ClickOpenCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52815C741A050EB1005AFA93 /* ClickOpenCommand.m */; };
+		5287B9A71A1B7B4300082DE1 /* ClickSaveAsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5287B9A61A1B7B4300082DE1 /* ClickSaveAsCommand.m */; };
+		5287B9AA1A1BB30D00082DE1 /* AbstractFileNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5287B9A91A1BB30D00082DE1 /* AbstractFileNameViewController.m */; };
+		5287B9AD1A1BBAE600082DE1 /* FilenameAsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5287B9AC1A1BBAE600082DE1 /* FilenameAsViewController.m */; };
+		5287B9B01A1BBBE800082DE1 /* PerformSaveAsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5287B9AF1A1BBBE800082DE1 /* PerformSaveAsCommand.m */; };
+		5287B9B31A1BBC3800082DE1 /* AbstractPerformSaveCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5287B9B21A1BBC3800082DE1 /* AbstractPerformSaveCommand.m */; };
+		5287B9BA1A1C1BC600082DE1 /* TextVisibleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5287B9B91A1C1BC600082DE1 /* TextVisibleModel.m */; };
 		5297CF061A01137100CC5CB3 /* PaintViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5297CF051A01137100CC5CB3 /* PaintViewController.m */; };
 		5297CF0A1A01240600CC5CB3 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5297CF091A01240600CC5CB3 /* WebViewController.m */; };
 		5297CF0E1A01263200CC5CB3 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5297CF0D1A01263200CC5CB3 /* MenuViewController.m */; };
@@ -171,6 +177,20 @@
 		52815C711A04F3CC005AFA93 /* FileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileCell.m; sourceTree = "<group>"; };
 		52815C731A050EB1005AFA93 /* ClickOpenCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickOpenCommand.h; sourceTree = "<group>"; };
 		52815C741A050EB1005AFA93 /* ClickOpenCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickOpenCommand.m; sourceTree = "<group>"; };
+		5287B9A51A1B7B4300082DE1 /* ClickSaveAsCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickSaveAsCommand.h; sourceTree = "<group>"; };
+		5287B9A61A1B7B4300082DE1 /* ClickSaveAsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickSaveAsCommand.m; sourceTree = "<group>"; };
+		5287B9A81A1BB30D00082DE1 /* AbstractFileNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractFileNameViewController.h; sourceTree = "<group>"; };
+		5287B9A91A1BB30D00082DE1 /* AbstractFileNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractFileNameViewController.m; sourceTree = "<group>"; };
+		5287B9AB1A1BBAE600082DE1 /* FilenameAsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilenameAsViewController.h; sourceTree = "<group>"; };
+		5287B9AC1A1BBAE600082DE1 /* FilenameAsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilenameAsViewController.m; sourceTree = "<group>"; };
+		5287B9AE1A1BBBE800082DE1 /* PerformSaveAsCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerformSaveAsCommand.h; sourceTree = "<group>"; };
+		5287B9AF1A1BBBE800082DE1 /* PerformSaveAsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerformSaveAsCommand.m; sourceTree = "<group>"; };
+		5287B9B11A1BBC3800082DE1 /* AbstractPerformSaveCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractPerformSaveCommand.h; sourceTree = "<group>"; };
+		5287B9B21A1BBC3800082DE1 /* AbstractPerformSaveCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractPerformSaveCommand.m; sourceTree = "<group>"; };
+		5287B9B71A1BBCF900082DE1 /* AbstractPerformSaveCommand_protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AbstractPerformSaveCommand_protected.h; sourceTree = "<group>"; };
+		5287B9B81A1C1BC600082DE1 /* TextVisibleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextVisibleModel.h; sourceTree = "<group>"; };
+		5287B9B91A1C1BC600082DE1 /* TextVisibleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextVisibleModel.m; sourceTree = "<group>"; };
+		5287B9BC1A1C1BDE00082DE1 /* PTextVisibleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTextVisibleModel.h; sourceTree = "<group>"; };
 		5297CF041A01137100CC5CB3 /* PaintViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintViewController.h; sourceTree = "<group>"; };
 		5297CF051A01137100CC5CB3 /* PaintViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintViewController.m; sourceTree = "<group>"; };
 		5297CF081A01240600CC5CB3 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
@@ -358,6 +378,7 @@
 				52B228AA1A00ECC7001CC355 /* Logo */,
 				52B228AB1A00ECCB001CC355 /* Drawing */,
 				52B228AD1A00EE99001CC355 /* Models.h */,
+				5287B9BB1A1C1BC900082DE1 /* TextVisible */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -426,6 +447,13 @@
 				52CC892F1A1681810046615F /* LoadFromHelpCommand.m */,
 				52420E251A1ADF710069D4AC /* StartCommand.h */,
 				52420E261A1ADF710069D4AC /* StartCommand.m */,
+				5287B9A51A1B7B4300082DE1 /* ClickSaveAsCommand.h */,
+				5287B9A61A1B7B4300082DE1 /* ClickSaveAsCommand.m */,
+				5287B9AE1A1BBBE800082DE1 /* PerformSaveAsCommand.h */,
+				5287B9AF1A1BBBE800082DE1 /* PerformSaveAsCommand.m */,
+				5287B9B11A1BBC3800082DE1 /* AbstractPerformSaveCommand.h */,
+				5287B9B21A1BBC3800082DE1 /* AbstractPerformSaveCommand.m */,
+				5287B9B71A1BBCF900082DE1 /* AbstractPerformSaveCommand_protected.h */,
 				5257F36D1A01AA4F00757C77 /* Commands.h */,
 			);
 			name = Commands;
@@ -444,8 +472,12 @@
 		527D42FE1A0ADEC4008AE82A /* Filename */ = {
 			isa = PBXGroup;
 			children = (
+				5287B9A81A1BB30D00082DE1 /* AbstractFileNameViewController.h */,
+				5287B9A91A1BB30D00082DE1 /* AbstractFileNameViewController.m */,
 				527D42FB1A0ADEBF008AE82A /* FilenameViewController.h */,
 				527D42FC1A0ADEBF008AE82A /* FilenameViewController.m */,
+				5287B9AB1A1BBAE600082DE1 /* FilenameAsViewController.h */,
+				5287B9AC1A1BBAE600082DE1 /* FilenameAsViewController.m */,
 			);
 			name = Filename;
 			sourceTree = "<group>";
@@ -462,6 +494,16 @@
 				527D42E41A0ABBE3008AE82A /* FilePageController.m */,
 			);
 			name = Files;
+			sourceTree = "<group>";
+		};
+		5287B9BB1A1C1BC900082DE1 /* TextVisible */ = {
+			isa = PBXGroup;
+			children = (
+				5287B9B81A1C1BC600082DE1 /* TextVisibleModel.h */,
+				5287B9B91A1C1BC600082DE1 /* TextVisibleModel.m */,
+				5287B9BC1A1C1BDE00082DE1 /* PTextVisibleModel.h */,
+			);
+			name = TextVisible;
 			sourceTree = "<group>";
 		};
 		5297CF071A01137600CC5CB3 /* Paint */ = {
@@ -971,6 +1013,7 @@
 				52B274541A11785200D3EA3B /* SyntaxErrorCommand.m in Sources */,
 				52CBC9C11A0D2EBD00C229C8 /* AlertManager.m in Sources */,
 				52420E271A1ADF710069D4AC /* StartCommand.m in Sources */,
+				5287B9AD1A1BBAE600082DE1 /* FilenameAsViewController.m in Sources */,
 				52B5123F1A13C69D00B14D0D /* PerformFileSetupCommand.m in Sources */,
 				525167EC19FFD36C00814B16 /* AbstractModel.m in Sources */,
 				5257F3431A012F9500757C77 /* ClickMenuCommand.m in Sources */,
@@ -989,7 +1032,9 @@
 				52B274161A115D2D00D3EA3B /* HelpSectionViewController.m in Sources */,
 				527D42F41A0ADAE6008AE82A /* PerformSaveCommand.m in Sources */,
 				52B512391A13855600B14D0D /* ErrorObject.m in Sources */,
+				5287B9AA1A1BB30D00082DE1 /* AbstractFileNameViewController.m in Sources */,
 				5272DE3B19FE485F006E717F /* EventDispatcher.m in Sources */,
+				5287B9BA1A1C1BC600082DE1 /* TextVisibleModel.m in Sources */,
 				5272DE3219FE45F5006E717F /* CommandMap.m in Sources */,
 				52B5B35B19FD7E1400EF531F /* SymmNotifications.m in Sources */,
 				52CF55FB1A08411900F01D3A /* FileBrowserModel.m in Sources */,
@@ -1003,6 +1048,7 @@
 				5272DE4719FE5845006E717F /* Logger.m in Sources */,
 				52A185451A01004C005D8208 /* TextViewController.m in Sources */,
 				5257F3461A0131F000757C77 /* HideMenuCommand.m in Sources */,
+				5287B9B31A1BBC3800082DE1 /* AbstractPerformSaveCommand.m in Sources */,
 				52B512301A13637700B14D0D /* ErrorPopUpViewController.m in Sources */,
 				52B44F011A0BC93D00B99FD2 /* TextEditedCommand.m in Sources */,
 				527D42F11A0AD75D008AE82A /* PerformOpenCommand.m in Sources */,
@@ -1014,8 +1060,10 @@
 				52CF4A121A103CB2003197B2 /* ClickHelpCommand.m in Sources */,
 				5257F3491A01356C00757C77 /* UndoCommand.m in Sources */,
 				5272DE4419FE5776006E717F /* InjectionModule.m in Sources */,
+				5287B9A71A1B7B4300082DE1 /* ClickSaveAsCommand.m in Sources */,
 				52815C751A050EB1005AFA93 /* ClickOpenCommand.m in Sources */,
 				52CBC9C51A0D33A300C229C8 /* SaveCurrentViewController.m in Sources */,
+				5287B9B01A1BBBE800082DE1 /* PerformSaveAsCommand.m in Sources */,
 				52CC89201A1642FA0046615F /* AbstractHelpSectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

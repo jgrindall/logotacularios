@@ -29,7 +29,7 @@
 @property id<PFileListModel> fileListModel;
 @property id<PScreenGrabModel> screenGrabModel;
 @property id<PTurtleModel> turtleModel;
-
+@property id<PTextVisibleModel> textVisModel;
 @end
 
 @implementation InjectionModule
@@ -79,6 +79,8 @@
 	[self bind:self.screenGrabModel toProtocol:@protocol(PScreenGrabModel)];
 	self.turtleModel = [[TurtleModel alloc] init];
 	[self bind:self.turtleModel toProtocol:@protocol(PTurtleModel)];
+	self.textVisModel = [[TextVisibleModel alloc] init];
+	[self bind:self.textVisModel toProtocol:@protocol(PTextVisibleModel)];
 }
 
 @end

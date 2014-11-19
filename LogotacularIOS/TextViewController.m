@@ -19,6 +19,10 @@
 #import "Assets.h"
 #import "ErrorObject.h"
 #import "Appearance.h"
+#import "PDrawingModel.h"
+#import "PLogoModel.h"
+#import "PDrawingModel.h"
+#import "PTextVisibleModel.h"
 
 @interface TextViewController ()
 
@@ -57,6 +61,11 @@ int const EXCLAM_SIZE = 36;
 	[self layoutContainer];
 	[self layoutButtons];
 	[self clearError];
+	[self updateUndoRedo];
+}
+
+- (id<PTextVisibleModel>) getTextVisModel{
+	return [[JSObjection defaultInjector] getObject:@protocol(PTextVisibleModel)];
 }
 
 - (void) addButtons{
@@ -92,6 +101,8 @@ int const EXCLAM_SIZE = 36;
 	[[self getLogoModel] addGlobalListener:@selector(modelChanged) withTarget:self];
 	[[self getErrorModel] addListener:@selector(errorChanged) forKey:LOGO_ERROR_ERROR withTarget:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_DISMISS_KEY toFunction:@selector(dismissKeyboard) withContext:self];
+	[[self getDrawingModel] addListener:@selector(drawingChanged) forKey:DRAWING_ISDRAWING withTarget:self];
+	[[self getTextVisModel] addListener:@selector(visChanged) forKey:TEXT_VISIBLE_VIS withTarget:self];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardDidHide) name:UIKeyboardDidHideNotification object:nil];
 	self.swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(textSwipe:)];
 	self.swipe.delegate = self;
@@ -99,6 +110,22 @@ int const EXCLAM_SIZE = 36;
 	self.exclamTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapExclam)];
 	[self.exclamView setUserInteractionEnabled:YES];
 	[self.exclamView addGestureRecognizer:self.exclamTap];
+	[self.undoButton addTarget:self action:@selector(undoClick) forControlEvents:UIControlEventTouchUpInside];
+	[self.undoButton addTarget:self action:@selector(redoClick) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)visChanged{
+	BOOL show = [[[self getTextVisModel] getVal:TEXT_VISIBLE_VIS] boolValue];
+	if(show){
+		[self show];
+	}
+	else{
+		[self hide];
+	}
+}
+
+- (void) drawingChanged{
+	[self updateUndoRedo];
 }
 
 - ( void) keyBoardDidHide{
@@ -150,6 +177,7 @@ int const EXCLAM_SIZE = 36;
 	if(![text isEqualToString:[self.logoText text]]){
 		[self.logoText setText:text];
 	}
+	[self updateUndoRedo];
 }
 
 - (void) layoutText{
@@ -157,7 +185,7 @@ int const EXCLAM_SIZE = 36;
 	self.logoText.translatesAutoresizingMaskIntoConstraints = NO;
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual		toItem:self.container			attribute:NSLayoutAttributeTop			multiplier:1.0 constant:p]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual		toItem:self.container			attribute:NSLayoutAttributeLeft			multiplier:1.0 constant:p]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual		toItem:self.container			attribute:NSLayoutAttributeBottom		multiplier:1.0 constant:-p]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual		toItem:self.container			attribute:NSLayoutAttributeBottom		multiplier:1.0 constant:-p - 30]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual		toItem:self.container			attribute:NSLayoutAttributeRight		multiplier:1.0 constant:-p]];
 }
 
@@ -172,18 +200,52 @@ int const EXCLAM_SIZE = 36;
 - (void) layoutButtons{
 	self.undoButton.translatesAutoresizingMaskIntoConstraints = NO;
 	self.redoButton.translatesAutoresizingMaskIntoConstraints = NO;
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.undoButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual		toItem:self.view			attribute:NSLayoutAttributeBottom				multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.undoButton attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual		toItem:self.view			attribute:NSLayoutAttributeCenterX				multiplier:1.0 constant:-50.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.undoButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual		toItem:self.container		attribute:NSLayoutAttributeBottom				multiplier:1.0 constant:-12.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.undoButton attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual		toItem:self.container		attribute:NSLayoutAttributeCenterX				multiplier:1.0 constant:-50.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.undoButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual		toItem:nil					attribute:NSLayoutAttributeNotAnAttribute		multiplier:0.0 constant:50.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.undoButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual		toItem:nil					attribute:NSLayoutAttributeNotAnAttribute		multiplier:0.0 constant:30.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.redoButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual		toItem:self.view			attribute:NSLayoutAttributeBottom				multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.redoButton attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual		toItem:self.view			attribute:NSLayoutAttributeCenterX				multiplier:1.0 constant:-5.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.redoButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual		toItem:self.container		attribute:NSLayoutAttributeBottom				multiplier:1.0 constant:-12.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.redoButton attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual		toItem:self.container		attribute:NSLayoutAttributeCenterX				multiplier:1.0 constant:50.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.redoButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual		toItem:nil					attribute:NSLayoutAttributeNotAnAttribute		multiplier:0.0 constant:50.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.redoButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual		toItem:nil					attribute:NSLayoutAttributeNotAnAttribute		multiplier:0.0 constant:30.0]];
 }
 
+- (id<PDrawingModel>) getDrawingModel{
+	return [[JSObjection defaultInjector] getObject:@protocol(PDrawingModel)];
+}
+
+- (id<PLogoModel>) getLogoModel{
+	return [[JSObjection defaultInjector] getObject:@protocol(PLogoModel)];
+}
+
+- (void) updateUndoRedo{
+	BOOL drawing = [[[self getDrawingModel] getVal:DRAWING_ISDRAWING] boolValue];
+	[self.undoButton setEnabled:(!drawing && [self undoEnabled])];
+	[self.redoButton setEnabled:(!drawing && [self redoEnabled])];
+}
+
+- (void) logoChanged{
+	[self updateUndoRedo];
+}
+
+- (BOOL) undoEnabled{
+	return [[self getLogoModel] undoEnabled];
+}
+
+- (BOOL) redoEnabled{
+	return [[self getLogoModel] redoEnabled];
+}
+
+-(void)undoClick{
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_UNDO withData:nil];
+}
+
+-(void)redoClick{
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_REDO withData:nil];
+}
+
 - (void) textSwipe:(id) sender{
-	[self hide];
+	[[self getTextVisModel] setVal:[NSNumber numberWithBool:NO] forKey:TEXT_VISIBLE_VIS];
 	[self dismissKeyboard];
 }
 
@@ -247,8 +309,8 @@ int const EXCLAM_SIZE = 36;
 - (void)editEnded{
 	[self errorChanged];
 	[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(triggerEdit) object:nil];
-	[self triggerEdit];
 	[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(triggerCheck) object:nil];
+	[self triggerEdit];
 	[self triggerCheck];
 	[self performSelector:@selector(errorChanged) withObject:self afterDelay:0.5];
 }
@@ -272,11 +334,7 @@ int const EXCLAM_SIZE = 36;
 	}
 }
 
-- (id<PLogoModel>) getLogoModel{
-	return [[JSObjection defaultInjector] getObject:@protocol(PLogoModel)];
-}
-
-- (id<PLogoModel>) getErrorModel{
+- (id<PLogoErrorModel>) getErrorModel{
 	return [[JSObjection defaultInjector] getObject:@protocol(PLogoErrorModel)];
 }
 
@@ -307,8 +365,12 @@ int const EXCLAM_SIZE = 36;
 	[[self getLogoModel] removeGlobalListener:@selector(modelChanged) withTarget:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_DISMISS_KEY toFunction:@selector(dismissKeyboard) withContext:self];
 	[[self getErrorModel] removeListener:@selector(errorChanged) forKey:LOGO_ERROR_ERROR withTarget:self];
+	[[self getDrawingModel] removeListener:@selector(drawingChanged) forKey:DRAWING_ISDRAWING withTarget:self];
+	[[self getTextVisModel] removeListener:@selector(visChanged) forKey:TEXT_VISIBLE_VIS withTarget:self];
 	[self.exclamView removeGestureRecognizer:self.exclamTap];
 	[self.exclamView setUserInteractionEnabled:NO];
+	[self.undoButton removeTarget:self action:@selector(undoClick) forControlEvents:UIControlEventTouchUpInside];
+	[self.undoButton removeTarget:self action:@selector(redoClick) forControlEvents:UIControlEventTouchUpInside];
 	self.exclamTap = nil;
 }
 

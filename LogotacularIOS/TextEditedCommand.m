@@ -14,8 +14,11 @@
 
 - (void) execute:(id) payload{
 	NSString* text = (NSString*)payload;
-	[[self getLogoModel] add:text];
-	[[self getFileModel] setVal:@YES forKey:FILE_DIRTY];
+	NSString* oldText = [[self getLogoModel] get];
+	if(![oldText isEqualToString:text]){
+		[[self getLogoModel] add:text];
+		[[self getFileModel] setVal:@YES forKey:FILE_DIRTY];
+	}
 }
 
 - (id<PLogoModel>) getLogoModel{

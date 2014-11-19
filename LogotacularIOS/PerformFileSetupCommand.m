@@ -30,6 +30,7 @@
 	[fileModel setVal:@(real) forKey:FILE_REAL];
 	[logoModel reset:logo];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_FILE_LOADED withData:nil];
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_RESET withData:nil];
 }
 
 - (id<PFileModel>) getFileModel{
