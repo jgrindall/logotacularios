@@ -8,7 +8,7 @@
 
 #import "BaseViewController_protected.h"
 
-@interface PaintViewController : BaseViewController
+@interface PaintViewController : BaseViewController <UIGestureRecognizerDelegate>
 
 extern NSString* const FD_KEYWORD;
 extern NSString* const RT_KEYWORD;

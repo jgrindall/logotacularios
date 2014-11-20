@@ -28,5 +28,6 @@ NSString* const LESS_ICON =			@"assets/icons/less.png";
 NSString* const HELP_ICON =			@"assets/icons/help.png";
 NSString* const BOOK_ICON =			@"assets/icons/book.png";
 NSString* const BRIEFCASE_ICON =	@"assets/icons/briefcase.png";
+NSString* const AIM_ICON =			@"assets/icons/aim.png";
 
 @end

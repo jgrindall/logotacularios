@@ -28,5 +28,6 @@ extern NSString* const LESS_ICON;
 extern NSString* const HELP_ICON;
 extern NSString* const BOOK_ICON;
 extern NSString* const BRIEFCASE_ICON;
+extern NSString* const AIM_ICON;
 
 @end

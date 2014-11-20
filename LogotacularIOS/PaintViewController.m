@@ -17,6 +17,12 @@
 
 @property PaintView* paintView;
 @property NSMutableArray* constraints;
+@property UIPanGestureRecognizer* pan;
+@property UIPinchGestureRecognizer* pinch;
+@property CGPoint currentTrans;
+@property float currentScale;
+@property CGPoint startTrans;
+@property float startScale;
 
 @end
 
@@ -33,23 +39,67 @@ NSString* const THICK_KEYWORD			= @"thick";
 - (instancetype) init{
 	self = [super init];
 	if(self){
+		_currentTrans = CGPointMake(0.0, 0.0);
+		_currentScale = 1.0;
 		[self addListeners];
 	}
 	return self;
 }
 
+- (void) viewWillAppear:(BOOL)animated{
+	[self layoutPaint];
+}
+
 - (void) viewDidLoad{
+	[self addPaint];
+	[self addGestures];
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+	return YES;
+}
+
+- (void) addGestures{
+	self.pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onPan:)];
+	self.pan.delegate = self;
+	[self.view addGestureRecognizer:self.pan];
+	self.pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(onPinch:)];
+	self.pinch.delegate = self;
+	[self.view addGestureRecognizer:self.pinch];
+}
+
+- (void)onPinch:(UIPinchGestureRecognizer*)recognizer{
+	float scale = recognizer.scale;
+	if(recognizer.state == UIGestureRecognizerStateBegan){
+		self.startScale = self.currentScale;
+	}
+	else if(recognizer.state == UIGestureRecognizerStateEnded){
+		// end
+	}
+	self.currentScale = self.startScale * scale;
+	[self updateTransforms];
+}
+
+- (void)onPan:(UIPanGestureRecognizer*)recognizer{
+	CGPoint translation = [recognizer translationInView:self.view];
+	if(recognizer.state == UIGestureRecognizerStateBegan){
+		self.startTrans = CGPointMake(self.currentTrans.x, self.currentTrans.y);
+	}
+	else if(recognizer.state == UIGestureRecognizerStateEnded){
+		// end
+	}
+	self.currentTrans = CGPointMake(self.startTrans.x + translation.x * self.currentScale, self.startTrans.y + translation.y * self.currentScale);
+	[self updateTransforms];
+}
+
+- (void)updateTransforms{
+	[self.paintView transformWithScale:self.currentScale andTrans:self.currentTrans];
+}
+
+- (void) addPaint{
 	self.paintView = [[PaintView alloc] initWithFrame:self.view.frame];
 	[self.view addSubview:self.paintView];
 	self.paintView.translatesAutoresizingMaskIntoConstraints = NO;
-	[self layoutPaint];
-	[self performSelector:@selector(zoom) withObject:self afterDelay:7.0];
-}
-
-- (void) zoom{
-	[UIView animateWithDuration:5.0 animations:^{
-		self.paintView.transform = CGAffineTransformMakeScale(5.0, 5.0);
-	}];
 }
 
 - (id<PScreenGrabModel>) getScreenGrabModel{
@@ -73,6 +123,12 @@ NSString* const THICK_KEYWORD			= @"thick";
 	return image;
 }
 
+- (void) resetZoom{
+	self.currentScale = 1.0;
+	self.currentTrans = CGPointMake(0, 0);
+	[self updateTransforms];
+}
+
 - (void) reset{
 	[self stop];
 	[self.paintView reset];
@@ -83,6 +139,7 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[[self getEventDispatcher] addListener: SYMM_NOTIF_CMD_RECEIVED toFunction:@selector(executeCommand:) withContext:self];
 	[[self getEventDispatcher] addListener: SYMM_NOTIF_STOP toFunction:@selector(stop) withContext:self];
 	[[self getEventDispatcher] addListener: SYMM_NOTIF_RESET toFunction:@selector(reset) withContext:self];
+	[[self getEventDispatcher] addListener: SYMM_NOTIF_RESET_ZOOM toFunction:@selector(resetZoom) withContext:self];
 }
 
 - (void) removeListeners{
@@ -90,6 +147,7 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[[self getEventDispatcher] removeListener: SYMM_NOTIF_CMD_RECEIVED toFunction:@selector(executeCommand:) withContext:self];
 	[[self getEventDispatcher] removeListener: SYMM_NOTIF_STOP toFunction:@selector(stop) withContext:self];
 	[[self getEventDispatcher] removeListener: SYMM_NOTIF_RESET toFunction:@selector(reset) withContext:self];
+	[[self getEventDispatcher] removeListener: SYMM_NOTIF_RESET_ZOOM toFunction:@selector(resetZoom) withContext:self];
 }
 
 - (void) stop{

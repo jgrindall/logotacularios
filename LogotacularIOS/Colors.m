@@ -17,8 +17,6 @@ static NSMutableDictionary* _dic = nil;
 		[Colors loadDic];
 	}
 	UIColor* clr = [Colors dictionary][name];
-	NSLog(@"get for %@, is %@", name, clr);
-	NSLog(@"dic is %@", [Colors dictionary]);
 	return clr;
 }
 
@@ -27,7 +25,6 @@ static NSMutableDictionary* _dic = nil;
 }
 
 + (void) loadDic{
-	NSLog(@"LOAD!! \n\n");
 	_dic = [[NSMutableDictionary alloc] initWithDictionary:@{}];
 	_dic[@"turquoise"] =		[Colors colorWithHexString:0x1abc9c];
 	_dic[@"turq"] =				[Colors colorWithHexString:0x1abc9c];

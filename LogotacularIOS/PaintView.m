@@ -55,5 +55,11 @@ CGContextRef cacheContext;
 	self.bgView.backgroundColor = clr;
 }
 
+- (void) transformWithScale:(float)s andTrans:(CGPoint)t{
+	CGAffineTransform scale = CGAffineTransformMakeScale(s, s);
+	CGAffineTransform trans = CGAffineTransformMakeTranslation(t.x, t.y);
+	self.linesView.transform = CGAffineTransformConcat(scale, trans);
+}
+
 @end
 

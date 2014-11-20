@@ -66,6 +66,7 @@ int top = 35;
 	float h = [_image size].height;
 	CGSize imageSize = CGSizeMake(self.frame.size.width, self.frame.size.height - top);
 	CGRect rect = [ImageUtils getRectForRatio:(w/h) inSize:imageSize];
+	rect = CGRectInset(rect, -1, -1);
 	NSLayoutConstraint* c0 = [NSLayoutConstraint constraintWithItem:self.coverView	attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.imageView			attribute:NSLayoutAttributeTop multiplier:1.0 constant:rect.origin.y];
 	NSLayoutConstraint* c1 = [NSLayoutConstraint constraintWithItem:self.coverView	attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.imageView		attribute:NSLayoutAttributeLeading multiplier:1.0 constant:rect.origin.x];
 	NSLayoutConstraint* c2 = [NSLayoutConstraint constraintWithItem:self.coverView	attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil						attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:rect.size.width];
@@ -77,7 +78,7 @@ int top = 35;
 -  (void) addCoverView{
 	if(!self.coverView){
 		self.coverView = [[UIView alloc] initWithFrame:CGRectZero];
-		self.coverView.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.66];
+		self.coverView.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5];
 		[self addSubview:self.coverView];
 		self.coverView.translatesAutoresizingMaskIntoConstraints = NO;
 	}

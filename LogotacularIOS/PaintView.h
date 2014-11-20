@@ -16,4 +16,7 @@
 
 - (void) bg:(UIColor*)clr;
 
+- (void) transformWithScale:(float)s andTrans:(CGPoint)t;
+
 @end
+

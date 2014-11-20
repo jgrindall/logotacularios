@@ -25,6 +25,7 @@ NSString* const SYMM_NOTIF_RESET =				@"Symm::reset";
 NSString* const SYMM_NOTIF_UNDO =				@"Symm::undo";
 NSString* const SYMM_NOTIF_REDO =				@"Symm::redo";
 NSString* const SYMM_NOTIF_LOAD =				@"Symm::load";
+NSString* const SYMM_NOTIF_RESET_ZOOM =			@"Symm::resetzoom";
 NSString* const SYMM_NOTIF_SAVE =				@"Symm::save";
 NSString* const SYMM_NOTIF_CLICK_SAVE_AS =		@"Symm::saveas";
 NSString* const SYMM_NOTIF_CLEAR =				@"Symm::clear";

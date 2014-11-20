@@ -45,6 +45,7 @@
 @property UIBarButtonItem* playButton;
 @property UIBarButtonItem* listButton;
 @property UIBarButtonItem* clearButton;
+@property UIBarButtonItem* resetButton;
 
 @end
 
@@ -160,10 +161,11 @@
 }
 
 -(void)addNavButtons{
-	self.listButton = [self getBarButtonItem:LIST_ICON withAction:@selector(onClickList) andLabel:nil andOffsetX:30];
+	self.listButton = [self getBarButtonItem:LIST_ICON withAction:@selector(onClickList) andLabel:nil andOffsetX:20];
 	self.clearButton = [self getBarButtonItem:CLEAR_ICON withAction:@selector(onClickClear) andLabel:@"Clear" andOffsetX:0];
 	self.playButton = [self getBarButtonItem:PLAY_ICON withAction:@selector(onClickPlay) andLabel:@"Play" andOffsetX:0];
-	self.navigationItem.leftBarButtonItems = @[self.listButton];
+	self.resetButton = [self getBarButtonItem:AIM_ICON withAction:@selector(onClickReset) andLabel:@"Reset" andOffsetX:0];
+	self.navigationItem.leftBarButtonItems = @[self.listButton, self.resetButton];
 	self.navigationItem.rightBarButtonItems = @[self.clearButton, self.playButton];
 }
 
@@ -290,6 +292,10 @@
 	else if([self.alert class] == [SaveCurrentViewController class]){
 		[self checkSaveClosed:i withPayload:payload];
 	}
+}
+
+-(void)onClickReset{
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_RESET_ZOOM withData:nil];
 }
 
 -(void)onClickList{
