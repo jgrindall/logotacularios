@@ -1,0 +1,138 @@
+{
+ 
+	"help":
+	[
+		{"header" : "Welcome to Logotacular!", "contents":
+	 
+			[
+				"<p>Logotacular is an application for drawing colourful patterns using the Logo language, designed to help you explore geometry and programming.</p>"
+			]
+		
+		},
+		
+		{"header" : "How to write a program", "contents":
+	 
+			[
+				"<p>The most basic commands in Logo are the 'go forward' command and the 'turn right' command.</p>",
+	 
+				"<p>For example, fd(100) tells the turtle to go forward 100 units (in whatever direction it is facing), and rt(90) tells it turn on the spot 90 degrees clockwise.</p>",
+			 
+				"<p>Try drawing a square using:</p>",
+			 
+				"<p class='code'><pre style='font-size:22px;'>fd 100\nrt 90\nfd 100\nrt 90\nfd 100\nrt 90\nfd 100\nrt 90</pre></p>",
+			 
+				"<p>You don't have to put each command on a new line, but it can make it easier to read!</p>"
+			 
+			]
+		},
+	 
+		{"header" : "Drawing with colors", "contents":
+	 
+			[
+	  
+				"<p>You can change the color of the lines, as well as the background color of the page by using the 'color' and 'bg' commands:</p>",
+			 
+				"<p class='code'><pre style='font-size:22px;'>bg(red) color(green)</pre></p>",
+	  
+				"<p>You can change the thickness of the lines drawn (from 1 to 20), and raise/lower the pen. Lifting the pen will stop lines being drawn until you place it down again.</p>",
+	  
+				"<p class='code'><pre style='font-size:22px;'>thick(7)\nfd(50)\npenup()\nfd(50)\npendown()\nfd(50)\npenup()\nfd(50)\npendown()\nfd(50)</pre></p>"
+	  
+			]
+		},
+	 
+		 {"header" : "Variables and arithmetic", "contents":
+		 
+			[
+		  
+				"<p>Variables let you define a number so you can change it in one place later if you need to.</p>",
+		  
+				"<p class='code'><pre style='font-size:22px;'>side=200\nangle=90\nfd(side) rt(angle)\nfd(side) rt(angle)\nfd(side) rt(angle)\nfd(side) rt(angle)</pre></p>",
+		  
+				"<p>You can do normal arithmetic using numbers or variables. Like most computer programs, you must write '*' for 'multiply' (or 'times') and '/' for 'divide'. You can use '+' and '-' and brackets like you normally would.</p>",
+		  
+				"<p class='code'><pre style='font-size:22px;'>w=100 h=30\nfd(w-2*h) rt(90)\nfd(w-h) rt(90)\nfd(w) rt(90)\nfd(w+h) rt(90)\nfd(w+2*h) rt(90)</pre></p>"
+		  
+			]
+		},
+	 
+		{"header" : "Loops", "contents":
+	 
+			[
+	  
+				"<p>Loops can be programmed by use of the 'repeat' command which tells the turtle to execute the commands inside a specific number of times. So, we could draw a square like this:</p>",
+	  
+				"<p class='code'><pre style='font-size:22px;'>rpt 4 [\nfd(100)\nrt(90)\n]</pre></p>",
+	  
+				"<p>Notice that you start a repeat block with 'rpt' and you MUST end it with 'endrpt'.\nCan you work out what the following code will draw?</p>",
+	  
+				"<p class='code'><pre style='font-size:22px;'>angle=72\nrpt 5\nfd(100)\nrt(angle)\nendrpt</pre></p>",
+			 
+				"<p>Can you work out how to draw the image on the right?</p>"
+	  
+			]
+		},
+	 
+		{"header" : "Procedures and functions", "contents":
+	 
+			[
+	  
+				"<p>A function or procedure is often thought of as telling the turtle the meaning of a new word. We could rewrite our 'draw square' program once more by defining a procedure called 'drawSquare' and then calling it.</p>",
+				
+				"<p class='code'><pre style='font-size:22px;'>proc drawSquare\nrpt 4\nfd(100)\nrt(90)\nendrpt\nendproc\n\ndrawSquare()</pre></p>",
+	  
+				"<p>Recursion can also be used in Logo - for example the following program defines a procedure which accepts one variable called 'dist' and repeatedly calls itself, increasing the value of 'dist' each time, with the result that an increasing series of line segments is drawn, forming a spiral. Eventually the program will crash because it calls itself too many times!</p>",
+	  
+				"<p class='code'><pre style='font-size:22px;'>proc drawSpiral(dist)\nfd(dist)\nrt(90)\ndrawSpiral(dist+5)\nendproc\n\ndrawSpiral(10)</pre></p>"
+	  
+			]
+		},
+	 
+		{"header" : "How to use Logotacular - the main menu", "contents":
+	 
+			[
+	  
+			]
+		},
+	 
+		{"header" : "How to use Logotacular -  writing Logo", "contents":
+	 
+			[
+	 
+			]
+		},
+	 
+		{"header" : "How to use Logotacular -  writing Logo", "contents":
+	 
+			[
+	 
+			]
+		},
+	 
+		{"header" : "History of Logo", "contents":
+	 
+			[
+				"<p>Logo was created in 1967 by Wally Feurzeig and Seymour Papert - researchers at MIT. Their goal was to create an easy to learn application where kids could play with words and the structure of sentences. Later versions of Logo included on screen graphics and the forward and right commands to move an on-screen 'turtle' around the screen, and it became known as Turtle graphics. In 1969, a physical robot was designed which would move across the floor tracing its path with a pen.</p>",
+				
+				"<p>Seymour Papert pioneered its use in school classrooms as an educational system in the early 1970's, saying:</p>",
+			 
+				"<p>In many schools today, the phrase 'Computer-Aided Instruction' means making the computer teach the child. One might say the computer is being used to program the child. In my vision the child programs the computer and, in so doing, both acquires a sense of mastery over a piece of the most modern and powerful technology and establishes an intimate contact with some of the deepest ideas from science, from mathematics, and from the art of intellectual model building...</p>",
+			 
+				"<p>...Traditional education codifies what it thinks citizens need to know and sets out to feed children this 'fish'. Constructionism is built on the assumption that children will do best by finding ('fishing') for themselves the specific knowledge that they need...the Turtle is like a person: 'I am here and I am facing north...' And from these similarities comes the Turtle's special ability to serve as a representative of formal mathematics for a child.</p>"
+			]
+		
+		},
+	 
+		{"header" : "Privacy policy", "contents":
+	 
+			[
+				"<p>Logotacular contains Facebook log in if you wish to save or load your files.</p>"
+	  
+			]
+		
+		}
+	 
+	]
+}
+
+
