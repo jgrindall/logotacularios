@@ -41,3 +41,12 @@ LG.SymTable.prototype.getFunction = function(name){
 	return this.functions[name];
 };
 
+LG.SymTable.prototype.clear = function(){
+	var i;
+	this.functions = null;
+	for(i = 0; i < this.blocks.length; i++){
+		this.blocks[i] = null;
+	}
+	this.blocks = null;
+};
+

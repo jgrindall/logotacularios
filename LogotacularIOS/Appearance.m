@@ -58,12 +58,12 @@
 }
 
 + (UIBarButtonItem*) getBarButton:(NSString*) imageUrl withLabel:(NSString*)label andOffsetX:(NSInteger)offset{
-	float w = 50;
+	float w = 60;
 	float h = 30;
 	UIImage* img = [UIImage imageNamed:imageUrl];
 	UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
 	if(label){
-		w += 50;
+		w += 60;
 		[btn setTitle:[NSString stringWithFormat:@" %@", label] forState:UIControlStateNormal];
 	}
 	btn.bounds = CGRectMake(0, 0, w, h);

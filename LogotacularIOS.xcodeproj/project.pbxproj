@@ -351,6 +351,19 @@
 			name = Bg;
 			sourceTree = "<group>";
 		};
+		523067BE1A1E2F170055B8A5 /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				52B274141A115D2C00D3EA3B /* HelpSectionViewController.h */,
+				52B274151A115D2D00D3EA3B /* HelpSectionViewController.m */,
+				52CF4A091A103AF2003197B2 /* HelpPageViewController.h */,
+				52CF4A0A1A103AF2003197B2 /* HelpPageViewController.m */,
+				523067B61A1DF82A0055B8A5 /* HelpData.h */,
+				523067B71A1DF82A0055B8A5 /* HelpData.m */,
+			);
+			name = Help;
+			sourceTree = "<group>";
+		};
 		52420E231A1AD1DD0069D4AC /* Turtle */ = {
 			isa = PBXGroup;
 			children = (
@@ -852,12 +865,7 @@
 			isa = PBXGroup;
 			children = (
 				52CC89241A1643210046615F /* Base */,
-				52B274141A115D2C00D3EA3B /* HelpSectionViewController.h */,
-				52B274151A115D2D00D3EA3B /* HelpSectionViewController.m */,
-				52CF4A091A103AF2003197B2 /* HelpPageViewController.h */,
-				52CF4A0A1A103AF2003197B2 /* HelpPageViewController.m */,
-				523067B61A1DF82A0055B8A5 /* HelpData.h */,
-				523067B71A1DF82A0055B8A5 /* HelpData.m */,
+				523067BE1A1E2F170055B8A5 /* Help */,
 			);
 			name = Help;
 			sourceTree = "<group>";

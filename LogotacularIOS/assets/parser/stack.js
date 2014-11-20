@@ -26,6 +26,10 @@ LG.Stack.prototype.pop = function(){
 	}
 };
 
+LG.Stack.prototype.clear = function(){
+	this.s = [ ];
+};
+
 LG.Stack.prototype.describe = function(){
 	return this.s.toString();
 };

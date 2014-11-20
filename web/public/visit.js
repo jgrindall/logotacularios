@@ -9,6 +9,8 @@ var symTable = new LG.SymTable();
 self.addEventListener('message', function(msg) {
 	if(msg.data.type === "tree"){
 		visitNode(msg.data.tree);
+		stack.clear();
+		symTable.clear();
 		postMessage({"type":"end"});
 	}
 }, false);

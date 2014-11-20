@@ -1,6 +1,5 @@
 
 LG.stop = function(){
-	alert("stopping!");
 	try{
 		LG.worker.terminate();
 	}
@@ -26,7 +25,7 @@ LG.onMessage = function(msg){
 		iosCallback(s);
 	}
 	else{
-		console.log("to ios "+s);
+		//console.log("to ios "+s);
 	}
 };
 
@@ -37,7 +36,9 @@ LG.getTree = function(logo){
 	}
 	catch(e){
 		LG.onMessage({"syntaxerror":e});
+		return;
 	}
+	LG.onMessage({"syntaxerror":null});
 	return tree;
 };
 
@@ -53,12 +54,28 @@ LG.draw = function(logo){
 			LG.onMessage({"error":e});
 		}
 	}
+	LG.onMessage({"type":"end"});
 };
 
 LG.process = function(tree){
+	LG.cleanup();
 	LG.worker = new Worker("visit.js");
 	LG.worker.onmessage =	this.onMessage.bind(this);
 	LG.worker.onerror =		this.onError.bind(this);
 	LG.worker.postMessage(  {"type":"tree", "tree":tree}  );
+};
+
+LG.cleanup = function(){
+	if(LG.worker){
+		try{
+			LG.worker.onmessage =	null;
+			LG.worker.onerror =		null;
+			LG.worker.terminate();
+			LG.worker = null;
+		}
+		catch(e){
+			
+		}
+	}
 };
 

@@ -54,12 +54,28 @@ LG.draw = function(logo){
 			LG.onMessage({"error":e});
 		}
 	}
+	LG.onMessage({"type":"end"});
 };
 
 LG.process = function(tree){
+	LG.cleanup();
 	LG.worker = new Worker("visit.js");
 	LG.worker.onmessage =	this.onMessage.bind(this);
 	LG.worker.onerror =		this.onError.bind(this);
 	LG.worker.postMessage(  {"type":"tree", "tree":tree}  );
+};
+
+LG.cleanup = function(){
+	if(LG.worker){
+		try{
+			LG.worker.onmessage =	null;
+			LG.worker.onerror =		null;
+			LG.worker.terminate();
+			LG.worker = null;
+		}
+		catch(e){
+			
+		}
+	}
 };
 

@@ -15,9 +15,14 @@
 	
 	<body>
 		
+		<div style='background:blue;width:100px;height:35px;' onclick="execute();"></div>
+
 		<script>
 
-			LG.draw("to square :a :b end");
+			function execute(){
+				alert("exe");
+				LG.draw("rpt 20000 [ fd 1 rt 1 ]");
+			}
 
 		</script>
 		

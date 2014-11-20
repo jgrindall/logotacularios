@@ -14,7 +14,7 @@
 - (instancetype)init{
 	self = [super initWithChildClass:[HelpSectionViewController class] andNumPages:5];
 	if(self){
-		
+		self.title = @"Help / about";
 	}
 	return self;
 }

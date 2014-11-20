@@ -21,8 +21,8 @@ static NSMutableDictionary* _dic = nil;
 
 NSString* const STYLES = @"<style>h1, p, h2, h3, div, span{font-family: 'Lato-Regular';font-size: 24px;color:$color}p{font-size: 19px;}p.code, pre{font-family:'DroidSansMono', font-size: 48px !important;color:$color}p.quote{font-size: 14px;}</style>";
 
-+ (NSString*) getHtml:(NSInteger)index withBri:(float)bri{
-	NSString* textColor = ((bri < 0.6) ? @"#ffffff" : @"#222222");
++ (NSString*) getHtml:(NSInteger)index{
+	NSString* textColor = @"#ffffff";
 	NSString* styles = [STYLES stringByReplacingOccurrencesOfString:@"$color" withString:textColor];
 	NSDictionary* help = (NSDictionary*)[self getDictionary][@"help"][index];
 	NSString* paras = [HelpData getParas:(NSArray*)help[@"contents"]];

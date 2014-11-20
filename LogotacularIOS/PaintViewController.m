@@ -82,6 +82,7 @@ NSString* const THICK_KEYWORD			= @"thick";
 }
 
 - (void)onPan:(UIPanGestureRecognizer*)recognizer{
+	NSLog(@"pan");
 	CGPoint translation = [recognizer translationInView:self.view];
 	if(recognizer.state == UIGestureRecognizerStateBegan){
 		self.startTrans = CGPointMake(self.currentTrans.x, self.currentTrans.y);

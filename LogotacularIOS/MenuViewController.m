@@ -110,7 +110,7 @@
 	btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
 	btn.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
 	btn.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
-	btn.frame = CGRectMake(0, 45*num + 10, 190, 30);
+	btn.frame = CGRectMake(0, 47*num + 10, 190, 30);
 	[btn setImage:img forState:UIControlStateNormal];
 	[btn setTitle:label forState:UIControlStateNormal];
 	[btn addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
@@ -136,14 +136,19 @@
 }
 
 - (void) show{
-	float y0 = -self.view.frame.size.height/2;;
+	NSLog(@"show");
+	float y0 = -self.view.frame.size.height/2;
 	float y1 = self.view.frame.size.height/2;
-	[ImageUtils bounceAnimateView:self.view from:y0 to:y1 withKeyPath:@"position.y" withKey:@"menuBounce" withDelegate:nil withDuration:0.3 withImmediate:NO];
-	self.view.hidden = NO;
+	[ImageUtils bounceAnimateView:self.view.superview  from:y0 to:y1 withKeyPath:@"position.y" withKey:@"menuBounce" withDelegate:nil withDuration:0.3 withImmediate:NO];
+	//self.view.hidden = NO;
 }
 
 - (void) hide{
-	self.view.hidden = YES;
+	NSLog(@"hide");
+	float y0 = -self.view.frame.size.height/2;
+	float y1 = self.view.frame.size.height/2;
+	[ImageUtils bounceAnimateView:self.view.superview from:y1 to:y0 withKeyPath:@"position.y" withKey:@"menuBounce" withDelegate:nil withDuration:0.3 withImmediate:NO];
+	//self.view.hidden = YES;
 }
 
 - (void) removeListeners{

@@ -36,8 +36,6 @@ static NSMutableDictionary* _dic = nil;
 	[array addObject:@"red"];
 	[array addObject:@"terracotta"];
 	[array addObject:@"ltorg"];
-	[array addObject:@"gray"];
-	[array addObject:@"dkgray"];
 	[array addObject:@"midnight"];
 	return [NSArray arrayWithArray:array];
 }

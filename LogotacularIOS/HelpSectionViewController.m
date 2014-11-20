@@ -77,10 +77,13 @@
 	self.textView = [[UITextView alloc] initWithFrame:CGRectZero];
 	self.textView.translatesAutoresizingMaskIntoConstraints = NO;
 	self.textView.font = [Appearance fontOfSize:SYMM_FONT_SIZE_MED];
-	self.textView.backgroundColor = [UIColor clearColor];
+	self.textView.backgroundColor = [Appearance grayColor];
 	[self.view addSubview:self.textView];
-	NSString* htmlString = [HelpData getHtml:self.index withBri:bri];
+	self.textView.textContainerInset = UIEdgeInsetsMake(15, 8, 8, 8);
+	NSString* htmlString = [HelpData getHtml:self.index];
 	NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[htmlString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+	self.textView.layer.cornerRadius = 10;
+	self.textView.layer.masksToBounds = YES;
 	self.textView.attributedText = attributedString;
 }
 

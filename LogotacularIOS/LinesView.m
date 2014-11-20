@@ -19,6 +19,7 @@ CGContextRef cacheContext;
 - (instancetype)initWithFrame:(CGRect)frame{
 	self = [super initWithFrame:frame];
 	if (self) {
+		[self setBackgroundColor:[UIColor clearColor]];
 		[self reset];
 	}
 	return self;
@@ -30,7 +31,6 @@ CGContextRef cacheContext;
 
 - (void) reset{
 	[self initContext];
-	[self setBackgroundColor:[UIColor clearColor]];
 	[self setNeedsDisplay];
 }
 
