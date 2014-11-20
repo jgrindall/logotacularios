@@ -30,6 +30,8 @@
 @property id<PScreenGrabModel> screenGrabModel;
 @property id<PTurtleModel> turtleModel;
 @property id<PTextVisibleModel> textVisModel;
+@property id<PBgModel> bgModel;
+
 @end
 
 @implementation InjectionModule
@@ -81,6 +83,8 @@
 	[self bind:self.turtleModel toProtocol:@protocol(PTurtleModel)];
 	self.textVisModel = [[TextVisibleModel alloc] init];
 	[self bind:self.textVisModel toProtocol:@protocol(PTextVisibleModel)];
+	self.bgModel = [[BgModel alloc] init];
+	[self bind:self.bgModel toProtocol:@protocol(PBgModel)];
 }
 
 @end

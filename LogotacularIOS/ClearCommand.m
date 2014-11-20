@@ -11,6 +11,7 @@
 #import "PLogoModel.h"
 #import "PDrawingModel.h"
 #import "LogoErrorModel.h"
+#import "PBgModel.h"
 
 @implementation ClearCommand
 
@@ -23,6 +24,11 @@
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_RESET withData:nil];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_RESET_ZOOM withData:nil];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_TEXT_EDITED withData:@""];
+	[[self getBgModel] reset];
+}
+
+- (id<PBgModel>) getBgModel{
+	return [[JSObjection defaultInjector] getObject:@protocol(PBgModel)];
 }
 
 - (id<PLogoErrorModel>) getErrorModel{

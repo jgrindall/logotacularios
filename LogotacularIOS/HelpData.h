@@ -10,7 +10,7 @@
 
 @interface HelpData : NSObject
 
-+ (NSString*) getHtml:(NSInteger)index;
++ (NSString*) getHtml:(NSInteger)index withBri:(float)bri;
 
 + (NSDictionary*)getDictionary;
 

@@ -27,6 +27,8 @@
 #import "TurtleModel.h"
 #import "PTextVisibleModel.h"
 #import "TextVisibleModel.h"
+#import "BgModel.h"
+#import "PBgModel.h"
 
 @interface Models
 

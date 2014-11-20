@@ -11,6 +11,8 @@
 #import <CoreText/CoreText.h>
 #import <UIKit/UIKit.h>
 #import "ImageUtils.h"
+#import <Objection/Objection.h>
+#import "PBgModel.h"
 
 #define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
 #define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
@@ -28,13 +30,9 @@
 }
 
 + (UIColor*) bgColor{
-	float r;
-	float g;
-	float b;
-	r = 44.0;
-	g = 62.0;
-	b = 80.0;
-	return [UIColor colorWithRed:(r/255.0) green:(g/255.0) blue:(b/255.0) alpha:1];
+	id<PBgModel> model = [[JSObjection defaultInjector] getObject:@protocol(PBgModel)];
+	UIColor* clr = [model getVal:BG_COLOR];
+	return clr;
 }
 
 + (UIColor*) grayColor{

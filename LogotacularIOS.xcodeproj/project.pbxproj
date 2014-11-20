@@ -12,6 +12,7 @@
 		522E91CA1A1CA9FC000AB933 /* MenuLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E91C91A1CA9FC000AB933 /* MenuLayout.m */; };
 		522E91CD1A1CAA60000AB933 /* AlertLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E91CC1A1CAA60000AB933 /* AlertLayout.m */; };
 		523067B81A1DF82A0055B8A5 /* HelpData.m in Sources */ = {isa = PBXBuildFile; fileRef = 523067B71A1DF82A0055B8A5 /* HelpData.m */; };
+		523067BB1A1E1F4C0055B8A5 /* BgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 523067BA1A1E1F4B0055B8A5 /* BgModel.m */; };
 		5236E8751A1D67CB0057E9B3 /* TextLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5236E8741A1D67CB0057E9B3 /* TextLayout.m */; };
 		52420E221A1AD1D80069D4AC /* TurtleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52420E211A1AD1D80069D4AC /* TurtleModel.m */; };
 		52420E271A1ADF710069D4AC /* StartCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52420E261A1ADF710069D4AC /* StartCommand.m */; };
@@ -120,6 +121,9 @@
 		522E91CC1A1CAA60000AB933 /* AlertLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertLayout.m; sourceTree = "<group>"; };
 		523067B61A1DF82A0055B8A5 /* HelpData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpData.h; sourceTree = "<group>"; };
 		523067B71A1DF82A0055B8A5 /* HelpData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpData.m; sourceTree = "<group>"; };
+		523067B91A1E1F4B0055B8A5 /* BgModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BgModel.h; sourceTree = "<group>"; };
+		523067BA1A1E1F4B0055B8A5 /* BgModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BgModel.m; sourceTree = "<group>"; };
+		523067BD1A1E1F690055B8A5 /* PBgModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBgModel.h; sourceTree = "<group>"; };
 		5236E8731A1D67CB0057E9B3 /* TextLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextLayout.h; sourceTree = "<group>"; };
 		5236E8741A1D67CB0057E9B3 /* TextLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextLayout.m; sourceTree = "<group>"; };
 		52420E201A1AD1D80069D4AC /* TurtleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TurtleModel.h; sourceTree = "<group>"; };
@@ -337,6 +341,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		523067BC1A1E1F4F0055B8A5 /* Bg */ = {
+			isa = PBXGroup;
+			children = (
+				523067B91A1E1F4B0055B8A5 /* BgModel.h */,
+				523067BA1A1E1F4B0055B8A5 /* BgModel.m */,
+				523067BD1A1E1F690055B8A5 /* PBgModel.h */,
+			);
+			name = Bg;
+			sourceTree = "<group>";
+		};
 		52420E231A1AD1DD0069D4AC /* Turtle */ = {
 			isa = PBXGroup;
 			children = (
@@ -392,8 +406,9 @@
 				52B228A91A00ECC3001CC355 /* File */,
 				52B228AA1A00ECC7001CC355 /* Logo */,
 				52B228AB1A00ECCB001CC355 /* Drawing */,
-				52B228AD1A00EE99001CC355 /* Models.h */,
 				5287B9BB1A1C1BC900082DE1 /* TextVisible */,
+				523067BC1A1E1F4F0055B8A5 /* Bg */,
+				52B228AD1A00EE99001CC355 /* Models.h */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1022,6 +1037,7 @@
 				5297CF0E1A01263200CC5CB3 /* MenuViewController.m in Sources */,
 				52B44EFE1A0B9D4800B99FD2 /* ToastUtils.m in Sources */,
 				52420E221A1AD1D80069D4AC /* TurtleModel.m in Sources */,
+				523067BB1A1E1F4C0055B8A5 /* BgModel.m in Sources */,
 				52CF55F61A0831D600F01D3A /* LogoErrorModel.m in Sources */,
 				52815C721A04F3CC005AFA93 /* FileCell.m in Sources */,
 				5272DE4119FE518F006E717F /* BaseViewController.m in Sources */,

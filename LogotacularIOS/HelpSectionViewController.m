@@ -24,7 +24,7 @@
 - (instancetype)initWithIndex:(NSInteger)index{
 	self = [super initWithIndex:index];
 	if(self){
-		self.view.backgroundColor = [UIColor colorWithRed:drand48() green:drand48() blue:drand48() alpha:1.0];
+		
 	}
 	return self;
 }
@@ -71,13 +71,15 @@
 }
 
 - (void) addText{
+	UIColor* c = [Appearance bgColor];
+	float hue, sat, bri, alpha;
+	[c getHue:&hue saturation:&sat brightness:&bri alpha:&alpha];
 	self.textView = [[UITextView alloc] initWithFrame:CGRectZero];
 	self.textView.translatesAutoresizingMaskIntoConstraints = NO;
 	self.textView.font = [Appearance fontOfSize:SYMM_FONT_SIZE_MED];
-	self.textView.textColor = [UIColor whiteColor];
 	self.textView.backgroundColor = [UIColor clearColor];
 	[self.view addSubview:self.textView];
-	NSString* htmlString = [HelpData getHtml:self.index];
+	NSString* htmlString = [HelpData getHtml:self.index withBri:bri];
 	NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[htmlString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
 	self.textView.attributedText = attributedString;
 }

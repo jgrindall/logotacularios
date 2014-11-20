@@ -15,6 +15,10 @@
 
 +(NSDictionary*) dictionary;
 
++ (NSArray*) getDark;
+
++ (UIColor*) getRandomDark;
+
 @end
 
 

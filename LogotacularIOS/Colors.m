@@ -20,6 +20,34 @@ static NSMutableDictionary* _dic = nil;
 	return clr;
 }
 
++ (NSArray*) getDark{
+	if(![Colors dictionary]){
+		[Colors loadDic];
+	}
+	NSMutableArray* array = [NSMutableArray array];
+	[array addObject:@"turquoise"];
+	[array addObject:@"green"];
+	[array addObject:@"blue"];
+	[array addObject:@"purple"];
+	[array addObject:@"dkorg"];
+	[array addObject:@"dkturq"];
+	[array addObject:@"darkgreen"];
+	[array addObject:@"carrot"];
+	[array addObject:@"red"];
+	[array addObject:@"terracotta"];
+	[array addObject:@"ltorg"];
+	[array addObject:@"gray"];
+	[array addObject:@"dkgray"];
+	[array addObject:@"midnight"];
+	return [NSArray arrayWithArray:array];
+}
+
++ (UIColor*) getRandomDark{
+	NSArray* dark = [Colors getDark];
+	NSUInteger randomIndex = arc4random() % [dark count];
+	return [Colors getColorForString:(NSString*)dark[randomIndex]];
+}
+
 + (NSDictionary*) dictionary{
 	return _dic;
 }

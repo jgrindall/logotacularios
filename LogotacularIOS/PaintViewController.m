@@ -12,6 +12,7 @@
 #import "PScreenGrabModel.h"
 #import "PTurtleModel.h"
 #import "Colors.h"
+#import "PBgModel.h"
 
 @interface PaintViewController ()
 
@@ -140,6 +141,7 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[[self getEventDispatcher] addListener: SYMM_NOTIF_STOP toFunction:@selector(stop) withContext:self];
 	[[self getEventDispatcher] addListener: SYMM_NOTIF_RESET toFunction:@selector(reset) withContext:self];
 	[[self getEventDispatcher] addListener: SYMM_NOTIF_RESET_ZOOM toFunction:@selector(resetZoom) withContext:self];
+	[[self getBgModel] addListener:@selector(changeBg) forKey:BG_COLOR withTarget:self];
 }
 
 - (void) removeListeners{
@@ -148,6 +150,12 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[[self getEventDispatcher] removeListener: SYMM_NOTIF_STOP toFunction:@selector(stop) withContext:self];
 	[[self getEventDispatcher] removeListener: SYMM_NOTIF_RESET toFunction:@selector(reset) withContext:self];
 	[[self getEventDispatcher] removeListener: SYMM_NOTIF_RESET_ZOOM toFunction:@selector(resetZoom) withContext:self];
+	[[self getBgModel] removeListener:@selector(changeBg) forKey:BG_COLOR withTarget:self];
+}
+
+- (void) changeBg{
+	UIColor* clr = [[self getBgModel] getVal:BG_COLOR];
+	[self.paintView bg:clr];
 }
 
 - (void) stop{
@@ -159,7 +167,12 @@ NSString* const THICK_KEYWORD			= @"thick";
 }
 
 - (void) bg:(NSString*) clrName{
-	[self.paintView bg:[Colors getColorForString:clrName]];
+	UIColor* clr = [Colors getColorForString:clrName];
+	[[self getBgModel] setVal:clr forKey:BG_COLOR];
+}
+
+- (id<PBgModel>)getBgModel{
+	return [[JSObjection defaultInjector] getObject:@protocol(PBgModel)];
 }
 
 - (void) color:(NSString*) clrName{
