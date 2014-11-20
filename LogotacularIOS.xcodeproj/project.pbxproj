@@ -11,6 +11,7 @@
 		522E91C71A1CA6C2000AB933 /* FileLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E91C61A1CA6C2000AB933 /* FileLayout.m */; };
 		522E91CA1A1CA9FC000AB933 /* MenuLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E91C91A1CA9FC000AB933 /* MenuLayout.m */; };
 		522E91CD1A1CAA60000AB933 /* AlertLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E91CC1A1CAA60000AB933 /* AlertLayout.m */; };
+		5236E8751A1D67CB0057E9B3 /* TextLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5236E8741A1D67CB0057E9B3 /* TextLayout.m */; };
 		52420E221A1AD1D80069D4AC /* TurtleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52420E211A1AD1D80069D4AC /* TurtleModel.m */; };
 		52420E271A1ADF710069D4AC /* StartCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52420E261A1ADF710069D4AC /* StartCommand.m */; };
 		525167E419FFC19F00814B16 /* Assets.m in Sources */ = {isa = PBXBuildFile; fileRef = 525167E319FFC19F00814B16 /* Assets.m */; };
@@ -116,6 +117,8 @@
 		522E91C91A1CA9FC000AB933 /* MenuLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuLayout.m; sourceTree = "<group>"; };
 		522E91CB1A1CAA60000AB933 /* AlertLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertLayout.h; sourceTree = "<group>"; };
 		522E91CC1A1CAA60000AB933 /* AlertLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertLayout.m; sourceTree = "<group>"; };
+		5236E8731A1D67CB0057E9B3 /* TextLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextLayout.h; sourceTree = "<group>"; };
+		5236E8741A1D67CB0057E9B3 /* TextLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextLayout.m; sourceTree = "<group>"; };
 		52420E201A1AD1D80069D4AC /* TurtleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TurtleModel.h; sourceTree = "<group>"; };
 		52420E211A1AD1D80069D4AC /* TurtleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TurtleModel.m; sourceTree = "<group>"; };
 		52420E241A1AD1F00069D4AC /* PTurtleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTurtleModel.h; sourceTree = "<group>"; };
@@ -560,6 +563,8 @@
 			children = (
 				52A185431A01004C005D8208 /* TextViewController.h */,
 				52A185441A01004C005D8208 /* TextViewController.m */,
+				5236E8731A1D67CB0057E9B3 /* TextLayout.h */,
+				5236E8741A1D67CB0057E9B3 /* TextLayout.m */,
 			);
 			name = Text;
 			sourceTree = "<group>";
@@ -1040,6 +1045,7 @@
 				52B5B35719FD7E1400EF531F /* NavController.m in Sources */,
 				52B2289B1A00E749001CC355 /* FileModel.m in Sources */,
 				52B5B35519FD7E1400EF531F /* ImageUtils.m in Sources */,
+				5236E8751A1D67CB0057E9B3 /* TextLayout.m in Sources */,
 				52B228A11A00E75C001CC355 /* DrawingModel.m in Sources */,
 				52CC89301A1681810046615F /* LoadFromHelpCommand.m in Sources */,
 				527D42EB1A0ABED5008AE82A /* FileListModel.m in Sources */,

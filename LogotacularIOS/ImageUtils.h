@@ -17,5 +17,6 @@
 + (void) bounceAnimateView:(UIView*) view from:(float) fromPos to:(float) toPos withKeyPath:(NSString*) keyPath withKey:(NSString*) key withDelegate:(id)delegate withDuration:(float)duration withImmediate:(BOOL)immediate;
 + (UIImage*) shadowImage:(CGSize)size withCurlX:(int)cx withCurlY:(int)cy;
 + (void)shakeView:(UIView*)view;
++ (CGRect) getRectForRatio:(float)ratio inSize:(CGSize)containerSize;
 
 @end

@@ -43,7 +43,13 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[self.view addSubview:self.paintView];
 	self.paintView.translatesAutoresizingMaskIntoConstraints = NO;
 	[self layoutPaint];
-	
+	[self performSelector:@selector(zoom) withObject:self afterDelay:7.0];
+}
+
+- (void) zoom{
+	[UIView animateWithDuration:5.0 animations:^{
+		self.paintView.transform = CGAffineTransformMakeScale(5.0, 5.0);
+	}];
 }
 
 - (id<PScreenGrabModel>) getScreenGrabModel{

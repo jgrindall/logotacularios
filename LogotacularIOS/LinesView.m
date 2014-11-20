@@ -52,7 +52,6 @@ CGContextRef cacheContext;
 - (void) drawLineFrom:(CGPoint)fromPos to:(CGPoint) toPos withColor:(UIColor*) clr andThickness:(NSInteger)thickness {
 	CGContextSetStrokeColorWithColor(cacheContext, [clr CGColor]);
 	CGContextSetLineCap(cacheContext, kCGLineCapRound);
-	NSLog(@"thick %i", thickness);
 	CGContextSetLineWidth(cacheContext, thickness);
 	CGContextMoveToPoint(cacheContext, fromPos.x, fromPos.y);
 	CGContextAddLineToPoint(cacheContext, toPos.x, toPos.y);

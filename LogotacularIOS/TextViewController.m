@@ -52,7 +52,6 @@ int const EXCLAM_SIZE = 36;
 	[self addText];
 	[self addExclam];
 	[self addListeners];
-	self.view.alpha = 0.75;
 }
 
 - (void) viewDidAppear:(BOOL)animated{
@@ -111,7 +110,7 @@ int const EXCLAM_SIZE = 36;
 	[self.exclamView setUserInteractionEnabled:YES];
 	[self.exclamView addGestureRecognizer:self.exclamTap];
 	[self.undoButton addTarget:self action:@selector(undoClick) forControlEvents:UIControlEventTouchUpInside];
-	[self.undoButton addTarget:self action:@selector(redoClick) forControlEvents:UIControlEventTouchUpInside];
+	[self.redoButton addTarget:self action:@selector(redoClick) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)visChanged{
@@ -147,8 +146,8 @@ int const EXCLAM_SIZE = 36;
 	if(exclamPos < 0){
 		exclamPos = 0;
 	}
-	if(exclamPos > self.view.frame.size.height - 40){
-		exclamPos = self.view.frame.size.height - 40;
+	if(exclamPos > self.view.frame.size.height - 80){
+		exclamPos = self.view.frame.size.height - 80;
 	}
 	[self animateExclamAt:exclamPos withScreenPos:r.origin.y];
 }
@@ -165,10 +164,11 @@ int const EXCLAM_SIZE = 36;
 		alpha = hiddenAlpha;
 		rot = 90.0;
 	}
-	[UIView animateWithDuration:0.5 animations:^{
+	[self.exclamView.layer removeAllAnimations];
+	[UIView animateWithDuration:0.25 animations:^{
 		self.exclamView.frame = CGRectMake(0, y0, EXCLAM_SIZE, EXCLAM_SIZE);
 		self.exclamView.alpha = alpha;
-		self.exclamView.transform = CGAffineTransformMakeRotation(rot*3.14159/180);
+		self.exclamView.transform = CGAffineTransformMakeRotation(rot*M_PI/180);
 	}];
 }
 
@@ -370,7 +370,7 @@ int const EXCLAM_SIZE = 36;
 	[self.exclamView removeGestureRecognizer:self.exclamTap];
 	[self.exclamView setUserInteractionEnabled:NO];
 	[self.undoButton removeTarget:self action:@selector(undoClick) forControlEvents:UIControlEventTouchUpInside];
-	[self.undoButton removeTarget:self action:@selector(redoClick) forControlEvents:UIControlEventTouchUpInside];
+	[self.redoButton removeTarget:self action:@selector(redoClick) forControlEvents:UIControlEventTouchUpInside];
 	self.exclamTap = nil;
 }
 

@@ -21,6 +21,18 @@ static CGFloat edgeSizeFromCornerRadius(CGFloat cornerRadius) {
 	return cornerRadius * 2 + 1;
 }
 
++ (CGRect) getRectForRatio:(float)ratio inSize:(CGSize)containerSize{
+	float w = containerSize.width;
+	float h = containerSize.height;
+	float containerRatio = w/h;
+	if(containerRatio > ratio){
+		return CGRectMake((w - ratio*h)/2.0, 0.0, ratio*h, h);
+	}
+	else{
+		return CGRectMake(0.0, (h - (w/ratio))/2.0, w, w/ratio);
+	}
+}
+
 + (BOOL) createContextWithSize:(CGSize)size{
 	if(size.width <= 0 || size.height <= 0){
 		NSLog(@">>>>>>> NO! %f %f", size.width, size.height);

@@ -70,7 +70,9 @@
 	self.textView = [[UITextView alloc] initWithFrame:CGRectZero];
 	self.textView.translatesAutoresizingMaskIntoConstraints = NO;
 	[self.view addSubview:self.textView];
-	self.textView.text = @"Text here...";
+	NSString* htmlString = @"<h1>Header</h1><h2>Subheader</h2><p>Some <em>text</em></p>";
+	NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[htmlString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+	self.textView.attributedText = attributedString;
 }
 
 - (void) addImage{

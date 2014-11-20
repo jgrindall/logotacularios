@@ -31,8 +31,10 @@
 
 - (void) viewDidLoad{
 	[super viewDidLoad];
+	self.view.backgroundColor = [Appearance bgColor];
 	[self addContainer];
 	[self makeController];
+	[self layoutPages];
 }
 
 - (void) viewDidAppear:(BOOL)animated{
@@ -47,13 +49,13 @@
 
 - (void) addContainer{
 	self.helpContainer = [[UIView alloc] initWithFrame:self.view.frame];
-	self.helpContainer.backgroundColor = [Appearance bgColor];
+	self.helpContainer.backgroundColor = [UIColor clearColor];
 	[self.view addSubview:self.helpContainer];
 }
 
 -(void)layoutPages{
 	self.helpContainer.translatesAutoresizingMaskIntoConstraints = NO;
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.helpContainer attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view						attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.helpContainer attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.topLayoutGuide			attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.helpContainer attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.helpContainer attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.bottomLayoutGuide		attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.helpContainer attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0]];

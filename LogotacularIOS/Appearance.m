@@ -43,17 +43,17 @@
 	//r = 52;
 	//g = 152;
 	//b = 219;
-	
-	r = 231;
-	g = 76;
-	b = 60;
+
+	r = 142;
+	g = 68;
+	b = 173;
 	
 	
 	return [UIColor colorWithRed:(r/255.0) green:(g/255.0) blue:(b/255.0) alpha:1];
 }
 
 + (UIColor*) grayColor{
-	return [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.4];
+	return [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.3];
 }
 
 + (NSDictionary*) navTextAttributes{

@@ -55,7 +55,7 @@
 
 - (void) iosCallback:(NSDictionary*) jsonObj{
 	if ([jsonObj isKindOfClass:[NSDictionary class]]){
-		NSLog(@">>  ios %@ \n\n <<<< ", jsonObj);
+		//NSLog(@">>  ios %@ \n\n <<<< ", jsonObj);
 		NSDictionary* data = jsonObj[@"data"];
 		NSDictionary* error = jsonObj[@"error"];
 		NSDictionary* syntaxError = jsonObj[@"syntaxerror"];
@@ -87,8 +87,13 @@
 }
 
 - (void) syntaxError:(NSDictionary*)syntaxError{
-	[self finished];
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_SYNTAX_ERROR withData:syntaxError];
+	if(syntaxError == nil || syntaxError == (NSDictionary*) [NSNull null] || [syntaxError count] == 0){
+		[[self getEventDispatcher] dispatch:SYMM_NOTIF_SYNTAX_ERROR withData:nil];
+	}
+	else{
+		[self finished];
+		[[self getEventDispatcher] dispatch:SYMM_NOTIF_SYNTAX_ERROR withData:syntaxError];
+	}
 }
 
 - (id<PLogoErrorModel>) getErrorModel{

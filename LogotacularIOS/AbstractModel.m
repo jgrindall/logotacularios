@@ -173,8 +173,10 @@
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
-	[self performForKey:keyPath withChange:change];
-	[self performGlobalWithChange:change];
+	if(change[@"new"] != change[@"old"]){
+		[self performForKey:keyPath withChange:change];
+		[self performGlobalWithChange:change];
+	}
 }
 
 - (void)dealloc{

@@ -1,6 +1,5 @@
 
 LG.stop = function(){
-	alert("stopping!");
 	try{
 		LG.worker.terminate();
 	}
@@ -39,7 +38,7 @@ LG.getTree = function(logo){
 		LG.onMessage({"syntaxerror":e});
 		return;
 	}
-	LG.onMessage({"syntaxerror":{}});
+	LG.onMessage({"syntaxerror":null});
 	return tree;
 };
 

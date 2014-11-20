@@ -16,6 +16,7 @@
 @property UIImageView* blurView;
 @property UIImageView* catView;
 @property LinesView* linesView;
+@property UIView* rect;
 
 @end
 
@@ -55,3 +56,4 @@ CGContextRef cacheContext;
 }
 
 @end
+

@@ -43,8 +43,8 @@ NSString* const TURTLE_POS = @"turtle_pos";
 - (void) moveFdBy:(float) amount{
 	float heading = [[self getVal:TURTLE_HEADING] floatValue];
 	CGPoint p0 = [[self getVal:TURTLE_POS] CGPointValue];
-	float newX = p0.x + cosf(heading * 3.14159/180)*amount;
-	float newY = p0.y + sinf(heading * 3.14159/180)*amount;
+	float newX = p0.x + cosf(heading * M_PI/180)*amount;
+	float newY = p0.y + sinf(heading * M_PI/180)*amount;
 	CGPoint p1 = CGPointMake(newX, newY);
 	[self setVal:[NSValue valueWithCGPoint:p1] forKey:TURTLE_POS];
 }
