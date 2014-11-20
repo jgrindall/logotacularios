@@ -1,16 +1,19 @@
 PODS:
   - HexColors (2.2.1)
   - Objection (1.4)
+  - SBJson (4.0.1)
   - TSMessages (0.9.10):
     - HexColors
 
 DEPENDENCIES:
   - Objection (= 1.4)
+  - SBJson (~> 4.0.0)
   - TSMessages
 
 SPEC CHECKSUMS:
   HexColors: 01384d2bbe8dc4ffa43c3b4135db6e976952d153
   Objection: 8176a996209cdcd23490c57d6e807a25faa8d54d
+  SBJson: d71212c078abf4679d54b0d0565260c474e46235
   TSMessages: 8598a0645e9d54847f6e5f3b070bef39c493bbf8
 
 COCOAPODS: 0.32.1

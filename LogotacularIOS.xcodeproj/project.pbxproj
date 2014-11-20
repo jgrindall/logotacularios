@@ -11,6 +11,7 @@
 		522E91C71A1CA6C2000AB933 /* FileLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E91C61A1CA6C2000AB933 /* FileLayout.m */; };
 		522E91CA1A1CA9FC000AB933 /* MenuLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E91C91A1CA9FC000AB933 /* MenuLayout.m */; };
 		522E91CD1A1CAA60000AB933 /* AlertLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E91CC1A1CAA60000AB933 /* AlertLayout.m */; };
+		523067B81A1DF82A0055B8A5 /* HelpData.m in Sources */ = {isa = PBXBuildFile; fileRef = 523067B71A1DF82A0055B8A5 /* HelpData.m */; };
 		5236E8751A1D67CB0057E9B3 /* TextLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5236E8741A1D67CB0057E9B3 /* TextLayout.m */; };
 		52420E221A1AD1D80069D4AC /* TurtleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52420E211A1AD1D80069D4AC /* TurtleModel.m */; };
 		52420E271A1ADF710069D4AC /* StartCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52420E261A1ADF710069D4AC /* StartCommand.m */; };
@@ -117,6 +118,8 @@
 		522E91C91A1CA9FC000AB933 /* MenuLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuLayout.m; sourceTree = "<group>"; };
 		522E91CB1A1CAA60000AB933 /* AlertLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertLayout.h; sourceTree = "<group>"; };
 		522E91CC1A1CAA60000AB933 /* AlertLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertLayout.m; sourceTree = "<group>"; };
+		523067B61A1DF82A0055B8A5 /* HelpData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpData.h; sourceTree = "<group>"; };
+		523067B71A1DF82A0055B8A5 /* HelpData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpData.m; sourceTree = "<group>"; };
 		5236E8731A1D67CB0057E9B3 /* TextLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextLayout.h; sourceTree = "<group>"; };
 		5236E8741A1D67CB0057E9B3 /* TextLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextLayout.m; sourceTree = "<group>"; };
 		52420E201A1AD1D80069D4AC /* TurtleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TurtleModel.h; sourceTree = "<group>"; };
@@ -838,6 +841,8 @@
 				52B274151A115D2D00D3EA3B /* HelpSectionViewController.m */,
 				52CF4A091A103AF2003197B2 /* HelpPageViewController.h */,
 				52CF4A0A1A103AF2003197B2 /* HelpPageViewController.m */,
+				523067B61A1DF82A0055B8A5 /* HelpData.h */,
+				523067B71A1DF82A0055B8A5 /* HelpData.m */,
 			);
 			name = Help;
 			sourceTree = "<group>";
@@ -1035,6 +1040,7 @@
 				52420E271A1ADF710069D4AC /* StartCommand.m in Sources */,
 				5287B9AD1A1BBAE600082DE1 /* FilenameAsViewController.m in Sources */,
 				52B5123F1A13C69D00B14D0D /* PerformFileSetupCommand.m in Sources */,
+				523067B81A1DF82A0055B8A5 /* HelpData.m in Sources */,
 				525167EC19FFD36C00814B16 /* AbstractModel.m in Sources */,
 				5257F3431A012F9500757C77 /* ClickMenuCommand.m in Sources */,
 				527D42FA1A0ADBEF008AE82A /* ClickSaveCommand.m in Sources */,
