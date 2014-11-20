@@ -32,6 +32,8 @@
 #import "LoadFromHelpCommand.h"
 #import "StartCommand.h"
 #import "PerformSaveAsCommand.h"
+#import "ClickExamplesCommand.h"
+#import "ClickRefCommand.h"
 
 @interface Commands : NSObject
 

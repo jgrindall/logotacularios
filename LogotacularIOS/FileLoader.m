@@ -76,9 +76,18 @@
 	NSURL* fullImagePath = [self getAbsoluteImageURL: fileName];
 	NSError* error;
 	[logo writeToURL:fullPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
-	NSData *imageData = UIImagePNGRepresentation(img);
+	NSData *imageData = UIImagePNGRepresentation([FileLoader scaledImage:img]);
 	[imageData writeToURL:fullImagePath atomically:YES];
 	callback(FileLoaderResultOk);
+}
+
++ (UIImage*) scaledImage:(UIImage*)imageIn{
+	CGSize imageSize = CGSizeMake(256, 192);
+	UIGraphicsBeginImageContext( imageSize );
+	[imageIn drawInRect:CGRectMake(0,0,imageSize.width, imageSize.height)];
+	UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	return scaledImage;
 }
 
 - (void) deleteFileAtItem:(NSInteger) item withCallback:(void(^)(FileLoaderResults result))callback{

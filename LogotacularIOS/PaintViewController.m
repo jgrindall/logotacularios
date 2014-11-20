@@ -54,6 +54,19 @@ NSString* const THICK_KEYWORD			= @"thick";
 - (void) viewDidLoad{
 	[self addPaint];
 	[self addGestures];
+	[self addMotion];
+}
+
+- (void) addMotion{
+	UIInterpolatingMotionEffect *verticalMotionEffect =	[[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
+	verticalMotionEffect.minimumRelativeValue = @(-10);
+	verticalMotionEffect.maximumRelativeValue = @(10);
+	UIInterpolatingMotionEffect *horizontalMotionEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
+	horizontalMotionEffect.minimumRelativeValue = @(-10);
+	horizontalMotionEffect.maximumRelativeValue = @(10);
+	UIMotionEffectGroup *group = [UIMotionEffectGroup new];
+	group.motionEffects = @[horizontalMotionEffect, verticalMotionEffect];
+	[self.view addMotionEffect:group];
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
@@ -82,7 +95,6 @@ NSString* const THICK_KEYWORD			= @"thick";
 }
 
 - (void)onPan:(UIPanGestureRecognizer*)recognizer{
-	NSLog(@"pan");
 	CGPoint translation = [recognizer translationInView:self.view];
 	if(recognizer.state == UIGestureRecognizerStateBegan){
 		self.startTrans = CGPointMake(self.currentTrans.x, self.currentTrans.y);
@@ -155,7 +167,7 @@ NSString* const THICK_KEYWORD			= @"thick";
 }
 
 - (void) changeBg{
-	UIColor* clr = [[self getBgModel] getVal:BG_COLOR];
+	UIColor* clr = [Colors getColorForString:[[self getBgModel] getVal:BG_COLOR]];
 	[self.paintView bg:clr];
 }
 
@@ -168,8 +180,7 @@ NSString* const THICK_KEYWORD			= @"thick";
 }
 
 - (void) bg:(NSString*) clrName{
-	UIColor* clr = [Colors getColorForString:clrName];
-	[[self getBgModel] setVal:clr forKey:BG_COLOR];
+	[[self getBgModel] setVal:clrName forKey:BG_COLOR];
 }
 
 - (id<PBgModel>)getBgModel{

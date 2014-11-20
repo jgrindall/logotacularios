@@ -37,7 +37,6 @@
 
 - (void) viewDidLoad{
 	[super viewDidLoad];
-	self.view.backgroundColor = [Appearance bgColor];
 	[self addImage];
 	[self addContainer];
 	[self makeController];

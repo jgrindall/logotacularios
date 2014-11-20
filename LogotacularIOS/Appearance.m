@@ -31,7 +31,7 @@
 
 + (UIColor*) bgColor{
 	id<PBgModel> model = [[JSObjection defaultInjector] getObject:@protocol(PBgModel)];
-	UIColor* clr = [model getVal:BG_COLOR];
+	UIColor* clr = [Colors getColorForString:[model getVal:BG_COLOR]];
 	return clr;
 }
 
@@ -58,12 +58,12 @@
 }
 
 + (UIBarButtonItem*) getBarButton:(NSString*) imageUrl withLabel:(NSString*)label andOffsetX:(NSInteger)offset{
-	float w = 60;
+	float w = 50;
 	float h = 30;
 	UIImage* img = [UIImage imageNamed:imageUrl];
 	UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
 	if(label){
-		w += 60;
+		w += 50;
 		[btn setTitle:[NSString stringWithFormat:@" %@", label] forState:UIControlStateNormal];
 	}
 	btn.bounds = CGRectMake(0, 0, w, h);

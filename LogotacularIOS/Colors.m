@@ -20,30 +20,11 @@ static NSMutableDictionary* _dic = nil;
 	return clr;
 }
 
-+ (NSArray*) getDark{
++ (NSString*) getDark:(NSInteger)i{
 	if(![Colors dictionary]){
 		[Colors loadDic];
 	}
-	NSMutableArray* array = [NSMutableArray array];
-	[array addObject:@"turquoise"];
-	[array addObject:@"green"];
-	[array addObject:@"blue"];
-	[array addObject:@"purple"];
-	[array addObject:@"dkorg"];
-	[array addObject:@"dkturq"];
-	[array addObject:@"darkgreen"];
-	[array addObject:@"carrot"];
-	[array addObject:@"red"];
-	[array addObject:@"terracotta"];
-	[array addObject:@"ltorg"];
-	[array addObject:@"midnight"];
-	return [NSArray arrayWithArray:array];
-}
-
-+ (UIColor*) getRandomDark{
-	NSArray* dark = [Colors getDark];
-	NSUInteger randomIndex = arc4random() % [dark count];
-	return [Colors getColorForString:(NSString*)dark[randomIndex]];
+	return [NSString stringWithFormat:@"bg%i", i];
 }
 
 + (NSDictionary*) dictionary{
@@ -78,7 +59,7 @@ static NSMutableDictionary* _dic = nil;
 	_dic[@"lightorg"] =			[Colors colorWithHexString:0xf39c12];
 	_dic[@"ltorg"] =			[Colors colorWithHexString:0xf39c12];
 	_dic[@"lightorange"] =		[Colors colorWithHexString:0xf39c12];
-	_dic[@"white"] =			[Colors colorWithHexString:0xffffff];
+	_dic[@"white"] =			[Colors colorWithHexString:0xecf0f1];
 	_dic[@"gray"] =				[Colors colorWithHexString:0x95a5a6];
 	_dic[@"grey"] =				[Colors colorWithHexString:0x95a5a6];
 	_dic[@"lightgrey"] =		[Colors colorWithHexString:0xbdc3c7];
@@ -91,6 +72,11 @@ static NSMutableDictionary* _dic = nil;
 	_dic[@"dkgrey"] =			[Colors colorWithHexString:0x6f7c7d];
 	_dic[@"midnight"] =			[Colors colorWithHexString:0x34495e];
 	_dic[@"black"] =			[Colors colorWithHexString:0x000000];
+	
+	_dic[@"bg0"] =				[Colors colorWithHexString:0x75347a];
+	_dic[@"bg1"] =				[Colors colorWithHexString:0xbd4b00];
+	_dic[@"bg2"] =				[Colors colorWithHexString:0x27ae60];
+	_dic[@"bg3"] =				[Colors colorWithHexString:0x75347a];
 }
 
 + (UIColor *)colorWithHexString:(int)rgbValue {

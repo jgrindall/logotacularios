@@ -156,11 +156,11 @@ int const EXCLAM_SIZE = 36;
 	float hiddenAlpha = 0.25;
 	float alpha = 1.0;
 	float rot = 0.0;
-	if(y1 < 0){
+	if(y1 < 40){
 		alpha = hiddenAlpha;
 		rot = -90.0;
 	}
-	else if (y1 > self.view.frame.size.height - 40){
+	else if (y1 > self.view.frame.size.height){
 		alpha = hiddenAlpha;
 		rot = 90.0;
 	}
@@ -183,9 +183,9 @@ int const EXCLAM_SIZE = 36;
 - (void) layoutText{
 	float p = 10;
 	self.logoText.translatesAutoresizingMaskIntoConstraints = NO;
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual		toItem:self.container			attribute:NSLayoutAttributeTop			multiplier:1.0 constant:p]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual		toItem:self.container			attribute:NSLayoutAttributeTop			multiplier:1.0 constant:p + 30]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual		toItem:self.container			attribute:NSLayoutAttributeLeft			multiplier:1.0 constant:p]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual		toItem:self.container			attribute:NSLayoutAttributeBottom		multiplier:1.0 constant:-p - 30]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual		toItem:self.container			attribute:NSLayoutAttributeBottom		multiplier:1.0 constant:-p]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual		toItem:self.container			attribute:NSLayoutAttributeRight		multiplier:1.0 constant:-p]];
 }
 
@@ -200,13 +200,13 @@ int const EXCLAM_SIZE = 36;
 - (void) layoutButtons{
 	self.undoButton.translatesAutoresizingMaskIntoConstraints = NO;
 	self.redoButton.translatesAutoresizingMaskIntoConstraints = NO;
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.undoButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual		toItem:self.container		attribute:NSLayoutAttributeBottom				multiplier:1.0 constant:-12.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.undoButton attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual		toItem:self.container		attribute:NSLayoutAttributeCenterX				multiplier:1.0 constant:-50.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.undoButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual		toItem:nil					attribute:NSLayoutAttributeNotAnAttribute		multiplier:0.0 constant:50.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.undoButton attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual			toItem:self.container		attribute:NSLayoutAttributeTop					multiplier:1.0 constant:3.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.undoButton attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual		toItem:self.container		attribute:NSLayoutAttributeTrailing				multiplier:1.0 constant:-60.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.undoButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual		toItem:nil					attribute:NSLayoutAttributeNotAnAttribute		multiplier:0.0 constant:40.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.undoButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual		toItem:nil					attribute:NSLayoutAttributeNotAnAttribute		multiplier:0.0 constant:30.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.redoButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual		toItem:self.container		attribute:NSLayoutAttributeBottom				multiplier:1.0 constant:-12.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.redoButton attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual		toItem:self.container		attribute:NSLayoutAttributeCenterX				multiplier:1.0 constant:50.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.redoButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual		toItem:nil					attribute:NSLayoutAttributeNotAnAttribute		multiplier:0.0 constant:50.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.redoButton attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual			toItem:self.container		attribute:NSLayoutAttributeTop					multiplier:1.0 constant:3.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.redoButton attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual		toItem:self.container		attribute:NSLayoutAttributeTrailing				multiplier:1.0 constant:-15.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.redoButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual		toItem:nil					attribute:NSLayoutAttributeNotAnAttribute		multiplier:0.0 constant:40.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.redoButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual		toItem:nil					attribute:NSLayoutAttributeNotAnAttribute		multiplier:0.0 constant:30.0]];
 }
 
@@ -291,10 +291,14 @@ int const EXCLAM_SIZE = 36;
 
 - (void) show{
 	[self move:YES];
+	self.view.hidden = NO;
+	self.view.superview.hidden = NO;
 }
 
 - (void) hide{
 	[self move:NO];
+	self.view.hidden = YES;
+	self.view.superview.hidden = YES;
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView{

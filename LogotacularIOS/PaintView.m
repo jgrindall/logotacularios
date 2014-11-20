@@ -52,7 +52,9 @@ CGContextRef cacheContext;
 }
 
 - (void) bg:(UIColor*)clr{
-	self.bgView.backgroundColor = clr;
+	[UIView animateWithDuration:0.25 animations:^{
+		self.bgView.layer.backgroundColor = [clr CGColor];
+	}];
 }
 
 - (void) transformWithScale:(float)s andTrans:(CGPoint)t{

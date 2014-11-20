@@ -17,7 +17,6 @@
 
 @property UIButton* fileButton;
 @property UIButton* helpButton;
-@property UIButton* saveButton;
 @property UIButton* saveAsButton;
 @property UIButton* openButton;
 @property UIButton* refButton;
@@ -48,16 +47,14 @@
 
 - (void) addButtons{
 	self.fileButton = [self getButton:ADD_ICON withAction:@selector(onClickNew)				withLabel:@" New file"			atNum:0];
-	self.saveButton = [self getButton:FLOPPY_ICON withAction:@selector(onClickSave)			withLabel:@" Save"				atNum:1];
-	self.saveAsButton = [self getButton:FLOPPY_ICON_AS withAction:@selector(onClickSaveAs)	withLabel:@" Save as"			atNum:2];
-	self.helpButton = [self getButton:HELP_ICON withAction:@selector(onClickHelp)			withLabel:@" About / help"		atNum:3];
-	self.openButton = [self getButton:BRIEFCASE_ICON withAction:@selector(onClickOpen)		withLabel:@" Your files"		atNum:4];
-	self.egButton = [self getButton:BULB_ICON withAction:@selector(onClickEg)				withLabel:@" Examples"			atNum:5];
-	self.refButton = [self getButton:BOOK_ICON withAction:@selector(onClickRef)				withLabel:@" Quick reference"	atNum:6];
+	self.saveAsButton = [self getButton:FLOPPY_ICON_AS withAction:@selector(onClickSaveAs)	withLabel:@" Save as"			atNum:1];
+	self.helpButton = [self getButton:HELP_ICON withAction:@selector(onClickHelp)			withLabel:@" About / help"		atNum:2];
+	self.openButton = [self getButton:BRIEFCASE_ICON withAction:@selector(onClickOpen)		withLabel:@" Your files"		atNum:3];
+	self.egButton = [self getButton:BULB_ICON withAction:@selector(onClickEg)				withLabel:@" Examples"			atNum:4];
+	self.refButton = [self getButton:BOOK_ICON withAction:@selector(onClickRef)				withLabel:@" Quick reference"	atNum:5];
 	
 	[self.view addSubview:self.fileButton];
 	[self.view addSubview:self.helpButton];
-	[self.view addSubview:self.saveButton];
 	[self.view addSubview:self.saveAsButton];
 	[self.view addSubview:self.openButton];
 	[self.view addSubview:self.refButton];
@@ -67,11 +64,13 @@
 - (void) onClickRef{
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_DISMISS_KEY withData:nil];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_MENU withData:nil];
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_REF withData:nil];
 }
 
 - (void) onClickEg{
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_DISMISS_KEY withData:nil];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_MENU withData:nil];
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_EXAMPLES withData:nil];
 }
 
 - (void) onClickNew{
@@ -84,12 +83,6 @@
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_DISMISS_KEY withData:nil];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_MENU withData:nil];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_HELP withData:nil];
-}
-
-- (void) onClickSave{
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_DISMISS_KEY withData:nil];
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_MENU withData:nil];
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_SAVE withData:nil];
 }
 
 - (void) onClickSaveAs{
@@ -136,19 +129,19 @@
 }
 
 - (void) show{
-	NSLog(@"show");
 	float y0 = -self.view.frame.size.height/2;
 	float y1 = self.view.frame.size.height/2;
-	[ImageUtils bounceAnimateView:self.view.superview  from:y0 to:y1 withKeyPath:@"position.y" withKey:@"menuBounce" withDelegate:nil withDuration:0.3 withImmediate:NO];
-	//self.view.hidden = NO;
+	[ImageUtils bounceAnimateView:self.view from:y0 to:y1 withKeyPath:@"position.y" withKey:@"menuBounce" withDelegate:nil withDuration:0.3 withImmediate:NO];
+	self.view.hidden = NO;
+	self.view.superview.hidden = NO;
 }
 
 - (void) hide{
-	NSLog(@"hide");
 	float y0 = -self.view.frame.size.height/2;
 	float y1 = self.view.frame.size.height/2;
-	[ImageUtils bounceAnimateView:self.view.superview from:y1 to:y0 withKeyPath:@"position.y" withKey:@"menuBounce" withDelegate:nil withDuration:0.3 withImmediate:NO];
-	//self.view.hidden = YES;
+	[ImageUtils bounceAnimateView:self.view from:y1 to:y0 withKeyPath:@"position.y" withKey:@"menuBounce" withDelegate:nil withDuration:0.3 withImmediate:NO];
+	self.view.hidden = YES;
+	self.view.superview.hidden = YES;
 }
 
 - (void) removeListeners{

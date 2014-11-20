@@ -13,6 +13,11 @@
 		522E91CD1A1CAA60000AB933 /* AlertLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E91CC1A1CAA60000AB933 /* AlertLayout.m */; };
 		523067B81A1DF82A0055B8A5 /* HelpData.m in Sources */ = {isa = PBXBuildFile; fileRef = 523067B71A1DF82A0055B8A5 /* HelpData.m */; };
 		523067BB1A1E1F4C0055B8A5 /* BgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 523067BA1A1E1F4B0055B8A5 /* BgModel.m */; };
+		523067C11A1E9BCC0055B8A5 /* ExamplesPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 523067C01A1E9BCC0055B8A5 /* ExamplesPageViewController.m */; };
+		523067C51A1E9C5B0055B8A5 /* ClickExamplesCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 523067C41A1E9C5B0055B8A5 /* ClickExamplesCommand.m */; };
+		523067C81A1E9DF80055B8A5 /* ReferencePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 523067C71A1E9DF80055B8A5 /* ReferencePageViewController.m */; };
+		523067CC1A1E9E690055B8A5 /* ClickRefCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 523067CB1A1E9E690055B8A5 /* ClickRefCommand.m */; };
+		523067CE1A1EA6BC0055B8A5 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 523067CD1A1EA6BC0055B8A5 /* MediaPlayer.framework */; };
 		5236E8751A1D67CB0057E9B3 /* TextLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5236E8741A1D67CB0057E9B3 /* TextLayout.m */; };
 		52420E221A1AD1D80069D4AC /* TurtleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52420E211A1AD1D80069D4AC /* TurtleModel.m */; };
 		52420E271A1ADF710069D4AC /* StartCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52420E261A1ADF710069D4AC /* StartCommand.m */; };
@@ -124,6 +129,15 @@
 		523067B91A1E1F4B0055B8A5 /* BgModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BgModel.h; sourceTree = "<group>"; };
 		523067BA1A1E1F4B0055B8A5 /* BgModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BgModel.m; sourceTree = "<group>"; };
 		523067BD1A1E1F690055B8A5 /* PBgModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBgModel.h; sourceTree = "<group>"; };
+		523067BF1A1E9BCC0055B8A5 /* ExamplesPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamplesPageViewController.h; sourceTree = "<group>"; };
+		523067C01A1E9BCC0055B8A5 /* ExamplesPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamplesPageViewController.m; sourceTree = "<group>"; };
+		523067C31A1E9C5B0055B8A5 /* ClickExamplesCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickExamplesCommand.h; sourceTree = "<group>"; };
+		523067C41A1E9C5B0055B8A5 /* ClickExamplesCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickExamplesCommand.m; sourceTree = "<group>"; };
+		523067C61A1E9DF80055B8A5 /* ReferencePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferencePageViewController.h; sourceTree = "<group>"; };
+		523067C71A1E9DF80055B8A5 /* ReferencePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferencePageViewController.m; sourceTree = "<group>"; };
+		523067CA1A1E9E690055B8A5 /* ClickRefCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickRefCommand.h; sourceTree = "<group>"; };
+		523067CB1A1E9E690055B8A5 /* ClickRefCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickRefCommand.m; sourceTree = "<group>"; };
+		523067CD1A1EA6BC0055B8A5 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		5236E8731A1D67CB0057E9B3 /* TextLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextLayout.h; sourceTree = "<group>"; };
 		5236E8741A1D67CB0057E9B3 /* TextLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextLayout.m; sourceTree = "<group>"; };
 		52420E201A1AD1D80069D4AC /* TurtleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TurtleModel.h; sourceTree = "<group>"; };
@@ -326,6 +340,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				523067CE1A1EA6BC0055B8A5 /* MediaPlayer.framework in Frameworks */,
 				52B5B33A19FD7D5C00EF531F /* JavaScriptCore.framework in Frameworks */,
 				269A647FA28B48F688FF8E8B /* libPods.a in Frameworks */,
 			);
@@ -362,6 +377,24 @@
 				523067B71A1DF82A0055B8A5 /* HelpData.m */,
 			);
 			name = Help;
+			sourceTree = "<group>";
+		};
+		523067C21A1E9BD70055B8A5 /* Examples */ = {
+			isa = PBXGroup;
+			children = (
+				523067BF1A1E9BCC0055B8A5 /* ExamplesPageViewController.h */,
+				523067C01A1E9BCC0055B8A5 /* ExamplesPageViewController.m */,
+			);
+			name = Examples;
+			sourceTree = "<group>";
+		};
+		523067C91A1E9DFB0055B8A5 /* Ref */ = {
+			isa = PBXGroup;
+			children = (
+				523067C61A1E9DF80055B8A5 /* ReferencePageViewController.h */,
+				523067C71A1E9DF80055B8A5 /* ReferencePageViewController.m */,
+			);
+			name = Ref;
 			sourceTree = "<group>";
 		};
 		52420E231A1AD1DD0069D4AC /* Turtle */ = {
@@ -480,6 +513,8 @@
 				52CF4A071A102414003197B2 /* ErrorHitCommand.m */,
 				52CF4A101A103CB2003197B2 /* ClickHelpCommand.h */,
 				52CF4A111A103CB2003197B2 /* ClickHelpCommand.m */,
+				523067C31A1E9C5B0055B8A5 /* ClickExamplesCommand.h */,
+				523067C41A1E9C5B0055B8A5 /* ClickExamplesCommand.m */,
 				52B274521A11785200D3EA3B /* SyntaxErrorCommand.h */,
 				52B274531A11785200D3EA3B /* SyntaxErrorCommand.m */,
 				52B5123A1A13C1E600B14D0D /* ChangePageCommand.h */,
@@ -497,6 +532,8 @@
 				5287B9B11A1BBC3800082DE1 /* AbstractPerformSaveCommand.h */,
 				5287B9B21A1BBC3800082DE1 /* AbstractPerformSaveCommand.m */,
 				5287B9B71A1BBCF900082DE1 /* AbstractPerformSaveCommand_protected.h */,
+				523067CA1A1E9E690055B8A5 /* ClickRefCommand.h */,
+				523067CB1A1E9E690055B8A5 /* ClickRefCommand.m */,
 				5257F36D1A01AA4F00757C77 /* Commands.h */,
 			);
 			name = Commands;
@@ -864,7 +901,9 @@
 		52CF4A0C1A103AF9003197B2 /* Help */ = {
 			isa = PBXGroup;
 			children = (
+				523067C91A1E9DFB0055B8A5 /* Ref */,
 				52CC89241A1643210046615F /* Base */,
+				523067C21A1E9BD70055B8A5 /* Examples */,
 				523067BE1A1E2F170055B8A5 /* Help */,
 			);
 			name = Help;
@@ -893,6 +932,7 @@
 		5939882906C5494A8FDB4E2B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				523067CD1A1EA6BC0055B8A5 /* MediaPlayer.framework */,
 				458B6A11F0F949A0B2010544 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -1049,6 +1089,7 @@
 				52CF55F61A0831D600F01D3A /* LogoErrorModel.m in Sources */,
 				52815C721A04F3CC005AFA93 /* FileCell.m in Sources */,
 				5272DE4119FE518F006E717F /* BaseViewController.m in Sources */,
+				523067CC1A1E9E690055B8A5 /* ClickRefCommand.m in Sources */,
 				52CBC9C91A0D3AD800C229C8 /* PerformNewCommand.m in Sources */,
 				52B5B35419FD7E1400EF531F /* DrawPageViewController.m in Sources */,
 				525167E419FFC19F00814B16 /* Assets.m in Sources */,
@@ -1056,6 +1097,7 @@
 				527D42FD1A0ADEBF008AE82A /* FilenameViewController.m in Sources */,
 				52C1714B1A0C4384000865DD /* ScreenGrabModel.m in Sources */,
 				52815C6E1A04F397005AFA93 /* FilesController.m in Sources */,
+				523067C11A1E9BCC0055B8A5 /* ExamplesPageViewController.m in Sources */,
 				52B5B35319FD7E1400EF531F /* Colors.m in Sources */,
 				52CC891D1A1642E00046615F /* AbstractHelpPageViewController.m in Sources */,
 				525167F019FFEE6400814B16 /* ClickPlayCommand.m in Sources */,
@@ -1075,6 +1117,7 @@
 				52B5B35719FD7E1400EF531F /* NavController.m in Sources */,
 				52B2289B1A00E749001CC355 /* FileModel.m in Sources */,
 				52B5B35519FD7E1400EF531F /* ImageUtils.m in Sources */,
+				523067C51A1E9C5B0055B8A5 /* ClickExamplesCommand.m in Sources */,
 				5236E8751A1D67CB0057E9B3 /* TextLayout.m in Sources */,
 				52B228A11A00E75C001CC355 /* DrawingModel.m in Sources */,
 				52CC89301A1681810046615F /* LoadFromHelpCommand.m in Sources */,
@@ -1096,6 +1139,7 @@
 				52B228981A00E73D001CC355 /* MenuModel.m in Sources */,
 				52C687251A025011008FCBDB /* FileLoader.m in Sources */,
 				5257F34C1A01357500757C77 /* RedoCommand.m in Sources */,
+				523067C81A1E9DF80055B8A5 /* ReferencePageViewController.m in Sources */,
 				52B5B31619FD7D4600EF531F /* main.m in Sources */,
 				5272DE4719FE5845006E717F /* Logger.m in Sources */,
 				52A185451A01004C005D8208 /* TextViewController.m in Sources */,

@@ -46,6 +46,7 @@
 @property UIBarButtonItem* listButton;
 @property UIBarButtonItem* clearButton;
 @property UIBarButtonItem* resetButton;
+@property UIBarButtonItem* saveButton;
 
 @end
 
@@ -165,8 +166,13 @@
 	self.clearButton = [self getBarButtonItem:CLEAR_ICON withAction:@selector(onClickClear) andLabel:@"Clear" andOffsetX:0];
 	self.playButton = [self getBarButtonItem:PLAY_ICON withAction:@selector(onClickPlay) andLabel:@"Play" andOffsetX:0];
 	self.resetButton = [self getBarButtonItem:AIM_ICON withAction:@selector(onClickReset) andLabel:nil andOffsetX:10];
+	self.saveButton = [self getBarButtonItem:FLOPPY_ICON withAction:@selector(onClickSave) andLabel:@"Save" andOffsetX:0];
 	self.navigationItem.leftBarButtonItems = @[self.listButton, self.resetButton];
-	self.navigationItem.rightBarButtonItems = @[self.clearButton, self.playButton];
+	self.navigationItem.rightBarButtonItems = @[self.clearButton, self.playButton, self.saveButton];
+}
+
+- (void) onClickSave{
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_SAVE withData:nil];
 }
 
 - (void) addWeb{
@@ -178,7 +184,8 @@
 
 - (void) addMenu{
 	self.menuContainer = [[UIView alloc] initWithFrame:self.view.frame];
-	self.menuContainer.backgroundColor = [UIColor redColor];
+	self.menuContainer.backgroundColor = [UIColor clearColor];
+	self.menuContainer.hidden = YES;
 	[self.view addSubview:self.menuContainer];
 	self.menuContainer.translatesAutoresizingMaskIntoConstraints = NO;
 	self.menuViewController = [[MenuViewController alloc] init];

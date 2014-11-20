@@ -121,6 +121,8 @@
 - (void) addLabel{
 	self.emptyLabel = [[UILabel alloc] initWithFrame:self.view.frame];
 	[self.emptyLabel setText:@"No files found"];
+	self.emptyLabel.font = [Appearance fontOfSize:SYMM_FONT_SIZE_MED];
+	self.emptyLabel.textColor = [UIColor whiteColor];
 	self.emptyLabel.translatesAutoresizingMaskIntoConstraints = NO;
 	self.emptyLabel.textAlignment = NSTextAlignmentCenter;
 	[self.view addSubview:self.emptyLabel];
@@ -131,7 +133,7 @@
 	self.filesContainer = [[UIView alloc] initWithFrame:self.view.frame];
 	self.filesContainer.backgroundColor = [UIColor clearColor];
 	self.filesContainer.translatesAutoresizingMaskIntoConstraints = NO;
-	self.view.backgroundColor = [Appearance bgColor];
+	self.view.backgroundColor = [Colors getColorForString:[Colors getDark:1]];
 	[self.view addSubview:self.filesContainer];
 	UICollectionViewFlowLayout* aFlowLayout = [[UICollectionViewFlowLayout alloc] init];
 	[aFlowLayout setItemSize:CGSizeMake(FILE_LAYOUT_CELL_WIDTH, FILE_LAYOUT_CELL_HEIGHT)];

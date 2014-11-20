@@ -10,12 +10,14 @@
 #import "SymmNotifications.h"
 #import "HelpData.h"
 #import "Appearance.h"
+#import <MediaPlayer/MediaPlayer.h>
 
 @interface HelpSectionViewController ()
 
 @property UIButton* progCopyButton;
 @property UITextView* textView;
 @property UIImageView* imgView;
+@property MPMoviePlayerController* videoController;
 
 @end
 
@@ -31,6 +33,11 @@
 
 - (void) viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:animated];
+	[self layoutAll];
+}
+
+- (void) viewDidLoad{
+	[super viewDidLoad];
 	[self draw];
 }
 
@@ -38,11 +45,23 @@
 	[self addButton];
 	[self addText];
 	[self addImage];
-	[self layoutAll];
+	[self addVideo];
+}
+
+- (void) addVideo{
+	self.videoController = [[MPMoviePlayerController alloc] init];
+	NSString* path = [[NSBundle mainBundle] pathForResource:@"assets/small" ofType:@"mp4"];
+	NSURL* url = [NSURL fileURLWithPath:path];
+	NSLog(@"path %@ %@", path, url);
+	[self.videoController setContentURL:url];
+	[self.videoController.view setFrame:CGRectMake (0, 0, 320, 460)];
+	[self.view addSubview:self.videoController.view];
+	[self.videoController prepareToPlay];
+	[self.videoController play];
 }
 
 - (void) layoutAll{
-	[self layoutButton];
+	//[self layoutButton];
 	[self layoutText];
 	[self layoutImage];
 }
@@ -71,9 +90,6 @@
 }
 
 - (void) addText{
-	UIColor* c = [Appearance bgColor];
-	float hue, sat, bri, alpha;
-	[c getHue:&hue saturation:&sat brightness:&bri alpha:&alpha];
 	self.textView = [[UITextView alloc] initWithFrame:CGRectZero];
 	self.textView.translatesAutoresizingMaskIntoConstraints = NO;
 	self.textView.font = [Appearance fontOfSize:SYMM_FONT_SIZE_MED];
@@ -99,7 +115,7 @@
 	[self.progCopyButton setTitle:[NSString stringWithFormat:@"CLICK %i", self.index] forState:UIControlStateNormal];
 	[self.progCopyButton addTarget:self action:@selector(onClick) forControlEvents:UIControlEventTouchUpInside];
 	[self.view addSubview:self.progCopyButton];
-	self.progCopyButton.frame = CGRectMake(100, 100, 100, 100);
+	self.progCopyButton.frame = CGRectMake(50, 50, 100, 50);
 	self.progCopyButton.translatesAutoresizingMaskIntoConstraints = NO;
 }
 

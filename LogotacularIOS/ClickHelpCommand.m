@@ -8,7 +8,6 @@
 
 #import "ClickHelpCommand.h"
 #import "HelpPageViewController.h"
-#import "AppDelegate.h"
 
 @interface ClickHelpCommand ()
 
@@ -17,7 +16,7 @@
 @implementation ClickHelpCommand
 
 -  (void) execute:(id)payload{
-	HelpPageViewController* helpController = [[HelpPageViewController alloc] init];
+	UIViewController* helpController = [[HelpPageViewController alloc] init];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CHANGE_PAGE withData:helpController];
 }
 

@@ -1,0 +1,48 @@
+{
+ 
+	"help":
+	[
+		{"header" : "Welcome to Logotacular!", "contents":
+	 
+			[
+				"<p>Logotacular is an application for drawing colourful patterns using the Logo language, designed to help you explore geometry and programming.</p>"
+			]
+		
+		},
+		
+		{"header" : "How to write a program", "contents":
+	 
+			[
+				"<p>The most basic commands in Logo are the 'go forward' command and the 'turn right' command.</p>",
+	 
+				"<p>For example, fd(100) tells the turtle to go forward 100 units (in whatever direction it is facing), and rt(90) tells it turn on the spot 90 degrees clockwise.</p>",
+			 
+				"<p>Try drawing a square using:</p>",
+			 
+				"<p class='code'><pre style='font-size:24px;'>fd 100\nrt 90\nfd 100\nrt 90\nfd 100\nrt 90\nfd 100\nrt 90</pre></p>",
+			 
+				"<p>You don't have to put each command on a new line, but it can make it easier to read!</p>"
+			 
+			]
+		},
+	 
+		{"header" : "How to write a program", "contents":
+	 
+			[
+	  
+				"<p>The most basic commands in Logo are the 'go forward' command and the 'turn right' command.</p>",
+			 
+				"<p>For example, fd(100) tells the turtle to go forward 100 units (in whatever direction it is facing), and rt(90) tells it turn on the spot 90 degrees clockwise.</p>",
+	  
+				"<p>Try drawing a square using:</p>",
+	  
+				"<p class='code'><pre style='font-size:24px;'>fd 100\nrt 90\nfd 100\nrt 90\nfd 100\nrt 90\nfd 100\nrt 90</pre></p>",
+	  
+				"<p>You don't have to put each command on a new line, but it can make it easier to read!</p>"
+	  
+			]
+		}
+	 
+	]
+}
+

@@ -27,6 +27,8 @@ extern NSString* const SYMM_NOTIF_SAVE;
 extern NSString* const SYMM_NOTIF_CLEAR;
 extern NSString* const SYMM_NOTIF_CMD_RECEIVED;
 extern NSString* const SYMM_NOTIF_CLICK_STOP;
+extern NSString* const SYMM_NOTIF_CLICK_EXAMPLES;
+extern NSString* const SYMM_NOTIF_CLICK_REF;
 extern NSString* const SYMM_NOTIF_DISMISS_KEY;
 extern NSString* const SYMM_NOTIF_CLICK_OPEN;
 extern NSString* const SYMM_NOTIF_LOAD_FILES;
