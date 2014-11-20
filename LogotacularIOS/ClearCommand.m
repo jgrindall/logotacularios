@@ -21,6 +21,7 @@
 	}
 	[[self getErrorModel] setVal:nil forKey:LOGO_ERROR_ERROR];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_RESET withData:nil];
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_RESET_ZOOM withData:nil];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_TEXT_EDITED withData:@""];
 }
 

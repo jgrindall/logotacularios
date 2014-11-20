@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 jgrindall. All rights reserved.
 //
 
-#import "AbstractCommand.h"
+#import "AbstractCommand+protected.h"
 
 @interface PerformNewCommand : AbstractCommand
 

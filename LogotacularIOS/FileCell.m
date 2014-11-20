@@ -15,13 +15,16 @@
 @property UIImageView* imageView;
 @property UILabel* textView;
 @property UIView* coverView;
+@property UIView* whiteView;
 @property NSArray* coverConstraints;
+@property NSArray* whiteConstraints;
 
 @end
 
 @implementation FileCell
 
 int top = 35;
+float padding = 6;
 
 - (void)prepareForReuse{
 	[super prepareForReuse];
@@ -67,18 +70,31 @@ int top = 35;
 	CGSize imageSize = CGSizeMake(self.frame.size.width, self.frame.size.height - top);
 	CGRect rect = [ImageUtils getRectForRatio:(w/h) inSize:imageSize];
 	rect = CGRectInset(rect, -1, -1);
-	NSLayoutConstraint* c0 = [NSLayoutConstraint constraintWithItem:self.coverView	attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.imageView			attribute:NSLayoutAttributeTop multiplier:1.0 constant:rect.origin.y];
-	NSLayoutConstraint* c1 = [NSLayoutConstraint constraintWithItem:self.coverView	attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.imageView		attribute:NSLayoutAttributeLeading multiplier:1.0 constant:rect.origin.x];
+	NSLayoutConstraint* c0 = [NSLayoutConstraint constraintWithItem:self.coverView	attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.imageView			attribute:NSLayoutAttributeTop multiplier:1.0 constant:rect.origin.y - padding];
+	NSLayoutConstraint* c1 = [NSLayoutConstraint constraintWithItem:self.coverView	attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.imageView		attribute:NSLayoutAttributeLeading multiplier:1.0 constant:rect.origin.x - padding];
 	NSLayoutConstraint* c2 = [NSLayoutConstraint constraintWithItem:self.coverView	attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil						attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:rect.size.width];
 	NSLayoutConstraint* c3 = [NSLayoutConstraint constraintWithItem:self.coverView	attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil					attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:rect.size.height];
 	self.coverConstraints = @[c0, c1, c2, c3];
 	[self addConstraints:self.coverConstraints];
 }
 
+- (void) layoutWhite{
+	if(self.whiteConstraints && [self.whiteConstraints count]>=1){
+		[self removeConstraints:self.whiteConstraints];
+		self.whiteConstraints = @[];
+	}
+	NSLayoutConstraint* c0 = [NSLayoutConstraint constraintWithItem:self.whiteView	attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.coverView			attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0];
+	NSLayoutConstraint* c1 = [NSLayoutConstraint constraintWithItem:self.whiteView	attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.coverView		attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0.0];
+	NSLayoutConstraint* c2 = [NSLayoutConstraint constraintWithItem:self.whiteView	attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.coverView		attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0];
+	NSLayoutConstraint* c3 = [NSLayoutConstraint constraintWithItem:self.whiteView	attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.coverView			attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0];
+	self.whiteConstraints = @[c0, c1, c2, c3];
+	[self addConstraints:self.whiteConstraints];
+}
+
 -  (void) addCoverView{
 	if(!self.coverView){
 		self.coverView = [[UIView alloc] initWithFrame:CGRectZero];
-		self.coverView.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5];
+		self.coverView.backgroundColor = [UIColor colorWithRed:0.25 green:0.25 blue:0.25 alpha:1.0];
 		[self addSubview:self.coverView];
 		self.coverView.translatesAutoresizingMaskIntoConstraints = NO;
 	}
@@ -91,10 +107,20 @@ int top = 35;
 		[self addSubview:self.imageView];
 		self.imageView.backgroundColor = [UIColor clearColor];
 		self.imageView.translatesAutoresizingMaskIntoConstraints = NO;
-		[self addConstraint:[NSLayoutConstraint constraintWithItem:self.imageView	attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self				attribute:NSLayoutAttributeTop multiplier:1.0 constant:top]];
-		[self addConstraint:[NSLayoutConstraint constraintWithItem:self.imageView	attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self			attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0.0]];
-		[self addConstraint:[NSLayoutConstraint constraintWithItem:self.imageView	attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self			attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0]];
-		[self addConstraint:[NSLayoutConstraint constraintWithItem:self.imageView	attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self			attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0]];
+		[self addConstraint:[NSLayoutConstraint constraintWithItem:self.imageView	attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self				attribute:NSLayoutAttributeTop multiplier:1.0 constant:top + padding]];
+		[self addConstraint:[NSLayoutConstraint constraintWithItem:self.imageView	attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self			attribute:NSLayoutAttributeLeading multiplier:1.0 constant:padding]];
+		[self addConstraint:[NSLayoutConstraint constraintWithItem:self.imageView	attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self			attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:-padding]];
+		[self addConstraint:[NSLayoutConstraint constraintWithItem:self.imageView	attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self			attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-padding]];
+	}
+}
+
+-  (void) addWhiteView{
+	if(!self.whiteView){
+		self.whiteView = [[UIImageView alloc] initWithFrame:self.frame];
+		self.whiteView.contentMode = UIViewContentModeScaleAspectFit;
+		[self addSubview:self.whiteView];
+		self.whiteView.backgroundColor = [UIColor whiteColor];
+		self.whiteView.translatesAutoresizingMaskIntoConstraints = NO;
 	}
 }
 
@@ -114,6 +140,8 @@ int top = 35;
 }
 
 - (void) updateViews{
+	self.backgroundColor = [UIColor clearColor];
+	[self addWhiteView];
 	[self addImageView];
 	[self addTextView];
 	[self addCoverView];
@@ -121,8 +149,10 @@ int top = 35;
 	[self.textView setText:_filename];
 	self.alpha = (self.isSelected ? 1 : 0.7);
 	self.textView.alpha = (self.isSelected ? 1 : 0.5);
-	self.coverView.hidden = self.isSelected;
+	self.whiteView.alpha = (self.isSelected ? 1 : 0.4);
+	self.coverView.alpha = (self.isSelected ? 0 : 0.5);
 	[self layoutCover];
+	[self layoutWhite];
 }
 
 - (void) dealloc{

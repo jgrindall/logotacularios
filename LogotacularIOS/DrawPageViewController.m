@@ -164,7 +164,7 @@
 	self.listButton = [self getBarButtonItem:LIST_ICON withAction:@selector(onClickList) andLabel:nil andOffsetX:20];
 	self.clearButton = [self getBarButtonItem:CLEAR_ICON withAction:@selector(onClickClear) andLabel:@"Clear" andOffsetX:0];
 	self.playButton = [self getBarButtonItem:PLAY_ICON withAction:@selector(onClickPlay) andLabel:@"Play" andOffsetX:0];
-	self.resetButton = [self getBarButtonItem:AIM_ICON withAction:@selector(onClickReset) andLabel:@"Reset" andOffsetX:0];
+	self.resetButton = [self getBarButtonItem:AIM_ICON withAction:@selector(onClickReset) andLabel:nil andOffsetX:20];
 	self.navigationItem.leftBarButtonItems = @[self.listButton, self.resetButton];
 	self.navigationItem.rightBarButtonItems = @[self.clearButton, self.playButton];
 }

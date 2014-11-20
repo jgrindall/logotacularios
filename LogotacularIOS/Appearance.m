@@ -31,24 +31,9 @@
 	float r;
 	float g;
 	float b;
-	
-	//r = 230.0;
-	//g = 126.0;
-	//b = 34.0;
-	
-	//r = 155;
-	//g = 89;
-	//b = 182;
-	
-	//r = 52;
-	//g = 152;
-	//b = 219;
-
-	r = 142;
-	g = 68;
-	b = 173;
-	
-	
+	r = 44.0;
+	g = 62.0;
+	b = 80.0;
 	return [UIColor colorWithRed:(r/255.0) green:(g/255.0) blue:(b/255.0) alpha:1];
 }
 

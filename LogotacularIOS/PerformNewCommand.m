@@ -14,6 +14,8 @@
 @implementation PerformNewCommand
 
 - (void) execute:(id) payload{
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_RESET_ZOOM withData:nil];
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_RESET withData:nil];
 	[[self getLogoModel] reset:@""];
 	[[self getFileModel] reset];
 }
