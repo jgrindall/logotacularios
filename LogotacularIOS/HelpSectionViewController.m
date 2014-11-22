@@ -36,6 +36,10 @@
 	[self layoutAll];
 }
 
+- (void) viewDidAppear:(BOOL)animated{
+	[self loadVideo];
+}
+
 - (void) viewDidLoad{
 	[super viewDidLoad];
 	[self draw];
@@ -48,16 +52,19 @@
 	[self addVideo];
 }
 
-- (void) addVideo{
-	self.videoController = [[MPMoviePlayerController alloc] init];
+- (void)loadVideo{
 	NSString* path = [[NSBundle mainBundle] pathForResource:@"assets/small" ofType:@"mp4"];
 	NSURL* url = [NSURL fileURLWithPath:path];
-	NSLog(@"path %@ %@", path, url);
 	[self.videoController setContentURL:url];
-	[self.videoController.view setFrame:CGRectMake (0, 0, 320, 460)];
-	[self.view addSubview:self.videoController.view];
 	[self.videoController prepareToPlay];
 	[self.videoController play];
+
+}
+
+- (void) addVideo{
+	self.videoController = [[MPMoviePlayerController alloc] init];
+	[self.videoController.view setFrame:CGRectMake (0, 0, 320, 460)];
+	[self.view addSubview:self.videoController.view];
 }
 
 - (void) layoutAll{

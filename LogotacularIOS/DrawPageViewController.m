@@ -93,17 +93,17 @@
 }
 
 - (void) showCheckSave{
-	NSArray* options = @[@"Yes", TICK_ICON, @"No", CLEAR_ICON];
+	NSDictionary* options = @{@"buttons":@[@"Yes", TICK_ICON, @"No", CLEAR_ICON], @"title":@"Do you want to save?"};
 	self.alert = [AlertManager addAlert:[SaveCurrentViewController class] intoController:self withDelegate:self withOptions:options];
 }
 
 - (void) showFilename{
-	NSArray* options = @[@"Ok", TICK_ICON, @"Cancel", CLEAR_ICON];
+	NSDictionary* options = @{@"buttons":@[@"Ok", TICK_ICON, @"Cancel", CLEAR_ICON], @"title":@"Choose a filename"};
 	self.alert = [AlertManager addAlert:[FilenameViewController class] intoController:self withDelegate:self withOptions:options];
 }
 
 - (void) showFilenameAs{
-	NSArray* options = @[@"Ok", TICK_ICON, @"Cancel", CLEAR_ICON];
+	NSDictionary* options = @{@"buttons":@[@"Ok", TICK_ICON, @"Cancel", CLEAR_ICON], @"title":@"Choose a filename"};
 	self.alert = [AlertManager addAlert:[FilenameAsViewController class] intoController:self withDelegate:self withOptions:options];
 }
 

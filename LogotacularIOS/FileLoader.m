@@ -82,11 +82,13 @@
 }
 
 + (UIImage*) scaledImage:(UIImage*)imageIn{
+	UIImage* scaledImage;
 	CGSize imageSize = CGSizeMake(256, 192);
-	UIGraphicsBeginImageContext( imageSize );
-	[imageIn drawInRect:CGRectMake(0,0,imageSize.width, imageSize.height)];
-	UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
-	UIGraphicsEndImageContext();
+	if([ImageUtils createContextWithSize:imageSize]){
+		[imageIn drawInRect:CGRectMake(0,0,imageSize.width, imageSize.height)];
+		scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+		UIGraphicsEndImageContext();
+	}
 	return scaledImage;
 }
 

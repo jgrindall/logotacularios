@@ -121,7 +121,7 @@
 - (void) addLabel{
 	self.emptyLabel = [[UILabel alloc] initWithFrame:self.view.frame];
 	[self.emptyLabel setText:@"No files found"];
-	self.emptyLabel.font = [Appearance fontOfSize:SYMM_FONT_SIZE_MED];
+	self.emptyLabel.font = [Appearance fontOfSize:SYMM_FONT_SIZE_LARGE];
 	self.emptyLabel.textColor = [UIColor whiteColor];
 	self.emptyLabel.translatesAutoresizingMaskIntoConstraints = NO;
 	self.emptyLabel.textAlignment = NSTextAlignmentCenter;

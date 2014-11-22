@@ -61,10 +61,12 @@ CGContextRef cacheContext;
 }
 
 - (void) drawRect:(CGRect)rect {
-	CGContextRef context = UIGraphicsGetCurrentContext();
-	CGImageRef cacheImage = CGBitmapContextCreateImage(cacheContext);
-	CGContextDrawImage(context, self.bounds, cacheImage);
-	CGImageRelease(cacheImage);
+	if(cacheContext){
+		CGContextRef context = UIGraphicsGetCurrentContext();
+		CGImageRef cacheImage = CGBitmapContextCreateImage(cacheContext);
+		CGContextDrawImage(context, self.bounds, cacheImage);
+		CGImageRelease(cacheImage);
+	}
 }
 
 @end

@@ -9,17 +9,33 @@
 #import "AbstractAlertController_protected.h"
 #import "Appearance.h"
 #import "ImageUtils.h"
+#import "AlertLayout.h"
 
 @implementation AbstractAlertController
 
 - (void) viewDidLoad{
-	self.buttonLabels = (NSArray*)self.options;
+	[super viewDidLoad];
+	self.buttonLabels = ((NSDictionary*)self.options)[@"buttons"];
+	self.titleText = ((NSDictionary*)self.options)[@"title"];
 	[self addListeners];
 	[self addBg];
 	[self addPanel];
+	[self addTitle];
+}
+
+- (void) viewWillAppear:(BOOL)animated{
+	[super viewWillAppear:animated];
 	[self layoutBg];
 	[self layoutPanel:0];
+	[self layoutTitle];
 	[self show];
+}
+
+-(void)layoutTitle{
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.panel						attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.panel					attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil							attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:40]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.panel				attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0]];
 }
 
 -(void)layoutBg{
@@ -35,8 +51,8 @@
 	}
 	NSLayoutConstraint* cy = [NSLayoutConstraint constraintWithItem:self.panel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view				attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:dy];
 	NSLayoutConstraint* cx = [NSLayoutConstraint constraintWithItem:self.panel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view				attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0];
-	NSLayoutConstraint* w = [NSLayoutConstraint constraintWithItem:self.panel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil						attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:300.0];
-	NSLayoutConstraint* h = [NSLayoutConstraint constraintWithItem:self.panel attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil						attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:200.0];
+	NSLayoutConstraint* w = [NSLayoutConstraint constraintWithItem:self.panel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil						attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:ALERT_LAYOUT_WIDTH];
+	NSLayoutConstraint* h = [NSLayoutConstraint constraintWithItem:self.panel attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil						attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:ALERT_LAYOUT_HEIGHT];
 	[self.view addConstraint:cx];
 	[self.view addConstraint:cy];
 	[self.view addConstraint:w];
@@ -62,6 +78,17 @@
 	self.bg.translatesAutoresizingMaskIntoConstraints = NO;
 	self.bg.backgroundColor = [Appearance grayColor];
 	[self.view addSubview:self.bg];
+}
+
+- (void) addTitle{
+	self.titleLabel = [[UILabel alloc] initWithFrame:self.view.frame];
+	self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+	self.titleLabel.backgroundColor = [UIColor clearColor];
+	self.titleLabel.textColor = [UIColor whiteColor];
+	self.titleLabel.textAlignment = NSTextAlignmentCenter;
+	self.titleLabel.font = [Appearance fontOfSize:SYMM_FONT_SIZE_MED];
+	self.titleLabel.text = self.titleText;
+	[self.panel addSubview:self.titleLabel];
 }
 
 - (void) addPanel{

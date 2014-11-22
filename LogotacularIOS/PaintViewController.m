@@ -13,6 +13,7 @@
 #import "PTurtleModel.h"
 #import "Colors.h"
 #import "PBgModel.h"
+#import "ImageUtils.h"
 
 @interface PaintViewController ()
 
@@ -20,11 +21,9 @@
 @property NSMutableArray* constraints;
 @property UIPanGestureRecognizer* pan;
 @property UIPinchGestureRecognizer* pinch;
-@property CGPoint currentTrans;
-@property float currentScale;
-@property CGPoint startTrans;
-@property float startScale;
 
+@property CGAffineTransform currentTransform;
+@property CGAffineTransform startTransform;
 @end
 
 @implementation PaintViewController
@@ -40,8 +39,7 @@ NSString* const THICK_KEYWORD			= @"thick";
 - (instancetype) init{
 	self = [super init];
 	if(self){
-		_currentTrans = CGPointMake(0.0, 0.0);
-		_currentScale = 1.0;
+		_currentTransform = CGAffineTransformIdentity;
 		[self addListeners];
 	}
 	return self;
@@ -54,7 +52,7 @@ NSString* const THICK_KEYWORD			= @"thick";
 - (void) viewDidLoad{
 	[self addPaint];
 	[self addGestures];
-	[self addMotion];
+	//[self addMotion];
 }
 
 - (void) addMotion{
@@ -84,30 +82,57 @@ NSString* const THICK_KEYWORD			= @"thick";
 
 - (void)onPinch:(UIPinchGestureRecognizer*)recognizer{
 	float scale = recognizer.scale;
+	CGPoint p0 = [recognizer locationOfTouch:0 inView:self.view];
+	CGPoint p1 = [recognizer locationOfTouch:1 inView:self.view];
+	CGPoint p = CGPointMake((p0.x + p1.x)/2.0, (p0.y + p1.y)/2.0);
 	if(recognizer.state == UIGestureRecognizerStateBegan){
-		self.startScale = self.currentScale;
+		self.startTransform = self.currentTransform;
 	}
 	else if(recognizer.state == UIGestureRecognizerStateEnded){
 		// end
 	}
-	self.currentScale = self.startScale * scale;
+	CGPoint realPoint = [self getRealPoint:p];
+	CGAffineTransform extraTransform = [PaintViewController getTransformForScale:scale andCentre:realPoint];
+	self.currentTransform = CGAffineTransformConcat(self.startTransform, extraTransform);
 	[self updateTransforms];
+}
+
++ (CGAffineTransform)getTransformForScale:(float)f andCentre:(CGPoint) p{
+	CGAffineTransform move = CGAffineTransformMakeTranslation(p.x, p.y);
+	CGAffineTransform moveBack = CGAffineTransformMakeTranslation(-p.x, -p.y);
+	CGAffineTransform scale = CGAffineTransformMakeScale(f, f);
+	return CGAffineTransformConcat(CGAffineTransformConcat(moveBack, scale), move);
+}
+
+- (CGPoint)getRealPoint:(CGPoint)p{
+	CGPoint p1 = CGPointMake(p.x - self.view.frame.size.width/2.0, p.y - self.view.frame.size.height/2.0);
+	return CGPointApplyAffineTransform(p1, CGAffineTransformInvert(self.startTransform));
 }
 
 - (void)onPan:(UIPanGestureRecognizer*)recognizer{
-	CGPoint translation = [recognizer translationInView:self.view];
-	if(recognizer.state == UIGestureRecognizerStateBegan){
-		self.startTrans = CGPointMake(self.currentTrans.x, self.currentTrans.y);
+	CGPoint t = [recognizer translationInView:self.view];
+	if(recognizer.state == UIGestureRecognizerStateBegan) {
+		self.startTransform = self.currentTransform;
 	}
-	else if(recognizer.state == UIGestureRecognizerStateEnded){
-		// end
-	}
-	self.currentTrans = CGPointMake(self.startTrans.x + translation.x * self.currentScale, self.startTrans.y + translation.y * self.currentScale);
+	float scale = [self getScale];
+	scale = 1;
+	CGAffineTransform trans = CGAffineTransformMakeTranslation(t.x/scale, t.y/scale);
+	self.currentTransform = CGAffineTransformConcat(self.startTransform, trans);
 	[self updateTransforms];
 }
 
+- (CGFloat)getScale {
+	CGAffineTransform t = self.startTransform;
+	return sqrt(t.a * t.a  +  t.c * t.c);
+}
+
+- (CGPoint) getTranslation{
+	CGAffineTransform t = self.startTransform;
+	return CGPointMake(t.tx, t.ty);
+}
+
 - (void)updateTransforms{
-	[self.paintView transformWithScale:self.currentScale andTrans:self.currentTrans];
+	[self.paintView transformWith:self.currentTransform];
 }
 
 - (void) addPaint{
@@ -130,16 +155,17 @@ NSString* const THICK_KEYWORD			= @"thick";
 }
 
 - (UIImage*)getImage{
-	UIGraphicsBeginImageContext(self.view.bounds.size);
-	[self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
-	UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
-	UIGraphicsEndImageContext();
+	UIImage* image;
+	if([ImageUtils createContextWithSize:self.view.bounds.size]){
+		[self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+		image = UIGraphicsGetImageFromCurrentImageContext();
+		UIGraphicsEndImageContext();
+	}
 	return image;
 }
 
 - (void) resetZoom{
-	self.currentScale = 1.0;
-	self.currentTrans = CGPointMake(0, 0);
+	self.currentTransform = CGAffineTransformIdentity;
 	[self updateTransforms];
 }
 

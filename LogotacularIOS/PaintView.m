@@ -57,10 +57,8 @@ CGContextRef cacheContext;
 	}];
 }
 
-- (void) transformWithScale:(float)s andTrans:(CGPoint)t{
-	CGAffineTransform scale = CGAffineTransformMakeScale(s, s);
-	CGAffineTransform trans = CGAffineTransformMakeTranslation(t.x, t.y);
-	self.linesView.transform = CGAffineTransformConcat(scale, trans);
+- (void) transformWith:(CGAffineTransform)t{
+	self.linesView.transform = t;
 }
 
 @end
