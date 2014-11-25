@@ -20,5 +20,7 @@
 
 - (void) flushTransformsWith:(CGAffineTransform)t;
 
+- (void) setFlushedTransform:(CGAffineTransform)t;
+
 @end
 

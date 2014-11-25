@@ -64,6 +64,7 @@
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_START toCommandClass:[StartCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLICK_SAVE_AS toCommandClass:[ClickSaveAsCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLICK_REF toCommandClass:[ClickRefCommand class]];
+	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLICK_RESET_ZOOM toCommandClass:[ClickResetZoomCommand class]];
 }
 
 - (id<PCommandMap>)getCommandMap{

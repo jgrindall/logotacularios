@@ -165,7 +165,7 @@
 	self.listButton = [self getBarButtonItem:LIST_ICON withAction:@selector(onClickList) andLabel:nil andOffsetX:10];
 	self.clearButton = [self getBarButtonItem:CLEAR_ICON withAction:@selector(onClickClear) andLabel:@"Clear" andOffsetX:0];
 	self.playButton = [self getBarButtonItem:PLAY_ICON withAction:@selector(onClickPlay) andLabel:@"Play" andOffsetX:0];
-	self.resetButton = [self getBarButtonItem:AIM_ICON withAction:@selector(onClickReset) andLabel:nil andOffsetX:10];
+	self.resetButton = [self getBarButtonItem:AIM_ICON withAction:@selector(onClickResetZoom) andLabel:nil andOffsetX:10];
 	self.saveButton = [self getBarButtonItem:FLOPPY_ICON withAction:@selector(onClickSave) andLabel:@"Save" andOffsetX:0];
 	self.navigationItem.leftBarButtonItems = @[self.listButton, self.resetButton];
 	self.navigationItem.rightBarButtonItems = @[self.clearButton, self.playButton, self.saveButton];
@@ -302,8 +302,8 @@
 	}
 }
 
--(void)onClickReset{
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_RESET_ZOOM withData:nil];
+-(void)onClickResetZoom{
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_RESET_ZOOM withData:nil];
 }
 
 -(void)onClickList{

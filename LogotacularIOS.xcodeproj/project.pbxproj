@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		269A647FA28B48F688FF8E8B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 458B6A11F0F949A0B2010544 /* libPods.a */; };
+		52244C151A25341500505F6D /* ClickResetZoomCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52244C141A25341500505F6D /* ClickResetZoomCommand.m */; };
 		522E91C71A1CA6C2000AB933 /* FileLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E91C61A1CA6C2000AB933 /* FileLayout.m */; };
 		522E91CA1A1CA9FC000AB933 /* MenuLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E91C91A1CA9FC000AB933 /* MenuLayout.m */; };
 		522E91CD1A1CAA60000AB933 /* AlertLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E91CC1A1CAA60000AB933 /* AlertLayout.m */; };
@@ -118,6 +119,8 @@
 
 /* Begin PBXFileReference section */
 		458B6A11F0F949A0B2010544 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		52244C131A25341500505F6D /* ClickResetZoomCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickResetZoomCommand.h; sourceTree = "<group>"; };
+		52244C141A25341500505F6D /* ClickResetZoomCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickResetZoomCommand.m; sourceTree = "<group>"; };
 		522E91C51A1CA6C2000AB933 /* FileLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileLayout.h; sourceTree = "<group>"; };
 		522E91C61A1CA6C2000AB933 /* FileLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileLayout.m; sourceTree = "<group>"; };
 		522E91C81A1CA9FC000AB933 /* MenuLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuLayout.h; sourceTree = "<group>"; };
@@ -533,6 +536,8 @@
 				5287B9B71A1BBCF900082DE1 /* AbstractPerformSaveCommand_protected.h */,
 				523067CA1A1E9E690055B8A5 /* ClickRefCommand.h */,
 				523067CB1A1E9E690055B8A5 /* ClickRefCommand.m */,
+				52244C131A25341500505F6D /* ClickResetZoomCommand.h */,
+				52244C141A25341500505F6D /* ClickResetZoomCommand.m */,
 				5257F36D1A01AA4F00757C77 /* Commands.h */,
 			);
 			name = Commands;
@@ -1109,6 +1114,7 @@
 				523067B81A1DF82A0055B8A5 /* HelpData.m in Sources */,
 				525167EC19FFD36C00814B16 /* AbstractModel.m in Sources */,
 				5257F3431A012F9500757C77 /* ClickMenuCommand.m in Sources */,
+				52244C151A25341500505F6D /* ClickResetZoomCommand.m in Sources */,
 				527D42FA1A0ADBEF008AE82A /* ClickSaveCommand.m in Sources */,
 				52B5B35A19FD7E1400EF531F /* SpinnerView.m in Sources */,
 				52B5123C1A13C1E700B14D0D /* ChangePageCommand.m in Sources */,

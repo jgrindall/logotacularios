@@ -167,7 +167,7 @@ NSString* const THICK_KEYWORD			= @"thick";
 - (void) resetZoom{
 	NSLog(@"resetzoom");
 	self.currentTransform = CGAffineTransformIdentity;
-	[self.paintView flushTransformsWith:self.currentTransform];
+	[self.paintView setFlushedTransform:CGAffineTransformIdentity];
 	[self updateTransforms];
 }
 

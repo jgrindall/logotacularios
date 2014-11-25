@@ -34,6 +34,7 @@
 #import "PerformSaveAsCommand.h"
 #import "ClickExamplesCommand.h"
 #import "ClickRefCommand.h"
+#import "ClickResetZoomCommand.h"
 
 @interface Commands : NSObject
 
