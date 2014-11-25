@@ -50,11 +50,16 @@ CGContextRef cacheContext;
 	return YES;
 }
 
+- (CGFloat)getScale:(CGAffineTransform)t {
+	return sqrt(t.a * t.a  +  t.c * t.c);
+}
+
 - (void) drawLineFrom:(CGPoint)fromPos to:(CGPoint) toPos withColor:(UIColor*) clr andThickness:(NSInteger)thickness {
 	NSLog(@"draw line with %@", NSStringFromCGAffineTransform(self.flushedTransform));
 	CGContextSetStrokeColorWithColor(cacheContext, [clr CGColor]);
 	CGContextSetLineCap(cacheContext, kCGLineCapRound);
-	float thickness1 = CGPointApplyAffineTransform( CGPointMake(0, thickness), self.flushedTransform).y;
+	float thickness1 = thickness * [self getScale:self.flushedTransform];
+	NSLog(@"thick %i %f", thickness, thickness1);
 	CGContextSetLineWidth(cacheContext, thickness1);
 	CGPoint toPos1 = [self getFlushedPoint:toPos];
 	CGPoint fromPos1 = [self getFlushedPoint:fromPos];

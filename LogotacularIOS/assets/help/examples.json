@@ -2,7 +2,7 @@
  
 	"help":
 	[
-		{"header" : "Welcome to Logotacular!", "contents":
+		{"header" : "Example 1", "contents":
 	 
 			[
 				"<p>Logotacular is an application for drawing colourful patterns using the Logo language, designed to help you explore geometry and programming.</p>"
@@ -10,7 +10,7 @@
 		
 		},
 		
-		{"header" : "How to write a program", "contents":
+		{"header" : "Example 2", "contents":
 	 
 			[
 				"<p>The most basic commands in Logo are the 'go forward' command and the 'turn right' command.</p>",
@@ -26,7 +26,7 @@
 			]
 		},
 	 
-		{"header" : "How to write a program", "contents":
+		{"header" : "Example 3", "contents":
 	 
 			[
 	  
