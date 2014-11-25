@@ -10,10 +10,8 @@
 
 @interface LinesView : UIView
 
-- (void) drawLineFrom:(CGPoint)fromPos to:(CGPoint) toPos withColor:(UIColor*) clr andThickness:(int)thickness;
+- (void) drawLineFrom:(CGPoint)fromPos to:(CGPoint) toPos withColor:(UIColor*) clr andThickness:(NSInteger)thickness;
 
 - (void) reset;
-
-- (void) grid;
 
 @end

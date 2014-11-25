@@ -24,7 +24,7 @@ static NSMutableDictionary* _dic = nil;
 	if(![Colors dictionary]){
 		[Colors loadDic];
 	}
-	return [NSString stringWithFormat:@"bg%i", i];
+	return [NSString stringWithFormat:@"bg%li", (long)i];
 }
 
 + (NSDictionary*) dictionary{

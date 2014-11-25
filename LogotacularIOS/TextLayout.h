@@ -11,6 +11,6 @@
 @interface TextLayout : NSObject
 
 extern float const TEXT_WIDTH;
-extern float const TEXT_PADDING2;
+extern float const TEXT_MARGIN;
 
 @end

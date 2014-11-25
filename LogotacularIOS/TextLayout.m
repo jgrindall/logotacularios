@@ -11,6 +11,6 @@
 @implementation TextLayout
 
 float const TEXT_WIDTH = 0.33333;
-float const TEXT_PADDING2 = 7.0;
+float const TEXT_MARGIN = 7.0;
 
 @end

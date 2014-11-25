@@ -19,7 +19,7 @@
 
 static NSMutableDictionary* _dic = nil;
 
-NSString* const STYLES = @"<style>h1, p, h2, h3, div, span{font-family: 'Lato-Regular';font-size: 24px;color:$color}p{font-size: 19px;}p.code{margin:0;padding:0;}p.code, pre{font-family:'DroidSansMono', font-size: 48px !important;color:$color}p.quote{font-size: 14px;}</style>";
+NSString* const STYLES = @"<style>h1, p, h2, h3, div, span, ul, li{font-family: 'Lato-Regular';font-size: 18px;color:$color}h1,h2,h3{font-size:24px;}pre, span.mono{font-family:'DroidSansMono';color:$color;}p.quote{font-size: 14px;}</style>";
 
 + (NSString*) getMedia:(NSInteger)index{
 	return @"";
@@ -33,14 +33,26 @@ NSString* const STYLES = @"<style>h1, p, h2, h3, div, span{font-family: 'Lato-Re
 	return @"";
 }
 
-+ (NSString*) getHtml:(NSInteger)index{
++ (NSString*) getTop:(NSInteger)index{
 	NSString* textColor = @"#ffffff";
 	NSString* styles = [STYLES stringByReplacingOccurrencesOfString:@"$color" withString:textColor];
 	NSDictionary* help = (NSDictionary*)[self getDictionary][@"help"][index];
-	NSLog(@"help %@ %@", help, [self getDictionary]);
+	if(help){
+		NSString* paras = [HelpData getParas:(NSArray*)help[@"title"]];
+		return [NSString stringWithFormat:@"%@<h3>%@</h3>%@", styles, help[@"header"], paras];
+	}
+	else{
+		return @"";
+	}
+}
+
++ (NSString*) getContents:(NSInteger)index{
+	NSString* textColor = @"#ffffff";
+	NSString* styles = [STYLES stringByReplacingOccurrencesOfString:@"$color" withString:textColor];
+	NSDictionary* help = (NSDictionary*)[self getDictionary][@"help"][index];
 	if(help){
 		NSString* paras = [HelpData getParas:(NSArray*)help[@"contents"]];
-		return [NSString stringWithFormat:@"%@<h3>%@</h3>%@", styles, help[@"header"], paras];
+		return [NSString stringWithFormat:@"%@%@", styles, paras];
 	}
 	else{
 		return @"";

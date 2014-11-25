@@ -20,7 +20,7 @@ extern NSString* const THICK_KEYWORD;
 
 - (void) reset;
 
-- (void) executeCommand:(NSDictionary*)dic;
+- (void) queueCommand:(NSDictionary*)dic;
 
 - (UIImage*)getImage;
 

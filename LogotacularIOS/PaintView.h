@@ -10,7 +10,7 @@
 
 @interface PaintView : UIView
 
-- (void) drawLineFrom:(CGPoint)p0 to:(CGPoint)p1 withColor:(UIColor *)clr andThickness:(int)thickness;
+- (void) drawLineFrom:(CGPoint)p0 to:(CGPoint)p1 withColor:(UIColor *)clr andThickness:(NSInteger)thickness;
 
 - (void) reset;
 

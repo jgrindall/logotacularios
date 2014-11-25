@@ -21,6 +21,7 @@
 @property NSMutableArray* constraints;
 @property UIPanGestureRecognizer* pan;
 @property UIPinchGestureRecognizer* pinch;
+@property NSMutableArray* cmds;
 
 @property CGAffineTransform currentTransform;
 @property CGAffineTransform startTransform;
@@ -40,6 +41,7 @@ NSString* const THICK_KEYWORD			= @"thick";
 	self = [super init];
 	if(self){
 		_currentTransform = CGAffineTransformIdentity;
+		_cmds = [NSMutableArray array];
 		[self addListeners];
 	}
 	return self;
@@ -52,19 +54,6 @@ NSString* const THICK_KEYWORD			= @"thick";
 - (void) viewDidLoad{
 	[self addPaint];
 	[self addGestures];
-	//[self addMotion];
-}
-
-- (void) addMotion{
-	UIInterpolatingMotionEffect *verticalMotionEffect =	[[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.y" type:UIInterpolatingMotionEffectTypeTiltAlongVerticalAxis];
-	verticalMotionEffect.minimumRelativeValue = @(-10);
-	verticalMotionEffect.maximumRelativeValue = @(10);
-	UIInterpolatingMotionEffect *horizontalMotionEffect = [[UIInterpolatingMotionEffect alloc] initWithKeyPath:@"center.x" type:UIInterpolatingMotionEffectTypeTiltAlongHorizontalAxis];
-	horizontalMotionEffect.minimumRelativeValue = @(-10);
-	horizontalMotionEffect.maximumRelativeValue = @(10);
-	UIMotionEffectGroup *group = [UIMotionEffectGroup new];
-	group.motionEffects = @[horizontalMotionEffect, verticalMotionEffect];
-	[self.view addMotionEffect:group];
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
@@ -176,7 +165,7 @@ NSString* const THICK_KEYWORD			= @"thick";
 
 - (void) addListeners{
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_SCREENGRAB toFunction:@selector(grab) withContext:self];
-	[[self getEventDispatcher] addListener: SYMM_NOTIF_CMD_RECEIVED toFunction:@selector(executeCommand:) withContext:self];
+	[[self getEventDispatcher] addListener: SYMM_NOTIF_CMD_RECEIVED toFunction:@selector(queueCommand:) withContext:self];
 	[[self getEventDispatcher] addListener: SYMM_NOTIF_STOP toFunction:@selector(stop) withContext:self];
 	[[self getEventDispatcher] addListener: SYMM_NOTIF_RESET toFunction:@selector(reset) withContext:self];
 	[[self getEventDispatcher] addListener: SYMM_NOTIF_RESET_ZOOM toFunction:@selector(resetZoom) withContext:self];
@@ -185,7 +174,7 @@ NSString* const THICK_KEYWORD			= @"thick";
 
 - (void) removeListeners{
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_SCREENGRAB toFunction:@selector(grab) withContext:self];
-	[[self getEventDispatcher] removeListener: SYMM_NOTIF_CMD_RECEIVED toFunction:@selector(executeCommand:) withContext:self];
+	[[self getEventDispatcher] removeListener: SYMM_NOTIF_CMD_RECEIVED toFunction:@selector(queueCommand:) withContext:self];
 	[[self getEventDispatcher] removeListener: SYMM_NOTIF_STOP toFunction:@selector(stop) withContext:self];
 	[[self getEventDispatcher] removeListener: SYMM_NOTIF_RESET toFunction:@selector(reset) withContext:self];
 	[[self getEventDispatcher] removeListener: SYMM_NOTIF_RESET_ZOOM toFunction:@selector(resetZoom) withContext:self];
@@ -233,8 +222,13 @@ NSString* const THICK_KEYWORD			= @"thick";
 	}
 }
 
-- (void) executeCommand:(NSNotification*)notif{
-	NSDictionary* dic = notif.object;
+- (void) queueCommand:(NSNotification*)notif{
+	[self.cmds addObject:notif.object];
+	[self executeCommand];
+}
+
+- (void) executeCommand{
+	NSDictionary* dic = self.cmds[self.cmds.count - 1];
 	NSString* name = (NSString*)dic[@"name"];
 	if([name isEqualToString:FD_KEYWORD]){
 		[self fd:(NSNumber*)dic[@"amount"]];
@@ -257,6 +251,7 @@ NSString* const THICK_KEYWORD			= @"thick";
 	else if([name isEqualToString:PENDOWN_KEYWORD]){
 		[[self getTurtleModel] setVal:[NSNumber numberWithBool:YES] forKey:TURTLE_PEN_DOWN];
 	}
+	[self.cmds removeLastObject];
 }
 
 - (void) layoutPaint{

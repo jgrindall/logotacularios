@@ -339,9 +339,9 @@
 }
 
 - (void) layoutText{
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.textContainer attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.topLayoutGuide			attribute:NSLayoutAttributeBottom multiplier:1.0 constant:TEXT_PADDING2]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.textContainer attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.topLayoutGuide			attribute:NSLayoutAttributeBottom multiplier:1.0 constant:TEXT_MARGIN]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.textContainer attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view						attribute:NSLayoutAttributeRight multiplier:(1 - TEXT_WIDTH) constant:0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.textContainer attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-TEXT_PADDING2]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.textContainer attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-TEXT_MARGIN]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.textContainer attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeRight multiplier:1.0 constant:10]];
 }
 
@@ -360,3 +360,16 @@
 }
 
 @end
+
+
+/*
+ open pdf?
+ 
+ NSURL *targetURL = [NSURL fileURLWithPath:tempFullPath];
+ NSLog(@"Path is %@", tempFullPath);
+ UIDocumentInteractionController *controller = [UIDocumentInteractionController interactionControllerWithURL:targetURL];
+ controller.delegate = self;
+ controller.UTI = @"com.adobe.pdf";
+ 
+ [controller presentOpenInMenuFromRect:self.view.bounds inView:self.view animated:YES];
+*/

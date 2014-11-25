@@ -83,7 +83,7 @@
 -(void)layoutLabel{
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.emptyLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view			attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.emptyLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view			attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.emptyLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil					attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:200.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.emptyLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil					attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:500.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.emptyLabel attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil				attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:50.0]];
 }
 

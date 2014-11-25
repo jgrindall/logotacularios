@@ -901,9 +901,9 @@
 		52CF4A0C1A103AF9003197B2 /* Help */ = {
 			isa = PBXGroup;
 			children = (
-				523067C91A1E9DFB0055B8A5 /* Ref */,
 				52CC89241A1643210046615F /* Base */,
 				523067C21A1E9BD70055B8A5 /* Examples */,
+				523067C91A1E9DFB0055B8A5 /* Ref */,
 				523067BE1A1E2F170055B8A5 /* Help */,
 			);
 			name = Help;

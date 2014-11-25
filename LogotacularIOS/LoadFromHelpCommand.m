@@ -12,7 +12,7 @@
 
 - (void) execute:(id)payload{
 	NSInteger index = [(NSNumber*)payload integerValue];
-	NSString* logo = [NSString stringWithFormat:@"Here is the logo for file, %i", index];
+	NSString* logo = [NSString stringWithFormat:@"Here is the logo for file, %li", (long)index];
 	NSDictionary* dic = @{@"filename":[NSNull null], @"logo":logo};
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_PERFORM_FILE_SETUP withData:dic];
 }
