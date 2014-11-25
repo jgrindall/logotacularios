@@ -14,4 +14,6 @@
 
 - (void) reset;
 
+@property CGAffineTransform flushedTransform;
+
 @end

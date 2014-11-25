@@ -19,6 +19,7 @@ CGContextRef cacheContext;
 - (instancetype)initWithFrame:(CGRect)frame{
 	self = [super initWithFrame:frame];
 	if (self) {
+		_flushedTransform = CGAffineTransformIdentity;
 		[self setBackgroundColor:[UIColor clearColor]];
 		[self reset];
 	}
@@ -50,14 +51,26 @@ CGContextRef cacheContext;
 }
 
 - (void) drawLineFrom:(CGPoint)fromPos to:(CGPoint) toPos withColor:(UIColor*) clr andThickness:(NSInteger)thickness {
+	NSLog(@"draw line with %@", NSStringFromCGAffineTransform(self.flushedTransform));
 	CGContextSetStrokeColorWithColor(cacheContext, [clr CGColor]);
 	CGContextSetLineCap(cacheContext, kCGLineCapRound);
 	CGContextSetLineWidth(cacheContext, thickness);
-	CGContextMoveToPoint(cacheContext, fromPos.x, fromPos.y);
-	CGContextAddLineToPoint(cacheContext, toPos.x, toPos.y);
+	CGPoint toPos1 = [self getFlushedPoint:toPos];
+	CGPoint fromPos1 = [self getFlushedPoint:fromPos];
+	CGContextMoveToPoint(cacheContext, fromPos1.x, fromPos1.y);
+	CGContextAddLineToPoint(cacheContext, toPos1.x, toPos1.y);
 	CGContextStrokePath(cacheContext);
 	float p = thickness/2.0;
-	[self setNeedsDisplayInRect:CGRectUnion(CGRectMake(fromPos.x - p, fromPos.y - p, 2*p, 2*p), CGRectMake(toPos.x - p, toPos.y - p, 2*p, 2*p))];
+	[self setNeedsDisplayInRect:CGRectUnion(CGRectMake(fromPos1.x - p, fromPos1.y - p, 2*p, 2*p), CGRectMake(toPos1.x - p, toPos1.y - p, 2*p, 2*p))];
+}
+
+- (CGPoint) getFlushedPoint:(CGPoint)p{
+	float w = self.frame.size.width/2.0;
+	float h = self.frame.size.height/2.0;
+	p.x -= w;
+	p.y -= h;
+	CGPoint p1 = CGPointApplyAffineTransform(p, self.flushedTransform);
+	return CGPointMake(p1.x + w, p1.y + h);
 }
 
 - (void) drawRect:(CGRect)rect {

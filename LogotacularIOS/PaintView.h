@@ -18,5 +18,7 @@
 
 - (void) transformWith:(CGAffineTransform)t;
 
+- (void) flushTransformsWith:(CGAffineTransform)t;
+
 @end
 

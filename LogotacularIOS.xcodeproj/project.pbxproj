@@ -420,7 +420,6 @@
 		525167DE19FFB0DC00814B16 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				52B5B35E19FD7E8300EF531F /* Paint */,
 				52B5B36019FD7E9B00EF531F /* Spinner */,
 			);
 			name = View;
@@ -593,6 +592,7 @@
 			children = (
 				5297CF041A01137100CC5CB3 /* PaintViewController.h */,
 				5297CF051A01137100CC5CB3 /* PaintViewController.m */,
+				52B5B35E19FD7E8300EF531F /* Paint */,
 			);
 			name = Paint;
 			sourceTree = "<group>";
@@ -729,10 +729,10 @@
 				52B5B33C19FD7E1400EF531F /* AppDelegate.m */,
 				52C687261A025014008FCBDB /* Persistence */,
 				525167DD19FFB0C500814B16 /* Log */,
-				525167DE19FFB0DC00814B16 /* View */,
 				52B5B35C19FD7E6A00EF531F /* Graphics */,
 				525167ED19FFD37500814B16 /* Model */,
 				52B5B35D19FD7E7300EF531F /* ViewControllers */,
+				525167DE19FFB0DC00814B16 /* View */,
 				5272DE3319FE4799006E717F /* Commands */,
 				52B5B35F19FD7E9100EF531F /* Consts */,
 				52B5B32019FD7D4600EF531F /* Images.xcassets */,

@@ -128,6 +128,7 @@ function visitnumber(node){
 function visitrtstmt(node){
 	visitchildren(node);
 	var amount = stack.pop();
+	amount = amount % 360;
 	self.postMessage({"type":"command", "name":"rt", "amount":amount });
 }
 

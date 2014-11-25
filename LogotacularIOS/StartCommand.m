@@ -17,7 +17,6 @@
 - (void) execute:(id)payload{
 	[[self getMenuModel] setVal:@NO forKey:MENU_SHOWN];
 	[[self getTurtleModel] reset];
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_RESET_ZOOM withData:nil];
 	[[self getDrawingModel] setVal:@YES forKey:DRAWING_ISDRAWING];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_DISMISS_KEY withData:nil];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_RESET withData:nil];

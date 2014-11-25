@@ -47,6 +47,11 @@ CGContextRef cacheContext;
 	self.blurView.contentMode = UIViewContentModeScaleAspectFill;
 }
 
+- (void) flushTransformsWith:(CGAffineTransform)t{
+	NSLog(@"set flsuh as %@", NSStringFromCGAffineTransform(t));
+	self.linesView.flushedTransform = t;
+}
+
 - (void) drawLineFrom:(CGPoint)p0 to:(CGPoint)p1 withColor:(UIColor *)clr andThickness:(NSInteger)thickness{
 	[self.linesView drawLineFrom:p0 to:p1 withColor:clr andThickness:thickness];
 }

@@ -77,12 +77,24 @@ NSString* const THICK_KEYWORD			= @"thick";
 	if(recognizer.state == UIGestureRecognizerStateBegan){
 		self.startTransform = self.currentTransform;
 	}
-	else if(recognizer.state == UIGestureRecognizerStateEnded){
-		// end
-	}
 	CGPoint realPoint = [self getRealPoint:p];
 	CGAffineTransform extraTransform = [PaintViewController getTransformForScale:scale andCentre:realPoint];
 	self.currentTransform = CGAffineTransformConcat(self.startTransform, extraTransform);
+	[self updateTransforms];
+	[self checkEnded:recognizer.state];
+}
+
+- (void) checkEnded:(UIGestureRecognizerState)state{
+	if (state == UIGestureRecognizerStateEnded || state == UIGestureRecognizerStateFailed || state == UIGestureRecognizerStateCancelled){
+		[self flushTransforms];
+		[[self getEventDispatcher] dispatch:SYMM_NOTIF_START withData:nil];
+	}
+}
+
+- (void) flushTransforms{
+	NSLog(@"F %@", NSStringFromCGAffineTransform(self.currentTransform));
+	[self.paintView flushTransformsWith:self.currentTransform];
+	self.currentTransform = CGAffineTransformIdentity;
 	[self updateTransforms];
 }
 
@@ -103,20 +115,19 @@ NSString* const THICK_KEYWORD			= @"thick";
 	if(recognizer.state == UIGestureRecognizerStateBegan) {
 		self.startTransform = self.currentTransform;
 	}
-	float scale = [self getScale];
+	float scale = [self getScale:self.startTransform];
 	scale = 1;
 	CGAffineTransform trans = CGAffineTransformMakeTranslation(t.x/scale, t.y/scale);
 	self.currentTransform = CGAffineTransformConcat(self.startTransform, trans);
 	[self updateTransforms];
+	[self checkEnded:recognizer.state];
 }
 
-- (CGFloat)getScale {
-	CGAffineTransform t = self.startTransform;
+- (CGFloat)getScale:(CGAffineTransform)t {
 	return sqrt(t.a * t.a  +  t.c * t.c);
 }
 
-- (CGPoint) getTranslation{
-	CGAffineTransform t = self.startTransform;
+- (CGPoint) getTranslation:(CGAffineTransform)t{
 	return CGPointMake(t.tx, t.ty);
 }
 
@@ -154,7 +165,9 @@ NSString* const THICK_KEYWORD			= @"thick";
 }
 
 - (void) resetZoom{
+	NSLog(@"resetzoom");
 	self.currentTransform = CGAffineTransformIdentity;
+	[self.paintView flushTransformsWith:self.currentTransform];
 	[self updateTransforms];
 }
 
@@ -191,7 +204,14 @@ NSString* const THICK_KEYWORD			= @"thick";
 }
 
 - (void) turn:(NSNumber*) amount{
-	[[self getTurtleModel] rotateBy:[amount floatValue]];
+	if ([amount isKindOfClass:[NSNull class]]){
+		NSLog(@"null turn");
+	}
+	else{
+		float f = [amount floatValue];
+		NSLog(@"rt f is %f", f);
+		[[self getTurtleModel] rotateBy:f];
+	}
 }
 
 - (void) bg:(NSString*) clrName{
@@ -212,13 +232,20 @@ NSString* const THICK_KEYWORD			= @"thick";
 }
 
 - (void) fd:(NSNumber*) amount{
-	CGPoint p0 = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
-	[[self getTurtleModel] moveFdBy:[amount floatValue]];
-	if([[[self getTurtleModel] getVal:TURTLE_PEN_DOWN] boolValue]){
-		CGPoint p1 = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
-		NSNumber* thick = [[self getTurtleModel] getVal:TURTLE_PEN_THICK];
-		UIColor* clr = [[self getTurtleModel] getVal:TURTLE_COLOR];
-		[self.paintView drawLineFrom:p0 to:p1 withColor:clr andThickness:[thick integerValue]];
+	if ([amount isKindOfClass:[NSNull class]]){
+		NSLog(@"null fd");
+	}
+	else{
+		float f = [amount floatValue];
+		NSLog(@"fd f is %f", f);
+		CGPoint p0 = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
+		[[self getTurtleModel] moveFdBy:f];
+		if([[[self getTurtleModel] getVal:TURTLE_PEN_DOWN] boolValue]){
+			CGPoint p1 = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
+			NSNumber* thick = [[self getTurtleModel] getVal:TURTLE_PEN_THICK];
+			UIColor* clr = [[self getTurtleModel] getVal:TURTLE_COLOR];
+			[self.paintView drawLineFrom:p0 to:p1 withColor:clr andThickness:[thick integerValue]];
+		}
 	}
 }
 
