@@ -54,13 +54,14 @@ CGContextRef cacheContext;
 	NSLog(@"draw line with %@", NSStringFromCGAffineTransform(self.flushedTransform));
 	CGContextSetStrokeColorWithColor(cacheContext, [clr CGColor]);
 	CGContextSetLineCap(cacheContext, kCGLineCapRound);
-	CGContextSetLineWidth(cacheContext, thickness);
+	float thickness1 = CGPointApplyAffineTransform( CGPointMake(0, thickness), self.flushedTransform).y;
+	CGContextSetLineWidth(cacheContext, thickness1);
 	CGPoint toPos1 = [self getFlushedPoint:toPos];
 	CGPoint fromPos1 = [self getFlushedPoint:fromPos];
 	CGContextMoveToPoint(cacheContext, fromPos1.x, fromPos1.y);
 	CGContextAddLineToPoint(cacheContext, toPos1.x, toPos1.y);
 	CGContextStrokePath(cacheContext);
-	float p = thickness/2.0;
+	float p = thickness1/2.0;
 	[self setNeedsDisplayInRect:CGRectUnion(CGRectMake(fromPos1.x - p, fromPos1.y - p, 2*p, 2*p), CGRectMake(toPos1.x - p, toPos1.y - p, 2*p, 2*p))];
 }
 

@@ -48,8 +48,9 @@ CGContextRef cacheContext;
 }
 
 - (void) flushTransformsWith:(CGAffineTransform)t{
-	NSLog(@"set flsuh as %@", NSStringFromCGAffineTransform(t));
-	self.linesView.flushedTransform = t;
+	NSLog(@"set flush as %@", NSStringFromCGAffineTransform(t));
+	CGAffineTransform t0 = self.linesView.flushedTransform;
+	self.linesView.flushedTransform = CGAffineTransformConcat(t0, t);
 }
 
 - (void) drawLineFrom:(CGPoint)p0 to:(CGPoint)p1 withColor:(UIColor *)clr andThickness:(NSInteger)thickness{
