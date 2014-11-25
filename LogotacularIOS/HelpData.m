@@ -19,7 +19,7 @@
 
 static NSMutableDictionary* _dic = nil;
 
-NSString* const STYLES = @"<style>h1, p, h2, h3, div, span, ul, li{font-family: 'Lato-Regular';font-size: 18px;color:$color}h1,h2,h3{font-size:24px;}pre, span.mono{font-family:'DroidSansMono';color:$color;}p.quote{font-size: 14px;}</style>";
+NSString* const STYLES = @"<style>h1, p, h2, h3, div, span, ul, li{font-family: 'Lato-Regular';font-size: 18px;color:$color}h1,h2,h3{font-size:24px;}li{padding:10px;}pre, span.mono{font-family:'DroidSansMono';color:$color;}p.quote{font-size: 14px;}</style>";
 
 + (NSString*) getMedia:(NSInteger)index{
 	return @"";

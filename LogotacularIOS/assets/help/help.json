@@ -7,7 +7,7 @@
 	 
 			"title":
 			[
-				"<p>Logotacular is an application for drawing colourful patterns using the Logo language, designed to help you explore geometry and programming.</p>"
+				"<p>Logotacular is an application for drawing colourful patterns using a programming language called 'Logo'. Logo was designed to help you explore geometry and programming.</p>"
 			],
 	 
 			"contents":
@@ -15,7 +15,7 @@
 			[
 				"<p>Learn about</p>",
 				
-				"<ul><li>Logical reasoning, steps in algorithms</li><li>Write computer programs to solve problems</li><li>Write and debug</li><li>Use variables and functions to decompose</li><li>Repetitions</li><li>Students learn about lengths and angles while creating diagrams and patterns.</li><li>Get feedback and revise their actions</li></ul>"
+				"<p><ul><li>Logical reasoning</li><li>Algorithms</li><li>Testing and debugging</li><li>Use of variables and functions</li><li>Repeating - loops and recursion</li><li>Lengths, angles and geometry.</li></ul></p>"
 		
 			]
 		
@@ -26,7 +26,7 @@
 		"title":
 	 
 			[
-				"<p>The most basic commands in Logo are 'go forward' and 'turn right'.</p>",
+				"<p>In Logo we imagine a turtle that moves around the screen, leaving a trail as it goes. The most basic commands in Logo are 'go forward' and 'turn right'.</p>",
 			 
 				"<p>For example <span class='mono'>'fd 100'</span> tells the turtle to go forward 100 units (in whatever direction it is facing), and <span class='mono'>'rt 90'</span> tells it turn 90 degrees clockwise.</p>"
 			 
@@ -66,7 +66,7 @@
 	  
 				"<p>You can change the thickness of the lines drawn (from 1 to 20), and raise or lower the pen. Lifting the pen will stop lines being drawn until you place it down again.</p>",
 	  
-				"<pre style='font-size:20px;'>thick 7 \nfd 50 \npenup\nfd 50)\npendown\nfd 50\npenup\nfd 50 \npendown\nfd 50</pre>"
+				"<pre style='font-size:20px;'>thick 7 \nfd 50 \npenup\nfd 50\npendown\nfd 50\npenup\nfd 50 \npendown\nfd 50</pre>"
 	  
 			]
 		},
@@ -78,10 +78,12 @@
 	 
 			[
 				
-				"<p>Variables let you define a number so you can change it in one place later if you need to:</p>",
-				
-				"<pre style='font-size:20px;'>make \"side 200 \nfd :side\nfd :side\nfd :side</pre>",
+				"<p>Variables let you define a number so you can use it in a lot of places later, but you only have to change it in one place if you need to.</p>",
 			 
+				"<p>Use the '<span class='mono'>make</span>' command to set the value of a variable.</p>",
+				
+				"<pre style='font-size:20px;'>make \"side 200</pre>"
+				
 			
 			],
 	 
@@ -89,11 +91,18 @@
 		 
 			[
 			 
-				"<p>You can do normal arithmetic using numbers or variables.</p>",
 				
-				"<p>Like most computer programs, you must write '*' for 'multiply' (or 'times') and '/' for 'divide'. You can use '+' and '-' and brackets like you normally would.</p>",
-		  
-				"<pre style='font-size:20px;'>w=100 h=30\nfd w-2*h rt 90\nfd w-h rt 90\nfd w rt 90 \nfd w+h  rt 90 \nfd w+2*h rt90</pre>"
+				"<p>Notice that you must put a \" symbol in front when you set a variable. </p>",
+			 
+				"<p>To use the variable, put a : in front:</p>",
+			 
+				"<pre style='font-size:20px;'>fd :side</pre>",
+			 
+				"<p></p>",
+			 
+				"<p>(This is the same as fd 200)</p>",
+			 
+				"<p>Remember to use \" when you're setting a variable and : when you want to use it.</p>"
 		  
 			]
 		},
@@ -105,10 +114,11 @@
 	 
 	 [
 	  
-	  "<p>Variables let you define a number so you can change it in one place later if you need to:</p>",
+		"<p>You can do normal arithmetic using numbers or variables.</p>",
 	  
-	  "<pre style='font-size:20px;'>make \"side 200 make \"angle 90\nfd side rt a\nfd side rt a</pre>",
-	  
+		"<p>Like most computer programs, you must write '<span class='mono'>*</span>' for multiply (or times) and '<span class='mono'>/</span>' for divide.</p>",
+		
+		"<p>You can use '<span class='mono'>+</span>' and '<span class='mono'>-</span>' and round brackets '<span class='mono'>( )</span>' like you normally would.</p>"
 			
 			],
 	 
@@ -116,11 +126,10 @@
 	 
 	 [
 	  
-	  "<p>You can do normal arithmetic using numbers or variables.</p>",
+		"<p>For example:</p>",
 	  
-	  "<p>Like most computer programs, you must write '*' for 'multiply' (or 'times') and '/' for 'divide'. You can use '+' and '-' and brackets like you normally would.</p>",
-	  
-	  "<pre style='font-size:20px;'>w=100 h=30\nfd w-2*h rt 90\nfd w-h rt 90\nfd w rt 90 \nfd w+h  rt 90 \nfd w+2*h rt90</pre>"
+		
+		"<pre style='font-size:20px;'>make \"w 100\nmake \" h 30\nfd :w-2*:h rt 90\nfd :w-:h rt 90\nfd :w rt 90 \nfd :w+:h  rt 90 \nfd :w+2*:h rt 90</pre>"
 	  
 			]
 		},
@@ -149,13 +158,11 @@
 	  
 				"<p></p>",
 			 
-				"<p>You must start a repeat block with '[' and you must end it with ']'.\nCan you work out what the following code will draw?</p>",
-	  
-				"<pre style='font-size:20px;'>make \"a 72\nrpt 5 [fd 100 rt :a]</pre>",
-				
-				"<p></p>",
+				"<p>You must start a repeat block with '<span class='mono'>[</span>' and you must end it with '<span class='mono'>]</span>'.</p>",
 			 
-				"<p>Can you work out how to draw the image on the right?</p>"
+				"<p>Can you work out what the following code will draw?</p>",
+	  
+				"<pre style='font-size:20px;'>make \"a 72\nmake \"n 5\nrpt :n [fd 100 rt :a]</pre>"
 	  
 			]
 		},
@@ -168,9 +175,9 @@
 	 
 			[
 			
-					"<p>A function or procedure is often thought of as telling the turtle the meaning of a new word.</p>",
+					"<p>A function or procedure is often thought of as telling the turtle the meaning of a new word, for example we could draw a square by defining a procedure called 'drawsquare' and then 'calling' that procedure.</p>",
 			 
-					"<p> We could draw a square by defining a procedure called 'drawSquare' and then calling it.</p>"
+					"<p>You use the 'to' keyword to define a procedure:</p>"
 			
 			],
 	 
@@ -179,14 +186,77 @@
 			[
 	  
 				
-				"<pre style='font-size:20px;'>to drawSquare\nrpt 4 [\nfd 100 \nrt 90]\nend\n\ndrawSquare</pre>",
+				"<pre style='font-size:20px;'>to drawsquare\nrpt 4 [\nfd 100 \nrt 90]\nend\n\ndrawsquare</pre>",
 	  
-				"<p>Recursion can also be used in Logo - for example the following program defines a procedure which accepts one variable called 'dist' and repeatedly calls itself, increasing the value of 'dist' each time, with the result that an increasing series of line segments is drawn, forming a spiral. Eventually the program will crash because it calls itself too many times!</p>",
+				"<p>Procedures can take a list of variables as input if you want to.</p>",
+			 
+				"<p>The procedure below has two arguments, called len and num, and it is then called first with len equal to 100 and num equal to 5, and then with len equal to 80 and num equal to 7. This lets you reuse code you have written with different input.</p>",
 	  
-				"<pre style='font-size:20px;'>to drawSpiral :dist\nfd :dist\nrt 90\ndrawSpiral(dist+5)\nend\n\ndrawSpiral 10</pre>"
+				"<pre style='font-size:20px;'>to drawpoly :len :num\nrpt :num [\nfd :len \nrt (360/:num)]\nend\n\ndrawpoly 100 5\ndrawpoly 80 7</pre>"
 	  
 			]
 		},
+	 
+		
+		{"header" : "Procedures and functions",
+	 
+	 
+		"title":
+	 
+	 
+	 [
+			
+	  "<p>A function or procedure is often thought of as telling the turtle the meaning of a new word, for example we could draw a square by defining a procedure called 'drawsquare' and then 'calling' that procedure.</p>",
+	  
+	  "<p>You use the 'to' keyword to define a procedure:</p>"
+			
+			],
+	 
+		"contents":
+	 
+	 [
+	  
+	  
+	  "<pre style='font-size:20px;'>to drawsquare\nrpt 4 [\nfd 100 \nrt 90]\nend\n\ndrawsquare</pre>",
+	  
+	  "<p>Procedures can take a list of variables as input if you want to.</p>",
+	  
+	  "<p>The procedure below has two arguments, called len and num, and it is then called first with len equal to 100 and num equal to 5, and then with len equal to 80 and num equal to 7. This lets you reuse code you have written with different input.</p>",
+	  
+	  "<pre style='font-size:20px;'>to drawpoly :len :num\nrpt :num [\nfd :len \nrt (360/:num)]\nend\n\ndrawpoly 100 5\ndrawpoly 80 7</pre>"
+	  
+			]
+		},
+	 
+		
+		{"header" : "Procedures and functions",
+	 
+	 
+		"title":
+	 
+	 
+	 [
+			
+	  "<p>A function or procedure is often thought of as telling the turtle the meaning of a new word, for example we could draw a square by defining a procedure called 'drawsquare' and then 'calling' that procedure.</p>",
+	  
+	  "<p>You use the 'to' keyword to define a procedure:</p>"
+			
+			],
+	 
+		"contents":
+	 
+	 [
+	  
+	  
+	  "<pre style='font-size:20px;'>to drawsquare\nrpt 4 [\nfd 100 \nrt 90]\nend\n\ndrawsquare</pre>",
+	  
+	  "<p>Recursion can also be used in Logo - for example the following program defines a procedure which accepts one variable called 'dist' and repeatedly calls itself, increasing the value of 'dist' each time, with the result that an increasing series of line segments is drawn, forming a spiral. Eventually the program will crash because it calls itself too many times!</p>",
+	  
+	  "<pre style='font-size:20px;'>to drawSpiral :dist\nfd :dist\nrt 90\ndrawSpiral(dist+5)\nend\n\ndrawSpiral 10</pre>"
+	  
+			]
+		},
+	 
 	 
 		{"header" : "How to use Logotacular - the main menu",
 	 
@@ -222,6 +292,24 @@
 			[
 	 
 			]
+		},
+	 
+		{"header" : "Errors and debugging",
+	 
+	 "title":
+	 
+	 [
+	  
+	  "<p>Title0.....</p>"
+			
+			],
+	 
+	 
+		"contents":
+	 
+	 [
+	 
+	 ]
 		},
 	 
 		{"header" : "How to use Logotacular -  writing Logo",
