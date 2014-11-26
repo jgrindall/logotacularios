@@ -25,14 +25,30 @@ NSString* const STYLES = @"<style>h1, p, h2, h3, div, span, ul, li{font-family: 
 	return @"";
 }
 
++ (NSString*) getExampleMedia:(NSInteger)index{
+	NSDictionary* help = (NSDictionary*)[self getDictionary][@"examples"][index];
+	if(help){
+		return help[@"media"];
+	}
+	return @"";
+}
+
 + (NSString*) getButtonPos:(NSInteger)index{
+	return @"";
+}
+
++ (NSString*) getExampleFile:(NSInteger)index{
+	NSDictionary* help = (NSDictionary*)[self getDictionary][@"examples"][index];
+	if(help){
+		return help[@"file"];
+	}
 	return @"";
 }
 
 + (NSString*) getExampleData:(NSInteger)index{
 	NSDictionary* help = (NSDictionary*)[self getDictionary][@"examples"][index];
 	if(help){
-		NSString* paras = [HelpData getParas:(NSArray*)help[@"title"]];
+		NSString* paras = [HelpData getParas:(NSArray*)help[@"contents"]];
 		return [NSString stringWithFormat:@"%@<h3>%@</h3>%@", STYLES, help[@"header"], paras];
 	}
 	else{

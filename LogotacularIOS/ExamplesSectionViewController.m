@@ -30,6 +30,13 @@
 	[self addText];
 	[self addImage];
 	[self addButton];
+	//[NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(select) userInfo:nil repeats:YES];
+}
+
+- (void) select{
+	if(self.imgView){
+		NSLog(@"f %@", NSStringFromCGRect(self.imgView.frame));
+	}
 }
 
 - (void) layoutAll{
@@ -78,7 +85,8 @@
 
 - (void) addImage{
 	self.imgView = [[UIImageView alloc] initWithFrame:CGRectZero];
-	self.imgView.image = [UIImage imageNamed:@"assets/blur.png"];
+	NSString* media = [HelpData getExampleMedia:self.index];
+	self.imgView.image = [UIImage imageNamed:[NSString stringWithFormat:@"assets/%@", media]];
 	[self.view addSubview:self.imgView];
 	self.imgView.translatesAutoresizingMaskIntoConstraints = NO;
 }
@@ -93,7 +101,8 @@
 }
 
 - (void) onClick{
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_LOAD_FROM_HELP withData:[NSNumber numberWithInteger:self.index]];
+	NSString* file = [HelpData getExampleFile:self.index];
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_LOAD_FROM_HELP withData:file];
 	[self exit];
 }
 

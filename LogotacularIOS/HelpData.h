@@ -22,6 +22,10 @@
 
 + (NSString*) getExampleData:(NSInteger)index;
 
++ (NSString*) getExampleFile:(NSInteger)index;
+
++ (NSString*) getExampleMedia:(NSInteger)index;
+
 extern NSString* const STYLES;
 
 @end
