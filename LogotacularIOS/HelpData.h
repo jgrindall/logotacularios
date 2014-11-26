@@ -16,6 +16,12 @@
 
 + (NSDictionary*)getDictionary;
 
++ (NSString*) getMedia:(NSInteger)index;
+
++ (NSString*) getButtonPos:(NSInteger)index;
+
++ (NSString*) getExampleData:(NSInteger)index;
+
 extern NSString* const STYLES;
 
 @end

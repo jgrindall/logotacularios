@@ -8,14 +8,14 @@
 
 #import "ExamplesPageViewController.h"
 #import "HelpPageViewController.h"
-#import "HelpSectionViewController.h"
+#import "ExamplesSectionViewController.h"
 #import "Appearance.h"
 #import "Colors.h"
 
 @implementation ExamplesPageViewController
 
 - (instancetype)init{
-	self = [super initWithChildClass:[HelpSectionViewController class] andNumPages:5];
+	self = [super initWithChildClass:[ExamplesSectionViewController class] andNumPages:5];
 	if(self){
 		self.title = @"Examples";
 	}

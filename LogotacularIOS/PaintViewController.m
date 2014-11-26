@@ -14,6 +14,8 @@
 #import "Colors.h"
 #import "PBgModel.h"
 #import "ImageUtils.h"
+#import "PDrawingModel.h"
+#import "AbstractModel.h"
 
 @interface PaintViewController ()
 
@@ -70,6 +72,10 @@ NSString* const THICK_KEYWORD			= @"thick";
 }
 
 - (void)onPinch:(UIPinchGestureRecognizer*)recognizer{
+	id<PDrawingModel> d = [self getDrawingModel];
+	if([[d getVal:DRAWING_ISDRAWING] boolValue]){
+		return;
+	}
 	float scale = recognizer.scale;
 	CGPoint p0 = [recognizer locationOfTouch:0 inView:self.view];
 	CGPoint p1 = [recognizer locationOfTouch:1 inView:self.view];
@@ -111,6 +117,10 @@ NSString* const THICK_KEYWORD			= @"thick";
 }
 
 - (void)onPan:(UIPanGestureRecognizer*)recognizer{
+	id<PDrawingModel> d = [self getDrawingModel];
+	if([[d getVal:DRAWING_ISDRAWING] boolValue]){
+		return;
+	}
 	CGPoint t = [recognizer translationInView:self.view];
 	if(recognizer.state == UIGestureRecognizerStateBegan) {
 		self.startTransform = self.currentTransform;
@@ -147,6 +157,10 @@ NSString* const THICK_KEYWORD			= @"thick";
 
 - (id<PTurtleModel>) getTurtleModel{
 	return [[JSObjection defaultInjector] getObject:@protocol(PTurtleModel)];
+}
+
+- (id<PDrawingModel>) getDrawingModel{
+	return [[JSObjection defaultInjector] getObject:@protocol(PDrawingModel)];
 }
 
 - (void) grab{
@@ -209,7 +223,7 @@ NSString* const THICK_KEYWORD			= @"thick";
 	}
 	else{
 		float f = [amount floatValue];
-		NSLog(@"rt f is %f", f);
+		//NSLog(@"rt f is %f", f);
 		[[self getTurtleModel] rotateBy:f];
 	}
 }

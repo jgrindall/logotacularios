@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 jgrindall. All rights reserved.
 //
 
-#import "AbstractHelpSectionViewController.h"
+#import "AbstractHelpSectionViewController_protected.h"
 
 @implementation AbstractHelpSectionViewController
 
@@ -20,6 +20,42 @@
 		_index = index;
 	}
 	return self;
+}
+
+- (void) viewWillAppear:(BOOL)animated{
+	[super viewWillAppear:animated];
+	[self addMedia];
+	[self loadMedia];
+	[self layoutAll];
+}
+
+- (void) addMedia{
+	
+}
+
+- (void) loadMedia{
+
+}
+
+- (void) layoutAll{
+	
+}
+
+- (void) viewDidDisappear:(BOOL)animated{
+	[self clearMedia];
+}
+
+- (void) clearMedia{
+	
+}
+
+- (void) viewDidLoad{
+	[super viewDidLoad];
+	[self addChildren];
+}
+
+- (void) addChildren{
+	
 }
 
 @end

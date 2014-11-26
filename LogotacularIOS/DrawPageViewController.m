@@ -130,6 +130,9 @@
 		[[self getBarButton:self.playButton] setTitle:@" Play" forState:UIControlStateNormal];
 	}
 	[[self getBarButton:self.listButton] setEnabled:!drawing];
+	[[self getBarButton:self.saveButton] setEnabled:!drawing];
+	[[self getBarButton:self.clearButton] setEnabled:!drawing];
+	[[self getBarButton:self.resetButton] setEnabled:!drawing];
 }
 
 -(UIButton*)getBarButton: (UIBarButtonItem*) item{
@@ -172,6 +175,7 @@
 }
 
 - (void) onClickSave{
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_MENU withData:nil];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_SAVE withData:nil];
 }
 

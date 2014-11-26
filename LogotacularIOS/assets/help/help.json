@@ -1,5 +1,28 @@
 {
  
+	"examples":[
+
+			{"header" : "Example 1",
+			
+			
+			"title":
+			[
+			 "<p>Stuff here</p>"
+			 ],
+			
+			"contents":
+			
+			[
+			 "<p>Learn about</p>",
+			 
+			 "<p><ul><li>Logical reasoning</li><li>Algorithms</li><li>Testing and debugging</li><li>Use of variables and functions</li><li>Repeating - loops and recursion</li><li>Lengths, angles and geometry.</li></ul></p>"
+			 
+			 ]
+			
+			}
+	
+	],
+	
 	"help":
 	[
 		{"header" : "Welcome to Logotacular!",

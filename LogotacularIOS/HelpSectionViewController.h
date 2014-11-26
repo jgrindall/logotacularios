@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController_protected.h"
-#import "AbstractHelpSectionViewController.h"
+#import "AbstractHelpSectionViewController_protected.h"
 
 @interface HelpSectionViewController : AbstractHelpSectionViewController
 

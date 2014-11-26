@@ -18,7 +18,7 @@ typedef NS_ENUM(NSInteger, SymmFontSizes)  {
 	SYMM_FONT_SIZE_BUTTON =		17,
 	SYMM_FONT_SIZE_MED =		24,
 	SYMM_FONT_SIZE_LARGE =		60,
-	SYMM_FONT_SIZE_NAV =		28
+	SYMM_FONT_SIZE_NAV =		27
 };
 
 + (void) applyStylesInWindow:(UIWindow*) window;

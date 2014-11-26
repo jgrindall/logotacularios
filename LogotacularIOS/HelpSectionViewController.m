@@ -11,13 +11,13 @@
 #import "HelpData.h"
 #import "Appearance.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import "HelpLayout.h"
 
 @interface HelpSectionViewController ()
 
 @property UIButton* progCopyButton;
 @property UITextView* textView;
 @property UITextView* topView;
-@property UIImageView* imgView;
 @property MPMoviePlayerController* videoController;
 @property BOOL videoLoaded;
 
@@ -25,60 +25,29 @@
 
 @implementation HelpSectionViewController
 
-float frac = 0.667;
-
-- (instancetype)initWithIndex:(NSInteger)index{
-	self = [super initWithIndex:index];
-	if(self){
-		
-	}
-	return self;
-}
-
-- (void) dealloc{
-	// clear up
-}
-
-- (void) viewWillAppear:(BOOL)animated{
-	[super viewWillAppear:animated];
-	[self addVideo];
-	[self loadVideo];
-	[self layoutAll];
-}
-
-- (void) viewDidAppear:(BOOL)animated{
-	[super viewDidAppear:animated];
-}
-
-- (void) viewDidDisappear:(BOOL)animated{
-	[self clearVideo];
-}
-
-- (void) clearVideo{
+- (void) clearMedia{
 	[self.videoController stop];
 }
 
-- (void) viewDidLoad{
-	[super viewDidLoad];
-	[self draw];
-}
-
-- (void) draw{
+- (void) addChildren{
+	[super addChildren];
 	[self addText];
 	[self addTop];
-	[self addImage];
 	[self addButton];
 }
 
-- (void)loadVideo{
-	NSString* path = [[NSBundle mainBundle] pathForResource:@"assets/help0" ofType:@"mov"];
-	NSURL* url = [NSURL fileURLWithPath:path];
-	[self.videoController setContentURL:url];
-	[self.videoController prepareToPlay];
-	self.videoLoaded = YES;
+- (void)loadMedia{
+	[super loadMedia];
+	if(!self.videoLoaded){
+		NSString* path = [[NSBundle mainBundle] pathForResource:@"assets/help0" ofType:@"mov"];
+		NSURL* url = [NSURL fileURLWithPath:path];
+		[self.videoController setContentURL:url];
+		[self.videoController prepareToPlay];
+		self.videoLoaded = YES;
+	}
 }
 
-- (void) addVideo{
+- (void) addMedia{
 	if(self.videoController){
 		return;
 	}
@@ -86,8 +55,10 @@ float frac = 0.667;
 	float p = 10;
 	float w = self.view.frame.size.width;
 	float h = self.view.frame.size.height;
-	[self.videoController.view setFrame:CGRectMake (w*(1-frac) + p, h*(1-frac) + p, w*frac - 2*p, h*frac - 2*p)];
-	UIColor* bg = [UIColor clearColor];
+	self.view.backgroundColor = [UIColor clearColor];
+	self.videoController.view.translatesAutoresizingMaskIntoConstraints = NO;
+	[self.videoController.view setFrame:CGRectMake (w*(1 - HELP_LAYOUT_FRAC) + p, h*(1 - HELP_LAYOUT_FRAC) + p, w*HELP_LAYOUT_FRAC - 2*p, h*HELP_LAYOUT_FRAC - 2*p)];
+	UIColor* bg = [UIColor orangeColor];
 	self.videoController.backgroundView.backgroundColor = bg;
 	self.videoController.view.backgroundColor = bg;
 	for(UIView* v in self.videoController.view.subviews) {
@@ -100,15 +71,15 @@ float frac = 0.667;
 }
 
 - (void) layoutAll{
+	[super layoutAll];
 	[self layoutButton];
 	[self layoutText];
-	[self layoutImage];
 	[self layoutVideo];
 	[self layoutTop];
 }
 
 - (void) layoutVideo{
-	if(!self.videoController){
+	if(!self.videoController || !self.topView || !self.textView){
 		return;
 	}
 	float p = 10;
@@ -122,7 +93,7 @@ float frac = 0.667;
 	float p = 10;
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.topView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeTop multiplier:1.0 constant:p]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.topView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view				attribute:NSLayoutAttributeLeading multiplier:1.0 constant:p]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.topView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeHeight multiplier:(1-frac) constant:-p]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.topView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeHeight multiplier:(1 - HELP_LAYOUT_FRAC) constant:-p]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.topView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.view				attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:-p]];
 }
 
@@ -138,15 +109,7 @@ float frac = 0.667;
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.textView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.topView					attribute:NSLayoutAttributeBottom multiplier:1.0 constant:p]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.textView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeLeading multiplier:1.0 constant:p]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.textView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-p]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.textView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view						attribute:NSLayoutAttributeWidth multiplier:(1 - frac) constant:-p]];
-}
-
-- (void) layoutImage{
-	float p = 10;
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.imgView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.topView						attribute:NSLayoutAttributeBottom multiplier:1.0 constant:p]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.imgView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.textView				attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:p]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.imgView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view						attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-p]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.imgView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:-p]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.textView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view						attribute:NSLayoutAttributeWidth multiplier:(1 - HELP_LAYOUT_FRAC) constant:-p]];
 }
 
 - (void) addText{
@@ -155,7 +118,7 @@ float frac = 0.667;
 	self.textView.font = [Appearance fontOfSize:SYMM_FONT_SIZE_MED];
 	self.textView.backgroundColor = [Appearance grayColor];
 	[self.view addSubview:self.textView];
-	self.textView.textContainerInset = UIEdgeInsetsMake(15, 8, 8, 8);
+	self.textView.textContainerInset = UIEdgeInsetsMake(10, 8, 8, 8);
 	NSString* htmlString = [HelpData getContents:self.index];
 	NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[htmlString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
 	self.textView.layer.cornerRadius = 10;
@@ -169,19 +132,12 @@ float frac = 0.667;
 	self.topView.font = [Appearance fontOfSize:SYMM_FONT_SIZE_MED];
 	self.topView.backgroundColor = [Appearance grayColor];
 	[self.view addSubview:self.topView];
-	self.topView.textContainerInset = UIEdgeInsetsMake(15, 8, 8, 8);
+	self.topView.textContainerInset = UIEdgeInsetsMake(10, 8, 8, 8);
 	NSString* htmlString = [HelpData getTop:self.index];
 	NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[htmlString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
 	self.topView.layer.cornerRadius = 10;
 	self.topView.layer.masksToBounds = YES;
 	self.topView.attributedText = attributedString;
-}
-
-- (void) addImage{
-	self.imgView = [[UIImageView alloc] initWithFrame:CGRectZero];
-	self.imgView.image = [UIImage imageNamed:@"assets/blur.png"];
-	[self.view addSubview:self.imgView];
-	self.imgView.translatesAutoresizingMaskIntoConstraints = NO;
 }
 
 - (void) addButton{
