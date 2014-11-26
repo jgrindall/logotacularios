@@ -19,9 +19,21 @@
 
 static NSMutableDictionary* _dic = nil;
 
-NSString* const STYLES = @"<style>h1, p, h2, h3, div, span, ul, li{font-family: 'Lato-Regular';font-size: 18px;color:white;}h1,h2,h3{font-size:24px;}li{padding:10px;}pre, span.mono{font-family:'DroidSansMono';color:white;}p.quote{font-size: 14px;}</style>";
+NSString* const STYLES = @"<style>h1, p, h2, h3, div, span, ul, li{font-family: 'Lato-Regular';font-size: 18px;color:white;}h1,h2,h3{font-size:24px;}li{padding:10px;}pre, span.mono{font-family:'DroidSansMono';color:white;}p.quote{font-size: 15.5px;font-style:italic;}</style>";
+
++ (NSString*) getHelpMovie:(NSInteger)index{
+	NSDictionary* help = (NSDictionary*)[self getDictionary][@"help"][index];
+	if(help){
+		return help[@"popup"];
+	}
+	return @"";
+}
 
 + (NSString*) getMedia:(NSInteger)index{
+	NSDictionary* help = (NSDictionary*)[self getDictionary][@"help"][index];
+	if(help){
+		return help[@"media"];
+	}
 	return @"";
 }
 

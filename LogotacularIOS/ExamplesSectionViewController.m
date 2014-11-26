@@ -21,22 +21,11 @@
 
 @implementation ExamplesSectionViewController
 
-- (void) clearMedia{
-	
-}
-
 - (void) addChildren{
 	[super addChildren];
 	[self addText];
 	[self addImage];
 	[self addButton];
-	//[NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(select) userInfo:nil repeats:YES];
-}
-
-- (void) select{
-	if(self.imgView){
-		NSLog(@"f %@", NSStringFromCGRect(self.imgView.frame));
-	}
 }
 
 - (void) layoutAll{
@@ -88,6 +77,8 @@
 	NSString* media = [HelpData getExampleMedia:self.index];
 	self.imgView.image = [UIImage imageNamed:[NSString stringWithFormat:@"assets/%@", media]];
 	[self.view addSubview:self.imgView];
+	self.imgView.layer.cornerRadius = 10;
+	self.imgView.layer.masksToBounds = YES;
 	self.imgView.translatesAutoresizingMaskIntoConstraints = NO;
 }
 

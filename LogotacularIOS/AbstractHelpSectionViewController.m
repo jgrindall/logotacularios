@@ -24,28 +24,15 @@
 
 - (void) viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:animated];
-	[self addMedia];
-	[self loadMedia];
 	[self layoutAll];
 }
 
-- (void) addMedia{
-	
-}
 
 - (void) loadMedia{
 
 }
 
 - (void) layoutAll{
-	
-}
-
-- (void) viewDidDisappear:(BOOL)animated{
-	[self clearMedia];
-}
-
-- (void) clearMedia{
 	
 }
 

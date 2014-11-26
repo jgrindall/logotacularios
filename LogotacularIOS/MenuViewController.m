@@ -48,7 +48,7 @@
 - (void) addButtons{
 	self.fileButton = [self getButton:ADD_ICON withAction:@selector(onClickNew)				withLabel:@" New file"			atNum:0];
 	self.saveAsButton = [self getButton:FLOPPY_ICON_AS withAction:@selector(onClickSaveAs)	withLabel:@" Save as"			atNum:1];
-	self.helpButton = [self getButton:HELP_ICON withAction:@selector(onClickHelp)			withLabel:@" About / help"		atNum:2];
+	self.helpButton = [self getButton:HELP_ICON withAction:@selector(onClickHelp)			withLabel:@" Help / about"		atNum:2];
 	self.openButton = [self getButton:BRIEFCASE_ICON withAction:@selector(onClickOpen)		withLabel:@" Your files"		atNum:3];
 	self.egButton = [self getButton:BULB_ICON withAction:@selector(onClickEg)				withLabel:@" Examples"			atNum:4];
 	self.refButton = [self getButton:BOOK_ICON withAction:@selector(onClickRef)				withLabel:@" Quick reference"	atNum:5];

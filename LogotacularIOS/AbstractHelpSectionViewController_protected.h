@@ -7,17 +7,11 @@
 //
 
 #import "AbstractHelpSectionViewController.h"
-#import "BaseViewController.h"
+#import "BaseViewController_protected.h"
 
 @interface AbstractHelpSectionViewController ()
 
-- (void) addMedia;
-
 - (void) addChildren;
-
-- (void) loadMedia;
-
-- (void) clearMedia;
 
 - (void) layoutAll;
 

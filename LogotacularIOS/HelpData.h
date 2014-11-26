@@ -18,6 +18,8 @@
 
 + (NSString*) getMedia:(NSInteger)index;
 
++ (NSString*) getHelpMovie:(NSInteger)index;
+
 + (NSString*) getButtonPos:(NSInteger)index;
 
 + (NSString*) getExampleData:(NSInteger)index;

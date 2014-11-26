@@ -18,75 +18,67 @@
 @property UIButton* progCopyButton;
 @property UITextView* textView;
 @property UITextView* topView;
-@property MPMoviePlayerController* videoController;
-@property BOOL videoLoaded;
+@property MPMoviePlayerViewController* videoController;
+@property UIImageView* imgView;
+@property UITapGestureRecognizer* tap;
 
 @end
 
 @implementation HelpSectionViewController
 
-- (void) clearMedia{
-	[self.videoController stop];
-}
-
 - (void) addChildren{
 	[super addChildren];
 	[self addText];
+	[self addImage];
 	[self addTop];
 	[self addButton];
 }
 
-- (void)loadMedia{
-	[super loadMedia];
-	if(!self.videoLoaded){
-		NSString* path = [[NSBundle mainBundle] pathForResource:@"assets/help0" ofType:@"mov"];
-		NSURL* url = [NSURL fileURLWithPath:path];
-		[self.videoController setContentURL:url];
-		[self.videoController prepareToPlay];
-		self.videoLoaded = YES;
-	}
+- (void) addImage{
+	self.imgView = [[UIImageView alloc] initWithFrame:CGRectZero];
+	NSString* media = [HelpData getMedia:self.index];
+	self.imgView.image = [UIImage imageNamed:[NSString stringWithFormat:@"assets/%@", media]];
+	[self.view addSubview:self.imgView];
+	[self.imgView setUserInteractionEnabled:YES];
+	self.imgView.layer.cornerRadius = 10;
+	self.imgView.layer.masksToBounds = YES;
+	self.imgView.translatesAutoresizingMaskIntoConstraints = NO;
+	self.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTap)];
+	[self.imgView addGestureRecognizer:self.tap];
+}
+
+- (void) onTap{
+	[self addMedia];
 }
 
 - (void) addMedia{
 	if(self.videoController){
 		return;
 	}
-	self.videoController = [[MPMoviePlayerController alloc] init];
-	float p = 10;
-	float w = self.view.frame.size.width;
-	float h = self.view.frame.size.height;
-	self.view.backgroundColor = [UIColor clearColor];
-	self.videoController.view.translatesAutoresizingMaskIntoConstraints = NO;
-	[self.videoController.view setFrame:CGRectMake (w*(1 - HELP_LAYOUT_FRAC) + p, h*(1 - HELP_LAYOUT_FRAC) + p, w*HELP_LAYOUT_FRAC - 2*p, h*HELP_LAYOUT_FRAC - 2*p)];
-	UIColor* bg = [UIColor orangeColor];
-	self.videoController.backgroundView.backgroundColor = bg;
-	self.videoController.view.backgroundColor = bg;
-	for(UIView* v in self.videoController.view.subviews) {
-		v.backgroundColor = bg;
+	NSString* file = [NSString stringWithFormat:@"assets/%@", [HelpData getHelpMovie:self.index]];
+	file = [file stringByReplacingOccurrencesOfString:@".mov" withString:@""];
+	NSString* path = [[NSBundle mainBundle] pathForResource:file ofType:@"mov"];
+	if(path){
+		NSURL* url = [NSURL fileURLWithPath:path];
+		self.videoController = [[MPMoviePlayerViewController alloc] initWithContentURL:url];
+		[self.navigationController presentMoviePlayerViewControllerAnimated:self.videoController];
 	}
-	for(UIView* v in self.videoController.backgroundView.subviews) {
-		v.backgroundColor = bg;
-	}
-	[self.view addSubview:self.videoController.view];
 }
 
 - (void) layoutAll{
 	[super layoutAll];
 	[self layoutButton];
 	[self layoutText];
-	[self layoutVideo];
+	[self layoutImg];
 	[self layoutTop];
 }
 
-- (void) layoutVideo{
-	if(!self.videoController || !self.topView || !self.textView){
-		return;
-	}
+- (void) layoutImg{
 	float p = 10;
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.videoController.view attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.topView					attribute:NSLayoutAttributeBottom multiplier:1.0 constant:p]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.videoController.view attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.textView				attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:p]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.videoController.view attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-p]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.videoController.view attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:-p]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.imgView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.topView					attribute:NSLayoutAttributeBottom multiplier:1.0 constant:p]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.imgView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.textView			attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:p]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.imgView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-p]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.imgView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.view				attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:-p]];
 }
 
 - (void)layoutTop{

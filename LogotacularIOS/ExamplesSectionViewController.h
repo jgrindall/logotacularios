@@ -7,7 +7,6 @@
 //
 
 #import "AbstractHelpSectionViewController_protected.h"
-#import "BaseViewController_protected.h"
 
 @interface ExamplesSectionViewController : AbstractHelpSectionViewController
 
