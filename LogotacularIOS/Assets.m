@@ -11,6 +11,7 @@
 @implementation Assets
 
 NSString* const ADD_ICON =			@"assets/icons/add.png";
+NSString* const RIGHT_ICON =		@"assets/icons/right.png";
 NSString* const UNDO_ICON =			@"assets/icons/undo.png";
 NSString* const REDO_ICON =			@"assets/icons/redo.png";
 NSString* const BULB_ICON =			@"assets/icons/bulb.png";

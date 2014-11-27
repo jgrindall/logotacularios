@@ -55,7 +55,7 @@
 
 - (void) iosCallback:(NSDictionary*) jsonObj{
 	if ([jsonObj isKindOfClass:[NSDictionary class]]){
-		NSLog(@"ios %@", jsonObj);
+		//NSLog(@"ios %@", jsonObj);
 		NSDictionary* data = jsonObj[@"data"];
 		NSDictionary* error = jsonObj[@"error"];
 		NSDictionary* syntaxError = jsonObj[@"syntaxerror"];

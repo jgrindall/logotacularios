@@ -10,26 +10,26 @@
 
 @interface HelpData : NSObject
 
-+ (NSString*) getTop:(NSInteger)index;
-
-+ (NSString*) getContents:(NSInteger)index;
-
 + (NSDictionary*)getDictionary;
 
-+ (NSString*) getMedia:(NSInteger)index;
++ (NSString*) getHelpTop:(NSInteger)index;
+
++ (NSString*) getHelpContents:(NSInteger)index;
+
++ (NSString*) getHelpFile:(NSInteger)index;
 
 + (NSString*) getHelpMovie:(NSInteger)index;
 
-+ (NSString*) getButtonPos:(NSInteger)index;
++ (NSString*) getHelpMedia:(NSInteger)index;
 
 + (NSString*) getExampleData:(NSInteger)index;
-
-+ (NSString*) getRefData:(NSInteger)index;
 
 + (NSString*) getExampleFile:(NSInteger)index;
 
 + (NSString*) getExampleMedia:(NSInteger)index;
 
-extern NSString* const STYLES;
++ (NSString*) getRefData:(NSInteger)index;
+
++ (NSString*) getStyles;
 
 @end

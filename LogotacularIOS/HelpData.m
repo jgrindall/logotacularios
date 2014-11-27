@@ -19,86 +19,77 @@
 
 static NSMutableDictionary* _dic = nil;
 
-NSString* const STYLES = @"<style>h1, p, h2, h3, div, span, ul, li, td, td, th{font-family: 'Lato-Regular';font-size: 18px;color:white;}h1,h2,h3{font-size:24px;}li{padding:10px;}pre, span.mono{font-family:'DroidSansMono';color:white;}p.quote{font-size: 15.5px;font-style:italic;}</style>";
+NSString* const STYLES0 = @"h1, p, h2, h3, div, span, ul, li, td, td, th{font-family: 'Lato-Regular';font-size: 18px;color:white;}";
+NSString* const STYLES1 = @"table{border-collapse: collapse;font-size:19px;margin-left:43px;margin-top:10px;}td{font-size:19px;}tr,td{width:100px;}table,tr{width:900px;}td, th{padding:12px;border:2px solid #1e8549;}td:nth-child(2n+1){text-align:center;}th{font-size:24px;padding:6px;text-align:center;}tr{width:100%;padding:5px;}td:nth-child(1){width:25%}td:nth-child(2){width:25%}td:nth-child(3){width:50%}tr:nth-child(2n+1){background:#1e8549;}";
+NSString* const STYLES2 = @"h1,h2,h3{font-size:24px;}";
+NSString* const STYLES3 = @"li{padding:10px;}";
+NSString* const STYLES4 = @"pre, span.mono{font-family:'DroidSansMono';color:white;font-size:20px;}p.quote{font-size: 14.5px;font-style:italic;}";
 
-+ (NSString*) getHelpMovie:(NSInteger)index{
-	NSDictionary* help = (NSDictionary*)[self getDictionary][@"help"][index];
-	if(help){
-		return help[@"popup"];
++ (NSString*) getKey:(NSString*)key inSection:(NSString*)section withIndex:(NSInteger)index withStyles:(BOOL)styles{
+	NSDictionary* sectionDic = (NSDictionary*)[self getDictionary][section][index];
+	if(sectionDic){
+		if(styles){
+			return [NSString stringWithFormat:@"%@%@", [self getStyles], sectionDic[key]];
+		}
+		else{
+			return [NSString stringWithFormat:@"%@", sectionDic[key]];
+		}
 	}
 	return @"";
 }
 
-+ (NSString*) getMedia:(NSInteger)index{
-	NSDictionary* help = (NSDictionary*)[self getDictionary][@"help"][index];
-	if(help){
-		return help[@"media"];
++ (NSString*) getKeys:(NSString*)key inSection:(NSString*)section withIndex:(NSInteger)index withStyles:(BOOL)styles{
+	NSDictionary* sectionDic = (NSDictionary*)[self getDictionary][section][index];
+	if(sectionDic){
+		NSString* paras = [HelpData getParas:(NSArray*)sectionDic[key]];
+		if(styles){
+			return [NSString stringWithFormat:@"%@%@", [HelpData getStyles], paras];
+		}
+		else{
+			return [NSString stringWithFormat:@"%@", paras];
+		}
 	}
 	return @"";
+}
+
++ (NSString*) getHelpMovie:(NSInteger)index{
+	return [HelpData getKey:@"popup" inSection:@"help" withIndex:index withStyles:NO];
+}
+
++ (NSString*) getHelpMedia:(NSInteger)index{
+	return [HelpData getKey:@"media" inSection:@"help" withIndex:index withStyles:NO];
+}
+
++ (NSString*) getHelpFile:(NSInteger)index{
+	return [HelpData getKey:@"file" inSection:@"help" withIndex:index withStyles:NO];
 }
 
 + (NSString*) getExampleMedia:(NSInteger)index{
-	NSDictionary* help = (NSDictionary*)[self getDictionary][@"examples"][index];
-	if(help){
-		return help[@"media"];
-	}
-	return @"";
-}
-
-+ (NSString*) getButtonPos:(NSInteger)index{
-	return @"";
+	return [HelpData getKey:@"media" inSection:@"examples" withIndex:index withStyles:NO];
 }
 
 + (NSString*) getExampleFile:(NSInteger)index{
-	NSDictionary* help = (NSDictionary*)[self getDictionary][@"examples"][index];
-	if(help){
-		return help[@"file"];
-	}
-	return @"";
+	return [HelpData getKey:@"file" inSection:@"examples" withIndex:index withStyles:NO];
+}
+
++ (NSString*) getHelpTop:(NSInteger)index{
+	return [self getKeys:@"top" inSection:@"help" withIndex:index withStyles:YES];
 }
 
 + (NSString*) getExampleData:(NSInteger)index{
-	NSDictionary* help = (NSDictionary*)[self getDictionary][@"examples"][index];
-	if(help){
-		NSString* paras = [HelpData getParas:(NSArray*)help[@"contents"]];
-		return [NSString stringWithFormat:@"%@<h3>%@</h3>%@", STYLES, help[@"header"], paras];
-	}
-	else{
-		return @"";
-	}
-}
-
-+ (NSString*) getTop:(NSInteger)index{
-	NSDictionary* help = (NSDictionary*)[self getDictionary][@"help"][index];
-	if(help){
-		NSString* paras = [HelpData getParas:(NSArray*)help[@"title"]];
-		return [NSString stringWithFormat:@"%@<h3>%@</h3>%@", STYLES, help[@"header"], paras];
-	}
-	else{
-		return @"";
-	}
+	return [self getKeys:@"contents" inSection:@"examples" withIndex:index withStyles:YES];
 }
 
 + (NSString*) getRefData:(NSInteger)index{
-	NSDictionary* help = (NSDictionary*)[self getDictionary][@"ref"][index];
-	if(help){
-		NSString* paras = [HelpData getParas:(NSArray*)help[@"contents"]];
-		return [NSString stringWithFormat:@"%@<h3>%@</h3>%@", STYLES, help[@"header"], paras];
-	}
-	else{
-		return @"";
-	}
+	return [self getKeys:@"contents" inSection:@"ref" withIndex:index withStyles:YES];
 }
 
-+ (NSString*) getContents:(NSInteger)index{
-	NSDictionary* help = (NSDictionary*)[self getDictionary][@"help"][index];
-	if(help){
-		NSString* paras = [HelpData getParas:(NSArray*)help[@"contents"]];
-		return [NSString stringWithFormat:@"%@%@", STYLES, paras];
-	}
-	else{
-		return @"";
-	}
++ (NSString*) getHelpContents:(NSInteger)index{
+	return [self getKeys:@"contents" inSection:@"help" withIndex:index withStyles:YES];
+}
+
++ (NSString*) getStyles{
+	return [NSString stringWithFormat:@"<style>%@%@%@%@%@</style>", STYLES0, STYLES1, STYLES2, STYLES3, STYLES4];
 }
 
 + (NSString*) getParas:(NSArray*)paras{

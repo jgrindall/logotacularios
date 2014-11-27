@@ -39,11 +39,12 @@
 
 - (void) addText{
 	self.textView = [[UITextView alloc] initWithFrame:CGRectZero];
+	self.textView.scrollEnabled = NO;
 	self.textView.translatesAutoresizingMaskIntoConstraints = NO;
 	self.textView.font = [Appearance fontOfSize:SYMM_FONT_SIZE_MED];
 	self.textView.backgroundColor = [Appearance grayColor];
 	[self.view addSubview:self.textView];
-	self.textView.textContainerInset = UIEdgeInsetsMake(10, 8, 8, 8);
+	self.textView.textContainerInset = UIEdgeInsetsMake(6, 5, 5, 5);
 	NSString* htmlString = [HelpData getRefData:self.index];
 	NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[htmlString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
 	self.textView.layer.cornerRadius = 10;

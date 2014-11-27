@@ -10,6 +10,7 @@
 #import "SymmNotifications.h"
 #import "HelpData.h"
 #import "Appearance.h"
+#import "Assets.h"
 
 @interface ExamplesSectionViewController ()
 
@@ -36,7 +37,7 @@
 }
 
 - (void) layoutButton{
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progCopyButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil						attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:200.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progCopyButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil						attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:185.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progCopyButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil					attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:40.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progCopyButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.textView			attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progCopyButton attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.textView		attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0]];
@@ -64,7 +65,8 @@
 	self.textView.font = [Appearance fontOfSize:SYMM_FONT_SIZE_MED];
 	self.textView.backgroundColor = [Appearance grayColor];
 	[self.view addSubview:self.textView];
-	self.textView.textContainerInset = UIEdgeInsetsMake(10, 8, 8, 8);
+	self.textView.textContainerInset = UIEdgeInsetsMake(6, 5, 5, 5);
+	self.textView.scrollEnabled = NO;
 	NSString* htmlString = [HelpData getExampleData:self.index];
 	NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[htmlString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
 	self.textView.layer.cornerRadius = 10;
@@ -85,9 +87,12 @@
 - (void) addButton{
 	self.progCopyButton = [UIButton buttonWithType:UIButtonTypeSystem];
 	[self.progCopyButton setTitle:@"Load this file!" forState:UIControlStateNormal];
+	[self.progCopyButton setImage:[UIImage imageNamed:RIGHT_ICON] forState:UIControlStateNormal];
+	self.progCopyButton.imageEdgeInsets = UIEdgeInsetsMake(0, 136, 0, 0);
+	self.progCopyButton.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 60);
 	[self.progCopyButton addTarget:self action:@selector(onClick) forControlEvents:UIControlEventTouchUpInside];
 	[self.view addSubview:self.progCopyButton];
-	self.progCopyButton.frame = CGRectMake(50, 50, 100, 50);
+	self.progCopyButton.frame = CGRectZero;
 	self.progCopyButton.translatesAutoresizingMaskIntoConstraints = NO;
 }
 

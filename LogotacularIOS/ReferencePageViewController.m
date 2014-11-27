@@ -14,7 +14,7 @@
 @implementation ReferencePageViewController
 
 - (instancetype)init{
-	self = [super initWithChildClass:[ReferenceSectionViewController class] andNumPages:5];
+	self = [super initWithChildClass:[ReferenceSectionViewController class] andNumPages:3];
 	if(self){
 		self.title = @"Quick reference";
 	}

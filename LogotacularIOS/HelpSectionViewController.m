@@ -12,6 +12,7 @@
 #import "Appearance.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "HelpLayout.h"
+#import "Assets.h"
 
 @interface HelpSectionViewController ()
 
@@ -37,7 +38,7 @@
 - (void) addImage{
 	self.imgView = [[UIImageView alloc] initWithFrame:CGRectZero];
 	self.imgView.contentMode = UIViewContentModeScaleAspectFit;
-	NSString* media = [HelpData getMedia:self.index];
+	NSString* media = [HelpData getHelpMedia:self.index];
 	self.imgView.image = [UIImage imageNamed:[NSString stringWithFormat:@"assets/%@", media]];
 	[self.view addSubview:self.imgView];
 	[self.imgView setUserInteractionEnabled:YES];
@@ -89,7 +90,7 @@
 }
 
 - (void) layoutButton{
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progCopyButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil						attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:200.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progCopyButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil						attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:185.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progCopyButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil					attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:40.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progCopyButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.textView			attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.progCopyButton attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.textView		attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0]];
@@ -106,11 +107,12 @@
 - (void) addText{
 	self.textView = [[UITextView alloc] initWithFrame:CGRectZero];
 	self.textView.translatesAutoresizingMaskIntoConstraints = NO;
+	self.textView.scrollEnabled = NO;
 	self.textView.font = [Appearance fontOfSize:SYMM_FONT_SIZE_MED];
 	self.textView.backgroundColor = [Appearance grayColor];
 	[self.view addSubview:self.textView];
-	self.textView.textContainerInset = UIEdgeInsetsMake(10, 8, 8, 8);
-	NSString* htmlString = [HelpData getContents:self.index];
+	self.textView.textContainerInset = UIEdgeInsetsMake(6, 5, 5, 5);
+	NSString* htmlString = [HelpData getHelpContents:self.index];
 	NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[htmlString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
 	self.textView.layer.cornerRadius = 10;
 	self.textView.layer.masksToBounds = YES;
@@ -123,8 +125,8 @@
 	self.topView.font = [Appearance fontOfSize:SYMM_FONT_SIZE_MED];
 	self.topView.backgroundColor = [Appearance grayColor];
 	[self.view addSubview:self.topView];
-	self.topView.textContainerInset = UIEdgeInsetsMake(10, 8, 8, 8);
-	NSString* htmlString = [HelpData getTop:self.index];
+	self.topView.textContainerInset = UIEdgeInsetsMake(6, 5, 5, 5);
+	NSString* htmlString = [HelpData getHelpTop:self.index];
 	NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[htmlString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
 	self.topView.layer.cornerRadius = 10;
 	self.topView.layer.masksToBounds = YES;
@@ -135,13 +137,17 @@
 	self.progCopyButton = [UIButton buttonWithType:UIButtonTypeSystem];
 	[self.progCopyButton setTitle:@"Load this file!" forState:UIControlStateNormal];
 	[self.progCopyButton addTarget:self action:@selector(onClick) forControlEvents:UIControlEventTouchUpInside];
+	[self.progCopyButton setImage:[UIImage imageNamed:RIGHT_ICON] forState:UIControlStateNormal];
+	self.progCopyButton.imageEdgeInsets = UIEdgeInsetsMake(0, 136, 0, 0);
+	self.progCopyButton.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 60);
 	[self.view addSubview:self.progCopyButton];
-	self.progCopyButton.frame = CGRectMake(50, 50, 100, 50);
+	self.progCopyButton.frame = CGRectZero;
 	self.progCopyButton.translatesAutoresizingMaskIntoConstraints = NO;
 }
 
 - (void) onClick{
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_LOAD_FROM_HELP withData:[NSNumber numberWithInteger:self.index]];
+	NSString* file = [HelpData getHelpFile:self.index];
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_LOAD_FROM_HELP withData:file];
 	[self exit];
 }
 

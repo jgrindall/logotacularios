@@ -15,7 +15,7 @@
 @implementation ExamplesPageViewController
 
 - (instancetype)init{
-	self = [super initWithChildClass:[ExamplesSectionViewController class] andNumPages:8];
+	self = [super initWithChildClass:[ExamplesSectionViewController class] andNumPages:11];
 	if(self){
 		self.title = @"Examples";
 	}
