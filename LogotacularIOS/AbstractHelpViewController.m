@@ -36,7 +36,22 @@
 
 - (void) viewDidLoad{
 	[super viewDidLoad];
+	[self removeTap];
 	[self initPage0];
+}
+
+- (void) removeTap{
+	UIGestureRecognizer* tapRecognizer = nil;
+	for(UIGestureRecognizer* recognizer in self.gestureRecognizers){
+		if([recognizer isKindOfClass:[UITapGestureRecognizer class]]){
+			tapRecognizer = recognizer;
+			break;
+		}
+	}
+	NSLog(@"tap is %@", tapRecognizer);
+	if (tapRecognizer){
+		[self.view removeGestureRecognizer:tapRecognizer];
+	}
 }
 
 - (void) initPage0{

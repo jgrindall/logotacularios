@@ -47,7 +47,7 @@
 
 - (void) addText{
 	self.label = [[UILabel alloc] initWithFrame:self.view.frame];
-	self.label.text = @"There is an error on this line";
+	self.label.text = @"There is an error in your program";
 	self.label.translatesAutoresizingMaskIntoConstraints = NO;
 	[self.view addSubview:self.label];
 	self.label.textAlignment = NSTextAlignmentCenter;

@@ -21,7 +21,7 @@ LG.SymTable.prototype.get = function(name){
 	var block;
 	for(var i = this.blocks.length - 1; i>=0; i--){
 		block = this.blocks[i];
-		if(block[name]){
+		if(block[name] !== null && block[name] !== undefined){
 			return block[name];
 			break;
 		}

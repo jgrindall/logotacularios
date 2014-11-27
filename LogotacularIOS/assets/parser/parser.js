@@ -386,7 +386,7 @@ LG.logoParser = (function() {
 				 return {type:"usevar",name:v.name};
 				 },
 				 peg$c192 = function(c0, c1) {
-				 return {type:"varname",name:c0.toString()+c1.toString()};
+				 return {type:"varname",name:c0.join("").toString()+c1.join("").toString()};
 				 },
 				 peg$c193 = /^[ \t\r\n]/,
 				 peg$c194 = { type: "class", value: "[ \\t\\r\\n]", description: "[ \\t\\r\\n]" },

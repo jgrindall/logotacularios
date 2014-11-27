@@ -1,4 +1,16 @@
 {
+	"ref":[
+		   {
+		   "header":"Example 1",
+		   "file":"fd 100\nrt 90\nfd 100\nrt 90\nfd 100\nrt 90\nfd 100\nrt 90",
+		   "media":"help/eg1.png",
+		   "contents":[
+					   "<p>aLearn the basics, moving the turtle forward and turning right on the spot.</p>",
+					   "<p><table><tr><td>One</td><td>Two</td></tr><tr><td>One</td><td>Two</td></tr></table></p>",
+					   "<pre style='font-size:20px;'>fd 100\nrt 90\nfd 100\nrt 90\nfd 100\nrt 90\nfd 100\nrt 90</pre>"
+					   ]
+		   }
+	],
 	"examples":[
 				{
 				"header":"Example 1",
@@ -93,19 +105,18 @@
 			"popup":"help/help0.mov",
 			"contents":[
 						"<p>Learn about</p>",
-						"<p><ul><li>Logical reasoning</li><li>Algorithms</li><li>Testing and debugging</li><li>Use of variables</li><li>Use of functions</li><li>Repeating - using loops</li><li>Recursion</li><li>Lengths and angles</li><li>Interior and exterior angles</li><li>Regular polygons</li><li>Circles and curve-based shapes</li></ul></p>"
+						"<ul><li>Logical reasoning</li><li>Algorithms</li><li>Testing and debugging</li><li>Use of variables</li><li>Use of functions</li><li>Repeating - using loops</li><li>Recursion</li><li>Lengths and angles</li><li>Interior and exterior angles</li><li>Regular polygons</li><li>Circles and curve-based shapes</li></ul>"
 						]
 			},
 			{
 			"header":"How to write a program",
 			"title":[
 					 "<p>In Logo we imagine a turtle that starts at the centre and is controlled by commands. As it moves around the screen it leaves a trail showing you where it has moved to.</p>",
-					 "<p>The most basic commands in Logo are 'go forward' and 'turn right'.</p>",
-					 "<p>For example <span class='mono'>'fd 100'</span> tells the turtle to go forward 100 units (in whatever direction it is facing), and <span class='mono'>'rt 90'</span> tells it turn 90 degrees clockwise.</p>"
+					 "<p>The most basic commands in Logo are 'go forward' and 'turn right'.  For example <span class='mono'>'fd 100'</span> tells the turtle to go forward 100 units (in whatever direction it is facing),  and <span class='mono'>'rt 90'</span> tells it turn 90 degrees clockwise.</p>"
 					 ],
 			"file":"make \"a 10\nrpt 300 [\n  fd 25\n  rt :a\n  make \"a :a*1.01\n]",
-			"media":"help/help0.png",
-			"popup":"help/help0.mov",
+			"media":"help/help1.png",
+			"popup":"help/help1.mov",
 			"contents":[
 						"<p>Try drawing a square using:</p>",
 						"<pre style='font-size:20px;'>fd 100\nrt 90\nfd 100\nrt 90\nfd 100\nrt 90\nfd 100\nrt 90</pre>",
@@ -116,12 +127,12 @@
 			{
 			"header":"Drawing with colors",
 			"title":[
-					 "<p>You can change the color of the lines, as well as the background color of the page by using the 'color' and 'bg' commands:</p>",
-					 "<pre style='font-size:20px;'>bg red\ncolor green</pre>"
+					 "<p>You can change the color of the lines, as well as the background color of the page by using the '<span class='mono'>color</span>' and '<span class='mono'>bg</span>' commands:</p>",
+					 "<pre style='font-size:20px;'>bg yellow\ncolor dkgreen</pre>"
 					 ],
-			"file":"make \"a 10\nrpt 300 [\n  fd 25\n  rt :a\n  make \"a :a*1.01\n]",
-			"media":"help/help0.png",
-			"popup":"help/help0.mov",
+			"file":"thick 7 \nfd 50 \npenup\nfd 50\npendown\nfd 50\npenup\nfd 50 \npendown\nfd 50",
+			"media":"help/help2.png",
+			"popup":"help/help2.mov",
 			"contents":[
 						"<p>You can change the thickness of the lines drawn (from 1 to 20), and raise or lower the pen. Lifting the pen will stop lines being drawn until you place it down again.</p>",
 						"<pre style='font-size:20px;'>thick 7 \nfd 50 \npenup\nfd 50\npendown\nfd 50\npenup\nfd 50 \npendown\nfd 50</pre>"
@@ -131,18 +142,18 @@
 			"header":"Using variables",
 			"title":[
 					 "<p>Variables let you define a number so you can use it in a lot of places later. Not only do they let you re-use numbers, but later on you only have to change them one place if you need to!</p>",
-					 "<p>Use the '<span class='mono'>make</span>' command to set the value of a variable.</p>",
+					 "<p>Use the '<span class='mono'>make</span>' command to set the value of a variable - for example set the variable 'side' equal to 200 like this:</p>",
 					 "<pre style='font-size:20px;'>make \"side 200</pre>"
 					 ],
 			"file":"make \"a 10\nrpt 300 [\n  fd 25\n  rt :a\n  make \"a :a*1.01\n]",
-			"media":"help/help0.png",
-			"popup":"help/help0.mov",
+			"media":"help/help3.png",
+			"popup":"help/help3.mov",
 			"contents":[
 						"<p>Notice that you must put a \" symbol in front when you set a variable. </p>",
-						"<p>To use the variable, put a : in front:</p>",
+						"<p>To use the variable, put a colon ( : ) in front like this:</p>",
 						"<pre style='font-size:20px;'>fd :side</pre>",
 						"<p></p>",
-						"<p>This is the same as writing <span class='mono'>fd 200</span>, but it is easier to change the 200 to something else if you give it a name.</p>",
+						"<p>This is the same as writing '<span class='mono'>fd 200</span>', but it is easier to change the 200 to something else if you give it a name.</p>",
 						"<p>Remember to use \" when you're setting a variable and : when you want to use it.</p>"
 						]
 			},
@@ -153,12 +164,12 @@
 					 "<p>Like most computer programs, you must write '<span class='mono'>*</span>' for multiply (or times) and '<span class='mono'>/</span>' for divide.</p>",
 					 "<p>You can use '<span class='mono'>+</span>' and '<span class='mono'>-</span>' and round brackets '<span class='mono'>( )</span>' like you normally would.</p>"
 					 ],
-			"file":"make \"a 10\nrpt 300 [\n  fd 25\n  rt :a\n  make \"a :a*1.01\n]",
-			"media":"help/help0.png",
-			"popup":"help/help0.mov",
+			"file":"make \"h 30\nmake \"w 3*:h\nfd :w - 2*:h rt 90\nfd :w - :h rt 90\nfd :w rt 90 \nfd :w + :h  rt 90 \nfd :w + 2*:h rt 90",
+			"media":"help/help4.png",
+			"popup":"help/help4.mov",
 			"contents":[
 						"<p>For example:</p>",
-						"<pre style='font-size:20px;'>make \"w 100\nmake \"h 30\nfd :w - 2*:h rt 90\nfd :w - :h rt 90\nfd :w rt 90 \nfd :w + :h  rt 90 \nfd :w + 2*:h rt 90</pre>"
+						"<pre style='font-size:20px;'>make \"h 30\nmake \"w 3*:h\nfd :w - 2*:h rt 90\nfd :w - :h rt 90\nfd :w rt 90 \nfd :w + :h  rt 90 \nfd :w + 2*:h rt 90</pre>"
 						]
 			},
 			{
@@ -168,11 +179,11 @@
 					 "<pre style='font-size:20px;'>rpt 10 [ put your commands here and they will be executed 10 times! ]</pre>"
 					 ],
 			"file":"make \"a 10\nrpt 300 [\n  fd 25\n  rt :a\n  make \"a :a*1.01\n]",
-			"media":"help/help0.png",
-			"popup":"help/help0.mov",
+			"media":"help/help5.png",
+			"popup":"help/help5.mov",
 			"contents":[
 						"<p>We could draw a square like this:</p>",
-						"<pre style='font-size:20px;'>rpt 4 [ fd 100 rt 90]</pre>",
+						"<pre style='font-size:20px;'>rpt 4 [ fd 100 rt 90 ]</pre>",
 						"<p></p>",
 						"<p>You must start a repeat block with '<span class='mono'>[</span>' and you must end it with '<span class='mono'>]</span>'.</p>",
 						"<p>Can you work out what the following code will draw?</p>",
@@ -182,14 +193,14 @@
 			{
 			"header":"Procedures and functions",
 			"title":[
-					 "<p>A function or procedure is often thought of as telling the turtle the meaning of a new word, for example we could draw a square by defining a procedure called 'drawsquare' and then 'calling' that procedure.</p>",
-					 "<p>You use the 'to' keyword to define a procedure, and 'end' to mark the end:</p>"
+					 "<p>We know that the turtle knows the words '<span class='mono'>make</span>', '<span class='mono'>to</span>', '<span class='mono'>color</span>' etc. A function or procedure is often thought of as telling the turtle the meaning of a new word, for example we could draw a square by defining a procedure called 'drawsquare' and then 'calling' that procedure.</p>",
+					 "<p>You use the '<span class='mono'>to</span>' keyword to define a procedure, and '<span class='mono'>end</span>' to mark the end:</p>"
 					 ],
 			"file":"make \"a 10\nrpt 300 [\n  fd 25\n  rt :a\n  make \"a :a*1.01\n]",
-			"media":"help/help0.png",
-			"popup":"help/help0.mov",
+			"media":"help/help6.png",
+			"popup":"help/help6.mov",
 			"contents":[
-						"<pre style='font-size:20px;'>to drawsquare\n  rpt 4 [\n  fd 100 \n  rt 90\n]\nend\n\ndrawsquare</pre>",
+						"<pre style='font-size:20px;'>to drawsquare\n  rpt 4 [\n    fd 100 \n    rt 90\n  ]\nend\n\ndrawsquare</pre>",
 						"<p></p>",
 						"<p>The first 6 lines define the procedure and the last line 'calls' or 'executes' the function.</p>"
 						]
@@ -197,67 +208,48 @@
 			{
 			"header":"Procedures and functions continued",
 			"title":[
-					 "<p>Functions can optionally take some variables as input. For example, you might want to re-use a block of commands more than once, with different lengths or angles each time.</p>",
+					 "<p>Functions can optionally take some variables as input.  For example, you might want to re-use a block of commands more than once, with different lengths or angles each time.</p>",
 					 "<p>List the variables one by one after the name of the function as shown below like this:</p>",
 					 "<pre style='font-size:20px;'>to drawpoly :len :num</pre>"
 					 ],
-			"file":"make \"a 10\nrpt 300 [\n  fd 25\n  rt :a\n  make \"a :a*1.01\n]",
-			"media":"help/help0.png",
-			"popup":"help/help0.mov",
+			"file":"to drawpoly :len :n\n  rpt :n [\n    fd :len \n    rt (360/:n)\n  ]\nend\ndrawpoly 200 4\ndrawpoly 83 8",
+			"media":"help/help7.png",
+			"popup":"help/help7.mov",
 			"contents":[
-						"<pre style='font-size:20px;'>to drawpoly :len :num\n  rpt :num [\n    fd :len \n    rt (360/:num)\n  ]\nend\ndrawpoly 100 5\ndrawpoly 80 7</pre>",
+						"<pre style='font-size:20px;'>to drawpoly :len :n\n  rpt :n [\n    fd :len \n    rt (360/:n)\n  ]\nend\ndrawpoly 200 4\ndrawpoly 83 8</pre>",
 						"<p></p>",
-						"<p>The procedure above has two arguments, called len and num, and it is then called first with len equal to 100 and num equal to 5, and then with len equal to 80 and num equal to 7.</p>"
+						"<p>The procedure above has two arguments, called 'len' and 'n', and it is then called first with 'len' equal to 200 and 'n' equal to 4, and then with 'len' equal to 83 and 'n' equal to 8.</p>"
 						]
 			},
 			{
 			"header":"Recursion",
 			"title":[
-					 "<p>Recursion happens in Logo when inside a function you call the same function, normally with different input.</p>",
-					 "<p>For example the program below defines a procedure which accepts one variable called 'dist' and repeatedly calls itself, increasing the value of 'dist' each time:</p>"
+					 "<p>Recursion happens when, inside a function, you call the same function, normally with different input.</p>",
+					 "<p>For example the program below defines a procedure which accepts one variable called 'dist' and repeatedly calls itself, increasing the value of 'dist' by 5 each time:</p>"
 					 ],
+			"media":"help/help8.png",
+			"popup":"help/help8.mov",
 			"contents":[
-						"<pre style='font-size:20px;'>to drawspiral :dist\n  fd :dist\n  rt 90\n  drawspiral (:dist+5)\nend\n\ndrawSpiral 10</pre>",
+						"<pre style='font-size:20px;'>to drawspiral :dist\n  fd :dist\n  rt 90\n  drawspiral (:dist+5)\nend\n\ndrawspiral 10</pre>",
 						"<p></p>",
 						"<p>The result is an increasing series of line segments, forming a spiral.</p>",
 						"<p>Eventually the program will crash because it calls itself too many times!</p>"
 						]
 			},
 			{
-			"header":"How to use Logotacular",
-			"title":[
-					 "<p>Write your Logo program in the panel on the right-hand-side.</p>",
-					 "<p>Click 'play' to draw your commands on the screen, and click 'stop' to pause it if you see a mistake.</p>",
-					 "<p>Your files can be saved and loaded and you can choose your filenames.</p>"
-					 ],
-			"file":"make \"a 10\nrpt 300 [\n  fd 25\n  rt :a\n  make \"a :a*1.01\n]",
-			"media":"help/help0.png",
-			"popup":"help/help0.mov",
-			"contents":[
-						"<p>Create a new file</p>",
-						"<p>See the examples, open and play with them</p>",
-						"<p>Use the clear button to reset your Logo to blank</p>",
-						"<p>Choose a filename</p>",
-						"<p>Use the play/stop buttons</p>",
-						"<p>Enlarge, zoom</p>",
-						"<p>Reset zoom</p>",
-						"<p>Save as</p>"
-						]
-			},
-			{
 			"header":"Errors and debugging",
 			"title":[
 					 "<p>Errors are of two kinds: they can be in your code itself or they might only happen when you run your code.</p>",
-					 "<p>The first kind of errors include errors such as missing out a bracket or forgetting to put 'end' at the end of a function definition. The second kind of errors don't appear until you press 'Play'. For example, you might try to use a variable or call a function that you haven't defined, or you might divide by zero by mistake.</p>"
+					 "<p>The first kind of errors include errors such as missing out a bracket or forgetting to put '<span class='mono'>end</span>' at the end of a function definition.  The second kind of errors don't appear until you press 'Play'.  For example, you might try to use a variable or call a function that you haven't defined, or you might divide by zero by mistake.</p>"
 					 ],
 			"file":"make \"a 10\nrpt 300 [\n  fd 25\n  rt :a\n  make \"a :a*1.01\n]",
-			"media":"help/help0.png",
-			"popup":"help/help0.mov",
+			"media":"help/help9.png",
+			"popup":"help/help9.mov",
 			"contents":[
 						"<p>This program has an error of the first kind:</p>",
 						"<pre style='font-size:20px;'>rpt 10 [fd 10</pre>",
 						"<p></p>",
-						"<p>The program below has two errors of the second kind - 'b' is not defined, and you cannot divide by 'a' when it is zero.</p>",
+						"<p>The program below has two errors of the second kind.  Firstly 'b' is not defined, and secondly you cannot divide by 'a' since it is zero.</p>",
 						"<pre style='font-size:20px;'>make \"a 0\nfd :b/:a</pre>",
 						"<p></p>",
 						"<p>In Logotacular an arrow appears next to the line where it thinks the error is. You can click on it for more information.</p>"
@@ -270,8 +262,8 @@
 					 "<p>Seymour Papert pioneered its use in school classrooms as an educational system in the early 1970's, saying:</p>"
 					 ],
 			"file":"make \"a 10\nrpt 300 [\n  fd 25\n  rt :a\n  make \"a :a*1.01\n]",
-			"media":"help/help0.png",
-			"popup":"help/help0.mov",
+			"media":"help/help10.png",
+			"popup":"help/help10.mov",
 			"contents":[
 						"<p class='quote'>\"In many schools today, the phrase 'Computer-Aided Instruction' means making the computer teach the child... In my vision the child programs the computer and, in so doing, both acquires a sense of mastery over a piece of the most modern and powerful technology and establishes an intimate contact with some of the deepest ideas from science, from mathematics, and from the art of intellectual model building...\"</p>",
 						"<p class='quote'>\"...Traditional education codifies what it thinks citizens need to know and sets out to feed children this 'fish'. Constructionism is built on the assumption that children will do best by finding ('fishing') for themselves... the Turtle is like a person: 'I am here and I am facing north...' And from these similarities comes the Turtle's special ability to serve as a representative of formal mathematics\"</p>"
@@ -283,8 +275,8 @@
 					 "<p>Title0.....</p>"
 					 ],
 			"file":"make \"a 10\nrpt 300 [\n  fd 25\n  rt :a\n  make \"a :a*1.01\n]",
-			"media":"help/help0.png",
-			"popup":"help/help0.mov",
+			"media":"help/help11.png",
+			"popup":"help/help11.mov",
 			"contents":[
 						"<p>Logotacular contains Facebook log in if you wish to save or load your files.</p>"
 						]

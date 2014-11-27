@@ -24,6 +24,8 @@
 
 + (NSString*) getExampleData:(NSInteger)index;
 
++ (NSString*) getRefData:(NSInteger)index;
+
 + (NSString*) getExampleFile:(NSInteger)index;
 
 + (NSString*) getExampleMedia:(NSInteger)index;

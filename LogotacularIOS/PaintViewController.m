@@ -251,7 +251,7 @@ NSString* const THICK_KEYWORD			= @"thick";
 	}
 	else{
 		float f = [amount floatValue];
-		NSLog(@"fd f is %f", f);
+		//NSLog(@"fd f is %f", f);
 		CGPoint p0 = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
 		[[self getTurtleModel] moveFdBy:f];
 		if([[[self getTurtleModel] getVal:TURTLE_PEN_DOWN] boolValue]){

@@ -380,7 +380,7 @@ return {type:"usevar",name:v.name};
 
 varname = !keyword c0:([a-zA-Z])+ c1:[a-zA-Z0-9_]*
 {
-return {type:"varname",name:c0.toString()+c1.toString()};
+return {type:"varname",name:c0.join("").toString()+c1.join("").toString()};
 }
 
 sep = [ \t\r\n]

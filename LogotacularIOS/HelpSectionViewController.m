@@ -36,12 +36,11 @@
 
 - (void) addImage{
 	self.imgView = [[UIImageView alloc] initWithFrame:CGRectZero];
+	self.imgView.contentMode = UIViewContentModeScaleAspectFit;
 	NSString* media = [HelpData getMedia:self.index];
 	self.imgView.image = [UIImage imageNamed:[NSString stringWithFormat:@"assets/%@", media]];
 	[self.view addSubview:self.imgView];
 	[self.imgView setUserInteractionEnabled:YES];
-	self.imgView.layer.cornerRadius = 10;
-	self.imgView.layer.masksToBounds = YES;
 	self.imgView.translatesAutoresizingMaskIntoConstraints = NO;
 	self.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTap)];
 	[self.imgView addGestureRecognizer:self.tap];

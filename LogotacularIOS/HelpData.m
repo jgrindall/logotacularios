@@ -19,7 +19,7 @@
 
 static NSMutableDictionary* _dic = nil;
 
-NSString* const STYLES = @"<style>h1, p, h2, h3, div, span, ul, li{font-family: 'Lato-Regular';font-size: 18px;color:white;}h1,h2,h3{font-size:24px;}li{padding:10px;}pre, span.mono{font-family:'DroidSansMono';color:white;}p.quote{font-size: 15.5px;font-style:italic;}</style>";
+NSString* const STYLES = @"<style>h1, p, h2, h3, div, span, ul, li, td, td, th{font-family: 'Lato-Regular';font-size: 18px;color:white;}h1,h2,h3{font-size:24px;}li{padding:10px;}pre, span.mono{font-family:'DroidSansMono';color:white;}p.quote{font-size: 15.5px;font-style:italic;}</style>";
 
 + (NSString*) getHelpMovie:(NSInteger)index{
 	NSDictionary* help = (NSDictionary*)[self getDictionary][@"help"][index];
@@ -72,6 +72,17 @@ NSString* const STYLES = @"<style>h1, p, h2, h3, div, span, ul, li{font-family: 
 	NSDictionary* help = (NSDictionary*)[self getDictionary][@"help"][index];
 	if(help){
 		NSString* paras = [HelpData getParas:(NSArray*)help[@"title"]];
+		return [NSString stringWithFormat:@"%@<h3>%@</h3>%@", STYLES, help[@"header"], paras];
+	}
+	else{
+		return @"";
+	}
+}
+
++ (NSString*) getRefData:(NSInteger)index{
+	NSDictionary* help = (NSDictionary*)[self getDictionary][@"ref"][index];
+	if(help){
+		NSString* paras = [HelpData getParas:(NSArray*)help[@"contents"]];
 		return [NSString stringWithFormat:@"%@<h3>%@</h3>%@", STYLES, help[@"header"], paras];
 	}
 	else{

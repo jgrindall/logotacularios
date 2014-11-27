@@ -44,7 +44,7 @@
 	self.textView.backgroundColor = [Appearance grayColor];
 	[self.view addSubview:self.textView];
 	self.textView.textContainerInset = UIEdgeInsetsMake(10, 8, 8, 8);
-	NSString* htmlString = [HelpData getExampleData:self.index];
+	NSString* htmlString = [HelpData getRefData:self.index];
 	NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[htmlString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
 	self.textView.layer.cornerRadius = 10;
 	self.textView.layer.masksToBounds = YES;

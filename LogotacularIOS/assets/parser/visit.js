@@ -170,7 +170,7 @@ function visitplusexpression(node){
 
 function visitusevar(node){
 	var num = symTable.get(node.name);
-	if(!num){
+	if(num === null || num === undefined){
 		runTimeError("Variable '"+node.name+"' not found.");
 	}
 	else{
