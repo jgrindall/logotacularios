@@ -194,7 +194,6 @@ int const EXCLAM_SIZE = 36;
 
 - (void) layoutTextWithKeyboard:(float)h{
 	float p = 10;
-	NSLog(@"decrease it by %f", h);
 	if(self.textConstraints && [self.textConstraints count] >= 1){
 		[self.view removeConstraints:self.textConstraints];
 		self.textConstraints = nil;

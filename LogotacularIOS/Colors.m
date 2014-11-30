@@ -82,7 +82,7 @@ static NSMutableDictionary* _dic = nil;
 	_dic[@"black"] =			[Colors colorWithHexString:0x000000];
 	
 	_dic[@"bg_main"] =				[Colors colorWithHexString:0x4D4282];
-	_dic[@"bg_files"] =				[Colors colorWithHexString:0x242C31];
+	_dic[@"bg_files"] =				[Colors colorWithHexString:0x236698];
 	_dic[@"bg_help"] =				[Colors colorWithHexString:0x236698];
 	_dic[@"bg_ref"] =				[Colors colorWithHexString:0x1D8348];
 	_dic[@"bg_examples"] =			[Colors colorWithHexString:0x4D4282];

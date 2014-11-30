@@ -35,7 +35,6 @@ static CGFloat edgeSizeFromCornerRadius(CGFloat cornerRadius) {
 
 + (BOOL) createContextWithSize:(CGSize)size{
 	if(size.width <= 0 || size.height <= 0){
-		NSLog(@">>>>>>> NO! %f %f", size.width, size.height);
 		return NO;
 	}
 	UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);

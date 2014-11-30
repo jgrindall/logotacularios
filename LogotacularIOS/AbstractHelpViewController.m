@@ -49,7 +49,6 @@
 			break;
 		}
 	}
-	NSLog(@"tap is %@", tapRecognizer);
 	if (tapRecognizer){
 		[self.view removeGestureRecognizer:tapRecognizer];
 	}

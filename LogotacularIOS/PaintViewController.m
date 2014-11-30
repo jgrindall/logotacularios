@@ -94,7 +94,6 @@ NSString* const THICK_KEYWORD			= @"thick";
 }
 
 - (void) checkEnded:(UIGestureRecognizerState)state{
-	NSLog(@"pinch %i, %i %i %i", state, UIGestureRecognizerStateEnded, UIGestureRecognizerStateFailed, UIGestureRecognizerStateCancelled);
 	if (state == UIGestureRecognizerStateEnded || state == UIGestureRecognizerStateFailed || state == UIGestureRecognizerStateCancelled){
 		[self flushTransforms];
 		[[self getEventDispatcher] dispatch:SYMM_NOTIF_START withData:nil];
@@ -102,7 +101,6 @@ NSString* const THICK_KEYWORD			= @"thick";
 }
 
 - (void) flushTransforms{
-	//NSLog(@"F %@", NSStringFromCGAffineTransform(self.currentTransform));
 	[self.paintView flushTransformsWith:self.currentTransform];
 	self.currentTransform = CGAffineTransformIdentity;
 	[self updateTransforms];
@@ -186,7 +184,6 @@ NSString* const THICK_KEYWORD			= @"thick";
 }
 
 - (void) resetZoom{
-	NSLog(@"resetzoom");
 	self.currentTransform = CGAffineTransformIdentity;
 	[self.paintView setFlushedTransform:CGAffineTransformIdentity];
 	[self updateTransforms];

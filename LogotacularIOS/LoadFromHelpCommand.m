@@ -12,7 +12,6 @@
 
 - (void) execute:(id)payload{
 	NSString* logo = (NSString*)payload;
-	NSLog(@"payload %@", logo);
 	NSDictionary* dic = @{@"filename":[NSNull null], @"logo":logo};
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_PERFORM_FILE_SETUP withData:dic];
 }
