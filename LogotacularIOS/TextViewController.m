@@ -35,6 +35,7 @@
 @property UIView* container;
 @property UIButton* undoButton;
 @property UIButton* redoButton;
+@property NSArray* textConstraints;
 
 @end
 
@@ -56,7 +57,7 @@ int const EXCLAM_SIZE = 36;
 
 - (void) viewDidAppear:(BOOL)animated{
 	[super viewDidAppear:animated];
-	[self layoutText];
+	[self layoutTextWithKeyboard:0];
 	[self layoutContainer];
 	[self layoutButtons];
 	[self clearError];
@@ -96,13 +97,23 @@ int const EXCLAM_SIZE = 36;
 	self.container.layer.masksToBounds = YES;
 }
 
+- (void)keyBoardDidShow:(NSNotification*)notification{
+	NSDictionary* info  = notification.userInfo;
+	NSValue* value = info[UIKeyboardFrameEndUserInfoKey];
+	CGRect rawFrame      = [value CGRectValue];
+	CGRect keyboardFrame = [self.view convertRect:rawFrame fromView:nil];
+	float h = keyboardFrame.size.height;
+	[self layoutTextWithKeyboard:h];
+}
+
 - (void) addListeners{
 	[[self getLogoModel] addGlobalListener:@selector(modelChanged) withTarget:self];
 	[[self getErrorModel] addListener:@selector(errorChanged) forKey:LOGO_ERROR_ERROR withTarget:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_DISMISS_KEY toFunction:@selector(dismissKeyboard) withContext:self];
 	[[self getDrawingModel] addListener:@selector(drawingChanged) forKey:DRAWING_ISDRAWING withTarget:self];
 	[[self getTextVisModel] addListener:@selector(visChanged) forKey:TEXT_VISIBLE_VIS withTarget:self];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardDidHide) name:UIKeyboardDidHideNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardDidShow:) name:UIKeyboardDidShowNotification object:nil];
 	self.swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(textSwipe:)];
 	self.swipe.delegate = self;
 	[self.view addGestureRecognizer:self.swipe];
@@ -127,7 +138,8 @@ int const EXCLAM_SIZE = 36;
 	[self updateUndoRedo];
 }
 
-- ( void) keyBoardDidHide{
+- ( void) keyBoardDidHide:(NSNotification*)notification{
+	[self layoutTextWithKeyboard:0];
 	[self editEnded];
 }
 
@@ -180,13 +192,20 @@ int const EXCLAM_SIZE = 36;
 	[self updateUndoRedo];
 }
 
-- (void) layoutText{
+- (void) layoutTextWithKeyboard:(float)h{
 	float p = 10;
+	NSLog(@"decrease it by %f", h);
+	if(self.textConstraints && [self.textConstraints count] >= 1){
+		[self.view removeConstraints:self.textConstraints];
+		self.textConstraints = nil;
+	}
 	self.logoText.translatesAutoresizingMaskIntoConstraints = NO;
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual		toItem:self.container			attribute:NSLayoutAttributeTop			multiplier:1.0 constant:p + 30]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual		toItem:self.container			attribute:NSLayoutAttributeLeft			multiplier:1.0 constant:p]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual		toItem:self.container			attribute:NSLayoutAttributeBottom		multiplier:1.0 constant:-p]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual		toItem:self.container			attribute:NSLayoutAttributeRight		multiplier:1.0 constant:-p]];
+	NSLayoutConstraint* c0 = [NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual		toItem:self.container			attribute:NSLayoutAttributeTop			multiplier:1.0 constant:p + 30];
+	NSLayoutConstraint* c1 = [NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual		toItem:self.container			attribute:NSLayoutAttributeLeft			multiplier:1.0 constant:p];
+	NSLayoutConstraint* c2 = [NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual		toItem:self.container			attribute:NSLayoutAttributeBottom		multiplier:1.0 constant:-p - h];
+	NSLayoutConstraint* c3 = [NSLayoutConstraint constraintWithItem:self.logoText attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual		toItem:self.container			attribute:NSLayoutAttributeRight		multiplier:1.0 constant:-p];
+	self.textConstraints = @[c0, c1, c2, c3];
+	[self.view addConstraints:self.textConstraints];
 }
 
 - (void) layoutContainer{
@@ -257,7 +276,7 @@ int const EXCLAM_SIZE = 36;
 	self.logoText.delegate = self;
 	self.logoText.allowsEditingTextAttributes = YES;
 	self.logoText.backgroundColor = [UIColor clearColor];
-	[self.logoText setFont:[Appearance monospaceFontOfSize:SYMM_FONT_SIZE_MED]];
+	[self.logoText setFont:[Appearance monospaceFontOfSize:SYMM_FONT_SIZE_LOGO]];
 	self.logoText.textColor = [UIColor whiteColor];
 	[self.view addSubview:self.logoText];
 	self.logoText.textContainer.lineFragmentPadding = 0;
@@ -290,15 +309,19 @@ int const EXCLAM_SIZE = 36;
 }
 
 - (void) show{
-	[self move:YES];
 	self.view.hidden = NO;
 	self.view.superview.hidden = NO;
+	[self move:YES];
 }
 
 - (void) hide{
 	[self move:NO];
-	self.view.hidden = YES;
-	self.view.superview.hidden = YES;
+	double delayInSeconds = 0.5;
+	dispatch_time_t t = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+	dispatch_after(t, dispatch_get_main_queue(), ^(void){
+		self.view.hidden = YES;
+		self.view.superview.hidden = YES;
+	});
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView{
@@ -361,7 +384,7 @@ int const EXCLAM_SIZE = 36;
 		x0 = x1t;
 		time = 0.2;
 	}
-	[ImageUtils bounceAnimateView:self.view from:x0 to:x1 withKeyPath:@"position.x" withKey:@"textBounce" withDelegate:nil withDuration:time withImmediate:NO];
+	[ImageUtils bounceAnimateView:self.view from:x0 to:x1 withKeyPath:@"position.x" withKey:@"textBounce" withDelegate:nil withDuration:time withImmediate:NO withHide:NO];
 }
 
 - (void) removeListeners{
@@ -375,7 +398,10 @@ int const EXCLAM_SIZE = 36;
 	[self.exclamView setUserInteractionEnabled:NO];
 	[self.undoButton removeTarget:self action:@selector(undoClick) forControlEvents:UIControlEventTouchUpInside];
 	[self.redoButton removeTarget:self action:@selector(redoClick) forControlEvents:UIControlEventTouchUpInside];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidHideNotification object:nil];
 	self.exclamTap = nil;
+	self.swipe = nil;
 }
 
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -385,6 +411,16 @@ int const EXCLAM_SIZE = 36;
 
 -(void) dealloc{
 	[self removeListeners];
+	[self.logoText removeFromSuperview];
+	self.logoText = nil;
+	[self.exclamView removeFromSuperview];
+	self.exclamView = nil;
+	[self.container removeFromSuperview];
+	self.container = nil;
+	[self.undoButton removeFromSuperview];
+	self.undoButton = nil;
+	[self.redoButton removeFromSuperview];
+	self.redoButton = nil;
 }
 
 @end

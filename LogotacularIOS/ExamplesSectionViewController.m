@@ -102,4 +102,14 @@
 	[self exit];
 }
 
+- (void) dealloc{
+	[self.progCopyButton removeTarget:self action:@selector(onClick) forControlEvents:UIControlEventTouchUpInside];
+	[self.progCopyButton removeFromSuperview];
+	self.progCopyButton = nil;
+	[self.textView removeFromSuperview];
+	self.textView = nil;
+	[self.imgView removeFromSuperview];
+	self.imgView = nil;
+}
+
 @end

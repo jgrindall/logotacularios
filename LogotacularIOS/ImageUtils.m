@@ -80,7 +80,7 @@ static CGFloat edgeSizeFromCornerRadius(CGFloat cornerRadius) {
 	return image;
 }
 
-+ (void) bounceAnimateView:(UIView*) view from:(float) fromPos to:(float) toPos withKeyPath:(NSString*) keyPath withKey:(NSString*) key withDelegate:(id)delegate withDuration:(float)duration withImmediate:(BOOL)immediate{
++ (void) bounceAnimateView:(UIView*) view from:(float) fromPos to:(float) toPos withKeyPath:(NSString*) keyPath withKey:(NSString*) key withDelegate:(id)delegate withDuration:(float)duration withImmediate:(BOOL)immediate withHide:(BOOL)hide{
 	[view.layer removeAllAnimations];
 	NSNumber* finalValue = @(toPos);
 	if(!immediate){

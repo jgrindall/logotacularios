@@ -107,6 +107,9 @@
 }
 
 - (void) dealloc{
+	self.cellIdent = nil;
+	self.cellClass = nil;
+	self.files = nil;
 	[[self getFileBrowserModel] removeGlobalListener:@selector(selChanged) withTarget:self];
 }
 

@@ -25,6 +25,7 @@
 @property UILabel* emptyLabel;
 @property UIBarButtonItem* openButton;
 @property UIBarButtonItem* delButton;
+@property NSArray* constraints;
 
 @end
 
@@ -133,7 +134,7 @@
 	self.filesContainer = [[UIView alloc] initWithFrame:self.view.frame];
 	self.filesContainer.backgroundColor = [UIColor clearColor];
 	self.filesContainer.translatesAutoresizingMaskIntoConstraints = NO;
-	self.view.backgroundColor = [Colors getColorForString:[Colors getDark:1]];
+	self.view.backgroundColor = [Colors getColorForString:[Colors getDark:@"files"]];
 	[self.view addSubview:self.filesContainer];
 	UICollectionViewFlowLayout* aFlowLayout = [[UICollectionViewFlowLayout alloc] init];
 	[aFlowLayout setItemSize:CGSizeMake(FILE_LAYOUT_CELL_WIDTH, FILE_LAYOUT_CELL_HEIGHT)];
@@ -162,6 +163,14 @@
 	[[self getFileListModel] removeListener:@selector(filesChanged) forKey:FILE_LIST_LIST withTarget:self];
 	[[self getFileBrowserModel] removeGlobalListener:@selector(selChanged) withTarget:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_FILE_LOADED toFunction:@selector(fileLoaded) withContext:self];
+	[self removeChildFrom:self.filesContainer withController:self.filesController];
+	[self.filesContainer removeFromSuperview];
+	self.filesContainer = nil;
+	self.filesController = nil;
+	[self.emptyLabel removeFromSuperview];
+	self.emptyLabel = nil;
+	self.navigationItem.leftBarButtonItems = @[];
+	self.navigationItem.rightBarButtonItems = @[];
 }
 
 @end

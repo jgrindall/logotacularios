@@ -9,6 +9,7 @@
 #import "PerformFileSetupCommand.h"
 #import "PLogoModel.h"
 #import "PFileModel.h"
+#import "PBgModel.h"
 
 @implementation PerformFileSetupCommand
 
@@ -20,11 +21,13 @@
 	BOOL real = NO;
 	id<PLogoModel> logoModel = [self getLogoModel];
 	id<PFileModel> fileModel = [self getFileModel];
+	id<PBgModel> bgModel = [self getBgModel];
 	if(dic[@"filename"] != [NSNull null]){
 		filename = dic[@"filename"];
 		dirty = NO;
 		real = YES;
 	}
+	[bgModel reset];
 	[fileModel setVal:filename forKey:FILE_FILENAME];
 	[fileModel setVal:@(dirty) forKey:FILE_DIRTY];
 	[fileModel setVal:@(real) forKey:FILE_REAL];
@@ -40,6 +43,10 @@
 
 - (id<PLogoModel>) getLogoModel{
 	return [[JSObjection defaultInjector] getObject:@protocol(PLogoModel)];
+}
+
+- (id<PBgModel>) getBgModel{
+	return [[JSObjection defaultInjector] getObject:@protocol(PBgModel)];
 }
 
 @end

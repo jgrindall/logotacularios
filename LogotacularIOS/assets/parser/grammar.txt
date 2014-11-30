@@ -100,7 +100,7 @@ thickstmt = sep* 'thick'  sep* e:expression eoline
 return {"type":"thickstmt", "children":[e]};
 }
 
-color = 'turquoise'/ 'turq'/ 'green'/ 'blue'/ 'purple'/ 'midnight'/ 'darkkturqoise'/ 'dkturq'/ 'dkturquoise'/ 'darkgreen'/ 'dkgreen'/ 'yellow'/ 'carrot'/ 'orange'/ 'org'/ 'red'/ 'snow'/ 'gray'/ 'grey'/ 'ltorange'/ 'lightorange'/ 'lightorg'/ 'ltorg'/ 'dkorange'/ 'darkorg'/ 'dkorg'/ 'darkorange'/ 'terracotta'/ 'dkred'/ 'darkred'/ 'ltgray'/ 'ltgrey'/ 'lightgray'/ 'lightgrey'/ 'darkgray'/ 'darkgrey'/ 'dkgrey'/ 'dkgray'/ 'white'/ 'black'
+color = 'turquoise' / 'turq'/ 'pink' / 'ltblue' / 'lightblue' / 'dkpurple' / 'darkpurple' / 'violet' / 'indigo' / 'green' / 'blue' / 'dkblue' / 'darkblue' / 'purple' / 'midnight' / 'darkkturqoise' / 'dkturq'/ 'dkturquoise'/ 'darkgreen'/ 'dkgreen' / 'yellow' / 'carrot' / 'orange' / 'org' / 'red' / 'snow' / 'gray' / 'grey' / 'ltorange' / 'lightorange' / 'lightorg' / 'ltorg' / 'dkorange' / 'darkorg' / 'dkorg' / 'darkorange' / 'terracotta' / 'dkred' / 'darkred' / 'ltgray'/ 'ltgrey' / 'lightgray' / 'lightgrey' / 'darkgray' / 'darkgrey' / 'dkgrey' / 'dkgray' / 'white' / 'black'
 
 
 callfnstmt = sep* f:fnname sep* a:expressionlist eoline

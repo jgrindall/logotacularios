@@ -71,5 +71,14 @@
 	[self layoutNo];
 }
 
+- (void)dealloc{
+	[self.yesButton removeTarget:self action:@selector(onClickYes) forControlEvents:UIControlEventTouchUpInside];
+	[self.noButton removeTarget:self action:@selector(onClickNo) forControlEvents:UIControlEventTouchUpInside];
+	[self.yesButton removeFromSuperview];
+	self.yesButton = nil;
+	[self.noButton removeFromSuperview];
+	self.noButton = nil;
+
+}
 
 @end

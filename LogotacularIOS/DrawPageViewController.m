@@ -29,6 +29,7 @@
 #import "PTextVisibleModel.h"
 #import "MenuLayout.h"
 #import "TextLayout.h"
+#import "Colors.h"
 
 @interface DrawPageViewController ()
 
@@ -159,8 +160,9 @@
 	CGRect globalFrame = [self.view convertRect:rect fromView:exclam.superview];
 	ErrorPopUpViewController* pop = [[ErrorPopUpViewController alloc] init];
 	self.popController = [[UIPopoverController alloc] initWithContentViewController:pop];
-	pop.view.backgroundColor = [Appearance bgColor];
-	self.popController.backgroundColor = [Appearance bgColor];
+	UIColor* bg = [Colors darken:[Appearance bgColor]];
+	pop.view.backgroundColor = bg;
+	self.popController.backgroundColor = bg;
 	[self.popController presentPopoverFromRect:globalFrame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:NO];
 }
 
@@ -361,19 +363,17 @@
 
 - (void) dealloc{
 	[self removeListeners];
+	[self removeChildFrom:self.textContainer withController:self.textViewController];
+	[self removeChildFrom:self.paintContainer withController:self.paintViewController];
+	[self removeChildFrom:self.webContainer withController:self.webViewController];
+	[self removeChildFrom:self.menuContainer withController:self.menuViewController];
+	self.navigationItem.leftBarButtonItems = @[];
+	self.navigationItem.rightBarButtonItems = @[];
+	if(self.popController){
+		[self.popController dismissPopoverAnimated:NO];
+	}
+	[AlertManager removeAlert];
 }
 
 @end
 
-
-/*
- open pdf?
- 
- NSURL *targetURL = [NSURL fileURLWithPath:tempFullPath];
- NSLog(@"Path is %@", tempFullPath);
- UIDocumentInteractionController *controller = [UIDocumentInteractionController interactionControllerWithURL:targetURL];
- controller.delegate = self;
- controller.UTI = @"com.adobe.pdf";
- 
- [controller presentOpenInMenuFromRect:self.view.bounds inView:self.view animated:YES];
-*/

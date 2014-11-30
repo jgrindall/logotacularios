@@ -24,9 +24,9 @@
 @property UIPanGestureRecognizer* pan;
 @property UIPinchGestureRecognizer* pinch;
 @property NSMutableArray* cmds;
-
 @property CGAffineTransform currentTransform;
 @property CGAffineTransform startTransform;
+
 @end
 
 @implementation PaintViewController
@@ -59,7 +59,7 @@ NSString* const THICK_KEYWORD			= @"thick";
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-	return YES;
+	return NO;
 }
 
 - (void) addGestures{
@@ -77,20 +77,24 @@ NSString* const THICK_KEYWORD			= @"thick";
 		return;
 	}
 	float scale = recognizer.scale;
-	CGPoint p0 = [recognizer locationOfTouch:0 inView:self.view];
-	CGPoint p1 = [recognizer locationOfTouch:1 inView:self.view];
-	CGPoint p = CGPointMake((p0.x + p1.x)/2.0, (p0.y + p1.y)/2.0);
-	if(recognizer.state == UIGestureRecognizerStateBegan){
-		self.startTransform = self.currentTransform;
+	NSInteger numTouches = [recognizer numberOfTouches];
+	if(numTouches >= 2){
+		CGPoint p0 = [recognizer locationOfTouch:0 inView:self.view];
+		CGPoint p1 = [recognizer locationOfTouch:1 inView:self.view];
+		CGPoint p = CGPointMake((p0.x + p1.x)/2.0, (p0.y + p1.y)/2.0);
+		if(recognizer.state == UIGestureRecognizerStateBegan){
+			self.startTransform = self.currentTransform;
+		}
+		CGPoint realPoint = [self getRealPoint:p];
+		CGAffineTransform extraTransform = [PaintViewController getTransformForScale:scale andCentre:realPoint];
+		self.currentTransform = CGAffineTransformConcat(self.startTransform, extraTransform);
+		[self updateTransforms];
+		[self checkEnded:recognizer.state];
 	}
-	CGPoint realPoint = [self getRealPoint:p];
-	CGAffineTransform extraTransform = [PaintViewController getTransformForScale:scale andCentre:realPoint];
-	self.currentTransform = CGAffineTransformConcat(self.startTransform, extraTransform);
-	[self updateTransforms];
-	[self checkEnded:recognizer.state];
 }
 
 - (void) checkEnded:(UIGestureRecognizerState)state{
+	NSLog(@"pinch %i, %i %i %i", state, UIGestureRecognizerStateEnded, UIGestureRecognizerStateFailed, UIGestureRecognizerStateCancelled);
 	if (state == UIGestureRecognizerStateEnded || state == UIGestureRecognizerStateFailed || state == UIGestureRecognizerStateCancelled){
 		[self flushTransforms];
 		[[self getEventDispatcher] dispatch:SYMM_NOTIF_START withData:nil];
@@ -98,7 +102,7 @@ NSString* const THICK_KEYWORD			= @"thick";
 }
 
 - (void) flushTransforms{
-	NSLog(@"F %@", NSStringFromCGAffineTransform(self.currentTransform));
+	//NSLog(@"F %@", NSStringFromCGAffineTransform(self.currentTransform));
 	[self.paintView flushTransformsWith:self.currentTransform];
 	self.currentTransform = CGAffineTransformIdentity;
 	[self updateTransforms];
@@ -121,11 +125,14 @@ NSString* const THICK_KEYWORD			= @"thick";
 	if([[d getVal:DRAWING_ISDRAWING] boolValue]){
 		return;
 	}
+	NSInteger numTouches = [recognizer numberOfTouches];
+	//NSLog(@"nT %i", numTouches);
 	CGPoint t = [recognizer translationInView:self.view];
 	if(recognizer.state == UIGestureRecognizerStateBegan) {
 		self.startTransform = self.currentTransform;
 	}
 	float scale = [self getScale:self.startTransform];
+	//NSLog(@"pan %i, %f, %f", recognizer.state, t.x, t.y);
 	scale = 1;
 	CGAffineTransform trans = CGAffineTransformMakeTranslation(t.x/scale, t.y/scale);
 	self.currentTransform = CGAffineTransformConcat(self.startTransform, trans);
@@ -251,7 +258,6 @@ NSString* const THICK_KEYWORD			= @"thick";
 	}
 	else{
 		float f = [amount floatValue];
-		//NSLog(@"fd f is %f", f);
 		CGPoint p0 = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
 		[[self getTurtleModel] moveFdBy:f];
 		if([[[self getTurtleModel] getVal:TURTLE_PEN_DOWN] boolValue]){
@@ -312,6 +318,16 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[self removeListeners];
 	[self.view removeConstraints:self.constraints];
 	[self.constraints removeAllObjects];
+	self.constraints = nil;
+	[self.paintView removeFromSuperview];
+	self.paintView = nil;
+	[self.view removeGestureRecognizer:self.pan];
+	[self.view removeGestureRecognizer:self.pinch];
+	self.pan.delegate = nil;
+	self.pinch.delegate = nil;
+	self.pinch = nil;
+	self.pan = nil;
+	self.cmds = nil;
 }
 
 @end

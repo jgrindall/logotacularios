@@ -14,6 +14,7 @@
 
 @property Class childClass;
 @property NSInteger numPages;
+
 @end
 
 @implementation AbstractHelpViewController
@@ -85,6 +86,11 @@
 		return nil;
 	}
 	return [self viewControllerAtIndex:index];
+}
+
+- (void) dealloc{
+	self.delegate = nil;
+	self.childClass = nil;
 }
 
 @end

@@ -137,7 +137,7 @@
 - (void) parse{
 	NSString* logo = [[self getLogoModel] get];
 	logo = [self clean:logo];
-	NSLog(@"draw %@", logo);
+	//NSLog(@"draw %@", logo);
 	NSString* fnCall = [NSString stringWithFormat:@"LG.draw('%@')", logo];
 	[self.webView stringByEvaluatingJavaScriptFromString:fnCall];
 }
@@ -168,6 +168,8 @@
 
 - (void) dealloc{
 	[self removeListeners];
+	[self.webView removeFromSuperview];
+	self.webView = nil;
 }
 
 @end

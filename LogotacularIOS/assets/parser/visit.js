@@ -198,7 +198,7 @@ function visitnegate(node){
 }
 
 function visitcallfnstmt(node){
-	var name = node.name, args = "argument";
+	var name = node.name, args = "input argument";
 	var f = symTable.getFunction(name);
 	if(f){
 		var numSupplied, numArgs = 0;

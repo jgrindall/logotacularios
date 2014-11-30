@@ -20,11 +20,11 @@ static NSMutableDictionary* _dic = nil;
 	return clr;
 }
 
-+ (NSString*) getDark:(NSInteger)i{
++ (NSString*) getDark:(NSString*)s{
 	if(![Colors dictionary]){
 		[Colors loadDic];
 	}
-	return [NSString stringWithFormat:@"bg%li", (long)i];
+	return [NSString stringWithFormat:@"bg_%@", s];
 }
 
 + (NSDictionary*) dictionary{
@@ -37,7 +37,13 @@ static NSMutableDictionary* _dic = nil;
 	_dic[@"turq"] =				[Colors colorWithHexString:0x1abc9c];
 	_dic[@"green"] =			[Colors colorWithHexString:0x2ecc71];
 	_dic[@"blue"] =				[Colors colorWithHexString:0x2f88ca];
+	_dic[@"ltblue"] =			[Colors colorWithHexString:0x82CAFF];
+	_dic[@"lightblue"] =		[Colors colorWithHexString:0x82CAFF];
 	_dic[@"purple"] =			[Colors colorWithHexString:0x9b59b6];
+	_dic[@"darkpurple"] =		[Colors colorWithHexString:0x653aa5];
+	_dic[@"dkpurple"] =			[Colors colorWithHexString:0x653aa5];
+	_dic[@"indigo"] =			[Colors colorWithHexString:0x653aa5];
+	_dic[@"pink"] =				[Colors colorWithHexString:0xE77471];
 	_dic[@"dkorange"] =			[Colors colorWithHexString:0xd35400];
 	_dic[@"darkorg"] =			[Colors colorWithHexString:0xd35400];
 	_dic[@"dkorg"] =			[Colors colorWithHexString:0xd35400];
@@ -59,7 +65,7 @@ static NSMutableDictionary* _dic = nil;
 	_dic[@"lightorg"] =			[Colors colorWithHexString:0xf39c12];
 	_dic[@"ltorg"] =			[Colors colorWithHexString:0xf39c12];
 	_dic[@"lightorange"] =		[Colors colorWithHexString:0xf39c12];
-	_dic[@"white"] =			[Colors colorWithHexString:0xecf0f1];
+	_dic[@"white"] =			[Colors colorWithHexString:0xdddddd];
 	_dic[@"gray"] =				[Colors colorWithHexString:0x95a5a6];
 	_dic[@"grey"] =				[Colors colorWithHexString:0x95a5a6];
 	_dic[@"lightgrey"] =		[Colors colorWithHexString:0xbdc3c7];
@@ -71,12 +77,16 @@ static NSMutableDictionary* _dic = nil;
 	_dic[@"darkgrey"] =			[Colors colorWithHexString:0x6f7c7d];
 	_dic[@"dkgrey"] =			[Colors colorWithHexString:0x6f7c7d];
 	_dic[@"midnight"] =			[Colors colorWithHexString:0x34495e];
+	_dic[@"dkblue"] =			[Colors colorWithHexString:0x34495e];
+	_dic[@"darkblue"] =			[Colors colorWithHexString:0x34495e];
 	_dic[@"black"] =			[Colors colorWithHexString:0x000000];
 	
-	_dic[@"bg0"] =				[Colors colorWithHexString:0x75347a];
-	_dic[@"bg1"] =				[Colors colorWithHexString:0xbd4b00];
-	_dic[@"bg2"] =				[Colors colorWithHexString:0x27ae60];
-	_dic[@"bg3"] =				[Colors colorWithHexString:0x75347a];
+	_dic[@"bg_main"] =				[Colors colorWithHexString:0x4D4282];
+	_dic[@"bg_files"] =				[Colors colorWithHexString:0x242C31];
+	_dic[@"bg_help"] =				[Colors colorWithHexString:0x236698];
+	_dic[@"bg_ref"] =				[Colors colorWithHexString:0x1D8348];
+	_dic[@"bg_examples"] =			[Colors colorWithHexString:0x4D4282];
+	
 }
 
 + (UIColor *)colorWithHexString:(int)rgbValue {
@@ -84,6 +94,13 @@ static NSMutableDictionary* _dic = nil;
 	float g = ((rgbValue & 0xFF00) >> 8)/255.0;
 	float b = (rgbValue & 0xFF)/255.0;
 	return [UIColor colorWithRed:r green:g blue:b alpha:1.0];
+}
+
++ (UIColor*) darken:(UIColor*)c{
+	CGFloat r, g, b, a;
+	float less = 0.25;
+	if ([c getRed:&r green:&g blue:&b alpha:&a]) return [UIColor colorWithRed:MAX(r - less, 0.0) green:MAX(g - less, 0.0) blue:MAX(b - less, 0.0) alpha:1];
+	return nil;
 }
 
 @end

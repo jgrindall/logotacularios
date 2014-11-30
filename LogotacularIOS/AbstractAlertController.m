@@ -10,6 +10,7 @@
 #import "Appearance.h"
 #import "ImageUtils.h"
 #import "AlertLayout.h"
+#import "Colors.h"
 
 @implementation AbstractAlertController
 
@@ -94,7 +95,7 @@
 - (void) addPanel{
 	self.panel = [[UIView alloc] initWithFrame:self.view.frame];
 	self.panel.translatesAutoresizingMaskIntoConstraints = NO;
-	self.panel.backgroundColor = [Appearance bgColor];
+	self.panel.backgroundColor = [Colors darken:[Appearance bgColor]];
 	[self.view addSubview:self.panel];
 }
 
@@ -109,7 +110,7 @@
 }
 
 - (void) movePanelFrom:(float)y0 to:(float)y1{
-	[ImageUtils bounceAnimateView:self.panel from:y0 to:y1 withKeyPath:@"position.y" withKey:@"panelBounce" withDelegate:nil withDuration:0.3 withImmediate:NO];
+	[ImageUtils bounceAnimateView:self.panel from:y0 to:y1 withKeyPath:@"position.y" withKey:@"panelBounce" withDelegate:nil withDuration:0.3 withImmediate:NO withHide:NO];
 }
 
 - (void) addListeners{
@@ -135,6 +136,11 @@
 
 - (void) dealloc{
 	[self removeListeners];
+	[self.bg removeFromSuperview];
+	[self.titleLabel removeFromSuperview];
+	[self.panel removeFromSuperview];
+	[self.view removeConstraints:self.panelConstraints];
+	self.buttonLabels = @[];
 }
 
 @end

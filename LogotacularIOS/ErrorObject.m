@@ -51,7 +51,11 @@
 	}
 	BOOL expected = [message rangeOfString:@"Expected"].location != NSNotFound;
 	BOOL endOfInput = [message rangeOfString:@"but"].location != NSNotFound;
-	if(expected && endOfInput){
+	BOOL recursion = [message rangeOfString:@"call stack size exceeded"].location != NSNotFound;
+	if(recursion){
+		message = @"You called a function recursively too many times";
+	}
+	else if(expected && endOfInput){
 		NSString* found = [self getFound];
 		if(!found || ![found isKindOfClass:[NSString class]] || [found isEqualToString:@"<null>"]){
 			message = [NSString stringWithFormat:@"It looks like something is missing on this line"];

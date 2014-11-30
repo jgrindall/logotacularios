@@ -19,7 +19,7 @@ NSString* const BG_COLOR = @"bgcolor";
 }
 
 - (void) setDefaults{
-	NSString* c = [Colors getDark:0];
+	NSString* c = [Colors getDark:@"main"];
 	[self setVal:c forKey:BG_COLOR];
 }
 

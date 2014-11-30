@@ -116,4 +116,15 @@
 	[self layoutCancel];
 }
 
+- (void) dealloc{
+	[self.okButton removeTarget:self action:@selector(onClickOk) forControlEvents:UIControlEventTouchUpInside];
+	[self.cancelButton removeTarget:self action:@selector(onClickCancel) forControlEvents:UIControlEventTouchUpInside];
+	[self.okButton removeFromSuperview];
+	self.okButton = nil;
+	[self.cancelButton removeFromSuperview];
+	self.cancelButton = nil;
+	[self.nameField removeFromSuperview];
+	self.nameField = nil;
+}
+
 @end

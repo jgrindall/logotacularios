@@ -131,17 +131,21 @@
 - (void) show{
 	float y0 = -self.view.frame.size.height/2;
 	float y1 = self.view.frame.size.height/2;
-	[ImageUtils bounceAnimateView:self.view from:y0 to:y1 withKeyPath:@"position.y" withKey:@"menuBounce" withDelegate:nil withDuration:0.3 withImmediate:NO];
 	self.view.hidden = NO;
 	self.view.superview.hidden = NO;
+	[ImageUtils bounceAnimateView:self.view from:y0 to:y1 withKeyPath:@"position.y" withKey:@"menuBounce" withDelegate:nil withDuration:0.3 withImmediate:NO withHide:NO];
 }
 
 - (void) hide{
 	float y0 = -self.view.frame.size.height/2;
 	float y1 = self.view.frame.size.height/2;
-	[ImageUtils bounceAnimateView:self.view from:y1 to:y0 withKeyPath:@"position.y" withKey:@"menuBounce" withDelegate:nil withDuration:0.3 withImmediate:NO];
-	self.view.hidden = YES;
-	self.view.superview.hidden = YES;
+	[ImageUtils bounceAnimateView:self.view from:y1 to:y0 withKeyPath:@"position.y" withKey:@"menuBounce" withDelegate:nil withDuration:0.3 withImmediate:NO withHide:NO];
+	double delayInSeconds = 0.5;
+	dispatch_time_t t = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+	dispatch_after(t, dispatch_get_main_queue(), ^(void){
+		self.view.hidden = YES;
+		self.view.superview.hidden = YES;
+	});
 }
 
 - (void) removeListeners{
@@ -151,6 +155,18 @@
 
 - (void) dealloc{
 	[self removeListeners];
+	[self.fileButton removeFromSuperview];
+	[self.helpButton removeFromSuperview];
+	[self.saveAsButton removeFromSuperview];
+	[self.openButton removeFromSuperview];
+	[self.refButton removeFromSuperview];
+	[self.egButton removeFromSuperview];
+	self.fileButton = nil;
+	self.helpButton = nil;
+	self.saveAsButton = nil;
+	self.openButton = nil;
+	self.refButton = nil;
+	self.egButton = nil;
 }
 
 @end

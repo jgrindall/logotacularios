@@ -151,4 +151,21 @@
 	[self exit];
 }
 
+- (void) dealloc{
+	[self.progCopyButton removeTarget:self action:@selector(onClick) forControlEvents:UIControlEventTouchUpInside];
+	[self.progCopyButton removeFromSuperview];
+	self.progCopyButton = nil;
+	[self.textView removeFromSuperview];
+	self.textView = nil;
+	[self.topView removeFromSuperview];
+	self.topView = nil;
+	[self.imgView removeFromSuperview];
+	self.imgView = nil;
+	[self.imgView removeGestureRecognizer:self.tap];
+	if(self.videoController){
+		[self.videoController dismissMoviePlayerViewControllerAnimated];
+		self.videoController = nil;
+	}
+}
+
 @end

@@ -80,5 +80,10 @@
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.helpContainer attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0]];
 }
 
+- (void) dealloc{
+	[self.imgView removeFromSuperview];
+	self.imgView = nil;
+	self.childClass = nil;
+}
 
 @end

@@ -23,7 +23,7 @@
 
 - (void) viewDidLoad{
 	[super viewDidLoad];
-	self.view.backgroundColor = [Colors getColorForString:[Colors getDark:2]];
+	self.view.backgroundColor = [Colors getColorForString:[Colors getDark:@"help"]];
 }
 
 @end

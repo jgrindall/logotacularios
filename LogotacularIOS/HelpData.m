@@ -20,10 +20,11 @@
 static NSMutableDictionary* _dic = nil;
 
 NSString* const STYLES0 = @"h1, p, h2, h3, div, span, ul, li, td, td, th{font-family: 'Lato-Regular';font-size: 18px;color:white;}";
-NSString* const STYLES1 = @"table{border-collapse: collapse;font-size:19px;margin-left:43px;margin-top:10px;}td{font-size:19px;}tr,td{width:100px;}table,tr{width:900px;}td, th{padding:12px;border:2px solid #1e8549;}td:nth-child(2n+1){text-align:center;}th{font-size:24px;padding:6px;text-align:center;}tr{width:100%;padding:5px;}td:nth-child(1){width:25%}td:nth-child(2){width:25%}td:nth-child(3){width:50%}tr:nth-child(2n+1){background:#1e8549;}";
-NSString* const STYLES2 = @"h1,h2,h3{font-size:24px;}";
-NSString* const STYLES3 = @"li{padding:10px;}";
-NSString* const STYLES4 = @"pre, span.mono{font-family:'DroidSansMono';color:white;font-size:20px;}p.quote{font-size: 14.5px;font-style:italic;}";
+NSString* const STYLES1 = @"table{border-collapse: collapse;font-size:19px;margin-left:43px;margin-top:10px;}table,tr{width:900px;}td,th{padding:12px;border:2px solid #1e8549;}td{font-size:19px;}table.commands td:nth-child(2n+1){text-align:center;}th{font-size:24px;text-align:center;}tr{width:100%;}table.commands td:nth-child(1){width:25%}table.commands td:nth-child(2){width:25%}table.commands td:nth-child(3){width:50%}table.commands tr:nth-child(2n+1){background:#1e8549;}";
+NSString* const STYLES2 = @"table.colors td{padding:15px;height:30px;text-align:center;width:33%}table.colors tr{height:30px;}table.colors td,th{border:2px solid transparent;}";
+NSString* const STYLES3 = @"h1,h2,h3{font-size:24px;}";
+NSString* const STYLES4 = @"li{padding:10px;}";
+NSString* const STYLES5 = @"pre, span.mono{font-family:'DroidSansMono';color:white;font-size:20px;}p.quote{font-size: 14.5px;font-style:italic;}";
 
 + (NSString*) getKey:(NSString*)key inSection:(NSString*)section withIndex:(NSInteger)index withStyles:(BOOL)styles{
 	NSDictionary* sectionDic = (NSDictionary*)[self getDictionary][section][index];
@@ -89,7 +90,7 @@ NSString* const STYLES4 = @"pre, span.mono{font-family:'DroidSansMono';color:whi
 }
 
 + (NSString*) getStyles{
-	return [NSString stringWithFormat:@"<style>%@%@%@%@%@</style>", STYLES0, STYLES1, STYLES2, STYLES3, STYLES4];
+	return [NSString stringWithFormat:@"<style>%@%@%@%@%@%@</style>", STYLES0, STYLES1, STYLES2, STYLES3, STYLES4, STYLES5];
 }
 
 + (NSString*) getParas:(NSArray*)paras{

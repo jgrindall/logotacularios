@@ -89,7 +89,7 @@
 }
 
 - (void) onClickHelp{
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_HELP withData:nil];
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_REF withData:nil];
 }
 
 -(void)layoutText{
@@ -120,7 +120,13 @@
 }
 
 - (void) dealloc{
-	
+	[self.helpButton removeTarget:self action:@selector(onClickHelp) forControlEvents:UIControlEventTouchUpInside];
+	[self.helpButton removeFromSuperview];
+	self.helpButton = nil;
+	[self.label removeFromSuperview];
+	self.label = nil;
+	[self.moreLabel removeFromSuperview];
+	self.moreLabel = nil;
 }
 
 @end

@@ -13,9 +13,11 @@
 
 + (UIColor*) getColorForString:(NSString*)name;
 
-+(NSDictionary*) dictionary;
++ (NSDictionary*) dictionary;
 
-+ (NSString*) getDark:(NSInteger)i;
++ (NSString*) getDark:(NSString*)s;
+
++ (UIColor*) darken:(UIColor*)c;
 
 @end
 

@@ -88,4 +88,10 @@ CGContextRef cacheContext;
 	}
 }
 
+- (void) dealloc{
+	if(cacheContext){
+		CGContextRelease(cacheContext);
+	}
+}
+
 @end

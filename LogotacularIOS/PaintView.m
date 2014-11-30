@@ -70,5 +70,18 @@ CGContextRef cacheContext;
 	self.linesView.transform = t;
 }
 
+- (void) dealloc{
+	[self.bgView removeFromSuperview];
+	self.bgView = nil;
+	[self.blurView removeFromSuperview];
+	self.blurView = nil;
+	[self.catView removeFromSuperview];
+	self.catView = nil;
+	[self.linesView removeFromSuperview];
+	self.linesView = nil;
+	[self.rect removeFromSuperview];
+	self.rect = nil;
+}
+
 @end
 
