@@ -10,11 +10,11 @@
 #import <UIKit/UIKit.h>
 #import "PLogoAlertDelegate.h"
 #import "AContainerViewController_Protected.h"
-#import "AbstractAlertController.h"
+#import "AbstractOverlayController.h"
 
 @interface AlertManager : NSObject
 
-+ (AbstractAlertController*) addAlert:(Class) class intoController:(AContainerViewController*) controller withDelegate:(id<PLogoAlertDelegate>)delegate withOptions:(id)options;
++ (AbstractOverlayController*) addAlert:(Class) class intoController:(AContainerViewController*) controller withDelegate:(id<PLogoAlertDelegate>)delegate withOptions:(id)options;
 + (void) removeAlert;
 
 @end

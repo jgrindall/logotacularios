@@ -8,12 +8,12 @@
 
 #import "AlertManager.h"
 #import "FilenameViewController.h"
-#import "AbstractAlertController.h"
+#import "AbstractOverlayController.h"
 
 @interface AlertManager ()
 
 + (UIView*) container;
-+ (AbstractAlertController*) alertController;
++ (AbstractOverlayController*) alertController;
 + (AContainerViewController*) parent;
 
 @end
@@ -21,14 +21,14 @@
 @implementation AlertManager
 
 static UIView* _container = nil;
-static AbstractAlertController* _alertController = nil;
+static AbstractOverlayController* _alertController = nil;
 static AContainerViewController* _parent = nil;
 
 + (AContainerViewController*) parent{
 	return _parent;
 }
 
-+ (AbstractAlertController*) alertController{
++ (AbstractOverlayController*) alertController{
 	return _alertController;
 }
 
@@ -36,7 +36,7 @@ static AContainerViewController* _parent = nil;
 	return _container;
 }
 
-+ (AbstractAlertController*) addAlert:(Class) class intoController:(AContainerViewController*) controller withDelegate:(id<PLogoAlertDelegate>)delegate withOptions:(id)options{
++ (AbstractOverlayController*) addAlert:(Class) class intoController:(AContainerViewController*) controller withDelegate:(id<PLogoAlertDelegate>)delegate withOptions:(id)options{
 	_parent = controller;
 	_container = [[UIView alloc] initWithFrame:_parent.view.frame];
 	_alertController = [[class alloc] init];

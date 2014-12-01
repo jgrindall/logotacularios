@@ -6,18 +6,16 @@
 //
 //
 
-#import "AbstractAlertController.h"
+#import "AbstractOverlayController_protected.h"
 
-@interface AbstractAlertController ()
+@interface AbstractAlertController : AbstractOverlayController
 
-@property UIView* bg;
 @property UILabel* titleLabel;
 @property UIView* panel;
 @property NSArray* panelConstraints;
-@property NSArray* buttonLabels;
-@property NSString* titleText;
 
 - (UIButton*) getButton:(NSString*) imageUrl withAction:(SEL)action withLabel:(NSString*)label;
+
 - (void)layoutPanel:(float)dy;
 
 @end

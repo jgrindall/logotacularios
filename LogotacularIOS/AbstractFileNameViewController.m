@@ -49,8 +49,9 @@
 }
 
 - (void) addButtons{
-	self.okButton = [self getButton:self.buttonLabels[1] withAction:@selector(onClickOk)			withLabel:self.buttonLabels[0]		];
-	self.cancelButton = [self getButton:self.buttonLabels[3] withAction:@selector(onClickCancel)	withLabel:self.buttonLabels[2]		];
+	NSArray* buttonLabels = ((NSDictionary*)self.options)[@"buttons"];
+	self.okButton = [self getButton:buttonLabels[1] withAction:@selector(onClickOk)			withLabel:buttonLabels[0]		];
+	self.cancelButton = [self getButton:buttonLabels[3] withAction:@selector(onClickCancel)	withLabel:buttonLabels[2]		];
 	[self.panel addSubview:self.okButton];
 	[self.panel addSubview:self.cancelButton];
 }

@@ -16,17 +16,13 @@
 
 - (void) viewDidLoad{
 	[super viewDidLoad];
-	self.buttonLabels = ((NSDictionary*)self.options)[@"buttons"];
-	self.titleText = ((NSDictionary*)self.options)[@"title"];
 	[self addListeners];
-	[self addBg];
 	[self addPanel];
 	[self addTitle];
 }
 
 - (void) viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:animated];
-	[self layoutBg];
 	[self layoutPanel:0];
 	[self layoutTitle];
 	[self show];
@@ -37,13 +33,6 @@
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.panel					attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil							attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:40]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.panel				attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0]];
-}
-
--(void)layoutBg{
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.bg attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view						attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.bg attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.bg attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.bg attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.view				attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0]];
 }
 
 -(void)layoutPanel:(float)dy{
@@ -74,13 +63,6 @@
 	return btn;
 }
 
-- (void) addBg{
-	self.bg = [[UIView alloc] initWithFrame:self.view.frame];
-	self.bg.translatesAutoresizingMaskIntoConstraints = NO;
-	self.bg.backgroundColor = [Colors darken:[Appearance grayColor]];
-	[self.view addSubview:self.bg];
-}
-
 - (void) addTitle{
 	self.titleLabel = [[UILabel alloc] initWithFrame:self.view.frame];
 	self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -88,7 +70,7 @@
 	self.titleLabel.textColor = [UIColor whiteColor];
 	self.titleLabel.textAlignment = NSTextAlignmentCenter;
 	self.titleLabel.font = [Appearance fontOfSize:SYMM_FONT_SIZE_MED];
-	self.titleLabel.text = self.titleText;
+	self.titleLabel.text = ((NSDictionary*)self.options)[@"title"];
 	[self.panel addSubview:self.titleLabel];
 }
 
@@ -140,7 +122,6 @@
 	[self.titleLabel removeFromSuperview];
 	[self.panel removeFromSuperview];
 	[self.view removeConstraints:self.panelConstraints];
-	self.buttonLabels = @[];
 }
 
 @end

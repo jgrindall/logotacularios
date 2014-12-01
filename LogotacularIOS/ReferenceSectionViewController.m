@@ -40,6 +40,7 @@
 - (void) addText{
 	self.textView = [[UITextView alloc] initWithFrame:CGRectZero];
 	self.textView.scrollEnabled = NO;
+	self.textView.editable = NO;
 	self.textView.translatesAutoresizingMaskIntoConstraints = NO;
 	self.textView.font = [Appearance fontOfSize:SYMM_FONT_SIZE_MED];
 	self.textView.backgroundColor = [Appearance grayColor];

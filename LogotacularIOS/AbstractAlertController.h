@@ -6,12 +6,8 @@
 //  Copyright (c) 2014 jgrindall. All rights reserved.
 //
 
-#import "BaseViewController_protected.h"
-#import "PLogoAlertDelegate.h"
+#import "AbstractOverlayController_protected.h"
 
-@interface AbstractAlertController : BaseViewController
-
-@property id<PLogoAlertDelegate> delegate;
-@property id options;
+@interface AbstractAlertController : AbstractOverlayController
 
 @end

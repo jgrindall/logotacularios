@@ -108,6 +108,7 @@
 	self.textView = [[UITextView alloc] initWithFrame:CGRectZero];
 	self.textView.translatesAutoresizingMaskIntoConstraints = NO;
 	self.textView.scrollEnabled = NO;
+	self.textView.editable = NO;
 	self.textView.font = [Appearance fontOfSize:SYMM_FONT_SIZE_MED];
 	self.textView.backgroundColor = [Appearance grayColor];
 	[self.view addSubview:self.textView];
@@ -130,6 +131,8 @@
 	NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[htmlString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
 	self.topView.layer.cornerRadius = 10;
 	self.topView.layer.masksToBounds = YES;
+	self.topView.scrollEnabled = NO;
+	self.topView.editable = NO;
 	self.topView.attributedText = attributedString;
 }
 

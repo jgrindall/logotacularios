@@ -67,6 +67,7 @@
 	[self.view addSubview:self.textView];
 	self.textView.textContainerInset = UIEdgeInsetsMake(6, 5, 5, 5);
 	self.textView.scrollEnabled = NO;
+	self.textView.editable = NO;
 	NSString* htmlString = [HelpData getExampleData:self.index];
 	NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[htmlString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
 	self.textView.layer.cornerRadius = 10;

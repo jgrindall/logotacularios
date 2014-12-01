@@ -42,7 +42,7 @@
 @property WebViewController* webViewController;
 @property MenuViewController* menuViewController;
 @property UIPopoverController* popController;
-@property AbstractAlertController* alert;
+@property AbstractOverlayController* alert;
 @property UIBarButtonItem* playButton;
 @property UIBarButtonItem* listButton;
 @property UIBarButtonItem* clearButton;
@@ -91,6 +91,10 @@
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_CHECK_SAVE toFunction:@selector(showCheckSave) withContext:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_SHOW_POPOVER toFunction:@selector(addPopover:) withContext:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_HIDE_POPOVER toFunction:@selector(hidePopover:) withContext:self];
+}
+
+- (void) showWelcome{
+	//self.alert = [AlertManager addAlert:[WelcomeViewController class] intoController:self withDelegate:self withOptions:options];
 }
 
 - (void) showCheckSave{
