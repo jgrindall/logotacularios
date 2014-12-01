@@ -30,6 +30,7 @@
 #import "MenuLayout.h"
 #import "TextLayout.h"
 #import "Colors.h"
+#import "WelcomeViewController.h"
 
 @interface DrawPageViewController ()
 
@@ -58,6 +59,7 @@
 	[self layoutAll];
 	[self fileTitleChanged:nil];
 	[self drawingChanged];
+	[self showWelcome];
 }
 
 - (void) viewDidLoad{
@@ -94,7 +96,14 @@
 }
 
 - (void) showWelcome{
-	//self.alert = [AlertManager addAlert:[WelcomeViewController class] intoController:self withDelegate:self withOptions:options];
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	int shownAlready = [defaults integerForKey:@"welcome_shown"];
+	if(shownAlready != 1){
+		[defaults setInteger:1 forKey:@"welcome_shown"];
+		[defaults synchronize];
+		NSDictionary* options = @{@"buttons":@[@"Yes", TICK_ICON, @"No", CLEAR_ICON], @"title":@"Welcome!"};
+		self.alert = [AlertManager addAlert:[WelcomeViewController class] intoController:self withDelegate:self withOptions:options];
+	}
 }
 
 - (void) showCheckSave{
@@ -295,6 +304,16 @@
 	}
 };
 
+- (void) checkWelcome:(NSInteger)i withPayload:(id)payload{
+	[AlertManager removeAlert];
+	if(i == 0){
+		[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_HELP withData:nil];
+	}
+	else if(i == 1){
+		[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_EXAMPLES withData:nil];
+	}
+};
+
 - (void) onSaved{
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_SAVED toFunction:@selector(onSaved) withContext:self];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_PERFORM_NEW withData:nil];
@@ -309,6 +328,9 @@
 	}
 	else if([self.alert class] == [SaveCurrentViewController class]){
 		[self checkSaveClosed:i withPayload:payload];
+	}
+	else if([self.alert class] == [WelcomeViewController class]){
+		[self checkWelcome:i withPayload:payload];
 	}
 }
 

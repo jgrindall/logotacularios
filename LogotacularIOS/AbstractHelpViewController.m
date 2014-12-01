@@ -15,6 +15,7 @@
 @property Class childClass;
 @property NSInteger numPages;
 @property NSInteger currentPage;
+@property NSInteger targetPage;
 
 @end
 
@@ -70,12 +71,22 @@
 	return self.currentPage;
 }
 
-- (void) pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed{
-	if(completed && previousViewControllers.count == 1){
-		AbstractHelpSectionViewController* v = (AbstractHelpSectionViewController*)previousViewControllers[0];
-		self.currentPage = v.index;
+- (void) pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray *)pendingViewControllers{
+	AbstractHelpSectionViewController* v = (AbstractHelpSectionViewController*)[pendingViewControllers lastObject];
+	if(v){
+		self.targetPage = v.index;
 	}
 }
+
+- (void) pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed{
+	if(previousViewControllers.count == 1){
+		if(completed){
+			self.currentPage = self.targetPage;
+		}
+	}
+}
+
+
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
 	NSUInteger index = [(AbstractHelpSectionViewController *)viewController index];

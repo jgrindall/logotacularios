@@ -111,6 +111,7 @@
 		52D426F81A2CFE86002E8B2F /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 52D426F71A2CFE86002E8B2F /* splash.png */; };
 		52D426FB1A2CFF97002E8B2F /* AbstractOverlayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D426FA1A2CFF97002E8B2F /* AbstractOverlayController.m */; };
 		52D426FF1A2D01EE002E8B2F /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D426FE1A2D01EE002E8B2F /* WelcomeViewController.m */; };
+		52D427021A2D0B3F002E8B2F /* WelcomeLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D427011A2D0B3F002E8B2F /* WelcomeLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -354,6 +355,8 @@
 		52D426FC1A2CFFBA002E8B2F /* AbstractOverlayController_protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractOverlayController_protected.h; sourceTree = "<group>"; };
 		52D426FD1A2D01EE002E8B2F /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
 		52D426FE1A2D01EE002E8B2F /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
+		52D427001A2D0B3F002E8B2F /* WelcomeLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeLayout.h; sourceTree = "<group>"; };
+		52D427011A2D0B3F002E8B2F /* WelcomeLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeLayout.m; sourceTree = "<group>"; };
 		542243F9BAE2472FB3D62BEC /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -907,6 +910,8 @@
 				52D426FA1A2CFF97002E8B2F /* AbstractOverlayController.m */,
 				52D426FD1A2D01EE002E8B2F /* WelcomeViewController.h */,
 				52D426FE1A2D01EE002E8B2F /* WelcomeViewController.m */,
+				52D427001A2D0B3F002E8B2F /* WelcomeLayout.h */,
+				52D427011A2D0B3F002E8B2F /* WelcomeLayout.m */,
 			);
 			name = Alert;
 			sourceTree = "<group>";
@@ -1119,6 +1124,7 @@
 				5297CF061A01137100CC5CB3 /* PaintViewController.m in Sources */,
 				52B5B35119FD7E1400EF531F /* AppDelegate.m in Sources */,
 				52D426FB1A2CFF97002E8B2F /* AbstractOverlayController.m in Sources */,
+				52D427021A2D0B3F002E8B2F /* WelcomeLayout.m in Sources */,
 				52244C191A25513200505F6D /* ExamplesSectionViewController.m in Sources */,
 				5257F34F1A01357F00757C77 /* ClearCommand.m in Sources */,
 				527D42E51A0ABBE3008AE82A /* FilePageController.m in Sources */,

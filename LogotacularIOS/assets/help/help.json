@@ -214,7 +214,7 @@
 					 "<p>Logotacular is an application for drawing colourful patterns using a programming language called 'Logo'.</p>",
 					 "<p>Logo was designed to help you explore geometry and programming, by controlling an on-screen imaginary 'turtle' that draws lines as it moves.</p>"
 					 ],
-			"file":"bg red\ncolor yellow\nthick 8\nto star\nrpt 5 [\n fd 250\n rt 2*72\n]\nend\nstar",
+			"file":"thick 20\nrt -30\nto star :len\nrpt 6 [\nfd :len\nrt -60\nfd :len\n rt 120\n]\nend\nstar 100\nrt 30\npenup fd 70 pendown\nrt -30\nstar 60",
 			"media":"help/images/help0.png",
 			"popup":"help/video/help0.mov",
 			"contents":[
