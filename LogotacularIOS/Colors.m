@@ -98,8 +98,10 @@ static NSMutableDictionary* _dic = nil;
 
 + (UIColor*) darken:(UIColor*)c{
 	CGFloat r, g, b, a;
-	float less = 0.25;
-	if ([c getRed:&r green:&g blue:&b alpha:&a]) return [UIColor colorWithRed:MAX(r - less, 0.0) green:MAX(g - less, 0.0) blue:MAX(b - less, 0.0) alpha:1];
+	float less = 0.75;
+	if ([c getRed:&r green:&g blue:&b alpha:&a]){
+		return [UIColor colorWithRed:MAX(r * less, 0.0) green:MAX(g * less, 0.0) blue:MAX(b * less, 0.0) alpha:a];
+	}
 	return nil;
 }
 

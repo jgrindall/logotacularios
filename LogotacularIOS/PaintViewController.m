@@ -31,6 +31,9 @@
 
 @implementation PaintViewController
 
+static float const maxAllowed = 2000000000.0;
+static float const minAllowed = -2000000000.0;
+
 NSString* const FD_KEYWORD				= @"fd";
 NSString* const RT_KEYWORD				= @"rt";
 NSString* const PENUP_KEYWORD			= @"penup";
@@ -123,15 +126,12 @@ NSString* const THICK_KEYWORD			= @"thick";
 	if([[d getVal:DRAWING_ISDRAWING] boolValue]){
 		return;
 	}
-	NSInteger numTouches = [recognizer numberOfTouches];
-	//NSLog(@"nT %i", numTouches);
 	CGPoint t = [recognizer translationInView:self.view];
 	if(recognizer.state == UIGestureRecognizerStateBegan) {
 		self.startTransform = self.currentTransform;
 	}
 	float scale = [self getScale:self.startTransform];
-	//NSLog(@"pan %i, %f, %f", recognizer.state, t.x, t.y);
-	scale = 1;
+	scale = 1.0;
 	CGAffineTransform trans = CGAffineTransformMakeTranslation(t.x/scale, t.y/scale);
 	self.currentTransform = CGAffineTransformConcat(self.startTransform, trans);
 	[self updateTransforms];
@@ -190,14 +190,12 @@ NSString* const THICK_KEYWORD			= @"thick";
 }
 
 - (void) reset{
-	[self stop];
 	[self.paintView reset];
 }
 
 - (void) addListeners{
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_SCREENGRAB toFunction:@selector(grab) withContext:self];
 	[[self getEventDispatcher] addListener: SYMM_NOTIF_CMD_RECEIVED toFunction:@selector(queueCommand:) withContext:self];
-	[[self getEventDispatcher] addListener: SYMM_NOTIF_STOP toFunction:@selector(stop) withContext:self];
 	[[self getEventDispatcher] addListener: SYMM_NOTIF_RESET toFunction:@selector(reset) withContext:self];
 	[[self getEventDispatcher] addListener: SYMM_NOTIF_RESET_ZOOM toFunction:@selector(resetZoom) withContext:self];
 	[[self getBgModel] addListener:@selector(changeBg) forKey:BG_COLOR withTarget:self];
@@ -206,7 +204,6 @@ NSString* const THICK_KEYWORD			= @"thick";
 - (void) removeListeners{
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_SCREENGRAB toFunction:@selector(grab) withContext:self];
 	[[self getEventDispatcher] removeListener: SYMM_NOTIF_CMD_RECEIVED toFunction:@selector(queueCommand:) withContext:self];
-	[[self getEventDispatcher] removeListener: SYMM_NOTIF_STOP toFunction:@selector(stop) withContext:self];
 	[[self getEventDispatcher] removeListener: SYMM_NOTIF_RESET toFunction:@selector(reset) withContext:self];
 	[[self getEventDispatcher] removeListener: SYMM_NOTIF_RESET_ZOOM toFunction:@selector(resetZoom) withContext:self];
 	[[self getBgModel] removeListener:@selector(changeBg) forKey:BG_COLOR withTarget:self];
@@ -217,18 +214,18 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[self.paintView bg:clr];
 }
 
-- (void) stop{
-	
-}
-
 - (void) turn:(NSNumber*) amount{
 	if ([amount isKindOfClass:[NSNull class]]){
-		NSLog(@"null turn");
+		[self numericalOverflow];
 	}
 	else{
 		float f = [amount floatValue];
-		//NSLog(@"rt f is %f", f);
-		[[self getTurtleModel] rotateBy:f];
+		if(f > maxAllowed || f < minAllowed){
+			[self numericalOverflow];
+		}
+		else{
+			[[self getTurtleModel] rotateBy:f];
+		}
 	}
 }
 
@@ -249,19 +246,30 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[[self getTurtleModel] setVal:amount forKey:TURTLE_PEN_THICK];
 }
 
+- (void) numericalOverflow{
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_PLAY withData:nil];
+	NSDictionary* error = @{@"message":@"An overflow occurred, one of your variables became too large."};
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_ERROR_HIT withData:error];
+}
+
 - (void) fd:(NSNumber*) amount{
 	if ([amount isKindOfClass:[NSNull class]]){
-		NSLog(@"null fd");
+		[self numericalOverflow];
 	}
 	else{
 		float f = [amount floatValue];
-		CGPoint p0 = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
-		[[self getTurtleModel] moveFdBy:f];
-		if([[[self getTurtleModel] getVal:TURTLE_PEN_DOWN] boolValue]){
-			CGPoint p1 = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
-			NSNumber* thick = [[self getTurtleModel] getVal:TURTLE_PEN_THICK];
-			UIColor* clr = [[self getTurtleModel] getVal:TURTLE_COLOR];
-			[self.paintView drawLineFrom:p0 to:p1 withColor:clr andThickness:[thick integerValue]];
+		if(f > maxAllowed || f < minAllowed){
+			[self numericalOverflow];
+		}
+		else{
+			CGPoint p0 = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
+			[[self getTurtleModel] moveFdBy:f];
+			if([[[self getTurtleModel] getVal:TURTLE_PEN_DOWN] boolValue]){
+				CGPoint p1 = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
+				NSNumber* thick = [[self getTurtleModel] getVal:TURTLE_PEN_THICK];
+				UIColor* clr = [[self getTurtleModel] getVal:TURTLE_COLOR];
+				[self.paintView drawLineFrom:p0 to:p1 withColor:clr andThickness:[thick integerValue]];
+			}
 		}
 	}
 }

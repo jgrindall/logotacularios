@@ -137,7 +137,7 @@
 }
 
 - (void) hide{
-	float y0 = -self.view.frame.size.height/2;
+	float y0 = -self.view.frame.size.height/2 - 50;
 	float y1 = self.view.frame.size.height/2;
 	[ImageUtils bounceAnimateView:self.view from:y1 to:y0 withKeyPath:@"position.y" withKey:@"menuBounce" withDelegate:nil withDuration:0.3 withImmediate:NO withHide:NO];
 	double delayInSeconds = 0.5;

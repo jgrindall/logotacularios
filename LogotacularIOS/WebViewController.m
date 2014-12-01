@@ -55,7 +55,6 @@
 
 - (void) iosCallback:(NSDictionary*) jsonObj{
 	if ([jsonObj isKindOfClass:[NSDictionary class]]){
-		//NSLog(@"ios %@", jsonObj);
 		NSDictionary* data = jsonObj[@"data"];
 		NSDictionary* error = jsonObj[@"error"];
 		NSDictionary* syntaxError = jsonObj[@"syntaxerror"];
@@ -137,7 +136,6 @@
 - (void) parse{
 	NSString* logo = [[self getLogoModel] get];
 	logo = [self clean:logo];
-	//NSLog(@"draw %@", logo);
 	NSString* fnCall = [NSString stringWithFormat:@"LG.draw('%@')", logo];
 	[self.webView stringByEvaluatingJavaScriptFromString:fnCall];
 }

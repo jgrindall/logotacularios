@@ -14,7 +14,7 @@
 @implementation HelpPageViewController
 
 - (instancetype)init{
-	self = [super initWithChildClass:[HelpSectionViewController class] andNumPages:12];
+	self = [super initWithChildClass:[HelpSectionViewController class] andNumPages:14];
 	if(self){
 		self.title = @"Help / about";
 	}

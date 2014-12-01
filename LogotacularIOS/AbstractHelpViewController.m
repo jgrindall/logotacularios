@@ -14,6 +14,7 @@
 
 @property Class childClass;
 @property NSInteger numPages;
+@property NSInteger currentPage;
 
 @end
 
@@ -26,6 +27,7 @@
 		self.delegate = self;
 		_childClass = class;
 		_numPages = numPages;
+		_currentPage = 0;
 	}
 	return self;
 }
@@ -65,7 +67,14 @@
 }
 
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController {
-	return 0;
+	return self.currentPage;
+}
+
+- (void) pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed{
+	if(completed && previousViewControllers.count == 1){
+		AbstractHelpSectionViewController* v = (AbstractHelpSectionViewController*)previousViewControllers[0];
+		self.currentPage = v.index;
+	}
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {

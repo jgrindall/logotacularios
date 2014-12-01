@@ -77,7 +77,7 @@
 - (void) addBg{
 	self.bg = [[UIView alloc] initWithFrame:self.view.frame];
 	self.bg.translatesAutoresizingMaskIntoConstraints = NO;
-	self.bg.backgroundColor = [Appearance grayColor];
+	self.bg.backgroundColor = [Colors darken:[Appearance grayColor]];
 	[self.view addSubview:self.bg];
 }
 
