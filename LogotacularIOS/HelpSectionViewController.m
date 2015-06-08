@@ -19,15 +19,18 @@
 @property UIButton* progCopyButton;
 @property UITextView* textView;
 @property UITextView* topView;
-@property MPMoviePlayerViewController* videoController;
+@property (strong) MPMoviePlayerViewController* videoController;
 @property UIImageView* imgView;
 @property UITapGestureRecognizer* tap;
+@property BOOL videoPlaying;
+@property NSURL* videoUrl;
 
 @end
 
 @implementation HelpSectionViewController
 
 - (void) addChildren{
+	self.videoPlaying = NO;
 	[super addChildren];
 	[self addText];
 	[self addImage];
@@ -52,16 +55,24 @@
 }
 
 - (void) addMedia{
-	if(self.videoController){
-		return;
-	}
+	NSString* extension = @".mp4";
 	NSString* file = [NSString stringWithFormat:@"assets/%@", [HelpData getHelpMovie:self.index]];
-	file = [file stringByReplacingOccurrencesOfString:@".mov" withString:@""];
-	NSString* path = [[NSBundle mainBundle] pathForResource:file ofType:@"mov"];
+	file = [file stringByReplacingOccurrencesOfString:extension withString:@""];
+	NSString* path = [[NSBundle mainBundle] pathForResource:file ofType:extension];
+	if(self.videoPlaying){
+		[self removeVideo];
+	}
 	if(path){
-		NSURL* url = [NSURL fileURLWithPath:path];
-		self.videoController = [[MPMoviePlayerViewController alloc] initWithContentURL:url];
-		[self.navigationController presentMoviePlayerViewControllerAnimated:self.videoController];
+		self.videoUrl = [NSURL fileURLWithPath:path isDirectory:NO];
+		self.videoController = [[MPMoviePlayerViewController alloc] initWithContentURL:self.videoUrl];
+		[self.videoController.moviePlayer setShouldAutoplay:YES];
+		self.videoController.moviePlayer.movieSourceType = MPMovieSourceTypeFile;
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(movieFinishedCallback:) name:MPMoviePlayerPlaybackDidFinishNotification object:self.videoController.moviePlayer];
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playMovie:) name:MPMoviePlayerLoadStateDidChangeNotification object:self.videoController.moviePlayer];
+		[self presentViewController:self.videoController animated:NO completion:nil];
+		[self.videoController.moviePlayer prepareToPlay];
+		[self.videoController.moviePlayer play];
+		self.videoPlaying = YES;
 	}
 }
 
@@ -154,6 +165,26 @@
 	[self exit];
 }
 
+- (void) movieFinishedCallback:(NSNotification*)aNotification{
+	[self removeVideo];
+}
+
+-(void) playMovie:(NSNotification*) notification{
+	MPMoviePlayerController *player = self.videoController.moviePlayer;
+	if (player.loadState & MPMovieLoadStatePlayable){
+		[player play];
+	}
+}
+
+-(void) removeVideo{
+	if (![self.videoController isBeingDismissed]){
+		[[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:self.videoController.moviePlayer];
+		[[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerLoadStateDidChangeNotification object:self.videoController.moviePlayer];
+		[self dismissMoviePlayerViewControllerAnimated];
+		self.videoPlaying = NO;
+	}
+}
+
 - (void) dealloc{
 	[self.progCopyButton removeTarget:self action:@selector(onClick) forControlEvents:UIControlEventTouchUpInside];
 	[self.progCopyButton removeFromSuperview];
@@ -165,9 +196,8 @@
 	[self.imgView removeFromSuperview];
 	self.imgView = nil;
 	[self.imgView removeGestureRecognizer:self.tap];
-	if(self.videoController){
-		[self.videoController dismissMoviePlayerViewControllerAnimated];
-		self.videoController = nil;
+	if(self.videoPlaying){
+		[self removeVideo];
 	}
 }
 
