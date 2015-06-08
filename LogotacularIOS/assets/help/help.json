@@ -44,7 +44,7 @@
 					   "</tr>",
 					   "<tr>",
 					   "<td style='background:#2f88ca;'>blue<br/>&nbsp;</td>",
-					   "<td style='background:#82CAFF;'>lightblue/ltblue<br/></td>",
+					   "<td style='background:#82CAFF;color:#333;'>lightblue/ltblue<br/></td>",
 					   "<td style='background:#1abc9c;'>turquoise/turq</td>",
 					   "</tr>",
 					   "<tr>",
@@ -63,7 +63,7 @@
 					   "<td style='background:#bdc3c7;color:#333;'>lightgrey/ltgrey/<br/>lightgray/ltgray</td>",
 					   "</tr>",
 					   "<tr>",
-					   "<td style='background:#95a5a6;'>gray/grey</td>",
+					   "<td style='background:#95a5a6;color:#333;'>gray/grey</td>",
 					   "<td style='background:#6f7c7d;'>darkgray/dkgray/<br/>darkgrey/dkgrey</td>",
 					   "<td style='background:#000000;'>black</td>",
 					   "</tr>",
@@ -201,7 +201,7 @@
 							"<h3>Example 13</h3>",
 							"<p>Study this program to understand variable scope in Logo.</p>",
 							"<p>There are two variables called 'i', one has global scope and one is defined inside the function and it has scope inside that function only.</p>",
-							"<p>When 'i' is re-defined as 100 that only impacts the 'i' inside the function, and so the last line is actually fd 50.</p>",
+							"<p>When 'i' is re-defined as 100 that only impacts the 'i' inside the function, and so the last line draws fd 50 in green, not fd 100.</p>",
 							"<pre>bg indigo\nthick 10\nmake \"j 50\nmake \"i 50\nto fn\n  make \"i 100\n  fd :i\n  color blue\n  fd :j\nend\nfn\ncolor green\nfd :i</pre>"
 							]
 				}
@@ -214,9 +214,9 @@
 					 "<p>Logotacular is an application for drawing colourful patterns using a programming language called 'Logo'.</p>",
 					 "<p>Logo was designed to help you explore geometry and programming, by controlling an on-screen imaginary 'turtle' that draws lines as it moves.</p>"
 					 ],
-			"file":"thick 20\nrt -30\nto star :len\nrpt 6 [\nfd :len\nrt -60\nfd :len\n rt 120\n]\nend\nstar 100\nrt 30\npenup fd 70 pendown\nrt -30\nstar 60",
+			"file":"bg purple\ncolor white\nthick 20\nrt -30\nto star :len\nrpt 6 [\nfd :len\nrt -60\nfd :len\n rt 120\n]\nend\nstar 100\nrt 30\npenup fd 70 pendown\nrt -30\nstar 60",
 			"media":"help/images/help0.png",
-			"popup":"help/video/help0.mov",
+			"popup":"help/video/help0.mp4",
 			"contents":[
 						"<p>Learn about</p>",
 						"<ul><li>Logical reasoning</li><li>Algorithms</li><li>Testing and debugging</li><li>Use of variables</li><li>Use of functions</li><li>Repeating - using loops</li><li>Recursion</li><li>Variable scope</li><li>Lengths and angles</li><li>Interior and exterior angles</li><li>Regular polygons</li><li>Circles and curve-based shapes</li></ul>"
@@ -231,7 +231,7 @@
 					 ],
 			"file":"fd 100\nrt 90\nfd 100\nrt 90\nfd 100\nrt 90\nfd 100\nrt 90",
 			"media":"help/images/help1.png",
-			"popup":"help/video/help1.mov",
+			"popup":"help/video/help1.mp4",
 			"contents":[
 						"<p>Try drawing a square using:</p>",
 						"<pre>fd 100\nrt 90\nfd 100\nrt 90\nfd 100\nrt 90\nfd 100\nrt 90</pre>",
@@ -248,7 +248,7 @@
 					 ],
 			"file":"bg yellow\ncolor dkgreen\nthick 12 \nfd 30 penup\nfd 30 pendown\nfd 30 penup\nfd 30 pendown\nfd 30 penup\nfd 30 pendown\nfd 30 penup\nfd 30 pendown\nfd 30",
 			"media":"help/images/help2.png",
-			"popup":"help/video/help2.mov",
+			"popup":"help/video/help2.mp4",
 			"contents":[
 						"<p>You can change the thickness of the lines drawn (from 1 to 20), and raise or lower the pen. Lifting the pen will stop lines being drawn until you place it down again.</p>",
 						"<pre>thick 12 \nfd 30 penup\nfd 30 pendown\nfd 30 penup\nfd 30 pendown\nfd 30 penup\nfd 30 pendown\nfd 30 penup\nfd 30 pendown\nfd 30</pre>"
@@ -263,7 +263,7 @@
 					 ],
 			"file":"make \"side 200\nfd :side",
 			"media":"help/images/help3.png",
-			"popup":"help/video/help3.mov",
+			"popup":"help/video/help3.mp4",
 			"contents":[
 						"<p>Notice that you must put a \" symbol in front when you set a variable. </p>",
 						"<p>To use the variable, put a colon ( : ) in front like this:</p>",
@@ -283,7 +283,7 @@
 					 ],
 			"file":"make \"h 30\nmake \"w 3*:h\nfd :w - 2*:h rt 90\nfd :w - :h rt 90\nfd :w rt 90 \nfd :w + :h  rt 90 \nfd :w + 2*:h rt 90",
 			"media":"help/images/help4.png",
-			"popup":"help/video/help4.mov",
+			"popup":"help/video/help4.mp4",
 			"contents":[
 						"<p>For example:</p>",
 						"<pre>make \"h 30\nmake \"w 3*:h\nfd :w - 2*:h rt 90\nfd :w - :h rt 90\nfd :w rt 90 \nfd :w + :h  rt 90 \nfd :w + 2*:h rt 90</pre>"
@@ -298,7 +298,7 @@
 					 ],
 			"file":"bg blue\nmake \"a 72\nmake \"n 5\nrpt :n [\nfd 100 rt :a\n]",
 			"media":"help/images/help5.png",
-			"popup":"help/video/help5.mov",
+			"popup":"help/video/help5.mp4",
 			"contents":[
 						"<p>We could draw a square like this:</p>",
 						"<pre>rpt 4 [ fd 100 rt 90 ]</pre>",
@@ -317,7 +317,7 @@
 					 ],
 			"file":"bg red\nto drawsquare\n  rpt 4 [\n    fd 100 \n    rt 90\n  ]\nend\n\ndrawsquare",
 			"media":"help/images/help6.png",
-			"popup":"help/video/help6.mov",
+			"popup":"help/video/help6.mp4",
 			"contents":[
 						"<pre>to drawsquare\n  rpt 4 [\n    fd 100 \n    rt 90\n  ]\nend\n\ndrawsquare</pre>",
 						"<p></p>",
@@ -334,7 +334,7 @@
 					 ],
 			"file":"bg midnight\nto drawpoly :len :n\n  rpt :n [\n    fd :len \n    rt (360/:n)\n  ]\nend\ndrawpoly 200 4\ndrawpoly 83 8",
 			"media":"help/images/help7.png",
-			"popup":"help/video/help7.mov",
+			"popup":"help/video/help7.mp4",
 			"contents":[
 						"<pre>to drawpoly :len :n\n  rpt :n [\n    fd :len \n    rt (360/:n)\n  ]\nend\ndrawpoly 200 4\ndrawpoly 83 8</pre>",
 						"<p></p>",
@@ -349,7 +349,7 @@
 					 ],
 			"file":"bg white\ncolor red\nto drawspiral :dist\n  fd :dist\n  rt 90\n  drawspiral (:dist+5)\nend\n\ndrawspiral 10",
 			"media":"help/images/help8.png",
-			"popup":"help/video/help8.mov",
+			"popup":"help/video/help8.mp4",
 			"contents":[
 						"<pre>to drawspiral :dist\n  fd :dist\n  rt 90\n  drawspiral (:dist+5)\nend\n\ndrawspiral 10</pre>",
 						"<p></p>",
@@ -366,8 +366,8 @@
 			 "<p>First look at the following lines from the program:</p>"
 			 ],
 			"file":"bg indigo\nthick 10\nmake \"j 50\nmake \"i 50\nto fn\nmake \"i 100\nfd :i\ncolor blue\nfd :j\nend\nfn\ncolor green\nfd :i",
-			"media":"help/images/help10.png",
-			"popup":"help/video/help10.mov",
+			"media":"help/images/help9.png",
+			"popup":"help/video/help9.mp4",
 			"contents":[
 						"<pre>make \"j 50\nto fn\n  fd :j\nend\nfn</pre>",
 						"<p></p>",
@@ -383,8 +383,8 @@
 			 "<pre>make \"i 50\nto fn make \"i 100 fd :i end\nfn\nfd :i</pre>",
 			 ],
 			"file":"bg indigo\nthick 10\nmake \"j 50\nmake \"i 50\nto fn\nmake \"i 100\nfd :i\ncolor blue\nfd :j\nend\nfn\ncolor green\nfd :i",
-			"media":"help/images/help9.png",
-			"popup":"help/video/help9.mov",
+			"media":"help/images/help10.png",
+			"popup":"help/video/help10.mp4",
 			"contents":[
 
 						"<p>A variable called 'i' is set to 50 outside the function. But when the function is called it immediately sets another variable called 'i' to 100, and goes forward 100 units.</p>",
@@ -397,11 +397,11 @@
 				[
 					"<h3>Errors and debugging</h3>",
 					 "<p>Errors are of two kinds: they can be in your code itself or they might only happen when you run your code.</p>",
-					 "<p>The first kind of errors include errors such as missing out a bracket or forgetting to put '<span class='mono'>end</span>' at the end of a function definition.  The second kind of errors don't appear until you press 'Play'.  For example, you might try to use a variable or call a function that you haven't defined, or you might divide by zero by mistake.</p>"
+					 "<p>The first kind of errors include those such as missing out a bracket or forgetting to put '<span class='mono'>end</span>' at the end of a function definition.  The second kind of errors don't appear until you press 'Play'.  For example, you might try to use a variable or call a function that you haven't defined, or you might divide by zero by mistake.</p>"
 					 ],
 			"file":"rpt 10 [ fd 10\nmake \"a 0\nfd :b/:a",
 			"media":"help/images/help11.png",
-			"popup":"help/video/help11.mov",
+			"popup":"help/video/help11.mp4",
 			"contents":[
 						"<p>This program has an error of the first kind:</p>",
 						"<pre>rpt 10 [fd 10</pre>",
@@ -421,7 +421,7 @@
 					 ],
 			"file":"bg black\ncolor green\nrpt 36 [\nrpt 360 [\nfd 1\nrt 1\n]\nrt 10\n]",
 			"media":"help/images/help12.png",
-			"popup":"help/video/help12.mov",
+			"popup":"help/video/help12.mp4",
 			"contents":[
 						"<p class='quote'>\"In many schools today, the phrase 'Computer-Aided Instruction' means making the computer teach the child... In my vision the child programs the computer and, in so doing, both acquires a sense of mastery over a piece of the most modern and powerful technology and establishes an intimate contact with some of the deepest ideas from science, from mathematics, and from the art of intellectual model building...\"</p>",
 						"<p class='quote'>\"...Traditional education codifies what it thinks citizens need to know and sets out to feed children this 'fish'. Constructionism is built on the assumption that children will do best by finding ('fishing') for themselves... the Turtle is like a person: 'I am here and I am facing north...' And from these similarities comes the Turtle's special ability to serve as a representative of formal mathematics\"</p>"
@@ -441,9 +441,9 @@
 					 ],
 			"file":"bg white\ncolor terracotta\nto drawtri :l\nrpt 3 [\nfd :l\nrt 120 ]\nend\n\nmake \"l 200\nrpt 200 [\ndrawtri :l\nrt 10\nmake \"l :l - 1\n]",
 			"media":"help/images/help13.png",
-			"popup":"help/video/help13.mov",
+			"popup":"help/video/help13.mp4",
 			"contents":[
-						"<p>For suggestions, improvements, to report bugs or to let me know how you used the app in the classroom or as a student, do drop us me a message at john.grindall@gmail.com</p>"
+						"<p>For suggestions, improvements, to report bugs or to let me know how you used the app in the classroom or as a student, do drop me a message at john.grindall@gmail.com</p>"
 						]
 			}
    ]
