@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "52B5B30F19FD7D4600EF531F"
-               BuildableName = "LogotacularIOS.app"
-               BlueprintName = "LogotacularIOS"
-               ReferencedContainer = "container:LogotacularIOS.xcodeproj">
+               BuildableName = "logotacular.app"
+               BlueprintName = "logotacular"
+               ReferencedContainer = "container:logotacular.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "52B5B32819FD7D4600EF531F"
-               BuildableName = "LogotacularIOSTests.xctest"
-               BlueprintName = "LogotacularIOSTests"
-               ReferencedContainer = "container:LogotacularIOS.xcodeproj">
+               BuildableName = "logotacular.temp_caseinsensitive_renameTests.xctest"
+               BlueprintName = "logotaculartests"
+               ReferencedContainer = "container:logotacular.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "52B5B32819FD7D4600EF531F"
-               BuildableName = "LogotacularIOSTests.xctest"
-               BlueprintName = "LogotacularIOSTests"
-               ReferencedContainer = "container:LogotacularIOS.xcodeproj">
+               BuildableName = "logotacular.temp_caseinsensitive_renameTests.xctest"
+               BlueprintName = "logotaculartests"
+               ReferencedContainer = "container:logotacular.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "52B5B30F19FD7D4600EF531F"
-            BuildableName = "LogotacularIOS.app"
-            BlueprintName = "LogotacularIOS"
-            ReferencedContainer = "container:LogotacularIOS.xcodeproj">
+            BuildableName = "logotacular.app"
+            BlueprintName = "logotacular"
+            ReferencedContainer = "container:logotacular.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -72,13 +72,14 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "52B5B30F19FD7D4600EF531F"
-            BuildableName = "LogotacularIOS.app"
-            BlueprintName = "LogotacularIOS"
-            ReferencedContainer = "container:LogotacularIOS.xcodeproj">
+            BuildableName = "logotacular.app"
+            BlueprintName = "logotacular"
+            ReferencedContainer = "container:logotacular.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -90,13 +91,14 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "52B5B30F19FD7D4600EF531F"
-            BuildableName = "LogotacularIOS.app"
-            BlueprintName = "LogotacularIOS"
-            ReferencedContainer = "container:LogotacularIOS.xcodeproj">
+            BuildableName = "logotacular.app"
+            BlueprintName = "logotacular"
+            ReferencedContainer = "container:logotacular.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

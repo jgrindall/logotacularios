@@ -279,12 +279,12 @@
 		52B5123B1A13C1E600B14D0D /* ChangePageCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePageCommand.m; sourceTree = "<group>"; };
 		52B5123D1A13C69D00B14D0D /* PerformFileSetupCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerformFileSetupCommand.h; sourceTree = "<group>"; };
 		52B5123E1A13C69D00B14D0D /* PerformFileSetupCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerformFileSetupCommand.m; sourceTree = "<group>"; };
-		52B5B31019FD7D4600EF531F /* LogotacularIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LogotacularIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		52B5B31019FD7D4600EF531F /* logotacular.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = logotacular.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52B5B31419FD7D4600EF531F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52B5B31519FD7D4600EF531F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		52B5B32019FD7D4600EF531F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		52B5B32319FD7D4600EF531F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		52B5B32919FD7D4600EF531F /* LogotacularIOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LogotacularIOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		52B5B32919FD7D4600EF531F /* logotacular.temp_caseinsensitive_renameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = logotacular.temp_caseinsensitive_renameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52B5B32E19FD7D4600EF531F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52B5B32F19FD7D4600EF531F /* LogotacularIOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogotacularIOSTests.m; sourceTree = "<group>"; };
 		52B5B33919FD7D5C00EF531F /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -747,8 +747,8 @@
 		52B5B31119FD7D4600EF531F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				52B5B31019FD7D4600EF531F /* LogotacularIOS.app */,
-				52B5B32919FD7D4600EF531F /* LogotacularIOSTests.xctest */,
+				52B5B31019FD7D4600EF531F /* logotacular.app */,
+				52B5B32919FD7D4600EF531F /* logotacular.temp_caseinsensitive_renameTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -983,9 +983,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		52B5B30F19FD7D4600EF531F /* LogotacularIOS */ = {
+		52B5B30F19FD7D4600EF531F /* logotacular */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 52B5B33319FD7D4600EF531F /* Build configuration list for PBXNativeTarget "LogotacularIOS" */;
+			buildConfigurationList = 52B5B33319FD7D4600EF531F /* Build configuration list for PBXNativeTarget "logotacular" */;
 			buildPhases = (
 				F5558049C3A948A8B1C272BE /* Check Pods Manifest.lock */,
 				52B5B30C19FD7D4600EF531F /* Sources */,
@@ -997,14 +997,14 @@
 			);
 			dependencies = (
 			);
-			name = LogotacularIOS;
+			name = logotacular;
 			productName = LogotacularIOS;
-			productReference = 52B5B31019FD7D4600EF531F /* LogotacularIOS.app */;
+			productReference = 52B5B31019FD7D4600EF531F /* logotacular.app */;
 			productType = "com.apple.product-type.application";
 		};
-		52B5B32819FD7D4600EF531F /* LogotacularIOSTests */ = {
+		52B5B32819FD7D4600EF531F /* logotaculartests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 52B5B33619FD7D4600EF531F /* Build configuration list for PBXNativeTarget "LogotacularIOSTests" */;
+			buildConfigurationList = 52B5B33619FD7D4600EF531F /* Build configuration list for PBXNativeTarget "logotaculartests" */;
 			buildPhases = (
 				52B5B32519FD7D4600EF531F /* Sources */,
 				52B5B32619FD7D4600EF531F /* Frameworks */,
@@ -1015,9 +1015,9 @@
 			dependencies = (
 				52B5B32B19FD7D4600EF531F /* PBXTargetDependency */,
 			);
-			name = LogotacularIOSTests;
+			name = logotaculartests;
 			productName = LogotacularIOSTests;
-			productReference = 52B5B32919FD7D4600EF531F /* LogotacularIOSTests.xctest */;
+			productReference = 52B5B32919FD7D4600EF531F /* logotacular.temp_caseinsensitive_renameTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -1031,6 +1031,7 @@
 				TargetAttributes = {
 					52B5B30F19FD7D4600EF531F = {
 						CreatedOnToolsVersion = 6.0.1;
+						DevelopmentTeam = WDBW628V64;
 					};
 					52B5B32819FD7D4600EF531F = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -1038,7 +1039,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 52B5B30B19FD7D4600EF531F /* Build configuration list for PBXProject "LogotacularIOS" */;
+			buildConfigurationList = 52B5B30B19FD7D4600EF531F /* Build configuration list for PBXProject "logotacular" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1051,8 +1052,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				52B5B30F19FD7D4600EF531F /* LogotacularIOS */,
-				52B5B32819FD7D4600EF531F /* LogotacularIOSTests */,
+				52B5B30F19FD7D4600EF531F /* logotacular */,
+				52B5B32819FD7D4600EF531F /* logotaculartests */,
 			);
 		};
 /* End PBXProject section */
@@ -1229,7 +1230,7 @@
 /* Begin PBXTargetDependency section */
 		52B5B32B19FD7D4600EF531F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 52B5B30F19FD7D4600EF531F /* LogotacularIOS */;
+			target = 52B5B30F19FD7D4600EF531F /* logotacular */;
 			targetProxy = 52B5B32A19FD7D4600EF531F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1329,11 +1330,14 @@
 			baseConfigurationReference = 542243F9BAE2472FB3D62BEC /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				IBC_FLATTEN_NIBS = NO;
 				INFOPLIST_FILE = LogotacularIOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = logotacular;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -1343,11 +1347,14 @@
 			baseConfigurationReference = 542243F9BAE2472FB3D62BEC /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				IBC_FLATTEN_NIBS = NO;
 				INFOPLIST_FILE = LogotacularIOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = logotacular;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
@@ -1366,7 +1373,7 @@
 				);
 				INFOPLIST_FILE = LogotacularIOSTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = logotacular.temp_caseinsensitive_renameTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LogotacularIOS.app/LogotacularIOS";
 			};
 			name = Debug;
@@ -1381,7 +1388,7 @@
 				);
 				INFOPLIST_FILE = LogotacularIOSTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = logotacular.temp_caseinsensitive_renameTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LogotacularIOS.app/LogotacularIOS";
 			};
 			name = Release;
@@ -1389,7 +1396,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		52B5B30B19FD7D4600EF531F /* Build configuration list for PBXProject "LogotacularIOS" */ = {
+		52B5B30B19FD7D4600EF531F /* Build configuration list for PBXProject "logotacular" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				52B5B33119FD7D4600EF531F /* Debug */,
@@ -1398,7 +1405,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		52B5B33319FD7D4600EF531F /* Build configuration list for PBXNativeTarget "LogotacularIOS" */ = {
+		52B5B33319FD7D4600EF531F /* Build configuration list for PBXNativeTarget "logotacular" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				52B5B33419FD7D4600EF531F /* Debug */,
@@ -1407,7 +1414,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		52B5B33619FD7D4600EF531F /* Build configuration list for PBXNativeTarget "LogotacularIOSTests" */ = {
+		52B5B33619FD7D4600EF531F /* Build configuration list for PBXNativeTarget "logotaculartests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				52B5B33719FD7D4600EF531F /* Debug */,
