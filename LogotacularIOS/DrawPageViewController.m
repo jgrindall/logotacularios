@@ -62,14 +62,22 @@
 	[self showWelcome];
 }
 
+- (void) clearDef{
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	[defaults setInteger:0 forKey:@"welcome_shown"];
+	[defaults synchronize];
+}
+
 - (void) viewDidLoad{
 	[super viewDidLoad];
+	[self clearDef];
 	[self addPaint];
 	[self addText];
 	[self addWeb];
 	[self addMenu];
 	[self addNavButtons];
 	[self addListeners];
+	[[self getTextVisModel] setVal:[NSNumber numberWithBool:NO] forKey:TEXT_VISIBLE_VIS];
 }
 
 - (void) fileTitleChanged:(id)data{
@@ -95,14 +103,26 @@
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_HIDE_POPOVER toFunction:@selector(hidePopover:) withContext:self];
 }
 
+- (void) enableNav:(BOOL) tf{
+	[self getBarButton:self.saveButton].enabled = tf;
+	[self getBarButton:self.listButton].enabled = tf;
+	[self getBarButton:self.resetButton].enabled = tf;
+	[self getBarButton:self.playButton].enabled = tf;
+	[self getBarButton:self.clearButton].enabled = tf;
+}
+
 - (void) showWelcome{
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	int shownAlready = [defaults integerForKey:@"welcome_shown"];
+	NSInteger shownAlready = [defaults integerForKey:@"welcome_shown"];
 	if(shownAlready != 1){
 		[defaults setInteger:1 forKey:@"welcome_shown"];
 		[defaults synchronize];
 		NSDictionary* options = @{@"buttons":@[@"Yes", TICK_ICON, @"No", CLEAR_ICON], @"title":@"Welcome!"};
 		self.alert = [AlertManager addAlert:[WelcomeViewController class] intoController:self withDelegate:self withOptions:options];
+		[self enableNav:NO];
+	}
+	else{
+		[[self getTextVisModel] setVal:[NSNumber numberWithBool:YES] forKey:TEXT_VISIBLE_VIS];
 	}
 }
 
@@ -312,6 +332,8 @@
 	else if(i == 1){
 		[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_EXAMPLES withData:nil];
 	}
+	[[self getTextVisModel] setVal:[NSNumber numberWithBool:YES] forKey:TEXT_VISIBLE_VIS];
+	[self enableNav:YES];
 };
 
 - (void) onSaved{
