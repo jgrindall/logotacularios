@@ -20,7 +20,7 @@
 static NSMutableDictionary* _dic = nil;
 
 NSString* const STYLES0 = @"h1, p, h2, h3, div, span, ul, li, td, td, th{font-family: 'Lato-Regular';font-size: 18px;color:white;}";
-NSString* const STYLES1 = @"table{border-collapse: collapse;font-size:19px;margin-left:43px;margin-top:10px;}table,tr{width:900px;}th{border:2px solid #12502C !important;}td,th{padding:12px;border:2px solid #12502C;}td{font-size:19px;}table.commands td:nth-child(2n+1){text-align:center;}th{font-size:24px;text-align:center;}tr{width:100%;}table.commands td:nth-child(1){width:25%}table.commands td:nth-child(2){width:25%}table.commands td:nth-child(3){width:50%}table.commands tr:nth-child(2n+1){background:#12502C;}";
+NSString* const STYLES1 = @"table{border-collapse: collapse;font-size:19px;margin-left:43px;margin-top:10px;}table,tr{width:900px;}th{border:2px solid #666 !important;}td,th{padding:12px;border:2px solid #666;}td{font-size:19px;}table.commands td:nth-child(2n+1){text-align:center;}th{font-size:24px;text-align:center;}tr{width:100%;}table.commands td:nth-child(1){width:25%}table.commands td:nth-child(2){width:25%}table.commands td:nth-child(3){width:50%}table.commands tr:nth-child(2n+1){background:#666;}";
 NSString* const STYLES2 = @"table.colors td{padding:15px;height:30px;text-align:center;width:33%}table.colors tr{height:30px;}table.colors td,th{border:2px solid transparent;}";
 NSString* const STYLES3 = @"h1,h2,h3{font-size:24px;}";
 NSString* const STYLES4 = @"li{padding:10px;}";

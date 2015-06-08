@@ -129,7 +129,7 @@ float padding = 6;
 		self.textView = [[UILabel alloc] initWithFrame:self.frame];
 		[self.textView setTextAlignment:NSTextAlignmentCenter];
 		[self.textView setFont:[Appearance fontOfSize:SYMM_FONT_SIZE_MED]];
-		[self.textView setTextColor:[UIColor whiteColor]];
+		[self.textView setTextColor:[UIColor blackColor]];
 		[self addSubview:self.textView];
 		self.textView.translatesAutoresizingMaskIntoConstraints = NO;
 		[self addConstraint:[NSLayoutConstraint constraintWithItem:self.textView	attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self				attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0]];

@@ -22,7 +22,7 @@ NSString* const TURTLE_POS = @"turtle_pos";
 
 - (void) setDefaults{
 	[self setVal:@YES forKey:TURTLE_PEN_DOWN];
-	[self setVal:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1] forKey:TURTLE_COLOR];
+	[self setVal:[UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:1] forKey:TURTLE_COLOR];
 	[self setVal:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1] forKey:TURTLE_BG_COLOR];
 	[self setVal:[NSNumber numberWithInteger:3] forKey:TURTLE_PEN_THICK];
 	[self setVal:[NSNumber numberWithInteger:-90] forKey:TURTLE_HEADING];
