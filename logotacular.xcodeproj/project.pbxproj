@@ -1026,7 +1026,7 @@
 		52B5B30819FD7D4600EF531F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = jgrindall;
 				TargetAttributes = {
 					52B5B30F19FD7D4600EF531F = {
@@ -1035,6 +1035,7 @@
 					};
 					52B5B32819FD7D4600EF531F = {
 						CreatedOnToolsVersion = 6.0.1;
+						DevelopmentTeam = WDBW628V64;
 						TestTargetID = 52B5B30F19FD7D4600EF531F;
 					};
 				};
@@ -1267,6 +1268,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1336,6 +1338,7 @@
 				IBC_FLATTEN_NIBS = NO;
 				INFOPLIST_FILE = LogotacularIOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jgrindall.ios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = logotacular;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
@@ -1353,6 +1356,7 @@
 				IBC_FLATTEN_NIBS = NO;
 				INFOPLIST_FILE = LogotacularIOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jgrindall.ios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = logotacular;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
@@ -1363,6 +1367,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1373,7 +1379,9 @@
 				);
 				INFOPLIST_FILE = LogotacularIOSTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jgrindall.ios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = logotacular.temp_caseinsensitive_renameTests;
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LogotacularIOS.app/LogotacularIOS";
 			};
 			name = Debug;
@@ -1382,13 +1390,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = LogotacularIOSTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jgrindall.ios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = logotacular.temp_caseinsensitive_renameTests;
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LogotacularIOS.app/LogotacularIOS";
 			};
 			name = Release;
