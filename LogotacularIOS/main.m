@@ -10,7 +10,16 @@
 #import "AppDelegate.h"
 
 int main(int argc, char * argv[]) {
+	int retval;
 	@autoreleasepool {
-	    return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+		@try{
+			retval =  UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+		}
+		@catch (NSException *exception)
+		{
+			NSLog(@"Gosh!!! %@", [exception callStackSymbols]);
+			@throw;
+		}
+		return retval;
 	}
 }
