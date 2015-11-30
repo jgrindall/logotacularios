@@ -38,7 +38,9 @@
 	NSString* logo = [[self getLogoModel] get];
 	logo = [self clean:logo];
 	NSString* fnCall = [NSString stringWithFormat:@"LG.getTree('%@')", logo];
-	[self.webView stringByEvaluatingJavaScriptFromString:fnCall];
+	if(self.webView){
+		[self.webView stringByEvaluatingJavaScriptFromString:fnCall];
+	}
 }
 
 - (void) addWebView{
@@ -46,11 +48,13 @@
 	NSString* path;
 	NSBundle* thisBundle = [NSBundle mainBundle];
 	path = [thisBundle pathForResource:@"assets/parser/index" ofType:@"html"];
-	NSURL* instructionsURL = [NSURL fileURLWithPath:path];
-	NSString* htmlString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-	self.webView.delegate = self;
-	[self.webView loadHTMLString:htmlString baseURL:instructionsURL];
-	[self.view addSubview:self.webView];
+	if(path){
+		NSURL* instructionsURL = [NSURL fileURLWithPath:path];
+		NSString* htmlString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+		self.webView.delegate = self;
+		[self.webView loadHTMLString:htmlString baseURL:instructionsURL];
+		[self.view addSubview:self.webView];
+	}
 }
 
 - (void) iosCallback:(NSDictionary*) jsonObj{
@@ -58,6 +62,7 @@
 		NSDictionary* data = jsonObj[@"data"];
 		NSDictionary* error = jsonObj[@"error"];
 		NSDictionary* syntaxError = jsonObj[@"syntaxerror"];
+		
 		if(error){
 			[self error:error];
 		}
@@ -109,7 +114,9 @@
 
 - (void) stop{
 	NSString* fnCall = @"LG.stop()";
-	[self.webView stringByEvaluatingJavaScriptFromString:fnCall];
+	if(self.webView){
+		[self.webView stringByEvaluatingJavaScriptFromString:fnCall];
+	}
 }
 
 - (NSString*) clean:(NSString*)logo{
@@ -137,7 +144,9 @@
 	NSString* logo = [[self getLogoModel] get];
 	logo = [self clean:logo];
 	NSString* fnCall = [NSString stringWithFormat:@"LG.draw('%@')", logo];
-	[self.webView stringByEvaluatingJavaScriptFromString:fnCall];
+	if(self.webView){
+		[self.webView stringByEvaluatingJavaScriptFromString:fnCall];
+	}
 }
 
 - (void)webViewDidFinishLoad:(UIWebView*)theWebView{
