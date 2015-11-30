@@ -38,15 +38,12 @@ LG.getTree = function(logo){
 		LG.onMessage({"syntaxerror":e});
 		return;
 	}
-	LG.onMessage({"syntaxerror":null});
 	return tree;
 };
 
 LG.draw = function(logo){
 	var tree;
 	tree = LG.getTree(logo);
-	console.log(tree);
-	return;
 	if(tree){
 		try{
 			LG.active = true;

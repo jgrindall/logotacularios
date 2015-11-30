@@ -65,6 +65,7 @@ function visitthickstmt(node){
 }
 
 function visitbooleanstmt(node){
+	var ch = node.children;
 	visitNode( ch[0] );
 	var istrue = stack.pop();
 	if(istrue === 1){
@@ -73,6 +74,7 @@ function visitbooleanstmt(node){
 }
 
 function visitbooleanval(node){
+	var ch = node.children;
 	visitNode( ch[0] );
 	visitNode( ch[1] );
 	var op = node.op;
