@@ -64,6 +64,32 @@ function visitthickstmt(node){
 	self.postMessage({ "type":"command", "name":"thick", "amount":thick });
 }
 
+function visitbooleanstmt(node){
+	visitNode( ch[0] );
+	var istrue = stack.pop();
+	if(istrue === 1){
+		visitNode( ch[1] );
+	}
+}
+
+function visitbooleanval(node){
+	visitNode( ch[0] );
+	visitNode( ch[1] );
+	var op = node.op;
+	var rhs = stack.pop();
+	var lhs = stack.pop();
+	if(op === "=" && lhs === rhs){
+		stack.push(1);
+	}
+	if(op === "<" && lhs < rhs){
+		stack.push(1);
+	}
+	if(op === ">" && lhs > rhs){
+		stack.push(1);
+	}
+	stack.push(0);
+}
+
 function visitcolorstmt(node){
 	self.postMessage({ "type":"command", "name":"color", "color":node.color });
 }
@@ -146,11 +172,11 @@ function visittimesordivterms(node){
 
 function visittimesordivterm(node){
 	visitchildren(node);
-}	
+}
 
 function visittimesterm(node){
 	visitchildren(node);
-}	
+}
 
 function visitplusorminus(node){
 	visitchildren(node);
@@ -343,6 +369,12 @@ function visitNode(node){
 	}
 	else if(t=="thickstmt"){
 		visitthickstmt(node);
+	}
+	else if(t=="booleanstmt"){
+		visitbooleanstmt(node);
+	}
+	else if(t=="booleanval"){
+		visitbooleanval(node);
 	}
 	else if(t=="usevar"){
 		visitusevar(node);

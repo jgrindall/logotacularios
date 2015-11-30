@@ -45,6 +45,8 @@ LG.getTree = function(logo){
 LG.draw = function(logo){
 	var tree;
 	tree = LG.getTree(logo);
+	console.log(tree);
+	return;
 	if(tree){
 		try{
 			LG.active = true;
