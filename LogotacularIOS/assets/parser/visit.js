@@ -65,11 +65,23 @@ function visitthickstmt(node){
 }
 
 function visitbooleanstmt(node){
-	var ch = node.children;
-	visitNode( ch[0] );
+	var toEval = node.toEval;
+	visitNode( toEval );
 	var istrue = stack.pop();
 	if(istrue === 1){
-		visitNode( ch[1] );
+		visitchildren( node.iftrue );
+	}
+}
+
+function visitcompoundbooleanstmt(node){
+	var toEval = node.toEval;
+	visitNode( toEval );
+	var istrue = stack.pop();
+	if(istrue === 1){
+		visitchildren( node.iftrue );
+	}
+	else{
+		visitchildren( node.iffalse );
 	}
 }
 
@@ -83,13 +95,15 @@ function visitbooleanval(node){
 	if(op === "=" && lhs === rhs){
 		stack.push(1);
 	}
-	if(op === "<" && lhs < rhs){
+	else if(op === "<" && lhs < rhs){
 		stack.push(1);
 	}
-	if(op === ">" && lhs > rhs){
+	else if(op === ">" && lhs > rhs){
 		stack.push(1);
 	}
-	stack.push(0);
+	else{
+		stack.push(0);
+	}
 }
 
 function visitcolorstmt(node){
@@ -374,6 +388,9 @@ function visitNode(node){
 	}
 	else if(t=="booleanstmt"){
 		visitbooleanstmt(node);
+	}
+	else if(t=="compoundbooleanstmt"){
+		visitcompoundbooleanstmt(node);
 	}
 	else if(t=="booleanval"){
 		visitbooleanval(node);

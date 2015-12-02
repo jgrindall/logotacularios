@@ -68,6 +68,11 @@ sep* f6:booleanstmt sep*
 return f6;
 }
 /
+sep* f7:compoundbooleanstmt sep*
+{
+return f7;
+}
+/
 sep* f5:callfnstmt sep*
 {
 //TODO - why ?
@@ -76,7 +81,12 @@ return {type:"insidestmt", children:[f5]};
 
 booleanstmt = sep* "if" sep* b:booleanval sep* "[" sep* iftrue:insidestmt* sep* "]"
 {
-return {type:"booleanstmt", children:[b, iftrue]};
+return {type:"booleanstmt", toEval:b, iftrue:{children:iftrue}};
+}
+
+compoundbooleanstmt = sep* "ifelse" sep* b:booleanval sep* "[" sep* iftrue:insidestmt* sep* "]" sep* "[" sep* iffalse:insidestmt* sep* "]"
+{
+return {type:"compoundbooleanstmt", toEval:b, iftrue:{children:iftrue}, iffalse:{children:iffalse}};
 }
 
 booleanval = sep* lhs:expression sep* op:booleanoperator sep* rhs:expression
@@ -85,17 +95,17 @@ return {type:"booleanval", children: [lhs, rhs], "op":op}
 }
 
 booleanoperator =
-"=" {return {"op":"="}}
+"=" {return "="}
 /
-"<" {return {"op":"<"}}
+"<" {return "<"}
 /
-">" {return {"op":">"}}
+">" {return ">"}
 /
-"!=" {return {"op":"!="}}
+"!=" {return "!="}
 /
-"<=" {return {"op":"<="}}
+"<=" {return "<="}
 /
-">=" {return {"op":">="}}
+">=" {return ">="}
 
 
 penupstmt = sep* 'penup' eoline
