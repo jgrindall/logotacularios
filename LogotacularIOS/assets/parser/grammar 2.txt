@@ -21,7 +21,6 @@ sep* f1:fdstmt sep*
 {
 return {type:"insidestmt", children:[f1]};
 }
-
 /
 sep* f2:rtstmt sep*
 {
@@ -73,10 +72,21 @@ sep* f7:compoundbooleanstmt sep*
 return f7;
 }
 /
+sep* s:stopstmt sep*
+{
+	return s;
+}
+/
 sep* f5:callfnstmt sep*
 {
 //TODO - why ?
 return {type:"insidestmt", children:[f5]};
+}
+
+
+stopstmt = sep* "stop" sep*
+{
+return {type:"stopstmt"};
 }
 
 booleanstmt = sep* "if" sep* b:booleanval sep* "[" sep* iftrue:insidestmt* sep* "]"

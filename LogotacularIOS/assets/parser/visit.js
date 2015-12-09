@@ -43,6 +43,7 @@ function visitmakestmt(node){
 function visitfdstmt(node){
 	visitchildren(node);
 	var amount = stack.pop();
+	console.log("->  visit fd", amount);
 	self.postMessage({ "type":"command", "name":"fd", "amount":amount });
 }
 
@@ -68,15 +69,22 @@ function visitbooleanstmt(node){
 	var toEval = node.toEval;
 	visitNode( toEval );
 	var istrue = stack.pop();
+	console.log("pop", istrue);
 	if(istrue === 1){
 		visitchildren( node.iftrue );
 	}
+}
+
+function visitstopstmt(node){
+	console.log("STOP");
+	throw new Error("stop");
 }
 
 function visitcompoundbooleanstmt(node){
 	var toEval = node.toEval;
 	visitNode( toEval );
 	var istrue = stack.pop();
+	console.log("pop", istrue);
 	if(istrue === 1){
 		visitchildren( node.iftrue );
 	}
@@ -87,11 +95,13 @@ function visitcompoundbooleanstmt(node){
 
 function visitbooleanval(node){
 	var ch = node.children;
+	console.log("visitbooleanval", node);
 	visitNode( ch[0] );
 	visitNode( ch[1] );
 	var op = node.op;
 	var rhs = stack.pop();
 	var lhs = stack.pop();
+	console.log("visitbooleanval", op, lhs, rhs);
 	if(op === "=" && lhs === rhs){
 		stack.push(1);
 	}
@@ -147,7 +157,18 @@ function visitrptstmt(node){
 	var num = stack.pop();
 	if(num >= 0 && num === parseInt(num, 10)){
 		for(var i = 1;i<=num; i++){
-			visitNode(ch[1]);
+			try{
+				visitNode(ch[1]);
+			}
+			catch(e){
+				if(e.message === "stop"){
+					console.log("caught stop");
+					break;
+				}
+				else{
+					runTimeError(e.message);
+				}
+			}
 		}
 	}
 	else{
@@ -257,7 +278,17 @@ function visitcallfnstmt(node){
 		else{
 			symTable.enterBlock();
 			visitchildren(node.args);
-			executeFunction(f);
+			try{
+				executeFunction(f);
+			}
+			catch(e){
+				if(e.message === "stop"){
+					console.log("caught stop");
+				}
+				else{
+					runTimeError(e.message);
+				}
+			}
 			symTable.exitBlock();
 		}
 	}
@@ -388,6 +419,9 @@ function visitNode(node){
 	}
 	else if(t=="booleanstmt"){
 		visitbooleanstmt(node);
+	}
+	else if(t=="stopstmt"){
+		visitstopstmt(node);
 	}
 	else if(t=="compoundbooleanstmt"){
 		visitcompoundbooleanstmt(node);
