@@ -43,7 +43,7 @@ static NSMutableDictionary* _dic = nil;
 	_dic[@"darkpurple"] =		[Colors colorWithHexString:0x653aa5];
 	_dic[@"dkpurple"] =			[Colors colorWithHexString:0x653aa5];
 	_dic[@"indigo"] =			[Colors colorWithHexString:0x653aa5];
-	_dic[@"pink"] =				[Colors colorWithHexString:0xE77471];
+	_dic[@"pink"] =				[Colors colorWithHexString:0xec9492];
 	_dic[@"dkorange"] =			[Colors colorWithHexString:0xd35400];
 	_dic[@"darkorg"] =			[Colors colorWithHexString:0xd35400];
 	_dic[@"dkorg"] =			[Colors colorWithHexString:0xd35400];
@@ -80,12 +80,13 @@ static NSMutableDictionary* _dic = nil;
 	_dic[@"dkblue"] =			[Colors colorWithHexString:0x34495e];
 	_dic[@"darkblue"] =			[Colors colorWithHexString:0x34495e];
 	_dic[@"black"] =			[Colors colorWithHexString:0x000000];
+	_dic[@"gray2"] =			[Colors colorWithHexString:0xC6AE7D];
 	
-	_dic[@"bg_main"] =				[Colors colorWithHexString:0xdddddd];
-	_dic[@"bg_files"] =				[Colors colorWithHexString:0xdddddd];
-	_dic[@"bg_help"] =				[Colors colorWithHexString:0xdddddd];
-	_dic[@"bg_ref"] =				[Colors colorWithHexString:0xdddddd];
-	_dic[@"bg_examples"] =			[Colors colorWithHexString:0xdddddd];
+	_dic[@"bg_main"] =				[Colors colorWithHexString:0xffffff];
+	_dic[@"bg_files"] =				[Colors colorWithHexString:0xffffff];
+	_dic[@"bg_help"] =				[Colors colorWithHexString:0xffffff];
+	_dic[@"bg_ref"] =				[Colors colorWithHexString:0xffffff];
+	_dic[@"bg_examples"] =			[Colors colorWithHexString:0xffffff];
 	
 }
 

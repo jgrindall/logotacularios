@@ -10,7 +10,7 @@
 
 @implementation WelcomeLayout
 
-int const WELCOME_LAYOUT_WIDTH = 240;
-int const WELCOME_LAYOUT_HEIGHT = 120;
+int const WELCOME_LAYOUT_WIDTH = 200;
+int const WELCOME_LAYOUT_HEIGHT = 200;
 
 @end

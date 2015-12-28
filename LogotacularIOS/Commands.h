@@ -27,12 +27,12 @@
 #import "ErrorHitCommand.h"
 #import "SyntaxErrorCommand.h"
 #import "ClickHelpCommand.h"
+#import "ClickTutCommand.h"
 #import "ChangePageCommand.h"
 #import "PerformFileSetupCommand.h"
 #import "LoadFromHelpCommand.h"
 #import "StartCommand.h"
 #import "PerformSaveAsCommand.h"
-#import "ClickExamplesCommand.h"
 #import "ClickRefCommand.h"
 #import "ClickResetZoomCommand.h"
 

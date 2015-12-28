@@ -1,9 +1,10 @@
 {
 	"ref":[
 		   {
+		   	"bg":"dkgreen",
 		   "contents":[
 					   "<h3>Basic commands and looping</h3>",
-					   "<table class='commands'>",
+					   "<table class='commands commands0'>",
 					   "<tr><th>Command</th><th>Example</th><th>What it does</th></tr>",
 					   "<tr><td>fd</td><td>fd 100</td><td>Move forward 100 units</td></tr>",
 					   "<tr><td>rt</td><td>rt 90</td><td>Turn right 90 degrees</td></tr>",
@@ -17,9 +18,10 @@
 					   ]
 		   },
 		   {
+		   	"bg":"dkred",
 		   "contents":[
 					   "<h3>Functions and advanced commands</h3>",
-					   "<table class='commands'>",
+					   "<table class='commands commands1'>",
 					   "<tr><th>Command</th><th>Example</th><th>What it does</th></tr>",
 					   "<tr><td>make \"varname</td><td>make \"num 16</td><td>Set the variable 'num' to 16</td></tr>",
 					   "<tr><td>:varname</td><td>fd :num</td><td>Use the variable 'num' (for<br/>example go forward 16 units)</td></tr>",
@@ -29,6 +31,19 @@
 					   ]
 		   },
 		   {
+		   	"bg":"blue",
+		   "contents":[
+					   "<h3>Program control</h3>",
+					   "<table class='commands commands2'>",
+					   "<tr><th>Command</th><th>Example</th><th>What it does</th></tr>",
+					   "<tr><td>stop</td><td>to drawpoly :n<br/>if :n = 0 [stop]<br/>...end<br/>drawpoly 10</td><td>Stop a function or loop from finishing execution</td></tr>",
+					   "<tr><td>if ... [...]</td><td>if (:a < 1) [fd 100]</td><td>Execute the statements in the square brackets only when a is less than one.</td></tr>",
+					   "<tr><td>ifelse ... [...] [...]</td><td>ifelse (:a <= 1) [fd 100] [fd -100]</td><td>Execute the statements in the first square brackets only when a is less than or equal to one, and the statements in the second square brackets otherwise.</td></tr>",
+					   "</table>"
+					   ]
+		   },
+		   {
+		   	"bg":"gray2",
 		   "contents":[
 					  "<h3>Colors you can use</h3>",
 					   "<table class='colors'>",
@@ -71,168 +86,29 @@
 					   ]
 		   }
 	],
-	
-	
-	"examples":[
-				{
-				"file":"fd 100\nrt 90\nfd 100\nrt 90\nfd 100\nrt 90\nfd 100\nrt 90",
-				"media":"help/images/eg1.png",
-				"contents":[
-							"<h3>Example 1</h3>",
-							"<p>Learn the basics, moving the turtle forward and turning right on the spot.</p>",
-							"<p></p>",
-							"<pre>fd 100\nrt 90\nfd 100\nrt 90\nfd 100\nrt 90\nfd 100\nrt 90</pre>"
-							]
-				},
-				{
-				"file":"fd 50 penup\nfd 50 pendown\nfd 50 penup\nfd 50 pendown\nfd 50\nrt 120\nfd 50 penup\nfd 50 pendown\nfd 50 penup\nfd 50 pendown\nfd 50\nrt 120\nfd 50 penup\nfd 50 pendown\nfd 50 penup\nfd 50 pendown\nfd 50\nrt 120",
-				"media":"help/images/eg2.png",
-				"contents":[
-							"<h3>Example 2</h3>",
-							"<p>Learn how to use penup and pendown.</p>",
-							"<p></p>",
-							"<pre>fd 50 penup\nfd 50 pendown\nfd 50 penup\nfd 50 pendown\nfd 50\nrt 120\nfd 50 penup\nfd 50 pendown\nfd 50 penup\nfd 50 pendown\nfd 50\nrt 120\nfd 50 penup\nfd 50 pendown\nfd 50 penup\nfd 50 pendown\nfd 50\nrt 120</pre>"
-							]
-				},
-				{
-				"file":"bg dkgray\nthick 3\ncolor yellow\nfd 30 rt 50\nthick 7\ncolor blue\nfd 50 rt 50\nthick 11\ncolor orange\nfd 70 rt 50\nthick 15\ncolor red\nfd 90 rt 50\nthick 19\ncolor green\nfd 110 rt 50",
-				"media":"help/images/eg3.png",
-				"contents":[
-							"<h3>Example 3</h3>",
-							"<p>Learn how to use colours and pen thickness.</p>",
-							"<p></p>",
-							"<pre>bg dkgray\nthick 3\ncolor yellow\nfd 30 rt 50\nthick 7\ncolor blue\nfd 50 rt 50\nthick 11\ncolor orange\nfd 70 rt 50\nthick 15\ncolor red\nfd 90 rt 50\nthick 19\ncolor green\nfd 110 rt 50</pre>"
-							]
-				},
-				{
-				"file":"bg black\ncolor green\nrpt 36 [\nrpt 360 [\nfd 1\nrt 1\n]\nrt 10\n]",
-				"media":"help/images/eg4.png",
-				"contents":[
-							"<h3>Example 4</h3>",
-							"<p>Learn how you can use loops within loops to create attractive patterns.</p>",
-							"<p></p>",
-							"<pre>bg black\ncolor green\nrpt 36 [\nrpt 360 [\nfd 1\nrt 1\n]\nrt 10\n]</pre>"
-							]
-				},
-				{
-				"file":"bg pink\nthick 8\ncolor purple\nmake \"numsides 7\nrpt :numsides [\nfd 100\nrt 360/:numsides\n]",
-				"media":"help/images/eg5.png",
-				"contents":[
-							"<h3>Example 5</h3>",
-							"<p>Learn how to use a variable and a repeat loop to draw regular polygons.</p>",
-							"<p></p>",
-							"<pre>bg pink\nthick 8\ncolor purple\nmake \"numsides 7\nrpt :numsides [\n  fd 100\n  rt 360/:numsides\n]</pre>"
-							]
-				},
-				{
-				"file":"bg orange\ncolor white\nthick 5\nmake \"n 24\nmake \"s 300\nrpt :n [\n  fd :s\n  rt (180 - 360/:n)\n]",
-				"media":"help/images/eg6.png",
-				"contents":[
-							"<h3>Example 6</h3>",
-							"<p>Learn how to use a variable and a repeat loop to draw a star shape.</p>",
-							"<p></p>",
-							"<pre>bg orange\ncolor white\nthick 5\nmake \"n 24\nmake \"s 300\nrpt :n [\n  fd :s\n  rt (180 - 360/:n)\n]</pre>"
-							]
-				},
-				{
-				"file":"bg red\ncolor yellow\nthick 10\nmake \"n 4\nto drawsquare\n  rpt :n [\n    fd 100\n    rt 90\n  ]\nend\nrpt 8 [\n  drawsquare\n  rt 45\n]",
-				"media":"help/images/eg7.png",
-				"contents":[
-							"<h3>Example 7</h3>",
-							"<p>Learn how to use a variable, a procedure and repeat loops in combination.</p>",
-							"<p></p>",
-							"<pre>bg red\ncolor yellow\nthick 10\nmake \"n 4\nto drawsquare\n  rpt :n [\n    fd 100\n    rt 90\n  ]\nend\nrpt 8 [\n  drawsquare\n  rt 45\n]</pre>"
-							]
-				},
-				{
-				"file":"color black\nbg yellow\nmake \"a 5\nto drawpoly :side :n\n  rpt :n [\n    fd :side\n    rt(360/:n)\n  ]\nend\nrpt 10 [\n  drawpoly 25 :a\n  make \"a :a+4\n]",
-				"media":"help/images/eg8.png",
-				"contents":[
-							"<h3>Example 8</h3>",
-							"<p>Learn how to use a procedure with two input varaibles.</p>",
-							"<p></p>",
-							"<pre>color black\nbg yellow\nmake \"a 5\nto drawpoly :side :n\n  rpt :n [\n    fd :side\n    rt(360/:n)\n  ]\nend\nrpt 10 [\n  drawpoly 25 :a\n  make \"a :a+4\n]</pre>"
-							]
-				},
-				{
-				"file":"bg blue\ncolor white\nrpt 90 [\n  fd 1\n  rt 1\n]\nrt 270\nrpt 180 [\n  fd 1\n  rt 1\n]\nrt 270\nrpt 90 [\n  fd 1\n  rt 1 \n]",
-				"media":"help/images/eg9.png",
-				"contents":[
-							"<h3>Example 9</h3>",
-							"<p>Learn how large repeat loops with small steps can create curves.</p>",
-							"<p></p>",
-							"<pre>bg blue\ncolor white\nrpt 90 [\n  fd 1\n  rt 1\n]\nrt 270\nrpt 180 [\n  fd 1\n  rt 1\n]\nrt 270\nrpt 90 [\n  fd 1\n  rt 1 \n]</pre>"
-							]
-				},
-				{
-				"file":"bg white\ncolor red\nto drawspiral :dist\n  fd :dist\n  rt 90\n  drawspiral (:dist+5)\nend\n\ndrawspiral 10",
-				"media":"help/images/eg10.png",
-				"contents":[
-							"<h3>Example 10</h3>",
-							"<p>Learn how to use recursion - call a function from inside the same function.</p>",
-							"<p></p>",
-							"<pre>bg white\ncolor red\nto drawspiral :dist\n  fd :dist\n  rt 90\n  drawspiral (:dist+5)\nend\n\ndrawspiral 10</pre>"
-							]
-				},
-				{
-				"file":"bg white\ncolor midnight\nmake \"a 10\nrpt 300 [\n  fd 25\n  rt :a\n  make \"a :a*1.01\n]",
-				"media":"help/images/eg11.png",
-				"contents":[
-							"<h3>Example 11</h3>",
-							"<p>Learn how to modify variables inside a repeat loop to create this spiral pattern.</p>",
-							"<p></p>",
-							"<pre>bg white\ncolor midnight\nmake \"a 10\nrpt 300 [\n  fd 25\n  rt :a\n  make \"a :a*1.01\n]</pre>"
-							]
-				},
-				{
-				"file":"bg white\ncolor terracotta\nto drawtri :l\nrpt 3 [\nfd :l\nrt 120 ]\nend\n\nmake \"l 200\nrpt 200 [\ndrawtri :l\nrt 10\nmake \"l :l - 1\n]",
-				"media":"help/images/eg12.png",
-				"contents":[
-							"<h3>Example 12</h3>",
-							"<p>Combine functions and repeat loops to create attractive patterns.</p>",
-							"<p></p>",
-							"<pre>bg white\ncolor terracotta\nto drawtri :l\nrpt 3 [\nfd :l\nrt 120 ]\nend\n\nmake \"l 200\nrpt 200 [\ndrawtri :l\nrt 10\nmake \"l :l - 1\n]</pre>"
-							]
-				},
-				{
-				"file":"bg indigo\nthick 10\nmake \"j 50\nmake \"i 50\nto fn\nmake \"i 100\nfd :i\ncolor blue\nfd :j\nend\nfn\ncolor green\nfd :i",
-				"media":"help/images/eg13.png",
-				"contents":[
-							"<h3>Example 13</h3>",
-							"<p>Study this program to understand variable scope in Logo.</p>",
-							"<p>There are two variables called 'i', one has global scope and one is defined inside the function and it has scope inside that function only.</p>",
-							"<p>When 'i' is re-defined as 100 that only impacts the 'i' inside the function, and so the last line draws fd 50 in green, not fd 100.</p>",
-							"<pre>bg indigo\nthick 10\nmake \"j 50\nmake \"i 50\nto fn\n  make \"i 100\n  fd :i\n  color blue\n  fd :j\nend\nfn\ncolor green\nfd :i</pre>"
-							]
-				}
-				],
-	"help":[
-			{
-			"top":
-					[
-					"<h3>Welcome to Logotacular!</h3>",
-					 "<p>Logotacular is an application for drawing colourful patterns using a programming language called 'Logo'.</p>",
-					 "<p>Logo was designed to help you explore geometry and programming, by controlling an on-screen imaginary 'turtle' that draws lines as it moves.</p>"
-					 ],
-			"file":"bg purple\ncolor white\nthick 20\nrt -30\nto star :len\nrpt 6 [\nfd :len\nrt -60\nfd :len\n rt 120\n]\nend\nstar 100\nrt 30\npenup fd 70 pendown\nrt -30\nstar 60",
-			"media":"help/images/help0.png",
-			"popup":"help/video/help0.mp4",
+	"tut":[{
+
+			"file":"bg midnight\ncolor green\nto tree :d :s\nif :d=0 [stop]\nfd :s\nrt 340\ntree (:d-1) :s*0.8\nrt 40\ntree (:d-1) :s*0.8\nrt 160\nfd :s\nrt 180\nend\ntree 9 120",
+			"media":"help/images/e7.png",
+			"bg":"dkgreen",
+			
 			"contents":[
+			"<h3>1. Welcome to Logotacular!</h3>",
+					 "<p>Logotacular is an application for drawing colourful patterns using a programming language called 'Logo'.</p>",
+					 "<p>Logo was designed to help you explore geometry and programming, by controlling an on-screen imaginary 'turtle' that draws lines as it moves.</p>",
 						"<p>Learn about</p>",
-						"<ul><li>Logical reasoning</li><li>Algorithms</li><li>Testing and debugging</li><li>Use of variables</li><li>Use of functions</li><li>Repeating - using loops</li><li>Recursion</li><li>Variable scope</li><li>Lengths and angles</li><li>Interior and exterior angles</li><li>Regular polygons</li><li>Circles and curve-based shapes</li></ul>"
+						"<ul><li>Logical reasoning</li><li>Algorithms</li><li>Testing and debugging</li><li>Use of variables</li><li>Use of functions</li><li>Repeating - using loops</li><li>Recursion</li><li>Variable scope</li><li>Lengths and angles</li><li>Program control and branching</li><li>Interior and exterior angles</li><li>Regular polygons</li><li>Circles and curve-based shapes</li></ul>"
 						]
 			},
 			{
-			"top":
-					[
-					 "<h3>How to write a program</h3>",
-					 "<p>In Logo we imagine a turtle that starts at the centre and is controlled by commands. As it moves around the screen it leaves a trail showing you where it has moved to.</p>",
-					 "<p>The most basic commands in Logo are 'go forward' and 'turn right'.  For example <span class='mono'>'fd 100'</span> tells the turtle to go forward 100 units (in whatever direction it is facing),  and <span class='mono'>'rt 90'</span> tells it turn 90 degrees clockwise.</p>"
-					 ],
+
 			"file":"fd 100\nrt 90\nfd 100\nrt 90\nfd 100\nrt 90\nfd 100\nrt 90",
-			"media":"help/images/help1.png",
-			"popup":"help/video/help1.mp4",
-			"contents":[
+			"media":"help/images/e10.png",
+			"bg":"dkred",
+			
+			"contents":["<h3>2. How to write a program</h3>",
+					 "<p>In Logo we imagine a turtle that starts at the centre and is controlled by commands. As it moves around the screen it leaves a trail showing you where it has moved to.</p>",
+					 "<p>The most basic commands in Logo are 'go forward' and 'turn right'.  For example <span class='mono'>fd 100</span> tells the turtle to go forward 100 units (in whatever direction it is facing),  and <span class='mono'>rt 90</span> tells it turn 90 degrees clockwise.</p>",
 						"<p>Try drawing a square using:</p>",
 						"<pre>fd 100\nrt 90\nfd 100\nrt 90\nfd 100\nrt 90\nfd 100\nrt 90</pre>",
 						"<p></p>",
@@ -240,210 +116,324 @@
 						]
 			},
 			{
-			"top":
-					[
-					"<h3>Drawing with colors</h3>",
-					 "<p>You can change the color of the lines, as well as the background color of the page by using the '<span class='mono'>color</span>' and '<span class='mono'>bg</span>' commands:</p>",
-					 "<pre>bg yellow\ncolor dkgreen</pre>"
-					 ],
-			"file":"bg yellow\ncolor dkgreen\nthick 12 \nfd 30 penup\nfd 30 pendown\nfd 30 penup\nfd 30 pendown\nfd 30 penup\nfd 30 pendown\nfd 30 penup\nfd 30 pendown\nfd 30",
-			"media":"help/images/help2.png",
-			"popup":"help/video/help2.mp4",
+
+			"file":"bg yellow color blue\nthick 8\nfd 80 penup\nfd 80 pendown\nfd 80\nrt 120 \nfd 80 penup\nfd 80 pendown\nfd 80 rt 120 \nfd 80 penup\nfd 80 pendown\nfd 80",
+			"media":"help/images/e9.png",
+			"bg":"blue",
+			
 			"contents":[
+			"<h3>3. Drawing with colors</h3>",
+					 "<p>You can change the color of the lines, as well as the background color of the page by using the <span class='mono'>color</span> and <span class='mono'>bg</span> commands:</p>",
+					 "<pre>bg yellow\ncolor blue</pre>",
+					 	"<p></p>",
 						"<p>You can change the thickness of the lines drawn (from 1 to 20), and raise or lower the pen. Lifting the pen will stop lines being drawn until you place it down again.</p>",
-						"<pre>thick 12 \nfd 30 penup\nfd 30 pendown\nfd 30 penup\nfd 30 pendown\nfd 30 penup\nfd 30 pendown\nfd 30 penup\nfd 30 pendown\nfd 30</pre>"
+						"<pre>bg yellow color blue\nthick 8\nfd 80 penup\nfd 80 pendown\nfd 80\nrt 120 \nfd 80 penup\nfd 80 pendown\nfd 80 rt 120 \nfd 80 penup\nfd 80 pendown\nfd 80</pre>"
 						]
 			},
 			{
-			"top":[
-					"<h3>Using variables</h3>",
-					 "<p>Variables let you define a number so you can use it in a lot of places later. Not only do they let you re-use numbers, but later on you only have to change them one place if you need to!</p>",
-					 "<p>Use the '<span class='mono'>make</span>' command to set the value of a variable - for example set the variable 'side' equal to 200 like this:</p>",
-					 "<pre>make \"side 200</pre>"
-					 ],
-			"file":"make \"side 200\nfd :side",
-			"media":"help/images/help3.png",
-			"popup":"help/video/help3.mp4",
+
+			"file":"bg midnight\ncolor green\nthick 6\nmake \"side 100\nfd :side rt 45\nfd :side rt 45\nfd :side rt 90\nfd :side rt 45\nfd :side rt 45\nfd :side",
+			"media":"help/images/e11.png",
+			"bg":"dkgreen",
+			
 			"contents":[
-						"<p>Notice that you must put a \" symbol in front when you set a variable. </p>",
-						"<p>To use the variable, put a colon ( : ) in front like this:</p>",
+			"<h3>4. Using variables</h3>",
+					 "<p>Variables let you define a number so you can use it in many places later. Not only do they let you re-use a value, but later on you only have to change them one place if you need to.</p>",
+					 "<p>Use the <span class='mono'>make</span> command to set the value of a variable:</p>",
+					 "<pre>make \"side 200</pre>",
+						"<p>You must put a <span class='mono'>\"</span> symbol in front when you set a variable. To use the variable, put a colon <span class='mono'>:</span> in front:</p>",
 						"<pre>fd :side</pre>",
 						"<p></p>",
-						"<p>This is the same as writing '<span class='mono'>fd 200</span>', but it is easier to change the 200 to something else if you give it a name.</p>",
-						"<p>Remember to use \" when you're setting a variable and : when you want to use it.</p>"
+						"<p>This is the same as writing <span class='mono'>fd 200</span>, but we have named the variable and can change it later.</p>",
+						"<p>Remember to use <span class='mono'>\"</span> when you're setting a variable and <span class='mono'>:</span> when you want to use it.</p>",
+						"<pre>make \"side 100\nfd :side rt 45\nfd :side rt 45\nfd :side rt 90\nfd :side rt 45\nfd :side rt 45\nfd :side</pre>"
 						]
 			},
 			{
-			"top":
-					[
-					 "<h3>Doing arithmetic</h3>",
-					 "<p>You can do normal arithmetic using numbers or variables.</p>",
-					 "<p>Like most computer programs, you must write '<span class='mono'>*</span>' for multiply (or times) and '<span class='mono'>/</span>' for divide.</p>",
-					 "<p>You can use '<span class='mono'>+</span>' and '<span class='mono'>-</span>' and round brackets '<span class='mono'>( )</span>' like you normally would.</p>"
-					 ],
-			"file":"make \"h 30\nmake \"w 3*:h\nfd :w - 2*:h rt 90\nfd :w - :h rt 90\nfd :w rt 90 \nfd :w + :h  rt 90 \nfd :w + 2*:h rt 90",
-			"media":"help/images/help4.png",
-			"popup":"help/video/help4.mp4",
+
+			"file":"bg ltblue\ncolor red\nthick 10\nmake \"h 30\nmake \"w 3*:h\nfd :w - 2*:h rt 90\nfd :w - :h rt 90\nfd :w rt 90 \nfd :w + :h  rt 90 \nfd :w + 2*:h rt 90",
+			"media":"help/images/e2.png",
+			"bg":"dkred",
+			
 			"contents":[
+			"<h3>5. Doing arithmetic</h3>",
+					 "<p>You can do normal arithmetic using numbers or variables.</p>",
+					 "<p>Like most computer programs, you must write <span class='mono'>*</span> for multiply (or times) and <span class='mono'>/</span> for divide.</p>",
+					 "<p>You can use <span class='mono'>+</span> and <span class='mono'>-</span> and round brackets <span class='mono'>( )</span> like you normally would.</p>",
 						"<p>For example:</p>",
 						"<pre>make \"h 30\nmake \"w 3*:h\nfd :w - 2*:h rt 90\nfd :w - :h rt 90\nfd :w rt 90 \nfd :w + :h  rt 90 \nfd :w + 2*:h rt 90</pre>"
 						]
 			},
 			{
-			"top":
-					[
-					"<h3>Loops</h3>",
-					 "<p>Loops can be programmed by use of the <span class='mono'>'rpt'</span> (repeat) command which tells the turtle to execute the commands inside the square brackets a specific number of times.</p>",
-					 "<pre>rpt 10 [ put your commands here and they will be executed 10 times! ]</pre>"
-					 ],
-			"file":"bg blue\nmake \"a 72\nmake \"n 5\nrpt :n [\nfd 100 rt :a\n]",
-			"media":"help/images/help5.png",
-			"popup":"help/video/help5.mp4",
+
+			"file":"bg yellow\ncolor blue\nmake \"side 240\nrpt 8 [\nfd :side rt 135\n]",
+			"media":"help/images/e3.png",
+			"bg":"blue",
+			
 			"contents":[
+			"<h3>6. Loops</h3>",
+					 "<p>Loops can be programmed by use of the <span class='mono'>rpt</span> (repeat) command which tells the turtle to execute the commands inside the square brackets a specific number of times.</p>",
+					 "<pre>rpt 10 [ put your commands here and they will be executed 10 times! ]</pre>",
+					 "<p></p>",
 						"<p>We could draw a square like this:</p>",
 						"<pre>rpt 4 [ fd 100 rt 90 ]</pre>",
 						"<p></p>",
-						"<p>You must start a repeat block with '<span class='mono'>[</span>' and you must end it with '<span class='mono'>]</span>'.</p>",
+						"<p>You must start a repeat block with <span class='mono'>[</span> and you must end it with <span class='mono'>]</span>.</p>",
+						"<p>Can you work out how to draw the star on the right?</p>",
 						"<p>Can you work out what the following code will draw?</p>",
 						"<pre>make \"a 72\nmake \"n 5\nrpt :n [fd 100 rt :a]</pre>"
 						]
 			},
+			
+				{
+				"file":"bg yellow\ncolor blue\nmake \"a 10\nrpt 300 [\n  fd 25\n  rt :a\n  make \"a :a*1.01\n]",
+				"media":"help/images/e14.png",
+				"bg":"blue",
+				"contents":[
+							"<h3>7. Loops continued</h3>",
+							"<p>By turning right a small amount and repeating many hundreds of times we can create curves.</p>",
+							"<p>Interesting effects can be created by modifying the value of a variable inside a loop.</p>",
+							"<p>For example, in the program below, the variable <span class='mono'>a</span> is multiplied by 1.01 in each step of the loop, which is repeated 300 times to create a spiral shape.</p>",
+							"<pre>make \"a 10\nrpt 300 [\n  fd 25\n  rt :a\n  make \"a :a*1.01\n]</pre>"
+							]
+				},
+				{
+				"file":"bg yellow\ncolor blue\nrpt 36 [\nrpt 360 [\n fd 1\n rt 1\n]\nrt 10\n]",
+				"media":"help/images/e13.png",
+				"bg":"blue",
+				"contents":[
+							"<h3>8. Loops continued</h3>",
+							"<p>You can even program a loop inside another loop.</p>",
+							"<p>This program &hellip;</p>",
+							"<pre>rpt 360 [\n fd 1\n rt 1\n]</pre>",
+							"<p></p>",
+							"<p>&hellip; will create a circle shape, because turning right by 1 degree 360 times makes a whole turn.</p>",
+							"<p>Repeating that 36 times, turning 10 degrees each time creates the attractive pattern on the right:</p>",
+							"<pre>rpt 36 [\nrpt 360 [\n fd 1\n rt 1\n]\nrt 10\n]</pre>"
+							]
+				},
 			{
-			"top":
-					[
-					"<h3>Procedures and functions</h3>",
-					 "<p>We know that the turtle knows the words '<span class='mono'>make</span>', '<span class='mono'>penup</span>', '<span class='mono'>color</span>' etc. A function or procedure is often thought of as telling the turtle the meaning of a new word, for example we could draw a square by defining a procedure called 'drawsquare' and then 'calling' that procedure.</p>",
-					 "<p>You use the '<span class='mono'>to</span>' keyword to define a procedure, and '<span class='mono'>end</span>' to mark the end:</p>"
-					 ],
-			"file":"bg red\nto drawsquare\n  rpt 4 [\n    fd 100 \n    rt 90\n  ]\nend\n\ndrawsquare",
-			"media":"help/images/help6.png",
-			"popup":"help/video/help6.mp4",
+
+			"file":"bg midnight\ncolor green\nthick 12\nmake \"side 150\nrt 45\nto drawsquare\n  rpt 4 [\n    fd :side \n    rt 90\n  ]\nend\n\ndrawsquare",
+			"media":"help/images/e4.png",
+			"bg":"dkgreen",
+			
 			"contents":[
-						"<pre>to drawsquare\n  rpt 4 [\n    fd 100 \n    rt 90\n  ]\nend\n\ndrawsquare</pre>",
+			"<h3>9. Procedures and functions</h3>",
+					 "<p>We know that the turtle knows the meaning of the words <span class='mono'>make</span>, <span class='mono'>penup</span>, <span class='mono'>color</span> etc &hellip;</p>",
+					 "<p>A function or procedure is often thought of as telling the turtle the meaning of a new word, for example we could draw a square by defining a procedure called 'drawsquare' and then 'calling' that procedure.</p>",
+					 "<p>You use the <span class='mono'>to</span> keyword to define a procedure, and <span class='mono'>end</span> to mark the end:</p>",
+						"<pre>make \"side 150\nto drawsquare\n  rpt 4 [\n    fd :side \n    rt 90\n  ]\nend\n\ndrawsquare</pre>",
 						"<p></p>",
-						"<p>The first 6 lines define the procedure and the last line 'calls' or 'executes' the function. The spaces at the start of the lines are optional but can make it easier to read.</p>"
+						"<p>The lines between <span class='mono'>to</span> and <span class='mono'>end</span> define the procedure and the last line 'calls' or 'executes' the function. The spaces at the start of the lines are optional but can make it easier to read.</p>"
 						]
 			},
 			{
-			"top":
-				[
-					"<h3>Procedures and functions continued</h3>",
+
+			"file":"bg midnight\ncolor green\nto drawpoly :len :n\n  rpt :n [\n    fd :len \n    rt (360/:n)\n  ]\nend\ndrawpoly 120 3\ndrawpoly 120 4\ndrawpoly 120 5\ndrawpoly 120 6\ndrawpoly 120 7",
+			"media":"help/images/e5.png",
+			"bg":"dkgreen",
+			
+			"contents":[
+			"<h3>10. Procedures and functions continued</h3>",
 					 "<p>Functions can optionally take some variables as input.  For example, you might want to re-use a block of commands more than once, with different lengths or angles each time.</p>",
 					 "<p>List the variables one by one after the name of the function as shown:</p>",
-					 "<pre>to drawpoly :len :n</pre>"
-					 ],
-			"file":"bg midnight\nto drawpoly :len :n\n  rpt :n [\n    fd :len \n    rt (360/:n)\n  ]\nend\ndrawpoly 200 4\ndrawpoly 83 8",
-			"media":"help/images/help7.png",
-			"popup":"help/video/help7.mp4",
-			"contents":[
-						"<pre>to drawpoly :len :n\n  rpt :n [\n    fd :len \n    rt (360/:n)\n  ]\nend\ndrawpoly 200 4\ndrawpoly 83 8</pre>",
+						"<pre>to drawpoly :len :n\n  rpt :n [\n    fd :len \n    rt (360/:n)\n  ]\nend\ndrawpoly 120 3\ndrawpoly 120 4\ndrawpoly 120 5\ndrawpoly 120 6\ndrawpoly 120 7</pre>",
 						"<p></p>",
-						"<p>The procedure above has two arguments, called 'len' and 'n', and it is then called first with 'len' equal to 200 and 'n' equal to 4, and then with 'len' equal to 83 and 'n' equal to 8.</p>"
+						"<p>The procedure above has two arguments, called <span class='mono'>len</span> and <span class='mono'>n</span>, and it is then called five times with <span class='mono'>len</span> equal to 120 and <span class='mono'>n</span> equal to 3, 4, 5, 6 and 7 respectively.</p>"
 						]
 			},
+			
 			{
-			"top":[
-					"<h3>Recursion</h3>",
-					 "<p>Recursion happens when, inside a function, you call the same function, normally with different input.</p>",
-					 "<p>For example the program below defines a procedure which accepts one variable called 'dist' and repeatedly calls itself, increasing the value of 'dist' by 5 each time:</p>"
-					 ],
+
 			"file":"bg white\ncolor red\nto drawspiral :dist\n  fd :dist\n  rt 90\n  drawspiral (:dist+5)\nend\n\ndrawspiral 10",
-			"media":"help/images/help8.png",
-			"popup":"help/video/help8.mp4",
+			"media":"help/images/e6.png",
+			"bg":"dkred",
+			
 			"contents":[
+			"<h3>11. Recursion</h3>",
+					 "<p>Recursion happens when, inside a function, you call the same function, normally with different input.</p>",
+					 "<p>For example the program below defines a procedure which accepts one variable called <span class='mono'>dist</span> and repeatedly calls itself, increasing the value of <span class='mono'>dist</span> by 5 each time:</p>",
 						"<pre>to drawspiral :dist\n  fd :dist\n  rt 90\n  drawspiral (:dist+5)\nend\n\ndrawspiral 10</pre>",
 						"<p></p>",
 						"<p>The result is an increasing series of line segments, with lengths 10, 15, 20, 25... etc - forming a spiral.</p>",
 						"<p>Eventually the program will crash because it calls itself too many times!</p>"
 						]
 			},
+			
 			{
-			"top":
-			[
-			 "<h3>Variable scope</h3>",
+
+			"file":"bg yellow\nthick 10\ncolor midnight\nmake \"j 50\nmake \"i 50\nto fn\nmake \"i 100\nfd :i\ncolor blue\nfd :j\nend\nfn\ncolor ltblue\nfd :i",
+			"media":"help/images/e12.png",
+			"bg":"blue",
+			
+			"contents":[
+			"<h3>12. Variable scope</h3>",
 			 "<p>The program below illustrates the concept of 'scope' in Logotacular.</p>",
 			 "<p>Every variable exists in a 'scope' depending on where you defined it, so you can have two variables with the same name that exist in different 'scopes'.</p>",
-			 "<p>First look at the following lines from the program:</p>"
-			 ],
-			"file":"bg indigo\nthick 10\nmake \"j 50\nmake \"i 50\nto fn\nmake \"i 100\nfd :i\ncolor blue\nfd :j\nend\nfn\ncolor green\nfd :i",
-			"media":"help/images/help9.png",
-			"popup":"help/video/help9.mp4",
-			"contents":[
+			 "<p>First look at the following lines from the program:</p>",
 						"<pre>make \"j 50\nto fn\n  fd :j\nend\nfn</pre>",
 						"<p></p>",
-						"<p>A variable called 'j' is set to 50 outside of the function. When called, the function will check if a variable called 'j' has been defined again inside the function itself.</p>",
-						"<p>In this case it hasn't, so the function uses the variable 'j' from outside. We can say that 'j' has 'global scope' because any code can use it.</p>"
+						"<p>A variable called <span class='mono'>j</span> is set to 50 outside of the function. When called, the function will check if a variable called <span class='mono'>j</span> has been defined again inside the function itself.</p>",
+						"<p>In this case it hasn't, so the function uses the variable <span class='mono'>j</span> from outside. We can say that <span class='mono'>j</span> has 'global scope' because any code can use it.</p>"
 						]
 			},
 			{
-			"top":
-			[
-			 "<h3>Variable scope continued</h3>",
-			 "<p>You can also define variables inside functions, and then they will exist inside that function only:</p>",
-			 "<pre>make \"i 50\nto fn make \"i 100 fd :i end\nfn\nfd :i</pre>",
-			 ],
-			"file":"bg indigo\nthick 10\nmake \"j 50\nmake \"i 50\nto fn\nmake \"i 100\nfd :i\ncolor blue\nfd :j\nend\nfn\ncolor green\nfd :i",
-			"media":"help/images/help10.png",
-			"popup":"help/video/help10.mp4",
-			"contents":[
 
-						"<p>A variable called 'i' is set to 50 outside the function. But when the function is called it immediately sets another variable called 'i' to 100, and goes forward 100 units.</p>",
+
+			"file":"bg yellow\nthick 10\ncolor midnight\nmake \"j 50\nmake \"i 50\nto fn\nmake \"i 100\nfd :i\ncolor blue\nfd :j\nend\nfn\ncolor ltblue\nfd :i",
+			"media":"help/images/e12.png",
+			"bg":"blue",
+			
+			"contents":[
+			"<h3>13. Variable scope continued</h3>",
+			 "<p>You can also define variables inside functions, and then they will exist inside that function only:</p>",
+			 "<pre>make \"i 50\nto fn\n make \"i 100 fd :i\nend\nfn\nfd :i</pre>",
+			 			"<p></p>",
+						"<p>A variable called <span class='mono'>i</span> is set to 50 outside the function. But when the function is called it immediately sets another variable called <span class='mono'>i</span> to 100, and goes forward 100 units.</p>",
 						"<p>On the last line we go forward 'i' units again, but this time it will go forward 50 units.</p>",
-						"<p>This is because there are actually two different variables called 'i', with different scope, and the one that equals 100 only exists temporarily, only inside the function.</p>"
+						"<p>This is because there are actually two different variables called <span class='mono'>i</span>, with different scope, and the one that equals 100 only exists temporarily, only inside the function.</p>"
 						]
 			},
 			{
-			"top":
-				[
-					"<h3>Errors and debugging</h3>",
-					 "<p>Errors are of two kinds: they can be in your code itself or they might only happen when you run your code.</p>",
-					 "<p>The first kind of errors include those such as missing out a bracket or forgetting to put '<span class='mono'>end</span>' at the end of a function definition.  The second kind of errors don't appear until you press 'Play'.  For example, you might try to use a variable or call a function that you haven't defined, or you might divide by zero by mistake.</p>"
-					 ],
-			"file":"rpt 10 [ fd 10\nmake \"a 0\nfd :b/:a",
-			"media":"help/images/help11.png",
-			"popup":"help/video/help11.mp4",
+
+
+			"file":"bg midnight\ncolor green\nrpt 4 [\n fd 100 rt 90\n stop\n]",
+			"media":"help/images/e15.png",
+			"bg":"dkgreen",
+			
 			"contents":[
+			"<h3>14. Stopping</h3>",
+			 "<p>You can use the keyword <span class='mono'>stop</span> to stop a function or loop executing.</p>",
+			 "<pre>rpt 4 [\n fd 100 rt 90\n stop\n]</pre>",
+			 			"<p></p>",
+						"<p>Without the break statement the program above would draw a square.</p>",
+						"<p>With the break statement it will go forward once and turn 90 degrees, and then the loop will stop.</p>"
+						]
+			},
+			{
+
+
+			"file":"bg midnight\ncolor green\nto drawoneline\n fd 100\n stop\n rt 90 \n fd 100\nend\ndrawoneline",
+			"media":"help/images/e15.png",
+			"bg":"dkgreen",
+			
+			"contents":[
+			"<h3>15. Stopping continued</h3>",
+			 "<p>In this second program the function <span class='mono'>drawoneline</span> is called, and the turtle goes forward.</p>",
+			 "<p>It reaches the <span class='mono'>stop</span> statement and the function stops executing immediately.</p>",
+			 			"<p></p>",
+						"<pre>to drawoneline\n fd 100\n stop\n rt 90 \n fd 100\nend\ndrawoneline</pre>",
+						"<p></p>",
+						"<p>As a consequence, this code also just draws one 100 unit line.</p>"
+						]
+			},
+			{
+
+
+			"file":"bg white\ncolor red\nto drawspiral :dist\n  if :dist>300 [stop]\n  fd :dist rt 90\n  drawspiral (:dist+5)\nend\ndrawspiral 10",
+			"media":"help/images/e16.png",
+			"bg":"dkred",
+			
+			"contents":[
+			"<h3>16. Program control</h3>",
+			 "<p>Sometimes you only want to execute a line of code under certain circumstances - perhaps after checking the value of a variable for example. Logo uses the keywords <span class='mono'> if</span> and <span class='mono'> ifelse</span>. For example:</p>",
+			 "<pre>if :a < 1 [ fd 100 ]</pre>",
+			 "<p></p>",
+			 "<p>If the variable <span class='mono'>a</span> is less than one then go forward.</p>",
+			 "<pre>ifelse :a >= 1 [ fd 100 ] [fd -100]</pre>",
+			 "<p></p>",
+	 			"<p>If <span class='mono'>a</span> is greater than or equal to one then go forward 100 units, otherwise go backwards 100 units.</p>",
+				
+				"<p>You can check if variables are equal, less than, less than or equal to, greater than or greater than or equal to using the usual operators: <span class='mono'>=, <, <=, >, >=</span>.</p>",
+				"<p>You can even combine this with the <span class='mono'>stop</span> statement to choose when to stop a loop or function:</p>",
+				"<pre>to drawspiral :dist\n  if :dist>300 [stop]\n  fd :dist rt 90\n  drawspiral (:dist+5)\nend\ndrawspiral 10</pre>"
+				]
+			},
+			{
+
+
+			"file":"bg midnight\ncolor red\nmake \"s 80\nto tree :d\n if :d=0 [stop]\n fd :s rt 340\n tree (:d-1)\n rt 40\n tree (:d-1)\n rt 160\n fd :s\n rt 180\nend\ntree 5",
+			"media":"help/images/e17.png",
+			"bg":"dkred",
+			
+			"contents":[
+			"<h3>17. Program control continued</h3>",
+			 "<p>Combining recursion with the stop statement is a powerful way to create interesting designs. The function <span class='mono'>tree</span> will draw a tree <span class='mono'>d</span> branches high. It is called with an input value of '5' for a tree 5 branches high.</p>",
+			 "<p>The function goes forward and turns left 20 degrees, then it draws a tree with one fewer branches, turns right 40 degrees and draws another tree with one fewer branches.</p>",
+			 "<pre>make \"s 80\nto tree :d\n if :d=0 [stop]\n fd :s rt 340\n tree (:d-1)\n rt 40\n tree (:d-1)\n rt 160\n fd :s\n rt 180\nend\ntree 5</pre>",
+			 			"<p></p>",
+			 			"<p>To make that work we need the last three lines of the function - which move the turtle back to the start, facing in exactly the same direction as it started.</p>"
+						]
+			},
+			{
+
+			"file":"rpt 10 [ fd 10\nmake \"a 0\nfd :b/:a",
+			"media":"help/images/ee.png",
+			"bg":"dkgreen",
+			
+			"contents":[
+			"<h3>18. Errors and debugging</h3>",
+					 "<p>Errors are of two kinds: they can be in your code itself or they might only happen when you run your code.</p>",
+					 "<p>The first kind of errors include those such as missing out a bracket or forgetting to put <span class='mono'>end</span> at the end of a function definition.  The second kind of errors don't appear until you press 'Play'.  For example, you might try to use a variable or call a function that you haven't defined, or you might divide by zero by mistake.</p>",
 						"<p>This program has an error of the first kind:</p>",
 						"<pre>rpt 10 [fd 10</pre>",
 						"<p></p>",
-						"<p>The program below has two errors of the second kind.  Firstly 'b' is not defined, and secondly you cannot divide by 'a' since it is zero.</p>",
+						"<p>The program below has two errors of the second kind.  Firstly <span class='mono'>b</span> is not defined, and secondly you cannot divide by <span class='mono'>a</span> since it is zero.</p>",
 						"<pre>make \"a 0\nfd :b/:a</pre>",
 						"<p></p>",
 						"<p>In Logotacular an arrow appears where it thinks the error is - you can click on it for more information.</p>"
 						]
 			},
-			{
-			"top":
-					[
-					 "<h3>History of Logo</h3>",
-					 "<p>Logo was created in 1967 by Wally Feurzeig and Seymour Papert - researchers at MIT. Their goal was to create an easy to learn application where kids could play with words and the structure of sentences. Later versions of Logo included on screen graphics and the forward and right commands to move an on-screen 'turtle' around the screen, and it became known as Turtle graphics. In 1969, a physical robot was designed which would move across the floor tracing its path with a pen.</p>",
-					 "<p>Seymour Papert pioneered its use in school classrooms as an educational system in the early 1970's, saying:</p>"
-					 ],
-			"file":"bg black\ncolor green\nrpt 36 [\nrpt 360 [\nfd 1\nrt 1\n]\nrt 10\n]",
-			"media":"help/images/help12.png",
-			"popup":"help/video/help12.mp4",
+			
+	],
+
+	"help":[
+	{
+
+			"file":"bg purple\ncolor white\nthick 20\nrt -30\nto star :len\nrpt 6 [\nfd :len\nrt -60\nfd :len\n rt 120\n]\nend\nstar 100\nrt 30\npenup fd 70 pendown\nrt -30\nstar 60",
+			"media":"help/images/e7.png",
+			"bg":"dkgreen",
+			
 			"contents":[
+			"<h3>Welcome to Logotacular!</h3>",
+					 "<p>Logotacular is an application for drawing colourful patterns using a programming language called 'Logo'.</p>",
+					 "<p>Logo was designed to help you explore geometry and programming, by controlling an on-screen imaginary 'turtle' that draws lines as it moves.</p>",
+						"<p>Learn about</p>",
+						"<ul><li>Logical reasoning</li><li>Algorithms</li><li>Testing and debugging</li><li>Use of variables</li><li>Use of functions</li><li>Repeating - using loops</li><li>Recursion</li><li>Variable scope</li><li>Lengths and angles</li><li>Program control and branching</li><li>Interior and exterior angles</li><li>Regular polygons</li><li>Circles and curve-based shapes</li></ul>"
+						]
+			},
+			{
+
+			"file":"bg black\ncolor green\nrpt 36 [\nrpt 360 [\nfd 1\nrt 1\n]\nrt 10\n]",
+			"media":"help/images/e18.png",
+			"bg":"dkred",
+			
+			"contents":[
+			"<h3>History of Logo</h3>",
+					 "<p>Logo was created in 1967 by Wally Feurzeig and Seymour Papert - researchers at MIT. Their goal was to create an easy to learn application where kids could play with words and the structure of sentences. Later versions of Logo included on screen graphics and the forward and right commands to move an on-screen 'turtle' around the screen, and it became known as Turtle graphics. In 1969, a physical robot was designed which would move across the floor tracing its path with a pen.</p>",
+					 "<p>Seymour Papert pioneered its use in school classrooms as an educational system in the early 1970's, saying:</p>",
 						"<p class='quote'>\"In many schools today, the phrase 'Computer-Aided Instruction' means making the computer teach the child... In my vision the child programs the computer and, in so doing, both acquires a sense of mastery over a piece of the most modern and powerful technology and establishes an intimate contact with some of the deepest ideas from science, from mathematics, and from the art of intellectual model building...\"</p>",
 						"<p class='quote'>\"...Traditional education codifies what it thinks citizens need to know and sets out to feed children this 'fish'. Constructionism is built on the assumption that children will do best by finding ('fishing') for themselves... the Turtle is like a person: 'I am here and I am facing north...' And from these similarities comes the Turtle's special ability to serve as a representative of formal mathematics\"</p>"
 						]
 			},
 			{
-			"top":
-					[
-					 "<h3>Privacy policy etc</h3>",
+
+			"file":"bg white\ncolor terracotta\nto drawtri :l\nrpt 3 [\nfd :l\nrt 120 ]\nend\n\nmake \"l 200\nrpt 200 [\ndrawtri :l\nrt 10\nmake \"l :l - 1\n]",
+			"media":"help/images/e19.png",
+			
+			"bg":"blue",
+			"contents":[
+			"<h3>Privacy policy and contact information</h3>",
 					 "<ul>",
 					 "<li>Logotacular has no form of log-in and collects no personal information from any users.</li>",
 					 "<li>It does not connect to any external services or servers.</li>",
 					 "<li>All data (your Logo files) are saved locally on your device.</li>",
 					 "<li>Logotacular contains no external links to any websites or similar.</li>",
 					 "<li>If at any time the app is updated to include features that require log in you will be provided notice and asked to choose whether to update or not.</li>",
-					 "</ul>"
-					 ],
-			"file":"bg white\ncolor terracotta\nto drawtri :l\nrpt 3 [\nfd :l\nrt 120 ]\nend\n\nmake \"l 200\nrpt 200 [\ndrawtri :l\nrt 10\nmake \"l :l - 1\n]",
-			"media":"help/images/help13.png",
-			"popup":"help/video/help13.mp4",
-			"contents":[
-						"<p>For suggestions, improvements, to report bugs or to let me know how you used the app in the classroom or as a student, do drop me a message at john.grindall@gmail.com</p>"
+					 "</ul>",
+					 "<p></p>",
+						"<p>For suggestions, improvements, to report bugs or to let me know how you used the app in the classroom or as a student, do drop me a message at john.grindall@gmail.com, or use the twitter hashtag #logotacular.</p>"
 						]
 			}
    ]

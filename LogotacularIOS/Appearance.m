@@ -36,12 +36,13 @@
 }
 
 + (UIColor*) grayColor{
-	return [UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:0.5];
+	return [UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:0.45];
 }
 
 + (NSDictionary*) navTextAttributes{
 	UIColor* textColor = [UIColor whiteColor];
 	UIFont* textFont = [Appearance fontOfSize:SYMM_FONT_SIZE_NAV];
+	NSLog (@"%@", textFont);
 	NSDictionary* dic = @{NSFontAttributeName:textFont, NSForegroundColorAttributeName:textColor};
 	return  dic;
 }
@@ -111,7 +112,7 @@
 }
 
 + (UIFont*) fontOfSize:(SymmFontSizes)s{
-	return [UIFont fontWithName:@"Lato-Regular" size:s];
+	return [UIFont fontWithName:@"Lato-Light" size:s];
 }
 
 + (UIFont*) monospaceFontOfSize:(SymmFontSizes)s{

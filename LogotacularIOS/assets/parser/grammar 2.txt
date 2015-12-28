@@ -27,6 +27,11 @@ sep* f2:rtstmt sep*
 return {type:"insidestmt", children:[f2]};
 }
 /
+sep* f25:setstmt sep*
+{
+return {type:"setstmt", children:[f25]};
+}
+/
 sep* f3:rptstmt sep*
 {
 return {type:"insidestmt", children:[f3]};
@@ -159,6 +164,11 @@ return {type:"fdstmt", children:[num]};
 rtstmt  = 'rt' sep* num:expression eoline
 {
 return {type:"rtstmt", children:[num]};
+}
+
+setstmt = 'setxy' sep* numx:expression sep* numy:expression sep*
+{
+return {type:"setxy", children:[numx,numy]};
 }
 
 rptstmt  = 'rpt' sep* num:expression sep* '[' sep* list:insidefnlist sep* ']' sep*

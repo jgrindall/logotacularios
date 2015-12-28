@@ -330,7 +330,10 @@
 		[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_HELP withData:nil];
 	}
 	else if(i == 1){
-		[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_EXAMPLES withData:nil];
+		[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_TUT withData:nil];
+	}
+	else if(i == 2){
+		[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_OPEN withData:nil];
 	}
 	[[self getTextVisModel] setVal:[NSNumber numberWithBool:YES] forKey:TEXT_VISIBLE_VIS];
 	[self enableNav:YES];

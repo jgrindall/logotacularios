@@ -32,28 +32,12 @@
 
 - (void) viewWillAppear:(BOOL)animated{
 	[self layoutPages];
-	[self layoutImage];
 }
 
 - (void) viewDidLoad{
 	[super viewDidLoad];
-	[self addImage];
 	[self addContainer];
 	[self makeController];
-}
-
-- (void) layoutImage{
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.imgView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view						attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.imgView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.imgView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view						attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.imgView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0]];
-}
-
-- (void) addImage{
-	self.imgView = [[UIImageView alloc] initWithFrame:CGRectZero];
-	self.imgView.image = [UIImage imageNamed:@"assets/blur.png"];
-	[self.view addSubview:self.imgView];
-	self.imgView.translatesAutoresizingMaskIntoConstraints = NO;
 }
 
 - (void) viewDidAppear:(BOOL)animated{

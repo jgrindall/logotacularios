@@ -28,6 +28,7 @@
 	<string>LaunchScreen</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Lato-Light.ttf</string>
 		<string>Inconsolata-Regular.ttf</string>
 		<string>Cousine-Regular.ttf</string>
 		<string>Lato-Regular.ttf</string>

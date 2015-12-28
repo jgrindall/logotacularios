@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 jgrindall. All rights reserved.
 //
 
-#import "HelpSectionViewController.h"
+#import "TutSectionViewController.h"
 #import "SymmNotifications.h"
 #import "HelpData.h"
 #import "Appearance.h"
 #import "Assets.h"
 
-@interface HelpSectionViewController ()
+@interface TutSectionViewController ()
 
 @property UIButton* progCopyButton;
 @property UITextView* textView;
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation HelpSectionViewController
+@implementation TutSectionViewController
 
 - (void) addChildren{
 	[super addChildren];
@@ -63,14 +63,15 @@
 	self.textView = [[UITextView alloc] initWithFrame:CGRectZero];
 	self.textView.translatesAutoresizingMaskIntoConstraints = NO;
 	self.textView.font = [Appearance fontOfSize:SYMM_FONT_SIZE_MED];
-	NSString* bgString = [HelpData getHelpBg:self.index];
+	NSString* bgString = [HelpData getTutBg:self.index];
 	self.textView.backgroundColor = [Colors getColorForString:bgString];
 	[self.view addSubview:self.textView];
 	self.textView.textContainerInset = UIEdgeInsetsMake(6, 5, 5, 5);
 	self.textView.scrollEnabled = NO;
 	self.textView.editable = NO;
-	NSString* htmlString = [HelpData getHelpData:self.index];
+	NSString* htmlString = [HelpData getTutData:self.index];
 	NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[htmlString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+	//NSLog([NSString stringWithFormat:@"@", attributedString]);
 	self.textView.layer.cornerRadius = 10;
 	self.textView.layer.masksToBounds = YES;
 	self.textView.attributedText = attributedString;
@@ -78,7 +79,7 @@
 
 - (void) addImage{
 	self.imgView = [[UIImageView alloc] initWithFrame:CGRectZero];
-	NSString* media = [HelpData getHelpMedia:self.index];
+	NSString* media = [HelpData getTutMedia:self.index];
 	self.imgView.image = [UIImage imageNamed:[NSString stringWithFormat:@"assets/%@", media]];
 	[self.view addSubview:self.imgView];
 	self.imgView.layer.cornerRadius = 10;

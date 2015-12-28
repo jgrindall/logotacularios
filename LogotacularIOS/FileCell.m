@@ -94,7 +94,7 @@ float padding = 6;
 -  (void) addCoverView{
 	if(!self.coverView){
 		self.coverView = [[UIView alloc] initWithFrame:CGRectZero];
-		self.coverView.backgroundColor = [UIColor colorWithRed:0.25 green:0.25 blue:0.25 alpha:1.0];
+		self.coverView.backgroundColor = [UIColor colorWithRed:0.35 green:0.35 blue:0.35 alpha:1.0];
 		[self addSubview:self.coverView];
 		self.coverView.translatesAutoresizingMaskIntoConstraints = NO;
 	}
@@ -119,7 +119,7 @@ float padding = 6;
 		self.whiteView = [[UIImageView alloc] initWithFrame:self.frame];
 		self.whiteView.contentMode = UIViewContentModeScaleAspectFit;
 		[self addSubview:self.whiteView];
-		self.whiteView.backgroundColor = [UIColor whiteColor];
+		self.whiteView.backgroundColor = [UIColor grayColor];
 		self.whiteView.translatesAutoresizingMaskIntoConstraints = NO;
 	}
 }
@@ -147,10 +147,10 @@ float padding = 6;
 	[self addCoverView];
 	[self.imageView setImage:_image];
 	[self.textView setText:_filename];
-	self.alpha = (self.isSelected ? 1 : 0.7);
-	self.textView.alpha = (self.isSelected ? 1 : 0.5);
-	self.whiteView.alpha = (self.isSelected ? 1 : 0.4);
-	self.coverView.alpha = (self.isSelected ? 0 : 0.5);
+	self.alpha = (self.isSelected ? 1 : 0.4);
+	self.textView.alpha = (self.isSelected ? 1 : 0.4);
+	self.whiteView.alpha = (self.isSelected ? 1 : 0);
+	self.coverView.alpha = (self.isSelected ? 0 : 0.55);
 	[self layoutCover];
 	[self layoutWhite];
 }

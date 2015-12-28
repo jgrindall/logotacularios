@@ -13,7 +13,7 @@
 @interface PaintView ()
 
 @property UIView* bgView;
-@property UIImageView* blurView;
+//@property UIImageView* blurView;
 @property UIImageView* catView;
 @property LinesView* linesView;
 @property UIView* rect;
@@ -39,12 +39,9 @@ CGContextRef cacheContext;
 - (void) addViews{
 	self.bgView = [[UIView alloc] initWithFrame:self.frame];
 	self.bgView.backgroundColor = [Appearance bgColor];
-	self.blurView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"assets/blur.png"]];
 	self.linesView = [[LinesView alloc] initWithFrame:self.frame];
 	[self addSubview:self.bgView];
-	[self addSubview:self.blurView];
 	[self addSubview:self.linesView];
-	self.blurView.contentMode = UIViewContentModeScaleAspectFill;
 }
 
 - (void) setFlushedTransform:(CGAffineTransform)t{
@@ -73,8 +70,8 @@ CGContextRef cacheContext;
 - (void) dealloc{
 	[self.bgView removeFromSuperview];
 	self.bgView = nil;
-	[self.blurView removeFromSuperview];
-	self.blurView = nil;
+	//[self.blurView removeFromSuperview];
+	//self.blurView = nil;
 	[self.catView removeFromSuperview];
 	self.catView = nil;
 	[self.linesView removeFromSuperview];

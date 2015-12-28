@@ -293,16 +293,17 @@ int const EXCLAM_SIZE = 36;
 	NSInteger start = 0;
 	NSInteger end = 0;
 	if(errorObj){
-		/*
 		NSInteger intLine = [[errorObj getLine] integerValue];
 		NSArray* comps = [text componentsSeparatedByString:@"\n"];
-		while(k <= intLine - 2){
+		NSUInteger compsLen = [comps count];
+		while(k <= intLine - 2 && k >= 0 && k <= compsLen - 1){
 			start += [(NSString*)comps[k] length] + 1; //for the newline
 			k++;
 		}
-		end = start + [(NSString*)comps[k] length];
+		if(k >=0 && k <= compsLen - 1){
+			end = start + [(NSString*)comps[k] length];
+		}
 		[self drawErrorForStart:start andEnd:end];
-		 */
 	}
 	else{
 		[self clearError];

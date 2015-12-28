@@ -18,15 +18,21 @@
 
 + (NSString*) getHelpFile:(NSInteger)index;
 
-+ (NSString*) getHelpMovie:(NSInteger)index;
++ (NSString*) getHelpData:(NSInteger)index;
 
 + (NSString*) getHelpMedia:(NSInteger)index;
 
-+ (NSString*) getExampleData:(NSInteger)index;
++ (NSString*) getHelpBg:(NSInteger)index;
 
-+ (NSString*) getExampleFile:(NSInteger)index;
++ (NSString*) getRefBg:(NSInteger)index;
 
-+ (NSString*) getExampleMedia:(NSInteger)index;
++ (NSString*) getTutData:(NSInteger)index;
+
++ (NSString*) getTutBg:(NSInteger)index;
+
++ (NSString*) getTutFile:(NSInteger)index;
+
++ (NSString*) getTutMedia:(NSInteger)index;
 
 + (NSString*) getRefData:(NSInteger)index;
 

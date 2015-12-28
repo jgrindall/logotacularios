@@ -43,7 +43,8 @@
 	self.textView.editable = NO;
 	self.textView.translatesAutoresizingMaskIntoConstraints = NO;
 	self.textView.font = [Appearance fontOfSize:SYMM_FONT_SIZE_MED];
-	self.textView.backgroundColor = [Appearance grayColor];
+	NSString* bgString = [HelpData getRefBg:self.index];
+	self.textView.backgroundColor = [Colors getColorForString:bgString];
 	[self.view addSubview:self.textView];
 	self.textView.textContainerInset = UIEdgeInsetsMake(6, 5, 5, 5);
 	NSString* htmlString = [HelpData getRefData:self.index];
