@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		269A647FA28B48F688FF8E8B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 458B6A11F0F949A0B2010544 /* libPods.a */; };
 		52244C151A25341500505F6D /* ClickResetZoomCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52244C141A25341500505F6D /* ClickResetZoomCommand.m */; };
-		52244C191A25513200505F6D /* ExamplesSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52244C181A25513200505F6D /* ExamplesSectionViewController.m */; };
 		52244C1C1A2555C100505F6D /* HelpLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 52244C1B1A2555C100505F6D /* HelpLayout.m */; };
 		522E91C71A1CA6C2000AB933 /* FileLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E91C61A1CA6C2000AB933 /* FileLayout.m */; };
 		522E91CA1A1CA9FC000AB933 /* MenuLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E91C91A1CA9FC000AB933 /* MenuLayout.m */; };
@@ -17,8 +16,6 @@
 		522F08161A2618E7005CD2D3 /* ReferenceSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 522F08151A2618E7005CD2D3 /* ReferenceSectionViewController.m */; };
 		523067B81A1DF82A0055B8A5 /* HelpData.m in Sources */ = {isa = PBXBuildFile; fileRef = 523067B71A1DF82A0055B8A5 /* HelpData.m */; };
 		523067BB1A1E1F4C0055B8A5 /* BgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 523067BA1A1E1F4B0055B8A5 /* BgModel.m */; };
-		523067C11A1E9BCC0055B8A5 /* ExamplesPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 523067C01A1E9BCC0055B8A5 /* ExamplesPageViewController.m */; };
-		523067C51A1E9C5B0055B8A5 /* ClickExamplesCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 523067C41A1E9C5B0055B8A5 /* ClickExamplesCommand.m */; };
 		523067C81A1E9DF80055B8A5 /* ReferencePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 523067C71A1E9DF80055B8A5 /* ReferencePageViewController.m */; };
 		523067CC1A1E9E690055B8A5 /* ClickRefCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 523067CB1A1E9E690055B8A5 /* ClickRefCommand.m */; };
 		523067CE1A1EA6BC0055B8A5 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 523067CD1A1EA6BC0055B8A5 /* MediaPlayer.framework */; };
@@ -79,7 +76,6 @@
 		52B5B31619FD7D4600EF531F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B5B31519FD7D4600EF531F /* main.m */; };
 		52B5B32119FD7D4600EF531F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52B5B32019FD7D4600EF531F /* Images.xcassets */; };
 		52B5B32419FD7D4600EF531F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52B5B32219FD7D4600EF531F /* LaunchScreen.xib */; };
-		52B5B33019FD7D4600EF531F /* LogotacularIOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B5B32F19FD7D4600EF531F /* LogotacularIOSTests.m */; };
 		52B5B33A19FD7D5C00EF531F /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B5B33919FD7D5C00EF531F /* JavaScriptCore.framework */; };
 		52B5B35119FD7E1400EF531F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B5B33C19FD7E1400EF531F /* AppDelegate.m */; };
 		52B5B35219FD7E1400EF531F /* Appearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B5B33E19FD7E1400EF531F /* Appearance.m */; };
@@ -112,25 +108,17 @@
 		52D426FB1A2CFF97002E8B2F /* AbstractOverlayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D426FA1A2CFF97002E8B2F /* AbstractOverlayController.m */; };
 		52D426FF1A2D01EE002E8B2F /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D426FE1A2D01EE002E8B2F /* WelcomeViewController.m */; };
 		52D427021A2D0B3F002E8B2F /* WelcomeLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D427011A2D0B3F002E8B2F /* WelcomeLayout.m */; };
+		52DD4AA01C2AC27F0039A052 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 52DD4A9F1C2AC27F0039A052 /* Lato-Light.ttf */; };
+		52DD4AA61C2ACA1E0039A052 /* ClickTutCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52DD4AA51C2ACA1E0039A052 /* ClickTutCommand.m */; };
+		52DD4AAC1C2ACAA40039A052 /* TutPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52DD4AA91C2ACAA40039A052 /* TutPageViewController.m */; };
+		52DD4AAD1C2ACAA40039A052 /* TutSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52DD4AAB1C2ACAA40039A052 /* TutSectionViewController.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		52B5B32A19FD7D4600EF531F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 52B5B30819FD7D4600EF531F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 52B5B30F19FD7D4600EF531F;
-			remoteInfo = LogotacularIOS;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		458B6A11F0F949A0B2010544 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		52244C131A25341500505F6D /* ClickResetZoomCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickResetZoomCommand.h; sourceTree = "<group>"; };
 		52244C141A25341500505F6D /* ClickResetZoomCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickResetZoomCommand.m; sourceTree = "<group>"; };
 		52244C161A25502800505F6D /* AbstractHelpSectionViewController_protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractHelpSectionViewController_protected.h; sourceTree = "<group>"; };
-		52244C171A25513200505F6D /* ExamplesSectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamplesSectionViewController.h; sourceTree = "<group>"; };
-		52244C181A25513200505F6D /* ExamplesSectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamplesSectionViewController.m; sourceTree = "<group>"; };
 		52244C1A1A2555C100505F6D /* HelpLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpLayout.h; sourceTree = "<group>"; };
 		52244C1B1A2555C100505F6D /* HelpLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpLayout.m; sourceTree = "<group>"; };
 		522E91C51A1CA6C2000AB933 /* FileLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileLayout.h; sourceTree = "<group>"; };
@@ -146,10 +134,6 @@
 		523067B91A1E1F4B0055B8A5 /* BgModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BgModel.h; sourceTree = "<group>"; };
 		523067BA1A1E1F4B0055B8A5 /* BgModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BgModel.m; sourceTree = "<group>"; };
 		523067BD1A1E1F690055B8A5 /* PBgModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBgModel.h; sourceTree = "<group>"; };
-		523067BF1A1E9BCC0055B8A5 /* ExamplesPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamplesPageViewController.h; sourceTree = "<group>"; };
-		523067C01A1E9BCC0055B8A5 /* ExamplesPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamplesPageViewController.m; sourceTree = "<group>"; };
-		523067C31A1E9C5B0055B8A5 /* ClickExamplesCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickExamplesCommand.h; sourceTree = "<group>"; };
-		523067C41A1E9C5B0055B8A5 /* ClickExamplesCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickExamplesCommand.m; sourceTree = "<group>"; };
 		523067C61A1E9DF80055B8A5 /* ReferencePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferencePageViewController.h; sourceTree = "<group>"; };
 		523067C71A1E9DF80055B8A5 /* ReferencePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferencePageViewController.m; sourceTree = "<group>"; };
 		523067CA1A1E9E690055B8A5 /* ClickRefCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickRefCommand.h; sourceTree = "<group>"; };
@@ -284,7 +268,6 @@
 		52B5B31519FD7D4600EF531F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		52B5B32019FD7D4600EF531F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		52B5B32319FD7D4600EF531F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		52B5B32919FD7D4600EF531F /* logotacular.temp_caseinsensitive_renameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = logotacular.temp_caseinsensitive_renameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52B5B32E19FD7D4600EF531F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52B5B32F19FD7D4600EF531F /* LogotacularIOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogotacularIOSTests.m; sourceTree = "<group>"; };
 		52B5B33919FD7D5C00EF531F /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -357,6 +340,15 @@
 		52D426FE1A2D01EE002E8B2F /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
 		52D427001A2D0B3F002E8B2F /* WelcomeLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeLayout.h; sourceTree = "<group>"; };
 		52D427011A2D0B3F002E8B2F /* WelcomeLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeLayout.m; sourceTree = "<group>"; };
+		52DD4A9F1C2AC27F0039A052 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Light.ttf"; path = "LogotacularIOS/assets/fonts/Lato-Light.ttf"; sourceTree = "<group>"; };
+		52DD4AA11C2AC93F0039A052 /* ClickTutCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickTutCommand.h; sourceTree = "<group>"; };
+		52DD4AA21C2AC93F0039A052 /* ClickTutCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickTutCommand.m; sourceTree = "<group>"; };
+		52DD4AA41C2ACA1E0039A052 /* ClickTutCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickTutCommand.h; sourceTree = "<group>"; };
+		52DD4AA51C2ACA1E0039A052 /* ClickTutCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickTutCommand.m; sourceTree = "<group>"; };
+		52DD4AA81C2ACAA40039A052 /* TutPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutPageViewController.h; sourceTree = "<group>"; };
+		52DD4AA91C2ACAA40039A052 /* TutPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutPageViewController.m; sourceTree = "<group>"; };
+		52DD4AAA1C2ACAA40039A052 /* TutSectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutSectionViewController.h; sourceTree = "<group>"; };
+		52DD4AAB1C2ACAA40039A052 /* TutSectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutSectionViewController.m; sourceTree = "<group>"; };
 		542243F9BAE2472FB3D62BEC /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -368,13 +360,6 @@
 				523067CE1A1EA6BC0055B8A5 /* MediaPlayer.framework in Frameworks */,
 				52B5B33A19FD7D5C00EF531F /* JavaScriptCore.framework in Frameworks */,
 				269A647FA28B48F688FF8E8B /* libPods.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		52B5B32619FD7D4600EF531F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,17 +389,6 @@
 				52244C1B1A2555C100505F6D /* HelpLayout.m */,
 			);
 			name = Help;
-			sourceTree = "<group>";
-		};
-		523067C21A1E9BD70055B8A5 /* Examples */ = {
-			isa = PBXGroup;
-			children = (
-				523067BF1A1E9BCC0055B8A5 /* ExamplesPageViewController.h */,
-				523067C01A1E9BCC0055B8A5 /* ExamplesPageViewController.m */,
-				52244C171A25513200505F6D /* ExamplesSectionViewController.h */,
-				52244C181A25513200505F6D /* ExamplesSectionViewController.m */,
-			);
-			name = Examples;
 			sourceTree = "<group>";
 		};
 		523067C91A1E9DFB0055B8A5 /* Ref */ = {
@@ -492,6 +466,8 @@
 		5257F3501A01358400757C77 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				52DD4AA11C2AC93F0039A052 /* ClickTutCommand.h */,
+				52DD4AA21C2AC93F0039A052 /* ClickTutCommand.m */,
 				5257F3521A01467E00757C77 /* AbstractCommand+protected.h */,
 				5272DE3C19FE487A006E717F /* AbstractCommand.h */,
 				5272DE3D19FE487A006E717F /* AbstractCommand.m */,
@@ -543,10 +519,10 @@
 				52CF4A071A102414003197B2 /* ErrorHitCommand.m */,
 				52CF4A101A103CB2003197B2 /* ClickHelpCommand.h */,
 				52CF4A111A103CB2003197B2 /* ClickHelpCommand.m */,
-				523067C31A1E9C5B0055B8A5 /* ClickExamplesCommand.h */,
-				523067C41A1E9C5B0055B8A5 /* ClickExamplesCommand.m */,
 				52B274521A11785200D3EA3B /* SyntaxErrorCommand.h */,
 				52B274531A11785200D3EA3B /* SyntaxErrorCommand.m */,
+				52DD4AA41C2ACA1E0039A052 /* ClickTutCommand.h */,
+				52DD4AA51C2ACA1E0039A052 /* ClickTutCommand.m */,
 				52B5123A1A13C1E600B14D0D /* ChangePageCommand.h */,
 				52B5123B1A13C1E600B14D0D /* ChangePageCommand.m */,
 				52B5123D1A13C69D00B14D0D /* PerformFileSetupCommand.h */,
@@ -735,6 +711,7 @@
 		52B5B30719FD7D4600EF531F = {
 			isa = PBXGroup;
 			children = (
+				52DD4A9F1C2AC27F0039A052 /* Lato-Light.ttf */,
 				52B5B33919FD7D5C00EF531F /* JavaScriptCore.framework */,
 				52B5B31219FD7D4600EF531F /* LogotacularIOS */,
 				52B5B32C19FD7D4600EF531F /* LogotacularIOSTests */,
@@ -748,7 +725,6 @@
 			isa = PBXGroup;
 			children = (
 				52B5B31019FD7D4600EF531F /* logotacular.app */,
-				52B5B32919FD7D4600EF531F /* logotacular.temp_caseinsensitive_renameTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -943,8 +919,8 @@
 		52CF4A0C1A103AF9003197B2 /* Help */ = {
 			isa = PBXGroup;
 			children = (
+				52DD4AA71C2ACA500039A052 /* Tutorial */,
 				52CC89241A1643210046615F /* Base */,
-				523067C21A1E9BD70055B8A5 /* Examples */,
 				523067C91A1E9DFB0055B8A5 /* Ref */,
 				523067BE1A1E2F170055B8A5 /* Help */,
 			);
@@ -969,6 +945,17 @@
 				52CF55FD1A08413100F01D3A /* PFileBrowserModel.h */,
 			);
 			name = FileBrowser;
+			sourceTree = "<group>";
+		};
+		52DD4AA71C2ACA500039A052 /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				52DD4AA81C2ACAA40039A052 /* TutPageViewController.h */,
+				52DD4AA91C2ACAA40039A052 /* TutPageViewController.m */,
+				52DD4AAA1C2ACAA40039A052 /* TutSectionViewController.h */,
+				52DD4AAB1C2ACAA40039A052 /* TutSectionViewController.m */,
+			);
+			name = Tutorial;
 			sourceTree = "<group>";
 		};
 		5939882906C5494A8FDB4E2B /* Frameworks */ = {
@@ -1002,41 +989,18 @@
 			productReference = 52B5B31019FD7D4600EF531F /* logotacular.app */;
 			productType = "com.apple.product-type.application";
 		};
-		52B5B32819FD7D4600EF531F /* logotaculartests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 52B5B33619FD7D4600EF531F /* Build configuration list for PBXNativeTarget "logotaculartests" */;
-			buildPhases = (
-				52B5B32519FD7D4600EF531F /* Sources */,
-				52B5B32619FD7D4600EF531F /* Frameworks */,
-				52B5B32719FD7D4600EF531F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				52B5B32B19FD7D4600EF531F /* PBXTargetDependency */,
-			);
-			name = logotaculartests;
-			productName = LogotacularIOSTests;
-			productReference = 52B5B32919FD7D4600EF531F /* logotacular.temp_caseinsensitive_renameTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		52B5B30819FD7D4600EF531F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = jgrindall;
 				TargetAttributes = {
 					52B5B30F19FD7D4600EF531F = {
 						CreatedOnToolsVersion = 6.0.1;
 						DevelopmentTeam = WDBW628V64;
-					};
-					52B5B32819FD7D4600EF531F = {
-						CreatedOnToolsVersion = 6.0.1;
-						DevelopmentTeam = WDBW628V64;
-						TestTargetID = 52B5B30F19FD7D4600EF531F;
 					};
 				};
 			};
@@ -1054,7 +1018,6 @@
 			projectRoot = "";
 			targets = (
 				52B5B30F19FD7D4600EF531F /* logotacular */,
-				52B5B32819FD7D4600EF531F /* logotaculartests */,
 			);
 		};
 /* End PBXProject section */
@@ -1064,19 +1027,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52DD4AA01C2AC27F0039A052 /* Lato-Light.ttf in Resources */,
 				5257F3631A0152AA00757C77 /* DroidSansMono.ttf in Resources */,
 				5257F3661A0152AA00757C77 /* Lato-Regular.ttf in Resources */,
 				5257F3561A014E4C00757C77 /* assets in Resources */,
 				52B5B32419FD7D4600EF531F /* LaunchScreen.xib in Resources */,
 				52D426F81A2CFE86002E8B2F /* splash.png in Resources */,
 				52B5B32119FD7D4600EF531F /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		52B5B32719FD7D4600EF531F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1127,7 +1084,6 @@
 				52B5B35119FD7E1400EF531F /* AppDelegate.m in Sources */,
 				52D426FB1A2CFF97002E8B2F /* AbstractOverlayController.m in Sources */,
 				52D427021A2D0B3F002E8B2F /* WelcomeLayout.m in Sources */,
-				52244C191A25513200505F6D /* ExamplesSectionViewController.m in Sources */,
 				5257F34F1A01357F00757C77 /* ClearCommand.m in Sources */,
 				527D42E51A0ABBE3008AE82A /* FilePageController.m in Sources */,
 				5297CF0E1A01263200CC5CB3 /* MenuViewController.m in Sources */,
@@ -1145,9 +1101,9 @@
 				527D42FD1A0ADEBF008AE82A /* FilenameViewController.m in Sources */,
 				52C1714B1A0C4384000865DD /* ScreenGrabModel.m in Sources */,
 				52815C6E1A04F397005AFA93 /* FilesController.m in Sources */,
-				523067C11A1E9BCC0055B8A5 /* ExamplesPageViewController.m in Sources */,
 				52B5B35319FD7E1400EF531F /* Colors.m in Sources */,
 				52CC891D1A1642E00046615F /* AbstractHelpPageViewController.m in Sources */,
+				52DD4AA61C2ACA1E0039A052 /* ClickTutCommand.m in Sources */,
 				525167F019FFEE6400814B16 /* ClickPlayCommand.m in Sources */,
 				52B274541A11785200D3EA3B /* SyntaxErrorCommand.m in Sources */,
 				52CBC9C11A0D2EBD00C229C8 /* AlertManager.m in Sources */,
@@ -1166,7 +1122,6 @@
 				52B5B35719FD7E1400EF531F /* NavController.m in Sources */,
 				52B2289B1A00E749001CC355 /* FileModel.m in Sources */,
 				52B5B35519FD7E1400EF531F /* ImageUtils.m in Sources */,
-				523067C51A1E9C5B0055B8A5 /* ClickExamplesCommand.m in Sources */,
 				5236E8751A1D67CB0057E9B3 /* TextLayout.m in Sources */,
 				52B228A11A00E75C001CC355 /* DrawingModel.m in Sources */,
 				52CC89301A1681810046615F /* LoadFromHelpCommand.m in Sources */,
@@ -1198,6 +1153,7 @@
 				5257F3461A0131F000757C77 /* HideMenuCommand.m in Sources */,
 				5287B9B31A1BBC3800082DE1 /* AbstractPerformSaveCommand.m in Sources */,
 				52B512301A13637700B14D0D /* ErrorPopUpViewController.m in Sources */,
+				52DD4AAC1C2ACAA40039A052 /* TutPageViewController.m in Sources */,
 				52B44F011A0BC93D00B99FD2 /* TextEditedCommand.m in Sources */,
 				527D42F11A0AD75D008AE82A /* PerformOpenCommand.m in Sources */,
 				522E91C71A1CA6C2000AB933 /* FileLayout.m in Sources */,
@@ -1208,6 +1164,7 @@
 				525167E819FFCEB000814B16 /* AContainerViewController.m in Sources */,
 				52CF4A121A103CB2003197B2 /* ClickHelpCommand.m in Sources */,
 				5257F3491A01356C00757C77 /* UndoCommand.m in Sources */,
+				52DD4AAD1C2ACAA40039A052 /* TutSectionViewController.m in Sources */,
 				5272DE4419FE5776006E717F /* InjectionModule.m in Sources */,
 				522E91CA1A1CA9FC000AB933 /* MenuLayout.m in Sources */,
 				5287B9A71A1B7B4300082DE1 /* ClickSaveAsCommand.m in Sources */,
@@ -1218,23 +1175,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		52B5B32519FD7D4600EF531F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				52B5B33019FD7D4600EF531F /* LogotacularIOSTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		52B5B32B19FD7D4600EF531F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 52B5B30F19FD7D4600EF531F /* logotacular */;
-			targetProxy = 52B5B32A19FD7D4600EF531F /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		52B5B32219FD7D4600EF531F /* LaunchScreen.xib */ = {
@@ -1267,6 +1208,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1310,6 +1252,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1335,6 +1278,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
+				ENABLE_BITCODE = NO;
 				IBC_FLATTEN_NIBS = NO;
 				INFOPLIST_FILE = LogotacularIOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1353,6 +1297,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
+				ENABLE_BITCODE = NO;
 				IBC_FLATTEN_NIBS = NO;
 				INFOPLIST_FILE = LogotacularIOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1360,48 +1305,6 @@
 				PRODUCT_NAME = logotacular;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 2;
-			};
-			name = Release;
-		};
-		52B5B33719FD7D4600EF531F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = LogotacularIOSTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.jgrindall.ios.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = logotacular.temp_caseinsensitive_renameTests;
-				PROVISIONING_PROFILE = "";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LogotacularIOS.app/LogotacularIOS";
-			};
-			name = Debug;
-		};
-		52B5B33819FD7D4600EF531F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = LogotacularIOSTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.jgrindall.ios.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = logotacular.temp_caseinsensitive_renameTests;
-				PROVISIONING_PROFILE = "";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LogotacularIOS.app/LogotacularIOS";
 			};
 			name = Release;
 		};
@@ -1422,15 +1325,6 @@
 			buildConfigurations = (
 				52B5B33419FD7D4600EF531F /* Debug */,
 				52B5B33519FD7D4600EF531F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		52B5B33619FD7D4600EF531F /* Build configuration list for PBXNativeTarget "logotaculartests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				52B5B33719FD7D4600EF531F /* Debug */,
-				52B5B33819FD7D4600EF531F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
