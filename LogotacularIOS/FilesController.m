@@ -53,6 +53,7 @@
 }
 
 - (void)viewDidLoad{
+	[super viewDidLoad];
 	self.view.backgroundColor = [UIColor clearColor];
 	self.collectionView.backgroundColor = [UIColor clearColor];
 	[self.collectionView registerClass:[self cellClass] forCellWithReuseIdentifier:self.cellIdent];

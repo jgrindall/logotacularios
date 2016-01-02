@@ -8,9 +8,10 @@
 					   "<tr><th>Command</th><th>Example</th><th>What it does</th></tr>",
 					   "<tr><td>fd</td><td>fd 100</td><td>Move forward 100 units</td></tr>",
 					   "<tr><td>rt</td><td>rt 90</td><td>Turn right 90 degrees</td></tr>",
-					   "<tr><td>penup</td><td>penup</td><td>Lift the pen off the paper - no lines are<br/>drawn until you put it down again</td></tr>",
-					   "<tr><td>pendown</td><td>pendown</td><td>Place the pen back down on the paper</td></tr>",
-					   "<tr><td>color</td><td>color orange</td><td>Change the color of the pen</td></tr>",
+					   "<tr><td>home</td><td>home</td><td>Reset the turtle's position to where it started</td></tr>",
+					   "<tr><td>penup/pu</td><td>penup</td><td>Lift the pen off the paper</td></tr>",
+					   "<tr><td>pendown/pd</td><td>pendown</td><td>Place the pen back down on the paper</td></tr>",
+					   "<tr><td>color/colour</td><td>color orange</td><td>Change the color of the pen</td></tr>",
 					   "<tr><td>bg</td><td>bg black</td><td>Change the color of the background</td></tr>",
 					   "<tr><td>thick</td><td>thick 8</td><td>Change the thickness of the lines<br/>(from 1 to 20)</td></tr>",
 					   "<tr><td>rpt 10 [</br>...</br>]</td><td>rpt 10 [<br/>&nbsp;&nbsp;&nbsp;&nbsp;fd 100<br/>&nbsp;&nbsp;&nbsp;&nbsp;rt 36<br/>]</td><td>Repeat the commands inside<br/>the square brackets 10 times</td></tr>",
@@ -36,9 +37,9 @@
 					   "<h3>Program control</h3>",
 					   "<table class='commands commands2'>",
 					   "<tr><th>Command</th><th>Example</th><th>What it does</th></tr>",
-					   "<tr><td>stop</td><td>to drawpoly :n<br/>if :n = 0 [stop]<br/>...end<br/>drawpoly 10</td><td>Stop a function or loop from finishing execution</td></tr>",
-					   "<tr><td>if ... [...]</td><td>if (:a < 1) [fd 100]</td><td>Execute the statements in the square brackets only when a is less than one.</td></tr>",
-					   "<tr><td>ifelse ... [...] [...]</td><td>ifelse (:a <= 1) [fd 100] [fd -100]</td><td>Execute the statements in the first square brackets only when a is less than or equal to one, and the statements in the second square brackets otherwise.</td></tr>",
+					   "<tr><td>stop</td><td>to drawpoly :n<br/>if :n = 0 [stop]<br/>...<br/>end<br/>drawpoly 10</td><td>Stop a function or loop from finishing execution</td></tr>",
+					   "<tr><td>if ... [...]</td><td>if (:a < 1) [fd 100]</td><td>Execute the statements in the square brackets only when 'a' is less than one.<br/>You can use the following operators:<br/>= (equal to)<br/>< (less than)<br/>> (greater than)<br/><= (less than or equal to)<br/>>= (greater than or equal to)</td></tr>",
+					   "<tr><td>ifelse ... [...] [...]</td><td>ifelse (:a <= 1) [fd 100] [fd -100]</td><td>Execute the statements in the first square brackets only when 'a' is less than or equal to one, and the statements in the second square brackets otherwise.</td></tr>",
 					   "</table>"
 					   ]
 		   },
@@ -48,39 +49,46 @@
 					  "<h3>Colors you can use</h3>",
 					   "<table class='colors'>",
 					   "<tr>",
-					   "<td style='background:#c0392b;'>darkred/dkred/<br/>terracotta</td>",
-					   "<td style='background:#e74c3c;'>red<br/></td>",
-					   "<td style='background:#E77471;'>pink<br/></td>",
+					   "<td style='background:#c0392b;'>terracotta/dkred<br/></td>",
+					   "<td style='background:#e74c3c;'>red</td>",
+					   "<td style='background:#DE16AA;'>fuchsia<br/></td>",
+					   "<td style='background:#DC67CF;'>pink<br/></td>",
 					   "</tr>",
 					   "<tr>",
+					   "<td style='background:#DBA4EB;color:#333;'>wisteria<br/>&nbsp;</td>",
 					   "<td style='background:#9b59b6;'>purple/violet<br/></td>",
-					   "<td style='background:#653aa5;'>darkpurple/dkpurple/<br/>indigo</td>",
-					   "<td style='background:#34495e;'>darkblue/dkblue/<br/>midnight</td>",
+					   "<td style='background:#653aa5;'>indigo<br/></td>",
+					   "<td style='background:#34495e;'>midnight<br/></td>",
 					   "</tr>",
 					   "<tr>",
 					   "<td style='background:#2f88ca;'>blue<br/>&nbsp;</td>",
 					   "<td style='background:#82CAFF;color:#333;'>lightblue/ltblue<br/></td>",
-					   "<td style='background:#1abc9c;'>turquoise/turq</td>",
+					   "<td style='background:#15EBE0;color:#333;'>cyan<br/></td>",
+					   "<td style='background:#A1C4A4;color:#333;'>sage<br/></td>",
 					   "</tr>",
 					   "<tr>",
-					   "<td style='background:#16a085;'>dkturq/dkturquoise/<br/>darkturquoise</td>",
+					   "<td style='background:#1abc9c;'>emerald</td>",
+					   "<td style='background:#16a085;'>turquoise<br/></td>",
 					   "<td style='background:#27ae60;'>darkgreen/dkgreen<br/></td>",
 					   "<td style='background:#2ecc71;'>green<br/>&nbsp;</td>",
 					   "</tr>",
 					   "<tr>",
-					   "<td style='background:#f1c40f;color:#333;'>yellow<br/></td>",
+					   "<td style='background:#57F25A;'>applegreen<br/>&nbsp;</td>",
+					   "<td style='background:#f2DC0A;color:#333;'>yellow<br/></td>",
 					   "<td style='background:#f39c12;'>ltorange/lightorg/<br/>ltorg/lightorange</td>",
 					   "<td style='background:#e67e22;'>orange/org/<br/>carrot</td>",
 					   "</tr>",
 					   "<tr>",
 					   "<td style='background:#d35400;'>dkorange/darkorg/<br/>darkorange/dkorg</td>",
-					   "<td style='background:#dddddd;color:#333;'>white</td>",
-					   "<td style='background:#bdc3c7;color:#333;'>lightgrey/ltgrey/<br/>lightgray/ltgray</td>",
+					   "<td style='background:#A35218;'>brown</td>",
+					   "<td style='background:#612B04;'>chocolate</td>",
+					   "<td style='background:#000000;'>black</td>",
 					   "</tr>",
 					   "<tr>",
-					   "<td style='background:#95a5a6;color:#333;'>gray/grey</td>",
 					   "<td style='background:#6f7c7d;'>darkgray/dkgray/<br/>darkgrey/dkgrey</td>",
-					   "<td style='background:#000000;'>black</td>",
+					   "<td style='background:#95a5a6;color:#333;'>gray/grey</td>",
+					   "<td style='background:#bdc3c7;color:#333;'>lightgrey/ltgrey/<br/>lightgray/ltgray</td>",
+					   "<td style='background:#dddddd;color:#333;'>white</td>",
 					   "</tr>",
 					   "</table>"
 					   ]
@@ -88,7 +96,7 @@
 	],
 	"tut":[{
 
-			"file":"bg midnight\ncolor green\nto tree :d :s\nif :d=0 [stop]\nfd :s\nrt 340\ntree (:d-1) :s*0.8\nrt 40\ntree (:d-1) :s*0.8\nrt 160\nfd :s\nrt 180\nend\ntree 9 120",
+			"file":"bg midnight\ncolor green\nto tree :d :s\nif :d=0 [stop]\nfd :s\nrt 340\ntree (:d-1) :s*0.8\nrt 40\ntree (:d-1) :s*0.8\nrt 160\nfd :s\nrt 180\nend\npenup fd -250 pendown\ntree 9 120",
 			"media":"help/images/e7.png",
 			"bg":"dkgreen",
 			
@@ -107,12 +115,13 @@
 			"bg":"dkred",
 			
 			"contents":["<h3>2. How to write a program</h3>",
-					 "<p>In Logo we imagine a turtle that starts at the centre and is controlled by commands. As it moves around the screen it leaves a trail showing you where it has moved to.</p>",
+					 "<p>In Logo we imagine a turtle that starts at the centre of the screen, facing upwards, and is controlled by commands. As it moves around the screen it leaves a trail showing you where it has moved to.</p>",
 					 "<p>The most basic commands in Logo are 'go forward' and 'turn right'.  For example <span class='mono'>fd 100</span> tells the turtle to go forward 100 units (in whatever direction it is facing),  and <span class='mono'>rt 90</span> tells it turn 90 degrees clockwise.</p>",
 						"<p>Try drawing a square using:</p>",
 						"<pre>fd 100\nrt 90\nfd 100\nrt 90\nfd 100\nrt 90\nfd 100\nrt 90</pre>",
 						"<p></p>",
-						"<p>You don't have to put each command on a new line, but it can make it easier to read!</p>"
+						"<p>You don't have to put each command on a new line, but it can make it easier to read!</p>",
+						"<p>At any time you can reset the turtle's position to the centre, facing upwards by using the <span class='mono'>home</span> command.</p>"
 						]
 			},
 			{
@@ -123,10 +132,10 @@
 			
 			"contents":[
 			"<h3>3. Drawing with colors</h3>",
-					 "<p>You can change the color of the lines, as well as the background color of the page by using the <span class='mono'>color</span> and <span class='mono'>bg</span> commands:</p>",
+					 "<p>You can change the color of the lines, as well as the background color of the page by using the <span class='mono'>color</span> (or <span class='mono'>colour</span>) and <span class='mono'>bg</span> commands:</p>",
 					 "<pre>bg yellow\ncolor blue</pre>",
 					 	"<p></p>",
-						"<p>You can change the thickness of the lines drawn (from 1 to 20), and raise or lower the pen. Lifting the pen will stop lines being drawn until you place it down again.</p>",
+						"<p>You can change the thickness of the lines drawn (from 1 to 20), and raise or lower the pen. Lifting the pen (<span class='mono'>penup</span> or <span class='mono'>pu</span>) will stop lines being drawn until you place it down again (<span class='mono'>pendown</span> or <span class='mono'>pd</span>).</p>",
 						"<pre>bg yellow color blue\nthick 8\nfd 80 penup\nfd 80 pendown\nfd 80\nrt 120 \nfd 80 penup\nfd 80 pendown\nfd 80 rt 120 \nfd 80 penup\nfd 80 pendown\nfd 80</pre>"
 						]
 			},
@@ -138,20 +147,20 @@
 			
 			"contents":[
 			"<h3>4. Using variables</h3>",
-					 "<p>Variables let you define a number so you can use it in many places later. Not only do they let you re-use a value, but later on you only have to change them one place if you need to.</p>",
-					 "<p>Use the <span class='mono'>make</span> command to set the value of a variable:</p>",
+					 "<p>Variables let you define a number so you can use it in many places later. Not only do they let you re-use a value, but later on you only have to change them one place if you need to. Use the <span class='mono'>make</span> command to set the value of a variable:</p>",
 					 "<pre>make \"side 200</pre>",
 						"<p>You must put a <span class='mono'>\"</span> symbol in front when you set a variable. To use the variable, put a colon <span class='mono'>:</span> in front:</p>",
 						"<pre>fd :side</pre>",
-						"<p></p>",
 						"<p>This is the same as writing <span class='mono'>fd 200</span>, but we have named the variable and can change it later.</p>",
 						"<p>Remember to use <span class='mono'>\"</span> when you're setting a variable and <span class='mono'>:</span> when you want to use it.</p>",
-						"<pre>make \"side 100\nfd :side rt 45\nfd :side rt 45\nfd :side rt 90\nfd :side rt 45\nfd :side rt 45\nfd :side</pre>"
+						"<pre>make \"side 100\nfd :side rt 45\nfd :side rt 45\nfd :side rt 90\nfd :side rt 45\nfd :side rt 45\nfd :side</pre>",
+						"<p></p>",
+						"<p>Try changing the number '100' and see the result.</p>"
 						]
 			},
 			{
 
-			"file":"bg ltblue\ncolor red\nthick 10\nmake \"h 30\nmake \"w 3*:h\nfd :w - 2*:h rt 90\nfd :w - :h rt 90\nfd :w rt 90 \nfd :w + :h  rt 90 \nfd :w + 2*:h rt 90",
+			"file":"make \"h 30\nmake \"w 3*:h\nfd (:w - 2*:h) rt 90\nfd (:w - :h) rt 90\nfd :w rt 90 \nfd :w + :h  rt 90 \nfd :w + 2*:h rt 90",
 			"media":"help/images/e2.png",
 			"bg":"dkred",
 			
@@ -161,7 +170,7 @@
 					 "<p>Like most computer programs, you must write <span class='mono'>*</span> for multiply (or times) and <span class='mono'>/</span> for divide.</p>",
 					 "<p>You can use <span class='mono'>+</span> and <span class='mono'>-</span> and round brackets <span class='mono'>( )</span> like you normally would.</p>",
 						"<p>For example:</p>",
-						"<pre>make \"h 30\nmake \"w 3*:h\nfd :w - 2*:h rt 90\nfd :w - :h rt 90\nfd :w rt 90 \nfd :w + :h  rt 90 \nfd :w + 2*:h rt 90</pre>"
+						"<pre>make \"h 30\nmake \"w 3*:h\nfd (:w - 2*:h) rt 90\nfd (:w - :h) rt 90\nfd :w rt 90 \nfd :w + :h  rt 90 \nfd :w + 2*:h rt 90</pre>"
 						]
 			},
 			{
@@ -175,7 +184,7 @@
 					 "<p>Loops can be programmed by use of the <span class='mono'>rpt</span> (repeat) command which tells the turtle to execute the commands inside the square brackets a specific number of times.</p>",
 					 "<pre>rpt 10 [ put your commands here and they will be executed 10 times! ]</pre>",
 					 "<p></p>",
-						"<p>We could draw a square like this:</p>",
+						"<p>You can draw a square like this:</p>",
 						"<pre>rpt 4 [ fd 100 rt 90 ]</pre>",
 						"<p></p>",
 						"<p>You must start a repeat block with <span class='mono'>[</span> and you must end it with <span class='mono'>]</span>.</p>",
@@ -186,15 +195,17 @@
 			},
 			
 				{
-				"file":"bg yellow\ncolor blue\nmake \"a 10\nrpt 300 [\n  fd 25\n  rt :a\n  make \"a :a*1.01\n]",
+				"file":"bg yellow\ncolor blue\nmake \"a 3\nrpt 300 [\n  fd 20\n  rt :a/4\n  make \"a :a + 1\n]",
 				"media":"help/images/e14.png",
 				"bg":"blue",
 				"contents":[
 							"<h3>7. Loops continued</h3>",
 							"<p>By turning right a small amount and repeating many hundreds of times we can create curves.</p>",
 							"<p>Interesting effects can be created by modifying the value of a variable inside a loop.</p>",
-							"<p>For example, in the program below, the variable <span class='mono'>a</span> is multiplied by 1.01 in each step of the loop, which is repeated 300 times to create a spiral shape.</p>",
-							"<pre>make \"a 10\nrpt 300 [\n  fd 25\n  rt :a\n  make \"a :a*1.01\n]</pre>"
+							"<p>For example, in the program below, the variable <span class='mono'>a</span> is increased by one in each step of the loop, which is repeated 300 times to create a spiral shape.</p>",
+							"<pre>make \"a 3\nrpt 300 [\n  fd 20\n  rt :a/4\n  make \"a :a + 1\n]</pre>",
+							"<p></p>",
+							"<p>The spaces at the start of the lines are optional but can make your program easier to read</p>"
 							]
 				},
 				{
@@ -225,7 +236,7 @@
 					 "<p>You use the <span class='mono'>to</span> keyword to define a procedure, and <span class='mono'>end</span> to mark the end:</p>",
 						"<pre>make \"side 150\nto drawsquare\n  rpt 4 [\n    fd :side \n    rt 90\n  ]\nend\n\ndrawsquare</pre>",
 						"<p></p>",
-						"<p>The lines between <span class='mono'>to</span> and <span class='mono'>end</span> define the procedure and the last line 'calls' or 'executes' the function. The spaces at the start of the lines are optional but can make it easier to read.</p>"
+						"<p>The lines between <span class='mono'>to</span> and <span class='mono'>end</span> define the procedure and the last line 'calls' or 'executes' the function.</p>"
 						]
 			},
 			{
@@ -270,12 +281,11 @@
 			"contents":[
 			"<h3>12. Variable scope</h3>",
 			 "<p>The program below illustrates the concept of 'scope' in Logotacular.</p>",
-			 "<p>Every variable exists in a 'scope' depending on where you defined it, so you can have two variables with the same name that exist in different 'scopes'.</p>",
-			 "<p>First look at the following lines from the program:</p>",
+			 "<p>Every variable exists in a 'scope' depending on where you defined it, so you can have two variables with the same name that exist in different 'scopes'. For example:</p>",
 						"<pre>make \"j 50\nto fn\n  fd :j\nend\nfn</pre>",
 						"<p></p>",
 						"<p>A variable called <span class='mono'>j</span> is set to 50 outside of the function. When called, the function will check if a variable called <span class='mono'>j</span> has been defined again inside the function itself.</p>",
-						"<p>In this case it hasn't, so the function uses the variable <span class='mono'>j</span> from outside. We can say that <span class='mono'>j</span> has 'global scope' because any code can use it.</p>"
+						"<p>In this case it hasn't, so the function uses the variable <span class='mono'>j</span> from outside. We can say that <span class='mono'>j</span> has 'global scope' because any code (in a function or not) can use it.</p>"
 						]
 			},
 			{
@@ -292,7 +302,7 @@
 			 			"<p></p>",
 						"<p>A variable called <span class='mono'>i</span> is set to 50 outside the function. But when the function is called it immediately sets another variable called <span class='mono'>i</span> to 100, and goes forward 100 units.</p>",
 						"<p>On the last line we go forward 'i' units again, but this time it will go forward 50 units.</p>",
-						"<p>This is because there are actually two different variables called <span class='mono'>i</span>, with different scope, and the one that equals 100 only exists temporarily, only inside the function.</p>"
+						"<p>This is because there are actually two different variables called <span class='mono'>i</span>, with different scope, and the one that equals 100 exists temporarily, only inside the function.</p>"
 						]
 			},
 			{
@@ -307,8 +317,8 @@
 			 "<p>You can use the keyword <span class='mono'>stop</span> to stop a function or loop executing.</p>",
 			 "<pre>rpt 4 [\n fd 100 rt 90\n stop\n]</pre>",
 			 			"<p></p>",
-						"<p>Without the break statement the program above would draw a square.</p>",
-						"<p>With the break statement it will go forward once and turn 90 degrees, and then the loop will stop.</p>"
+						"<p>Without the <span class='mono'>stop</span> statement the program above would draw a square.</p>",
+						"<p>With the <span class='mono'>stop</span> statement it will go forward once and turn 90 degrees, and then the loop will stop.</p>"
 						]
 			},
 			{
@@ -359,11 +369,25 @@
 			
 			"contents":[
 			"<h3>17. Program control continued</h3>",
-			 "<p>Combining recursion with the stop statement is a powerful way to create interesting designs. The function <span class='mono'>tree</span> will draw a tree <span class='mono'>d</span> branches high. It is called with an input value of '5' for a tree 5 branches high.</p>",
+			 "<p>Combining recursion with the <span class='mono'>stop</span> statement is a powerful way to create interesting designs. The function <span class='mono'>tree</span> will draw a tree <span class='mono'>d</span> branches high. It is called with an input value of '5' for a tree 5 branches high.</p>",
 			 "<p>The function goes forward and turns left 20 degrees, then it draws a tree with one fewer branches, turns right 40 degrees and draws another tree with one fewer branches.</p>",
 			 "<pre>make \"s 80\nto tree :d\n if :d=0 [stop]\n fd :s rt 340\n tree (:d-1)\n rt 40\n tree (:d-1)\n rt 160\n fd :s\n rt 180\nend\ntree 5</pre>",
 			 			"<p></p>",
 			 			"<p>To make that work we need the last three lines of the function - which move the turtle back to the start, facing in exactly the same direction as it started.</p>"
+						]
+			},
+			{
+
+
+			"file":"bg midnight\ncolor red\nto sier :n :len\nif :n=0 [stop]\nrpt 3 [sier :n-1 :len/2\nfd :len\nrt 120\n]\nend\nsier 5 250",
+			"media":"help/images/e20.png",
+			"bg":"dkred",
+			
+			"contents":[
+			"<h3>18. Program control continued</h3>",
+			 "<p>The tree we drew is an example of a fractal, or a shape demonstrating 'self-similarity'. It consists of smaller copies of itself repeating at each step.</p>",
+			 "<p>Another famous fractal you can draw using Logotacular is the Sierpinski gasket or Sierpinski triangle, which consists of an equilateral triangle divided into smaller copies of the same triangle recursively.</p>",
+			 "<pre>to sier :n :len\nif :n=0 [stop]\nrpt 3 [sier :n-1 :len/2\nfd :len\nrt 120\n]\nend\nsier 5 250</pre>"
 						]
 			},
 			{
@@ -373,7 +397,7 @@
 			"bg":"dkgreen",
 			
 			"contents":[
-			"<h3>18. Errors and debugging</h3>",
+			"<h3>19. Errors and debugging</h3>",
 					 "<p>Errors are of two kinds: they can be in your code itself or they might only happen when you run your code.</p>",
 					 "<p>The first kind of errors include those such as missing out a bracket or forgetting to put <span class='mono'>end</span> at the end of a function definition.  The second kind of errors don't appear until you press 'Play'.  For example, you might try to use a variable or call a function that you haven't defined, or you might divide by zero by mistake.</p>",
 						"<p>This program has an error of the first kind:</p>",
@@ -382,7 +406,8 @@
 						"<p>The program below has two errors of the second kind.  Firstly <span class='mono'>b</span> is not defined, and secondly you cannot divide by <span class='mono'>a</span> since it is zero.</p>",
 						"<pre>make \"a 0\nfd :b/:a</pre>",
 						"<p></p>",
-						"<p>In Logotacular an arrow appears where it thinks the error is - you can click on it for more information.</p>"
+						"<p>In Logotacular an arrow appears where it thinks the error is. It isn't always 100% accurate, sometimes the error is actually on a previous line which makes the indicated line incorrect.</p>",
+						"<p>You can click on the arrow for more information about the error.</p>"
 						]
 			},
 			
@@ -391,7 +416,7 @@
 	"help":[
 	{
 
-			"file":"bg purple\ncolor white\nthick 20\nrt -30\nto star :len\nrpt 6 [\nfd :len\nrt -60\nfd :len\n rt 120\n]\nend\nstar 100\nrt 30\npenup fd 70 pendown\nrt -30\nstar 60",
+			"file":"bg midnight\ncolor green\nto tree :d :s\nif :d=0 [stop]\nfd :s\nrt 340\ntree (:d-1) :s*0.8\nrt 40\ntree (:d-1) :s*0.8\nrt 160\nfd :s\nrt 180\nend\npenup fd -250 pendown\ntree 9 120",
 			"media":"help/images/e7.png",
 			"bg":"dkgreen",
 			
@@ -405,7 +430,7 @@
 			},
 			{
 
-			"file":"bg black\ncolor green\nrpt 36 [\nrpt 360 [\nfd 1\nrt 1\n]\nrt 10\n]",
+			"file":"bg yellow\ncolor red\nthick 5\nmake \"n 24\nmake \"s 300\nrpt :n [\n fd :s\n rt (180 - 360/:n)\n]",
 			"media":"help/images/e18.png",
 			"bg":"dkred",
 			
@@ -419,7 +444,7 @@
 			},
 			{
 
-			"file":"bg white\ncolor terracotta\nto drawtri :l\nrpt 3 [\nfd :l\nrt 120 ]\nend\n\nmake \"l 200\nrpt 200 [\ndrawtri :l\nrt 10\nmake \"l :l - 1\n]",
+			"file":"bg ltblue\ncolor blue\nmake \"a 5\nrpt 600 [\n fd 16\n rt :a\n make \"a :a*1.01\n]",
 			"media":"help/images/e19.png",
 			
 			"bg":"blue",

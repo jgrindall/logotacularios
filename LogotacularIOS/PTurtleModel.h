@@ -22,6 +22,8 @@ extern NSString* const TURTLE_POS;
 
 - (void) moveFdBy:(float) angle;
 
+- (void) home;
+
 - (void) reset;
 
 @end

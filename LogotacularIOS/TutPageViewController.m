@@ -27,7 +27,7 @@
 }
 
 - (void) viewDidDisappear:(BOOL)animated{
-	NSLog(@"gone");
+	[super viewDidDisappear:animated];
 }
 
 @end

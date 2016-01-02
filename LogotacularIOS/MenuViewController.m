@@ -35,6 +35,7 @@
 }
 
 - (void) viewDidLoad{
+	[super viewDidLoad];
 	[self addButtons];
 	[self addListeners];
 	[self showMenuChanged:nil];

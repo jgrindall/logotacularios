@@ -146,10 +146,12 @@
 }
 
 - (void) viewWillDisappear:(BOOL)animated{
+	[super viewWillDisappear:animated];
 	[[self getFileBrowserModel] reset];
 }
 
 - (void) viewDidLoad{
+	[super viewDidLoad];
 	[self addCollection];
 	[self addLabel];
 	[self addRightBarButtons];

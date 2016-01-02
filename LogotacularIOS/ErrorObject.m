@@ -85,7 +85,7 @@
 	if(line && col && message){
 		errorMessage = [NSString stringWithFormat:@"Error on line %@ at position %@. %@", line, col, message];
 	}
-	if(line && message){
+	else if(line && message){
 		errorMessage = [NSString stringWithFormat:@"Error on line %@. %@", line, message];
 	}
 	else if(message){

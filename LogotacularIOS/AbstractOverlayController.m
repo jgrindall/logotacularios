@@ -22,10 +22,12 @@
 }
 
 - (void) viewWillAppear:(BOOL)animated{
+	[super viewWillAppear:animated];
 	[self layoutBg];
 }
 
 - (void) viewDidLoad{
+	[super viewDidLoad];
 	[self addBg];
 }
 

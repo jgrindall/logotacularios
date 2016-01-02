@@ -24,6 +24,7 @@
 @implementation WebViewController
 
 - (void) viewDidLoad{
+	[super viewDidLoad];
 	[self addWebView];
 	[self addListeners];
 }

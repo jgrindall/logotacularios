@@ -37,6 +37,7 @@ static float const minAllowed = -2000000000.0;
 NSString* const FD_KEYWORD				= @"fd";
 NSString* const RT_KEYWORD				= @"rt";
 NSString* const PENUP_KEYWORD			= @"penup";
+NSString* const HOME_KEYWORD			= @"home";
 NSString* const PENDOWN_KEYWORD			= @"pendown";
 NSString* const BG_KEYWORD				= @"bg";
 NSString* const COLOR_KEYWORD			= @"color";
@@ -53,10 +54,12 @@ NSString* const THICK_KEYWORD			= @"thick";
 }
 
 - (void) viewWillAppear:(BOOL)animated{
+	[super viewWillAppear:animated];
 	[self layoutPaint];
 }
 
 - (void) viewDidLoad{
+	[super viewDidLoad];
 	[self addPaint];
 	[self addGestures];
 }
@@ -130,8 +133,7 @@ NSString* const THICK_KEYWORD			= @"thick";
 	if(recognizer.state == UIGestureRecognizerStateBegan) {
 		self.startTransform = self.currentTransform;
 	}
-	float scale = [self getScale:self.startTransform];
-	scale = 1.0;
+	CGFloat scale = 1.0;
 	CGAffineTransform trans = CGAffineTransformMakeTranslation(t.x/scale, t.y/scale);
 	self.currentTransform = CGAffineTransformConcat(self.startTransform, trans);
 	[self updateTransforms];
@@ -252,6 +254,10 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_ERROR_HIT withData:error];
 }
 
+- (void) home{
+	[[self getTurtleModel] home];
+}
+
 - (void) fd:(NSNumber*) amount{
 	if ([amount isKindOfClass:[NSNull class]]){
 		[self numericalOverflow];
@@ -299,6 +305,9 @@ NSString* const THICK_KEYWORD			= @"thick";
 	}
 	else if([name isEqualToString:PENUP_KEYWORD]){
 		[[self getTurtleModel] setVal:[NSNumber numberWithBool:NO] forKey:TURTLE_PEN_DOWN];
+	}
+	else if([name isEqualToString:HOME_KEYWORD]){
+		[self home];
 	}
 	else if([name isEqualToString:PENDOWN_KEYWORD]){
 		[[self getTurtleModel] setVal:[NSNumber numberWithBool:YES] forKey:TURTLE_PEN_DOWN];

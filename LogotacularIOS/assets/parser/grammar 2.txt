@@ -42,7 +42,11 @@ sep* f4:makestmt sep*
 return {type:"insidestmt", children:[f4]};
 }
 /
-sep* p:penupstmt sep*
+sep* h:homestmt sep*
+{
+return h;
+}
+/sep* p:penupstmt sep*
 {
 return p;
 }
@@ -123,17 +127,22 @@ booleanoperator =
 ">=" {return ">="}
 
 
-penupstmt = sep* 'penup' eoline
+penupstmt = sep* ('penup' / 'pu') eoline
 {
 return {"type":"penupstmt"};
 }
 
-pendownstmt = sep* 'pendown' eoline
+homestmt = sep* ('home') eoline
+{
+return {"type":"homestmt"};
+}
+
+pendownstmt = sep* ('pendown' / 'pd') eoline
 {
 return {"type":"pendownstmt"};
 }
 
-colorstmt = sep* 'color' sep* c:color eoline
+colorstmt = sep* ('color' / 'colour') sep* c:color eoline
 {
 return {"type":"colorstmt", "color":c};
 }
@@ -147,7 +156,7 @@ thickstmt = sep* 'thick'  sep* e:expression eoline
 return {"type":"thickstmt", "children":[e]};
 }
 
-color = 'turquoise' / 'turq'/ 'pink' / 'ltblue' / 'lightblue' / 'dkpurple' / 'darkpurple' / 'violet' / 'indigo' / 'green' / 'blue' / 'dkblue' / 'darkblue' / 'purple' / 'midnight' / 'darkkturqoise' / 'dkturq'/ 'dkturquoise'/ 'darkgreen'/ 'dkgreen' / 'yellow' / 'carrot' / 'orange' / 'org' / 'red' / 'snow' / 'gray' / 'grey' / 'ltorange' / 'lightorange' / 'lightorg' / 'ltorg' / 'dkorange' / 'darkorg' / 'dkorg' / 'darkorange' / 'terracotta' / 'dkred' / 'darkred' / 'ltgray'/ 'ltgrey' / 'lightgray' / 'lightgrey' / 'darkgray' / 'darkgrey' / 'dkgrey' / 'dkgray' / 'white' / 'black'
+color = 'turquoise' / 'turq'/ 'pink' / 'ltblue' / 'lightblue' / 'dkpurple' / 'darkpurple' / 'violet' / 'indigo' / 'green' / 'blue' / 'dkblue' / 'darkblue' / 'purple' / 'midnight' / 'darkkturqoise' / 'dkturq'/ 'dkturquoise'/ 'darkgreen'/ 'dkgreen' / 'yellow' / 'carrot' / 'orange' / 'org' / 'red' / 'snow' / 'gray' / 'grey' / 'ltorange' / 'lightorange' / 'lightorg' / 'ltorg' / 'dkorange' / 'darkorg' / 'dkorg' / 'darkorange' / 'terracotta' / 'dkred' / 'darkred' / 'ltgray'/ 'ltgrey' / 'lightgray' / 'lightgrey' / 'darkgray' / 'darkgrey' / 'dkgrey' / 'dkgray' / 'white' / 'black' / 'fuchsia' / 'wisteria' / 'cyan' / 'sage'  / 'emerald' / 'brown' / 'chocolate' / 'applegreen'
 
 
 callfnstmt = sep* f:fnname sep* a:expressionlist eoline
@@ -274,7 +283,7 @@ expressionspace = sep* e:expression ' '
 return e;
 }
 
-keyword = 'to' / 'fd' / 'rt' / 'end' / 'penup' / 'pendown' / 'color' / 'bg' / 'thick'
+keyword = 'to' / 'fd' / 'rt' / 'end' / 'penup' / 'pu' / 'pd' / 'pendown' / 'color' / 'bg' / 'thick' / 'stop' / 'home'
 
 fnname = !keyword c0:([a-zA-Z])+ c1:[a-zA-Z0-9_]*
 {

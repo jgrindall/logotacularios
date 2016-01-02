@@ -51,6 +51,10 @@ function visitpenupstmt(node){
 	self.postMessage({ "type":"command", "name":"penup" });
 }
 
+function visithomestmt(node){
+	self.postMessage({ "type":"command", "name":"home" });
+}
+
 function visitpendownstmt(node){
 	self.postMessage({ "type":"command", "name":"pendown" });
 }
@@ -329,6 +333,9 @@ function visitNode(node){
 	}
 	else if(t=="penupstmt"){
 		visitpenupstmt(node);
+	}
+	else if(t=="homestmt"){
+		visithomestmt(node);
 	}
 	else if(t=="pendownstmt"){
 		visitpendownstmt(node);

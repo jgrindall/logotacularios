@@ -99,7 +99,7 @@
 }
 
 - (void) onClick{
-	NSString* file = [HelpData getTutFile:self.index];
+	NSString* file = [HelpData getHelpFile:self.index];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_LOAD_FROM_HELP withData:file];
 	[self exit];
 }
