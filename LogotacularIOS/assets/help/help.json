@@ -6,8 +6,8 @@
 					   "<h3>Basic commands and looping</h3>",
 					   "<table class='commands commands0'>",
 					   "<tr><th>Command</th><th>Example</th><th>What it does</th></tr>",
-					   "<tr><td>fd</td><td>fd 100</td><td>Move forward 100 units</td></tr>",
-					   "<tr><td>rt</td><td>rt 90</td><td>Turn right 90 degrees</td></tr>",
+					   "<tr><td>fd, bk</td><td>fd 100<br/>bk 100</td><td>Move forwards or backwards 100 units</td></tr>",
+					   "<tr><td>rt, lt</td><td>rt 90<br/>lt 90</td><td>Turn right or left 90 degrees</td></tr>",
 					   "<tr><td>home</td><td>home</td><td>Reset the turtle's position to where it started</td></tr>",
 					   "<tr><td>penup/pu</td><td>penup</td><td>Lift the pen off the paper</td></tr>",
 					   "<tr><td>pendown/pd</td><td>pendown</td><td>Place the pen back down on the paper</td></tr>",
@@ -116,12 +116,11 @@
 			
 			"contents":["<h3>2. How to write a program</h3>",
 					 "<p>In Logo we imagine a turtle that starts at the centre of the screen, facing upwards, and is controlled by commands. As it moves around the screen it leaves a trail showing you where it has moved to.</p>",
-					 "<p>The most basic commands in Logo are 'go forward' and 'turn right'.  For example <span class='mono'>fd 100</span> tells the turtle to go forward 100 units (in whatever direction it is facing),  and <span class='mono'>rt 90</span> tells it turn 90 degrees clockwise.</p>",
-						"<p>Try drawing a square using:</p>",
+					 "<p>The most basic commands in Logo are 'go forward' and 'turn right'.  For example <span class='mono'>fd 100</span> tells the turtle to go forward 100 units (in whatever direction it is facing),  and <span class='mono'>rt 90</span> tells it turn 90 degrees clockwise. Try drawing a square using:</p>",
 						"<pre>fd 100\nrt 90\nfd 100\nrt 90\nfd 100\nrt 90\nfd 100\nrt 90</pre>",
 						"<p></p>",
 						"<p>You don't have to put each command on a new line, but it can make it easier to read!</p>",
-						"<p>At any time you can reset the turtle's position to the centre, facing upwards by using the <span class='mono'>home</span> command.</p>"
+						"<p>You can turn left instead of right using the <span class='mono'>lt</span> command, and go backwards using the <span class='mono'>bk</span> command. At any time you can reset the turtle's position to the centre, facing upwards, by using the <span class='mono'>home</span> command.</p>"
 						]
 			},
 			{

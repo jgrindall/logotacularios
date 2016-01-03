@@ -22,9 +22,19 @@ sep* f1:fdstmt sep*
 return {type:"insidestmt", children:[f1]};
 }
 /
+sep* b1:bkstmt sep*
+{
+return {type:"insidestmt", children:[b1]};
+}
+/
 sep* f2:rtstmt sep*
 {
 return {type:"insidestmt", children:[f2]};
+}
+/
+sep* l2:ltstmt sep*
+{
+return {type:"insidestmt", children:[l2]};
 }
 /
 sep* f25:setstmt sep*
@@ -165,14 +175,24 @@ return {type:"callfnstmt", name:f.name, args:a};
 }
 
 
-fdstmt  = 'fd' sep* num:expression eoline
+fdstmt  = ('fd' / 'forward') sep* num:expression eoline
 {
 return {type:"fdstmt", children:[num]};
 }
 
-rtstmt  = 'rt' sep* num:expression eoline
+bkstmt  = ('bk' / 'back') sep* num:expression eoline
+{
+return {type:"bkstmt", children:[num]};
+}
+
+rtstmt  = ('rt' / 'right') sep* num:expression eoline
 {
 return {type:"rtstmt", children:[num]};
+}
+
+ltstmt  = ('lt' / 'left') sep* num:expression eoline
+{
+return {type:"ltstmt", children:[num]};
 }
 
 setstmt = 'setxy' sep* numx:expression sep* numy:expression sep*

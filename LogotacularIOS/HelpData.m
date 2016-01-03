@@ -20,8 +20,8 @@
 static NSMutableDictionary* _dic = nil;
 
 NSString* const STYLES0 = @"h1, p, h2, h3, div, span, ul, li, td, td, th{font-family: 'Lato-Light';font-size: 16px;color:white;}";
-NSString* const STYLES1 = @"table{border-collapse: collapse;font-size:18px;margin-left:43px;margin-top:10px;}table,tr{width:900px;}th{border:2px solid #666 !important;}td,th{padding:12px;border:2px solid #666;}td{font-size:19px;}table.commands td:nth-child(2n+1){text-align:center;}th{font-size:24px;text-align:center;}tr{width:100%;}table.commands td:nth-child(1){width:25%}table.commands td:nth-child(2){width:25%}table.commands td:nth-child(3){width:50%}table.commands.commands0 tr:nth-child(2n+1){background:#2dc86e;}table.commands.commands1 tr:nth-child(2n+1){background:#d55244;}table.commands.commands2 tr:nth-child(2n+1){background:#5aa1d8;}";
-NSString* const STYLES2 = @"table.colors td{padding:15px;height:30px;text-align:center;width:25%}table.colors tr{height:30px;}table.colors td,th{border:2px solid transparent;}";
+NSString* const STYLES1 = @"table{border-collapse: collapse;font-size:16px;margin-left:25px;margin-top:7px;}table,tr{width:918px;}th{border:2px solid rgba(100,100,100,0.4) !important;}td,th{padding:10px;border:2px solid rgba(100,100,100,0.4);}td{font-size:18px;}table.commands td:nth-child(2n+1){text-align:center;}th{font-size:24px;text-align:center;}tr{width:100%;}table.commands td:nth-child(1){width:25%}table.commands td:nth-child(2){width:25%}table.commands td:nth-child(3){width:50%}table.commands.commands0 tr:nth-child(2n+1){background:#2dc86e;}table.commands.commands1 tr:nth-child(2n+1){background:#d55244;}table.commands.commands2 tr:nth-child(2n+1){background:#5aa1d8;}";
+NSString* const STYLES2 = @"table.colors td{padding:10px;height:27px;text-align:center;width:25%}table.colors tr{height:27px;}table.colors td,th{border:2px solid transparent;}";
 NSString* const STYLES3 = @"h1,h2,h3{font-size:23px;}";
 NSString* const STYLES4 = @"li{padding:14px;}";
 NSString* const STYLES5 = @"pre, span.mono{font-family:'DroidSansMono';color:white;font-size:19px;}p.quote{font-size: 16px;font-style:italic;}";

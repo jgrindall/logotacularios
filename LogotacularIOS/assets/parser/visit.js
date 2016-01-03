@@ -47,6 +47,12 @@ function visitfdstmt(node){
 	self.postMessage({ "type":"command", "name":"fd", "amount":amount });
 }
 
+function visitbkstmt(node){
+	visitchildren(node);
+	var amount = stack.pop();
+	self.postMessage({ "type":"command", "name":"fd", "amount": -1 * amount });
+}
+
 function visitpenupstmt(node){
 	self.postMessage({ "type":"command", "name":"penup" });
 }
@@ -199,6 +205,13 @@ function visitrtstmt(node){
 	self.postMessage({"type":"command", "name":"rt", "amount":amount });
 }
 
+function visitltstmt(node){
+	visitchildren(node);
+	var amount = stack.pop();
+	amount = amount % 360;
+	self.postMessage({"type":"command", "name":"rt", "amount": -1 * amount });
+}
+
 function visittimesordivterms(node){
 	visitchildren(node);
 	var ch = node.children;
@@ -349,8 +362,14 @@ function visitNode(node){
 	else if(t=="fdstmt"){
 		visitfdstmt(node);
 	}
+	else if(t=="bkstmt"){
+		visitbkstmt(node);
+	}
 	else if(t=="rtstmt"){
 		visitrtstmt(node);
+	}
+	else if(t=="ltstmt"){
+		visitltstmt(node);
 	}
 	else if(t=="rptstmt"){
 		visitrptstmt(node);
