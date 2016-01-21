@@ -258,6 +258,25 @@ function visitusevar(node){
 	}
 }
 
+function visitsetxy(node){
+	visitchildren(node);
+	var amountY = stack.pop();
+	var amountX = stack.pop();
+	console.log("->  visit setxy", amountY, amountX);
+	self.postMessage({ "type":"command", "name":"setxy", "amountX":amountX, "amountY":amountY });
+}
+
+function visitsqrtexpression(node){
+	visitchildren(node);
+	var amount = stack.pop();
+	if(amount >= 0){
+		stack.push(Math.sqrt(amount));
+	}
+	else{
+		runTimeError("You took the square root of a negative number");
+	}
+}
+
 function visitminusexpression(node){
 	visitchildren(node);
 	var num = stack.pop();
@@ -457,6 +476,12 @@ function visitNode(node){
 	}
 	else if(t=="usevar"){
 		visitusevar(node);
+	}
+	else if(t=="setxy"){
+		visitsetxy(node);
+	}
+	else if(t=="sqrtexpression"){
+		visitsqrtexpression(node);
 	}
 }
 

@@ -303,7 +303,7 @@ expressionspace = sep* e:expression ' '
 return e;
 }
 
-keyword = 'to' / 'fd' / 'rt' / 'end' / 'penup' / 'pu' / 'pd' / 'pendown' / 'color' / 'bg' / 'thick' / 'stop' / 'home'
+keyword = 'to' / 'fd' / 'rt' / 'end' / 'penup' / 'pu' / 'pd' / 'pendown' / 'color' / 'bg' / 'thick' / 'stop' / 'home' / 'setxy' / 'sqrt'
 
 fnname = !keyword c0:([a-zA-Z])+ c1:[a-zA-Z0-9_]*
 {
@@ -423,6 +423,11 @@ return {type:"numberexpression", children:[e]};
 {
 return {type:"numberexpression", children:[v]};
 }
+/ 'sqrt' sep* e:expression sep*
+{
+	return {type:"sqrtexpression", children:[e]};
+}
+
 
 
 

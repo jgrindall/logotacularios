@@ -50,6 +50,11 @@ NSString* const TURTLE_POS = @"turtle_pos";
 	[self setVal:[NSValue valueWithCGPoint:centre] forKey:TURTLE_POS];
 }
 
+- (void) setxyWithX:(float) x andY:(float)y{
+	CGPoint p = CGPointMake(x, y);
+	[self setVal:[NSValue valueWithCGPoint:p] forKey:TURTLE_POS];
+}
+
 - (void) moveFdBy:(float) amount{
 	float heading = [[self getVal:TURTLE_HEADING] floatValue];
 	CGPoint p0 = [[self getVal:TURTLE_POS] CGPointValue];

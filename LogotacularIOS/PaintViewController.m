@@ -35,6 +35,7 @@ static float const maxAllowed = 2000000000.0;
 static float const minAllowed = -2000000000.0;
 
 NSString* const FD_KEYWORD				= @"fd";
+NSString* const SETXY_KEYWORD			= @"setxy";
 NSString* const RT_KEYWORD				= @"rt";
 NSString* const PENUP_KEYWORD			= @"penup";
 NSString* const HOME_KEYWORD			= @"home";
@@ -258,6 +259,29 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[[self getTurtleModel] home];
 }
 
+- (void) setxyWithX:(NSNumber*) x andY:(NSNumber*) y{
+	if ([x isKindOfClass:[NSNull class]] || [y isKindOfClass:[NSNull class]]){
+		[self numericalOverflow];
+	}
+	else{
+		float fx = [x floatValue];
+		float fy = [y floatValue];
+		if(fx > maxAllowed || fx < minAllowed || fy > maxAllowed || fy < minAllowed){
+			[self numericalOverflow];
+		}
+		else{
+			CGPoint p0 = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
+			[[self getTurtleModel] setxyWithX:fx andY:fy];
+			if([[[self getTurtleModel] getVal:TURTLE_PEN_DOWN] boolValue]){
+				CGPoint p1 = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
+				NSNumber* thick = [[self getTurtleModel] getVal:TURTLE_PEN_THICK];
+				UIColor* clr = [[self getTurtleModel] getVal:TURTLE_COLOR];
+				[self.paintView drawLineFrom:p0 to:p1 withColor:clr andThickness:[thick integerValue]];
+			}
+		}
+	}
+}
+
 - (void) fd:(NSNumber*) amount{
 	if ([amount isKindOfClass:[NSNull class]]){
 		[self numericalOverflow];
@@ -290,6 +314,9 @@ NSString* const THICK_KEYWORD			= @"thick";
 	NSString* name = (NSString*)dic[@"name"];
 	if([name isEqualToString:FD_KEYWORD]){
 		[self fd:(NSNumber*)dic[@"amount"]];
+	}
+	else if([name isEqualToString:SETXY_KEYWORD]){
+		[self setxyWithX:(NSNumber*)dic[@"amountX"] andY:(NSNumber*)dic[@"amountY"]];
 	}
 	else if([name isEqualToString:RT_KEYWORD]){
 		[self turn:(NSNumber*)dic[@"amount"]];

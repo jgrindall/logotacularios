@@ -28,5 +28,6 @@ NSString* const STOP_ICON =			@"assets/icons/stop.png";
 NSString* const TICK_ICON =			@"assets/icons/tick.png";
 NSString* const UNDO_ICON =			@"assets/icons/undo.png";
 NSString* const WASTE_ICON =		@"assets/icons/waste.png";
+NSString* const DOC_ICON =			@"assets/icons/document55.png";
 
 @end

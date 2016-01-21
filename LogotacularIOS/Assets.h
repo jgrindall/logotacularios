@@ -28,5 +28,6 @@ extern NSString* const STOP_ICON;
 extern NSString* const TICK_ICON;
 extern NSString* const UNDO_ICON;
 extern NSString* const WASTE_ICON;
+extern NSString* const DOC_ICON;
 
 @end

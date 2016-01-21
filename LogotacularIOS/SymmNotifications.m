@@ -20,6 +20,7 @@ NSString* const SYMM_NOTIF_CLICK_NEW =			@"Symm::clickNew";
 NSString* const SYMM_NOTIF_START =				@"Symm::start";
 NSString* const SYMM_NOTIF_PARSE =				@"Symm::parse";
 NSString* const SYMM_NOTIF_CLICK_RESET_ZOOM =	@"Symm::resetZoom";
+NSString* const SYMM_NOTIF_CLICK_WIPE =			@"Symm::wipe";
 NSString* const SYMM_NOTIF_STOP =				@"Symm::stop";
 NSString* const SYMM_NOTIF_CLICK_STOP =			@"Symm::clickStop";
 NSString* const SYMM_NOTIF_CLICK_EXAMPLES =		@"Symm::clickExamples";

@@ -49,6 +49,7 @@
 @property UIBarButtonItem* clearButton;
 @property UIBarButtonItem* resetButton;
 @property UIBarButtonItem* saveButton;
+@property UIBarButtonItem* wipeButton;
 
 @end
 
@@ -107,6 +108,7 @@
 	[self getBarButton:self.saveButton].enabled = tf;
 	[self getBarButton:self.listButton].enabled = tf;
 	[self getBarButton:self.resetButton].enabled = tf;
+	[self getBarButton:self.wipeButton].enabled = tf;
 	[self getBarButton:self.playButton].enabled = tf;
 	[self getBarButton:self.clearButton].enabled = tf;
 }
@@ -201,12 +203,17 @@
 
 -(void)addNavButtons{
 	self.listButton = [self getBarButtonItem:LIST_ICON withAction:@selector(onClickList) andLabel:nil andOffsetX:10];
-	self.clearButton = [self getBarButtonItem:CLEAR_ICON withAction:@selector(onClickClear) andLabel:@"Clear" andOffsetX:0];
+	self.clearButton = [self getBarButtonItem:CLEAR_ICON withAction:@selector(onClickClear) andLabel:@"Delete" andOffsetX:0];
 	self.playButton = [self getBarButtonItem:PLAY_ICON withAction:@selector(onClickPlay) andLabel:@"Play" andOffsetX:0];
 	self.resetButton = [self getBarButtonItem:AIM_ICON withAction:@selector(onClickResetZoom) andLabel:nil andOffsetX:10];
+	self.wipeButton = [self getBarButtonItem:DOC_ICON withAction:@selector(onClickWipe) andLabel:nil andOffsetX:10];
 	self.saveButton = [self getBarButtonItem:FLOPPY_ICON withAction:@selector(onClickSave) andLabel:@"Save" andOffsetX:0];
-	self.navigationItem.leftBarButtonItems = @[self.listButton, self.resetButton];
+	self.navigationItem.leftBarButtonItems = @[self.listButton, self.resetButton, self.wipeButton];
 	self.navigationItem.rightBarButtonItems = @[self.clearButton, self.playButton, self.saveButton];
+}
+
+- (void) onClickWipe{
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_WIPE withData:nil];
 }
 
 - (void) onClickSave{
