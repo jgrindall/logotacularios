@@ -56,7 +56,7 @@ LG.logoParser = (function() {
         return {type:"insidestmt", children:[l2]};
         },
         peg$c5 = function(f25) {
-        return {type:"setstmt", children:[f25]};
+        return f25;
         },
         peg$c6 = function(f3) {
         return {type:"insidestmt", children:[f3]};

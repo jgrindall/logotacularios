@@ -39,7 +39,7 @@ return {type:"insidestmt", children:[l2]};
 /
 sep* f25:setstmt sep*
 {
-return {type:"setstmt", children:[f25]};
+return f25;
 }
 /
 sep* f3:rptstmt sep*
