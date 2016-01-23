@@ -51,7 +51,8 @@ NSString* const TURTLE_POS = @"turtle_pos";
 }
 
 - (void) setxyWithX:(float) x andY:(float)y{
-	CGPoint p = CGPointMake(x, y);
+	CGPoint centre = [self getCentre];
+	CGPoint p = CGPointMake(x + centre.x, -y + centre.y);
 	[self setVal:[NSValue valueWithCGPoint:p] forKey:TURTLE_POS];
 }
 
@@ -60,8 +61,8 @@ NSString* const TURTLE_POS = @"turtle_pos";
 	CGPoint p0 = [[self getVal:TURTLE_POS] CGPointValue];
 	float newX = p0.x + cosf(heading * M_PI/180)*amount;
 	float newY = p0.y + sinf(heading * M_PI/180)*amount;
-	CGPoint p1 = CGPointMake(newX, newY);
-	[self setVal:[NSValue valueWithCGPoint:p1] forKey:TURTLE_POS];
+	CGPoint p = CGPointMake(newX, newY);
+	[self setVal:[NSValue valueWithCGPoint:p] forKey:TURTLE_POS];
 }
 
 - (void) rotateBy:(float) angle{

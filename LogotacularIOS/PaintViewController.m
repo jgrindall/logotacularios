@@ -274,12 +274,16 @@ NSString* const THICK_KEYWORD			= @"thick";
 			[[self getTurtleModel] setxyWithX:fx andY:fy];
 			if([[[self getTurtleModel] getVal:TURTLE_PEN_DOWN] boolValue]){
 				CGPoint p1 = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
-				NSNumber* thick = [[self getTurtleModel] getVal:TURTLE_PEN_THICK];
-				UIColor* clr = [[self getTurtleModel] getVal:TURTLE_COLOR];
-				[self.paintView drawLineFrom:p0 to:p1 withColor:clr andThickness:[thick integerValue]];
+				[self drawLineFrom:p0 to: p1];
 			}
 		}
 	}
+}
+
+- (void) drawLineFrom: (CGPoint)p0 to: (CGPoint)p1{
+	NSNumber* thick = [[self getTurtleModel] getVal:TURTLE_PEN_THICK];
+	UIColor* clr = [[self getTurtleModel] getVal:TURTLE_COLOR];
+	[self.paintView drawLineFrom:p0 to:p1 withColor:clr andThickness:[thick integerValue]];
 }
 
 - (void) fd:(NSNumber*) amount{
@@ -296,9 +300,7 @@ NSString* const THICK_KEYWORD			= @"thick";
 			[[self getTurtleModel] moveFdBy:f];
 			if([[[self getTurtleModel] getVal:TURTLE_PEN_DOWN] boolValue]){
 				CGPoint p1 = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
-				NSNumber* thick = [[self getTurtleModel] getVal:TURTLE_PEN_THICK];
-				UIColor* clr = [[self getTurtleModel] getVal:TURTLE_COLOR];
-				[self.paintView drawLineFrom:p0 to:p1 withColor:clr andThickness:[thick integerValue]];
+				[self drawLineFrom:p0 to: p1];
 			}
 		}
 	}
