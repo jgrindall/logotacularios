@@ -43,7 +43,6 @@ function visitmakestmt(node){
 function visitfdstmt(node){
 	visitchildren(node);
 	var amount = stack.pop();
-	console.log("->  visit fd", amount);
 	self.postMessage({ "type":"command", "name":"fd", "amount":amount });
 }
 
@@ -79,14 +78,12 @@ function visitbooleanstmt(node){
 	var toEval = node.toEval;
 	visitNode( toEval );
 	var istrue = stack.pop();
-	console.log("pop", istrue);
 	if(istrue === 1){
 		visitchildren( node.iftrue );
 	}
 }
 
 function visitstopstmt(node){
-	console.log("STOP");
 	throw new Error("stop");
 }
 
@@ -94,7 +91,6 @@ function visitcompoundbooleanstmt(node){
 	var toEval = node.toEval;
 	visitNode( toEval );
 	var istrue = stack.pop();
-	console.log("pop", istrue);
 	if(istrue === 1){
 		visitchildren( node.iftrue );
 	}
@@ -105,13 +101,11 @@ function visitcompoundbooleanstmt(node){
 
 function visitbooleanval(node){
 	var ch = node.children;
-	console.log("visitbooleanval", node);
 	visitNode( ch[0] );
 	visitNode( ch[1] );
 	var op = node.op;
 	var rhs = stack.pop();
 	var lhs = stack.pop();
-	console.log("visitbooleanval", op, lhs, rhs);
 	if(op === "=" && lhs === rhs){
 		stack.push(1);
 	}
@@ -172,7 +166,6 @@ function visitrptstmt(node){
 			}
 			catch(e){
 				if(e.message === "stop"){
-					console.log("caught stop");
 					break;
 				}
 				else{
@@ -262,8 +255,23 @@ function visitsetxy(node){
 	visitchildren(node);
 	var amountY = stack.pop();
 	var amountX = stack.pop();
-	console.log("->  visit setxy", amountY, amountX);
 	self.postMessage({ "type":"command", "name":"setxy", "amountX":amountX, "amountY":amountY });
+}
+
+function visitlabelstmt(node){
+	var child, contents;
+	child = node.children[0];
+	if(typeof child === 'object' && child.type && child.type === "expression"){
+		visitNode(child);
+		contents = "" + stack.pop();
+	}
+	else{
+		contents = child; // a string
+	}
+	if(contents.length > 16){
+		contents = contents.substring(0, 16);
+	}
+	self.postMessage({ "type":"command", "name":"label", "contents": contents});
 }
 
 function visitsqrtexpression(node){
@@ -482,6 +490,9 @@ function visitNode(node){
 	}
 	else if(t=="sqrtexpression"){
 		visitsqrtexpression(node);
+	}
+	else if(t=="labelstmt"){
+		visitlabelstmt(node);
 	}
 }
 

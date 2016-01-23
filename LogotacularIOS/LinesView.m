@@ -7,6 +7,7 @@
 //
 
 #import "LinesView.h"
+#import <CoreText/CoreText.h>
 
 @interface LinesView ()
 
@@ -54,12 +55,29 @@ CGContextRef cacheContext;
 	return sqrt(t.a * t.a  +  t.c * t.c);
 }
 
+- (void) drawTextAt:(CGPoint)p withColor:(UIColor*) clr andString:(NSString*)s {
+	p = CGPointMake(p.x, p.y - 2);
+	CGPoint p1 = [self getFlushedPoint:p];
+	CTFontRef fontRef = CTFontCreateWithName((CFStringRef)@"ArialMT", 13.0f, NULL);
+	CGColorRef color = clr.CGColor;
+	NSDictionary* attrDictionary = [NSDictionary dictionaryWithObjectsAndKeys:(__bridge id)fontRef, (id)kCTFontAttributeName, color, (id)kCTForegroundColorAttributeName, nil];
+	NSAttributedString* stringToDraw = [[NSAttributedString alloc] initWithString:s attributes:attrDictionary];
+	CGRect bounds = [stringToDraw boundingRectWithSize:CGSizeMake(320, CGFLOAT_MAX) options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
+	CTLineRef line = CTLineCreateWithAttributedString((CFAttributedStringRef)stringToDraw);
+	CGContextSetTextMatrix(cacheContext, CGAffineTransformMake(1.0, 0.0, 0.0, -1.0, 0.0, 0.0));
+	CGContextSetTextPosition(cacheContext, p1.x, p1.y);
+	CTLineDraw(line, cacheContext);
+	CFRelease(line);
+	CFRelease(fontRef);
+	[self setNeedsDisplayInRect:bounds];
+	CGRect translatedBounds = CGRectMake(bounds.origin.x + p1.x, bounds.origin.y + p1.y - bounds.size.height, bounds.size.width, bounds.size.height);
+	[self setNeedsDisplayInRect:translatedBounds];
+}
+
 - (void) drawLineFrom:(CGPoint)fromPos to:(CGPoint) toPos withColor:(UIColor*) clr andThickness:(NSInteger)thickness {
-	//NSLog(@"draw line with %@", NSStringFromCGAffineTransform(self.flushedTransform));
 	CGContextSetStrokeColorWithColor(cacheContext, [clr CGColor]);
 	CGContextSetLineCap(cacheContext, kCGLineCapRound);
 	float thickness1 = thickness * [self getScale:self.flushedTransform];
-	//NSLog(@"thick %i %f", thickness, thickness1);
 	CGContextSetLineWidth(cacheContext, thickness1);
 	CGPoint toPos1 = [self getFlushedPoint:toPos];
 	CGPoint fromPos1 = [self getFlushedPoint:fromPos];

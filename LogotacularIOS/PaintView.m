@@ -13,8 +13,6 @@
 @interface PaintView ()
 
 @property UIView* bgView;
-//@property UIImageView* blurView;
-@property UIImageView* catView;
 @property LinesView* linesView;
 @property UIView* rect;
 
@@ -57,6 +55,10 @@ CGContextRef cacheContext;
 	[self.linesView drawLineFrom:p0 to:p1 withColor:clr andThickness:thickness];
 }
 
+- (void) drawTextAt:(CGPoint)p withColor:(UIColor*) clr andString:(NSString*)s {
+	[self.linesView drawTextAt:p withColor:clr andString:s];
+}
+
 - (void) bg:(UIColor*)clr{
 	[UIView animateWithDuration:0.25 animations:^{
 		self.bgView.layer.backgroundColor = [clr CGColor];
@@ -70,10 +72,6 @@ CGContextRef cacheContext;
 - (void) dealloc{
 	[self.bgView removeFromSuperview];
 	self.bgView = nil;
-	//[self.blurView removeFromSuperview];
-	//self.blurView = nil;
-	[self.catView removeFromSuperview];
-	self.catView = nil;
 	[self.linesView removeFromSuperview];
 	self.linesView = nil;
 	[self.rect removeFromSuperview];

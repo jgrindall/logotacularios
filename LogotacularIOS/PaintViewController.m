@@ -36,6 +36,7 @@ static float const minAllowed = -2000000000.0;
 
 NSString* const FD_KEYWORD				= @"fd";
 NSString* const SETXY_KEYWORD			= @"setxy";
+NSString* const LABEL_KEYWORD			= @"label";
 NSString* const RT_KEYWORD				= @"rt";
 NSString* const PENUP_KEYWORD			= @"penup";
 NSString* const HOME_KEYWORD			= @"home";
@@ -259,6 +260,12 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[[self getTurtleModel] home];
 }
 
+- (void) label:(NSString*) contents{
+	CGPoint p0 = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
+	UIColor* clr = [[self getTurtleModel] getVal:TURTLE_COLOR];
+	[self drawTextAt:p0 withColor:clr andString:contents];
+}
+
 - (void) setxyWithX:(NSNumber*) x andY:(NSNumber*) y{
 	if ([x isKindOfClass:[NSNull class]] || [y isKindOfClass:[NSNull class]]){
 		[self numericalOverflow];
@@ -278,6 +285,10 @@ NSString* const THICK_KEYWORD			= @"thick";
 			}
 		}
 	}
+}
+
+- (void) drawTextAt:(CGPoint)p withColor:(UIColor*) clr andString:(NSString*)s {
+	[self.paintView drawTextAt:p withColor:clr andString:s];
 }
 
 - (void) drawLineFrom: (CGPoint)p0 to: (CGPoint)p1{
@@ -319,6 +330,9 @@ NSString* const THICK_KEYWORD			= @"thick";
 	}
 	else if([name isEqualToString:SETXY_KEYWORD]){
 		[self setxyWithX:(NSNumber*)dic[@"amountX"] andY:(NSNumber*)dic[@"amountY"]];
+	}
+	else if([name isEqualToString:LABEL_KEYWORD]){
+		[self label:(NSString*)dic[@"contents"]];
 	}
 	else if([name isEqualToString:RT_KEYWORD]){
 		[self turn:(NSNumber*)dic[@"amount"]];

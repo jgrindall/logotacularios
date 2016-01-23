@@ -71,6 +71,11 @@ sep* c:colorstmt sep*
 return c;
 }
 /
+sep* lb:labelstmt sep*
+{
+return lb;
+}
+/
 sep* b:bgstmt sep*
 {
 return b;
@@ -156,6 +161,22 @@ colorstmt = sep* ('color' / 'colour') sep* c:color eoline
 {
 return {"type":"colorstmt", "color":c};
 }
+labelstmt = sep* 'label' sep* c:labelcontents
+{
+return {"type":"labelstmt", "children":[c]};
+}
+
+labelcontents =
+sep* e:expression sep*
+{
+	return e;
+}
+/
+sep* s:stringlit sep*
+{
+	return s;
+}
+
 bgstmt = sep* 'bg' sep* c:color eoline
 {
 return {"type":"bgstmt", "color":c};
@@ -232,7 +253,6 @@ return {type:"definefnstmt", name:f.name, args:a, stmts:s};
 return {type:"definefnstmt", name:f.name, args:null, stmts:s};
 }
 
-
 vardef = '"' !keyword c0:([a-zA-Z])+ c1:[a-zA-Z0-9_]*
 {
 return {type:"vardef", name:c0.join("") + c1.join("")};
@@ -303,7 +323,7 @@ expressionspace = sep* e:expression ' '
 return e;
 }
 
-keyword = 'to' / 'fd' / 'rt' / 'end' / 'penup' / 'pu' / 'pd' / 'pendown' / 'color' / 'bg' / 'thick' / 'stop' / 'home' / 'setxy' / 'sqrt'
+keyword = 'to' / 'fd' / 'rt' / 'end' / 'penup' / 'pu' / 'pd' / 'pendown' / 'color' / 'bg' / 'thick' / 'stop' / 'home' / 'setxy' / 'sqrt' / 'label'
 
 fnname = !keyword c0:([a-zA-Z])+ c1:[a-zA-Z0-9_]*
 {
@@ -463,6 +483,10 @@ usevar = ':' v:varname
 return {type:"usevar",name:v.name};
 }
 
+stringlit = '"'s:([a-zA-Z0-9_]*)
+{
+	return s.join("");
+}
 
 varname = !keyword c0:([a-zA-Z])+ c1:[a-zA-Z0-9_]*
 {

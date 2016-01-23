@@ -12,6 +12,8 @@
 
 - (void) drawLineFrom:(CGPoint)fromPos to:(CGPoint) toPos withColor:(UIColor*) clr andThickness:(NSInteger)thickness;
 
+- (void) drawTextAt:(CGPoint)p withColor:(UIColor*) clr andString:(NSString*)s;
+
 - (void) reset;
 
 @property CGAffineTransform flushedTransform;

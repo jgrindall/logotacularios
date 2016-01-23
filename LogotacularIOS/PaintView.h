@@ -12,6 +12,8 @@
 
 - (void) drawLineFrom:(CGPoint)p0 to:(CGPoint)p1 withColor:(UIColor *)clr andThickness:(NSInteger)thickness;
 
+- (void) drawTextAt:(CGPoint)p withColor:(UIColor*) clr andString:(NSString*)s;
+
 - (void) reset;
 
 - (void) bg:(UIColor*)clr;
