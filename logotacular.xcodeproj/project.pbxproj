@@ -20,6 +20,7 @@
 		523067CC1A1E9E690055B8A5 /* ClickRefCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 523067CB1A1E9E690055B8A5 /* ClickRefCommand.m */; };
 		523067CE1A1EA6BC0055B8A5 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 523067CD1A1EA6BC0055B8A5 /* MediaPlayer.framework */; };
 		5236E8751A1D67CB0057E9B3 /* TextLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 5236E8741A1D67CB0057E9B3 /* TextLayout.m */; };
+		523B6DB31C517FDA00A4C0C9 /* ClickWipeCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 523B6DB21C517FDA00A4C0C9 /* ClickWipeCommand.m */; };
 		52420E221A1AD1D80069D4AC /* TurtleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52420E211A1AD1D80069D4AC /* TurtleModel.m */; };
 		52420E271A1ADF710069D4AC /* StartCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52420E261A1ADF710069D4AC /* StartCommand.m */; };
 		525167E419FFC19F00814B16 /* Assets.m in Sources */ = {isa = PBXBuildFile; fileRef = 525167E319FFC19F00814B16 /* Assets.m */; };
@@ -141,6 +142,8 @@
 		523067CD1A1EA6BC0055B8A5 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		5236E8731A1D67CB0057E9B3 /* TextLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextLayout.h; sourceTree = "<group>"; };
 		5236E8741A1D67CB0057E9B3 /* TextLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextLayout.m; sourceTree = "<group>"; };
+		523B6DB11C517FDA00A4C0C9 /* ClickWipeCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickWipeCommand.h; sourceTree = "<group>"; };
+		523B6DB21C517FDA00A4C0C9 /* ClickWipeCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickWipeCommand.m; sourceTree = "<group>"; };
 		52420E201A1AD1D80069D4AC /* TurtleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TurtleModel.h; sourceTree = "<group>"; };
 		52420E211A1AD1D80069D4AC /* TurtleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TurtleModel.m; sourceTree = "<group>"; };
 		52420E241A1AD1F00069D4AC /* PTurtleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTurtleModel.h; sourceTree = "<group>"; };
@@ -484,6 +487,8 @@
 		5272DE3319FE4799006E717F /* Commands */ = {
 			isa = PBXGroup;
 			children = (
+				523B6DB11C517FDA00A4C0C9 /* ClickWipeCommand.h */,
+				523B6DB21C517FDA00A4C0C9 /* ClickWipeCommand.m */,
 				5257F3501A01358400757C77 /* Base */,
 				52815C731A050EB1005AFA93 /* ClickOpenCommand.h */,
 				52815C741A050EB1005AFA93 /* ClickOpenCommand.m */,
@@ -540,8 +545,6 @@
 				5287B9B71A1BBCF900082DE1 /* AbstractPerformSaveCommand_protected.h */,
 				523067CA1A1E9E690055B8A5 /* ClickRefCommand.h */,
 				523067CB1A1E9E690055B8A5 /* ClickRefCommand.m */,
-				52244C131A25341500505F6D /* ClickResetZoomCommand.h */,
-				52244C141A25341500505F6D /* ClickResetZoomCommand.m */,
 				5257F36D1A01AA4F00757C77 /* Commands.h */,
 			);
 			name = Commands;
@@ -844,6 +847,8 @@
 		52B5B36019FD7E9B00EF531F /* Spinner */ = {
 			isa = PBXGroup;
 			children = (
+				52244C131A25341500505F6D /* ClickResetZoomCommand.h */,
+				52244C141A25341500505F6D /* ClickResetZoomCommand.m */,
 				52B5B34D19FD7E1400EF531F /* SpinnerView.h */,
 				52B5B34E19FD7E1400EF531F /* SpinnerView.m */,
 			);
@@ -1084,6 +1089,7 @@
 				52B5B35119FD7E1400EF531F /* AppDelegate.m in Sources */,
 				52D426FB1A2CFF97002E8B2F /* AbstractOverlayController.m in Sources */,
 				52D427021A2D0B3F002E8B2F /* WelcomeLayout.m in Sources */,
+				523B6DB31C517FDA00A4C0C9 /* ClickWipeCommand.m in Sources */,
 				5257F34F1A01357F00757C77 /* ClearCommand.m in Sources */,
 				527D42E51A0ABBE3008AE82A /* FilePageController.m in Sources */,
 				5297CF0E1A01263200CC5CB3 /* MenuViewController.m in Sources */,
