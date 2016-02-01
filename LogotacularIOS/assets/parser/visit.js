@@ -65,7 +65,15 @@ function visitpendownstmt(node){
 }
 
 function visitbgstmt(node){
-	self.postMessage({ "type":"command", "name":"bg", "color":node.color });
+	var colorIndex;
+	if(node.color.type === 'colorname'){
+		self.postMessage({ "type":"command", "name":"bg", "colorname":node.color.name });
+	}
+	else if(node.color.type === 'colorindex'){
+		visitNode(node.color.children[0]);
+		colorIndex = stack.pop();
+		self.postMessage({ "type":"command", "name":"bg", "colorindex":colorIndex });
+	}
 }
 
 function visitthickstmt(node){
@@ -121,7 +129,15 @@ function visitbooleanval(node){
 }
 
 function visitcolorstmt(node){
-	self.postMessage({ "type":"command", "name":"color", "color":node.color });
+	var colorIndex;
+	if(node.color.type === 'colorname'){
+		self.postMessage({ "type":"command", "name":"color", "colorname":node.color.name });
+	}
+	else if(node.color.type === 'colorindex'){
+		visitNode(node.color.children[0]);
+		colorIndex = stack.pop();
+		self.postMessage({ "type":"command", "name":"color", "colorindex":colorIndex });
+	}
 }
 
 function visitexpression(node){
@@ -263,7 +279,10 @@ function visitlabelstmt(node){
 	child = node.children[0];
 	if(typeof child === 'object' && child.type && child.type === "expression"){
 		visitNode(child);
-		contents = "" + stack.pop();
+		contents = stack.pop();
+		contents = parseFloat(contents, 10);
+		contents = Number(contents.toFixed(4));
+		contents = "" + contents;
 	}
 	else{
 		contents = child; // a string

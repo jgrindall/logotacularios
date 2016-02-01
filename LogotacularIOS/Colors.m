@@ -12,6 +12,21 @@
 
 static NSMutableDictionary* _dic = nil;
 
++ (NSString*) getColorNameForNumber:(NSNumber*)num{
+	NSArray* clrs = [NSArray arrayWithObjects:@"dkred", @"red", @"fuchsia", @"pink", @"wisteria", @"purple", @"indigo", @"midnight", @"blue", @"ltblue", @"cyan", @"sage", @"emerald", @"turquoise", @"dkgreen", @"green",@"applegreen", @"yellow",@"ltorg", @"orange",@"dkorg", @"brown",@"chocolate", @"black",@"dkgrey", @"grey", @"ltgrey", @"white", nil];
+	int intVal = (int)num.floatValue;
+	if(intVal < 0){
+		intVal *= -1;
+	}
+	intVal = intVal % [clrs count];
+	return (NSString*)[clrs objectAtIndex:intVal];
+}
+
++ (UIColor*) getColorForNumber:(NSNumber*)num{
+	NSString* name = [self getColorNameForNumber:num];
+	return [self getColorForString:name];
+}
+
 + (UIColor*) getColorForString:(NSString*)name{
 	if(![Colors dictionary]){
 		[Colors loadDic];

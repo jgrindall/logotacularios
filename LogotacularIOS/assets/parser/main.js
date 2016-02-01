@@ -29,8 +29,16 @@ LG.onMessage = function(msg){
 	}
 };
 
+LG.preProcess = function(logo){
+	logo = logo.replace(/;[^\n\r]+\n/g, "");
+	logo = logo.replace(/#[^\n\r]+\n/g, "");
+	logo = logo.replace(/\/\/[^\n\r]+\n/g, "");
+	return logo;
+};
+
 LG.getTree = function(logo){
 	var tree;
+	logo = LG.preProcess(logo);
 	try {
 		tree = LG.logoParser.parse(logo);
 	}

@@ -187,8 +187,19 @@ thickstmt = sep* 'thick'  sep* e:expression eoline
 return {"type":"thickstmt", "children":[e]};
 }
 
-color = 'turquoise' / 'turq'/ 'pink' / 'ltblue' / 'lightblue' / 'dkpurple' / 'darkpurple' / 'violet' / 'indigo' / 'green' / 'blue' / 'dkblue' / 'darkblue' / 'purple' / 'midnight' / 'darkkturqoise' / 'dkturq'/ 'dkturquoise'/ 'darkgreen'/ 'dkgreen' / 'yellow' / 'carrot' / 'orange' / 'org' / 'red' / 'snow' / 'gray' / 'grey' / 'ltorange' / 'lightorange' / 'lightorg' / 'ltorg' / 'dkorange' / 'darkorg' / 'dkorg' / 'darkorange' / 'terracotta' / 'dkred' / 'darkred' / 'ltgray'/ 'ltgrey' / 'lightgray' / 'lightgrey' / 'darkgray' / 'darkgrey' / 'dkgrey' / 'dkgray' / 'white' / 'black' / 'fuchsia' / 'wisteria' / 'cyan' / 'sage'  / 'emerald' / 'brown' / 'chocolate' / 'applegreen'
+color =
 
+c:colorname
+{
+	return {"type":"colorname", "name":c};
+}
+/
+e:expression
+{
+	return {"type":"colorindex", "children":[e]};
+}
+
+colorname = 'turquoise' / 'turq'/ 'pink' / 'ltblue' / 'lightblue' / 'dkpurple' / 'darkpurple' / 'violet' / 'indigo' / 'green' / 'blue' / 'dkblue' / 'darkblue' / 'purple' / 'midnight' / 'darkkturqoise' / 'dkturq'/ 'dkturquoise'/ 'darkgreen'/ 'dkgreen' / 'yellow' / 'carrot' / 'orange' / 'org' / 'red' / 'snow' / 'gray' / 'grey' / 'ltorange' / 'lightorange' / 'lightorg' / 'ltorg' / 'dkorange' / 'darkorg' / 'dkorg' / 'darkorange' / 'terracotta' / 'dkred' / 'darkred' / 'ltgray'/ 'ltgrey' / 'lightgray' / 'lightgrey' / 'darkgray' / 'darkgrey' / 'dkgrey' / 'dkgray' / 'white' / 'black' / 'fuchsia' / 'wisteria' / 'cyan' / 'sage'  / 'emerald' / 'brown' / 'chocolate' / 'applegreen'
 
 callfnstmt = sep* f:fnname sep* a:expressionlist eoline
 {
@@ -323,7 +334,7 @@ expressionspace = sep* e:expression ' '
 return e;
 }
 
-keyword = 'to' / 'fd' / 'rt' / 'end' / 'penup' / 'pu' / 'pd' / 'pendown' / 'color' / 'bg' / 'thick' / 'stop' / 'home' / 'setxy' / 'sqrt' / 'label'
+keyword = 'to' / 'fd' / 'rt' / 'end' / 'penup' / 'pu' / 'pd' / 'pendown' / 'color' / 'bg' / 'thick' / 'stop' / 'home' / 'setxy' / 'sqrt' / 'label' / 'random'
 
 fnname = !keyword c0:([a-zA-Z])+ c1:[a-zA-Z0-9_]*
 {
@@ -446,6 +457,10 @@ return {type:"numberexpression", children:[v]};
 / 'sqrt' sep* e:expression sep*
 {
 	return {type:"sqrtexpression", children:[e]};
+}
+/ sep* 'random' sep*
+{
+	return {type:"number",value:Math.floor(Math.random()*100)};
 }
 
 

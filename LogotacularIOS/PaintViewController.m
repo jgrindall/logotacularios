@@ -233,17 +233,39 @@ NSString* const THICK_KEYWORD			= @"thick";
 	}
 }
 
-- (void) bg:(NSString*) clrName{
-	[[self getBgModel] setVal:clrName forKey:BG_COLOR];
+- (void) bg:(NSDictionary*) dic{
+	NSLog(@"%@", dic);
+	NSString* clrName;
+	NSNumber* clrIndex;
+	if ([dic objectForKey:@"colorname"]){
+		clrName = (NSString*)dic[@"colorname"];
+		[[self getBgModel] setVal:clrName forKey:BG_COLOR];
+	}
+	else if ([dic objectForKey:@"colorindex"]){
+		clrIndex = (NSNumber*)dic[@"colorindex"];
+		clrName = [Colors getColorNameForNumber:clrIndex];
+		NSLog(@"1 %@ %@", clrIndex, clrName);
+		[[self getBgModel] setVal:clrName forKey:BG_COLOR];
+	}
+}
+
+- (void) color:(NSDictionary*) dic{
+	UIColor* clr;
+	NSNumber* clrIndex;
+	if ([dic objectForKey:@"colorname"]){
+		NSString* clrName = (NSString*)dic[@"colorname"];
+		clr = [Colors getColorForString:clrName];
+		[[self getTurtleModel] setVal:clr forKey:TURTLE_COLOR];
+	}
+	else if ([dic objectForKey:@"colorindex"]){
+		clrIndex = (NSNumber*)dic[@"colorindex"];
+		clr = [Colors getColorForNumber:clrIndex];
+		[[self getTurtleModel] setVal:clr forKey:TURTLE_COLOR];
+	}
 }
 
 - (id<PBgModel>)getBgModel{
 	return [[JSObjection defaultInjector] getObject:@protocol(PBgModel)];
-}
-
-- (void) color:(NSString*) clrName{
-	UIColor* clr = [Colors getColorForString:clrName];
-	[[self getTurtleModel] setVal:clr forKey:TURTLE_COLOR];
 }
 
 - (void) thick:(NSNumber*) amount{
@@ -338,10 +360,10 @@ NSString* const THICK_KEYWORD			= @"thick";
 		[self turn:(NSNumber*)dic[@"amount"]];
 	}
 	else if([name isEqualToString:BG_KEYWORD]){
-		[self bg:(NSString*)dic[@"color"]];
+		[self bg:dic];
 	}
 	else if([name isEqualToString:COLOR_KEYWORD]){
-		[self color:(NSString*)dic[@"color"]];
+		[self color:dic];
 	}
 	else if([name isEqualToString:THICK_KEYWORD]){
 		[self thick:(NSNumber*)dic[@"amount"]];

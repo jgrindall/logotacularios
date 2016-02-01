@@ -19,6 +19,10 @@
 
 + (UIColor*) darken:(UIColor*)c;
 
++ (NSString*) getColorNameForNumber:(NSNumber*)num;
+
++ (UIColor*) getColorForNumber:(NSNumber*)num;
+
 @end
 
 
