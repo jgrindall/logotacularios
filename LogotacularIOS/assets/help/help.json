@@ -15,6 +15,7 @@
 					   "<tr><td>bg</td><td>bg black</td><td>Change the color of the background</td></tr>",
 					   "<tr><td>thick</td><td>thick 8</td><td>Change the thickness of the lines<br/>(from 1 to 20)</td></tr>",
 					   "<tr><td>setxy</td><td>setxy 100 100</td><td>Move the turtle to the co-ordinates (100, 100)</td></tr>",
+					   "<tr><td>random</td><td>color random<br/>fd random</td><td>Choose a random color and then go forward a random amount (between 0 and 100)</td></tr>",
 					   "</table>"
 					   ]
 		   },
@@ -127,7 +128,7 @@
 			},
 			{
 
-			"file":"bg yellow color blue\nthick 8\nfd 80 penup\nfd 80 pendown\nfd 80\nrt 120 \nfd 80 penup\nfd 80 pendown\nfd 80 rt 120 \nfd 80 penup\nfd 80 pendown\nfd 80",
+			"file":"bg yellow color blue\nthick 8\nfd 80 penup\nfd 80 pendown\nfd 80\nrt 120 \nfd 80 penup\nfd 80 pendown\nfd 80 rt 120 \nfd 80 penup\nfd 80 pendown\nfd 80\ncolor random\nfd 100",
 			"media":"help/images/e9.png",
 			"bg":"blue",
 			
@@ -137,8 +138,11 @@
 					 "<pre>bg yellow\ncolor blue</pre>",
 					 	"<p></p>",
 						"<p>You can change the thickness of the lines drawn (from 1 to 20), and raise or lower the pen. Lifting the pen (<span class='mono'>penup</span> or <span class='mono'>pu</span>) will stop lines being drawn until you place it down again (<span class='mono'>pendown</span> or <span class='mono'>pd</span>).</p>",
-						"<pre>bg yellow color blue\nthick 8\nfd 80 penup\nfd 80 pendown\nfd 80\nrt 120 \nfd 80 penup\nfd 80 pendown\nfd 80 rt 120 \nfd 80 penup\nfd 80 pendown\nfd 80</pre>"
-						]
+						"<pre>bg yellow color blue\nthick 8\nfd 80 penup\nfd 80 pendown\nfd 80 rt 120 \nfd 80 penup\nfd 80 pendown\nfd 80 rt 120 \nfd 80 penup\nfd 80 pendown fd 80</pre>",
+						"<p></p>",
+						"<p>You can get a random colour using the keyword <span class='mono'>random</span>:</p>",
+						"<pre>color random fd 100</pre>"
+					]
 			},
 			{
 
@@ -171,8 +175,11 @@
 					 "<p>Like most computer programs, you must write <span class='mono'>*</span> for multiply (or times) and <span class='mono'>/</span> for divide.</p>",
 					 "<p>You can use <span class='mono'>+</span> and <span class='mono'>-</span> and round brackets <span class='mono'>( )</span> like you normally would.</p>",
 						"<p>For example:</p>",
-						"<pre>make \"h 30\nmake \"w 3*:h\nfd (:w - 2*:h) rt 90\nfd (:w - :h) rt 90\nfd :w rt 90 \nfd :w + :h  rt 90 \nfd :w + 2*:h rt 90</pre>"
-						]
+						"<pre>make \"h 30\nmake \"w 3*:h\nfd (:w - 2*:h) rt 90\nfd (:w - :h) rt 90\nfd :w rt 90 \nfd :w + :h  rt 90 \nfd :w + 2*:h rt 90</pre>",
+						"<p></p>",
+						"<p>You can get a random number between 0 and 100 by using the keyword <span class='mono'>random</span>. For example:</p>",
+						"<pre>fd random</pre>"
+					]
 			},
 			{
 

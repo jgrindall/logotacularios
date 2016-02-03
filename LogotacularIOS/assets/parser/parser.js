@@ -507,7 +507,7 @@ LG.logoParser = (function() {
             return {type:"sqrtexpression", children:[e]};
         },
         peg$c285 = function() {
-            return {type:"number",value:Math.floor(Math.random()*100)};
+            return {type:"number",value:"random"};
         },
         peg$c286 = ".",
         peg$c287 = { type: "literal", value: ".", description: "\".\"" },

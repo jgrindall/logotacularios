@@ -32,6 +32,7 @@
 #import "PerformFileSetupCommand.h"
 #import "LoadFromHelpCommand.h"
 #import "StartCommand.h"
+#import "RestartCommand.h"
 #import "PerformSaveAsCommand.h"
 #import "ClickRefCommand.h"
 #import "ClickResetZoomCommand.h"

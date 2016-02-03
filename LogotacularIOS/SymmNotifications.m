@@ -11,6 +11,7 @@
 @implementation SymmNotifications
 
 NSString* const SYMM_NOTIF_SHOW_SPINNER =		@"Symm::showSpinner";
+NSString* const SYMM_NOTIF_CLEAR_QUEUE =		@"Symm::clrQueue";
 NSString* const SYMM_NOTIF_HIDE_SPINNER =		@"Symm::hideSpinner";
 NSString* const SYMM_NOTIF_CLICK_MENU =			@"Symm::menu";
 NSString* const SYMM_NOTIF_HIDE_MENU =			@"Symm::hideMenu";
@@ -18,6 +19,8 @@ NSString* const SYMM_NOTIF_CLICK_PLAY =			@"Symm::clickPlay";
 NSString* const SYMM_NOTIF_CLICK_TUT =			@"Symm::clickTut";
 NSString* const SYMM_NOTIF_CLICK_NEW =			@"Symm::clickNew";
 NSString* const SYMM_NOTIF_START =				@"Symm::start";
+NSString* const SYMM_NOTIF_RESTART =			@"Symm::restart";
+NSString* const SYMM_NOTIF_RESTART_QUEUE =		@"Symm::restartQueue";
 NSString* const SYMM_NOTIF_PARSE =				@"Symm::parse";
 NSString* const SYMM_NOTIF_CLICK_RESET_ZOOM =	@"Symm::resetZoom";
 NSString* const SYMM_NOTIF_CLICK_WIPE =			@"Symm::wipe";

@@ -460,7 +460,7 @@ return {type:"numberexpression", children:[v]};
 }
 / sep* 'random' sep*
 {
-	return {type:"number",value:Math.floor(Math.random()*100)};
+	return {type:"number",value:"random"};
 }
 
 

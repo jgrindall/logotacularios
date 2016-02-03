@@ -62,6 +62,7 @@
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_CHANGE_PAGE toCommandClass:[ChangePageCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_PERFORM_FILE_SETUP toCommandClass:[PerformFileSetupCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_START toCommandClass:[StartCommand class]];
+	[[self getCommandMap] mapEventName:SYMM_NOTIF_RESTART toCommandClass:[RestartCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLICK_SAVE_AS toCommandClass:[ClickSaveAsCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLICK_REF toCommandClass:[ClickRefCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLICK_RESET_ZOOM toCommandClass:[ClickResetZoomCommand class]];

@@ -93,6 +93,8 @@ NSString* const THICK_KEYWORD			= @"thick";
 		if(recognizer.state == UIGestureRecognizerStateBegan){
 			self.startTransform = self.currentTransform;
 		}
+		float currentScale = (float)[self getScale:self.startTransform];
+		scale = MAX(MIN(scale, 3.0f/currentScale), 0.2f/currentScale);
 		CGPoint realPoint = [self getRealPoint:p];
 		CGAffineTransform extraTransform = [PaintViewController getTransformForScale:scale andCentre:realPoint];
 		self.currentTransform = CGAffineTransformConcat(self.startTransform, extraTransform);
@@ -104,7 +106,8 @@ NSString* const THICK_KEYWORD			= @"thick";
 - (void) checkEnded:(UIGestureRecognizerState)state{
 	if (state == UIGestureRecognizerStateEnded || state == UIGestureRecognizerStateFailed || state == UIGestureRecognizerStateCancelled){
 		[self flushTransforms];
-		[[self getEventDispatcher] dispatch:SYMM_NOTIF_START withData:nil];
+		[[self getEventDispatcher] dispatch:SYMM_NOTIF_RESTART withData:nil];
+		[[self getEventDispatcher] dispatch:SYMM_NOTIF_STOP withData:nil];
 	}
 }
 
@@ -202,6 +205,8 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[[self getEventDispatcher] addListener: SYMM_NOTIF_CMD_RECEIVED toFunction:@selector(queueCommand:) withContext:self];
 	[[self getEventDispatcher] addListener: SYMM_NOTIF_RESET toFunction:@selector(reset) withContext:self];
 	[[self getEventDispatcher] addListener: SYMM_NOTIF_RESET_ZOOM toFunction:@selector(resetZoom) withContext:self];
+	[[self getEventDispatcher] addListener:SYMM_NOTIF_RESTART_QUEUE toFunction:@selector(restart) withContext:self];
+	[[self getEventDispatcher] addListener:SYMM_NOTIF_CLEAR_QUEUE toFunction:@selector(clrQueue) withContext:self];
 	[[self getBgModel] addListener:@selector(changeBg) forKey:BG_COLOR withTarget:self];
 }
 
@@ -210,7 +215,19 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[[self getEventDispatcher] removeListener: SYMM_NOTIF_CMD_RECEIVED toFunction:@selector(queueCommand:) withContext:self];
 	[[self getEventDispatcher] removeListener: SYMM_NOTIF_RESET toFunction:@selector(reset) withContext:self];
 	[[self getEventDispatcher] removeListener: SYMM_NOTIF_RESET_ZOOM toFunction:@selector(resetZoom) withContext:self];
+	[[self getEventDispatcher] removeListener:SYMM_NOTIF_RESTART_QUEUE toFunction:@selector(restart) withContext:self];
+	[[self getEventDispatcher] removeListener:SYMM_NOTIF_CLEAR_QUEUE toFunction:@selector(clrQueue) withContext:self];
 	[[self getBgModel] removeListener:@selector(changeBg) forKey:BG_COLOR withTarget:self];
+}
+
+- (void)clrQueue{
+	[self.cmds removeAllObjects];
+}
+
+- (void) restart{
+	for (NSDictionary* dic in self.cmds) {
+		[self executeOneCommandAsDic:dic];
+	}
 }
 
 - (void) changeBg{
@@ -234,7 +251,6 @@ NSString* const THICK_KEYWORD			= @"thick";
 }
 
 - (void) bg:(NSDictionary*) dic{
-	NSLog(@"%@", dic);
 	NSString* clrName;
 	NSNumber* clrIndex;
 	if ([dic objectForKey:@"colorname"]){
@@ -244,7 +260,6 @@ NSString* const THICK_KEYWORD			= @"thick";
 	else if ([dic objectForKey:@"colorindex"]){
 		clrIndex = (NSNumber*)dic[@"colorindex"];
 		clrName = [Colors getColorNameForNumber:clrIndex];
-		NSLog(@"1 %@ %@", clrIndex, clrName);
 		[[self getBgModel] setVal:clrName forKey:BG_COLOR];
 	}
 }
@@ -344,8 +359,7 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[self executeCommand];
 }
 
-- (void) executeCommand{
-	NSDictionary* dic = self.cmds[self.cmds.count - 1];
+- (void) executeOneCommandAsDic:(NSDictionary*)dic{
 	NSString* name = (NSString*)dic[@"name"];
 	if([name isEqualToString:FD_KEYWORD]){
 		[self fd:(NSNumber*)dic[@"amount"]];
@@ -377,7 +391,11 @@ NSString* const THICK_KEYWORD			= @"thick";
 	else if([name isEqualToString:PENDOWN_KEYWORD]){
 		[[self getTurtleModel] setVal:[NSNumber numberWithBool:YES] forKey:TURTLE_PEN_DOWN];
 	}
-	[self.cmds removeLastObject];
+}
+
+- (void) executeCommand{
+	NSDictionary* dic = self.cmds[self.cmds.count - 1]; // top one
+	[self executeOneCommandAsDic:dic];
 }
 
 - (void) layoutPaint{

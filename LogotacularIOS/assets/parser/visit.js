@@ -204,7 +204,12 @@ function visitnumberexpression(node){
 }
 
 function visitnumber(node){
-	stack.push(node.value);
+	if(node.value === "random"){
+		stack.push(Math.floor(Math.random() * 100));
+	}
+	else{
+		stack.push(node.value);
+	}
 }
 
 function visitrtstmt(node){

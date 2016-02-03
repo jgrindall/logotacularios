@@ -40,14 +40,18 @@ CGContextRef cacheContext;
 	if(cacheContext){
 		CGContextRelease(cacheContext);
 	}
-	CGSize size = self.frame.size;
+	CGSize size = self.superview.frame.size;
 	int	bitmapBytesPerRow;
 	int bytesPerPixel = 4;
-	bitmapBytesPerRow = (size.width * bytesPerPixel);
-	cacheContext = CGBitmapContextCreate (NULL, size.width, size.height, 8, bitmapBytesPerRow, CGColorSpaceCreateDeviceRGB(), (CGBitmapInfo)kCGImageAlphaPremultipliedLast);
-	CGContextClearRect(cacheContext, self.bounds);
-	CGContextSetRGBFillColor(cacheContext, 0.0, 0.0, 0.0, 0.0);
-	CGContextFillRect(cacheContext, self.bounds);
+	int w = (int)(size.width);
+	int h = (int)(size.height);
+	bitmapBytesPerRow = (w * bytesPerPixel);
+	if(w > 0 && h > 0){
+		cacheContext = CGBitmapContextCreate (NULL, w, h, 8, bitmapBytesPerRow, CGColorSpaceCreateDeviceRGB(), (CGBitmapInfo)kCGImageAlphaPremultipliedLast);
+		CGContextClearRect(cacheContext, self.bounds);
+		CGContextSetRGBFillColor(cacheContext, 0.0, 0.0, 0.0, 0.0);
+		CGContextFillRect(cacheContext, self.bounds);
+	}
 	return YES;
 }
 
