@@ -62,6 +62,7 @@
 		5297CF0A1A01240600CC5CB3 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5297CF091A01240600CC5CB3 /* WebViewController.m */; };
 		5297CF0E1A01263200CC5CB3 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5297CF0D1A01263200CC5CB3 /* MenuViewController.m */; };
 		52A185451A01004C005D8208 /* TextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A185441A01004C005D8208 /* TextViewController.m */; };
+		52AE1ED01C62B96400CEDDE5 /* RestartCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AE1ECF1C62B96400CEDDE5 /* RestartCommand.m */; };
 		52B228981A00E73D001CC355 /* MenuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B228971A00E73D001CC355 /* MenuModel.m */; };
 		52B2289B1A00E749001CC355 /* FileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B2289A1A00E749001CC355 /* FileModel.m */; };
 		52B2289E1A00E751001CC355 /* LogoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B2289D1A00E751001CC355 /* LogoModel.m */; };
@@ -236,6 +237,8 @@
 		5297CF0D1A01263200CC5CB3 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		52A185431A01004C005D8208 /* TextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewController.h; sourceTree = "<group>"; };
 		52A185441A01004C005D8208 /* TextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewController.m; sourceTree = "<group>"; };
+		52AE1ECE1C62B96400CEDDE5 /* RestartCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestartCommand.h; sourceTree = "<group>"; };
+		52AE1ECF1C62B96400CEDDE5 /* RestartCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestartCommand.m; sourceTree = "<group>"; };
 		52B228961A00E73D001CC355 /* MenuModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuModel.h; sourceTree = "<group>"; };
 		52B228971A00E73D001CC355 /* MenuModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuModel.m; sourceTree = "<group>"; };
 		52B228991A00E749001CC355 /* FileModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileModel.h; sourceTree = "<group>"; };
@@ -487,6 +490,8 @@
 		5272DE3319FE4799006E717F /* Commands */ = {
 			isa = PBXGroup;
 			children = (
+				52AE1ECE1C62B96400CEDDE5 /* RestartCommand.h */,
+				52AE1ECF1C62B96400CEDDE5 /* RestartCommand.m */,
 				523B6DB11C517FDA00A4C0C9 /* ClickWipeCommand.h */,
 				523B6DB21C517FDA00A4C0C9 /* ClickWipeCommand.m */,
 				5257F3501A01358400757C77 /* Base */,
@@ -1154,6 +1159,7 @@
 				52D426FF1A2D01EE002E8B2F /* WelcomeViewController.m in Sources */,
 				523067C81A1E9DF80055B8A5 /* ReferencePageViewController.m in Sources */,
 				52B5B31619FD7D4600EF531F /* main.m in Sources */,
+				52AE1ED01C62B96400CEDDE5 /* RestartCommand.m in Sources */,
 				5272DE4719FE5845006E717F /* Logger.m in Sources */,
 				52A185451A01004C005D8208 /* TextViewController.m in Sources */,
 				5257F3461A0131F000757C77 /* HideMenuCommand.m in Sources */,
