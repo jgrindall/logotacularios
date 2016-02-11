@@ -129,17 +129,23 @@ return {type:"booleanval", children: [lhs, rhs], "op":op}
 }
 
 booleanoperator =
+"==" {return "="}
+/
 "=" {return "="}
+/
+"<=" {return "<="}
+/
+">=" {return ">="}
+/
+"<>" {return "!="}
 /
 "<" {return "<"}
 /
 ">" {return ">"}
 /
 "!=" {return "!="}
-/
-"<=" {return "<="}
-/
-">=" {return ">="}
+
+
 
 
 penupstmt = sep* ('penup' / 'pu') eoline

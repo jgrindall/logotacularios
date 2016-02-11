@@ -114,6 +114,8 @@ function visitbooleanval(node){
 	var op = node.op;
 	var rhs = stack.pop();
 	var lhs = stack.pop();
+	lhs = parseFloat(lhs, 10);
+	rhs = parseFloat(rhs, 10);
 	if(op === "=" && lhs === rhs){
 		stack.push(1);
 	}
@@ -121,6 +123,15 @@ function visitbooleanval(node){
 		stack.push(1);
 	}
 	else if(op === ">" && lhs > rhs){
+		stack.push(1);
+	}
+	else if(op === "<=" && lhs <= rhs){
+		stack.push(1);
+	}
+	else if(op === ">=" && lhs >= rhs){
+		stack.push(1);
+	}
+	else if(op === "!=" && lhs !== rhs){
 		stack.push(1);
 	}
 	else{
