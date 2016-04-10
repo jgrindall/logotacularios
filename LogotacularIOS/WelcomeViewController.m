@@ -94,18 +94,18 @@
 }
 
 - (void) showObject:(UIView*)v{
-	[UIView animateWithDuration:0.4 animations:^{
+	[UIView animateWithDuration:0.2 animations:^{
 		v.alpha = 1.0;
 	}];
 }
 
 - (void) show{
 	[self performSelector:@selector(showObject:) withObject:self.label afterDelay:0.0];
-	[self performSelector:@selector(showObject:) withObject:self.subTitle afterDelay:1.00];
-	[self performSelector:@selector(showObject:) withObject:self.button0 afterDelay:2.0];
-	[self performSelector:@selector(showObject:) withObject:self.button1 afterDelay:2.75];
-	[self performSelector:@selector(showObject:) withObject:self.button2 afterDelay:3.5];
-	[self performSelector:@selector(showObject:) withObject:self.button3 afterDelay:4.25];
+	[self performSelector:@selector(showObject:) withObject:self.subTitle afterDelay:0.5];
+	[self performSelector:@selector(showObject:) withObject:self.button0 afterDelay:1.0];
+	[self performSelector:@selector(showObject:) withObject:self.button1 afterDelay:2.00];
+	[self performSelector:@selector(showObject:) withObject:self.button2 afterDelay:2.5];
+	[self performSelector:@selector(showObject:) withObject:self.button3 afterDelay:3.00];
 }
 
 - (UIButton*) getBoxButton:(NSString*)label withIcon:(NSString*)icon withColor:(UIColor*)clr{

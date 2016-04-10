@@ -320,6 +320,39 @@ function visitsqrtexpression(node){
 	}
 }
 
+function visitsinexpression(node){
+	visitchildren(node);
+	var amount = stack.pop();
+	if(amount >= 0){
+		stack.push(Math.sin(amount*Math.PI/180));
+	}
+	else{
+		runTimeError("You took the square root of a negative number");
+	}
+}
+
+function visitcosexpression(node){
+	visitchildren(node);
+	var amount = stack.pop();
+	if(amount >= 0){
+		stack.push(Math.cos(amount*Math.PI/180));
+	}
+	else{
+		runTimeError("You took the square root of a negative number");
+	}
+}
+
+function visittanexpression(node){
+	visitchildren(node);
+	var amount = stack.pop();
+	if(amount >= 0){
+		stack.push(Math.tan(amount*Math.PI/180));
+	}
+	else{
+		runTimeError("You took the square root of a negative number");
+	}
+}
+
 function visitminusexpression(node){
 	visitchildren(node);
 	var num = stack.pop();
@@ -525,6 +558,15 @@ function visitNode(node){
 	}
 	else if(t=="sqrtexpression"){
 		visitsqrtexpression(node);
+	}
+	else if(t=="sinexpression"){
+		visitsinexpression(node);
+	}
+	else if(t=="cosexpression"){
+		visitcosexpression(node);
+	}
+	else if(t=="tanexpression"){
+		visittanexpression(node);
 	}
 	else if(t=="labelstmt"){
 		visitlabelstmt(node);

@@ -52,6 +52,9 @@ CGContextRef cacheContext;
 		CGContextSetRGBFillColor(cacheContext, 0.0, 0.0, 0.0, 0.0);
 		CGContextFillRect(cacheContext, self.bounds);
 	}
+	else{
+		CGContextRelease(cacheContext);
+	}
 	return YES;
 }
 

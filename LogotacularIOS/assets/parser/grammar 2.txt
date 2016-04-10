@@ -340,7 +340,7 @@ expressionspace = sep* e:expression ' '
 return e;
 }
 
-keyword = 'to' / 'fd' / 'rt' / 'end' / 'penup' / 'pu' / 'pd' / 'pendown' / 'color' / 'bg' / 'thick' / 'stop' / 'home' / 'setxy' / 'sqrt' / 'label' / 'random'
+keyword = 'to' / 'fd' / 'rt' / 'end' / 'penup' / 'pu' / 'pd' / 'pendown' / 'color' / 'bg' / 'thick' / 'stop' / 'home' / 'setxy' / 'sqrt' / 'label' / 'random' / 'sin' / 'cos' / 'tan'
 
 fnname = !keyword c0:([a-zA-Z])+ c1:[a-zA-Z0-9_]*
 {
@@ -463,6 +463,18 @@ return {type:"numberexpression", children:[v]};
 / 'sqrt' sep* e:expression sep*
 {
 	return {type:"sqrtexpression", children:[e]};
+}
+/ 'sin' sep* e:expression sep*
+{
+	return {type:"sinexpression", children:[e]};
+}
+/ 'cos' sep* e:expression sep*
+{
+	return {type:"cosexpression", children:[e]};
+}
+/ 'tan' sep* e:expression sep*
+{
+	return {type:"tanexpression", children:[e]};
 }
 / sep* 'random' sep*
 {
