@@ -84,6 +84,7 @@
 
 - (void) finished{
 	[[self getDrawingModel] setVal:@NO forKey:DRAWING_ISDRAWING];
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_TRI withData:nil];
 }
 
 - (void) error:(NSDictionary*)error{

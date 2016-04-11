@@ -11,18 +11,25 @@
 
 @interface LinesView ()
 
+@property UIView* triView;
+
 @end
 
 @implementation LinesView
 
 CGContextRef cacheContext;
+bool created = 0;
+const float DX = 16;
+const float DY = 10;
+const float DY2 = 20;
 
 - (instancetype)initWithFrame:(CGRect)frame{
 	self = [super initWithFrame:frame];
 	if (self) {
 		_flushedTransform = CGAffineTransformIdentity;
+		self.triView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tri.png"]];
+		[self addSubview:self.triView];
 		[self setBackgroundColor:[UIColor clearColor]];
-		[self reset];
 	}
 	return self;
 }
@@ -37,6 +44,7 @@ CGContextRef cacheContext;
 }
 
 - (BOOL) initContext {
+	NSLog(@"IC?");
 	if(cacheContext){
 		CGContextRelease(cacheContext);
 	}
@@ -51,6 +59,10 @@ CGContextRef cacheContext;
 		CGContextClearRect(cacheContext, self.bounds);
 		CGContextSetRGBFillColor(cacheContext, 0.0, 0.0, 0.0, 0.0);
 		CGContextFillRect(cacheContext, self.bounds);
+		CGContextSetLineCap(cacheContext, kCGLineCapRound);
+		created = 1;
+		NSLog(@"initctx %i , %i", w, h);
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"ContextReady" object:self];
 	}
 	else{
 		CGContextRelease(cacheContext);
@@ -81,9 +93,17 @@ CGContextRef cacheContext;
 	[self setNeedsDisplayInRect:translatedBounds];
 }
 
+- (void) drawTriangleAt:(CGPoint)p withHeading:(float)h{
+	NSLog(@"draw tri, %f %f %f  created %i", p.x, p.y, h, created);
+	if(created == 1){
+		CGPoint flushedPoint = [self getFlushedPoint:p];
+		self.triView.frame = CGRectMake(flushedPoint.x, flushedPoint.y, 50, 50);
+		[self setNeedsDisplay];
+	}
+}
+
 - (void) drawLineFrom:(CGPoint)fromPos to:(CGPoint) toPos withColor:(UIColor*) clr andThickness:(NSInteger)thickness {
 	CGContextSetStrokeColorWithColor(cacheContext, [clr CGColor]);
-	CGContextSetLineCap(cacheContext, kCGLineCapRound);
 	float thickness1 = thickness * [self getScale:self.flushedTransform];
 	CGContextSetLineWidth(cacheContext, thickness1);
 	CGPoint toPos1 = [self getFlushedPoint:toPos];

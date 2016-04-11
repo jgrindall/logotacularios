@@ -35,6 +35,7 @@
 	[self layoutButtons];
 	[self layoutLabel];
 	[self layoutSubTitle];
+	self.view.backgroundColor = [UIColor colorWithRed:0.5 green:0.75 blue:0.1 alpha:0.2];
 }
 
 - (void) addBg{

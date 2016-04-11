@@ -22,6 +22,7 @@ NSString* const SYMM_NOTIF_START =				@"Symm::start";
 NSString* const SYMM_NOTIF_RESTART =			@"Symm::restart";
 NSString* const SYMM_NOTIF_RESTART_QUEUE =		@"Symm::restartQueue";
 NSString* const SYMM_NOTIF_PARSE =				@"Symm::parse";
+NSString* const SYMM_NOTIF_TRI =				@"Symm::triangle";
 NSString* const SYMM_NOTIF_CLICK_RESET_ZOOM =	@"Symm::resetZoom";
 NSString* const SYMM_NOTIF_CLICK_WIPE =			@"Symm::wipe";
 NSString* const SYMM_NOTIF_STOP =				@"Symm::stop";

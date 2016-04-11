@@ -55,15 +55,25 @@ NSString* const THICK_KEYWORD			= @"thick";
 	return self;
 }
 
+- (void) viewDidAppear:(BOOL)animated{
+	[super viewDidAppear:animated];
+	[[self getTurtleModel] reset];
+	NSLog(@"dva!");
+}
+
 - (void) viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:animated];
 	[self layoutPaint];
+	NSLog(@"vwa");
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_TRI withData:nil];
 }
 
 - (void) viewDidLoad{
 	[super viewDidLoad];
 	[self addPaint];
 	[self addGestures];
+	NSLog(@"vdl");
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_TRI withData:nil];
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
@@ -197,7 +207,16 @@ NSString* const THICK_KEYWORD			= @"thick";
 }
 
 - (void) reset{
+	NSLog(@"r1");
 	[self.paintView reset];
+	NSLog(@"r2");
+	[self onTri];
+	NSLog(@"r3");
+}
+
+- (void) receiveTestNotification:(NSNotification *) notification{
+	NSLog(@"READY");
+	[self onTri];
 }
 
 - (void) addListeners{
@@ -207,7 +226,9 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[[self getEventDispatcher] addListener: SYMM_NOTIF_RESET_ZOOM toFunction:@selector(resetZoom) withContext:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_RESTART_QUEUE toFunction:@selector(restart) withContext:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_CLEAR_QUEUE toFunction:@selector(clrQueue) withContext:self];
+	[[self getEventDispatcher] addListener:SYMM_NOTIF_TRI toFunction:@selector(onTri) withContext:self];
 	[[self getBgModel] addListener:@selector(changeBg) forKey:BG_COLOR withTarget:self];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveTestNotification:) name:@"ContextReady" object:nil];
 }
 
 - (void) removeListeners{
@@ -217,7 +238,15 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[[self getEventDispatcher] removeListener: SYMM_NOTIF_RESET_ZOOM toFunction:@selector(resetZoom) withContext:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_RESTART_QUEUE toFunction:@selector(restart) withContext:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_CLEAR_QUEUE toFunction:@selector(clrQueue) withContext:self];
+	[[self getEventDispatcher] removeListener:SYMM_NOTIF_TRI toFunction:@selector(onTri) withContext:self];
 	[[self getBgModel] removeListener:@selector(changeBg) forKey:BG_COLOR withTarget:self];
+}
+
+- (void) onTri{
+	NSLog(@"tri");
+	CGPoint p = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
+	float heading = [[[self getTurtleModel] getVal:TURTLE_HEADING] floatValue];
+	[self.paintView drawTriangleAt:p withHeading:heading];
 }
 
 - (void)clrQueue{

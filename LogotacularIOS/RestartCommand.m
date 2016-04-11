@@ -17,6 +17,7 @@
 - (void) execute:(id)payload{
 	[[self getDrawingModel] setVal:@YES forKey:DRAWING_ISDRAWING];
 	[[self getMenuModel] setVal:@NO forKey:MENU_SHOWN];
+	NSLog(@"restart");
 	[[self getTurtleModel] reset];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_DISMISS_KEY withData:nil];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_RESET withData:nil];

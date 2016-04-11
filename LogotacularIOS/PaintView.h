@@ -24,5 +24,7 @@
 
 - (void) setFlushedTransform:(CGAffineTransform)t;
 
+- (void) drawTriangleAt:(CGPoint)p withHeading:(float) h;
+
 @end
 

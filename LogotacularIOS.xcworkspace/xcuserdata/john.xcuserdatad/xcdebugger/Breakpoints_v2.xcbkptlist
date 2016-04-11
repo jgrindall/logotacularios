@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LogotacularIOS/WelcomeViewController.m"
-            timestampString = "473274762.580343"
+            timestampString = "482099063.806555"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "-layoutSubTitle"
             landmarkType = "5">
          </BreakpointContent>

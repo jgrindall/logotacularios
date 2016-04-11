@@ -35,6 +35,7 @@
 		5257F3561A014E4C00757C77 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 5257F3551A014E4C00757C77 /* assets */; };
 		5257F3631A0152AA00757C77 /* DroidSansMono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5257F3591A01519600757C77 /* DroidSansMono.ttf */; };
 		5257F3661A0152AA00757C77 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5257F35C1A01519600757C77 /* Lato-Regular.ttf */; };
+		526A77C21CBC44A8005BB814 /* tri.png in Resources */ = {isa = PBXBuildFile; fileRef = 526A77C11CBC44A8005BB814 /* tri.png */; };
 		5272DE3219FE45F5006E717F /* CommandMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 5272DE3119FE45F5006E717F /* CommandMap.m */; };
 		5272DE3B19FE485F006E717F /* EventDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 5272DE3A19FE485F006E717F /* EventDispatcher.m */; };
 		5272DE3E19FE487A006E717F /* AbstractCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5272DE3D19FE487A006E717F /* AbstractCommand.m */; };
@@ -176,6 +177,7 @@
 		5257F3591A01519600757C77 /* DroidSansMono.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = DroidSansMono.ttf; path = assets/fonts/DroidSansMono.ttf; sourceTree = "<group>"; };
 		5257F35C1A01519600757C77 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Regular.ttf"; path = "assets/fonts/Lato-Regular.ttf"; sourceTree = "<group>"; };
 		5257F36D1A01AA4F00757C77 /* Commands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Commands.h; sourceTree = "<group>"; };
+		526A77C11CBC44A8005BB814 /* tri.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tri.png; path = assets/tri.png; sourceTree = "<group>"; };
 		5272DE3019FE45F5006E717F /* CommandMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandMap.h; sourceTree = "<group>"; };
 		5272DE3119FE45F5006E717F /* CommandMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandMap.m; sourceTree = "<group>"; };
 		5272DE3919FE485F006E717F /* EventDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDispatcher.h; sourceTree = "<group>"; };
@@ -762,6 +764,7 @@
 		52B5B31319FD7D4600EF531F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				526A77C11CBC44A8005BB814 /* tri.png */,
 				52D426F71A2CFE86002E8B2F /* splash.png */,
 				5257F3591A01519600757C77 /* DroidSansMono.ttf */,
 				5257F35C1A01519600757C77 /* Lato-Regular.ttf */,
@@ -1038,6 +1041,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52DD4AA01C2AC27F0039A052 /* Lato-Light.ttf in Resources */,
+				526A77C21CBC44A8005BB814 /* tri.png in Resources */,
 				5257F3631A0152AA00757C77 /* DroidSansMono.ttf in Resources */,
 				5257F3661A0152AA00757C77 /* Lato-Regular.ttf in Resources */,
 				5257F3561A014E4C00757C77 /* assets in Resources */,

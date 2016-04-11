@@ -14,6 +14,8 @@
 
 - (void) drawTextAt:(CGPoint)p withColor:(UIColor*) clr andString:(NSString*)s;
 
+- (void) drawTriangleAt:(CGPoint)p withHeading:(float)h;
+
 - (void) reset;
 
 @property CGAffineTransform flushedTransform;

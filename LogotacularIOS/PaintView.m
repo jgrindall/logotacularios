@@ -20,8 +20,6 @@
 
 @implementation PaintView
 
-CGContextRef cacheContext;
-
 - (instancetype)initWithFrame:(CGRect)frame{
 	self = [super initWithFrame:frame];
 	if (self) {
@@ -32,6 +30,10 @@ CGContextRef cacheContext;
 
 - (void) reset{
 	[self.linesView reset];
+}
+
+- (void) drawTriangleAt:(CGPoint)p withHeading:(float) h{
+	[self.linesView drawTriangleAt:p withHeading:h];
 }
 
 - (void) addViews{
