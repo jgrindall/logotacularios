@@ -23,8 +23,6 @@
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_RESET withData:nil];
 	[[self getErrorModel] setVal:nil forKey:LOGO_ERROR_ERROR];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_PARSE withData:nil];
-	NSLog(@"start");
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_TRI withData:nil];
 }
 
 - (id<PMenuModel>) getMenuModel{

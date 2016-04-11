@@ -50,6 +50,7 @@ NSString* const THICK_KEYWORD			= @"thick";
 	if(self){
 		_currentTransform = CGAffineTransformIdentity;
 		_cmds = [NSMutableArray array];
+		[[self getTurtleModel] reset];
 		[self addListeners];
 	}
 	return self;
@@ -57,23 +58,17 @@ NSString* const THICK_KEYWORD			= @"thick";
 
 - (void) viewDidAppear:(BOOL)animated{
 	[super viewDidAppear:animated];
-	[[self getTurtleModel] reset];
-	NSLog(@"dva!");
 }
 
 - (void) viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:animated];
 	[self layoutPaint];
-	NSLog(@"vwa");
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_TRI withData:nil];
 }
 
 - (void) viewDidLoad{
 	[super viewDidLoad];
 	[self addPaint];
 	[self addGestures];
-	NSLog(@"vdl");
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_TRI withData:nil];
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
@@ -207,15 +202,10 @@ NSString* const THICK_KEYWORD			= @"thick";
 }
 
 - (void) reset{
-	NSLog(@"r1");
 	[self.paintView reset];
-	NSLog(@"r2");
-	[self onTri];
-	NSLog(@"r3");
 }
 
 - (void) receiveTestNotification:(NSNotification *) notification{
-	NSLog(@"READY");
 	[self onTri];
 }
 

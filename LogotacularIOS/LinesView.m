@@ -19,9 +19,8 @@
 
 CGContextRef cacheContext;
 bool created = 0;
-const float DX = 16;
-const float DY = 10;
-const float DY2 = 20;
+const float TRI_W = 32;
+const float TRI_H = 32;
 
 - (instancetype)initWithFrame:(CGRect)frame{
 	self = [super initWithFrame:frame];
@@ -44,7 +43,6 @@ const float DY2 = 20;
 }
 
 - (BOOL) initContext {
-	NSLog(@"IC?");
 	if(cacheContext){
 		CGContextRelease(cacheContext);
 	}
@@ -94,11 +92,13 @@ const float DY2 = 20;
 }
 
 - (void) drawTriangleAt:(CGPoint)p withHeading:(float)h{
-	NSLog(@"draw tri, %f %f %f  created %i", p.x, p.y, h, created);
 	if(created == 1){
+		float scale = [self getScale:self.flushedTransform];
 		CGPoint flushedPoint = [self getFlushedPoint:p];
-		self.triView.frame = CGRectMake(flushedPoint.x, flushedPoint.y, 50, 50);
-		[self setNeedsDisplay];
+		CGRect frame = CGRectMake(flushedPoint.x - TRI_W/2, flushedPoint.y - TRI_H/2, TRI_W * scale, TRI_H * scale);
+		self.triView.frame = frame;
+		self.triView.center = CGPointMake(flushedPoint.x, flushedPoint.y);
+		[self setNeedsDisplayInRect:frame];
 	}
 }
 

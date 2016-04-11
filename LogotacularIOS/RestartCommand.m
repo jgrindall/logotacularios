@@ -23,9 +23,10 @@
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_RESET withData:nil];
 	[[self getErrorModel] setVal:nil forKey:LOGO_ERROR_ERROR];
 	//force UI to reresh
-	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1), dispatch_get_main_queue(), ^{
 		[[self getEventDispatcher] dispatch:SYMM_NOTIF_RESTART_QUEUE withData:nil];
 		[[self getDrawingModel] setVal:@NO forKey:DRAWING_ISDRAWING];
+		[[self getEventDispatcher] dispatch:SYMM_NOTIF_TRI withData:nil];
 	});
 }
 

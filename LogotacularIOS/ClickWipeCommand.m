@@ -12,6 +12,7 @@
 
 - (void) execute:(id)payload{
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_RESET withData:nil];
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_TRI withData:nil];
 }
 
 @end
