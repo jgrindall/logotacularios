@@ -16,6 +16,8 @@
 
 - (void) drawTriangleAt:(CGPoint)p withHeading:(float)h;
 
+- (void)hideTriangle;
+
 - (void) reset;
 
 @property CGAffineTransform flushedTransform;

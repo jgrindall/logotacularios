@@ -23,6 +23,7 @@ extern NSString* const SYMM_NOTIF_RESET_ZOOM;
 extern NSString* const SYMM_NOTIF_CLEAR_QUEUE;
 extern NSString* const SYMM_NOTIF_PARSE;
 extern NSString* const SYMM_NOTIF_TRI;
+extern NSString* const SYMM_NOTIF_HIDE_TRI;
 extern NSString* const SYMM_NOTIF_STOP;
 extern NSString* const SYMM_NOTIF_UNDO;
 extern NSString* const SYMM_NOTIF_RESET;

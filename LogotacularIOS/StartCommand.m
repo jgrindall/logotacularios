@@ -22,7 +22,10 @@
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_DISMISS_KEY withData:nil];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_RESET withData:nil];
 	[[self getErrorModel] setVal:nil forKey:LOGO_ERROR_ERROR];
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_PARSE withData:nil];
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_TRI withData:nil];
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1), dispatch_get_main_queue(), ^{
+		[[self getEventDispatcher] dispatch:SYMM_NOTIF_PARSE withData:nil];
+	});
 }
 
 - (id<PMenuModel>) getMenuModel{

@@ -26,5 +26,7 @@
 
 - (void) drawTriangleAt:(CGPoint)p withHeading:(float) h;
 
+- (void)hideTriangle;
+
 @end
 

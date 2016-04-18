@@ -36,6 +36,10 @@
 	[self.linesView drawTriangleAt:p withHeading:h];
 }
 
+- (void)hideTriangle{
+	[self.linesView hideTriangle];
+}
+
 - (void) addViews{
 	self.bgView = [[UIView alloc] initWithFrame:self.frame];
 	self.bgView.backgroundColor = [Appearance bgColor];

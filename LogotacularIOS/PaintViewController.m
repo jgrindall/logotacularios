@@ -217,6 +217,7 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_RESTART_QUEUE toFunction:@selector(restart) withContext:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_CLEAR_QUEUE toFunction:@selector(clrQueue) withContext:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_TRI toFunction:@selector(onTri) withContext:self];
+	[[self getEventDispatcher] addListener:SYMM_NOTIF_HIDE_TRI toFunction:@selector(onHideTri) withContext:self];
 	[[self getBgModel] addListener:@selector(changeBg) forKey:BG_COLOR withTarget:self];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveTestNotification:) name:@"ContextReady" object:nil];
 }
@@ -229,11 +230,15 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_RESTART_QUEUE toFunction:@selector(restart) withContext:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_CLEAR_QUEUE toFunction:@selector(clrQueue) withContext:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_TRI toFunction:@selector(onTri) withContext:self];
+	[[self getEventDispatcher] removeListener:SYMM_NOTIF_HIDE_TRI toFunction:@selector(onHideTri) withContext:self];
 	[[self getBgModel] removeListener:@selector(changeBg) forKey:BG_COLOR withTarget:self];
 }
 
+- (void) onHideTri{
+	[self.paintView hideTriangle];
+}
+
 - (void) onTri{
-	NSLog(@"tri");
 	CGPoint p = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
 	float heading = [[[self getTurtleModel] getVal:TURTLE_HEADING] floatValue];
 	[self.paintView drawTriangleAt:p withHeading:heading];

@@ -323,34 +323,19 @@ function visitsqrtexpression(node){
 function visitsinexpression(node){
 	visitchildren(node);
 	var amount = stack.pop();
-	if(amount >= 0){
-		stack.push(Math.sin(amount*Math.PI/180));
-	}
-	else{
-		runTimeError("You took the square root of a negative number");
-	}
+	stack.push(Math.sin(amount*Math.PI/180));
 }
 
 function visitcosexpression(node){
 	visitchildren(node);
 	var amount = stack.pop();
-	if(amount >= 0){
-		stack.push(Math.cos(amount*Math.PI/180));
-	}
-	else{
-		runTimeError("You took the square root of a negative number");
-	}
+	stack.push(Math.cos(amount*Math.PI/180));
 }
 
 function visittanexpression(node){
 	visitchildren(node);
 	var amount = stack.pop();
-	if(amount >= 0){
-		stack.push(Math.tan(amount*Math.PI/180));
-	}
-	else{
-		runTimeError("You took the square root of a negative number");
-	}
+	stack.push(Math.tan(amount*Math.PI/180));
 }
 
 function visitminusexpression(node){
