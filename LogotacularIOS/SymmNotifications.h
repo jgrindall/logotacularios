@@ -35,6 +35,7 @@ extern NSString* const SYMM_NOTIF_CMD_RECEIVED;
 extern NSString* const SYMM_NOTIF_CLICK_STOP;
 extern NSString* const SYMM_NOTIF_CLICK_RESET_ZOOM;
 extern NSString* const SYMM_NOTIF_CLICK_WIPE;
+extern NSString* const SYMM_NOTIF_CLICK_TRI;
 extern NSString* const SYMM_NOTIF_CLICK_EXAMPLES;
 extern NSString* const SYMM_NOTIF_CLICK_REF;
 extern NSString* const SYMM_NOTIF_DISMISS_KEY;

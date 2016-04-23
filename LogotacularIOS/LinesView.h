@@ -14,11 +14,15 @@
 
 - (void) drawTextAt:(CGPoint)p withColor:(UIColor*) clr andString:(NSString*)s;
 
-- (void) drawTriangleAt:(CGPoint)p withHeading:(float)h;
+- (void) drawTriangleAt:(CGPoint)p withHeading:(float)h withColor:(UIColor*)clr;
 
 - (void)hideTriangle;
 
 - (void) reset;
+
+- (void) onViewDidLoad;
+
+- (void)clickTriangle:(BOOL)hideTri;
 
 @property CGAffineTransform flushedTransform;
 

@@ -7,54 +7,50 @@
 //
 
 #import "LinesView.h"
+#import "TriView.h"
 #import <CoreText/CoreText.h>
 
 @interface LinesView ()
 
-@property UIView* triView;
+@property TriView* triView;
+@property BOOL hideTri;
 
 @end
 
 @implementation LinesView
 
 CGContextRef cacheContext;
-bool created = 0;
-bool layedout = 0;
-const float TRI_W = 32;
-const float TRI_H = 32;
-const float DEG_TO_RAD = 3.14159/180.0;
 
 - (instancetype)initWithFrame:(CGRect)frame{
 	self = [super initWithFrame:frame];
 	if (self) {
 		_flushedTransform = CGAffineTransformIdentity;
-		self.triView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tri.png"]];
-		[self addSubview:self.triView];
+		self.hideTri = [[NSUserDefaults standardUserDefaults] boolForKey:@"HideTri"];
+		self.triView = [[TriView alloc] initWithFrame:CGRectMake(0, 0, 2*TRI_RADIUS, 2*TRI_RADIUS)];
+		if(!self.hideTri){
+			[self addSubview:self.triView];
+		}
 		[self setBackgroundColor:[UIColor clearColor]];
 	}
 	return self;
 }
 
-- (void) layoutSubviews{
-	[super layoutSubviews];
-	if(layedout == 0){
-		[self reset];
-		layedout = 1;
-	}
-}
-
 - (void) reset{
-	NSLog(@"reset");
 	[self initContext];
+	[self resetTri];
 	[self setNeedsDisplay];
 }
 
+- (void) onViewDidLoad{
+	[self initContext];
+	[self resetTri];
+}
+
 - (BOOL) initContext {
-	NSLog(@"init context?");
 	if(cacheContext){
 		CGContextRelease(cacheContext);
 	}
-	CGSize size = self.superview.frame.size;
+	CGSize size = self.frame.size;
 	int	bitmapBytesPerRow;
 	int bytesPerPixel = 4;
 	int w = (int)(size.width);
@@ -66,9 +62,6 @@ const float DEG_TO_RAD = 3.14159/180.0;
 		CGContextSetRGBFillColor(cacheContext, 0.0, 0.0, 0.0, 0.0);
 		CGContextFillRect(cacheContext, self.bounds);
 		CGContextSetLineCap(cacheContext, kCGLineCapRound);
-		created = 1;
-		NSLog(@"initctx %i , %i", w, h);
-		[[NSNotificationCenter defaultCenter] postNotificationName:@"ContextReady" object:self];
 	}
 	else{
 		CGContextRelease(cacheContext);
@@ -103,109 +96,33 @@ const float DEG_TO_RAD = 3.14159/180.0;
 	self.triView.alpha = 0;
 }
 
-- (void) drawTriangleAt:(CGPoint)p withHeading:(float)h{
-	NSLog(@"tri? %f %f %f", p.x, p.y, h);
-	if(created == 1){
-		NSLog(@"tri %f %f %f", p.x, p.y, h);
-		float scale = [self getScale:self.flushedTransform];
-		CGPoint flushedPoint = [self getFlushedPoint:p];
-		CGRect frame = CGRectMake(flushedPoint.x - TRI_W/2, flushedPoint.y - TRI_H/2, TRI_W * scale, TRI_H * scale);
-		self.triView.frame = frame;
-		self.triView.alpha = 1;
-		self.triView.center = CGPointMake(flushedPoint.x, flushedPoint.y);
-		NSLog(@"before %@", affineTransformDescription(self.triView.transform));
-		CGAffineTransform transform = CGAffineTransformRotate(self.triView.transform, h * DEG_TO_RAD);
-		NSLog(@"after %@", affineTransformDescription(transform));
-		self.triView.transform = transform;
-		//[self setNeedsDisplay];
+- (void)clickTriangle:(BOOL)hideTri{
+	if(hideTri && !self.hideTri){
+		[self.triView removeFromSuperview];
+		self.hideTri = hideTri;
+	}
+	else if(!hideTri && self.hideTri){
+		[self addSubview:self.triView];
+		self.hideTri = hideTri;
 	}
 }
 
-NSString* affineTransformDescription(CGAffineTransform transform)
-{
-	// check if it's simply the identity matrix
-	if (CGAffineTransformIsIdentity(transform)) {
-		return @"Is the identity transform";
+- (void) resetTri{
+	CGSize size = self.frame.size;
+	UIColor* clr = [UIColor blackColor];
+	[self drawTriangleAt:CGPointMake(size.width/2, size.height/2) withHeading:-90 withColor:clr];
+}
+
+- (void) drawTriangleAt:(CGPoint)p withHeading:(float)h withColor:(UIColor*)clr{
+	if(self.triView){
+		float scale = [self getScale:self.flushedTransform];
+		[self.triView drawWithSize:scale withHeading:h withColor:clr];
+		CGPoint flushedPoint = [self getFlushedPoint:p];
+		CGRect frame = CGRectMake(flushedPoint.x - TRI_RADIUS, flushedPoint.y - TRI_RADIUS, 2*TRI_RADIUS, 2*TRI_RADIUS);
+		self.triView.frame = frame;
+		self.triView.alpha = 1;
+		[self setNeedsDisplay];
 	}
-	// the above does't catch things like a 720° rotation so also check it manually
-	if (fabs(transform.a  - 1.0) < FLT_EPSILON &&
-		fabs(transform.b  - 0.0) < FLT_EPSILON &&
-		fabs(transform.c  - 0.0) < FLT_EPSILON &&
-		fabs(transform.d  - 1.0) < FLT_EPSILON &&
-		fabs(transform.tx - 0.0) < FLT_EPSILON &&
-		fabs(transform.ty - 0.0) < FLT_EPSILON) {
-		return @"Is the identity transform";
-	}
-	
-	// The affine transforms is built up like this:
-	
-	// a b tx
-	// c d ty
-	// 0 0 1
-	
-	// An array to hold all the different descirptions, charasteristics of the transform.
-	NSMutableArray *descriptions = [NSMutableArray array];
-	
-	// Checking for a translation
-	if (fabs(transform.tx) > FLT_EPSILON) { // translation along X
-		[descriptions addObject:[NSString stringWithFormat:@"Will move %.2f along the X axis",
-								 transform.tx]];
-	}
-	if (fabs(transform.ty) > FLT_EPSILON) { // translation along Y
-		[descriptions addObject:[NSString stringWithFormat:@"Will move %.2f along the Y axis",
-								 transform.ty]];
-	}
-	
-	
-	// Checking for a rotation
-	CGFloat angle = atan2(transform.b, transform.a); // get the angle of the rotation. Note this assumes no shearing!
-	if (fabs(angle) < FLT_EPSILON || fabs(angle - M_PI) < FLT_EPSILON) {
-		// there is a change that there is a 180° rotation, in that case, A and D will and be negative.
-		BOOL bothAreNegative  = transform.a < 0.0 && transform.d < 0.0;
-		
-		if (bothAreNegative) {
-			angle = M_PI;
-		} else {
-			angle = 0.0; // this is not considered a rotation, but a negative scale along one axis.
-		}
-	}
-	
-	// add the rotation description if there was an angle
-	if (fabs(angle) > FLT_EPSILON) {
-		[descriptions addObject:[NSString stringWithFormat:@"Will rotate %.1f° degrees",
-								 angle*180.0/M_PI]];
-	}
-	
-	
-	// Checking for a scale (and account for the possible rotation as well)
-	CGFloat scaleX = transform.a/cos(angle);
-	CGFloat scaleY = transform.d/cos(angle);
-	
-	
-	if (fabs(scaleX - scaleY) < FLT_EPSILON && fabs(scaleX - 1.0) > FLT_EPSILON) {
-		// if both are the same then we can format things a little bit nicer
-		[descriptions addObject:[NSString stringWithFormat:@"Will scale by %.2f along both X and Y",
-								 scaleX]];
-	} else {
-		// otherwise we look at X and Y scale separately
-		if (fabs(scaleX - 1.0) > FLT_EPSILON) { // scale along X
-			[descriptions addObject:[NSString stringWithFormat:@"Will scale by %.2f along the X axis",
-									 scaleX]];
-		}
-		
-		if (fabs(scaleY - 1.0) > FLT_EPSILON) { // scale along Y
-			[descriptions addObject:[NSString stringWithFormat:@"Will scale by %.2f along the Y axis",
-									 scaleY]];
-		}
-	}
-	
-	// Return something else when there is nothing to say about the transform matrix
-	if (descriptions.count == 0) {
-		return @"Can't easilly be described.";
-	}
-	
-	// join all the descriptions on their own line
-	return [descriptions componentsJoinedByString:@",\n"];
 }
 
 - (void) drawLineFrom:(CGPoint)fromPos to:(CGPoint) toPos withColor:(UIColor*) clr andThickness:(NSInteger)thickness {

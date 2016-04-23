@@ -24,9 +24,13 @@
 
 - (void) setFlushedTransform:(CGAffineTransform)t;
 
-- (void) drawTriangleAt:(CGPoint)p withHeading:(float) h;
+- (void) drawTriangleAt:(CGPoint)p withHeading:(float) h withColor:(UIColor*)clr;
+
+- (void) onViewDidLoad;
 
 - (void)hideTriangle;
+
+- (void)clickTriangle:(BOOL)hideTri;
 
 @end
 

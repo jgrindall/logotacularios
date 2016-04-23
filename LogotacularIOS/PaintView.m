@@ -32,8 +32,8 @@
 	[self.linesView reset];
 }
 
-- (void) drawTriangleAt:(CGPoint)p withHeading:(float) h{
-	[self.linesView drawTriangleAt:p withHeading:h];
+- (void) drawTriangleAt:(CGPoint)p withHeading:(float) h withColor:(UIColor*)clr{
+	[self.linesView drawTriangleAt:p withHeading:h withColor:clr];
 }
 
 - (void)hideTriangle{
@@ -48,6 +48,10 @@
 	[self addSubview:self.linesView];
 }
 
+- (void) onViewDidLoad{
+	[self.linesView onViewDidLoad];
+}
+
 - (void) setFlushedTransform:(CGAffineTransform)t{
 	self.linesView.flushedTransform = t;
 }
@@ -59,6 +63,10 @@
 
 - (void) drawLineFrom:(CGPoint)p0 to:(CGPoint)p1 withColor:(UIColor *)clr andThickness:(NSInteger)thickness{
 	[self.linesView drawLineFrom:p0 to:p1 withColor:clr andThickness:thickness];
+}
+
+- (void)clickTriangle:(BOOL)hideTri{
+	[self.linesView clickTriangle:hideTri];
 }
 
 - (void) drawTextAt:(CGPoint)p withColor:(UIColor*) clr andString:(NSString*)s {

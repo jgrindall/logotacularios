@@ -48,6 +48,7 @@
 @property UIBarButtonItem* listButton;
 @property UIBarButtonItem* clearButton;
 @property UIBarButtonItem* resetButton;
+@property UIBarButtonItem* triButton;
 @property UIBarButtonItem* saveButton;
 @property UIBarButtonItem* wipeButton;
 
@@ -111,6 +112,7 @@
 	[self getBarButton:self.wipeButton].enabled = tf;
 	[self getBarButton:self.playButton].enabled = tf;
 	[self getBarButton:self.clearButton].enabled = tf;
+	[self getBarButton:self.triButton].enabled = tf;
 }
 
 - (void) showWelcome{
@@ -169,6 +171,7 @@
 	[[self getBarButton:self.saveButton] setEnabled:!drawing];
 	[[self getBarButton:self.clearButton] setEnabled:!drawing];
 	[[self getBarButton:self.resetButton] setEnabled:!drawing];
+	[[self getBarButton:self.triButton] setEnabled:!drawing];
 }
 
 -(UIButton*)getBarButton: (UIBarButtonItem*) item{
@@ -206,10 +209,38 @@
 	self.clearButton = [self getBarButtonItem:CLEAR_ICON withAction:@selector(onClickClear) andLabel:@"Delete" andOffsetX:0];
 	self.playButton = [self getBarButtonItem:PLAY_ICON withAction:@selector(onClickPlay) andLabel:@"Play" andOffsetX:0];
 	self.resetButton = [self getBarButtonItem:AIM_ICON withAction:@selector(onClickResetZoom) andLabel:nil andOffsetX:10];
+	self.triButton = [self getBarButtonItem:TRI_ICON withAction:@selector(onClickTri) andLabel:nil andOffsetX:10];
+	[self updateTriButton];
 	self.wipeButton = [self getBarButtonItem:DOC_ICON withAction:@selector(onClickWipe) andLabel:nil andOffsetX:10];
 	self.saveButton = [self getBarButtonItem:FLOPPY_ICON withAction:@selector(onClickSave) andLabel:@"Save" andOffsetX:0];
-	self.navigationItem.leftBarButtonItems = @[self.listButton, self.resetButton, self.wipeButton];
+	self.navigationItem.leftBarButtonItems = @[self.listButton, self.resetButton, self.wipeButton, self.triButton];
 	self.navigationItem.rightBarButtonItems = @[self.clearButton, self.playButton, self.saveButton];
+}
+
+- (void) updateTriButton{
+	UIImage* img;
+	BOOL hideTri = [[NSUserDefaults standardUserDefaults] boolForKey:@"HideTri"];
+	if(hideTri){
+		img = [UIImage imageNamed:TRI_ICON];
+	}
+	else{
+		img = [UIImage imageNamed:NO_TRI_ICON];
+	}
+	[[self getBarButton:self.triButton] setImage:img forState:UIControlStateNormal];
+	[self.triButton setBackgroundImage:img forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+}
+
+- (void)onClickTri{
+	BOOL hideTri = [[NSUserDefaults standardUserDefaults] boolForKey:@"HideTri"];
+	if(hideTri){
+		[[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"HideTri"];
+	}
+	else{
+		[[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"HideTri"];
+	}
+	hideTri = [[NSUserDefaults standardUserDefaults] boolForKey:@"HideTri"];
+	[self updateTriButton];
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_TRI withData:[NSNumber numberWithBool:hideTri]];
 }
 
 - (void) onClickWipe{

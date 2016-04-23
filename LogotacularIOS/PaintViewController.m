@@ -69,6 +69,7 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[super viewDidLoad];
 	[self addPaint];
 	[self addGestures];
+	[self.paintView onViewDidLoad];
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
@@ -205,10 +206,6 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[self.paintView reset];
 }
 
-- (void) receiveTestNotification:(NSNotification *) notification{
-	[self onTri];
-}
-
 - (void) addListeners{
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_SCREENGRAB toFunction:@selector(grab) withContext:self];
 	[[self getEventDispatcher] addListener: SYMM_NOTIF_CMD_RECEIVED toFunction:@selector(queueCommand:) withContext:self];
@@ -218,8 +215,8 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_CLEAR_QUEUE toFunction:@selector(clrQueue) withContext:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_TRI toFunction:@selector(onTri) withContext:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_HIDE_TRI toFunction:@selector(onHideTri) withContext:self];
+	[[self getEventDispatcher] addListener:SYMM_NOTIF_CLICK_TRI toFunction:@selector(onClickTri:) withContext:self];
 	[[self getBgModel] addListener:@selector(changeBg) forKey:BG_COLOR withTarget:self];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveTestNotification:) name:@"ContextReady" object:nil];
 }
 
 - (void) removeListeners{
@@ -231,7 +228,13 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_CLEAR_QUEUE toFunction:@selector(clrQueue) withContext:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_TRI toFunction:@selector(onTri) withContext:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_HIDE_TRI toFunction:@selector(onHideTri) withContext:self];
+	[[self getEventDispatcher] removeListener:SYMM_NOTIF_CLICK_TRI toFunction:@selector(onClickTri:) withContext:self];
 	[[self getBgModel] removeListener:@selector(changeBg) forKey:BG_COLOR withTarget:self];
+}
+
+- (void) onClickTri:(NSNotification*)notif{
+	BOOL hideTri = [notif.object boolValue];
+	[self.paintView clickTriangle:hideTri];
 }
 
 - (void) onHideTri{
@@ -241,7 +244,8 @@ NSString* const THICK_KEYWORD			= @"thick";
 - (void) onTri{
 	CGPoint p = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
 	float heading = [[[self getTurtleModel] getVal:TURTLE_HEADING] floatValue];
-	[self.paintView drawTriangleAt:p withHeading:heading];
+	UIColor* clr = [[self getTurtleModel] getVal:TURTLE_COLOR];
+	[self.paintView drawTriangleAt:p withHeading:heading withColor:clr];
 }
 
 - (void)clrQueue{

@@ -12,6 +12,8 @@
 
 extern NSString* const ADD_ICON;
 extern NSString* const AIM_ICON;
+extern NSString* const TRI_ICON;
+extern NSString* const NO_TRI_ICON;
 extern NSString* const BOOK_ICON;
 extern NSString* const BRIEFCASE_ICON;
 extern NSString* const BULB_ICON;

@@ -26,6 +26,7 @@ NSString* const SYMM_NOTIF_TRI =				@"Symm::triangle";
 NSString* const SYMM_NOTIF_HIDE_TRI =			@"Symm::hidetriangle";
 NSString* const SYMM_NOTIF_CLICK_RESET_ZOOM =	@"Symm::resetZoom";
 NSString* const SYMM_NOTIF_CLICK_WIPE =			@"Symm::wipe";
+NSString* const SYMM_NOTIF_CLICK_TRI =			@"Symm::tri";
 NSString* const SYMM_NOTIF_STOP =				@"Symm::stop";
 NSString* const SYMM_NOTIF_CLICK_STOP =			@"Symm::clickStop";
 NSString* const SYMM_NOTIF_CLICK_EXAMPLES =		@"Symm::clickExamples";
