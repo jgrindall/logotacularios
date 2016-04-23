@@ -101,6 +101,9 @@
 	NSDictionary* dic = @{NSFontAttributeName:[Appearance fontOfSize:20], NSForegroundColorAttributeName:[UIColor whiteColor]};
 	[[UIBarButtonItem appearance] setTitleTextAttributes:dic forState:UIControlStateNormal];
 	[[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTitleTextAttributes:dic forState:UIControlStateNormal];
+	UIPageControl *pageControl = [UIPageControl appearance];
+	pageControl.pageIndicatorTintColor = [UIColor colorWithRed:0.85 green:0.85 blue:0.85 alpha:0.75];
+	pageControl.currentPageIndicatorTintColor = [Appearance grayColor];
 }
 
 + (void) flatToolbar:(UIToolbar*) toolbar{

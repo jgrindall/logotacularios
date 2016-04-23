@@ -25,7 +25,7 @@
 	//force UI to reresh
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
 		[[self getEventDispatcher] dispatch:SYMM_NOTIF_RESTART_QUEUE withData:nil];
-		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
 			[[self getEventDispatcher] dispatch:SYMM_NOTIF_TRI withData:nil];
 			[[self getDrawingModel] setVal:@NO forKey:DRAWING_ISDRAWING];
 		});

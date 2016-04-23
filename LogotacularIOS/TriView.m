@@ -22,9 +22,10 @@
 const float DEG_TO_RAD =	M_PI/180.0f;
 const float	THETA =			130.0f;
 float const TRI_RADIUS =	18.0f;
-float const DARKEN =		0.1f;
+float const DARKEN =		0.075f;
 float const ALPHA =			1.0f;
 int const	THICK =			3;
+float const FILL_ALPHA =	0.2;
 
 CGPoint p0, p1, p2;
 
@@ -66,15 +67,19 @@ CGPoint p0, p1, p2;
 	p0Dash = CGPointMake(p0Dash.x * self.scale, p0Dash.y * self.scale);
 	p1Dash = CGPointMake(p1Dash.x * self.scale, p1Dash.y * self.scale);
 	p2Dash = CGPointMake(p2Dash.x * self.scale, p2Dash.y * self.scale);
-	
 	p0Dash = CGPointMake(p0Dash.x + TRI_RADIUS, p0Dash.y + TRI_RADIUS);
 	p1Dash = CGPointMake(p1Dash.x + TRI_RADIUS, p1Dash.y + TRI_RADIUS);
 	p2Dash = CGPointMake(p2Dash.x + TRI_RADIUS, p2Dash.y + TRI_RADIUS);
-	CGContextMoveToPoint(context, p0Dash.x, p0Dash.y);
-	CGContextAddLineToPoint(context, p1Dash.x, p1Dash.y);
-	CGContextAddLineToPoint(context, p2Dash.x, p2Dash.y);
-	CGContextAddLineToPoint(context, p0Dash.x, p0Dash.y);
-	CGContextDrawPath(context, kCGPathStroke);
+	CGMutablePathRef path = CGPathCreateMutable();
+	CGPathMoveToPoint(path, nil, p0Dash.x, p0Dash.y);
+	CGPathAddLineToPoint(path, nil, p1Dash.x, p1Dash.y);
+	CGPathAddLineToPoint(path, nil, p2Dash.x, p2Dash.y);
+	CGPathAddLineToPoint(path, nil, p0Dash.x, p0Dash.y);
+	CGContextSetRGBFillColor(context, 255, 255, 255, FILL_ALPHA);
+	CGContextAddPath(context, path);
+	CGContextFillPath(context);
+	CGContextAddPath(context, path);
+	CGContextStrokePath(context);
 }
 
 - (void) dealloc{

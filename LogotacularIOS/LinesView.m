@@ -9,6 +9,7 @@
 #import "LinesView.h"
 #import "TriView.h"
 #import <CoreText/CoreText.h>
+#import "TextLayout.h"
 
 @interface LinesView ()
 
@@ -28,7 +29,9 @@ CGContextRef cacheContext;
 		self.hideTri = [[NSUserDefaults standardUserDefaults] boolForKey:@"HideTri"];
 		self.triView = [[TriView alloc] initWithFrame:CGRectMake(0, 0, 2*TRI_RADIUS, 2*TRI_RADIUS)];
 		if(!self.hideTri){
-			[self addSubview:self.triView];
+			dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+				[self addSubview:self.triView];
+			});
 		}
 		[self setBackgroundColor:[UIColor clearColor]];
 	}
@@ -110,7 +113,11 @@ CGContextRef cacheContext;
 - (void) resetTri{
 	CGSize size = self.frame.size;
 	UIColor* clr = [UIColor blackColor];
-	[self drawTriangleAt:CGPointMake(size.width/2, size.height/2) withHeading:-90 withColor:clr];
+	float visibleWidth = (1 - TEXT_WIDTH)*size.width;
+	float fullWidth = size.width;
+	float weighted = (2.0*visibleWidth + 1.0*fullWidth)/3.0;
+	CGPoint centre = CGPointMake(weighted/2.0, size.height/2.0);
+	[self drawTriangleAt:centre withHeading:-90 withColor:clr];
 }
 
 - (void) drawTriangleAt:(CGPoint)p withHeading:(float)h withColor:(UIColor*)clr{
