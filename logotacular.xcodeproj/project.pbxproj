@@ -35,7 +35,6 @@
 		5257F3561A014E4C00757C77 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 5257F3551A014E4C00757C77 /* assets */; };
 		5257F3631A0152AA00757C77 /* DroidSansMono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5257F3591A01519600757C77 /* DroidSansMono.ttf */; };
 		5257F3661A0152AA00757C77 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5257F35C1A01519600757C77 /* Lato-Regular.ttf */; };
-		526A77C21CBC44A8005BB814 /* tri.png in Resources */ = {isa = PBXBuildFile; fileRef = 526A77C11CBC44A8005BB814 /* tri.png */; };
 		5272DE3219FE45F5006E717F /* CommandMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 5272DE3119FE45F5006E717F /* CommandMap.m */; };
 		5272DE3B19FE485F006E717F /* EventDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 5272DE3A19FE485F006E717F /* EventDispatcher.m */; };
 		5272DE3E19FE487A006E717F /* AbstractCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5272DE3D19FE487A006E717F /* AbstractCommand.m */; };
@@ -108,6 +107,7 @@
 		52CF55F61A0831D600F01D3A /* LogoErrorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CF55F51A0831D600F01D3A /* LogoErrorModel.m */; };
 		52CF55FB1A08411900F01D3A /* FileBrowserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CF55FA1A08411900F01D3A /* FileBrowserModel.m */; };
 		52D08C541CCB8A7300EAAF81 /* TriView.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D08C531CCB8A7300EAAF81 /* TriView.m */; };
+		52D08C5B1CCBBA2600EAAF81 /* ClickCameraCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D08C5A1CCBBA2600EAAF81 /* ClickCameraCommand.m */; };
 		52D426F81A2CFE86002E8B2F /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 52D426F71A2CFE86002E8B2F /* splash.png */; };
 		52D426FB1A2CFF97002E8B2F /* AbstractOverlayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D426FA1A2CFF97002E8B2F /* AbstractOverlayController.m */; };
 		52D426FF1A2D01EE002E8B2F /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D426FE1A2D01EE002E8B2F /* WelcomeViewController.m */; };
@@ -178,7 +178,6 @@
 		5257F3591A01519600757C77 /* DroidSansMono.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = DroidSansMono.ttf; path = assets/fonts/DroidSansMono.ttf; sourceTree = "<group>"; };
 		5257F35C1A01519600757C77 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Regular.ttf"; path = "assets/fonts/Lato-Regular.ttf"; sourceTree = "<group>"; };
 		5257F36D1A01AA4F00757C77 /* Commands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Commands.h; sourceTree = "<group>"; };
-		526A77C11CBC44A8005BB814 /* tri.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tri.png; path = assets/tri.png; sourceTree = "<group>"; };
 		5272DE3019FE45F5006E717F /* CommandMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandMap.h; sourceTree = "<group>"; };
 		5272DE3119FE45F5006E717F /* CommandMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandMap.m; sourceTree = "<group>"; };
 		5272DE3919FE485F006E717F /* EventDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDispatcher.h; sourceTree = "<group>"; };
@@ -343,6 +342,8 @@
 		52CF55FD1A08413100F01D3A /* PFileBrowserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFileBrowserModel.h; sourceTree = "<group>"; };
 		52D08C521CCB8A7300EAAF81 /* TriView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriView.h; sourceTree = "<group>"; };
 		52D08C531CCB8A7300EAAF81 /* TriView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TriView.m; sourceTree = "<group>"; };
+		52D08C591CCBBA2600EAAF81 /* ClickCameraCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickCameraCommand.h; sourceTree = "<group>"; };
+		52D08C5A1CCBBA2600EAAF81 /* ClickCameraCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickCameraCommand.m; sourceTree = "<group>"; };
 		52D426F71A2CFE86002E8B2F /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		52D426F91A2CFF97002E8B2F /* AbstractOverlayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractOverlayController.h; sourceTree = "<group>"; };
 		52D426FA1A2CFF97002E8B2F /* AbstractOverlayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractOverlayController.m; sourceTree = "<group>"; };
@@ -495,6 +496,8 @@
 		5272DE3319FE4799006E717F /* Commands */ = {
 			isa = PBXGroup;
 			children = (
+				52D08C591CCBBA2600EAAF81 /* ClickCameraCommand.h */,
+				52D08C5A1CCBBA2600EAAF81 /* ClickCameraCommand.m */,
 				52AE1ECE1C62B96400CEDDE5 /* RestartCommand.h */,
 				52AE1ECF1C62B96400CEDDE5 /* RestartCommand.m */,
 				523B6DB11C517FDA00A4C0C9 /* ClickWipeCommand.h */,
@@ -767,7 +770,6 @@
 		52B5B31319FD7D4600EF531F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				526A77C11CBC44A8005BB814 /* tri.png */,
 				52D426F71A2CFE86002E8B2F /* splash.png */,
 				5257F3591A01519600757C77 /* DroidSansMono.ttf */,
 				5257F35C1A01519600757C77 /* Lato-Regular.ttf */,
@@ -1046,7 +1048,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				52DD4AA01C2AC27F0039A052 /* Lato-Light.ttf in Resources */,
-				526A77C21CBC44A8005BB814 /* tri.png in Resources */,
 				5257F3631A0152AA00757C77 /* DroidSansMono.ttf in Resources */,
 				5257F3661A0152AA00757C77 /* Lato-Regular.ttf in Resources */,
 				5257F3561A014E4C00757C77 /* assets in Resources */,
@@ -1133,6 +1134,7 @@
 				523067B81A1DF82A0055B8A5 /* HelpData.m in Sources */,
 				525167EC19FFD36C00814B16 /* AbstractModel.m in Sources */,
 				5257F3431A012F9500757C77 /* ClickMenuCommand.m in Sources */,
+				52D08C5B1CCBBA2600EAAF81 /* ClickCameraCommand.m in Sources */,
 				52244C151A25341500505F6D /* ClickResetZoomCommand.m in Sources */,
 				527D42FA1A0ADBEF008AE82A /* ClickSaveCommand.m in Sources */,
 				52B5B35A19FD7E1400EF531F /* SpinnerView.m in Sources */,

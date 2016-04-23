@@ -21,6 +21,7 @@
 @property UIButton* openButton;
 @property UIButton* refButton;
 @property UIButton* tutButton;
+@property UIButton* cameraButton;
 
 @end
 
@@ -46,6 +47,12 @@
 	[[self getMenuModel] setVal:@NO forKey:MENU_SHOWN];
 }
 
+- (void) onClickCamera{
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_DISMISS_KEY withData:nil];
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_MENU withData:nil];
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_CAMERA withData:nil];
+}
+
 - (void) addButtons{
 	self.fileButton = [self getButton:ADD_ICON withAction:@selector(onClickNew)				withLabel:@" New file"			atNum:0];
 	self.saveAsButton = [self getButton:FLOPPY_ICON_AS withAction:@selector(onClickSaveAs)	withLabel:@" Save as"			atNum:1];
@@ -53,6 +60,7 @@
 	self.openButton = [self getButton:BRIEFCASE_ICON withAction:@selector(onClickOpen)		withLabel:@" Your files"		atNum:3];
 	self.refButton = [self getButton:BOOK_ICON withAction:@selector(onClickRef)				withLabel:@" Quick reference"	atNum:4];
 	self.tutButton = [self getButton:BULB_ICON withAction:@selector(onClickTut)				withLabel:@" Tutorial"			atNum:5];
+	self.cameraButton = [self getButton:CAMERA_ICON withAction:@selector(onClickCamera)		withLabel:@" Save to device"	atNum:6];
 	
 	[self.view addSubview:self.fileButton];
 	[self.view addSubview:self.helpButton];
@@ -60,6 +68,7 @@
 	[self.view addSubview:self.openButton];
 	[self.view addSubview:self.refButton];
 	[self.view addSubview:self.tutButton];
+	[self.view addSubview:self.cameraButton];
 }
 
 - (void) onClickRef{

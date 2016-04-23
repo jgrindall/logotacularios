@@ -24,5 +24,7 @@
 + (NSString*) getFileDeleteCurrentFileErrorMessage;
 + (NSString*) getFileListLoadErrorMessage;
 + (NSString*) getFileNameErrorMessage;
++ (NSString*) getCameraErrorMessage;
++ (NSString*) getCameraSuccessMessage;
 
 @end

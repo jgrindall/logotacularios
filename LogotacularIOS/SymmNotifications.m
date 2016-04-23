@@ -13,6 +13,7 @@
 NSString* const SYMM_NOTIF_SHOW_SPINNER =		@"Symm::showSpinner";
 NSString* const SYMM_NOTIF_CLEAR_QUEUE =		@"Symm::clrQueue";
 NSString* const SYMM_NOTIF_HIDE_SPINNER =		@"Symm::hideSpinner";
+NSString* const SYMM_NOTIF_CLICK_CAMERA =		@"Symm:clickCam";
 NSString* const SYMM_NOTIF_CLICK_MENU =			@"Symm::menu";
 NSString* const SYMM_NOTIF_HIDE_MENU =			@"Symm::hideMenu";
 NSString* const SYMM_NOTIF_CLICK_PLAY =			@"Symm::clickPlay";

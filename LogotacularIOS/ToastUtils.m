@@ -79,4 +79,12 @@
 	return @"An error occurred while saving your file";
 }
 
++ (NSString*) getCameraErrorMessage{
+	return @"An error occurred while saving your screenshot";
+}
+
++ (NSString*) getCameraSuccessMessage{
+	return @"A screenshot has been saved to your device";
+}
+
 @end

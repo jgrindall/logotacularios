@@ -172,6 +172,7 @@
 	[[self getBarButton:self.clearButton] setEnabled:!drawing];
 	[[self getBarButton:self.resetButton] setEnabled:!drawing];
 	[[self getBarButton:self.triButton] setEnabled:!drawing];
+	[[self getBarButton:self.wipeButton] setEnabled:!drawing];
 }
 
 -(UIButton*)getBarButton: (UIBarButtonItem*) item{

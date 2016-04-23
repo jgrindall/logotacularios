@@ -26,6 +26,7 @@
 #import "PerformNewCommand.h"
 #import "ErrorHitCommand.h"
 #import "SyntaxErrorCommand.h"
+#import "ClickCameraCommand.h"
 #import "ClickHelpCommand.h"
 #import "ClickTutCommand.h"
 #import "ChangePageCommand.h"

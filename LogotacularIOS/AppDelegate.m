@@ -54,6 +54,7 @@
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_PERFORM_SAVE_AS toCommandClass:[PerformSaveAsCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_TEXT_EDITED toCommandClass:[TextEditedCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLICK_NEW toCommandClass:[ClickNewCommand class]];
+	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLICK_CAMERA toCommandClass:[ClickCameraCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_PERFORM_NEW toCommandClass:[PerformNewCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_ERROR_HIT toCommandClass:[ErrorHitCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLICK_HELP toCommandClass:[ClickHelpCommand class]];
