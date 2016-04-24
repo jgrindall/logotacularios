@@ -28,6 +28,7 @@
 #import "SyntaxErrorCommand.h"
 #import "ClickCameraCommand.h"
 #import "ClickHelpCommand.h"
+#import "ShareCommand.h"
 #import "ClickTutCommand.h"
 #import "ChangePageCommand.h"
 #import "PerformFileSetupCommand.h"

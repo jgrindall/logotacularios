@@ -108,6 +108,11 @@
 		52CF55FB1A08411900F01D3A /* FileBrowserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CF55FA1A08411900F01D3A /* FileBrowserModel.m */; };
 		52D08C541CCB8A7300EAAF81 /* TriView.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D08C531CCB8A7300EAAF81 /* TriView.m */; };
 		52D08C5B1CCBBA2600EAAF81 /* ClickCameraCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D08C5A1CCBBA2600EAAF81 /* ClickCameraCommand.m */; };
+		52D3D9951CCCE44500197451 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D3D9941CCCE44500197451 /* MessageUI.framework */; };
+		52D3D9971CCCE44D00197451 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D3D9961CCCE44D00197451 /* Social.framework */; };
+		52D3D99A1CCCE50A00197451 /* FacebookService.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D3D9991CCCE50A00197451 /* FacebookService.m */; };
+		52D3D99E1CCCE83600197451 /* ShareCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D3D99D1CCCE83600197451 /* ShareCommand.m */; };
+		52D3D9A11CCCF97E00197451 /* ParentGateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D3D9A01CCCF97E00197451 /* ParentGateViewController.m */; };
 		52D426F81A2CFE86002E8B2F /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 52D426F71A2CFE86002E8B2F /* splash.png */; };
 		52D426FB1A2CFF97002E8B2F /* AbstractOverlayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D426FA1A2CFF97002E8B2F /* AbstractOverlayController.m */; };
 		52D426FF1A2D01EE002E8B2F /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D426FE1A2D01EE002E8B2F /* WelcomeViewController.m */; };
@@ -344,6 +349,14 @@
 		52D08C531CCB8A7300EAAF81 /* TriView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TriView.m; sourceTree = "<group>"; };
 		52D08C591CCBBA2600EAAF81 /* ClickCameraCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickCameraCommand.h; sourceTree = "<group>"; };
 		52D08C5A1CCBBA2600EAAF81 /* ClickCameraCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickCameraCommand.m; sourceTree = "<group>"; };
+		52D3D9941CCCE44500197451 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		52D3D9961CCCE44D00197451 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		52D3D9981CCCE50A00197451 /* FacebookService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookService.h; sourceTree = "<group>"; };
+		52D3D9991CCCE50A00197451 /* FacebookService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookService.m; sourceTree = "<group>"; };
+		52D3D99C1CCCE83600197451 /* ShareCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareCommand.h; sourceTree = "<group>"; };
+		52D3D99D1CCCE83600197451 /* ShareCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareCommand.m; sourceTree = "<group>"; };
+		52D3D99F1CCCF97E00197451 /* ParentGateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParentGateViewController.h; sourceTree = "<group>"; };
+		52D3D9A01CCCF97E00197451 /* ParentGateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParentGateViewController.m; sourceTree = "<group>"; };
 		52D426F71A2CFE86002E8B2F /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		52D426F91A2CFF97002E8B2F /* AbstractOverlayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractOverlayController.h; sourceTree = "<group>"; };
 		52D426FA1A2CFF97002E8B2F /* AbstractOverlayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractOverlayController.m; sourceTree = "<group>"; };
@@ -369,6 +382,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52D3D9971CCCE44D00197451 /* Social.framework in Frameworks */,
+				52D3D9951CCCE44500197451 /* MessageUI.framework in Frameworks */,
 				523067CE1A1EA6BC0055B8A5 /* MediaPlayer.framework in Frameworks */,
 				52B5B33A19FD7D5C00EF531F /* JavaScriptCore.framework in Frameworks */,
 				269A647FA28B48F688FF8E8B /* libPods.a in Frameworks */,
@@ -496,6 +511,8 @@
 		5272DE3319FE4799006E717F /* Commands */ = {
 			isa = PBXGroup;
 			children = (
+				52D3D99C1CCCE83600197451 /* ShareCommand.h */,
+				52D3D99D1CCCE83600197451 /* ShareCommand.m */,
 				52D08C591CCBBA2600EAAF81 /* ClickCameraCommand.h */,
 				52D08C5A1CCBBA2600EAAF81 /* ClickCameraCommand.m */,
 				52AE1ECE1C62B96400CEDDE5 /* RestartCommand.h */,
@@ -752,6 +769,7 @@
 				5272DE4319FE5776006E717F /* InjectionModule.m */,
 				52B5B33B19FD7E1400EF531F /* AppDelegate.h */,
 				52B5B33C19FD7E1400EF531F /* AppDelegate.m */,
+				52D3D99B1CCCE50F00197451 /* Services */,
 				52C687261A025014008FCBDB /* Persistence */,
 				525167DD19FFB0C500814B16 /* Log */,
 				52B5B35C19FD7E6A00EF531F /* Graphics */,
@@ -819,6 +837,7 @@
 		52B5B35D19FD7E7300EF531F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				52D3D9A21CCCF98300197451 /* Social */,
 				52815C6F1A04F39B005AFA93 /* Files */,
 				52CBC9C21A0D336600C229C8 /* Alert */,
 				525167E919FFCEBC00814B16 /* Base */,
@@ -967,6 +986,24 @@
 			name = FileBrowser;
 			sourceTree = "<group>";
 		};
+		52D3D99B1CCCE50F00197451 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				52D3D9981CCCE50A00197451 /* FacebookService.h */,
+				52D3D9991CCCE50A00197451 /* FacebookService.m */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		52D3D9A21CCCF98300197451 /* Social */ = {
+			isa = PBXGroup;
+			children = (
+				52D3D99F1CCCF97E00197451 /* ParentGateViewController.h */,
+				52D3D9A01CCCF97E00197451 /* ParentGateViewController.m */,
+			);
+			name = Social;
+			sourceTree = "<group>";
+		};
 		52DD4AA71C2ACA500039A052 /* Tutorial */ = {
 			isa = PBXGroup;
 			children = (
@@ -981,6 +1018,8 @@
 		5939882906C5494A8FDB4E2B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				52D3D9961CCCE44D00197451 /* Social.framework */,
+				52D3D9941CCCE44500197451 /* MessageUI.framework */,
 				523067CD1A1EA6BC0055B8A5 /* MediaPlayer.framework */,
 				458B6A11F0F949A0B2010544 /* libPods.a */,
 			);
@@ -1120,6 +1159,7 @@
 				525167E419FFC19F00814B16 /* Assets.m in Sources */,
 				52CC89231A1643170046615F /* AbstractHelpViewController.m in Sources */,
 				527D42FD1A0ADEBF008AE82A /* FilenameViewController.m in Sources */,
+				52D3D9A11CCCF97E00197451 /* ParentGateViewController.m in Sources */,
 				52C1714B1A0C4384000865DD /* ScreenGrabModel.m in Sources */,
 				52815C6E1A04F397005AFA93 /* FilesController.m in Sources */,
 				52B5B35319FD7E1400EF531F /* Colors.m in Sources */,
@@ -1130,6 +1170,7 @@
 				52CBC9C11A0D2EBD00C229C8 /* AlertManager.m in Sources */,
 				52420E271A1ADF710069D4AC /* StartCommand.m in Sources */,
 				5287B9AD1A1BBAE600082DE1 /* FilenameAsViewController.m in Sources */,
+				52D3D99E1CCCE83600197451 /* ShareCommand.m in Sources */,
 				52B5123F1A13C69D00B14D0D /* PerformFileSetupCommand.m in Sources */,
 				523067B81A1DF82A0055B8A5 /* HelpData.m in Sources */,
 				525167EC19FFD36C00814B16 /* AbstractModel.m in Sources */,
@@ -1164,6 +1205,7 @@
 				52B5B35619FD7E1400EF531F /* LinesView.m in Sources */,
 				52CBC9BA1A0D2B1300C229C8 /* AbstractAlertController.m in Sources */,
 				52B5B35219FD7E1400EF531F /* Appearance.m in Sources */,
+				52D3D99A1CCCE50A00197451 /* FacebookService.m in Sources */,
 				52B228981A00E73D001CC355 /* MenuModel.m in Sources */,
 				52C687251A025011008FCBDB /* FileLoader.m in Sources */,
 				5257F34C1A01357500757C77 /* RedoCommand.m in Sources */,

@@ -33,7 +33,7 @@ CGPoint p0, p1, p2;
 	self = [super initWithFrame:frame];
 	if (self) {
 		self.backgroundColor = [UIColor clearColor];
-		self.color = [UIColor blackColor];
+		self.color = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1];
 		int r = TRI_RADIUS - 1;
 		p0 = CGPointMake(r, 0);
 		p1 = CGPointMake(r*cosf(DEG_TO_RAD*THETA), r*sinf(DEG_TO_RAD*THETA));

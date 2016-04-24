@@ -7,8 +7,10 @@
 //
 
 #import "BaseViewController_protected.h"
+#import "PLogoAlertDelegate.h"
+#import "AContainerViewController_Protected.h"
 
-@interface MenuViewController : BaseViewController
+@interface MenuViewController : AContainerViewController <PLogoAlertDelegate>
 
 - (void) show;
 

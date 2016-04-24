@@ -12,6 +12,8 @@
 #import "Assets.h"
 #import "SymmNotifications.h"
 #import "Appearance.h"
+#import "AlertManager.h"
+#import "ParentGateViewController.h"
 
 @interface MenuViewController ()
 
@@ -22,6 +24,8 @@
 @property UIButton* refButton;
 @property UIButton* tutButton;
 @property UIButton* cameraButton;
+@property UIButton* shareButton;
+@property AbstractOverlayController* alert;
 
 @end
 
@@ -47,12 +51,6 @@
 	[[self getMenuModel] setVal:@NO forKey:MENU_SHOWN];
 }
 
-- (void) onClickCamera{
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_DISMISS_KEY withData:nil];
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_MENU withData:nil];
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_CAMERA withData:nil];
-}
-
 - (void) addButtons{
 	self.fileButton = [self getButton:ADD_ICON withAction:@selector(onClickNew)				withLabel:@" New file"			atNum:0];
 	self.saveAsButton = [self getButton:FLOPPY_ICON_AS withAction:@selector(onClickSaveAs)	withLabel:@" Save as"			atNum:1];
@@ -61,6 +59,7 @@
 	self.refButton = [self getButton:BOOK_ICON withAction:@selector(onClickRef)				withLabel:@" Quick reference"	atNum:4];
 	self.tutButton = [self getButton:BULB_ICON withAction:@selector(onClickTut)				withLabel:@" Tutorial"			atNum:5];
 	self.cameraButton = [self getButton:CAMERA_ICON withAction:@selector(onClickCamera)		withLabel:@" Save to device"	atNum:6];
+	self.shareButton = [self getButton:SHARE_ICON withAction:@selector(onClickShare)		withLabel:@" Share"				atNum:7];
 	
 	[self.view addSubview:self.fileButton];
 	[self.view addSubview:self.helpButton];
@@ -69,47 +68,68 @@
 	[self.view addSubview:self.refButton];
 	[self.view addSubview:self.tutButton];
 	[self.view addSubview:self.cameraButton];
+	[self.view addSubview:self.shareButton];
 }
 
-- (void) onClickRef{
+- (void) onClickCamera{
+	[self closeMenu];
+	// wait a little
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+		[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_CAMERA withData:nil];
+	});
+}
+
+- (void) closeMenu{
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_DISMISS_KEY withData:nil];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_MENU withData:nil];
+}
+
+- (void) onClickShare{
+	[self closeMenu];
+	NSDictionary* options = @{@"buttons":@[@"Ok", TICK_ICON, @"Cancel", CLEAR_ICON], @"title":@"Are you an adult?"};
+	self.alert = [AlertManager addAlert:[ParentGateViewController class] intoController:(AContainerViewController*)self.parentViewController withDelegate:self withOptions:options];
+	//[[self getEventDispatcher] dispatch:SYMM_NOTIF_SHARE withData:@"email"];
+}
+
+- (void) clickButtonAt:(NSInteger)i withPayload:(id)payload{
+	if([self.alert class] == [ParentGateViewController class]){
+		NSLog(@"clicked");
+	}
+}
+
+
+- (void) onClickRef{
+	[self closeMenu];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_REF withData:nil];
 }
 
 - (void) onClickTut{
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_DISMISS_KEY withData:nil];
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_MENU withData:nil];
+	[self closeMenu];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_TUT withData:nil];
 }
 
 - (void) onClickEg{
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_DISMISS_KEY withData:nil];
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_MENU withData:nil];
+	[self closeMenu];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_EXAMPLES withData:nil];
 }
 
 - (void) onClickNew{
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_DISMISS_KEY withData:nil];
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_MENU withData:nil];
+	[self closeMenu];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_NEW withData:nil];
 }
 
 - (void) onClickHelp{
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_DISMISS_KEY withData:nil];
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_MENU withData:nil];
+	[self closeMenu];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_HELP withData:nil];
 }
 
 - (void) onClickSaveAs{
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_DISMISS_KEY withData:nil];
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_MENU withData:nil];
+	[self closeMenu];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_SAVE_AS withData:nil];
 }
 
 - (void) onClickOpen{
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_DISMISS_KEY withData:nil];
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_MENU withData:nil];
+	[self closeMenu];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_OPEN withData:nil];
 }
 

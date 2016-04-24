@@ -87,4 +87,28 @@
 	return @"A screenshot has been saved to your device";
 }
 
++ (NSString*) getFacebookSuccessMessage{
+	return @"Thanks, your post was successful";
+}
+
++ (NSString*) getNoFbErrorMessage{
+	return @"Unable to post to Facebook, please check that you have the Facebook app and have registered an account on your device.";
+}
+
++ (NSString*) getFbErrorMessage{
+	return @"An error occured posting to Facebook, please try again.";
+}
+
++ (NSString*) getTwitterSuccessMessage{
+	return @"Thanks, your post was successful";
+}
+	
++ (NSString*) getNoTwitterErrorMessage{
+	return @"Unable to post to Twitter, please check that you have the Twitter app and have registered an account on your device.";
+}
+		
++ (NSString*) getTwitterErrorMessage{
+	return @"An error occured posting to Twitter, please try again.";
+}
+
 @end

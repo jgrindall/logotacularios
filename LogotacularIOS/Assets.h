@@ -18,6 +18,7 @@ extern NSString* const BOOK_ICON;
 extern NSString* const BRIEFCASE_ICON;
 extern NSString* const BULB_ICON;
 extern NSString* const CAMERA_ICON;
+extern NSString* const SHARE_ICON;
 extern NSString* const CLEAR_ICON;
 extern NSString* const EXCLAM_ICON;
 extern NSString* const FLOPPY_ICON;

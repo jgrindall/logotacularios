@@ -395,7 +395,6 @@
 			 "<p>Combining recursion with the <span class='mono'>stop</span> statement is a powerful way to create interesting designs. The function <span class='mono'>tree</span> will draw a tree <span class='mono'>d</span> branches high. It is called with an input value of '5' for a tree 5 branches high.</p>",
 			 "<p>The function goes forward and turns left 20 degrees, then it draws a tree with one fewer branches, turns right 40 degrees and draws another tree with one fewer branches.</p>",
 			 "<pre>make \"s 80\nto tree :d\n if :d=0 [stop]\n fd :s rt 340\n tree (:d-1)\n rt 40\n tree (:d-1)\n rt 160\n fd :s\n rt 180\nend\ntree 5</pre>",
-			 			"<p></p>",
 			 			"<p>To make that work we need the last three lines of the function - which move the turtle back to the start, facing in exactly the same direction as it started.</p>"
 						]
 			},

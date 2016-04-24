@@ -18,6 +18,7 @@ NSString* const BOOK_ICON =			@"assets/icons/book.png";
 NSString* const BRIEFCASE_ICON =	@"assets/icons/briefcase.png";
 NSString* const BULB_ICON =			@"assets/icons/bulb.png";
 NSString* const CAMERA_ICON =		@"assets/icons/camera41.png";
+NSString* const SHARE_ICON =		@"assets/icons/share.png";
 NSString* const CLEAR_ICON =		@"assets/icons/clear.png";
 NSString* const EXCLAM_ICON =		@"assets/icons/exclam.png";
 NSString* const FLOPPY_ICON =		@"assets/icons/save.png";

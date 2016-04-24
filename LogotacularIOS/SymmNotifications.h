@@ -47,6 +47,7 @@ extern NSString* const SYMM_NOTIF_PERFORM_DEL;
 extern NSString* const SYMM_NOTIF_CLICK_SAVE;
 extern NSString* const SYMM_NOTIF_CLICK_SAVE_AS;
 extern NSString* const SYMM_NOTIF_CLICK_HELP;
+extern NSString* const SYMM_NOTIF_SHARE;
 extern NSString* const SYMM_NOTIF_SHOW_FILENAME;
 extern NSString* const SYMM_NOTIF_SHOW_FILENAME_AS;
 extern NSString* const SYMM_NOTIF_PERFORM_SAVE;

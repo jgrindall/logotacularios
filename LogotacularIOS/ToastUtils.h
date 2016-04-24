@@ -26,5 +26,11 @@
 + (NSString*) getFileNameErrorMessage;
 + (NSString*) getCameraErrorMessage;
 + (NSString*) getCameraSuccessMessage;
++ (NSString*) getFacebookSuccessMessage;
++ (NSString*) getNoFbErrorMessage;
++ (NSString*) getFbErrorMessage;
++ (NSString*) getTwitterSuccessMessage;
++ (NSString*) getNoTwitterErrorMessage;
++ (NSString*) getTwitterErrorMessage;
 
 @end

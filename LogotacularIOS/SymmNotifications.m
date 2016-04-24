@@ -32,6 +32,7 @@ NSString* const SYMM_NOTIF_STOP =				@"Symm::stop";
 NSString* const SYMM_NOTIF_CLICK_STOP =			@"Symm::clickStop";
 NSString* const SYMM_NOTIF_CLICK_EXAMPLES =		@"Symm::clickExamples";
 NSString* const SYMM_NOTIF_CLICK_REF =			@"Symm::clickRef";
+NSString* const SYMM_NOTIF_SHARE =				@"Symm::share";
 NSString* const SYMM_NOTIF_CLICK_HELP =			@"Symm::clickHelp";
 NSString* const SYMM_NOTIF_RESET =				@"Symm::reset";
 NSString* const SYMM_NOTIF_UNDO =				@"Symm::undo";
