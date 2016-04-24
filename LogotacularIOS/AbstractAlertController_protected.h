@@ -18,4 +18,6 @@
 
 - (void)layoutPanel:(float)dy;
 
+- (CGSize) getPanelSize;
+
 @end

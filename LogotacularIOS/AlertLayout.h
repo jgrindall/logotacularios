@@ -13,4 +13,7 @@
 extern int const ALERT_LAYOUT_WIDTH;
 extern int const ALERT_LAYOUT_HEIGHT;
 
+extern int const ALERT_LAYOUT_LARGE_WIDTH;
+extern int const ALERT_LAYOUT_LARGE_HEIGHT;
+
 @end

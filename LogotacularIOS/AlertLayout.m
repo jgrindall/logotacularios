@@ -13,4 +13,7 @@
 int const ALERT_LAYOUT_WIDTH = 300;
 int const ALERT_LAYOUT_HEIGHT = 200;
 
+int const ALERT_LAYOUT_LARGE_WIDTH = 400;
+int const ALERT_LAYOUT_LARGE_HEIGHT = 400;
+
 @end

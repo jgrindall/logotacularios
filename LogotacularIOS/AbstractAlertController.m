@@ -35,14 +35,19 @@
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.panel				attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0]];
 }
 
+- (CGSize) getPanelSize{
+	return CGSizeMake(ALERT_LAYOUT_WIDTH, ALERT_LAYOUT_HEIGHT);
+}
+
 -(void)layoutPanel:(float)dy{
+	CGSize size = [self getPanelSize];
 	if(self.panelConstraints && [self.panelConstraints count] >= 1){
 		[self.view removeConstraints:self.panelConstraints];
 	}
 	NSLayoutConstraint* cy = [NSLayoutConstraint constraintWithItem:self.panel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view				attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:dy];
 	NSLayoutConstraint* cx = [NSLayoutConstraint constraintWithItem:self.panel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view				attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0];
-	NSLayoutConstraint* w = [NSLayoutConstraint constraintWithItem:self.panel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil						attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:ALERT_LAYOUT_WIDTH];
-	NSLayoutConstraint* h = [NSLayoutConstraint constraintWithItem:self.panel attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil						attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:ALERT_LAYOUT_HEIGHT];
+	NSLayoutConstraint* w = [NSLayoutConstraint constraintWithItem:self.panel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil						attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:size.width];
+	NSLayoutConstraint* h = [NSLayoutConstraint constraintWithItem:self.panel attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil						attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:size.height];
 	[self.view addConstraint:cx];
 	[self.view addConstraint:cy];
 	[self.view addConstraint:w];

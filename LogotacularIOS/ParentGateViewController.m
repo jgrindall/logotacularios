@@ -11,6 +11,7 @@
 #import "ToastUtils.h"
 #import "Appearance.h"
 #import "ImageUtils.h"
+#import "AlertLayout.h"
 
 @interface ParentGateViewController ()
 
@@ -27,12 +28,17 @@
 	[super viewDidLoad];
 	[self addButtons];
 	[self addText];
+	//[self addMessage];
 }
 
 - (void) viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:animated];
 	[self layoutButtons];
 	[self layoutText];
+}
+
+- (CGSize) getPanelSize{
+	return CGSizeMake(ALERT_LAYOUT_LARGE_WIDTH, ALERT_LAYOUT_LARGE_HEIGHT);
 }
 
 - (void) addText{
