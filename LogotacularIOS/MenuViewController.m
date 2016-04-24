@@ -88,24 +88,16 @@
 	[self closeMenu];
 	NSDictionary* options = @{@"buttons":@[@"Ok", TICK_ICON, @"Cancel", CLEAR_ICON], @"title":@"Are you an adult?"};
 	self.alert = [AlertManager addAlert:[ParentGateViewController class] intoController:(AContainerViewController*)self.parentViewController withDelegate:self withOptions:options];
-	//[[self getEventDispatcher] dispatch:SYMM_NOTIF_SHARE withData:@"email"];
 }
 
 - (void) clickButtonAt:(NSInteger)i withPayload:(id)payload{
 	if([self.alert class] == [ParentGateViewController class]){
 		[AlertManager removeAlert];
-		if(i == 0){
-			NSLog(@"index %i", i);
-		}
-		else if(i == 1){
-			NSLog(@"index %i", i);
-		}
-		else if(i == 2){
-			NSLog(@"index %i %@", i, payload);
+		if(i == 2){
+			[[self getEventDispatcher] dispatch:SYMM_NOTIF_SHARE withData:payload];
 		}
 	}
 }
-
 
 - (void) onClickRef{
 	[self closeMenu];

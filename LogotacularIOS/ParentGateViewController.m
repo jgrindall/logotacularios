@@ -119,16 +119,28 @@
 
 - (void) onCorrect{
 	self.answered = YES;
+	[self.ansField resignFirstResponder];
+	self.titleLabel.text = @"Choose where to share your work:";
+	[self hideButtons];
 	[self showSocialButtons];
 }
 
+- (void) hideButtons{
+	self.msgLabel.alpha = 0;
+	self.ansField.alpha = 0;
+	self.okButton.alpha = 0;
+}
+
 -(void) addSocialButtons{
-	self.facebookButton = [self getButton:TICK_ICON withAction:@selector(onClickFacebook)			withLabel:@"Facebook"		];
-	self.twitterButton = [self getButton:TICK_ICON withAction:@selector(onClickTwitter)			withLabel:@"Twitter"		];
-	self.emailButton = [self getButton:TICK_ICON withAction:@selector(onClickEmail)			withLabel:@"Email"		];
+	self.facebookButton = [self getButton:FACEBOOK_ICON withAction:@selector(onClickFacebook)			withLabel:@"Facebook"		];
+	self.twitterButton = [self getButton:TWITTER_ICON withAction:@selector(onClickTwitter)			withLabel:@"Twitter"		];
+	self.emailButton = [self getButton:EMAIL_ICON withAction:@selector(onClickEmail)			withLabel:@"Email"		];
 	[self.panel addSubview:self.facebookButton];
 	[self.panel addSubview:self.twitterButton];
 	[self.panel addSubview:self.emailButton];
+	self.facebookButton.backgroundColor = [UIColor clearColor];
+	self.twitterButton.backgroundColor = [UIColor clearColor];
+	self.emailButton.backgroundColor = [UIColor clearColor];
 	self.facebookButton.alpha = 0;
 	self.twitterButton.alpha = 0;
 	self.emailButton.alpha = 0;
@@ -161,21 +173,26 @@
 	[self.delegate clickButtonAt:1 withPayload:nil];
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+	[textField resignFirstResponder];
+	return YES;
+}
+
 - (void)layoutSocial{
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.facebookButton attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.panel					attribute:NSLayoutAttributeTop multiplier:1.0 constant:50.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.facebookButton attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.panel				attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.facebookButton attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.panel					attribute:NSLayoutAttributeTop multiplier:1.0 constant:55.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.facebookButton attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.panel				attribute:NSLayoutAttributeLeading multiplier:1.0 constant:150.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.facebookButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.panel					attribute:NSLayoutAttributeWidth multiplier:0.6 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.facebookButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil						attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:50.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.facebookButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil						attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:40.0]];
 	
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.twitterButton attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.panel					attribute:NSLayoutAttributeTop multiplier:1.0 constant:50.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.twitterButton attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.panel				attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.twitterButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.panel					attribute:NSLayoutAttributeWidth multiplier:0.6 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.twitterButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil						attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:50.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.twitterButton attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.panel					attribute:NSLayoutAttributeTop multiplier:1.0 constant:105.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.twitterButton attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.panel				attribute:NSLayoutAttributeLeading multiplier:1.0 constant:150.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.twitterButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.panel				attribute:NSLayoutAttributeWidth multiplier:0.6 constant:0.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.twitterButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil						attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:40.0]];
 	
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.emailButton attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.panel					attribute:NSLayoutAttributeTop multiplier:1.0 constant:50.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.emailButton attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.panel				attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.emailButton attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.panel					attribute:NSLayoutAttributeTop multiplier:1.0 constant:155.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.emailButton attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.panel				attribute:NSLayoutAttributeLeading multiplier:1.0 constant:150.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.emailButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.panel					attribute:NSLayoutAttributeWidth multiplier:0.6 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.emailButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil						attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:50.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.emailButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil						attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:40.0]];
 }
 
 -(void)layoutText{
@@ -214,12 +231,21 @@
 - (void) dealloc{
 	[self.okButton removeTarget:self action:@selector(onClickOk) forControlEvents:UIControlEventTouchUpInside];
 	[self.cancelButton removeTarget:self action:@selector(onClickCancel) forControlEvents:UIControlEventTouchUpInside];
+	[self.facebookButton removeTarget:self action:@selector(onClickFacebook) forControlEvents:UIControlEventTouchUpInside];
+	[self.twitterButton removeTarget:self action:@selector(onClickTwitter) forControlEvents:UIControlEventTouchUpInside];
+	[self.emailButton removeTarget:self action:@selector(onClickEmail) forControlEvents:UIControlEventTouchUpInside];
 	[self.okButton removeFromSuperview];
 	self.okButton = nil;
 	[self.cancelButton removeFromSuperview];
 	self.cancelButton = nil;
 	[self.ansField removeFromSuperview];
 	self.ansField = nil;
+	[self.facebookButton removeFromSuperview];
+	self.facebookButton = nil;
+	[self.twitterButton removeFromSuperview];
+	self.twitterButton = nil;
+	[self.emailButton removeFromSuperview];
+	self.emailButton = nil;
 }
 
 @end

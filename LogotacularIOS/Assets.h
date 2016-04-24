@@ -33,5 +33,8 @@ extern NSString* const TICK_ICON;
 extern NSString* const UNDO_ICON;
 extern NSString* const WASTE_ICON;
 extern NSString* const DOC_ICON;
+extern NSString* const FACEBOOK_ICON;
+extern NSString* const TWITTER_ICON;
+extern NSString* const EMAIL_ICON;
 
 @end

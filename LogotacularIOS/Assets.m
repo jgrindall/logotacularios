@@ -33,5 +33,8 @@ NSString* const TICK_ICON =			@"assets/icons/tick.png";
 NSString* const UNDO_ICON =			@"assets/icons/undo.png";
 NSString* const WASTE_ICON =		@"assets/icons/waste.png";
 NSString* const DOC_ICON =			@"assets/icons/document55.png";
+NSString* const FACEBOOK_ICON =		@"assets/icons/facebook.png";
+NSString* const TWITTER_ICON =		@"assets/icons/twitter.png";
+NSString* const EMAIL_ICON =		@"assets/icons/email.png";
 
 @end
