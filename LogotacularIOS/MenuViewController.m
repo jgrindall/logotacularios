@@ -100,6 +100,9 @@
 		else if(i == 1){
 			NSLog(@"index %i", i);
 		}
+		else if(i == 2){
+			NSLog(@"index %i %@", i, payload);
+		}
 	}
 }
 

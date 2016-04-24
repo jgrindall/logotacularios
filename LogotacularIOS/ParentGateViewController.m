@@ -12,6 +12,7 @@
 #import "Appearance.h"
 #import "ImageUtils.h"
 #import "AlertLayout.h"
+#import "Assets.h"
 
 @interface ParentGateViewController ()
 
@@ -19,6 +20,9 @@
 @property UIButton* cancelButton;
 @property UITextField* ansField;
 @property UILabel* msgLabel;
+@property UIButton* facebookButton;
+@property UIButton* twitterButton;
+@property UIButton* emailButton;
 @property NSInteger ans;
 @property BOOL answered;
 @end
@@ -32,6 +36,7 @@
 	[self addButtons];
 	[self addText];
 	[self addMessage];
+	[self addSocialButtons];
 }
 
 - (void) viewWillAppear:(BOOL)animated{
@@ -39,6 +44,7 @@
 	[self layoutButtons];
 	[self layoutText];
 	[self layoutMessage];
+	[self layoutSocial];
 }
 
 - (CGSize) getPanelSize{
@@ -47,7 +53,7 @@
 
 - (void) addText{
 	self.ansField = [[UITextField alloc] initWithFrame:self.view.frame];
-	self.ansField.keyboardType = UIKeyboardTypeAlphabet;
+	self.ansField.keyboardType = UIKeyboardTypeNumberPad;
 	self.ansField.textColor = [UIColor whiteColor];
 	self.ansField.font = [Appearance fontOfSize:SYMM_FONT_SIZE_MED];
 	self.ansField.translatesAutoresizingMaskIntoConstraints = NO;
@@ -72,7 +78,7 @@
 	self.msgLabel.lineBreakMode = NSLineBreakByWordWrapping;
 	self.msgLabel.numberOfLines = 0;
 	self.msgLabel.font = [Appearance fontOfSize:SYMM_FONT_SIZE_MSG];
-	NSString* sum = [NSString stringWithFormat:@"Please confirm you are an adult by typing in the answer to the sum %i + %i below and pressing Ok", rndValue1, rndValue2];
+	NSString* sum = [NSString stringWithFormat:@"Please confirm you are an adult by typing in the answer to the sum %i + %i below and pressing 'Ok'.", rndValue1, rndValue2];
 	self.msgLabel.text = sum;
 	self.ans = rndValue1 + rndValue2;
 	[self.panel addSubview:self.msgLabel];
@@ -92,6 +98,7 @@
 
 - (BOOL) validateText{
 	NSString* text = self.ansField.text;
+	text = [text stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
 	int ans = [text intValue];
 	return (ans == self.ans);
 }
@@ -112,11 +119,37 @@
 
 - (void) onCorrect{
 	self.answered = YES;
-	[self addSocialButtons];
+	[self showSocialButtons];
 }
 
 -(void) addSocialButtons{
-	
+	self.facebookButton = [self getButton:TICK_ICON withAction:@selector(onClickFacebook)			withLabel:@"Facebook"		];
+	self.twitterButton = [self getButton:TICK_ICON withAction:@selector(onClickTwitter)			withLabel:@"Twitter"		];
+	self.emailButton = [self getButton:TICK_ICON withAction:@selector(onClickEmail)			withLabel:@"Email"		];
+	[self.panel addSubview:self.facebookButton];
+	[self.panel addSubview:self.twitterButton];
+	[self.panel addSubview:self.emailButton];
+	self.facebookButton.alpha = 0;
+	self.twitterButton.alpha = 0;
+	self.emailButton.alpha = 0;
+}
+
+- (void) showSocialButtons{
+	self.facebookButton.alpha = 1;
+	self.twitterButton.alpha = 1;
+	self.emailButton.alpha = 1;
+}
+
+- (void) onClickFacebook{
+	[self.delegate clickButtonAt:2 withPayload:@"facebook"];
+}
+
+- (void) onClickTwitter{
+	[self.delegate clickButtonAt:2 withPayload:@"twitter"];
+}
+
+- (void) onClickEmail{
+	[self.delegate clickButtonAt:2 withPayload:@"email"];
 }
 
 - (void) validateError{
@@ -126,6 +159,23 @@
 
 - (void) onClickCancel{
 	[self.delegate clickButtonAt:1 withPayload:nil];
+}
+
+- (void)layoutSocial{
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.facebookButton attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.panel					attribute:NSLayoutAttributeTop multiplier:1.0 constant:50.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.facebookButton attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.panel				attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.facebookButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.panel					attribute:NSLayoutAttributeWidth multiplier:0.6 constant:0.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.facebookButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil						attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:50.0]];
+	
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.twitterButton attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.panel					attribute:NSLayoutAttributeTop multiplier:1.0 constant:50.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.twitterButton attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.panel				attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.twitterButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.panel					attribute:NSLayoutAttributeWidth multiplier:0.6 constant:0.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.twitterButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil						attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:50.0]];
+	
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.emailButton attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.panel					attribute:NSLayoutAttributeTop multiplier:1.0 constant:50.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.emailButton attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.panel				attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.emailButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.panel					attribute:NSLayoutAttributeWidth multiplier:0.6 constant:0.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.emailButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil						attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:50.0]];
 }
 
 -(void)layoutText{
