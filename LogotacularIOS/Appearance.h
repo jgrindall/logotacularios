@@ -22,7 +22,6 @@ typedef NS_ENUM(NSInteger, SymmFontSizes)  {
 };
 
 + (void) applyStylesInWindow:(UIWindow*) window;
-+ (void) flatToolbar:(UIToolbar*) toolbar;
 + (void) styleCollectionView:(UICollectionView*) collectionView;
 + (NSDictionary*) navTextAttributes;
 + (UIFont*) monospaceFontOfSize:(SymmFontSizes)s;
@@ -31,5 +30,7 @@ typedef NS_ENUM(NSInteger, SymmFontSizes)  {
 + (UIBarButtonItem*) getBarButton:(NSString*) imageUrl withLabel:(NSString*)label andOffsetX:(NSInteger) offset;
 + (UIColor*) bgColor;
 + (UIColor*) grayColor;
++ (void)popupNavigationControllerClosed;
++ (void)popupNavigationControllerOpened;
 
 @end

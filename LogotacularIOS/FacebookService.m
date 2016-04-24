@@ -12,6 +12,7 @@
 #import <Social/Social.h>
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
+#import "Appearance.h"
 
 @interface FacebookService ()
 
@@ -69,7 +70,7 @@ NSString* const BASE64 = @"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQIAAAB
 	}
 	if([SLComposeViewController isAvailableForServiceType:serviceType]) {
         SLComposeViewController* controller = [SLComposeViewController composeViewControllerForServiceType:serviceType];
-        [controller setInitialText:text];
+		[controller setInitialText:text];
         [controller addURL:[NSURL URLWithString:[self getUrl]]];
         [controller addImage:img];
 		[controller setCompletionHandler:^(SLComposeViewControllerResult result) {
@@ -79,8 +80,11 @@ NSString* const BASE64 = @"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQIAAAB
 			else if(result == SLComposeViewControllerResultDone){
 				callback(FacebookResultOk);
 			}
+			[Appearance popupNavigationControllerClosed];
 		}];
-        [presenter presentViewController:controller animated:YES completion:nil];
+		[presenter presentViewController:controller animated:YES completion:^{
+			[Appearance popupNavigationControllerOpened];
+		}];
 	}
 	else{
 		callback(FacebookResultNoFacebook);

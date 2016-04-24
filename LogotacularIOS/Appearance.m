@@ -106,20 +106,21 @@
 	pageControl.currentPageIndicatorTintColor = [Appearance grayColor];
 }
 
-+ (void) flatToolbar:(UIToolbar*) toolbar{
-	toolbar.translucent = NO;
-	toolbar.barTintColor = [UIColor whiteColor];
-	toolbar.layer.borderWidth = 0;
-	toolbar.layer.borderColor = [[UIColor clearColor] CGColor];
-	[toolbar setClipsToBounds:YES];
-}
-
 + (UIFont*) fontOfSize:(SymmFontSizes)s{
 	return [UIFont fontWithName:@"Lato-Light" size:s];
 }
 
 + (UIFont*) monospaceFontOfSize:(SymmFontSizes)s{
 	return [UIFont fontWithName:@"DroidSansMono" size:s];
+}
+
++ (void)popupNavigationControllerClosed{
+	[[UIApplication sharedApplication] keyWindow].tintColor = [UIColor whiteColor];
+}
+
++ (void)popupNavigationControllerOpened{
+	UIColor* blue = [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0];
+	[[UIApplication sharedApplication] keyWindow].tintColor = blue;
 }
 
 @end
