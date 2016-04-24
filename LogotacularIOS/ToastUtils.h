@@ -32,5 +32,6 @@
 + (NSString*) getTwitterSuccessMessage;
 + (NSString*) getNoTwitterErrorMessage;
 + (NSString*) getTwitterErrorMessage;
++ (NSString*) getParentalGateInvalidMessage;
 
 @end

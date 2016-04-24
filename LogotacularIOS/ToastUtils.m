@@ -111,4 +111,8 @@
 	return @"An error occured posting to Twitter, please try again.";
 }
 
++ (NSString*) getParentalGateInvalidMessage{
+	return @"Sorry that is incorrect.";
+}
+
 @end

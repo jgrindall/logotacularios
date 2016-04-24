@@ -18,7 +18,9 @@
 @property UIButton* okButton;
 @property UIButton* cancelButton;
 @property UITextField* ansField;
-
+@property UILabel* msgLabel;
+@property NSInteger ans;
+@property BOOL answered;
 @end
 
 @implementation ParentGateViewController
@@ -26,15 +28,17 @@
 
 - (void) viewDidLoad{
 	[super viewDidLoad];
+	self.answered = NO;
 	[self addButtons];
 	[self addText];
-	//[self addMessage];
+	[self addMessage];
 }
 
 - (void) viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:animated];
 	[self layoutButtons];
 	[self layoutText];
+	[self layoutMessage];
 }
 
 - (CGSize) getPanelSize{
@@ -55,6 +59,25 @@
 	[self.panel addSubview:self.ansField];
 }
 
+- (void) addMessage{
+	int lowerBound = 99;
+	int upperBound = 1000;
+	int rndValue1 = (int)(lowerBound + arc4random() % (upperBound - lowerBound));
+	int rndValue2 = (int)(lowerBound + arc4random() % (upperBound - lowerBound));
+	self.msgLabel = [[UILabel alloc] initWithFrame:self.view.frame];
+	self.msgLabel.translatesAutoresizingMaskIntoConstraints = NO;
+	self.msgLabel.backgroundColor = [UIColor clearColor];
+	self.msgLabel.textColor = [UIColor whiteColor];
+	self.msgLabel.textAlignment = NSTextAlignmentCenter;
+	self.msgLabel.lineBreakMode = NSLineBreakByWordWrapping;
+	self.msgLabel.numberOfLines = 0;
+	self.msgLabel.font = [Appearance fontOfSize:SYMM_FONT_SIZE_MSG];
+	NSString* sum = [NSString stringWithFormat:@"Please confirm you are an adult by typing in the answer to the sum %i + %i below and pressing Ok", rndValue1, rndValue2];
+	self.msgLabel.text = sum;
+	self.ans = rndValue1 + rndValue2;
+	[self.panel addSubview:self.msgLabel];
+}
+
 - (void) addButtons{
 	NSArray* buttonLabels = ((NSDictionary*)self.options)[@"buttons"];
 	self.okButton = [self getButton:buttonLabels[1] withAction:@selector(onClickOk)			withLabel:buttonLabels[0]		];
@@ -69,28 +92,35 @@
 
 - (BOOL) validateText{
 	NSString* text = self.ansField.text;
-	NSError* error = nil;
-	NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[ \t\r\n]+" options:NSRegularExpressionCaseInsensitive error:&error];
-	NSString* modifiedString = [regex stringByReplacingMatchesInString:text options:0 range:NSMakeRange(0, [text length]) withTemplate:@""];
-	return ([text length] <= 16 && [modifiedString length] >= 2);
+	int ans = [text intValue];
+	return (ans == self.ans);
 }
 
 - (void) onClickOk{
-	if([self validateText]){
+	if(self.answered){
 		[self.delegate clickButtonAt:0 withPayload:self.ansField.text];
 	}
 	else{
-		[self validateError];
+		if([self validateText]){
+			[self onCorrect];
+		}
+		else{
+			[self validateError];
+		}
 	}
 }
 
-- (void)fileNameUsedError{
-	[ToastUtils showToastInController:self withMessage:[ToastUtils getFileNameTakenMessage] withType:TSMessageNotificationTypeError];
-	[ImageUtils shakeView:self.panel];
+- (void) onCorrect{
+	self.answered = YES;
+	[self addSocialButtons];
+}
+
+-(void) addSocialButtons{
+	
 }
 
 - (void) validateError{
-	[ToastUtils showToastInController:self withMessage:[ToastUtils getFileNameInvalidMessage] withType:TSMessageNotificationTypeError];
+	[ToastUtils showToastInController:self withMessage:[ToastUtils getParentalGateInvalidMessage] withType:TSMessageNotificationTypeError];
 	[ImageUtils shakeView:self.panel];
 }
 
@@ -100,9 +130,16 @@
 
 -(void)layoutText{
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.ansField attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.panel				attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.ansField attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.panel				attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.ansField attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.panel				attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:50.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.ansField attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil						attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:160.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.ansField attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil						attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:40.0]];
+}
+
+- (void) layoutMessage{
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.msgLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.panel					attribute:NSLayoutAttributeTop multiplier:1.0 constant:50.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.msgLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.panel				attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.msgLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.panel				attribute:NSLayoutAttributeWidth multiplier:0.9 constant:0.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.msgLabel attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil						attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:100.0]];
 }
 
 - (void) layoutOk{

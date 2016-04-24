@@ -93,7 +93,13 @@
 
 - (void) clickButtonAt:(NSInteger)i withPayload:(id)payload{
 	if([self.alert class] == [ParentGateViewController class]){
-		NSLog(@"clicked");
+		[AlertManager removeAlert];
+		if(i == 0){
+			NSLog(@"index %i", i);
+		}
+		else if(i == 1){
+			NSLog(@"index %i", i);
+		}
 	}
 }
 
