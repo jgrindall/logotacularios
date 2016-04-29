@@ -7,8 +7,9 @@
 //
 
 #import "BaseViewController_protected.h"
+#import "PCommandConsumer.h"
 
-@interface PaintViewController : BaseViewController <UIGestureRecognizerDelegate>
+@interface PaintViewController : BaseViewController <UIGestureRecognizerDelegate, PCommandConsumer>
 
 extern NSString* const FD_KEYWORD;
 extern NSString* const RT_KEYWORD;
@@ -24,5 +25,7 @@ extern NSString* const THICK_KEYWORD;
 - (void) queueCommand:(NSDictionary*)dic;
 
 - (UIImage*)getImage;
+
+- (void)consume:(NSDictionary*) data;
 
 @end

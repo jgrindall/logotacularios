@@ -14,14 +14,20 @@
 #import "ToastUtils.h"
 #import "PLogoErrorModel.h"
 #import <Objection/Objection.h>
+#import "PCommandConsumer.h"
 
 @interface WebViewController ()
 
 @property UIWebView* webView;
+@property id <PCommandConsumer> _commandConsumer;
 
 @end
 
 @implementation WebViewController
+
+- (void) setCommandConsumer:(id<PCommandConsumer>)commandConsumer{
+	self._commandConsumer = commandConsumer;
+}
 
 - (void) viewDidLoad{
 	[super viewDidLoad];
@@ -172,7 +178,9 @@
 }
 
 - (void) receivedCommand:(NSDictionary*) data{
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CMD_RECEIVED withData:data];
+	if(self._commandConsumer){
+		[self._commandConsumer consume:data];
+	}
 }
 
 - (void) dealloc{

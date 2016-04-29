@@ -80,6 +80,7 @@
 	[self addNavButtons];
 	[self addListeners];
 	[[self getTextVisModel] setVal:[NSNumber numberWithBool:NO] forKey:TEXT_VISIBLE_VIS];
+	[self.webViewController setCommandConsumer:self.paintViewController];
 }
 
 - (void) fileTitleChanged:(id)data{

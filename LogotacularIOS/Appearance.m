@@ -42,7 +42,6 @@
 + (NSDictionary*) navTextAttributes{
 	UIColor* textColor = [UIColor whiteColor];
 	UIFont* textFont = [Appearance fontOfSize:SYMM_FONT_SIZE_NAV];
-	NSLog (@"%@", textFont);
 	NSDictionary* dic = @{NSFontAttributeName:textFont, NSForegroundColorAttributeName:textColor};
 	return  dic;
 }

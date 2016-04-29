@@ -7,7 +7,10 @@
 //
 
 #import "BaseViewController_protected.h"
+#import "PCommandConsumer.h"
 
 @interface WebViewController : BaseViewController <UIWebViewDelegate>
+
+- (void) setCommandConsumer:(id<PCommandConsumer>)commandConsumer;
 
 @end

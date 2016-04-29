@@ -206,9 +206,12 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[self.paintView reset];
 }
 
+- (void)consume:(NSDictionary*) data{
+	[self queueCommand:data];
+}
+
 - (void) addListeners{
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_SCREENGRAB toFunction:@selector(grab) withContext:self];
-	[[self getEventDispatcher] addListener: SYMM_NOTIF_CMD_RECEIVED toFunction:@selector(queueCommand:) withContext:self];
 	[[self getEventDispatcher] addListener: SYMM_NOTIF_RESET toFunction:@selector(reset) withContext:self];
 	[[self getEventDispatcher] addListener: SYMM_NOTIF_RESET_ZOOM toFunction:@selector(resetZoom) withContext:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_RESTART_QUEUE toFunction:@selector(restart) withContext:self];
@@ -221,7 +224,6 @@ NSString* const THICK_KEYWORD			= @"thick";
 
 - (void) removeListeners{
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_SCREENGRAB toFunction:@selector(grab) withContext:self];
-	[[self getEventDispatcher] removeListener: SYMM_NOTIF_CMD_RECEIVED toFunction:@selector(queueCommand:) withContext:self];
 	[[self getEventDispatcher] removeListener: SYMM_NOTIF_RESET toFunction:@selector(reset) withContext:self];
 	[[self getEventDispatcher] removeListener: SYMM_NOTIF_RESET_ZOOM toFunction:@selector(resetZoom) withContext:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_RESTART_QUEUE toFunction:@selector(restart) withContext:self];
@@ -383,8 +385,8 @@ NSString* const THICK_KEYWORD			= @"thick";
 	}
 }
 
-- (void) queueCommand:(NSNotification*)notif{
-	[self.cmds addObject:notif.object];
+- (void) queueCommand:(NSDictionary*)data{
+	[self.cmds addObject:data];
 	[self executeCommand];
 }
 

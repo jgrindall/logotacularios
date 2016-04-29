@@ -125,6 +125,7 @@
 
 /* Begin PBXFileReference section */
 		458B6A11F0F949A0B2010544 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		521DA06F1CD3EBBC00B09D7E /* PCommandConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCommandConsumer.h; sourceTree = "<group>"; };
 		52244C131A25341500505F6D /* ClickResetZoomCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickResetZoomCommand.h; sourceTree = "<group>"; };
 		52244C141A25341500505F6D /* ClickResetZoomCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickResetZoomCommand.m; sourceTree = "<group>"; };
 		52244C161A25502800505F6D /* AbstractHelpSectionViewController_protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractHelpSectionViewController_protected.h; sourceTree = "<group>"; };
@@ -837,6 +838,7 @@
 		52B5B35D19FD7E7300EF531F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				521DA06F1CD3EBBC00B09D7E /* PCommandConsumer.h */,
 				52D3D9A21CCCF98300197451 /* Social */,
 				52815C6F1A04F39B005AFA93 /* Files */,
 				52CBC9C21A0D336600C229C8 /* Alert */,

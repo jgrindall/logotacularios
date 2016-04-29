@@ -42,7 +42,6 @@ NSString* const SYMM_NOTIF_RESET_ZOOM =			@"Symm::resetzoom";
 NSString* const SYMM_NOTIF_SAVE =				@"Symm::save";
 NSString* const SYMM_NOTIF_CLICK_SAVE_AS =		@"Symm::saveas";
 NSString* const SYMM_NOTIF_CLEAR =				@"Symm::clear";
-NSString* const SYMM_NOTIF_CMD_RECEIVED =		@"Symm::cmdReceived";
 NSString* const SYMM_NOTIF_DISMISS_KEY =		@"Symm::dismissKey";
 NSString* const SYMM_NOTIF_CLICK_OPEN =			@"Symm::clickOpen";
 NSString* const SYMM_NOTIF_LOAD_FILES =			@"Symm::loadFiles";

@@ -25,13 +25,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LogotacularIOS/WebViewController.m"
-            timestampString = "475245989.304516"
+            filePath = "LogotacularIOS/PaintViewController.m"
+            timestampString = "483651758.989295"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "-iosCallback:"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
+            landmarkName = "-consume:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LogotacularIOS/PaintViewController.m"
+            timestampString = "483651758.989295"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
+            landmarkName = "-consume:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
