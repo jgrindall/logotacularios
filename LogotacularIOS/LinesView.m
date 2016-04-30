@@ -158,6 +158,7 @@ CGContextRef cacheContext;
 	if(cacheContext){
 		CGContextRef context = UIGraphicsGetCurrentContext();
 		CGImageRef cacheImage = CGBitmapContextCreateImage(cacheContext);
+		CGContextClipToRect(context, rect);
 		CGContextDrawImage(context, self.bounds, cacheImage);
 		CGImageRelease(cacheImage);
 	}
