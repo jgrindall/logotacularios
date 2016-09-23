@@ -1346,6 +1346,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
+				DEVELOPMENT_TEAM = WDBW628V64;
 				ENABLE_BITCODE = NO;
 				IBC_FLATTEN_NIBS = NO;
 				INFOPLIST_FILE = LogotacularIOS/Info.plist;
@@ -1365,6 +1366,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
+				DEVELOPMENT_TEAM = WDBW628V64;
 				ENABLE_BITCODE = NO;
 				IBC_FLATTEN_NIBS = NO;
 				INFOPLIST_FILE = LogotacularIOS/Info.plist;
