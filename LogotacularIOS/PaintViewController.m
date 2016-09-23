@@ -245,7 +245,6 @@ NSString* const THICK_KEYWORD			= @"thick";
 
 - (void) onTri{
 	CGPoint p = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
-	NSLog(@"p is %f %f", p.x, p.y);
 	float heading = [[[self getTurtleModel] getVal:TURTLE_HEADING] floatValue];
 	UIColor* clr = [[self getTurtleModel] getVal:TURTLE_COLOR];
 	[self.paintView drawTriangleAt:p withHeading:heading withColor:clr];

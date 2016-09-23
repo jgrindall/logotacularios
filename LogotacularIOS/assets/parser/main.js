@@ -20,7 +20,13 @@ LG.onError = function(e){
 };
 
 LG.onMessage = function(msg){
-	var s = JSON.stringify(msg);
+	var s;
+	if(msg.data){
+		s = JSON.stringify(msg.data);
+	}
+	else{
+		s = JSON.stringify(msg);
+	}
 	if(window.iosCallback){
 		iosCallback(s);
 	}

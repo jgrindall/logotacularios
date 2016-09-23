@@ -66,7 +66,6 @@
 
 - (void) iosCallback:(NSDictionary*) jsonObj{
 	if ([jsonObj isKindOfClass:[NSDictionary class]]){
-		NSDictionary* data = jsonObj[@"data"];
 		NSDictionary* error = jsonObj[@"error"];
 		NSDictionary* syntaxError = jsonObj[@"syntaxerror"];
 		
@@ -77,9 +76,9 @@
 			[self syntaxError:syntaxError];
 		}
 		else{
-			NSString* type = data[@"type"];
+			NSString* type = jsonObj[@"type"];
 			if([type isEqualToString:@"command"]){
-				[self receivedCommand:data];
+				[self receivedCommand:jsonObj];
 			}
 			else if([type isEqualToString:@"end"]){
 				[self finished];
