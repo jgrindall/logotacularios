@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		269A647FA28B48F688FF8E8B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 458B6A11F0F949A0B2010544 /* libPods.a */; };
+		5216535D1E2B9BDD0094AE94 /* SignatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5216535C1E2B9BDD0094AE94 /* SignatureViewController.m */; };
 		52244C151A25341500505F6D /* ClickResetZoomCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52244C141A25341500505F6D /* ClickResetZoomCommand.m */; };
 		52244C1C1A2555C100505F6D /* HelpLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 52244C1B1A2555C100505F6D /* HelpLayout.m */; };
 		522E91C71A1CA6C2000AB933 /* FileLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E91C61A1CA6C2000AB933 /* FileLayout.m */; };
@@ -125,6 +126,8 @@
 
 /* Begin PBXFileReference section */
 		458B6A11F0F949A0B2010544 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5216535B1E2B9BDD0094AE94 /* SignatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignatureViewController.h; sourceTree = "<group>"; };
+		5216535C1E2B9BDD0094AE94 /* SignatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignatureViewController.m; sourceTree = "<group>"; };
 		521DA06F1CD3EBBC00B09D7E /* PCommandConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCommandConsumer.h; sourceTree = "<group>"; };
 		52244C131A25341500505F6D /* ClickResetZoomCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickResetZoomCommand.h; sourceTree = "<group>"; };
 		52244C141A25341500505F6D /* ClickResetZoomCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickResetZoomCommand.m; sourceTree = "<group>"; };
@@ -1000,6 +1003,8 @@
 		52D3D9A21CCCF98300197451 /* Social */ = {
 			isa = PBXGroup;
 			children = (
+				5216535B1E2B9BDD0094AE94 /* SignatureViewController.h */,
+				5216535C1E2B9BDD0094AE94 /* SignatureViewController.m */,
 				52D3D99F1CCCF97E00197451 /* ParentGateViewController.h */,
 				52D3D9A01CCCF97E00197451 /* ParentGateViewController.m */,
 			);
@@ -1222,6 +1227,7 @@
 				52B512301A13637700B14D0D /* ErrorPopUpViewController.m in Sources */,
 				52DD4AAC1C2ACAA40039A052 /* TutPageViewController.m in Sources */,
 				52B44F011A0BC93D00B99FD2 /* TextEditedCommand.m in Sources */,
+				5216535D1E2B9BDD0094AE94 /* SignatureViewController.m in Sources */,
 				527D42F11A0AD75D008AE82A /* PerformOpenCommand.m in Sources */,
 				522E91C71A1CA6C2000AB933 /* FileLayout.m in Sources */,
 				52D08C541CCB8A7300EAAF81 /* TriView.m in Sources */,
