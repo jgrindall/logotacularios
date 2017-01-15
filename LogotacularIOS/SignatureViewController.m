@@ -58,7 +58,11 @@
 }
 
 - (void) saveState{
-	[[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"ShowSignature"];
+	NSString* state = @"NO";
+	if(self.switchButton.on){
+		state = @"YES";
+	}
+	[[NSUserDefaults standardUserDefaults] setObject:state forKey:@"ShowSignature"];
 	[[NSUserDefaults standardUserDefaults] setObject:self.ansField.text forKey:@"Signature"];
 }
 
