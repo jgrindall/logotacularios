@@ -182,7 +182,6 @@ NSString* const BASE64 = @"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOIAAAA
 		NSData* jpegData = UIImageJPEGRepresentation(screengrab, 1.0);
 		MFMailComposeViewController* mailCont = [[MFMailComposeViewController alloc] init];
 		[[mailCont navigationBar] setTintColor:blue];
-		[[mailCont navigationBar] setBarTintColor:[UIColor greenColor]];
 		mailCont.mailComposeDelegate = self;
 		[mailCont setSubject:@"Check out what I made using Logotacular"];
 		NSString* fileName = @"logotacular";
