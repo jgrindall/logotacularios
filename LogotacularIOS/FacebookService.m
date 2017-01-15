@@ -105,8 +105,11 @@ NSString* const BASE64 = @"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQIAAAB
 		if(!presenter){
 			return;
 		}
+		UIColor* blue = [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0];
 		NSData* jpegData = UIImageJPEGRepresentation(screengrab, 1.0);
-		MFMailComposeViewController *mailCont = [[MFMailComposeViewController alloc] init];
+		MFMailComposeViewController* mailCont = [[MFMailComposeViewController alloc] init];
+		[[mailCont navigationBar] setTintColor:blue];
+		[[mailCont navigationBar] setBarTintColor:[UIColor greenColor]];
 		mailCont.mailComposeDelegate = self;
 		[mailCont setSubject:@"Check out what I made using Logotacular"];
 		NSString* fileName = @"logotacular";
@@ -115,11 +118,14 @@ NSString* const BASE64 = @"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQIAAAB
 		NSString* url = [self getUrl];
 		NSString* body = [NSString stringWithFormat:@"<html><body><p>I've been using the <a href='%@'>Logotacular app</a> to learn about coding - check out what I've done!</p><p><a href='%@'><img src='%@'></img></a></p></body></html>", url, url, BASE64];
 		[mailCont setMessageBody:body isHTML:YES];
-		[presenter presentViewController:mailCont animated:YES completion:nil];
+		[presenter presentViewController:mailCont animated:YES completion:^{
+			[[UIApplication sharedApplication] keyWindow].tintColor = blue;
+		}];
 	}
 }
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+	[[UIApplication sharedApplication] keyWindow].tintColor = [UIColor whiteColor];
 	[controller dismissViewControllerAnimated:YES completion:nil];
 }
 
