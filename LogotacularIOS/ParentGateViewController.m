@@ -66,8 +66,8 @@
 }
 
 - (void) addMessage{
-	int lowerBound = 0;
-	int upperBound = 2;
+	int lowerBound = 99;
+	int upperBound = 1000;
 	int rndValue1 = (int)(lowerBound + arc4random() % (upperBound - lowerBound));
 	int rndValue2 = (int)(lowerBound + arc4random() % (upperBound - lowerBound));
 	self.msgLabel = [[UILabel alloc] initWithFrame:self.view.frame];
