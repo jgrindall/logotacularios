@@ -100,12 +100,13 @@
 }
 
 - (void) show{
+	NSTimeInterval interval = 0.25;
 	[self performSelector:@selector(showObject:) withObject:self.label afterDelay:0.0];
-	[self performSelector:@selector(showObject:) withObject:self.subTitle afterDelay:0.5];
-	[self performSelector:@selector(showObject:) withObject:self.button0 afterDelay:1.0];
-	[self performSelector:@selector(showObject:) withObject:self.button1 afterDelay:2.00];
-	[self performSelector:@selector(showObject:) withObject:self.button2 afterDelay:2.5];
-	[self performSelector:@selector(showObject:) withObject:self.button3 afterDelay:3.00];
+	[self performSelector:@selector(showObject:) withObject:self.subTitle afterDelay:interval];
+	[self performSelector:@selector(showObject:) withObject:self.button0 afterDelay:2*interval];
+	[self performSelector:@selector(showObject:) withObject:self.button1 afterDelay:3*interval];
+	[self performSelector:@selector(showObject:) withObject:self.button2 afterDelay:4*interval];
+	[self performSelector:@selector(showObject:) withObject:self.button3 afterDelay:5*interval];
 }
 
 - (UIButton*) getBoxButton:(NSString*)label withIcon:(NSString*)icon withColor:(UIColor*)clr{
