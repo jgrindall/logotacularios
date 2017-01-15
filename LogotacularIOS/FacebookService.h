@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
+#import "PLogoAlertDelegate.h"
 
-@interface FacebookService : NSObject <MFMailComposeViewControllerDelegate>
+@interface FacebookService : NSObject <MFMailComposeViewControllerDelegate, PLogoAlertDelegate>
 
 typedef enum  {
 	FacebookResultOk = 0,
@@ -26,5 +27,7 @@ typedef enum  {
 - (void) postImageToTwitter:(UIImage*)img withCallback:(void(^)(FacebookResults result))callback;
 - (void) email:(UIImage*)img;
 - (UIImage*) getScreenshot;
+- (void) getScreenshotWithCompletion:(void(^)(UIImage*))completion;
+
 @end
 

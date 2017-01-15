@@ -66,10 +66,11 @@
 }
 
 - (void) email{
-	UIImage* screengrab = [[FacebookService sharedInstance] getScreenshot];
-	if(screengrab){
-		[[FacebookService sharedInstance] email:screengrab];
-	}
+	[[FacebookService sharedInstance] getScreenshotWithCompletion:^(UIImage* screengrab){
+		if(screengrab){
+			[[FacebookService sharedInstance] email:screengrab];
+		}
+	}];
 }
 
 @end

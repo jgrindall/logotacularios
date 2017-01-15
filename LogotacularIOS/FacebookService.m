@@ -9,12 +9,26 @@
 #import "FacebookService.h"
 #import "AppDelegate.h"
 #import "ToastUtils.h"
+#import "Appearance.h"
+#import "MenuViewController.h"
+#import "PMenuModel.h"
+#import "ImageUtils.h"
+#import "Assets.h"
+#import "SymmNotifications.h"
+#import "Appearance.h"
+#import "AlertManager.h"
+#import "SignatureViewController.h"
+#import "DrawPageViewController.h"
 #import <Social/Social.h>
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
-#import "Appearance.h"
+
+typedef void (^CompletionType)(UIImage*);
 
 @interface FacebookService ()
+
+@property AbstractOverlayController* alert;
+@property (readwrite,nonatomic,copy) CompletionType completion;
 
 @end
 
@@ -29,6 +43,36 @@ NSString* const BASE64 = @"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOIAAAA
         service = [[self alloc] init];
     });
     return service;
+}
+
+- (void) clickButtonAt:(NSInteger)i withPayload:(id)payload{
+	[AlertManager removeAlert];
+	if(i == 2){
+		// ok
+		UIImage* signedScreengrab;
+		UIImage* screengrab = [[FacebookService sharedInstance] getScreenshot];
+		if(screengrab){
+			signedScreengrab = screengrab;
+			NSDictionary* dict = (NSDictionary*)payload;
+			if(dict){
+				BOOL show = [dict[@"show"] boolValue];
+				NSString* name = [dict[@"name"] stringValue];
+				if(show){
+					signedScreengrab = [ImageUtils drawText:name inImage:screengrab atPoint:CGPointMake(100, 100)];
+				}
+			}
+			self.completion(signedScreengrab);
+		}
+	}
+	self.completion = nil;
+	self.alert = nil;
+}
+
+- (void) getScreenshotWithCompletion:(CompletionType) completion{
+	AppDelegate* del = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+	NSDictionary* options = @{@"buttons":@[@"Ok", TICK_ICON, @"Cancel", CLEAR_ICON], @"title":@"Add your name?"};
+	self.alert = [AlertManager addAlert:[SignatureViewController class] intoController:del.rootViewController withDelegate:self withOptions:options];
+	self.completion = completion;
 }
 
 - (UIImage*) getScreenshot{
