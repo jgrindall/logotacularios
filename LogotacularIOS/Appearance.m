@@ -35,8 +35,15 @@
 	return clr;
 }
 
++ (NSDictionary*) getGrayRGBA{
+	return @{@"r":@0.4, @"g":@0.4, @"b":@0.4, @"a":@0.45};
+}
+
 + (UIColor*) grayColor{
-	return [UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:0.45];
+	NSDictionary* d = [Appearance getGrayRGBA];
+	float rgb = [[d objectForKey:@"r"] floatValue];
+	float a = [[d objectForKey:@"a"] floatValue];
+	return [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:a];
 }
 
 + (NSDictionary*) navTextAttributes{

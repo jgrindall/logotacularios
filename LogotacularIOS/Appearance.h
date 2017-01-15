@@ -32,5 +32,6 @@ typedef NS_ENUM(NSInteger, SymmFontSizes)  {
 + (UIColor*) grayColor;
 + (void)popupNavigationControllerClosed;
 + (void)popupNavigationControllerOpened;
++ (NSDictionary*) getGrayRGBA;
 
 @end
