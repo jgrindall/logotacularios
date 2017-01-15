@@ -85,14 +85,10 @@
 	 [JSObjection setDefaultInjector:injector];
 }
 
-- (UIViewController*) getRoot{
-	return [[DrawPageViewController alloc] init];
-}
-
 - (void) setupWindow{
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-	UIViewController* rootViewController = [self getRoot];
-	self.navigationController = [[NavController alloc] initWithRootViewController:rootViewController];
+	self.rootViewController = [[DrawPageViewController alloc] init];
+	self.navigationController = [[NavController alloc] initWithRootViewController:self.rootViewController];
 	[self.window setRootViewController:self.navigationController];
 	[self.window addSubview:self.navigationController.view];
 	[self.window makeKeyAndVisible];

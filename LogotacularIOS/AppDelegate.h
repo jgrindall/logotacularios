@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <Objection/Objection.h>
+#import "DrawPageViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow*		window;
 @property UINavigationController*			navigationController;
+@property AContainerViewController*			rootViewController;
 
 @end
 
