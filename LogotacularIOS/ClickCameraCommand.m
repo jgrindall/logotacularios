@@ -14,10 +14,11 @@
 @implementation ClickCameraCommand
 
 - (void) execute:(id) payload{
-	UIImage* screengrab = [[FacebookService sharedInstance] getScreenshot];
-	if(screengrab){
-		UIImageWriteToSavedPhotosAlbum(screengrab, self, @selector(savedImage:withError:usingContextInfo:), NULL);
-	}
+	[[FacebookService sharedInstance] getScreenshotWithCompletion:^(UIImage* screengrab){
+		if(screengrab){
+			UIImageWriteToSavedPhotosAlbum(screengrab, self, @selector(savedImage:withError:usingContextInfo:), NULL);
+		}
+	}];
 }
 
 - (void)savedImage:(UIImage *)image withError:(NSError *)error usingContextInfo:(void*)ctxInfo{

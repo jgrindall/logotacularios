@@ -26,7 +26,6 @@ typedef enum  {
 - (void) postImageToFacebook:(UIImage*)img withCallback:(void(^)(FacebookResults result))callback;
 - (void) postImageToTwitter:(UIImage*)img withCallback:(void(^)(FacebookResults result))callback;
 - (void) email:(UIImage*)img;
-- (UIImage*) getScreenshot;
 - (void) getScreenshotWithCompletion:(void(^)(UIImage*))completion;
 
 @end

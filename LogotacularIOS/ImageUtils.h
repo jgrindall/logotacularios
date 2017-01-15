@@ -18,6 +18,5 @@
 + (UIImage*) shadowImage:(CGSize)size withCurlX:(int)cx withCurlY:(int)cy;
 + (void)shakeView:(UIView*)view;
 + (CGRect) getRectForRatio:(float)ratio inSize:(CGSize)containerSize;
-+ (UIImage*) drawText:(NSString*) text inImage:(UIImage*) image atPoint:(CGPoint) point;
 
 @end

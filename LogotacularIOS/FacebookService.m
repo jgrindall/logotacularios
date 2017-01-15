@@ -19,6 +19,7 @@
 #import "AlertManager.h"
 #import "SignatureViewController.h"
 #import "DrawPageViewController.h"
+#import "PFileModel.h"
 #import <Social/Social.h>
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
@@ -49,20 +50,19 @@ NSString* const BASE64 = @"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOIAAAA
 	[AlertManager removeAlert];
 	if(i == 2){
 		// ok
-		UIImage* signedScreengrab;
-		UIImage* screengrab = [[FacebookService sharedInstance] getScreenshot];
-		if(screengrab){
-			signedScreengrab = screengrab;
-			NSDictionary* dict = (NSDictionary*)payload;
-			if(dict){
-				BOOL show = [dict[@"show"] boolValue];
-				NSString* name = [dict[@"name"] stringValue];
-				if(show){
-					signedScreengrab = [ImageUtils drawText:name inImage:screengrab atPoint:CGPointMake(100, 100)];
-				}
+		UIImage* screengrab;
+		NSDictionary* dict = (NSDictionary*)payload;
+		if(dict){
+			BOOL show = [dict[@"show"] boolValue];
+			NSString* name = dict[@"name"];
+			if(show){
+				screengrab = [[FacebookService sharedInstance] getScreenshotWithOptions:@{@"name":name}];
 			}
-			self.completion(signedScreengrab);
+			else{
+				screengrab = [[FacebookService sharedInstance] getScreenshotWithOptions:@{}];
+			}
 		}
+		self.completion(screengrab);
 	}
 	self.completion = nil;
 	self.alert = nil;
@@ -75,8 +75,28 @@ NSString* const BASE64 = @"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOIAAAA
 	self.completion = completion;
 }
 
-- (UIImage*) getScreenshot{
+- (UIImage*) getScreenshotWithOptions:(NSDictionary*)options{
 	UIImage* screengrab;
+	AppDelegate* del = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+	UIFont* font = [Appearance fontOfSize:SYMM_FONT_SIZE_MED];
+	UINavigationBar* bar = del.rootViewController.navigationController.navigationBar;
+	NSMutableParagraphStyle* style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+	style.alignment = NSTextAlignmentCenter;
+	NSDictionary* attr = @{ NSFontAttributeName:font, NSParagraphStyleAttributeName:style, NSForegroundColorAttributeName:[UIColor whiteColor]};
+	NSDictionary* d = [Appearance getGrayRGBA];
+	float rgb = [[d objectForKey:@"r"] floatValue];
+	float a = [[d objectForKey:@"a"] floatValue];
+	id<PFileModel> model = [self getFileModel];
+	NSString* filename = [model getVal:FILE_FILENAME];
+	BOOL real = [[model getVal:FILE_REAL] boolValue];
+	if(!real){
+		filename = @"'Unsaved file'";
+	}
+	if(options && options[@"name"] && ((NSString*)options[@"name"]).length >= 1){
+		filename = [NSString stringWithFormat:@"'%@' by %@", filename, options[@"name"]];
+	}
+	CGSize size = bar.frame.size;
+	bar.alpha = 0.0001;
 	CGRect screenRect = [[UIScreen mainScreen] bounds];
 	UIGraphicsBeginImageContext(screenRect.size);
 	CGContextRef ctx = UIGraphicsGetCurrentContext();
@@ -84,9 +104,18 @@ NSString* const BASE64 = @"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOIAAAA
 	CGContextFillRect(ctx, screenRect);
 	UIWindow* window = [UIApplication sharedApplication].keyWindow;
 	[window.layer renderInContext:ctx];
+	CGContextSetRGBFillColor(ctx, rgb, rgb, rgb, a);
+	CGRect r = CGRectMake(0.0, 0.0, size.width, size.height);
+	CGContextFillRect(ctx, r);
+	[filename drawInRect:CGRectMake(0, 3.0, size.width, bar.frame.size.height) withAttributes:attr];
 	screengrab = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();
+	bar.alpha = 1;
 	return screengrab;
+}
+
+- (id<PFileModel>) getFileModel{
+	return [[JSObjection defaultInjector] getObject:@protocol(PFileModel)];
 }
 
 - (NSString*) getUrl{

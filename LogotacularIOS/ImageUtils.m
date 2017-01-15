@@ -8,6 +8,7 @@
 
 #import "ImageUtils.h"
 #import "Appearance.h"
+#import "AppDelegate.h"
 #import "SKBounceAnimation.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -19,19 +20,6 @@
 
 static CGFloat edgeSizeFromCornerRadius(CGFloat cornerRadius) {
 	return cornerRadius * 2 + 1;
-}
-
-+(UIImage*) drawText:(NSString*) text inImage:(UIImage*) image atPoint:(CGPoint) point{
-	UIFont *font = [UIFont boldSystemFontOfSize:12];
-	UIGraphicsBeginImageContext(image.size);
-	[image drawInRect:CGRectMake(0,0,image.size.width,image.size.height)];
-	CGRect rect = CGRectMake(point.x, point.y, image.size.width, image.size.height);
-	[[UIColor whiteColor] set];
-	NSDictionary *att = @{NSFontAttributeName:font};
-	[text drawInRect:CGRectIntegral(rect) withAttributes:att];
-	UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-	UIGraphicsEndImageContext();
-	return newImage;
 }
 
 + (CGRect) getRectForRatio:(float)ratio inSize:(CGSize)containerSize{
