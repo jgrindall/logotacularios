@@ -119,7 +119,7 @@
 - (void) updateState{
 	BOOL state = self.switchButton.on;
 	self.ansField.enabled = state;
-	self.ansField.alpha = state ? 1 : 0.33;
+	self.ansField.alpha = state ? 1 : 0.25;
 }
 
 -(void)layoutText{

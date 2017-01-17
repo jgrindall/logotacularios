@@ -25,6 +25,7 @@
 @property UIButton* emailButton;
 @property NSInteger ans;
 @property BOOL answered;
+@property NSArray* cancelConstraints;
 @end
 
 @implementation ParentGateViewController
@@ -147,11 +148,22 @@
 }
 
 - (void) showSocialButtons{
+	[self.okButton removeFromSuperview];
 	self.facebookButton.alpha = 1;
 	self.twitterButton.alpha = 1;
 	self.emailButton.alpha = 1;
+	[self moveCancel];
 }
 
+- (void) moveCancel{
+	[self.view removeConstraints:self.cancelConstraints];
+	NSLayoutConstraint* c0 = [NSLayoutConstraint constraintWithItem:self.cancelButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.panel			attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0];
+	NSLayoutConstraint* c1 = [NSLayoutConstraint constraintWithItem:self.cancelButton attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.panel			attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0.0];
+	NSLayoutConstraint* c2 = [NSLayoutConstraint constraintWithItem:self.cancelButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil					attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:120.0];
+	NSLayoutConstraint* c3 = [NSLayoutConstraint constraintWithItem:self.cancelButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil					attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:50.0];
+	self.cancelConstraints = @[c0, c1, c2, c3];
+	[self.view addConstraints:self.cancelConstraints];
+}
 - (void) onClickFacebook{
 	[self.delegate clickButtonAt:2 withPayload:@"facebook"];
 }
@@ -217,10 +229,12 @@
 }
 
 - (void) layoutCancel{
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.cancelButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.panel			attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.cancelButton attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.okButton		attribute:NSLayoutAttributeLeading multiplier:1.0 constant:-15.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.cancelButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil					attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:120.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.cancelButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil					attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:50.0]];
+	NSLayoutConstraint* c0 = [NSLayoutConstraint constraintWithItem:self.cancelButton attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.panel			attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0];
+	NSLayoutConstraint* c1 = [NSLayoutConstraint constraintWithItem:self.cancelButton attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.okButton		attribute:NSLayoutAttributeLeading multiplier:1.0 constant:-15.0];
+	NSLayoutConstraint* c2 = [NSLayoutConstraint constraintWithItem:self.cancelButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil					attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:120.0];
+	NSLayoutConstraint* c3 = [NSLayoutConstraint constraintWithItem:self.cancelButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil					attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:50.0];
+	self.cancelConstraints = @[c0, c1, c2, c3];
+	[self.view addConstraints:self.cancelConstraints];
 }
 
 -(void)layoutButtons{

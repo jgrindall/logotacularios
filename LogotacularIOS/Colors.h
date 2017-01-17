@@ -19,6 +19,8 @@
 
 + (UIColor*) darken:(UIColor*)c;
 
++ (UIColor*) darken:(UIColor*)c withAmount:(float) less;
+
 + (NSString*) getColorNameForNumber:(NSNumber*)num;
 
 + (UIColor*) getColorForNumber:(NSNumber*)num;
