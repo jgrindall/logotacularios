@@ -15,12 +15,11 @@
 
 @property TriView* triView;
 @property BOOL hideTri;
+@property CGContextRef cacheContext;
 
 @end
 
 @implementation LinesView
-
-CGContextRef cacheContext;
 
 - (instancetype)initWithFrame:(CGRect)frame{
 	self = [super initWithFrame:frame];
@@ -50,8 +49,8 @@ CGContextRef cacheContext;
 }
 
 - (BOOL) initContext {
-	if(cacheContext){
-		CGContextRelease(cacheContext);
+	if(self.cacheContext){
+		CGContextRelease(self.cacheContext);
 	}
 	CGSize size = self.frame.size;
 	int	bitmapBytesPerRow;
@@ -60,14 +59,14 @@ CGContextRef cacheContext;
 	int h = (int)(size.height);
 	bitmapBytesPerRow = (w * bytesPerPixel);
 	if(w > 0 && h > 0){
-		cacheContext = CGBitmapContextCreate (NULL, w, h, 8, bitmapBytesPerRow, CGColorSpaceCreateDeviceRGB(), (CGBitmapInfo)kCGImageAlphaPremultipliedLast);
-		CGContextClearRect(cacheContext, self.bounds);
-		CGContextSetRGBFillColor(cacheContext, 0.0, 0.0, 0.0, 0.0);
-		CGContextFillRect(cacheContext, self.bounds);
-		CGContextSetLineCap(cacheContext, kCGLineCapRound);
+		self.cacheContext = CGBitmapContextCreate (NULL, w, h, 8, bitmapBytesPerRow, CGColorSpaceCreateDeviceRGB(), (CGBitmapInfo)kCGImageAlphaPremultipliedLast);
+		CGContextClearRect(self.cacheContext, self.bounds);
+		CGContextSetRGBFillColor(self.cacheContext, 0.0, 0.0, 0.0, 0.0);
+		CGContextFillRect(self.cacheContext, self.bounds);
+		CGContextSetLineCap(self.cacheContext, kCGLineCapRound);
 	}
 	else{
-		CGContextRelease(cacheContext);
+		CGContextRelease(self.cacheContext);
 	}
 	return YES;
 }
@@ -85,9 +84,9 @@ CGContextRef cacheContext;
 	NSAttributedString* stringToDraw = [[NSAttributedString alloc] initWithString:s attributes:attrDictionary];
 	CGRect bounds = [stringToDraw boundingRectWithSize:CGSizeMake(320, CGFLOAT_MAX) options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
 	CTLineRef line = CTLineCreateWithAttributedString((CFAttributedStringRef)stringToDraw);
-	CGContextSetTextMatrix(cacheContext, CGAffineTransformMake(1.0, 0.0, 0.0, -1.0, 0.0, 0.0));
-	CGContextSetTextPosition(cacheContext, p1.x, p1.y);
-	CTLineDraw(line, cacheContext);
+	CGContextSetTextMatrix(self.cacheContext, CGAffineTransformMake(1.0, 0.0, 0.0, -1.0, 0.0, 0.0));
+	CGContextSetTextPosition(self.cacheContext, p1.x, p1.y);
+	CTLineDraw(line, self.cacheContext);
 	CFRelease(line);
 	CFRelease(fontRef);
 	[self setNeedsDisplayInRect:bounds];
@@ -133,14 +132,14 @@ CGContextRef cacheContext;
 }
 
 - (void) drawLineFrom:(CGPoint)fromPos to:(CGPoint) toPos withColor:(UIColor*) clr andThickness:(NSInteger)thickness {
-	CGContextSetStrokeColorWithColor(cacheContext, [clr CGColor]);
+	CGContextSetStrokeColorWithColor(self.cacheContext, [clr CGColor]);
 	float thickness1 = thickness * [self getScale:self.flushedTransform];
-	CGContextSetLineWidth(cacheContext, thickness1);
+	CGContextSetLineWidth(self.cacheContext, thickness1);
 	CGPoint toPos1 = [self getFlushedPoint:toPos];
 	CGPoint fromPos1 = [self getFlushedPoint:fromPos];
-	CGContextMoveToPoint(cacheContext, fromPos1.x, fromPos1.y);
-	CGContextAddLineToPoint(cacheContext, toPos1.x, toPos1.y);
-	CGContextStrokePath(cacheContext);
+	CGContextMoveToPoint(self.cacheContext, fromPos1.x, fromPos1.y);
+	CGContextAddLineToPoint(self.cacheContext, toPos1.x, toPos1.y);
+	CGContextStrokePath(self.cacheContext);
 	float p = thickness1/2.0;
 	[self setNeedsDisplayInRect:CGRectUnion(CGRectMake(fromPos1.x - p, fromPos1.y - p, 2*p, 2*p), CGRectMake(toPos1.x - p, toPos1.y - p, 2*p, 2*p))];
 }
@@ -155,9 +154,9 @@ CGContextRef cacheContext;
 }
 
 - (void) drawRect:(CGRect)rect {
-	if(cacheContext){
+	if(self.cacheContext){
 		CGContextRef context = UIGraphicsGetCurrentContext();
-		CGImageRef cacheImage = CGBitmapContextCreateImage(cacheContext);
+		CGImageRef cacheImage = CGBitmapContextCreateImage(self.cacheContext);
 		CGContextClipToRect(context, rect);
 		CGContextDrawImage(context, self.bounds, cacheImage);
 		CGImageRelease(cacheImage);
@@ -165,8 +164,8 @@ CGContextRef cacheContext;
 }
 
 - (void) dealloc{
-	if(cacheContext){
-		CGContextRelease(cacheContext);
+	if(self.cacheContext){
+		CGContextRelease(self.cacheContext);
 	}
 }
 
