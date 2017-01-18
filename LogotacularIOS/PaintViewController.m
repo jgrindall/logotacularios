@@ -248,6 +248,8 @@ NSString* const THICK_KEYWORD			= @"thick";
 	float heading = [[[self getTurtleModel] getVal:TURTLE_HEADING] floatValue];
 	UIColor* clr = [[self getTurtleModel] getVal:TURTLE_COLOR];
 	[self.paintView drawTriangleAt:p withHeading:heading withColor:clr];
+	
+	[self.paintView drawGrid];
 }
 
 - (void)clrQueue{

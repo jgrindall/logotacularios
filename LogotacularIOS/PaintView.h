@@ -26,6 +26,8 @@
 
 - (void) drawTriangleAt:(CGPoint)p withHeading:(float) h withColor:(UIColor*)clr;
 
+- (void) drawGrid;
+
 - (void) onViewDidLoad;
 
 - (void)hideTriangle;

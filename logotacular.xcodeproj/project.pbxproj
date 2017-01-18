@@ -122,6 +122,7 @@
 		52DD4AA61C2ACA1E0039A052 /* ClickTutCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52DD4AA51C2ACA1E0039A052 /* ClickTutCommand.m */; };
 		52DD4AAC1C2ACAA40039A052 /* TutPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52DD4AA91C2ACAA40039A052 /* TutPageViewController.m */; };
 		52DD4AAD1C2ACAA40039A052 /* TutSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52DD4AAB1C2ACAA40039A052 /* TutSectionViewController.m */; };
+		52DF36BC1E30035500D86479 /* GridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 52DF36BB1E30035500D86479 /* GridView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -378,6 +379,8 @@
 		52DD4AA91C2ACAA40039A052 /* TutPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutPageViewController.m; sourceTree = "<group>"; };
 		52DD4AAA1C2ACAA40039A052 /* TutSectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutSectionViewController.h; sourceTree = "<group>"; };
 		52DD4AAB1C2ACAA40039A052 /* TutSectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutSectionViewController.m; sourceTree = "<group>"; };
+		52DF36BA1E30035500D86479 /* GridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridView.h; sourceTree = "<group>"; };
+		52DF36BB1E30035500D86479 /* GridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridView.m; sourceTree = "<group>"; };
 		542243F9BAE2472FB3D62BEC /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -865,6 +868,8 @@
 			isa = PBXGroup;
 			children = (
 				52D08C521CCB8A7300EAAF81 /* TriView.h */,
+				52DF36BA1E30035500D86479 /* GridView.h */,
+				52DF36BB1E30035500D86479 /* GridView.m */,
 				52D08C531CCB8A7300EAAF81 /* TriView.m */,
 				52B5B34519FD7E1400EF531F /* LinesView.h */,
 				52B5B34619FD7E1400EF531F /* LinesView.m */,
@@ -1061,7 +1066,7 @@
 		52B5B30819FD7D4600EF531F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = jgrindall;
 				TargetAttributes = {
 					52B5B30F19FD7D4600EF531F = {
@@ -1229,6 +1234,7 @@
 				52B44F011A0BC93D00B99FD2 /* TextEditedCommand.m in Sources */,
 				5216535D1E2B9BDD0094AE94 /* SignatureViewController.m in Sources */,
 				527D42F11A0AD75D008AE82A /* PerformOpenCommand.m in Sources */,
+				52DF36BC1E30035500D86479 /* GridView.m in Sources */,
 				522E91C71A1CA6C2000AB933 /* FileLayout.m in Sources */,
 				52D08C541CCB8A7300EAAF81 /* TriView.m in Sources */,
 				52B5B35919FD7E1400EF531F /* SKBounceAnimation.m in Sources */,
@@ -1276,8 +1282,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1287,6 +1295,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1320,8 +1329,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1330,6 +1341,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

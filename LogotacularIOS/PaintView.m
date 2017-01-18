@@ -9,11 +9,13 @@
 #import "PaintView.h"
 #import "LinesView.h"
 #import "Appearance.h"
+#import "GridView.h"
 
 @interface PaintView ()
 
 @property UIView* bgView;
 @property LinesView* linesView;
+@property GridView* gridView;
 @property UIView* rect;
 
 @end
@@ -36,6 +38,10 @@
 	[self.linesView drawTriangleAt:p withHeading:h withColor:clr];
 }
 
+- (void) drawGrid{
+	[self.gridView redraw];
+}
+
 - (void)hideTriangle{
 	[self.linesView hideTriangle];
 }
@@ -44,16 +50,21 @@
 	self.bgView = [[UIView alloc] initWithFrame:self.frame];
 	self.bgView.backgroundColor = [Appearance bgColor];
 	self.linesView = [[LinesView alloc] initWithFrame:self.frame];
+	self.gridView = [[GridView alloc] initWithFrame:self.frame];
 	[self addSubview:self.bgView];
+	[self addSubview:self.gridView];
 	[self addSubview:self.linesView];
 }
 
 - (void) onViewDidLoad{
 	[self.linesView onViewDidLoad];
+	[self.gridView onViewDidLoad];
 }
 
 - (void) setFlushedTransform:(CGAffineTransform)t{
 	self.linesView.flushedTransform = t;
+	self.gridView.flushedTransform = t;
+	[self.gridView redraw];
 }
 
 - (void) flushTransformsWith:(CGAffineTransform)t{
@@ -90,6 +101,8 @@
 	self.linesView = nil;
 	[self.rect removeFromSuperview];
 	self.rect = nil;
+	[self.gridView removeFromSuperview];
+	self.gridView = nil;
 }
 
 @end
