@@ -58,8 +58,8 @@
 	CGContextClearRect(self.cacheContext, self.bounds);
 	NSDictionary* d = [Appearance getGrayRGBA];
 	float rgb = [[d objectForKey:@"r"] floatValue];
-	UIColor* major = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:0.2];
-	UIColor* minor = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:0.05];
+	UIColor* major = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:0.5];
+	UIColor* minor = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:0.2];
 	CGContextSetLineWidth(self.cacheContext, 1);
 	int numLeftInt = floor((double)((c0.x / SIZE) / scale));
 	int numRightInt = floor((double)(((size.width - c0.x) / SIZE) / scale));
@@ -78,6 +78,9 @@
 
 - (void) drawLineFrom:(CGPoint)fromPos to:(CGPoint) toPos withColor:(UIColor*) clr{
 	CGContextSetStrokeColorWithColor(self.cacheContext, [clr CGColor]);
+	float dashPhase = 0.0;
+	float dashLengths[] = {4, 4};
+	CGContextSetLineDash(self.cacheContext, dashPhase, dashLengths, 2);
 	CGContextMoveToPoint(self.cacheContext, fromPos.x, fromPos.y);
 	CGContextAddLineToPoint(self.cacheContext, toPos.x, toPos.y);
 	CGContextStrokePath(self.cacheContext);
