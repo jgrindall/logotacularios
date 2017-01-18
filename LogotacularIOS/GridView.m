@@ -49,7 +49,9 @@
 
 - (void) drawGridAt:(CGPoint)centre{
 	CGPoint p0 = CGPointMake(centre.x, centre.y - 100);
+	CGContextClearRect(self.cacheContext, self.bounds);
 	[self drawLineFrom:centre to:p0 withColor:[UIColor redColor] andThickness:3];
+	[self setNeedsDisplay];
 }
 
 - (void) drawLineFrom:(CGPoint)fromPos to:(CGPoint) toPos withColor:(UIColor*) clr andThickness:(NSInteger)thickness {
@@ -61,7 +63,6 @@
 	CGContextMoveToPoint(self.cacheContext, fromPos1.x, fromPos1.y);
 	CGContextAddLineToPoint(self.cacheContext, toPos1.x, toPos1.y);
 	CGContextStrokePath(self.cacheContext);
-	[self setNeedsDisplay];
 }
 
 - (void) drawRect:(CGRect)rect {
