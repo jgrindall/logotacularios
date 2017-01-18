@@ -9,6 +9,7 @@
 #import "GridView.h"
 #import <CoreText/CoreText.h>
 #import "TextLayout.h"
+#import "Appearance.h"
 
 @interface GridView ()
 
@@ -48,20 +49,37 @@
 }
 
 - (void) drawGridAt:(CGPoint)centre{
-	CGPoint p0 = CGPointMake(centre.x, centre.y - 100);
+	int SIZE = 100;
+	float x;
+	float y;
+	CGSize size = self.frame.size;
+	CGPoint c0 = [self getFlushedPoint:centre];
+	CGFloat scale = [self getScale:self.flushedTransform];
 	CGContextClearRect(self.cacheContext, self.bounds);
-	[self drawLineFrom:centre to:p0 withColor:[UIColor redColor] andThickness:3];
+	NSDictionary* d = [Appearance getGrayRGBA];
+	float rgb = [[d objectForKey:@"r"] floatValue];
+	UIColor* major = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:0.2];
+	UIColor* minor = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:0.05];
+	CGContextSetLineWidth(self.cacheContext, 1);
+	int numLeftInt = floor((double)((c0.x / SIZE) / scale));
+	int numRightInt = floor((double)(((size.width - c0.x) / SIZE) / scale));
+	int numTopInt = floor((double)((c0.y / SIZE) / scale));
+	int numBottomInt = floor((double)(((size.height - c0.y) / SIZE) / scale));
+	for(int i = -numLeftInt; i <= numRightInt; i++){
+		x = c0.x + i*SIZE*scale;
+		[self drawLineFrom:CGPointMake(x, 0) to:CGPointMake(x, size.height) withColor:(i == 0 ? major : minor)];
+	}
+	for(int i = -numTopInt; i <= numBottomInt; i++){
+		y = c0.y + i*SIZE*scale;
+		[self drawLineFrom:CGPointMake(0, y) to:CGPointMake(size.width, y) withColor:(i == 0 ? major : minor)];
+	}
 	[self setNeedsDisplay];
 }
 
-- (void) drawLineFrom:(CGPoint)fromPos to:(CGPoint) toPos withColor:(UIColor*) clr andThickness:(NSInteger)thickness {
+- (void) drawLineFrom:(CGPoint)fromPos to:(CGPoint) toPos withColor:(UIColor*) clr{
 	CGContextSetStrokeColorWithColor(self.cacheContext, [clr CGColor]);
-	float thickness1 = thickness * [self getScale:self.flushedTransform];
-	CGContextSetLineWidth(self.cacheContext, thickness1);
-	CGPoint toPos1 = [self getFlushedPoint:toPos];
-	CGPoint fromPos1 = [self getFlushedPoint:fromPos];
-	CGContextMoveToPoint(self.cacheContext, fromPos1.x, fromPos1.y);
-	CGContextAddLineToPoint(self.cacheContext, toPos1.x, toPos1.y);
+	CGContextMoveToPoint(self.cacheContext, fromPos.x, fromPos.y);
+	CGContextAddLineToPoint(self.cacheContext, toPos.x, toPos.y);
 	CGContextStrokePath(self.cacheContext);
 }
 
