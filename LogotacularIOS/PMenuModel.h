@@ -12,5 +12,6 @@
 @protocol PMenuModel <PAbstractModel>
 
 extern NSString* const MENU_SHOWN;
+extern NSString* const GRID_MENU_SHOWN;
 
 @end

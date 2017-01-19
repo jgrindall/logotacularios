@@ -36,5 +36,6 @@ NSString* const DOC_ICON =			@"assets/icons/document55.png";
 NSString* const FACEBOOK_ICON =		@"assets/icons/facebook.png";
 NSString* const TWITTER_ICON =		@"assets/icons/twitter.png";
 NSString* const EMAIL_ICON =		@"assets/icons/email.png";
+NSString* const GRID_ICON =			@"assets/icons/grid.png";
 
 @end

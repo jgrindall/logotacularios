@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		269A647FA28B48F688FF8E8B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 458B6A11F0F949A0B2010544 /* libPods.a */; };
 		5216535D1E2B9BDD0094AE94 /* SignatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5216535C1E2B9BDD0094AE94 /* SignatureViewController.m */; };
+		521C66361E315736001F325A /* GridMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 521C66351E315736001F325A /* GridMenuViewController.m */; };
+		521C66391E3158C1001F325A /* ClickGridMenuCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 521C66381E3158C1001F325A /* ClickGridMenuCommand.m */; };
 		52244C151A25341500505F6D /* ClickResetZoomCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52244C141A25341500505F6D /* ClickResetZoomCommand.m */; };
 		52244C1C1A2555C100505F6D /* HelpLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 52244C1B1A2555C100505F6D /* HelpLayout.m */; };
 		522E91C71A1CA6C2000AB933 /* FileLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E91C61A1CA6C2000AB933 /* FileLayout.m */; };
@@ -129,6 +131,10 @@
 		458B6A11F0F949A0B2010544 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5216535B1E2B9BDD0094AE94 /* SignatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignatureViewController.h; sourceTree = "<group>"; };
 		5216535C1E2B9BDD0094AE94 /* SignatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignatureViewController.m; sourceTree = "<group>"; };
+		521C66341E315736001F325A /* GridMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridMenuViewController.h; sourceTree = "<group>"; };
+		521C66351E315736001F325A /* GridMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridMenuViewController.m; sourceTree = "<group>"; };
+		521C66371E3158C1001F325A /* ClickGridMenuCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickGridMenuCommand.h; sourceTree = "<group>"; };
+		521C66381E3158C1001F325A /* ClickGridMenuCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickGridMenuCommand.m; sourceTree = "<group>"; };
 		521DA06F1CD3EBBC00B09D7E /* PCommandConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCommandConsumer.h; sourceTree = "<group>"; };
 		52244C131A25341500505F6D /* ClickResetZoomCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickResetZoomCommand.h; sourceTree = "<group>"; };
 		52244C141A25341500505F6D /* ClickResetZoomCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickResetZoomCommand.m; sourceTree = "<group>"; };
@@ -518,6 +524,8 @@
 		5272DE3319FE4799006E717F /* Commands */ = {
 			isa = PBXGroup;
 			children = (
+				521C66371E3158C1001F325A /* ClickGridMenuCommand.h */,
+				521C66381E3158C1001F325A /* ClickGridMenuCommand.m */,
 				52D3D99C1CCCE83600197451 /* ShareCommand.h */,
 				52D3D99D1CCCE83600197451 /* ShareCommand.m */,
 				52D08C591CCBBA2600EAAF81 /* ClickCameraCommand.h */,
@@ -658,6 +666,8 @@
 		5297CF0F1A01263700CC5CB3 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				521C66341E315736001F325A /* GridMenuViewController.h */,
+				521C66351E315736001F325A /* GridMenuViewController.m */,
 				5297CF0C1A01263200CC5CB3 /* MenuViewController.h */,
 				5297CF0D1A01263200CC5CB3 /* MenuViewController.m */,
 				522E91C81A1CA9FC000AB933 /* MenuLayout.h */,
@@ -1215,6 +1225,7 @@
 				52B5B35B19FD7E1400EF531F /* SymmNotifications.m in Sources */,
 				52CF55FB1A08411900F01D3A /* FileBrowserModel.m in Sources */,
 				52B5B35619FD7E1400EF531F /* LinesView.m in Sources */,
+				521C66361E315736001F325A /* GridMenuViewController.m in Sources */,
 				52CBC9BA1A0D2B1300C229C8 /* AbstractAlertController.m in Sources */,
 				52B5B35219FD7E1400EF531F /* Appearance.m in Sources */,
 				52D3D99A1CCCE50A00197451 /* FacebookService.m in Sources */,
@@ -1246,6 +1257,7 @@
 				5257F3491A01356C00757C77 /* UndoCommand.m in Sources */,
 				52DD4AAD1C2ACAA40039A052 /* TutSectionViewController.m in Sources */,
 				5272DE4419FE5776006E717F /* InjectionModule.m in Sources */,
+				521C66391E3158C1001F325A /* ClickGridMenuCommand.m in Sources */,
 				522E91CA1A1CA9FC000AB933 /* MenuLayout.m in Sources */,
 				5287B9A71A1B7B4300082DE1 /* ClickSaveAsCommand.m in Sources */,
 				52815C751A050EB1005AFA93 /* ClickOpenCommand.m in Sources */,

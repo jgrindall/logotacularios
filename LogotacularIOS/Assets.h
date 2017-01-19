@@ -36,5 +36,6 @@ extern NSString* const DOC_ICON;
 extern NSString* const FACEBOOK_ICON;
 extern NSString* const TWITTER_ICON;
 extern NSString* const EMAIL_ICON;
+extern NSString* const GRID_ICON;
 
 @end

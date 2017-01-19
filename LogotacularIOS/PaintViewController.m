@@ -219,6 +219,7 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_TRI toFunction:@selector(onTri) withContext:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_HIDE_TRI toFunction:@selector(onHideTri) withContext:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_CLICK_TRI toFunction:@selector(onClickTri:) withContext:self];
+	[[self getEventDispatcher] addListener:SYMM_NOTIF_CLICK_GRID toFunction:@selector(onClickGrid:) withContext:self];
 	[[self getBgModel] addListener:@selector(changeBg) forKey:BG_COLOR withTarget:self];
 }
 
@@ -231,7 +232,13 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_TRI toFunction:@selector(onTri) withContext:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_HIDE_TRI toFunction:@selector(onHideTri) withContext:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_CLICK_TRI toFunction:@selector(onClickTri:) withContext:self];
+	[[self getEventDispatcher] removeListener:SYMM_NOTIF_CLICK_GRID toFunction:@selector(onClickGrid:) withContext:self];
 	[[self getBgModel] removeListener:@selector(changeBg) forKey:BG_COLOR withTarget:self];
+}
+
+- (void) onClickGrid:(NSNotification*)notif{
+	NSInteger grid = [notif.object integerValue];
+	NSLog(@"grid %i", grid);
 }
 
 - (void) onClickTri:(NSNotification*)notif{

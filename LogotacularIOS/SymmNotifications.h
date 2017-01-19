@@ -13,6 +13,7 @@
 extern NSString* const SYMM_NOTIF_SHOW_SPINNER;
 extern NSString* const SYMM_NOTIF_HIDE_SPINNER;
 extern NSString* const SYMM_NOTIF_CLICK_MENU;
+extern NSString* const SYMM_NOTIF_CLICK_GRID_MENU;
 extern NSString* const SYMM_NOTIF_HIDE_MENU;
 extern NSString* const SYMM_NOTIF_CLICK_CAMERA;
 extern NSString* const SYMM_NOTIF_CLICK_TUT;
@@ -36,6 +37,7 @@ extern NSString* const SYMM_NOTIF_CLICK_STOP;
 extern NSString* const SYMM_NOTIF_CLICK_RESET_ZOOM;
 extern NSString* const SYMM_NOTIF_CLICK_WIPE;
 extern NSString* const SYMM_NOTIF_CLICK_TRI;
+extern NSString* const SYMM_NOTIF_CLICK_GRID;
 extern NSString* const SYMM_NOTIF_CLICK_EXAMPLES;
 extern NSString* const SYMM_NOTIF_CLICK_REF;
 extern NSString* const SYMM_NOTIF_DISMISS_KEY;

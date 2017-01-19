@@ -17,6 +17,7 @@
 #import "PaintViewController.h"
 #import "WebViewController.h"
 #import "MenuViewController.h"
+#import "GridMenuViewController.h"
 #import "PDrawingModel.h"
 #import "PLogoModel.h"
 #import "FilenameViewController.h"
@@ -38,10 +39,12 @@
 @property UIView* paintContainer;
 @property UIView* webContainer;
 @property UIView* menuContainer;
+@property UIView* gridMenuContainer;
 @property TextViewController* textViewController;
 @property PaintViewController* paintViewController;
 @property WebViewController* webViewController;
 @property MenuViewController* menuViewController;
+@property GridMenuViewController* gridMenuViewController;
 @property UIPopoverController* popController;
 @property AbstractOverlayController* alert;
 @property UIBarButtonItem* playButton;
@@ -51,6 +54,7 @@
 @property UIBarButtonItem* triButton;
 @property UIBarButtonItem* saveButton;
 @property UIBarButtonItem* wipeButton;
+@property UIBarButtonItem* gridButton;
 
 @end
 
@@ -77,6 +81,7 @@
 	[self addText];
 	[self addWeb];
 	[self addMenu];
+	[self addGridMenu];
 	[self addNavButtons];
 	[self addListeners];
 	[[self getTextVisModel] setVal:[NSNumber numberWithBool:NO] forKey:TEXT_VISIBLE_VIS];
@@ -212,10 +217,11 @@
 	self.playButton = [self getBarButtonItem:PLAY_ICON withAction:@selector(onClickPlay) andLabel:@"Play" andOffsetX:0];
 	self.resetButton = [self getBarButtonItem:AIM_ICON withAction:@selector(onClickResetZoom) andLabel:nil andOffsetX:10];
 	self.triButton = [self getBarButtonItem:TRI_ICON withAction:@selector(onClickTri) andLabel:nil andOffsetX:10];
+	self.gridButton = [self getBarButtonItem:GRID_ICON withAction:@selector(onClickGrid) andLabel:nil andOffsetX:10];
 	[self updateTriButton];
 	self.wipeButton = [self getBarButtonItem:DOC_ICON withAction:@selector(onClickWipe) andLabel:nil andOffsetX:10];
 	self.saveButton = [self getBarButtonItem:FLOPPY_ICON withAction:@selector(onClickSave) andLabel:@"Save" andOffsetX:0];
-	self.navigationItem.leftBarButtonItems = @[self.listButton, self.resetButton, self.wipeButton, self.triButton];
+	self.navigationItem.leftBarButtonItems = @[self.listButton, self.resetButton, self.wipeButton, self.triButton, self.gridButton];
 	self.navigationItem.rightBarButtonItems = @[self.clearButton, self.playButton, self.saveButton];
 }
 
@@ -230,6 +236,12 @@
 	}
 	[[self getBarButton:self.triButton] setImage:img forState:UIControlStateNormal];
 	[self.triButton setBackgroundImage:img forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+}
+
+- (void) onClickGrid{
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_GRID_MENU withData:nil];
+	//NSInteger grid = [[NSUserDefaults standardUserDefaults] integerForKey:@"GridType"];
+	//[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_GRID withData:[NSNumber numberWithInteger:grid]];
 }
 
 - (void)onClickTri{
@@ -259,6 +271,16 @@
 	[self.view addSubview:self.webContainer];
 	self.webViewController = [[WebViewController alloc] init];
 	[self addChildInto:self.webContainer withController:self.webViewController];
+}
+
+- (void) addGridMenu{
+	self.gridMenuContainer = [[UIView alloc] initWithFrame:self.view.frame];
+	self.gridMenuContainer.backgroundColor = [UIColor clearColor];
+	self.gridMenuContainer.hidden = YES;
+	[self.view addSubview:self.gridMenuContainer];
+	self.gridMenuContainer.translatesAutoresizingMaskIntoConstraints = NO;
+	self.gridMenuViewController = [[GridMenuViewController alloc] init];
+	[self addChildInto:self.gridMenuContainer withController:self.gridMenuViewController];
 }
 
 - (void) addMenu{
@@ -417,6 +439,7 @@
 
 - (void) layoutAll{
 	[self layoutMenu];
+	[self layoutGridMenu];
 	[self layoutPaint];
 	[self layoutText];
 }
@@ -426,6 +449,13 @@
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.menuContainer attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.menuContainer attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil							attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:MENU_LAYOUT_HEIGHT]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.menuContainer attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil							attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:MENU_LAYOUT_WIDTH]];
+}
+
+-(void)layoutGridMenu{
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.gridMenuContainer attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.topLayoutGuide			attribute:NSLayoutAttributeBottom multiplier:1.0 constant:1.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.gridMenuContainer attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.gridMenuContainer attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil							attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:GRID_MENU_LAYOUT_HEIGHT]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.gridMenuContainer attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil							attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:GRID_MENU_LAYOUT_WIDTH]];
 }
 
 -(void)layoutPaint{

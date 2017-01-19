@@ -41,6 +41,7 @@
 - (void) startCommands{
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLICK_PLAY toCommandClass:[ClickPlayCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLICK_MENU toCommandClass:[ClickMenuCommand class]];
+	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLICK_GRID_MENU toCommandClass:[ClickGridMenuCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_HIDE_MENU toCommandClass:[HideMenuCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_UNDO toCommandClass:[UndoCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_REDO toCommandClass:[RedoCommand class]];
