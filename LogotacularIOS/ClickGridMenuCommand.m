@@ -16,6 +16,7 @@
 - (void) execute:(id) payload{
 	id<PMenuModel> menuModel = [[JSObjection defaultInjector] getObject:@protocol(PMenuModel)];
 	[menuModel toggleBoolValForKey:GRID_MENU_SHOWN];
+	[menuModel setVal:@NO forKey:MENU_SHOWN];
 	[[self getErrorModel] setVal:nil forKey:LOGO_ERROR_ERROR];
 }
 

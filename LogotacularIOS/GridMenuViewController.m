@@ -47,9 +47,9 @@
 }
 
 - (void) addButtons{
-	self.button0 = [self getButton:EMPTY_TICK_ICON withAction:@selector(onClick0)			withLabel:@" No grid"					atNum:0];
+	self.button0 = [self getButton:EMPTY_TICK_ICON withAction:@selector(onClick0)	withLabel:@" No grid"					atNum:0];
 	self.button1 = [self getButton:EMPTY_TICK_ICON withAction:@selector(onClick1)	withLabel:@" Rectangular grid"			atNum:1];
-	self.button2 = [self getButton:EMPTY_TICK_ICON withAction:@selector(onClick2)			withLabel:@" Polar grid"				atNum:2];
+	self.button2 = [self getButton:EMPTY_TICK_ICON withAction:@selector(onClick2)	withLabel:@" Polar grid"				atNum:2];
 	[self.view addSubview:self.button0];
 	[self.view addSubview:self.button1];
 	[self.view addSubview:self.button2];

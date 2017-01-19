@@ -240,8 +240,6 @@
 
 - (void) onClickGrid{
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_GRID_MENU withData:nil];
-	//NSInteger grid = [[NSUserDefaults standardUserDefaults] integerForKey:@"GridType"];
-	//[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_GRID withData:[NSNumber numberWithInteger:grid]];
 }
 
 - (void)onClickTri{
@@ -263,6 +261,7 @@
 
 - (void) onClickSave{
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_MENU withData:nil];
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_GRID_MENU withData:nil];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_SAVE withData:nil];
 }
 
@@ -320,6 +319,7 @@
 	}
 	else{
 		[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_MENU withData:nil];
+		[[self getEventDispatcher] dispatch:SYMM_NOTIF_HIDE_GRID_MENU withData:nil];
 	}
 }
 
