@@ -73,11 +73,27 @@
 }
 
 - (void) drawPolarAt:(CGPoint)centre{
+	const int SIZE = 100;
+	CGSize size = self.frame.size;
+	CGFloat scale = [self getScale:self.flushedTransform];
 	CGPoint c0 = [self getFlushedPoint:centre];
 	NSDictionary* d = [Appearance getGrayRGBA];
 	float rgb = [[d objectForKey:@"r"] floatValue];
 	UIColor* major = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:0.5];
-	[self drawCircleAt:c0 withRadius:100 withColor:major];
+	UIColor* minor = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:0.2];
+	float dx0 = c0.x;
+	float dx1 = size.width - c0.x;
+	float dy0 = c0.y;
+	float dy1 = size.height - c0.y;
+	float dTopLeft = sqrt(dx0*dx0 + dy0*dy0);
+	float dTopRight = sqrt(dx1*dx1 + dy0*dy0);
+	float dBottomLeft = sqrt(dx0*dx0 + dy1*dy1);
+	float dBottomRight = sqrt(dx1*dx1 + dy1*dy1);
+	float maxD = fmax(fmax(fmax(dTopLeft, dTopRight), dBottomLeft), dBottomRight);
+	int numCircles = (int)ceil((maxD / SIZE) / scale);
+	for(int i = 1; i <= numCircles; i++){
+		[self drawCircleAt:c0 withRadius:SIZE*i*scale withColor:minor];
+	}
 }
 
 - (void) drawRectAt:(CGPoint)centre{
