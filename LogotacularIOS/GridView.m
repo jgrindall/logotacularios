@@ -66,11 +66,22 @@
 	else if(self._gridType == 1){
 		[self drawRectAt:centre];
 	}
+	else if(self._gridType == 2){
+		[self drawPolarAt:centre];
+	}
 	[self setNeedsDisplay];
 }
 
+- (void) drawPolarAt:(CGPoint)centre{
+	CGPoint c0 = [self getFlushedPoint:centre];
+	NSDictionary* d = [Appearance getGrayRGBA];
+	float rgb = [[d objectForKey:@"r"] floatValue];
+	UIColor* major = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:0.5];
+	[self drawCircleAt:c0 withRadius:100 withColor:major];
+}
+
 - (void) drawRectAt:(CGPoint)centre{
-	int SIZE = 100;
+	const int SIZE = 100;
 	float x;
 	float y;
 	CGSize size = self.frame.size;
@@ -103,6 +114,15 @@
 	CGContextSetLineDash(self.cacheContext, dashPhase, dashLengths, 2);
 	CGContextMoveToPoint(self.cacheContext, fromPos.x, fromPos.y);
 	CGContextAddLineToPoint(self.cacheContext, toPos.x, toPos.y);
+	CGContextStrokePath(self.cacheContext);
+}
+
+- (void) drawCircleAt:(CGPoint)c withRadius:(int) r withColor:(UIColor*) clr{
+	CGContextSetStrokeColorWithColor(self.cacheContext, [clr CGColor]);
+	float dashPhase = 0.0;
+	float dashLengths[] = {4, 4};
+	CGContextSetLineDash(self.cacheContext, dashPhase, dashLengths, 2);
+	CGContextAddEllipseInRect(self.cacheContext, CGRectMake(c.x - r, c.y - r, 2*r, 2*r));
 	CGContextStrokePath(self.cacheContext);
 }
 
