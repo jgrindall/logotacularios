@@ -15,6 +15,7 @@ extern NSString* const SYMM_NOTIF_HIDE_SPINNER;
 extern NSString* const SYMM_NOTIF_CLICK_MENU;
 extern NSString* const SYMM_NOTIF_CLICK_GRID_MENU;
 extern NSString* const SYMM_NOTIF_HIDE_MENU;
+extern NSString* const SYMM_NOTIF_HIDE_GRID_MENU;
 extern NSString* const SYMM_NOTIF_CLICK_CAMERA;
 extern NSString* const SYMM_NOTIF_CLICK_TUT;
 extern NSString* const SYMM_NOTIF_CLICK_PLAY;

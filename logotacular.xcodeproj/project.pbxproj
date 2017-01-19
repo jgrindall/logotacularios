@@ -11,6 +11,8 @@
 		5216535D1E2B9BDD0094AE94 /* SignatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5216535C1E2B9BDD0094AE94 /* SignatureViewController.m */; };
 		521C66361E315736001F325A /* GridMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 521C66351E315736001F325A /* GridMenuViewController.m */; };
 		521C66391E3158C1001F325A /* ClickGridMenuCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 521C66381E3158C1001F325A /* ClickGridMenuCommand.m */; };
+		521C663C1E315C76001F325A /* GridModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 521C663B1E315C76001F325A /* GridModel.m */; };
+		521C66411E315D9D001F325A /* HideGridMenuCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 521C66401E315D9D001F325A /* HideGridMenuCommand.m */; };
 		52244C151A25341500505F6D /* ClickResetZoomCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52244C141A25341500505F6D /* ClickResetZoomCommand.m */; };
 		52244C1C1A2555C100505F6D /* HelpLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 52244C1B1A2555C100505F6D /* HelpLayout.m */; };
 		522E91C71A1CA6C2000AB933 /* FileLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E91C61A1CA6C2000AB933 /* FileLayout.m */; };
@@ -135,6 +137,11 @@
 		521C66351E315736001F325A /* GridMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridMenuViewController.m; sourceTree = "<group>"; };
 		521C66371E3158C1001F325A /* ClickGridMenuCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickGridMenuCommand.h; sourceTree = "<group>"; };
 		521C66381E3158C1001F325A /* ClickGridMenuCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickGridMenuCommand.m; sourceTree = "<group>"; };
+		521C663A1E315C76001F325A /* GridModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridModel.h; sourceTree = "<group>"; };
+		521C663B1E315C76001F325A /* GridModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridModel.m; sourceTree = "<group>"; };
+		521C663E1E315CA3001F325A /* PGridModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGridModel.h; sourceTree = "<group>"; };
+		521C663F1E315D9D001F325A /* HideGridMenuCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HideGridMenuCommand.h; sourceTree = "<group>"; };
+		521C66401E315D9D001F325A /* HideGridMenuCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HideGridMenuCommand.m; sourceTree = "<group>"; };
 		521DA06F1CD3EBBC00B09D7E /* PCommandConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCommandConsumer.h; sourceTree = "<group>"; };
 		52244C131A25341500505F6D /* ClickResetZoomCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickResetZoomCommand.h; sourceTree = "<group>"; };
 		52244C141A25341500505F6D /* ClickResetZoomCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickResetZoomCommand.m; sourceTree = "<group>"; };
@@ -406,6 +413,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		521C663D1E315C79001F325A /* Grid */ = {
+			isa = PBXGroup;
+			children = (
+				521C663E1E315CA3001F325A /* PGridModel.h */,
+				521C663A1E315C76001F325A /* GridModel.h */,
+				521C663B1E315C76001F325A /* GridModel.m */,
+			);
+			name = Grid;
+			sourceTree = "<group>";
+		};
 		523067BC1A1E1F4F0055B8A5 /* Bg */ = {
 			isa = PBXGroup;
 			children = (
@@ -486,6 +503,7 @@
 		525167ED19FFD37500814B16 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				521C663D1E315C79001F325A /* Grid */,
 				52C1714C1A0C4387000865DD /* ScreenGrab */,
 				527D42EC1A0ABED8008AE82A /* FilesModel */,
 				52CF55FC1A08412000F01D3A /* FileBrowser */,
@@ -524,6 +542,8 @@
 		5272DE3319FE4799006E717F /* Commands */ = {
 			isa = PBXGroup;
 			children = (
+				521C663F1E315D9D001F325A /* HideGridMenuCommand.h */,
+				521C66401E315D9D001F325A /* HideGridMenuCommand.m */,
 				521C66371E3158C1001F325A /* ClickGridMenuCommand.h */,
 				521C66381E3158C1001F325A /* ClickGridMenuCommand.m */,
 				52D3D99C1CCCE83600197451 /* ShareCommand.h */,
@@ -1199,6 +1219,7 @@
 				5257F3431A012F9500757C77 /* ClickMenuCommand.m in Sources */,
 				52D08C5B1CCBBA2600EAAF81 /* ClickCameraCommand.m in Sources */,
 				52244C151A25341500505F6D /* ClickResetZoomCommand.m in Sources */,
+				521C663C1E315C76001F325A /* GridModel.m in Sources */,
 				527D42FA1A0ADBEF008AE82A /* ClickSaveCommand.m in Sources */,
 				52B5B35A19FD7E1400EF531F /* SpinnerView.m in Sources */,
 				52B5123C1A13C1E700B14D0D /* ChangePageCommand.m in Sources */,
@@ -1237,6 +1258,7 @@
 				52B5B31619FD7D4600EF531F /* main.m in Sources */,
 				52AE1ED01C62B96400CEDDE5 /* RestartCommand.m in Sources */,
 				5272DE4719FE5845006E717F /* Logger.m in Sources */,
+				521C66411E315D9D001F325A /* HideGridMenuCommand.m in Sources */,
 				52A185451A01004C005D8208 /* TextViewController.m in Sources */,
 				5257F3461A0131F000757C77 /* HideMenuCommand.m in Sources */,
 				5287B9B31A1BBC3800082DE1 /* AbstractPerformSaveCommand.m in Sources */,

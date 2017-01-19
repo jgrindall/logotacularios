@@ -11,6 +11,7 @@
 #import "LogoModel.h"
 #import "PMenuModel.h"
 #import "MenuModel.h"
+#import "GridModel.h"
 #import "PDrawingModel.h"
 #import "DrawingModel.h"
 #import "PFileModel.h"

@@ -30,6 +30,7 @@ extern NSString* const REDO_ICON;
 extern NSString* const RIGHT_ICON;
 extern NSString* const STOP_ICON;
 extern NSString* const TICK_ICON;
+extern NSString* const EMPTY_TICK_ICON;
 extern NSString* const UNDO_ICON;
 extern NSString* const WASTE_ICON;
 extern NSString* const DOC_ICON;

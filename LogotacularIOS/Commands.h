@@ -12,6 +12,7 @@
 #import "ClickMenuCommand.h"
 #import "ClickGridMenuCommand.h"
 #import "HideMenuCommand.h"
+#import "HideGridMenuCommand.h"
 #import "UndoCommand.h"
 #import "RedoCommand.h"
 #import "ClearCommand.h"
