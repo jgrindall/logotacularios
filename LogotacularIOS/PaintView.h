@@ -28,6 +28,8 @@
 
 - (void) drawGrid;
 
+- (void) setGridType:(int) type;
+
 - (void) onViewDidLoad;
 
 - (void)hideTriangle;

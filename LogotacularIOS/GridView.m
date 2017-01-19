@@ -14,6 +14,7 @@
 @interface GridView ()
 
 @property CGContextRef cacheContext;
+@property int _gridType;
 
 @end
 
@@ -23,15 +24,20 @@
 	self = [super initWithFrame:frame];
 	if (self) {
 		_flushedTransform = CGAffineTransformIdentity;
+		self._gridType = 0;
 		[self setBackgroundColor:[UIColor clearColor]];
 	}
 	return self;
 }
 
+- (void) setGridType:(int) type{
+	self._gridType = type;
+	[self redraw];
+}
+
 - (void) reset{
 	[self initContext];
 	[self redraw];
-	[self setNeedsDisplay];
 }
 
 - (void) onViewDidLoad{
@@ -48,7 +54,22 @@
 	[self drawGridAt:centre];
 }
 
+- (void) drawNoneAt:(CGPoint)centre{
+	
+}
+
 - (void) drawGridAt:(CGPoint)centre{
+	CGContextClearRect(self.cacheContext, self.bounds);
+	if(self._gridType == 0){
+		[self drawNoneAt:centre];
+	}
+	else if(self._gridType == 1){
+		[self drawRectAt:centre];
+	}
+	[self setNeedsDisplay];
+}
+
+- (void) drawRectAt:(CGPoint)centre{
 	int SIZE = 100;
 	float x;
 	float y;
@@ -73,7 +94,6 @@
 		y = c0.y + i*SIZE*scale;
 		[self drawLineFrom:CGPointMake(0, y) to:CGPointMake(size.width, y) withColor:(i == 0 ? major : minor)];
 	}
-	[self setNeedsDisplay];
 }
 
 - (void) drawLineFrom:(CGPoint)fromPos to:(CGPoint) toPos withColor:(UIColor*) clr{

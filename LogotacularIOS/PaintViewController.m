@@ -11,6 +11,7 @@
 #import "SymmNotifications.h"
 #import "PScreenGrabModel.h"
 #import "PTurtleModel.h"
+#import "PGridModel.h"
 #import "Colors.h"
 #import "PBgModel.h"
 #import "ImageUtils.h"
@@ -70,6 +71,7 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[self addPaint];
 	[self addGestures];
 	[self.paintView onViewDidLoad];
+	[self changeGrid];
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
@@ -177,6 +179,10 @@ NSString* const THICK_KEYWORD			= @"thick";
 	return [[JSObjection defaultInjector] getObject:@protocol(PTurtleModel)];
 }
 
+- (id<PGridModel>) getGridModel{
+	return [[JSObjection defaultInjector] getObject:@protocol(PGridModel)];
+}
+
 - (id<PDrawingModel>) getDrawingModel{
 	return [[JSObjection defaultInjector] getObject:@protocol(PDrawingModel)];
 }
@@ -219,8 +225,8 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_TRI toFunction:@selector(onTri) withContext:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_HIDE_TRI toFunction:@selector(onHideTri) withContext:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_CLICK_TRI toFunction:@selector(onClickTri:) withContext:self];
-	[[self getEventDispatcher] addListener:SYMM_NOTIF_CLICK_GRID toFunction:@selector(onClickGrid:) withContext:self];
 	[[self getBgModel] addListener:@selector(changeBg) forKey:BG_COLOR withTarget:self];
+	[[self getGridModel] addListener:@selector(changeGrid) forKey:GRID_TYPE withTarget:self];
 }
 
 - (void) removeListeners{
@@ -232,13 +238,14 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_TRI toFunction:@selector(onTri) withContext:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_HIDE_TRI toFunction:@selector(onHideTri) withContext:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_CLICK_TRI toFunction:@selector(onClickTri:) withContext:self];
-	[[self getEventDispatcher] removeListener:SYMM_NOTIF_CLICK_GRID toFunction:@selector(onClickGrid:) withContext:self];
 	[[self getBgModel] removeListener:@selector(changeBg) forKey:BG_COLOR withTarget:self];
+	[[self getGridModel] removeListener:@selector(changeGrid) forKey:GRID_TYPE withTarget:self];
 }
 
-- (void) onClickGrid:(NSNotification*)notif{
-	NSInteger grid = [notif.object integerValue];
-	NSLog(@"grid %i", grid);
+- (void) changeGrid{
+	id val = [[self getGridModel] getVal:GRID_TYPE];
+	int grid = (int)[val integerValue];
+	[[self paintView] setGridType:grid];
 }
 
 - (void) onClickTri:(NSNotification*)notif{

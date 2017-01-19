@@ -56,6 +56,10 @@
 	[self addSubview:self.linesView];
 }
 
+- (void) setGridType:(int) type{
+	[self.gridView setGridType:type];
+}
+
 - (void) onViewDidLoad{
 	[self.linesView onViewDidLoad];
 	[self.gridView onViewDidLoad];

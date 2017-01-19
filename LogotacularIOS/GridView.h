@@ -12,6 +12,7 @@
 
 - (void) onViewDidLoad;
 - (void) redraw;
+- (void) setGridType:(int) type;
 
 @property CGAffineTransform flushedTransform;
 
