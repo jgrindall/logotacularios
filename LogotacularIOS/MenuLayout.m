@@ -16,6 +16,8 @@ int const MENU_LAYOUT_HEIGHT =	384;
 // 48 * 8
 
 
+
+int const GRID_MENU_LAYOUT_X =	245;
 int const GRID_MENU_LAYOUT_WIDTH =	215;
 int const GRID_MENU_LAYOUT_HEIGHT =	144;
 

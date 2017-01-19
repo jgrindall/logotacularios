@@ -90,10 +90,24 @@
 	float dBottomLeft = sqrt(dx0*dx0 + dy1*dy1);
 	float dBottomRight = sqrt(dx1*dx1 + dy1*dy1);
 	float maxD = fmax(fmax(fmax(dTopLeft, dTopRight), dBottomLeft), dBottomRight);
-	int numCircles = (int)ceil((maxD / SIZE) / scale);
-	for(int i = 1; i <= numCircles; i++){
+	float minD = fmin(fmin(fmin(dTopLeft, dTopRight), dBottomLeft), dBottomRight);
+	int circleNumMax = (int)ceil((maxD / SIZE) / scale);
+	int circleNumMin = 1;
+	if(c0.x < 0 || c0.x > size.width || c0.y < 0 || c0.y > size.height){
+		// outside
+		circleNumMin = (int)floor((minD / SIZE) / scale);
+		circleNumMin = circleNumMin <= 0 ? 1 : circleNumMin;
+	}
+	NSLog(@"numC %i %i", circleNumMin, circleNumMax);
+	for(int i = circleNumMin; i <= circleNumMax; i++){
 		[self drawCircleAt:c0 withRadius:SIZE*i*scale withColor:minor];
 	}
+	[self drawLineFrom:CGPointMake(c0.x, 0) to:CGPointMake(c0.x, size.height) withColor:major];
+	[self drawLineFrom:CGPointMake(0, c0.y) to:CGPointMake(size.width, c0.y) withColor:major];
+}
+
+- (void) lineAndSegmentIntersectionPoint0:(CGPoint) p0 andPoint1:(CGPoint) p1 withSeg0:(CGPoint)s0 andSeg1:(CGPoint)s1{
+	//TODO
 }
 
 - (void) drawRectAt:(CGPoint)centre{
@@ -127,7 +141,7 @@
 	CGContextSetStrokeColorWithColor(self.cacheContext, [clr CGColor]);
 	float dashPhase = 0.0;
 	float dashLengths[] = {4, 4};
-	CGContextSetLineDash(self.cacheContext, dashPhase, dashLengths, 2);
+	//CGContextSetLineDash(self.cacheContext, dashPhase, dashLengths, 2);
 	CGContextMoveToPoint(self.cacheContext, fromPos.x, fromPos.y);
 	CGContextAddLineToPoint(self.cacheContext, toPos.x, toPos.y);
 	CGContextStrokePath(self.cacheContext);
@@ -137,7 +151,7 @@
 	CGContextSetStrokeColorWithColor(self.cacheContext, [clr CGColor]);
 	float dashPhase = 0.0;
 	float dashLengths[] = {4, 4};
-	CGContextSetLineDash(self.cacheContext, dashPhase, dashLengths, 2);
+	//CGContextSetLineDash(self.cacheContext, dashPhase, dashLengths, 2);
 	CGContextAddEllipseInRect(self.cacheContext, CGRectMake(c.x - r, c.y - r, 2*r, 2*r));
 	CGContextStrokePath(self.cacheContext);
 }

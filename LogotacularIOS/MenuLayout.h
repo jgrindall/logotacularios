@@ -13,6 +13,7 @@
 extern int const MENU_LAYOUT_WIDTH;
 extern int const MENU_LAYOUT_HEIGHT;
 
+extern int const GRID_MENU_LAYOUT_X;
 extern int const GRID_MENU_LAYOUT_WIDTH;
 extern int const GRID_MENU_LAYOUT_HEIGHT;
 

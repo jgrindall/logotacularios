@@ -458,7 +458,7 @@
 
 -(void)layoutGridMenu{
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.gridMenuContainer attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.topLayoutGuide			attribute:NSLayoutAttributeBottom multiplier:1.0 constant:1.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.gridMenuContainer attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.gridMenuContainer attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view					attribute:NSLayoutAttributeLeading multiplier:1.0 constant:GRID_MENU_LAYOUT_X]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.gridMenuContainer attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil							attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:GRID_MENU_LAYOUT_HEIGHT]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.gridMenuContainer attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil							attribute:NSLayoutAttributeNotAnAttribute multiplier:0.0 constant:GRID_MENU_LAYOUT_WIDTH]];
 }
