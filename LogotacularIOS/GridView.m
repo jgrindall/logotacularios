@@ -80,8 +80,8 @@
 	CGPoint c0 = [self getFlushedPoint:centre];
 	NSDictionary* d = [Appearance getGrayRGBA];
 	float rgb = [[d objectForKey:@"r"] floatValue];
-	UIColor* major = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:0.5];
-	UIColor* minor = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:0.2];
+	UIColor* major = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:0.33];
+	UIColor* minor = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:0.1];
 	float dx0 = c0.x;
 	float dx1 = size.width - c0.x;
 	float dy0 = c0.y;
@@ -128,8 +128,8 @@
 	CGContextClearRect(self.cacheContext, self.bounds);
 	NSDictionary* d = [Appearance getGrayRGBA];
 	float rgb = [[d objectForKey:@"r"] floatValue];
-	UIColor* major = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:0.5];
-	UIColor* minor = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:0.2];
+	UIColor* major = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:0.3];
+	UIColor* minor = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:0.1];
 	CGContextSetLineWidth(self.cacheContext, 1);
 	int numLeftInt = floor((double)((c0.x / SIZE) / scale));
 	int numRightInt = floor((double)(((size.width - c0.x) / SIZE) / scale));
@@ -184,6 +184,7 @@
 		CGContextSetRGBFillColor(self.cacheContext, 0.0, 0.0, 0.0, 0.0);
 		CGContextFillRect(self.cacheContext, self.bounds);
 		CGContextSetLineCap(self.cacheContext, kCGLineCapRound);
+		CGContextSetShouldAntialias(self.cacheContext, NO);
 	}
 	else{
 		CGContextRelease(self.cacheContext);
