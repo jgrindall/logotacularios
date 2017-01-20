@@ -10,6 +10,7 @@
 #import <CoreText/CoreText.h>
 #import "TextLayout.h"
 #import "Appearance.h"
+#import "Utils.h"
 
 @interface GridView ()
 
@@ -98,16 +99,23 @@
 		circleNumMin = (int)floor((minD / SIZE) / scale);
 		circleNumMin = circleNumMin <= 0 ? 1 : circleNumMin;
 	}
-	NSLog(@"numC %i %i", circleNumMin, circleNumMax);
 	for(int i = circleNumMin; i <= circleNumMax; i++){
 		[self drawCircleAt:c0 withRadius:SIZE*i*scale withColor:minor];
 	}
 	[self drawLineFrom:CGPointMake(c0.x, 0) to:CGPointMake(c0.x, size.height) withColor:major];
 	[self drawLineFrom:CGPointMake(0, c0.y) to:CGPointMake(size.width, c0.y) withColor:major];
-}
-
-- (void) lineAndSegmentIntersectionPoint0:(CGPoint) p0 andPoint1:(CGPoint) p1 withSeg0:(CGPoint)s0 andSeg1:(CGPoint)s1{
-	//TODO
+	int angles[10] = {15,30,45,60,75,105,120,135,150,165};
+	for(int i = 0; i < 10; i++){
+		CGPoint rad = CGPointMake(10.0*cos(angles[i] * M_PI/180.0), 10.0*sin(angles[i] * M_PI/180.0));
+		NSArray* pts = [Utils intersectionsWithRectForPoint0:c0 andPoint1:CGPointMake(c0.x + rad.x, c0.y + rad.y) andRect:self.frame];
+		if([pts count] == 2){
+			NSValue* val0 = [pts objectAtIndex:0];
+			CGPoint p0 = val0.CGPointValue;
+			NSValue* val1 = [pts objectAtIndex:1];
+			CGPoint p1 = val1.CGPointValue;
+			[self drawLineFrom:p0 to:p1 withColor:minor];
+		}
+	}
 }
 
 - (void) drawRectAt:(CGPoint)centre{
@@ -139,9 +147,6 @@
 
 - (void) drawLineFrom:(CGPoint)fromPos to:(CGPoint) toPos withColor:(UIColor*) clr{
 	CGContextSetStrokeColorWithColor(self.cacheContext, [clr CGColor]);
-	float dashPhase = 0.0;
-	float dashLengths[] = {4, 4};
-	//CGContextSetLineDash(self.cacheContext, dashPhase, dashLengths, 2);
 	CGContextMoveToPoint(self.cacheContext, fromPos.x, fromPos.y);
 	CGContextAddLineToPoint(self.cacheContext, toPos.x, toPos.y);
 	CGContextStrokePath(self.cacheContext);
@@ -149,9 +154,6 @@
 
 - (void) drawCircleAt:(CGPoint)c withRadius:(int) r withColor:(UIColor*) clr{
 	CGContextSetStrokeColorWithColor(self.cacheContext, [clr CGColor]);
-	float dashPhase = 0.0;
-	float dashLengths[] = {4, 4};
-	//CGContextSetLineDash(self.cacheContext, dashPhase, dashLengths, 2);
 	CGContextAddEllipseInRect(self.cacheContext, CGRectMake(c.x - r, c.y - r, 2*r, 2*r));
 	CGContextStrokePath(self.cacheContext);
 }
