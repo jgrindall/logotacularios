@@ -74,7 +74,7 @@
 	[self.fontSlider setMinimumValueImage:[UIImage imageNamed:SMALL_FONT_ICON]];
 	self.fontSlider.continuous = YES;
 	self.fontSlider.value = 0.5;
-	self.fontSlider.frame = CGRectMake(5, 227, GRID_MENU_LAYOUT_WIDTH - 25, 30);
+	self.fontSlider.frame = CGRectMake(5, 227, GRID_MENU_LAYOUT_WIDTH - 20, 30);
 	[self.view addSubview:self.fontSlider];
 }
 
