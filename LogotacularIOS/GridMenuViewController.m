@@ -50,7 +50,7 @@
 }
 
 - (void) addLabels{
-	UILabel* label0 = [[UILabel alloc] initWithFrame:CGRectMake(5, 180, GRID_MENU_LAYOUT_WIDTH, 30)];
+	UILabel* label0 = [[UILabel alloc] initWithFrame:CGRectMake(5, 187, GRID_MENU_LAYOUT_WIDTH, 30)];
 	[label0 setFont:[UIFont systemFontOfSize:18.4f]];
 	[label0 setTextColor:[UIColor whiteColor]];
 	[label0 setBackgroundColor:[UIColor clearColor]];
@@ -74,7 +74,7 @@
 	[self.fontSlider setMinimumValueImage:[UIImage imageNamed:SMALL_FONT_ICON]];
 	self.fontSlider.continuous = YES;
 	self.fontSlider.value = 0.5;
-	self.fontSlider.frame = CGRectMake(5, 230, GRID_MENU_LAYOUT_WIDTH - 25, 30);
+	self.fontSlider.frame = CGRectMake(5, 227, GRID_MENU_LAYOUT_WIDTH - 25, 30);
 	[self.view addSubview:self.fontSlider];
 }
 
@@ -102,19 +102,16 @@
 - (void) onClick0{
 	[[self getGridModel] setVal:@0 forKey:GRID_TYPE];
 	[self update];
-	[self pauseAndClose];
 }
 
 - (void) onClick1{
 	[[self getGridModel] setVal:@1 forKey:GRID_TYPE];
 	[self update];
-	[self pauseAndClose];
 }
 
 - (void) onClick2{
 	[[self getGridModel] setVal:@2 forKey:GRID_TYPE];
 	[self update];
-	[self pauseAndClose];
 }
 
 - (void) closeMenu{
