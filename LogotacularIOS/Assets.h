@@ -38,5 +38,7 @@ extern NSString* const FACEBOOK_ICON;
 extern NSString* const TWITTER_ICON;
 extern NSString* const EMAIL_ICON;
 extern NSString* const GRID_ICON;
+extern NSString* const SMALL_FONT_ICON;
+extern NSString* const LARGE_FONT_ICON;
 
 @end

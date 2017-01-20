@@ -10,6 +10,7 @@
 #import "PMenuModel.h"
 #import "PGridModel.h"
 #import "ImageUtils.h"
+#import "MenuLayout.h"
 #import "Assets.h"
 #import "SymmNotifications.h"
 #import "Appearance.h"
@@ -21,7 +22,7 @@
 @property UIButton* button0;
 @property UIButton* button1;
 @property UIButton* button2;
-
+@property UISlider* fontSlider;
 @end
 
 @implementation GridMenuViewController
@@ -37,6 +38,8 @@
 - (void) viewDidLoad{
 	[super viewDidLoad];
 	[self addButtons];
+	[self addSlider];
+	[self addLabels];
 	[self addListeners];
 	[self showMenuChanged:nil];
 	self.view.backgroundColor = [Appearance grayColor];
@@ -44,6 +47,40 @@
 
 - (void) keyboardUp{
 	[[self getMenuModel] setVal:@NO forKey:MENU_SHOWN];
+}
+
+- (void) addLabels{
+	UILabel* label0 = [[UILabel alloc] initWithFrame:CGRectMake(5, 180, GRID_MENU_LAYOUT_WIDTH, 30)];
+	[label0 setFont:[UIFont systemFontOfSize:18.4f]];
+	[label0 setTextColor:[UIColor whiteColor]];
+	[label0 setBackgroundColor:[UIColor clearColor]];
+	[label0 setText:@"Font size"];
+	[self.view addSubview:label0];
+	UILabel* label1 = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, GRID_MENU_LAYOUT_WIDTH, 30)];
+	[label1 setFont:[UIFont systemFontOfSize:18.4f]];
+	[label1 setTextColor:[UIColor whiteColor]];
+	[label1 setBackgroundColor:[UIColor clearColor]];
+	[label1 setText:@"Grid options"];
+	[self.view addSubview:label1];
+}
+
+- (void) addSlider{
+	self.fontSlider = [[UISlider alloc] initWithFrame:self.view.frame];
+	[self.fontSlider addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventValueChanged];
+	[self.fontSlider setBackgroundColor:[UIColor clearColor]];
+	self.fontSlider.minimumValue = 0.0;
+	self.fontSlider.maximumValue = 1.0;
+	[self.fontSlider setMaximumValueImage:[UIImage imageNamed:LARGE_FONT_ICON]];
+	[self.fontSlider setMinimumValueImage:[UIImage imageNamed:SMALL_FONT_ICON]];
+	self.fontSlider.continuous = YES;
+	self.fontSlider.value = 0.5;
+	self.fontSlider.frame = CGRectMake(5, 230, GRID_MENU_LAYOUT_WIDTH - 25, 30);
+	[self.view addSubview:self.fontSlider];
+}
+
+- (void) sliderAction:(id)sender{
+	UISlider *slider = (UISlider*)sender;
+	float value = slider.value;
 }
 
 - (void) addButtons{
@@ -96,7 +133,7 @@
 	btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
 	btn.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
 	btn.titleEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
-	btn.frame = CGRectMake(0, 47*num + 10, 190, 30);
+	btn.frame = CGRectMake(24, 47*num + 40, GRID_MENU_LAYOUT_WIDTH - 25, 30);
 	[btn setImage:img forState:UIControlStateNormal];
 	[btn setTitle:label forState:UIControlStateNormal];
 	[btn addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
