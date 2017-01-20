@@ -13,6 +13,7 @@
 		521C66391E3158C1001F325A /* ClickGridMenuCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 521C66381E3158C1001F325A /* ClickGridMenuCommand.m */; };
 		521C663C1E315C76001F325A /* GridModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 521C663B1E315C76001F325A /* GridModel.m */; };
 		521C66411E315D9D001F325A /* HideGridMenuCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 521C66401E315D9D001F325A /* HideGridMenuCommand.m */; };
+		521C66451E32B37F001F325A /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 521C66441E32B37F001F325A /* Utils.m */; };
 		52244C151A25341500505F6D /* ClickResetZoomCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52244C141A25341500505F6D /* ClickResetZoomCommand.m */; };
 		52244C1C1A2555C100505F6D /* HelpLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 52244C1B1A2555C100505F6D /* HelpLayout.m */; };
 		522E91C71A1CA6C2000AB933 /* FileLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E91C61A1CA6C2000AB933 /* FileLayout.m */; };
@@ -142,6 +143,8 @@
 		521C663E1E315CA3001F325A /* PGridModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGridModel.h; sourceTree = "<group>"; };
 		521C663F1E315D9D001F325A /* HideGridMenuCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HideGridMenuCommand.h; sourceTree = "<group>"; };
 		521C66401E315D9D001F325A /* HideGridMenuCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HideGridMenuCommand.m; sourceTree = "<group>"; };
+		521C66431E32B37F001F325A /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		521C66441E32B37F001F325A /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		521DA06F1CD3EBBC00B09D7E /* PCommandConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCommandConsumer.h; sourceTree = "<group>"; };
 		52244C131A25341500505F6D /* ClickResetZoomCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickResetZoomCommand.h; sourceTree = "<group>"; };
 		52244C141A25341500505F6D /* ClickResetZoomCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickResetZoomCommand.m; sourceTree = "<group>"; };
@@ -421,6 +424,15 @@
 				521C663B1E315C76001F325A /* GridModel.m */,
 			);
 			name = Grid;
+			sourceTree = "<group>";
+		};
+		521C66421E32B30B001F325A /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				521C66431E32B37F001F325A /* Utils.h */,
+				521C66441E32B37F001F325A /* Utils.m */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 		523067BC1A1E1F4F0055B8A5 /* Bg */ = {
@@ -802,6 +814,7 @@
 		52B5B31219FD7D4600EF531F /* LogotacularIOS */ = {
 			isa = PBXGroup;
 			children = (
+				521C66421E32B30B001F325A /* Utils */,
 				5272DE4219FE5776006E717F /* InjectionModule.h */,
 				5272DE4319FE5776006E717F /* InjectionModule.m */,
 				52B5B33B19FD7E1400EF531F /* AppDelegate.h */,
@@ -1264,6 +1277,7 @@
 				5287B9B31A1BBC3800082DE1 /* AbstractPerformSaveCommand.m in Sources */,
 				52B512301A13637700B14D0D /* ErrorPopUpViewController.m in Sources */,
 				52DD4AAC1C2ACAA40039A052 /* TutPageViewController.m in Sources */,
+				521C66451E32B37F001F325A /* Utils.m in Sources */,
 				52B44F011A0BC93D00B99FD2 /* TextEditedCommand.m in Sources */,
 				5216535D1E2B9BDD0094AE94 /* SignatureViewController.m in Sources */,
 				527D42F11A0AD75D008AE82A /* PerformOpenCommand.m in Sources */,
