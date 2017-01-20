@@ -14,9 +14,6 @@
 #import "PCommandMap.h"
 #import "SymmNotifications.h"
 #import "Commands.h"
-#import "FilesController.h"
-#import "FileCell.h"
-
 @interface AppDelegate ()
 
 @property id<PCommandMap> commandMap;
