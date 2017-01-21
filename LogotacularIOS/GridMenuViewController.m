@@ -8,7 +8,7 @@
 
 #import "GridMenuViewController.h"
 #import "PMenuModel.h"
-#import "PGridModel.h"
+#import "POptionsModel.h"
 #import "ImageUtils.h"
 #import "MenuLayout.h"
 #import "Assets.h"
@@ -106,14 +106,14 @@
 	for (int i = 0; i < [self.buttons count]; i++) {
 		UIButton* bi = (UIButton*)[self.buttons objectAtIndex:i];
 		if([bi isEqual:b]){
-			[[self getGridModel] setVal:[NSNumber numberWithInteger:i] forKey:GRID_TYPE];
+			[[self getOptionsModel] setVal:[NSNumber numberWithInteger:i] forKey:GRID_TYPE];
 			[self update];
 		}
 	}
 }
 
 - (void) clickButtonAt:(NSInteger)i withPayload:(id)payload{
-	[[self getGridModel] setVal:[NSNumber numberWithInteger:i] forKey:GRID_TYPE];
+	[[self getOptionsModel] setVal:[NSNumber numberWithInteger:i] forKey:GRID_TYPE];
 	[self update];
 }
 
@@ -132,7 +132,7 @@
 }
 
 - (void) update{
-	int type = (int)[[[self getGridModel] getVal:GRID_TYPE] integerValue];
+	int type = (int)[[[self getOptionsModel] getVal:GRID_TYPE] integerValue];
 	UIImage* onImg = [UIImage imageNamed:TICK_ICON];
 	UIImage* offImg = [UIImage imageNamed:EMPTY_TICK_ICON];
 	int i;
@@ -161,8 +161,8 @@
 	return [[JSObjection defaultInjector] getObject:@protocol(PMenuModel)];
 }
 
-- (id<PGridModel>) getGridModel{
-	return [[JSObjection defaultInjector] getObject:@protocol(PGridModel)];
+- (id<POptionsModel>) getOptionsModel{
+	return [[JSObjection defaultInjector] getObject:@protocol(POptionsModel)];
 }
 
 - (void) show{

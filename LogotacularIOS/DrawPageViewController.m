@@ -12,7 +12,7 @@
 #import "SymmNotifications.h"
 #import "Assets.h"
 #import "PFileModel.h"
-#import "PGridModel.h"
+#import "POptionsModel.h"
 #import "PMenuModel.h"
 #import "TextViewController.h"
 #import "PaintViewController.h"
@@ -161,8 +161,8 @@
 	return [[JSObjection defaultInjector] getObject:@protocol(PDrawingModel)];
 }
 
-- (id<PGridModel>) getGridModel{
-	return [[JSObjection defaultInjector] getObject:@protocol(PGridModel)];
+- (id<POptionsModel>) getOptionsModel{
+	return [[JSObjection defaultInjector] getObject:@protocol(POptionsModel)];
 }
 
 - (id<PLogoModel>) getLogoModel{

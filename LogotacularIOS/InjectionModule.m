@@ -24,7 +24,7 @@
 @property id<PDrawingModel> drawingModel;
 @property id<PLogoModel> logoModel;
 @property id<PMenuModel> menuModel;
-@property id<PGridModel> gridModel;
+@property id<POptionsModel> gridModel;
 @property id<PLogoErrorModel> logoErrorModel;
 @property id<PFileBrowserModel> browserModel;
 @property id<PFileListModel> fileListModel;
@@ -72,8 +72,8 @@
 	[self bind:self.logoModel toProtocol:@protocol(PLogoModel)];
 	self.menuModel = [[MenuModel alloc] init];
 	[self bind:self.menuModel toProtocol:@protocol(PMenuModel)];
-	self.gridModel = [[GridModel alloc] init];
-	[self bind:self.gridModel toProtocol:@protocol(PGridModel)];
+	self.gridModel = [[OptionsModel alloc] init];
+	[self bind:self.gridModel toProtocol:@protocol(POptionsModel)];
 	self.logoErrorModel = [[LogoErrorModel alloc] init];
 	[self bind:self.logoErrorModel toProtocol:@protocol(PLogoErrorModel)];
 	self.browserModel = [[FileBrowserModel alloc] init];

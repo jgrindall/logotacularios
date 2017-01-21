@@ -11,7 +11,7 @@
 		5216535D1E2B9BDD0094AE94 /* SignatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5216535C1E2B9BDD0094AE94 /* SignatureViewController.m */; };
 		521C66361E315736001F325A /* GridMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 521C66351E315736001F325A /* GridMenuViewController.m */; };
 		521C66391E3158C1001F325A /* ClickGridMenuCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 521C66381E3158C1001F325A /* ClickGridMenuCommand.m */; };
-		521C663C1E315C76001F325A /* GridModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 521C663B1E315C76001F325A /* GridModel.m */; };
+		521C663C1E315C76001F325A /* OptionsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 521C663B1E315C76001F325A /* OptionsModel.m */; };
 		521C66411E315D9D001F325A /* HideGridMenuCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 521C66401E315D9D001F325A /* HideGridMenuCommand.m */; };
 		521C66451E32B37F001F325A /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 521C66441E32B37F001F325A /* Utils.m */; };
 		52244C151A25341500505F6D /* ClickResetZoomCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52244C141A25341500505F6D /* ClickResetZoomCommand.m */; };
@@ -138,9 +138,9 @@
 		521C66351E315736001F325A /* GridMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridMenuViewController.m; sourceTree = "<group>"; };
 		521C66371E3158C1001F325A /* ClickGridMenuCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickGridMenuCommand.h; sourceTree = "<group>"; };
 		521C66381E3158C1001F325A /* ClickGridMenuCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickGridMenuCommand.m; sourceTree = "<group>"; };
-		521C663A1E315C76001F325A /* GridModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridModel.h; sourceTree = "<group>"; };
-		521C663B1E315C76001F325A /* GridModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridModel.m; sourceTree = "<group>"; };
-		521C663E1E315CA3001F325A /* PGridModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGridModel.h; sourceTree = "<group>"; };
+		521C663A1E315C76001F325A /* OptionsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsModel.h; sourceTree = "<group>"; };
+		521C663B1E315C76001F325A /* OptionsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsModel.m; sourceTree = "<group>"; };
+		521C663E1E315CA3001F325A /* POptionsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POptionsModel.h; sourceTree = "<group>"; };
 		521C663F1E315D9D001F325A /* HideGridMenuCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HideGridMenuCommand.h; sourceTree = "<group>"; };
 		521C66401E315D9D001F325A /* HideGridMenuCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HideGridMenuCommand.m; sourceTree = "<group>"; };
 		521C66431E32B37F001F325A /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
@@ -419,9 +419,9 @@
 		521C663D1E315C79001F325A /* Grid */ = {
 			isa = PBXGroup;
 			children = (
-				521C663E1E315CA3001F325A /* PGridModel.h */,
-				521C663A1E315C76001F325A /* GridModel.h */,
-				521C663B1E315C76001F325A /* GridModel.m */,
+				521C663E1E315CA3001F325A /* POptionsModel.h */,
+				521C663A1E315C76001F325A /* OptionsModel.h */,
+				521C663B1E315C76001F325A /* OptionsModel.m */,
 			);
 			name = Grid;
 			sourceTree = "<group>";
@@ -1232,7 +1232,7 @@
 				5257F3431A012F9500757C77 /* ClickMenuCommand.m in Sources */,
 				52D08C5B1CCBBA2600EAAF81 /* ClickCameraCommand.m in Sources */,
 				52244C151A25341500505F6D /* ClickResetZoomCommand.m in Sources */,
-				521C663C1E315C76001F325A /* GridModel.m in Sources */,
+				521C663C1E315C76001F325A /* OptionsModel.m in Sources */,
 				527D42FA1A0ADBEF008AE82A /* ClickSaveCommand.m in Sources */,
 				52B5B35A19FD7E1400EF531F /* SpinnerView.m in Sources */,
 				52B5123C1A13C1E700B14D0D /* ChangePageCommand.m in Sources */,

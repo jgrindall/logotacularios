@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 jgrindall. All rights reserved.
 //
 
-#import "GridModel.h"
+#import "OptionsModel.h"
 
-@implementation GridModel
+@implementation OptionsModel
 
 NSString* const GRID_TYPE = @"grid_type";
 

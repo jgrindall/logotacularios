@@ -11,7 +11,7 @@
 #import "SymmNotifications.h"
 #import "PScreenGrabModel.h"
 #import "PTurtleModel.h"
-#import "PGridModel.h"
+#import "POptionsModel.h"
 #import "Colors.h"
 #import "PBgModel.h"
 #import "ImageUtils.h"
@@ -179,8 +179,8 @@ NSString* const THICK_KEYWORD			= @"thick";
 	return [[JSObjection defaultInjector] getObject:@protocol(PTurtleModel)];
 }
 
-- (id<PGridModel>) getGridModel{
-	return [[JSObjection defaultInjector] getObject:@protocol(PGridModel)];
+- (id<POptionsModel>) getOptionsModel{
+	return [[JSObjection defaultInjector] getObject:@protocol(POptionsModel)];
 }
 
 - (id<PDrawingModel>) getDrawingModel{
@@ -226,7 +226,7 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_HIDE_TRI toFunction:@selector(onHideTri) withContext:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_CLICK_TRI toFunction:@selector(onClickTri:) withContext:self];
 	[[self getBgModel] addListener:@selector(changeBg) forKey:BG_COLOR withTarget:self];
-	[[self getGridModel] addListener:@selector(changeGrid) forKey:GRID_TYPE withTarget:self];
+	[[self getOptionsModel] addListener:@selector(changeGrid) forKey:GRID_TYPE withTarget:self];
 }
 
 - (void) removeListeners{
@@ -239,11 +239,11 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_HIDE_TRI toFunction:@selector(onHideTri) withContext:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_CLICK_TRI toFunction:@selector(onClickTri:) withContext:self];
 	[[self getBgModel] removeListener:@selector(changeBg) forKey:BG_COLOR withTarget:self];
-	[[self getGridModel] removeListener:@selector(changeGrid) forKey:GRID_TYPE withTarget:self];
+	[[self getOptionsModel] removeListener:@selector(changeGrid) forKey:GRID_TYPE withTarget:self];
 }
 
 - (void) changeGrid{
-	id val = [[self getGridModel] getVal:GRID_TYPE];
+	id val = [[self getOptionsModel] getVal:GRID_TYPE];
 	int grid = (int)[val integerValue];
 	[[self paintView] setGridType:grid];
 }

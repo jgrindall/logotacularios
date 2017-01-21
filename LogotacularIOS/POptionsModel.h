@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "PAbstractModel.h"
 
-@protocol PGridModel <PAbstractModel>
+@protocol POptionsModel <PAbstractModel>
 
 extern NSString* const GRID_TYPE;
 

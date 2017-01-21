@@ -7,8 +7,8 @@
 //
 
 #import "AbstractModel_protected.h"
-#import "PGridModel.h"
+#import "POptionsModel.h"
 
-@interface GridModel : AbstractModel <PGridModel>
+@interface OptionsModel : AbstractModel <POptionsModel>
 
 @end
