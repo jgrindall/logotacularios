@@ -18,8 +18,8 @@ int const MENU_LAYOUT_HEIGHT =	384;
 
 
 int const GRID_MENU_LAYOUT_X =	245;
-int const GRID_MENU_LAYOUT_WIDTH =	245;
-int const GRID_MENU_LAYOUT_HEIGHT =	260;
+int const GRID_MENU_LAYOUT_WIDTH =	241;
+int const GRID_MENU_LAYOUT_HEIGHT =	295;
 
 //48 * 3 + slider
 

@@ -114,6 +114,7 @@
 
 - (void) enableNav:(BOOL) tf{
 	[self getBarButton:self.saveButton].enabled = tf;
+	[self getBarButton:self.gridButton].enabled = tf;
 	[self getBarButton:self.listButton].enabled = tf;
 	[self getBarButton:self.resetButton].enabled = tf;
 	[self getBarButton:self.wipeButton].enabled = tf;
@@ -179,6 +180,7 @@
 		[[self getBarButton:self.playButton] setTitle:@" Play" forState:UIControlStateNormal];
 	}
 	[[self getBarButton:self.listButton] setEnabled:!drawing];
+	[[self getBarButton:self.gridButton] setEnabled:!drawing];
 	[[self getBarButton:self.saveButton] setEnabled:!drawing];
 	[[self getBarButton:self.clearButton] setEnabled:!drawing];
 	[[self getBarButton:self.resetButton] setEnabled:!drawing];

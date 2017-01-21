@@ -68,20 +68,25 @@
 		[self drawRectAt:centre];
 	}
 	else if(self._gridType == 2){
-		[self drawPolarAt:centre];
+		[self drawPolarAt:centre full:YES];
+	}
+	else if(self._gridType == 3){
+		[self drawPolarAt:centre full:NO];
+		[self drawRectAt:centre];
 	}
 	[self setNeedsDisplay];
 }
 
-- (void) drawPolarAt:(CGPoint)centre{
+- (void) drawPolarAt:(CGPoint)centre full:(BOOL)full{
 	const int SIZE = 100;
 	CGSize size = self.frame.size;
 	CGFloat scale = [self getScale:self.flushedTransform];
 	CGPoint c0 = [self getFlushedPoint:centre];
 	NSDictionary* d = [Appearance getGrayRGBA];
 	float rgb = [[d objectForKey:@"r"] floatValue];
-	UIColor* major = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:0.33];
-	UIColor* minor = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:0.1];
+	UIColor* major = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:0.3];
+	UIColor* minor = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:0.175];
+	UIColor* veryMinor = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:0.06];
 	float dx0 = c0.x;
 	float dx1 = size.width - c0.x;
 	float dy0 = c0.y;
@@ -104,16 +109,18 @@
 	}
 	[self drawLineFrom:CGPointMake(c0.x, 0) to:CGPointMake(c0.x, size.height) withColor:major];
 	[self drawLineFrom:CGPointMake(0, c0.y) to:CGPointMake(size.width, c0.y) withColor:major];
-	int angles[10] = {15,30,45,60,75,105,120,135,150,165};
-	for(int i = 0; i < 10; i++){
-		CGPoint rad = CGPointMake(10.0*cos(angles[i] * M_PI/180.0), 10.0*sin(angles[i] * M_PI/180.0));
-		NSArray* pts = [Utils intersectionsWithRectForPoint0:c0 andPoint1:CGPointMake(c0.x + rad.x, c0.y + rad.y) andRect:self.frame];
-		if([pts count] == 2){
-			NSValue* val0 = [pts objectAtIndex:0];
-			CGPoint p0 = val0.CGPointValue;
-			NSValue* val1 = [pts objectAtIndex:1];
-			CGPoint p1 = val1.CGPointValue;
-			[self drawLineFrom:p0 to:p1 withColor:minor];
+	if(full){
+		int angles[10] = {15,30,45,60,75,105,120,135,150,165};
+		for(int i = 0; i < 10; i++){
+			CGPoint rad = CGPointMake(10.0*cos(angles[i] * M_PI/180.0), 10.0*sin(angles[i] * M_PI/180.0));
+			NSArray* pts = [Utils intersectionsWithRectForPoint0:c0 andPoint1:CGPointMake(c0.x + rad.x, c0.y + rad.y) andRect:self.frame];
+			if([pts count] == 2){
+				NSValue* val0 = [pts objectAtIndex:0];
+				CGPoint p0 = val0.CGPointValue;
+				NSValue* val1 = [pts objectAtIndex:1];
+				CGPoint p1 = val1.CGPointValue;
+				[self drawLineFrom:p0 to:p1 withColor:(angles[i] % 45 == 0 ? minor : veryMinor)];
+			}
 		}
 	}
 }
@@ -125,7 +132,6 @@
 	CGSize size = self.frame.size;
 	CGPoint c0 = [self getFlushedPoint:centre];
 	CGFloat scale = [self getScale:self.flushedTransform];
-	CGContextClearRect(self.cacheContext, self.bounds);
 	NSDictionary* d = [Appearance getGrayRGBA];
 	float rgb = [[d objectForKey:@"r"] floatValue];
 	UIColor* major = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:0.3];
