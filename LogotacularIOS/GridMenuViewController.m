@@ -63,7 +63,7 @@
 	[label1 setTextColor:[UIColor whiteColor]];
 	[label1 setBackgroundColor:[UIColor clearColor]];
 	label1.alpha = 0.6;
-	[label1 setText:@"Grid options:"];
+	[label1 setText:@"Grid type:"];
 	[self.view addSubview:label1];
 }
 

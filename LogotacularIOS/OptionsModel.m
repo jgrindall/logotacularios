@@ -16,7 +16,7 @@
 NSString* const GRID_TYPE = @"grid_type";
 NSString* const FONT_SIZE = @"font_size";
 
-NSInteger const MIN_FONT_SIZE =		14;
+NSInteger const MIN_FONT_SIZE =		12;
 NSInteger const MAX_FONT_SIZE =		48;
 
 - (void) setDefaults{

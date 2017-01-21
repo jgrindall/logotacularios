@@ -37,7 +37,6 @@
 }
 
 - (void) setDefaults{
-	NSLog(@"default");
 	NSDictionary *defaults = @{
 							   @"welcome_shown":@0,
 							   @"HideTri":@NO,
