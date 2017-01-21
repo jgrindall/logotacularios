@@ -29,6 +29,7 @@
 		523B6DB31C517FDA00A4C0C9 /* ClickWipeCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 523B6DB21C517FDA00A4C0C9 /* ClickWipeCommand.m */; };
 		52420E221A1AD1D80069D4AC /* TurtleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52420E211A1AD1D80069D4AC /* TurtleModel.m */; };
 		52420E271A1ADF710069D4AC /* StartCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52420E261A1ADF710069D4AC /* StartCommand.m */; };
+		5248C5861E33A857006F4C4D /* EditFontSizeCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5248C5851E33A857006F4C4D /* EditFontSizeCommand.m */; };
 		525167E419FFC19F00814B16 /* Assets.m in Sources */ = {isa = PBXBuildFile; fileRef = 525167E319FFC19F00814B16 /* Assets.m */; };
 		525167E819FFCEB000814B16 /* AContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 525167E719FFCEB000814B16 /* AContainerViewController.m */; };
 		525167EC19FFD36C00814B16 /* AbstractModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 525167EB19FFD36C00814B16 /* AbstractModel.m */; };
@@ -178,6 +179,8 @@
 		52420E241A1AD1F00069D4AC /* PTurtleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTurtleModel.h; sourceTree = "<group>"; };
 		52420E251A1ADF710069D4AC /* StartCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartCommand.h; sourceTree = "<group>"; };
 		52420E261A1ADF710069D4AC /* StartCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartCommand.m; sourceTree = "<group>"; };
+		5248C5841E33A857006F4C4D /* EditFontSizeCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditFontSizeCommand.h; sourceTree = "<group>"; };
+		5248C5851E33A857006F4C4D /* EditFontSizeCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditFontSizeCommand.m; sourceTree = "<group>"; };
 		525167DF19FFB14100814B16 /* PEventDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEventDispatcher.h; sourceTree = "<group>"; };
 		525167E119FFB78A00814B16 /* BaseViewController_protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController_protected.h; sourceTree = "<group>"; };
 		525167E219FFC19F00814B16 /* Assets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Assets.h; sourceTree = "<group>"; };
@@ -554,6 +557,8 @@
 		5272DE3319FE4799006E717F /* Commands */ = {
 			isa = PBXGroup;
 			children = (
+				5248C5841E33A857006F4C4D /* EditFontSizeCommand.h */,
+				5248C5851E33A857006F4C4D /* EditFontSizeCommand.m */,
 				521C663F1E315D9D001F325A /* HideGridMenuCommand.h */,
 				521C66401E315D9D001F325A /* HideGridMenuCommand.m */,
 				521C66371E3158C1001F325A /* ClickGridMenuCommand.h */,
@@ -1280,6 +1285,7 @@
 				521C66451E32B37F001F325A /* Utils.m in Sources */,
 				52B44F011A0BC93D00B99FD2 /* TextEditedCommand.m in Sources */,
 				5216535D1E2B9BDD0094AE94 /* SignatureViewController.m in Sources */,
+				5248C5861E33A857006F4C4D /* EditFontSizeCommand.m in Sources */,
 				527D42F11A0AD75D008AE82A /* PerformOpenCommand.m in Sources */,
 				52DF36BC1E30035500D86479 /* GridView.m in Sources */,
 				522E91C71A1CA6C2000AB933 /* FileLayout.m in Sources */,

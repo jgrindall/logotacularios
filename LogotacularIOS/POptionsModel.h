@@ -12,5 +12,8 @@
 @protocol POptionsModel <PAbstractModel>
 
 extern NSString* const GRID_TYPE;
+extern NSString* const FONT_SIZE;
+extern NSInteger const MIN_FONT_SIZE;
+extern NSInteger const MAX_FONT_SIZE;
 
 @end

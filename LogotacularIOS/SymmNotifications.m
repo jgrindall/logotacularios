@@ -69,5 +69,6 @@ NSString* const SYMM_NOTIF_HIDE_POPOVER =		@"Symm:hidePopover";
 NSString* const SYMM_NOTIF_CHANGE_PAGE =		@"Symm:changePage";
 NSString* const SYMM_NOTIF_PERFORM_FILE_SETUP =	@"Symm:performFileSetup";
 NSString* const SYMM_NOTIF_LOAD_FROM_HELP =		@"Symm:loadFromHelp";
+NSString* const SYMM_NOTIF_EDIT_FONT_SIZE =		@"Symm:editFontSize";
 
 @end

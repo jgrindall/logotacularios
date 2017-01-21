@@ -24,6 +24,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+	[self setDefaults];
 	[self startInjection];
 	[self start];
 	return YES;
@@ -33,6 +34,20 @@
 	[self startCommands];
 	[self setupWindow];
 	[self applyStyles];
+}
+
+- (void) setDefaults{
+	NSLog(@"default");
+	NSDictionary *defaults = @{
+							   @"welcome_shown":@0,
+							   @"HideTri":@NO,
+							   @"GridType":@0,
+							   @"ShowSignature":@NO,
+							   @"Signature":@"",
+							   @"FontSize":[NSNumber numberWithInteger:SYMM_FONT_SIZE_LOGO]
+							   };
+	[NSUserDefaults.standardUserDefaults registerDefaults:defaults];
+	[NSUserDefaults.standardUserDefaults synchronize];
 }
 
 - (void) startCommands{
@@ -69,6 +84,7 @@
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLICK_RESET_ZOOM toCommandClass:[ClickResetZoomCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLICK_WIPE toCommandClass:[ClickWipeCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_LOAD_FROM_HELP toCommandClass:[LoadFromHelpCommand class]];
+	[[self getCommandMap] mapEventName:SYMM_NOTIF_EDIT_FONT_SIZE toCommandClass:[EditFontSizeCommand class]];
 }
 
 - (id<PCommandMap>)getCommandMap{

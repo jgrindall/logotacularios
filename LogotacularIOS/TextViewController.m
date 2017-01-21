@@ -23,6 +23,7 @@
 #import "PLogoModel.h"
 #import "PDrawingModel.h"
 #import "PTextVisibleModel.h"
+#import "POptionsModel.h"
 
 @interface TextViewController ()
 
@@ -109,6 +110,7 @@ int const EXCLAM_SIZE = 36;
 - (void) addListeners{
 	[[self getLogoModel] addGlobalListener:@selector(modelChanged) withTarget:self];
 	[[self getErrorModel] addListener:@selector(errorChanged) forKey:LOGO_ERROR_ERROR withTarget:self];
+	[[self getOptionsModel] addListener:@selector(optionChanged) forKey:FONT_SIZE withTarget:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_DISMISS_KEY toFunction:@selector(dismissKeyboard) withContext:self];
 	[[self getDrawingModel] addListener:@selector(drawingChanged) forKey:DRAWING_ISDRAWING withTarget:self];
 	[[self getTextVisModel] addListener:@selector(visChanged) forKey:TEXT_VISIBLE_VIS withTarget:self];
@@ -275,21 +277,29 @@ int const EXCLAM_SIZE = 36;
 	self.logoText.delegate = self;
 	self.logoText.allowsEditingTextAttributes = YES;
 	self.logoText.backgroundColor = [UIColor clearColor];
-	[self.logoText setFont:[Appearance monospaceFontOfSize:SYMM_FONT_SIZE_LOGO]];
 	self.logoText.textColor = [UIColor whiteColor];
 	[self.view addSubview:self.logoText];
 	self.logoText.textContainer.lineFragmentPadding = 0;
 	self.logoText.textContainerInset = UIEdgeInsetsZero;
+	[self setFontSize];
+}
+
+- (void) setFontSize{
+	NSInteger val = [[[self getOptionsModel] getVal:FONT_SIZE] integerValue];
+	[self.logoText setFont:[Appearance monospaceFontOfSize:val]];
 	
-	//14 to 45
-	dispatch_time_t t = dispatch_time(DISPATCH_TIME_NOW, 10 * NSEC_PER_SEC);
-	dispatch_after(t, dispatch_get_main_queue(), ^(void){
-		//[self.logoText setFont:[Appearance monospaceFontOfSize:50]];
-	});
 }
 
 - (void) textViewDidChange:(UITextView *)textView{
 	[self checkChanged];
+}
+
+- (id<POptionsModel>) getOptionsModel{
+	return [[JSObjection defaultInjector] getObject:@protocol(POptionsModel)];
+}
+
+- (void) optionChanged{
+	[self setFontSize];
 }
 
 - (void) errorChanged{
@@ -400,6 +410,7 @@ int const EXCLAM_SIZE = 36;
 	[[self getLogoModel] removeGlobalListener:@selector(modelChanged) withTarget:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_DISMISS_KEY toFunction:@selector(dismissKeyboard) withContext:self];
 	[[self getErrorModel] removeListener:@selector(errorChanged) forKey:LOGO_ERROR_ERROR withTarget:self];
+	[[self getOptionsModel] removeListener:@selector(optionChanged) forKey:FONT_SIZE withTarget:self];
 	[[self getDrawingModel] removeListener:@selector(drawingChanged) forKey:DRAWING_ISDRAWING withTarget:self];
 	[[self getTextVisModel] removeListener:@selector(visChanged) forKey:TEXT_VISIBLE_VIS withTarget:self];
 	[self.exclamView removeGestureRecognizer:self.exclamTap];

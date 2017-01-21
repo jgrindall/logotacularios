@@ -11,6 +11,7 @@
 #import "ClickPlayCommand.h"
 #import "ClickMenuCommand.h"
 #import "ClickGridMenuCommand.h"
+#import "EditFontSizeCommand.h"
 #import "HideMenuCommand.h"
 #import "HideGridMenuCommand.h"
 #import "UndoCommand.h"

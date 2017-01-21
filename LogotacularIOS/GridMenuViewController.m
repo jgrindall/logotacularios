@@ -71,12 +71,12 @@
 	self.fontSlider = [[UISlider alloc] initWithFrame:self.view.frame];
 	[self.fontSlider addTarget:self action:@selector(sliderAction:) forControlEvents:UIControlEventValueChanged];
 	[self.fontSlider setBackgroundColor:[UIColor clearColor]];
-	self.fontSlider.minimumValue = 14;
-	self.fontSlider.maximumValue = 48;
+	self.fontSlider.minimumValue = MIN_FONT_SIZE;
+	self.fontSlider.maximumValue = MAX_FONT_SIZE;
 	[self.fontSlider setMaximumValueImage:[UIImage imageNamed:LARGE_FONT_ICON]];
 	[self.fontSlider setMinimumValueImage:[UIImage imageNamed:SMALL_FONT_ICON]];
-	self.fontSlider.continuous = YES;
-	self.fontSlider.value = SYMM_FONT_SIZE_LOGO;
+	self.fontSlider.continuous = NO;
+	self.fontSlider.value = [[[self getOptionsModel] getVal:FONT_SIZE] floatValue];
 	self.fontSlider.frame = CGRectMake(5, GRID_MENU_LAYOUT_HEIGHT - 36, GRID_MENU_LAYOUT_WIDTH - 20, 30);
 	[self.view addSubview:self.fontSlider];
 }
@@ -84,6 +84,7 @@
 - (void) sliderAction:(id)sender{
 	UISlider *slider = (UISlider*)sender;
 	float value = slider.value;
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_EDIT_FONT_SIZE withData:[NSNumber numberWithFloat:value]];
 }
 
 - (void) addButtons{
