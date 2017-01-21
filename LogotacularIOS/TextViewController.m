@@ -281,9 +281,10 @@ int const EXCLAM_SIZE = 36;
 	self.logoText.textContainer.lineFragmentPadding = 0;
 	self.logoText.textContainerInset = UIEdgeInsetsZero;
 	
+	//14 to 45
 	dispatch_time_t t = dispatch_time(DISPATCH_TIME_NOW, 10 * NSEC_PER_SEC);
 	dispatch_after(t, dispatch_get_main_queue(), ^(void){
-		[self.logoText setFont:[Appearance monospaceFontOfSize:10]];
+		//[self.logoText setFont:[Appearance monospaceFontOfSize:50]];
 	});
 }
 
