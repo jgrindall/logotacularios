@@ -12,12 +12,15 @@
 #import "Appearance.h"
 #import "InjectionModule.h"
 #import "SymmNotifications.h"
+#import "PColorPickerDelegate.h"
 #import <Objection/Objection.h>
 
 @interface ColorPopupController ()
 
 @property NSMutableArray* buttons;
 @property NSMutableArray* labels;
+@property id<PColorPickerDelegate> delegate;
+@property NSInteger selIndex;
 
 @end
 
@@ -33,10 +36,10 @@ int const PADDING = 6;
 float const SWATCH_WIDTH = (float)BUTTONS_WIDTH / (float) NUM_X;
 float const SWATCH_HEIGHT = (float)BUTTONS_HEIGHT / (float) NUM_Y;
 
-
 - (instancetype) init{
 	self = [super init];
 	if(self){
+		self.selIndex = 0;
 		self.preferredContentSize = CGSizeMake(WIDTH, HEIGHT);
 	}
 	return self;
@@ -52,6 +55,7 @@ float const SWATCH_HEIGHT = (float)BUTTONS_HEIGHT / (float) NUM_Y;
 	self.buttons = [[NSMutableArray alloc] initWithCapacity:2];
 	[self addButtons];
 	self.view.backgroundColor = [Appearance grayColor];
+	[self update];
 }
 
 - (id<POptionsModel>) getOptionsModel{
@@ -60,7 +64,7 @@ float const SWATCH_HEIGHT = (float)BUTTONS_HEIGHT / (float) NUM_Y;
 
 - (void) addButtons{
 	for(int i = 0; i < [self.labels count]; i++){
-		UIButton* b = [self getSwatchWithColor:(NSNumber*)[self.labels objectAtIndex:i] atIndex:i];
+		UIButton* b = [self getSwatchAtIndex:i];
 		[self.view addSubview:b];
 		[self.buttons addObject:b];
 	}
@@ -69,9 +73,8 @@ float const SWATCH_HEIGHT = (float)BUTTONS_HEIGHT / (float) NUM_Y;
 - (void) update{
 	for(int i = 0; i < [self.buttons count]; i++){
 		UIButton* b = [self.buttons objectAtIndex:i];
-		if(i == 3){
-			float rgb = [[self.labels objectAtIndex:3] floatValue];
-			UIColor* border = [UIColor colorWithRed:1 - rgb green:1 - rgb blue:1 - rgb alpha:1.0];
+		if(i == self.selIndex){
+			UIColor* border = (self.selIndex < NUM_X ? [UIColor whiteColor] : [UIColor blackColor]);
 			[b.layer setBorderColor:[border CGColor]];
 		}
 		else{
@@ -80,26 +83,34 @@ float const SWATCH_HEIGHT = (float)BUTTONS_HEIGHT / (float) NUM_Y;
 	}
 }
 
+- (void) setColor:(UIColor*)c{
+	NSLog(@"set selected index");
+}
+
 - (void) clickButton:(id)sender{
 	UIButton* b = (UIButton*)sender;
 	for (int i = 0; i < [self.buttons count]; i++) {
 		UIButton* bi = (UIButton*)[self.buttons objectAtIndex:i];
 		if([bi isEqual:b]){
-			//[[self getOptionsModel] setVal:[NSNumber numberWithInteger:i] forKey:GRID_TYPE];
+			[self.delegate colorChosen:[self getColorAtIndex:i]];
 			[self update];
 		}
 	}
 }
 
-- (UIButton*) getSwatchWithColor:(NSNumber*) label atIndex:(NSInteger) i{
+- (UIColor*) getColorAtIndex:(NSInteger)i{
+	NSNumber* label = [self.labels objectAtIndex:i];
+	float rgb = [label floatValue];
+	return [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:1.0];
+}
+
+- (UIButton*) getSwatchAtIndex:(NSInteger) i{
 	NSInteger col = i % NUM_X;
 	NSInteger row = (int)floor(i/NUM_X);
 	float x = col * SWATCH_WIDTH + (col + 1)*PADDING;
 	float y = row * SWATCH_HEIGHT + (row + 1)*PADDING;
 	UIButton *b =  [[UIButton alloc] initWithFrame:CGRectMake(x, y, SWATCH_WIDTH, SWATCH_HEIGHT)];
-	float rgb = [label floatValue];
-	UIColor* c = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:1.0];
-	[b setBackgroundColor:c];
+	[b setBackgroundColor:[self getColorAtIndex:i]];
 	b.layer.cornerRadius = 10;
 	[b.layer setBorderColor:[[UIColor clearColor] CGColor]];
 	[b.layer setBorderWidth:5.0f];

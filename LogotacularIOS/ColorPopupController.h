@@ -10,4 +10,6 @@
 
 @interface ColorPopupController : UIViewController
 
+- (void) setColor:(UIColor*)c;
+
 @end

@@ -9,8 +9,9 @@
 #import "BaseViewController_protected.h"
 #import "PLogoAlertDelegate.h"
 #import "AContainerViewController_Protected.h"
+#import "PColorPickerDelegate.h"
 
-@interface GridMenuViewController : AContainerViewController <PLogoAlertDelegate, UIPopoverPresentationControllerDelegate>
+@interface GridMenuViewController : AContainerViewController <PLogoAlertDelegate, PColorPickerDelegate>
 
 - (void) show;
 

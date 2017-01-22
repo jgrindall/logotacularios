@@ -190,6 +190,7 @@
 		5248C58C1E350826006F4C4D /* EditGridClrCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditGridClrCommand.m; sourceTree = "<group>"; };
 		5248C58D1E350826006F4C4D /* EditGridTypeCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditGridTypeCommand.h; sourceTree = "<group>"; };
 		5248C58E1E350826006F4C4D /* EditGridTypeCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditGridTypeCommand.m; sourceTree = "<group>"; };
+		5248C5911E350A57006F4C4D /* PColorPickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PColorPickerDelegate.h; sourceTree = "<group>"; };
 		525167DF19FFB14100814B16 /* PEventDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEventDispatcher.h; sourceTree = "<group>"; };
 		525167E119FFB78A00814B16 /* BaseViewController_protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController_protected.h; sourceTree = "<group>"; };
 		525167E219FFC19F00814B16 /* Assets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Assets.h; sourceTree = "<group>"; };
@@ -496,6 +497,7 @@
 		5248C5871E34D9E9006F4C4D /* Color */ = {
 			isa = PBXGroup;
 			children = (
+				5248C5911E350A57006F4C4D /* PColorPickerDelegate.h */,
 				5248C5881E34D9F5006F4C4D /* ColorPopupController.h */,
 				5248C5891E34D9F5006F4C4D /* ColorPopupController.m */,
 			);

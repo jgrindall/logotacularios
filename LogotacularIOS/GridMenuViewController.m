@@ -173,25 +173,23 @@
 	self.view.hidden = NO;
 	self.view.superview.hidden = NO;
 	[ImageUtils bounceAnimateView:self.view from:y0 to:y1 withKeyPath:@"position.y" withKey:@"menuBounce" withDelegate:nil withDuration:0.3 withImmediate:NO withHide:NO];
-	
-	
-	UIViewController *controller = [[ColorPopupController alloc] init];
+	[self openColorPicker];
+}
+
+- (void) openColorPicker{
+	ColorPopupController *controller = [[ColorPopupController alloc] init];
 	controller.modalPresentationStyle = UIModalPresentationPopover;
 	[self presentViewController:controller animated:YES completion:nil];
 	UIPopoverPresentationController *popController = [controller popoverPresentationController];
+	[popController setColor:[self.getOptionsModel getVal:GRID_CLR]];
 	popController.permittedArrowDirections = UIPopoverArrowDirectionAny;
 	popController.sourceView = self.view;
 	popController.sourceRect = self.view.frame;
 	popController.delegate = self;
-	
-	
-	
-	dispatch_time_t t = dispatch_time(DISPATCH_TIME_NOW, 5 * NSEC_PER_SEC);
-	dispatch_after(t, dispatch_get_main_queue(), ^(void){
-		NSLog(@"change");
-		[[self getEventDispatcher] dispatch:SYMM_NOTIF_EDIT_GRID_CLR withData:[UIColor colorWithRed:1 green:0.2 blue:0.2 alpha:1.0]];
-	});
-	
+}
+
+- (void) colorChosen:(UIColor *)c{
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_EDIT_GRID_CLR withData:c];
 }
 
 - (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller{
