@@ -29,6 +29,8 @@
 
 + (NSString*)clrToString:(UIColor*)value;
 
++ (UIColor*) makeTransparent:(UIColor*)c multiplyAlphaFactor:(float) mult;
+
 @end
 
 

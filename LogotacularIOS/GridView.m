@@ -16,6 +16,7 @@
 
 @property CGContextRef cacheContext;
 @property int _gridType;
+@property UIColor* _gridClr;
 
 @end
 
@@ -26,6 +27,7 @@
 	if (self) {
 		_flushedTransform = CGAffineTransformIdentity;
 		self._gridType = 0;
+		self._gridClr = [UIColor colorWithRed:0.7 green:0.4 blue:0.2 alpha:0.7];
 		[self setBackgroundColor:[UIColor clearColor]];
 	}
 	return self;
@@ -33,6 +35,11 @@
 
 - (void) setGridType:(int) type{
 	self._gridType = type;
+	[self redraw];
+}
+
+- (void) setGridClr:(UIColor*) clr{
+	self._gridClr = clr;
 	[self redraw];
 }
 
@@ -77,16 +84,26 @@
 	[self setNeedsDisplay];
 }
 
+- (UIColor*) getMajorColor{
+	return self._gridClr;
+}
+
+- (UIColor*) getMinorColor{
+	return [Colors makeTransparent:[self getMajorColor] multiplyAlphaFactor:0.5];
+}
+
+- (UIColor*) getVeryMinorColor{
+	return [Colors makeTransparent:[self getMajorColor] multiplyAlphaFactor:0.25];
+}
+
 - (void) drawPolarAt:(CGPoint)centre full:(BOOL)full{
 	const int SIZE = 100;
 	CGSize size = self.frame.size;
 	CGFloat scale = [self getScale:self.flushedTransform];
 	CGPoint c0 = [self getFlushedPoint:centre];
-	NSDictionary* d = [Appearance getGrayRGBA];
-	float rgb = [[d objectForKey:@"r"] floatValue];
-	UIColor* major = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:0.3];
-	UIColor* minor = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:0.175];
-	UIColor* veryMinor = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:0.06];
+	UIColor* major = [self getMajorColor];
+	UIColor* minor = [self getMinorColor];
+	UIColor* veryMinor = [self getVeryMinorColor];
 	float dx0 = c0.x;
 	float dx1 = size.width - c0.x;
 	float dy0 = c0.y;
@@ -132,10 +149,8 @@
 	CGSize size = self.frame.size;
 	CGPoint c0 = [self getFlushedPoint:centre];
 	CGFloat scale = [self getScale:self.flushedTransform];
-	NSDictionary* d = [Appearance getGrayRGBA];
-	float rgb = [[d objectForKey:@"r"] floatValue];
-	UIColor* major = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:0.3];
-	UIColor* minor = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:0.1];
+	UIColor* major = [self getMajorColor];
+	UIColor* minor = [self getMinorColor];
 	CGContextSetLineWidth(self.cacheContext, 1);
 	int numLeftInt = floor((double)((c0.x / SIZE) / scale));
 	int numRightInt = floor((double)(((size.width - c0.x) / SIZE) / scale));

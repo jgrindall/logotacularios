@@ -13,6 +13,7 @@
 - (void) onViewDidLoad;
 - (void) redraw;
 - (void) setGridType:(int) type;
+- (void) setGridClr:(UIColor*) clr;
 
 @property CGAffineTransform flushedTransform;
 

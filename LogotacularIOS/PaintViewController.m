@@ -227,6 +227,7 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_CLICK_TRI toFunction:@selector(onClickTri:) withContext:self];
 	[[self getBgModel] addListener:@selector(changeBg) forKey:BG_COLOR withTarget:self];
 	[[self getOptionsModel] addListener:@selector(changeGrid) forKey:GRID_TYPE withTarget:self];
+	[[self getOptionsModel] addListener:@selector(changeGrid) forKey:GRID_CLR withTarget:self];
 }
 
 - (void) removeListeners{
@@ -240,12 +241,14 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_CLICK_TRI toFunction:@selector(onClickTri:) withContext:self];
 	[[self getBgModel] removeListener:@selector(changeBg) forKey:BG_COLOR withTarget:self];
 	[[self getOptionsModel] removeListener:@selector(changeGrid) forKey:GRID_TYPE withTarget:self];
+	[[self getOptionsModel] removeListener:@selector(changeGrid) forKey:GRID_CLR withTarget:self];
 }
 
 - (void) changeGrid{
 	id val = [[self getOptionsModel] getVal:GRID_TYPE];
 	int grid = (int)[val integerValue];
 	[[self paintView] setGridType:grid];
+	//[[self paintView] setGridClr:clr];
 }
 
 - (void) onClickTri:(NSNotification*)notif{

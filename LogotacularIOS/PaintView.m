@@ -60,6 +60,10 @@
 	[self.gridView setGridType:type];
 }
 
+- (void) setGridClr:(UIColor*) clr{
+	[self.gridView setGridClr:clr];
+}
+
 - (void) onViewDidLoad{
 	[self.linesView onViewDidLoad];
 	[self.gridView onViewDidLoad];

@@ -25,8 +25,8 @@
 
 int const WIDTH = 300;
 int const HEIGHT = 200;
-int const BUTTONS_WIDTH = 250;
-int const BUTTONS_HEIGHT = 100;
+int const BUTTONS_WIDTH = WIDTH - 37;
+int const BUTTONS_HEIGHT = 108;
 int const NUM_X = 5;
 int const NUM_Y = 2;
 int const PADDING = 6;

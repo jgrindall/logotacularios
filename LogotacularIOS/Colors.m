@@ -129,6 +129,14 @@ static NSMutableDictionary* _dic = nil;
 	return nil;
 }
 
++ (UIColor*) makeTransparent:(UIColor*)c multiplyAlphaFactor:(float) mult{
+	CGFloat r, g, b, a;
+	if ([c getRed:&r green:&g blue:&b alpha:&a]){
+		return [UIColor colorWithRed:r green:g blue:b alpha:a*mult];
+	}
+	return nil;
+}
+
 + (UIColor*) darken:(UIColor*)c{
 	return [Colors darken:c withAmount:0.65];
 }

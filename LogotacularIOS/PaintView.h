@@ -30,6 +30,8 @@
 
 - (void) setGridType:(int) type;
 
+- (void) setGridClr:(UIColor*) clr;
+
 - (void) onViewDidLoad;
 
 - (void)hideTriangle;
