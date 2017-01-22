@@ -14,6 +14,8 @@
 #import "PCommandMap.h"
 #import "SymmNotifications.h"
 #import "Commands.h"
+#import "Colors.h"
+
 @interface AppDelegate ()
 
 @property id<PCommandMap> commandMap;
@@ -41,6 +43,7 @@
 							   @"welcome_shown":@0,
 							   @"HideTri":@NO,
 							   @"GridType":@0,
+							   @"GridClr":@"0.5 0.5 0.5 0.5",
 							   @"ShowSignature":@NO,
 							   @"Signature":@"",
 							   @"FontSize":[NSNumber numberWithInteger:SYMM_FONT_SIZE_LOGO]

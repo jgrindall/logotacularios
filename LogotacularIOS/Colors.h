@@ -25,6 +25,10 @@
 
 + (UIColor*) getColorForNumber:(NSNumber*)num;
 
++ (UIColor*)stringToClr:(NSString*) value;
+
++ (NSString*)clrToString:(UIColor*)value;
+
 @end
 
 

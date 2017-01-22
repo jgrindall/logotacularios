@@ -133,5 +133,27 @@ static NSMutableDictionary* _dic = nil;
 	return [Colors darken:c withAmount:0.65];
 }
 
++ (UIColor*)stringToClr:(NSString*) value{
+	CGFloat r = 0.0, g = 0.0, b = 0.0, a = 1.0;
+	NSString *stringValue = (NSString *)value;
+	sscanf([stringValue UTF8String],
+#ifdef __x86_64
+		   "%lf %lf %lf %lf",
+#else
+		   "%f %f %f %f",
+#endif
+		   &r, &g, &b, &a);
+	return [UIColor colorWithRed:r green:g blue:b alpha:a];
+}
+
++ (NSString*)clrToString:(UIColor*)value{
+	CGFloat r = 0.0, g = 0.0, b = 0.0, a = 1.0;
+	[value getRed: &r
+			   green: &g
+				blue: &b
+			   alpha: &a];
+	return [NSString stringWithFormat:@"%.3f %.3f %.3f %.3f", r, g, b, a];
+}
+
 @end
 
