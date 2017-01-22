@@ -245,10 +245,12 @@ NSString* const THICK_KEYWORD			= @"thick";
 }
 
 - (void) changeGrid{
+	NSLog(@"chage grid!!");
 	id val = [[self getOptionsModel] getVal:GRID_TYPE];
+	id clr = [[self getOptionsModel] getVal:GRID_CLR];
 	int grid = (int)[val integerValue];
 	[[self paintView] setGridType:grid];
-	//[[self paintView] setGridClr:clr];
+	[[self paintView] setGridClr:clr];
 }
 
 - (void) onClickTri:(NSNotification*)notif{

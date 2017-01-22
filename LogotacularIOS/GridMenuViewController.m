@@ -108,8 +108,8 @@
 	for (int i = 0; i < [self.buttons count]; i++) {
 		UIButton* bi = (UIButton*)[self.buttons objectAtIndex:i];
 		if([bi isEqual:b]){
-			[[self getOptionsModel] setVal:[NSNumber numberWithInteger:i] forKey:GRID_TYPE];
 			[self update];
+			[[self getEventDispatcher] dispatch:SYMM_NOTIF_EDIT_GRID_TYPE withData:[NSNumber numberWithInteger:i]];
 		}
 	}
 }
@@ -183,6 +183,15 @@
 	popController.sourceView = self.view;
 	popController.sourceRect = self.view.frame;
 	popController.delegate = self;
+	
+	
+	
+	dispatch_time_t t = dispatch_time(DISPATCH_TIME_NOW, 5 * NSEC_PER_SEC);
+	dispatch_after(t, dispatch_get_main_queue(), ^(void){
+		NSLog(@"change");
+		[[self getEventDispatcher] dispatch:SYMM_NOTIF_EDIT_GRID_CLR withData:[UIColor colorWithRed:1 green:0.2 blue:0.2 alpha:1.0]];
+	});
+	
 }
 
 - (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller{

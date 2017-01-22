@@ -87,6 +87,8 @@
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLICK_WIPE toCommandClass:[ClickWipeCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_LOAD_FROM_HELP toCommandClass:[LoadFromHelpCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_EDIT_FONT_SIZE toCommandClass:[EditFontSizeCommand class]];
+	[[self getCommandMap] mapEventName:SYMM_NOTIF_EDIT_GRID_TYPE toCommandClass:[EditGridTypeCommand class]];
+	[[self getCommandMap] mapEventName:SYMM_NOTIF_EDIT_GRID_CLR toCommandClass:[EditGridClrCommand class]];
 }
 
 - (id<PCommandMap>)getCommandMap{

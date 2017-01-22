@@ -70,6 +70,9 @@ extern NSString* const SYMM_NOTIF_CHANGE_PAGE;
 extern NSString* const SYMM_NOTIF_PERFORM_FILE_SETUP;
 extern NSString* const SYMM_NOTIF_LOAD_FROM_HELP;
 extern NSString* const SYMM_NOTIF_EDIT_FONT_SIZE;
+extern NSString* const SYMM_NOTIF_EDIT_GRID_TYPE;
+extern NSString* const SYMM_NOTIF_EDIT_GRID_CLR;
+
 
 @end
 
