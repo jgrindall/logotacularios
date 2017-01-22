@@ -163,5 +163,16 @@ static NSMutableDictionary* _dic = nil;
 	return [NSString stringWithFormat:@"%.3f %.3f %.3f %.3f", r, g, b, a];
 }
 
++ (float) distBetweenClr:(UIColor*) c0 andClr:(UIColor*) c1{
+	CGFloat r = 0.0, g = 0.0, b = 0.0, a = 1.0;
+	CGFloat r1 = 0.0, g1 = 0.0, b1 = 0.0, a1 = 1.0;
+	BOOL conv0 = [c0 getRed: &r green: &g blue: &b alpha: &a];
+	BOOL conv1 = [c1 getRed: &r1 green: &g1 blue: &b1 alpha: &a1];
+	if(conv0 && conv1){
+		return fabs(r - r1) + fabs(g - g1) + fabs(b - b1) + fabs(a - a1);
+	}
+	return -1;
+}
+
 @end
 

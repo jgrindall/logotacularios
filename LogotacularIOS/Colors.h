@@ -31,6 +31,8 @@
 
 + (UIColor*) makeTransparent:(UIColor*)c multiplyAlphaFactor:(float) mult;
 
++ (float) distBetweenClr:(UIColor*) c0 andClr:(UIColor*) c1;
+
 @end
 
 

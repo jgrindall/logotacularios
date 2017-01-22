@@ -19,7 +19,6 @@
 
 @property NSMutableArray* buttons;
 @property NSMutableArray* labels;
-@property id<PColorPickerDelegate> delegate;
 @property NSInteger selIndex;
 
 @end
@@ -84,7 +83,19 @@ float const SWATCH_HEIGHT = (float)BUTTONS_HEIGHT / (float) NUM_Y;
 }
 
 - (void) setColor:(UIColor*)c{
-	NSLog(@"set selected index");
+	float minDist = INFINITY;
+	int minIndex = -1;
+	for (int i = 0; i < [self.labels count]; i++) {
+		UIColor* c1 = [self getColorAtIndex:i];
+		float d = [Colors distBetweenClr:c andClr:c1];
+		if(d > 0 && d < minDist){
+			minDist = d;
+			minIndex = i;
+		}
+	}
+	if(minIndex >= 0){
+		self.selIndex = minIndex;
+	}
 }
 
 - (void) clickButton:(id)sender{
@@ -92,10 +103,11 @@ float const SWATCH_HEIGHT = (float)BUTTONS_HEIGHT / (float) NUM_Y;
 	for (int i = 0; i < [self.buttons count]; i++) {
 		UIButton* bi = (UIButton*)[self.buttons objectAtIndex:i];
 		if([bi isEqual:b]){
-			[self.delegate colorChosen:[self getColorAtIndex:i]];
-			[self update];
+			self.selIndex = i;
+			[self.delegate colorChosen:[self getColorAtIndex:self.selIndex]];
 		}
 	}
+	[self update];
 }
 
 - (UIColor*) getColorAtIndex:(NSInteger)i{
@@ -120,7 +132,7 @@ float const SWATCH_HEIGHT = (float)BUTTONS_HEIGHT / (float) NUM_Y;
 }
 
 - (void) dealloc{
-	
+	NSLog(@"TODO delalloc");
 }
 
 @end

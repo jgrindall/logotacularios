@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@protocol PColorPickerDelegate <UIPopoverPresentationControllerDelegate>
+@protocol PColorPickerDelegate
 
 - (void) colorChosen:(UIColor*) c;
 

@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PColorPickerDelegate.h"
 
 @interface ColorPopupController : UIViewController
 
 - (void) setColor:(UIColor*)c;
+
+@property id<PColorPickerDelegate> delegate;
 
 @end

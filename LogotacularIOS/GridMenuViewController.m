@@ -108,10 +108,10 @@
 	for (int i = 0; i < [self.buttons count]; i++) {
 		UIButton* bi = (UIButton*)[self.buttons objectAtIndex:i];
 		if([bi isEqual:b]){
-			[self update];
 			[[self getEventDispatcher] dispatch:SYMM_NOTIF_EDIT_GRID_TYPE withData:[NSNumber numberWithInteger:i]];
 		}
 	}
+	[self update];
 }
 
 - (void) clickButtonAt:(NSInteger)i withPayload:(id)payload{
@@ -181,11 +181,12 @@
 	controller.modalPresentationStyle = UIModalPresentationPopover;
 	[self presentViewController:controller animated:YES completion:nil];
 	UIPopoverPresentationController *popController = [controller popoverPresentationController];
-	[popController setColor:[self.getOptionsModel getVal:GRID_CLR]];
+	[controller setColor:[self.getOptionsModel getVal:GRID_CLR]];
 	popController.permittedArrowDirections = UIPopoverArrowDirectionAny;
 	popController.sourceView = self.view;
 	popController.sourceRect = self.view.frame;
 	popController.delegate = self;
+	controller.delegate = self;
 }
 
 - (void) colorChosen:(UIColor *)c{

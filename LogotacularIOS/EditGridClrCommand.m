@@ -13,7 +13,6 @@
 @implementation EditGridClrCommand
 
 - (void) execute:(id) payload{
-	NSLog(@"change %@", payload);
 	[[self getOptionsModel] setVal:(UIColor*)payload forKey:GRID_CLR];
 }
 
