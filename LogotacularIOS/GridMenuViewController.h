@@ -10,7 +10,7 @@
 #import "PLogoAlertDelegate.h"
 #import "AContainerViewController_Protected.h"
 
-@interface GridMenuViewController : AContainerViewController <PLogoAlertDelegate>
+@interface GridMenuViewController : AContainerViewController <PLogoAlertDelegate, UIPopoverPresentationControllerDelegate>
 
 - (void) show;
 

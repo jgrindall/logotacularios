@@ -30,6 +30,7 @@
 		52420E221A1AD1D80069D4AC /* TurtleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52420E211A1AD1D80069D4AC /* TurtleModel.m */; };
 		52420E271A1ADF710069D4AC /* StartCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52420E261A1ADF710069D4AC /* StartCommand.m */; };
 		5248C5861E33A857006F4C4D /* EditFontSizeCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5248C5851E33A857006F4C4D /* EditFontSizeCommand.m */; };
+		5248C58A1E34D9F5006F4C4D /* ColorPopupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5248C5891E34D9F5006F4C4D /* ColorPopupController.m */; };
 		525167E419FFC19F00814B16 /* Assets.m in Sources */ = {isa = PBXBuildFile; fileRef = 525167E319FFC19F00814B16 /* Assets.m */; };
 		525167E819FFCEB000814B16 /* AContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 525167E719FFCEB000814B16 /* AContainerViewController.m */; };
 		525167EC19FFD36C00814B16 /* AbstractModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 525167EB19FFD36C00814B16 /* AbstractModel.m */; };
@@ -181,6 +182,8 @@
 		52420E261A1ADF710069D4AC /* StartCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartCommand.m; sourceTree = "<group>"; };
 		5248C5841E33A857006F4C4D /* EditFontSizeCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditFontSizeCommand.h; sourceTree = "<group>"; };
 		5248C5851E33A857006F4C4D /* EditFontSizeCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditFontSizeCommand.m; sourceTree = "<group>"; };
+		5248C5881E34D9F5006F4C4D /* ColorPopupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPopupController.h; sourceTree = "<group>"; };
+		5248C5891E34D9F5006F4C4D /* ColorPopupController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPopupController.m; sourceTree = "<group>"; };
 		525167DF19FFB14100814B16 /* PEventDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEventDispatcher.h; sourceTree = "<group>"; };
 		525167E119FFB78A00814B16 /* BaseViewController_protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController_protected.h; sourceTree = "<group>"; };
 		525167E219FFC19F00814B16 /* Assets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Assets.h; sourceTree = "<group>"; };
@@ -482,6 +485,15 @@
 				52420E241A1AD1F00069D4AC /* PTurtleModel.h */,
 			);
 			name = Turtle;
+			sourceTree = "<group>";
+		};
+		5248C5871E34D9E9006F4C4D /* Color */ = {
+			isa = PBXGroup;
+			children = (
+				5248C5881E34D9F5006F4C4D /* ColorPopupController.h */,
+				5248C5891E34D9F5006F4C4D /* ColorPopupController.m */,
+			);
+			name = Color;
 			sourceTree = "<group>";
 		};
 		525167DD19FFB0C500814B16 /* Log */ = {
@@ -892,6 +904,7 @@
 		52B5B35D19FD7E7300EF531F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				5248C5871E34D9E9006F4C4D /* Color */,
 				521DA06F1CD3EBBC00B09D7E /* PCommandConsumer.h */,
 				52D3D9A21CCCF98300197451 /* Social */,
 				52815C6F1A04F39B005AFA93 /* Files */,
@@ -1203,6 +1216,7 @@
 				52B5B35119FD7E1400EF531F /* AppDelegate.m in Sources */,
 				52D426FB1A2CFF97002E8B2F /* AbstractOverlayController.m in Sources */,
 				52D427021A2D0B3F002E8B2F /* WelcomeLayout.m in Sources */,
+				5248C58A1E34D9F5006F4C4D /* ColorPopupController.m in Sources */,
 				523B6DB31C517FDA00A4C0C9 /* ClickWipeCommand.m in Sources */,
 				5257F34F1A01357F00757C77 /* ClearCommand.m in Sources */,
 				527D42E51A0ABBE3008AE82A /* FilePageController.m in Sources */,

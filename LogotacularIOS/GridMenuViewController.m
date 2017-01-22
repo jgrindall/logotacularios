@@ -16,6 +16,7 @@
 #import "Appearance.h"
 #import "AlertManager.h"
 #import "ParentGateViewController.h"
+#import "ColorPopupController.h"
 
 @interface GridMenuViewController ()
 
@@ -172,7 +173,32 @@
 	self.view.hidden = NO;
 	self.view.superview.hidden = NO;
 	[ImageUtils bounceAnimateView:self.view from:y0 to:y1 withKeyPath:@"position.y" withKey:@"menuBounce" withDelegate:nil withDuration:0.3 withImmediate:NO withHide:NO];
+	
+	
+	UIViewController *controller = [[ColorPopupController alloc] init];
+	controller.modalPresentationStyle = UIModalPresentationPopover;
+	[self presentViewController:controller animated:YES completion:nil];
+	UIPopoverPresentationController *popController = [controller popoverPresentationController];
+	popController.permittedArrowDirections = UIPopoverArrowDirectionAny;
+	popController.sourceView = self.view;
+	popController.sourceRect = self.view.frame;
+	popController.delegate = self;
 }
+
+- (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller{
+	return UIModalPresentationNone;
+}
+
+- (void)popoverPresentationControllerDidDismissPopover:(UIPopoverPresentationController *)popoverPresentationController {
+}
+
+- (BOOL)popoverPresentationControllerShouldDismissPopover:(UIPopoverPresentationController *)popoverPresentationController {
+	return YES;
+}
+
+- (void)popoverPresentationController:(UIPopoverPresentationController *)popoverPresentationController willRepositionPopoverToRect:(inout CGRect *)rect inView:(inout UIView *__autoreleasing  _Nonnull *)view {
+}
+
 
 - (void) hide{
 	float y0 = -self.view.frame.size.height/2 - 50;

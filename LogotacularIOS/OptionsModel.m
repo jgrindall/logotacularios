@@ -14,6 +14,7 @@
 @implementation OptionsModel
 
 NSString* const GRID_TYPE = @"grid_type";
+NSString* const GRID_CLR = @"grid_clr";
 NSString* const FONT_SIZE = @"font_size";
 
 NSInteger const MIN_FONT_SIZE =		12;
@@ -22,7 +23,9 @@ NSInteger const MAX_FONT_SIZE =		48;
 - (void) setDefaults{
 	NSInteger grid = [[NSUserDefaults standardUserDefaults] integerForKey:@"GridType"];
 	NSInteger fs = [[NSUserDefaults standardUserDefaults] integerForKey:@"FontSize"];
+	NSInteger gridClr = [[NSUserDefaults standardUserDefaults] integerForKey:@"GridClr"];
 	[self setVal:[NSNumber numberWithInteger:grid] forKey:GRID_TYPE];
+	//[self setVal:[NSNumber numberWithInteger:gridClr] forKey:GRID_CLR];
 	if(!fs || fs < MIN_FONT_SIZE || fs > MAX_FONT_SIZE){
 		fs = SYMM_FONT_SIZE_LOGO;
 	}
@@ -37,6 +40,10 @@ NSInteger const MAX_FONT_SIZE =		48;
 	if([key isEqualToString:GRID_TYPE]){
 		[super setVal:val forKey:key];
 		[[NSUserDefaults standardUserDefaults] setInteger:[val integerValue] forKey:@"GridType"];
+	}
+	else if([key isEqualToString:GRID_CLR]){
+		[super setVal:val forKey:key];
+		//[[NSUserDefaults standardUserDefaults] setInteger:[val integerValue] forKey:@"GridClr"];
 	}
 	else if([key isEqualToString:FONT_SIZE]){
 		float fval = [val floatValue];
