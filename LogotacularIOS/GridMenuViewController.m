@@ -16,11 +16,11 @@
 #import "Appearance.h"
 #import "AlertManager.h"
 #import "ParentGateViewController.h"
-#import "ColorPopupController.h"
 
 @interface GridMenuViewController ()
 
 @property UISlider* fontSlider;
+@property UISlider* gridSlider;
 @property NSMutableArray* buttons;
 @property NSArray* gridTypes;
 @end
@@ -41,6 +41,7 @@
 	[super viewDidLoad];
 	[self addButtons];
 	[self addSlider];
+	[self addGridSlider];
 	[self addLabels];
 	[self addListeners];
 	[self showMenuChanged:nil];
@@ -52,12 +53,12 @@
 }
 
 - (void) addLabels{
-	UILabel* label0 = [[UILabel alloc] initWithFrame:CGRectMake(5, GRID_MENU_LAYOUT_HEIGHT - 72, GRID_MENU_LAYOUT_WIDTH, 30)];
+	UILabel* label0 = [[UILabel alloc] initWithFrame:CGRectMake(5, GRID_MENU_LAYOUT_HEIGHT - 158, GRID_MENU_LAYOUT_WIDTH, 30)];
 	[label0 setFont:[UIFont systemFontOfSize:18.4f]];
 	[label0 setTextColor:[UIColor whiteColor]];
 	[label0 setBackgroundColor:[UIColor clearColor]];
 	label0.alpha = 0.6;
-	[label0 setText:@"Font size:"];
+	[label0 setText:@"Grid opacity:"];
 	[self.view addSubview:label0];
 	UILabel* label1 = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, GRID_MENU_LAYOUT_WIDTH, 30)];
 	[label1 setFont:[UIFont systemFontOfSize:18.4f]];
@@ -66,6 +67,13 @@
 	label1.alpha = 0.6;
 	[label1 setText:@"Grid type:"];
 	[self.view addSubview:label1];
+	UILabel* label2 = [[UILabel alloc] initWithFrame:CGRectMake(5, GRID_MENU_LAYOUT_HEIGHT - 82, GRID_MENU_LAYOUT_WIDTH, 30)];
+	[label2 setFont:[UIFont systemFontOfSize:18.4f]];
+	[label2 setTextColor:[UIColor whiteColor]];
+	[label2 setBackgroundColor:[UIColor clearColor]];
+	label2.alpha = 0.6;
+	[label2 setText:@"Font size:"];
+	[self.view addSubview:label2];
 }
 
 - (void) addSlider{
@@ -78,14 +86,34 @@
 	[self.fontSlider setMinimumValueImage:[UIImage imageNamed:SMALL_FONT_ICON]];
 	self.fontSlider.continuous = NO;
 	self.fontSlider.value = [[[self getOptionsModel] getVal:FONT_SIZE] floatValue];
-	self.fontSlider.frame = CGRectMake(5, GRID_MENU_LAYOUT_HEIGHT - 36, GRID_MENU_LAYOUT_WIDTH - 20, 30);
+	self.fontSlider.frame = CGRectMake(5, GRID_MENU_LAYOUT_HEIGHT - 40, GRID_MENU_LAYOUT_WIDTH - 20, 30);
 	[self.view addSubview:self.fontSlider];
+}
+
+- (void) addGridSlider{
+	self.gridSlider = [[UISlider alloc] initWithFrame:self.view.frame];
+	[self.gridSlider addTarget:self action:@selector(gridSliderAction:) forControlEvents:UIControlEventValueChanged];
+	[self.gridSlider setBackgroundColor:[UIColor clearColor]];
+	self.gridSlider.minimumValue = 0;
+	self.gridSlider.maximumValue = 1;
+	[self.gridSlider setMaximumValueImage:[UIImage imageNamed:HUNDRED_ICON]];
+	[self.gridSlider setMinimumValueImage:[UIImage imageNamed:ZERO_ICON]];
+	self.gridSlider.continuous = NO;
+	//self.gridSlider.value = [[[self getOptionsModel] getVal:FONT_SIZE] floatValue];
+	self.gridSlider.frame = CGRectMake(5, GRID_MENU_LAYOUT_HEIGHT - 126, GRID_MENU_LAYOUT_WIDTH - 20, 30);
+	[self.view addSubview:self.gridSlider];
 }
 
 - (void) sliderAction:(id)sender{
 	UISlider *slider = (UISlider*)sender;
 	float value = slider.value;
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_EDIT_FONT_SIZE withData:[NSNumber numberWithFloat:value]];
+}
+
+- (void) gridSliderAction:(id)sender{
+	UISlider *slider = (UISlider*)sender;
+	float value = slider.value;
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_EDIT_GRID_OPACITY withData:[NSNumber numberWithFloat:value]];
 }
 
 - (void) addButtons{
@@ -173,40 +201,7 @@
 	self.view.hidden = NO;
 	self.view.superview.hidden = NO;
 	[ImageUtils bounceAnimateView:self.view from:y0 to:y1 withKeyPath:@"position.y" withKey:@"menuBounce" withDelegate:nil withDuration:0.3 withImmediate:NO withHide:NO];
-	[self openColorPicker];
 }
-
-- (void) openColorPicker{
-	ColorPopupController *controller = [[ColorPopupController alloc] init];
-	controller.modalPresentationStyle = UIModalPresentationPopover;
-	[self presentViewController:controller animated:YES completion:nil];
-	UIPopoverPresentationController *popController = [controller popoverPresentationController];
-	[controller setColor:[self.getOptionsModel getVal:GRID_CLR]];
-	popController.permittedArrowDirections = UIPopoverArrowDirectionAny;
-	popController.sourceView = self.view;
-	popController.sourceRect = self.view.frame;
-	popController.delegate = self;
-	controller.delegate = self;
-}
-
-- (void) colorChosen:(UIColor *)c{
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_EDIT_GRID_CLR withData:c];
-}
-
-- (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller{
-	return UIModalPresentationNone;
-}
-
-- (void)popoverPresentationControllerDidDismissPopover:(UIPopoverPresentationController *)popoverPresentationController {
-}
-
-- (BOOL)popoverPresentationControllerShouldDismissPopover:(UIPopoverPresentationController *)popoverPresentationController {
-	return YES;
-}
-
-- (void)popoverPresentationController:(UIPopoverPresentationController *)popoverPresentationController willRepositionPopoverToRect:(inout CGRect *)rect inView:(inout UIView *__autoreleasing  _Nonnull *)view {
-}
-
 
 - (void) hide{
 	float y0 = -self.view.frame.size.height/2 - 50;

@@ -33,6 +33,8 @@
 
 + (float) distBetweenClr:(UIColor*) c0 andClr:(UIColor*) c1;
 
++ (UIColor*) setAlphaTo:(UIColor*)c toAlpha:(float) a;
+
 @end
 
 

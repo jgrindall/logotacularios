@@ -14,6 +14,7 @@
 #import "EventDispatcher.h"
 #import "PEventDispatcher.h"
 #import "Models.h"
+#import "Colors.h"
 
 @interface InjectionModule ()
 
@@ -24,7 +25,7 @@
 @property id<PDrawingModel> drawingModel;
 @property id<PLogoModel> logoModel;
 @property id<PMenuModel> menuModel;
-@property id<POptionsModel> gridModel;
+@property id<POptionsModel> optionsModel;
 @property id<PLogoErrorModel> logoErrorModel;
 @property id<PFileBrowserModel> browserModel;
 @property id<PFileListModel> fileListModel;
@@ -46,6 +47,7 @@
 	[self bindCommandMap];
 	[self bindEventDispatcher];
 	[self bindModels];
+	[self addListeners];
 }
 
 - (void) bindUtils{
@@ -63,6 +65,25 @@
 	[self bind:self.eventDispatcher toProtocol:@protocol(PEventDispatcher)];
 }
 
+- (void) addListeners{
+	[self.bgModel addListener:@selector(changeBg) forKey:BG_COLOR withTarget:self];
+}
+
+- (void) changeBg{
+	UIColor* c0 = [Colors getColorForString:[self.bgModel getVal:BG_COLOR]];
+	CGFloat r = 0.0, g = 0.0, b = 0.0, a = 1.0;
+	BOOL conv = [c0 getRed: &r green: &g blue: &b alpha: &a];
+	if(conv){
+		float avg = (r + g + b)/3.0;
+		if(avg < 128.0){
+			[self.optionsModel setToLight];
+		}
+		else{
+			[self.optionsModel setToDark];
+		}
+	}
+}
+
 - (void) bindModels{
 	self.fileModel = [[FileModel alloc] init];
 	[self bind:self.fileModel toProtocol:@protocol(PFileModel)];
@@ -72,8 +93,8 @@
 	[self bind:self.logoModel toProtocol:@protocol(PLogoModel)];
 	self.menuModel = [[MenuModel alloc] init];
 	[self bind:self.menuModel toProtocol:@protocol(PMenuModel)];
-	self.gridModel = [[OptionsModel alloc] init];
-	[self bind:self.gridModel toProtocol:@protocol(POptionsModel)];
+	self.optionsModel = [[OptionsModel alloc] init];
+	[self bind:self.optionsModel toProtocol:@protocol(POptionsModel)];
 	self.logoErrorModel = [[LogoErrorModel alloc] init];
 	[self bind:self.logoErrorModel toProtocol:@protocol(PLogoErrorModel)];
 	self.browserModel = [[FileBrowserModel alloc] init];

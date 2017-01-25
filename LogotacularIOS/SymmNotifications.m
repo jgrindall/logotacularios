@@ -71,6 +71,6 @@ NSString* const SYMM_NOTIF_PERFORM_FILE_SETUP =	@"Symm:performFileSetup";
 NSString* const SYMM_NOTIF_LOAD_FROM_HELP =		@"Symm:loadFromHelp";
 NSString* const SYMM_NOTIF_EDIT_FONT_SIZE =		@"Symm:editFontSize";
 NSString* const SYMM_NOTIF_EDIT_GRID_TYPE =		@"Symm:editGridType";
-NSString* const SYMM_NOTIF_EDIT_GRID_CLR =		@"Symm:editGridClr";
+NSString* const SYMM_NOTIF_EDIT_GRID_OPACITY =	@"Symm:editGridOpacity";
 
 @end

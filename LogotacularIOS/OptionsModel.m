@@ -21,6 +21,9 @@ NSString* const FONT_SIZE = @"font_size";
 NSInteger const MIN_FONT_SIZE =		12;
 NSInteger const MAX_FONT_SIZE =		48;
 
+float const LIGHT_CLR = 0.7;
+float const DARK_CLR = 0.3;
+
 - (void) setDefaults{
 	NSInteger grid = [[NSUserDefaults standardUserDefaults] integerForKey:@"GridType"];
 	NSInteger fs = [[NSUserDefaults standardUserDefaults] integerForKey:@"FontSize"];
@@ -34,6 +37,26 @@ NSInteger const MAX_FONT_SIZE =		48;
 		fs = SYMM_FONT_SIZE_LOGO;
 	}
 	[self setVal:[NSNumber numberWithInteger:fs] forKey:FONT_SIZE];
+}
+
+- (void) setToLight{
+	UIColor *c0 = [self getVal:GRID_CLR];
+	CGFloat r = 0.0, g = 0.0, b = 0.0, a = 1.0;
+	BOOL conv = [c0 getRed: &r green: &g blue: &b alpha: &a];
+	if(conv){
+		UIColor *newClr = [UIColor colorWithRed:LIGHT_CLR green:LIGHT_CLR blue:LIGHT_CLR alpha:a];
+		[self setVal:newClr forKey:GRID_CLR];
+	}
+}
+
+- (void) setToDark{
+	UIColor *c0 = [self getVal:GRID_CLR];
+	CGFloat r = 0.0, g = 0.0, b = 0.0, a = 1.0;
+	BOOL conv = [c0 getRed: &r green: &g blue: &b alpha: &a];
+	if(conv){
+		UIColor *newClr = [UIColor colorWithRed:DARK_CLR green:DARK_CLR blue:DARK_CLR alpha:a];
+		[self setVal:newClr forKey:GRID_CLR];
+	}
 }
 
 - (NSArray*) getKeys{

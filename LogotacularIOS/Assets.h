@@ -40,5 +40,7 @@ extern NSString* const EMAIL_ICON;
 extern NSString* const GRID_ICON;
 extern NSString* const SMALL_FONT_ICON;
 extern NSString* const LARGE_FONT_ICON;
+extern NSString* const HUNDRED_ICON;
+extern NSString* const ZERO_ICON;
 
 @end

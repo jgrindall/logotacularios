@@ -43,7 +43,7 @@
 							   @"welcome_shown":@0,
 							   @"HideTri":@NO,
 							   @"GridType":@0,
-							   @"GridClr":@"0.5 0.5 0.5 0.5",
+							   @"GridClr":@"0.3 0.3 0.3 0.5",
 							   @"ShowSignature":@NO,
 							   @"Signature":@"",
 							   @"FontSize":[NSNumber numberWithInteger:SYMM_FONT_SIZE_LOGO]
@@ -88,7 +88,7 @@
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_LOAD_FROM_HELP toCommandClass:[LoadFromHelpCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_EDIT_FONT_SIZE toCommandClass:[EditFontSizeCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_EDIT_GRID_TYPE toCommandClass:[EditGridTypeCommand class]];
-	[[self getCommandMap] mapEventName:SYMM_NOTIF_EDIT_GRID_CLR toCommandClass:[EditGridClrCommand class]];
+	[[self getCommandMap] mapEventName:SYMM_NOTIF_EDIT_GRID_OPACITY toCommandClass:[EditGridClrCommand class]];
 }
 
 - (id<PCommandMap>)getCommandMap{

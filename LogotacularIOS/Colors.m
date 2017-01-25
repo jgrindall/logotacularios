@@ -174,5 +174,14 @@ static NSMutableDictionary* _dic = nil;
 	return -1;
 }
 
++ (UIColor*) setAlphaTo:(UIColor*)c0 toAlpha:(float) newA{
+	CGFloat r = 0.0, g = 0.0, b = 0.0, a = 1.0;
+	BOOL conv = [c0 getRed: &r green: &g blue: &b alpha: &a];
+	if(conv){
+		return [UIColor colorWithRed:r green:g blue:b alpha:newA];
+	}
+	return c0;
+}
+
 @end
 

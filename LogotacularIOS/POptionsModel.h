@@ -17,4 +17,8 @@ extern NSString* const FONT_SIZE;
 extern NSInteger const MIN_FONT_SIZE;
 extern NSInteger const MAX_FONT_SIZE;
 
+- (void) setToLight;
+
+- (void) setToDark;
+
 @end

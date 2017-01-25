@@ -10,6 +10,7 @@
 #import "TriView.h"
 #import <CoreText/CoreText.h>
 #import "TextLayout.h"
+#import "Colors.h"
 
 @interface LinesView ()
 
@@ -78,7 +79,8 @@
 - (void) drawTextAt:(CGPoint)p withColor:(UIColor*) clr andString:(NSString*)s {
 	p = CGPointMake(p.x, p.y - 2);
 	CGPoint p1 = [self getFlushedPoint:p];
-	CTFontRef fontRef = CTFontCreateWithName((CFStringRef)@"ArialMT", 13.0f, NULL);
+	CTFontRef fontRef = CTFontCreateWithName((CFStringRef)@"ArialMT", 18.0f, NULL);
+	clr = [Colors darken:clr withAmount:0.75];
 	CGColorRef color = clr.CGColor;
 	NSDictionary* attrDictionary = [NSDictionary dictionaryWithObjectsAndKeys:(__bridge id)fontRef, (id)kCTFontAttributeName, color, (id)kCTForegroundColorAttributeName, nil];
 	NSAttributedString* stringToDraw = [[NSAttributedString alloc] initWithString:s attributes:attrDictionary];

@@ -26,10 +26,8 @@
 
 - (NSNumber*) getLine{
 	NSDictionary* loc = self.dic[@"location"];
-	NSLog(@"dic %@", loc);
 	if(loc){
 		NSDictionary* start = loc[@"start"];
-		NSLog(@"start %@", start);
 		if(start){
 			return start[@"line"];
 		}

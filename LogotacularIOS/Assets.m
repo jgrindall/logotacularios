@@ -40,5 +40,7 @@ NSString* const EMAIL_ICON =		@"assets/icons/email.png";
 NSString* const GRID_ICON =			@"assets/icons/grid.png";
 NSString* const SMALL_FONT_ICON =	@"assets/icons/smallfont.png";
 NSString* const LARGE_FONT_ICON =   @"assets/icons/largefont.png";
+NSString* const HUNDRED_ICON =		@"assets/icons/hundred.png";
+NSString* const ZERO_ICON =			@"assets/icons/zero.png";
 
 @end
