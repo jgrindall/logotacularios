@@ -21,8 +21,8 @@ NSString* const FONT_SIZE = @"font_size";
 NSInteger const MIN_FONT_SIZE =		12;
 NSInteger const MAX_FONT_SIZE =		48;
 
-float const LIGHT_CLR = 0.7;
-float const DARK_CLR = 0.3;
+float const LIGHT_CLR = 0.85;
+float const DARK_CLR = 0.15;
 
 - (void) setDefaults{
 	NSInteger grid = [[NSUserDefaults standardUserDefaults] integerForKey:@"GridType"];

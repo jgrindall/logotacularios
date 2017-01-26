@@ -36,7 +36,7 @@
 }
 
 + (NSDictionary*) getGrayRGBA{
-	return @{@"r":@0.4, @"g":@0.4, @"b":@0.4, @"a":@0.45};
+	return @{@"r":@0.4, @"g":@0.4, @"b":@0.4, @"a":@0.55};
 }
 
 + (UIColor*) grayColor{

@@ -43,7 +43,7 @@
 							   @"welcome_shown":@0,
 							   @"HideTri":@NO,
 							   @"GridType":@0,
-							   @"GridClr":@"0.3 0.3 0.3 0.5",
+							   @"GridClr":@"0.15 0.15 0.15 0.5",
 							   @"ShowSignature":@NO,
 							   @"Signature":@"",
 							   @"FontSize":[NSNumber numberWithInteger:SYMM_FONT_SIZE_LOGO]

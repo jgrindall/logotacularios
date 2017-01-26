@@ -99,7 +99,12 @@
 	[self.gridSlider setMaximumValueImage:[UIImage imageNamed:HUNDRED_ICON]];
 	[self.gridSlider setMinimumValueImage:[UIImage imageNamed:ZERO_ICON]];
 	self.gridSlider.continuous = NO;
-	//self.gridSlider.value = [[[self getOptionsModel] getVal:FONT_SIZE] floatValue];
+	CGFloat r = 0.0, g = 0.0, b = 0.0, a = 1.0;
+	UIColor* c0 = (UIColor*)[[self getOptionsModel] getVal:GRID_CLR];
+	BOOL conv = [c0 getRed: &r green: &g blue: &b alpha: &a];
+	if(conv){
+		self.gridSlider.value = a;
+	}
 	self.gridSlider.frame = CGRectMake(5, GRID_MENU_LAYOUT_HEIGHT - 126, GRID_MENU_LAYOUT_WIDTH - 20, 30);
 	[self.view addSubview:self.gridSlider];
 }
