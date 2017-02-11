@@ -44,6 +44,7 @@ static CGFloat edgeSizeFromCornerRadius(CGFloat cornerRadius) {
 
 + (UIImage *)imageWithColor:(UIColor *)color cornerRadius:(CGFloat)cornerRadius {
 	CGFloat minEdgeSize = edgeSizeFromCornerRadius(cornerRadius);
+	UIColor * __autoreleasing _color = color;
     CGRect rect = CGRectMake(0, 0, minEdgeSize, minEdgeSize);
     UIImage* image;
 	UIImage* resized;
@@ -53,7 +54,7 @@ static CGFloat edgeSizeFromCornerRadius(CGFloat cornerRadius) {
 	if(c){
 		CGContextRef buffer = UIGraphicsGetCurrentContext();
 		if(buffer){
-			CGContextSetFillColorWithColor(buffer, color.CGColor);
+			CGContextSetFillColorWithColor(buffer, _color.CGColor);
 			CGContextAddPath(buffer, roundedRect.CGPath);
 			CGContextFillPath(buffer);
 		}
@@ -68,11 +69,12 @@ static CGFloat edgeSizeFromCornerRadius(CGFloat cornerRadius) {
 	CGRect rect = CGRectMake(0.0f, 0.0f, src.size.width, src.size.height);
 	UIImage *image;
 	BOOL c = [ImageUtils createContextWithSize:src.size];
+	UIColor * __autoreleasing _color = color;
 	if(c){
 		CGContextRef context = UIGraphicsGetCurrentContext();
 		[src drawAtPoint:CGPointZero];
 		CGContextSetBlendMode(context, kCGBlendModeSourceIn);
-		CGContextSetFillColorWithColor(context, color.CGColor);
+		CGContextSetFillColorWithColor(context, _color.CGColor);
 		CGContextFillRect(context, rect);
 		image = UIGraphicsGetImageFromCurrentImageContext();
 		UIGraphicsEndImageContext();
@@ -109,7 +111,8 @@ static CGFloat edgeSizeFromCornerRadius(CGFloat cornerRadius) {
 			CGPathAddQuadCurveToPoint(ref, NULL, size.width/2, size.height - 2*cy, size.width - cx, size.height);
 			CGPathAddLineToPoint(ref, NULL, size.width, size.height - cy);
 			CGPathCloseSubpath(ref);
-			CGContextSetFillColorWithColor(context, [UIColor grayColor].CGColor);
+			UIColor * __autoreleasing _color = [UIColor grayColor];
+			CGContextSetFillColorWithColor(context, _color.CGColor);
 			CGContextAddPath(context, ref);
 			CGContextFillPath(context);
 			shadow = UIGraphicsGetImageFromCurrentImageContext();

@@ -81,7 +81,8 @@
 	CGPoint p1 = [self getFlushedPoint:p];
 	CTFontRef fontRef = CTFontCreateWithName((CFStringRef)@"ArialMT", 18.0f, NULL);
 	clr = [Colors darken:clr withAmount:0.75];
-	CGColorRef color = clr.CGColor;
+	UIColor * __autoreleasing _color = clr;
+	CGColorRef color = _color.CGColor;
 	NSDictionary* attrDictionary = [NSDictionary dictionaryWithObjectsAndKeys:(__bridge id)fontRef, (id)kCTFontAttributeName, color, (id)kCTForegroundColorAttributeName, nil];
 	NSAttributedString* stringToDraw = [[NSAttributedString alloc] initWithString:s attributes:attrDictionary];
 	CGRect bounds = [stringToDraw boundingRectWithSize:CGSizeMake(320, CGFLOAT_MAX) options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
@@ -134,11 +135,18 @@
 }
 
 - (void) drawLineFrom:(CGPoint)fromPos to:(CGPoint) toPos withColor:(UIColor*) clr andThickness:(NSInteger)thickness {
-	CGContextSetStrokeColorWithColor(self.cacheContext, [clr CGColor]);
+	UIColor * __autoreleasing _color = clr;
+	CGContextSetStrokeColorWithColor(self.cacheContext, _color.CGColor);
 	float thickness1 = thickness * [self getScale:self.flushedTransform];
 	CGContextSetLineWidth(self.cacheContext, thickness1);
+	if(isnan(fromPos.x) || isnan(fromPos.y) || isnan(toPos.x) || isnan(toPos.y)){
+		return;
+	}
 	CGPoint toPos1 = [self getFlushedPoint:toPos];
 	CGPoint fromPos1 = [self getFlushedPoint:fromPos];
+	if(isnan(fromPos1.x) || isnan(fromPos1.y) || isnan(toPos1.x) || isnan(toPos1.y)){
+		return;
+	}
 	CGContextMoveToPoint(self.cacheContext, fromPos1.x, fromPos1.y);
 	CGContextAddLineToPoint(self.cacheContext, toPos1.x, toPos1.y);
 	CGContextStrokePath(self.cacheContext);

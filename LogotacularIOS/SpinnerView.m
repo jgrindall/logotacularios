@@ -33,7 +33,8 @@
 - (void)drawRect:(CGRect)rect{
 	int size = 125;
 	CGContextRef ref = UIGraphicsGetCurrentContext();
-	CGContextSetFillColorWithColor(ref, [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.75].CGColor);
+	UIColor * __autoreleasing _color = [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.75];
+	CGContextSetFillColorWithColor(ref, _color.CGColor);
 	CGRect cellArea = CGRectMake((self.frame.size.width - size)/2, (self.frame.size.height - size)/2, size, size);
 	UIBezierPath* roundedRect = [UIBezierPath bezierPathWithRoundedRect: cellArea cornerRadius: 10];
 	CGContextAddPath(ref, roundedRect.CGPath);

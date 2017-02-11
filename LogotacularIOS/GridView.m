@@ -167,14 +167,19 @@
 }
 
 - (void) drawLineFrom:(CGPoint)fromPos to:(CGPoint) toPos withColor:(UIColor*) clr{
-	CGContextSetStrokeColorWithColor(self.cacheContext, [clr CGColor]);
+	UIColor * __autoreleasing _color = clr;
+	CGContextSetStrokeColorWithColor(self.cacheContext, _color.CGColor);
+	if(isnan(fromPos.x) || isnan(fromPos.y) || isnan(toPos.x) || isnan(toPos.y)){
+		return;
+	}
 	CGContextMoveToPoint(self.cacheContext, fromPos.x, fromPos.y);
 	CGContextAddLineToPoint(self.cacheContext, toPos.x, toPos.y);
 	CGContextStrokePath(self.cacheContext);
 }
 
 - (void) drawCircleAt:(CGPoint)c withRadius:(int) r withColor:(UIColor*) clr{
-	CGContextSetStrokeColorWithColor(self.cacheContext, [clr CGColor]);
+	UIColor * __autoreleasing _color = clr;
+	CGContextSetStrokeColorWithColor(self.cacheContext, _color.CGColor);
 	CGContextAddEllipseInRect(self.cacheContext, CGRectMake(c.x - r, c.y - r, 2*r, 2*r));
 	CGContextStrokePath(self.cacheContext);
 }

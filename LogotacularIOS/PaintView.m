@@ -94,7 +94,8 @@
 
 - (void) bg:(UIColor*)clr{
 	[UIView animateWithDuration:0.25 animations:^{
-		self.bgView.layer.backgroundColor = [clr CGColor];
+		UIColor * __autoreleasing _color = clr;
+		self.bgView.layer.backgroundColor = _color.CGColor;
 	}];
 }
 

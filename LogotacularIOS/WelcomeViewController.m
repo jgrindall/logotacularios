@@ -114,7 +114,8 @@
 	b.frame = CGRectMake(100, 100, 300, 100);
 	[b setTitle:label forState:UIControlStateNormal];
 	[[b layer] setBorderWidth:5.0f];
-	[[b layer] setBorderColor:[Colors darken:clr withAmount:0.9].CGColor];
+	UIColor * __autoreleasing _color = [Colors darken:clr withAmount:0.9];
+	[[b layer] setBorderColor:_color.CGColor];
 	b.clipsToBounds = YES;
 	b.layer.cornerRadius = WELCOME_LAYOUT_HEIGHT/2.0;
 	b.contentEdgeInsets = UIEdgeInsetsMake(0, -20, 0, 0);
