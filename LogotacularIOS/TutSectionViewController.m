@@ -71,7 +71,6 @@
 	self.textView.editable = NO;
 	NSString* htmlString = [HelpData getTutData:self.index];
 	NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[htmlString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
-	//NSLog([NSString stringWithFormat:@"@", attributedString]);
 	self.textView.layer.cornerRadius = 10;
 	self.textView.layer.masksToBounds = YES;
 	self.textView.attributedText = attributedString;

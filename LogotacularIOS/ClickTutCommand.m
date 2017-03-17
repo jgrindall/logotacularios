@@ -16,8 +16,8 @@
 - (void) execute:(id) payload{
 	NSInteger helpPage = [[[self getOptionsModel] getVal:HELP_PAGE] integerValue];
 	TutPageViewController* tutController = [[TutPageViewController alloc] initWithStart:helpPage];
-	[tutController setListener:^{
-		NSLog(@"done");
+	[tutController setListener:^(NSInteger i) {
+		[[self getOptionsModel] setVal:[NSNumber numberWithInteger:i] forKey:HELP_PAGE];
 	}];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CHANGE_PAGE withData:tutController];
 }

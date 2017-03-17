@@ -107,9 +107,8 @@
 }
 
 - (void) pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed{
-	NSLog(@"%i", self.targetPage);
 	if(self.helpDelegate != nil){
-		self.helpDelegate.onUpdate(self.targetPage);
+		[self.helpDelegate onUpdate:self.targetPage];
 	}
 	if(previousViewControllers.count == 1){
 		if(completed){
@@ -140,6 +139,7 @@
 - (void) dealloc{
 	self.delegate = nil;
 	self.childClass = nil;
+	self.helpDelegate = nil;
 }
 
 @end

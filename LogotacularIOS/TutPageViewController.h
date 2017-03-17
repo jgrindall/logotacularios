@@ -12,6 +12,6 @@
 
 - (id) initWithStart:(NSInteger) startPage;
 
-- (void) setListener:(void (^)(void))callbackBlock;
+- (void) setListener:(void (^)(NSInteger))callbackBlock;
 
 @end

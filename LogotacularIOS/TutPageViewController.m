@@ -13,7 +13,7 @@
 
 @interface TutPageViewController ()
 
-@property (copy) void (^callbackBlock)(void);
+@property (copy) void (^callbackBlock)(NSInteger);
 
 @end
 
@@ -28,6 +28,12 @@
 	return self;
 }
 
+- (void)onUpdate:(NSInteger)i{
+	if(self.callbackBlock != nil){
+		self.callbackBlock(i);
+	}
+}
+
 - (void) viewDidLoad{
 	[super viewDidLoad];
 	self.view.backgroundColor = [Colors getColorForString:[Colors getDark:@"examples"]];
@@ -38,7 +44,7 @@
 	self.callbackBlock = nil;
 }
 
-- (void) setListener:(void (^)(void))callbackBlock{
+- (void) setListener:(void (^)(NSInteger))callbackBlock{
 	self.callbackBlock = callbackBlock;
 }
 

@@ -17,6 +17,7 @@
 @property NSInteger startPage;
 @property Class childClass;
 @property UIImageView* imgView;
+@property id<PHelpDelegate> helpDelegate;
 
 @end
 
@@ -34,8 +35,15 @@
 		if(_startPage >= numPages){
 			_startPage = numPages - 1;
 		}
+		self.helpDelegate = del;
 	}
 	return self;
+}
+
+- (void) onUpdate:(NSInteger)i{
+	if(self.helpDelegate != nil){
+		[self.helpDelegate onUpdate:i];
+	}
 }
 
 - (void) viewWillAppear:(BOOL)animated{
@@ -55,7 +63,7 @@
 }
 
 - (void) makeController{
-	self.helpViewController = [[AbstractHelpViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil withChildClass:self.childClass andNumPages:self.numPages andStartPage:self.startPage];
+	self.helpViewController = [[AbstractHelpViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil withChildClass:self.childClass andNumPages:self.numPages andStartPage:self.startPage andDelegate:self.helpDelegate];
 	[self addChildInto:self.helpContainer withController:self.helpViewController];
 }
 
@@ -77,6 +85,7 @@
 	[self.imgView removeFromSuperview];
 	self.imgView = nil;
 	self.childClass = nil;
+	self.helpDelegate = nil;
 }
 
 @end
