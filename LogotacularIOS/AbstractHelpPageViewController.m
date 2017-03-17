@@ -22,7 +22,7 @@
 
 @implementation AbstractHelpPageViewController
 
-- (instancetype)initWithChildClass:(Class) childClass andNumPages:(NSInteger)numPages andStartPage:(NSInteger)startPage{
+- (instancetype)initWithChildClass:(Class) childClass andNumPages:(NSInteger)numPages andStartPage:(NSInteger)startPage andDelegate:(id<PHelpDelegate>)del{
 	self = [super init];
 	if(self){
 		_numPages = numPages;

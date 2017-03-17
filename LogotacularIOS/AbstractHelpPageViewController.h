@@ -7,9 +7,10 @@
 //
 
 #import "AContainerViewController_Protected.h"
+#import "PHelpDelegate.h"
 
-@interface AbstractHelpPageViewController : AContainerViewController
+@interface AbstractHelpPageViewController : AContainerViewController <PHelpDelegate>
 
-- (instancetype)initWithChildClass:(Class) childClass andNumPages:(NSInteger)numPages andStartPage:(NSInteger)startPage;
+- (instancetype)initWithChildClass:(Class) childClass andNumPages:(NSInteger)numPages andStartPage:(NSInteger)startPage andDelegate:(id<PHelpDelegate>)del;
 
 @end

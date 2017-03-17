@@ -11,10 +11,17 @@
 #import "Appearance.h"
 #import "Colors.h"
 
+@interface TutPageViewController ()
+
+@property (copy) void (^callbackBlock)(void);
+
+@end
+
+
 @implementation TutPageViewController
 
 - (instancetype)initWithStart:(NSInteger)startPage{
-	self = [super initWithChildClass:[TutSectionViewController class] andNumPages:22 andStartPage:startPage];
+	self = [super initWithChildClass:[TutSectionViewController class] andNumPages:22 andStartPage:startPage andDelegate:self];
 	if(self){
 		self.title = @"Tutorial";
 	}
@@ -28,6 +35,11 @@
 
 - (void) viewDidDisappear:(BOOL)animated{
 	[super viewDidDisappear:animated];
+	self.callbackBlock = nil;
+}
+
+- (void) setListener:(void (^)(void))callbackBlock{
+	self.callbackBlock = callbackBlock;
 }
 
 @end

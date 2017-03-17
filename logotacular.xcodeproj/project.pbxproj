@@ -201,6 +201,7 @@
 		525167EF19FFEE6400814B16 /* ClickPlayCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickPlayCommand.m; sourceTree = "<group>"; };
 		5257F1F21E7C93D800AB2DB7 /* InsertCharCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsertCharCommand.h; sourceTree = "<group>"; };
 		5257F1F31E7C93D800AB2DB7 /* InsertCharCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsertCharCommand.m; sourceTree = "<group>"; };
+		5257F1F51E7C9F7100AB2DB7 /* PHelpDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHelpDelegate.h; sourceTree = "<group>"; };
 		5257F3411A012F9500757C77 /* ClickMenuCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickMenuCommand.h; sourceTree = "<group>"; };
 		5257F3421A012F9500757C77 /* ClickMenuCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickMenuCommand.m; sourceTree = "<group>"; };
 		5257F3441A0131F000757C77 /* HideMenuCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HideMenuCommand.h; sourceTree = "<group>"; };
@@ -1031,6 +1032,7 @@
 		52CF4A0C1A103AF9003197B2 /* Help */ = {
 			isa = PBXGroup;
 			children = (
+				5257F1F51E7C9F7100AB2DB7 /* PHelpDelegate.h */,
 				52DD4AA71C2ACA500039A052 /* Tutorial */,
 				52CC89241A1643210046615F /* Base */,
 				523067C91A1E9DFB0055B8A5 /* Ref */,
