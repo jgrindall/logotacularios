@@ -16,6 +16,7 @@
 
 NSString* const GRID_TYPE = @"grid_type";
 NSString* const GRID_CLR = @"grid_clr";
+NSString* const HELP_PAGE = @"help_page";
 NSString* const FONT_SIZE = @"font_size";
 
 NSInteger const MIN_FONT_SIZE =		12;
@@ -30,6 +31,7 @@ float const DARK_CLR = 0.15;
 	NSString* gridClr = [[NSUserDefaults standardUserDefaults] stringForKey:@"GridClr"];
 	UIColor* clr = [Colors stringToClr:gridClr];
 	[self setVal:[NSNumber numberWithInteger:grid] forKey:GRID_TYPE];
+	[self setVal:[NSNumber numberWithInteger:0] forKey:HELP_PAGE];
 	if(clr){
 		[self setVal:clr forKey:GRID_CLR];
 	}

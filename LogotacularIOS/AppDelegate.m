@@ -60,6 +60,7 @@
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_HIDE_GRID_MENU toCommandClass:[HideGridMenuCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_UNDO toCommandClass:[UndoCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_REDO toCommandClass:[RedoCommand class]];
+	[[self getCommandMap] mapEventName:SYMM_NOTIF_INSERT_CHAR toCommandClass:[InsertCharCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLEAR toCommandClass:[ClearCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLICK_OPEN toCommandClass:[ClickOpenCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_LOAD_FILES toCommandClass:[LoadFilesCommand class]];

@@ -31,6 +31,8 @@ extern NSString* const SYMM_NOTIF_STOP;
 extern NSString* const SYMM_NOTIF_UNDO;
 extern NSString* const SYMM_NOTIF_RESET;
 extern NSString* const SYMM_NOTIF_REDO;
+extern NSString* const SYMM_NOTIF_INSERT_CHAR;
+extern NSString* const SYMM_NOTIF_DO_INSERT_CHAR;
 extern NSString* const SYMM_NOTIF_LOAD;
 extern NSString* const SYMM_NOTIF_SAVE;
 extern NSString* const SYMM_NOTIF_CLEAR;

@@ -187,7 +187,8 @@ function visitrptstmt(node){
 	visitNode( ch[0] );
 	var num = stack.pop();
 	if(num >= 0 && num === parseInt(num, 10)){
-		for(var i = 1;i<=num; i++){
+		for(var i = 0; i <= num - 1; i++){
+			symTable.add("repcount", i);
 			try{
 				visitNode(ch[1]);
 			}

@@ -36,6 +36,7 @@
 		525167E819FFCEB000814B16 /* AContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 525167E719FFCEB000814B16 /* AContainerViewController.m */; };
 		525167EC19FFD36C00814B16 /* AbstractModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 525167EB19FFD36C00814B16 /* AbstractModel.m */; };
 		525167F019FFEE6400814B16 /* ClickPlayCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 525167EF19FFEE6400814B16 /* ClickPlayCommand.m */; };
+		5257F1F41E7C93D800AB2DB7 /* InsertCharCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5257F1F31E7C93D800AB2DB7 /* InsertCharCommand.m */; };
 		5257F3431A012F9500757C77 /* ClickMenuCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5257F3421A012F9500757C77 /* ClickMenuCommand.m */; };
 		5257F3461A0131F000757C77 /* HideMenuCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5257F3451A0131F000757C77 /* HideMenuCommand.m */; };
 		5257F3491A01356C00757C77 /* UndoCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5257F3481A01356C00757C77 /* UndoCommand.m */; };
@@ -198,6 +199,8 @@
 		525167EB19FFD36C00814B16 /* AbstractModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractModel.m; sourceTree = "<group>"; };
 		525167EE19FFEE6400814B16 /* ClickPlayCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickPlayCommand.h; sourceTree = "<group>"; };
 		525167EF19FFEE6400814B16 /* ClickPlayCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickPlayCommand.m; sourceTree = "<group>"; };
+		5257F1F21E7C93D800AB2DB7 /* InsertCharCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsertCharCommand.h; sourceTree = "<group>"; };
+		5257F1F31E7C93D800AB2DB7 /* InsertCharCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsertCharCommand.m; sourceTree = "<group>"; };
 		5257F3411A012F9500757C77 /* ClickMenuCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickMenuCommand.h; sourceTree = "<group>"; };
 		5257F3421A012F9500757C77 /* ClickMenuCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickMenuCommand.m; sourceTree = "<group>"; };
 		5257F3441A0131F000757C77 /* HideMenuCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HideMenuCommand.h; sourceTree = "<group>"; };
@@ -563,6 +566,8 @@
 		5272DE3319FE4799006E717F /* Commands */ = {
 			isa = PBXGroup;
 			children = (
+				5257F1F21E7C93D800AB2DB7 /* InsertCharCommand.h */,
+				5257F1F31E7C93D800AB2DB7 /* InsertCharCommand.m */,
 				5248C58B1E350826006F4C4D /* EditGridClrCommand.h */,
 				5248C58C1E350826006F4C4D /* EditGridClrCommand.m */,
 				5248C58D1E350826006F4C4D /* EditGridTypeCommand.h */,
@@ -1230,6 +1235,7 @@
 				52CC89231A1643170046615F /* AbstractHelpViewController.m in Sources */,
 				527D42FD1A0ADEBF008AE82A /* FilenameViewController.m in Sources */,
 				52D3D9A11CCCF97E00197451 /* ParentGateViewController.m in Sources */,
+				5257F1F41E7C93D800AB2DB7 /* InsertCharCommand.m in Sources */,
 				52C1714B1A0C4384000865DD /* ScreenGrabModel.m in Sources */,
 				52815C6E1A04F397005AFA93 /* FilesController.m in Sources */,
 				52B5B35319FD7E1400EF531F /* Colors.m in Sources */,

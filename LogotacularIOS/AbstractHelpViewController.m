@@ -21,14 +21,14 @@
 
 @implementation AbstractHelpViewController
 
-- (instancetype) initWithTransitionStyle:(UIPageViewControllerTransitionStyle)style navigationOrientation:(UIPageViewControllerNavigationOrientation)navigationOrientation options:(NSDictionary *)options withChildClass:(Class)class andNumPages:(NSInteger)numPages{
+- (instancetype) initWithTransitionStyle:(UIPageViewControllerTransitionStyle)style navigationOrientation:(UIPageViewControllerNavigationOrientation)navigationOrientation options:(NSDictionary *)options withChildClass:(Class)class andNumPages:(NSInteger)numPages andStartPage:(NSInteger)startPage{
 	self = [super initWithTransitionStyle:style navigationOrientation:navigationOrientation options:options];
 	if(self){
 		self.dataSource = self;
 		self.delegate = self;
 		_childClass = class;
 		_numPages = numPages;
-		_currentPage = 0;
+		_currentPage = startPage;
 	}
 	return self;
 }
@@ -41,7 +41,39 @@
 - (void) viewDidLoad{
 	[super viewDidLoad];
 	[self removeTap];
-	[self initPage0];
+	[self reloadPos];
+}
+
+- (void) reloadPos{
+	[self gotoPage:self.currentPage];
+}
+
+- (void) gotoPage:(int)index{
+	AbstractHelpSectionViewController *viewController = [self viewControllerAtIndex:index];
+	NSInteger oldPageIndex = self.currentPage;
+	self.currentPage = index;
+	UIPageViewControllerNavigationDirection direction = (self.currentPage <= index) ? UIPageViewControllerNavigationDirectionForward : UIPageViewControllerNavigationDirectionReverse;
+	if(oldPageIndex < index){
+		for (int i = 0; i <= index; i++){
+			if (i == index) {
+				[self setViewControllers:@[viewController] direction:direction animated:YES completion:nil];
+			}
+			else{
+				[self setViewControllers:@[[self viewControllerAtIndex:i]] direction:direction animated:NO completion:nil];
+			}
+		}
+	}
+	else{
+		for (int i = oldPageIndex; i >= index; i--){
+			if (i == index) {
+				[self setViewControllers:@[viewController] direction:direction animated:YES completion:nil];
+			}
+			else{
+				[self setViewControllers:@[[self viewControllerAtIndex:i]] direction:direction animated:NO completion:nil];
+				
+			}
+		}
+	}
 }
 
 - (void) removeTap{
@@ -55,12 +87,6 @@
 	if (tapRecognizer){
 		[self.view removeGestureRecognizer:tapRecognizer];
 	}
-}
-
-- (void) initPage0{
-	AbstractHelpSectionViewController* initialViewController = [self viewControllerAtIndex:0];
-	NSArray *viewControllers = @[initialViewController];
-	[self setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
 }
 
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController {
@@ -79,14 +105,13 @@
 }
 
 - (void) pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed{
+	NSLog(@"%i", self.targetPage);
 	if(previousViewControllers.count == 1){
 		if(completed){
 			self.currentPage = self.targetPage;
 		}
 	}
 }
-
-
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
 	NSUInteger index = [(AbstractHelpSectionViewController *)viewController index];

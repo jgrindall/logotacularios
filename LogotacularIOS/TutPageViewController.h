@@ -10,4 +10,6 @@
 
 @interface TutPageViewController : AbstractHelpPageViewController
 
+- (id) initWithStart:(NSInteger) startPage;
+
 @end

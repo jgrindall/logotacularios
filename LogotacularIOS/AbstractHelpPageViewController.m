@@ -14,6 +14,7 @@
 @interface AbstractHelpPageViewController ()
 
 @property NSInteger numPages;
+@property NSInteger startPage;
 @property Class childClass;
 @property UIImageView* imgView;
 
@@ -21,11 +22,18 @@
 
 @implementation AbstractHelpPageViewController
 
-- (instancetype)initWithChildClass:(Class) childClass andNumPages:(NSInteger)numPages{
+- (instancetype)initWithChildClass:(Class) childClass andNumPages:(NSInteger)numPages andStartPage:(NSInteger)startPage{
 	self = [super init];
 	if(self){
 		_numPages = numPages;
 		_childClass = childClass;
+		_startPage = startPage;
+		if(_startPage < 0){
+			_startPage = 0;
+		}
+		if(_startPage >= numPages){
+			_startPage = numPages - 1;
+		}
 	}
 	return self;
 }
@@ -47,7 +55,7 @@
 }
 
 - (void) makeController{
-	self.helpViewController = [[AbstractHelpViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil withChildClass:self.childClass andNumPages:self.numPages];
+	self.helpViewController = [[AbstractHelpViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil withChildClass:self.childClass andNumPages:self.numPages andStartPage:self.startPage];
 	[self addChildInto:self.helpContainer withController:self.helpViewController];
 }
 

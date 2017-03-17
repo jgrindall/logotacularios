@@ -27,6 +27,7 @@ NSString* const HELP_ICON =			@"assets/icons/help.png";
 NSString* const LIST_ICON =			@"assets/icons/list.png";
 NSString* const PLAY_ICON =			@"assets/icons/play.png";
 NSString* const REDO_ICON =			@"assets/icons/redo.png";
+NSString* const CHAR0_ICON =		@"assets/icons/char0.png";
 NSString* const RIGHT_ICON =		@"assets/icons/right.png";
 NSString* const STOP_ICON =			@"assets/icons/stop.png";
 NSString* const TICK_ICON =			@"assets/icons/tick.png";

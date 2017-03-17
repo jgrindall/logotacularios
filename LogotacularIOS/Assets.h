@@ -27,6 +27,7 @@ extern NSString* const HELP_ICON;
 extern NSString* const LIST_ICON;
 extern NSString* const PLAY_ICON;
 extern NSString* const REDO_ICON;
+extern NSString* const CHAR0_ICON;
 extern NSString* const RIGHT_ICON;
 extern NSString* const STOP_ICON;
 extern NSString* const TICK_ICON;

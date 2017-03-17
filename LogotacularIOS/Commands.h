@@ -44,6 +44,7 @@
 #import "ClickRefCommand.h"
 #import "ClickResetZoomCommand.h"
 #import "ClickWipeCommand.h"
+#import "InsertCharCommand.h"
 
 @interface Commands : NSObject
 

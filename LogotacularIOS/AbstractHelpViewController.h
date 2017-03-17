@@ -10,6 +10,6 @@
 
 @interface AbstractHelpViewController : UIPageViewController <UIPageViewControllerDelegate, UIPageViewControllerDataSource>
 
-- (instancetype) initWithTransitionStyle:(UIPageViewControllerTransitionStyle)style navigationOrientation:(UIPageViewControllerNavigationOrientation)navigationOrientation options:(NSDictionary *)options withChildClass:(Class)class andNumPages:(NSInteger)numPages;
+- (instancetype) initWithTransitionStyle:(UIPageViewControllerTransitionStyle)style navigationOrientation:(UIPageViewControllerNavigationOrientation)navigationOrientation options:(NSDictionary *)options withChildClass:(Class)class andNumPages:(NSInteger)numPages andStartPage:(NSInteger)startPage;
 
 @end

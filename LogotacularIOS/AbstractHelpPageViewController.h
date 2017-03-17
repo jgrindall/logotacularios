@@ -10,6 +10,6 @@
 
 @interface AbstractHelpPageViewController : AContainerViewController
 
-- (instancetype)initWithChildClass:(Class) childClass andNumPages:(NSInteger)numPages;
+- (instancetype)initWithChildClass:(Class) childClass andNumPages:(NSInteger)numPages andStartPage:(NSInteger)startPage;
 
 @end
