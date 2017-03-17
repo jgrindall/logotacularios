@@ -37,6 +37,9 @@
 @property UIButton* undoButton;
 @property UIButton* redoButton;
 @property UIButton* char0Button;
+@property UIButton* char1Button;
+@property UIButton* char2Button;
+@property UIButton* char3Button;
 @property NSArray* textConstraints;
 
 
@@ -77,12 +80,21 @@ int const EXCLAM_SIZE = 36;
 	self.undoButton = [UIButton buttonWithType:UIButtonTypeSystem];
 	self.redoButton = [UIButton buttonWithType:UIButtonTypeSystem];
 	self.char0Button = [UIButton buttonWithType:UIButtonTypeSystem];
+	self.char1Button = [UIButton buttonWithType:UIButtonTypeSystem];
+	self.char2Button = [UIButton buttonWithType:UIButtonTypeSystem];
+	self.char3Button = [UIButton buttonWithType:UIButtonTypeSystem];
 	[self.view addSubview:self.undoButton];
 	[self.view addSubview:self.redoButton];
 	[self.view addSubview:self.char0Button];
+	[self.view addSubview:self.char1Button];
+	[self.view addSubview:self.char2Button];
+	[self.view addSubview:self.char3Button];
 	[self.undoButton setImage:[UIImage imageNamed:UNDO_ICON] forState:UIControlStateNormal];
 	[self.redoButton setImage:[UIImage imageNamed:REDO_ICON] forState:UIControlStateNormal];
 	[self.char0Button setImage:[UIImage imageNamed:CHAR0_ICON] forState:UIControlStateNormal];
+	[self.char1Button setImage:[UIImage imageNamed:CHAR1_ICON] forState:UIControlStateNormal];
+	[self.char2Button setImage:[UIImage imageNamed:CHAR2_ICON] forState:UIControlStateNormal];
+	[self.char3Button setImage:[UIImage imageNamed:CHAR3_ICON] forState:UIControlStateNormal];
 }
 
 - (void) clearError{
@@ -133,6 +145,9 @@ int const EXCLAM_SIZE = 36;
 	[self.undoButton addTarget:self action:@selector(undoClick) forControlEvents:UIControlEventTouchUpInside];
 	[self.redoButton addTarget:self action:@selector(redoClick) forControlEvents:UIControlEventTouchUpInside];
 	[self.char0Button addTarget:self action:@selector(char0Click) forControlEvents:UIControlEventTouchUpInside];
+	[self.char1Button addTarget:self action:@selector(char1Click) forControlEvents:UIControlEventTouchUpInside];
+	[self.char2Button addTarget:self action:@selector(char2Click) forControlEvents:UIControlEventTouchUpInside];
+	[self.char3Button addTarget:self action:@selector(char3Click) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)visChanged{
@@ -150,9 +165,11 @@ int const EXCLAM_SIZE = 36;
 }
 
 - (void) insertChar:(NSNotification*)notif{
+	NSArray* CHARS = @[@"[", @"]", @"\"", @":"];
 	NSInteger i = [notif.object integerValue];
-	NSLog(@"%i", i);
-	[self.logoText insertText:@"here"];
+	if(i >= 0 && i <= CHARS.count - 1){
+		[self.logoText insertText:[CHARS objectAtIndex:i]];
+	}
 }
 
 - ( void) keyBoardDidHide:(NSNotification*)notification{
@@ -236,6 +253,9 @@ int const EXCLAM_SIZE = 36;
 	self.undoButton.translatesAutoresizingMaskIntoConstraints = NO;
 	self.redoButton.translatesAutoresizingMaskIntoConstraints = NO;
 	self.char0Button.translatesAutoresizingMaskIntoConstraints = NO;
+	self.char1Button.translatesAutoresizingMaskIntoConstraints = NO;
+	self.char2Button.translatesAutoresizingMaskIntoConstraints = NO;
+	self.char3Button.translatesAutoresizingMaskIntoConstraints = NO;
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.undoButton attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual			toItem:self.container		attribute:NSLayoutAttributeTop					multiplier:1.0 constant:3.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.undoButton attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual		toItem:self.container		attribute:NSLayoutAttributeTrailing				multiplier:1.0 constant:-60.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.undoButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual		toItem:nil					attribute:NSLayoutAttributeNotAnAttribute		multiplier:0.0 constant:40.0]];
@@ -245,9 +265,21 @@ int const EXCLAM_SIZE = 36;
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.redoButton attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual		toItem:nil					attribute:NSLayoutAttributeNotAnAttribute		multiplier:0.0 constant:40.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.redoButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual		toItem:nil					attribute:NSLayoutAttributeNotAnAttribute		multiplier:0.0 constant:30.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.char0Button attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual			toItem:self.container		attribute:NSLayoutAttributeTop					multiplier:1.0 constant:3.0]];
-	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.char0Button attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual		toItem:self.container		attribute:NSLayoutAttributeLeading				multiplier:1.0 constant:5.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.char0Button attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual		toItem:self.container		attribute:NSLayoutAttributeLeading				multiplier:1.0 constant:0.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.char0Button attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual		toItem:nil					attribute:NSLayoutAttributeNotAnAttribute		multiplier:0.0 constant:40.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.char0Button attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual		toItem:nil					attribute:NSLayoutAttributeNotAnAttribute		multiplier:0.0 constant:30.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.char1Button attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual			toItem:self.container		attribute:NSLayoutAttributeTop					multiplier:1.0 constant:3.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.char1Button attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual		toItem:self.container		attribute:NSLayoutAttributeLeading				multiplier:1.0 constant:40.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.char1Button attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual		toItem:nil					attribute:NSLayoutAttributeNotAnAttribute		multiplier:0.0 constant:40.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.char1Button attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual		toItem:nil					attribute:NSLayoutAttributeNotAnAttribute		multiplier:0.0 constant:30.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.char2Button attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual			toItem:self.container		attribute:NSLayoutAttributeTop					multiplier:1.0 constant:3.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.char2Button attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual		toItem:self.container		attribute:NSLayoutAttributeLeading				multiplier:1.0 constant:80.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.char2Button attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual		toItem:nil					attribute:NSLayoutAttributeNotAnAttribute		multiplier:0.0 constant:40.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.char2Button attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual		toItem:nil					attribute:NSLayoutAttributeNotAnAttribute		multiplier:0.0 constant:30.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.char3Button attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual			toItem:self.container		attribute:NSLayoutAttributeTop					multiplier:1.0 constant:3.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.char3Button attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual		toItem:self.container		attribute:NSLayoutAttributeLeading				multiplier:1.0 constant:120.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.char3Button attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual		toItem:nil					attribute:NSLayoutAttributeNotAnAttribute		multiplier:0.0 constant:40.0]];
+	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.char3Button attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual		toItem:nil					attribute:NSLayoutAttributeNotAnAttribute		multiplier:0.0 constant:30.0]];
 }
 
 - (id<PDrawingModel>) getDrawingModel{
@@ -286,6 +318,18 @@ int const EXCLAM_SIZE = 36;
 
 -(void)char0Click{
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_INSERT_CHAR withData:[NSNumber numberWithInteger:0]];
+}
+
+-(void)char1Click{
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_INSERT_CHAR withData:[NSNumber numberWithInteger:1]];
+}
+
+-(void)char2Click{
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_INSERT_CHAR withData:[NSNumber numberWithInteger:2]];
+}
+
+-(void)char3Click{
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_INSERT_CHAR withData:[NSNumber numberWithInteger:3]];
 }
 
 - (void) textSwipe:(id) sender{
@@ -433,7 +477,7 @@ int const EXCLAM_SIZE = 36;
 	[self.view removeGestureRecognizer:self.swipe];
 	[[self getLogoModel] removeGlobalListener:@selector(modelChanged) withTarget:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_DISMISS_KEY toFunction:@selector(dismissKeyboard) withContext:self];
-	[[self getEventDispatcher] removeListener:SYMM_NOTIF_DO_INSERT_CHAR toFunction:@selector(insertChar:) withContext:self];
+	[[self getEventDispatcher] removeListener:SYMM_NOTIF_INSERT_CHAR toFunction:@selector(insertChar:) withContext:self];
 	[[self getErrorModel] removeListener:@selector(errorChanged) forKey:LOGO_ERROR_ERROR withTarget:self];
 	[[self getOptionsModel] removeListener:@selector(optionChanged) forKey:FONT_SIZE withTarget:self];
 	[[self getDrawingModel] removeListener:@selector(drawingChanged) forKey:DRAWING_ISDRAWING withTarget:self];
@@ -443,6 +487,9 @@ int const EXCLAM_SIZE = 36;
 	[self.undoButton removeTarget:self action:@selector(undoClick) forControlEvents:UIControlEventTouchUpInside];
 	[self.redoButton removeTarget:self action:@selector(redoClick) forControlEvents:UIControlEventTouchUpInside];
 	[self.char0Button removeTarget:self action:@selector(char0Click) forControlEvents:UIControlEventTouchUpInside];
+	[self.char1Button removeTarget:self action:@selector(char1Click) forControlEvents:UIControlEventTouchUpInside];
+	[self.char2Button removeTarget:self action:@selector(char2Click) forControlEvents:UIControlEventTouchUpInside];
+	[self.char3Button removeTarget:self action:@selector(char3Click) forControlEvents:UIControlEventTouchUpInside];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidShowNotification object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardDidHideNotification object:nil];
 	self.exclamTap = nil;
