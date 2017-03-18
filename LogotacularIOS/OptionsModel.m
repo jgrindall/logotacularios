@@ -86,6 +86,9 @@ float const DARK_CLR = 0.15;
 		[super setVal:val forKey:key];
 		[[NSUserDefaults standardUserDefaults] setInteger:intVal forKey:@"FontSize"];
 	}
+	else{
+		[super setVal:val forKey:key];
+	}
 }
 
 @end

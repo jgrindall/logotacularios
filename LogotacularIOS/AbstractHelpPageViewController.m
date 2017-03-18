@@ -41,9 +41,7 @@
 }
 
 - (void) onUpdate:(NSInteger)i{
-	if(self.helpDelegate != nil){
-		[self.helpDelegate onUpdate:i];
-	}
+	
 }
 
 - (void) viewWillAppear:(BOOL)animated{
