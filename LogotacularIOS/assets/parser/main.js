@@ -67,7 +67,6 @@ LG.draw = function(logo){
 			LG.onMessage({"error":e});
 		}
 	}
-	LG.onMessage({"type":"end"});
 };
 
 LG.process = function(tree){
