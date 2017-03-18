@@ -25,7 +25,7 @@
             "<h3>Repeating, functions and advanced commands</h3>",
             "<table class='commands commands1'>",
             "<tr><th>Command</th><th>Example</th><th>What it does</th></tr>",
-            "<tr><td>rpt 10 [</br>...</br>]</td><td>rpt 10 [<br/>&nbsp;&nbsp;&nbsp;&nbsp;fd 100<br/>&nbsp;&nbsp;&nbsp;&nbsp;rt 36<br/>]</td><td>Repeat the commands inside<br/>the square brackets 10 times</td></tr>",
+            "<tr><td>rpt 10 [</br>...</br>]</td><td>rpt 10 [<br/>&nbsp;&nbsp;&nbsp;&nbsp;fd 100<br/>&nbsp;&nbsp;&nbsp;&nbsp;rt 36<br/>]</td><td>Repeat the commands inside<br/>the square brackets 10 times. The value of the counter is stored for you in a variable called 'repcount'</td></tr>",
             "<tr><td>make \"varname</td><td>make \"num 16</td><td>Set the variable 'num' to 16</td></tr>",
             "<tr><td>label</td><td>label \"here<br/>label :num</td><td>Write the word 'here' or the value of the variable 'num' to the screen, at the turtle's position</td></tr>",
             "<tr><td>:varname</td><td>fd :num</td><td>Use the variable 'num' (for<br/>example go forward 16 units)</td></tr>",
@@ -236,12 +236,23 @@
          "bg":"blue",
          "contents":[
             "<h3>10. Loops continued</h3>",
-            "<p>By turning right a small amount and repeating many hundreds of times we can create curves.</p>",
-            "<p>Interesting effects can be created by modifying the value of a variable inside a loop.</p>",
+            "<p>By turning right a small amount and repeating many hundreds of times we can create curves. Interesting effects can be created by modifying the value of a variable inside a loop.</p>",
             "<p>For example, in the program below, the variable <span class='mono'>a</span> is increased by one in each step of the loop, which is repeated 300 times to create a spiral shape.</p>",
             "<pre>make \"a 3\nrpt 300 [\n  fd 20\n  rt :a/4\n  make \"a :a + 1\n]</pre>",
             "<p></p>",
-            "<p>The spaces at the start of the lines are optional but can make your program easier to read</p>"
+            "<p>The spaces at the start of the lines are optional but can make your program easier to read!</p>"
+         ]
+      },
+      {
+         "file":"bg yellow\nrpt 7 [\n  label :repcount\n  thick :repcount+1\n  color :repcount\n  fd 150\n  rt 360/7\n]",
+         "media":"help/images/e145.png",
+         "bg":"blue",
+         "contents":[
+            "<h3>11. Loops continued</h3>",
+            "<p>Inside any <span class='mono'>rpt</span> loop you can access the current value of the loop's 'counter'.</p>",
+            "<p>The value is automatically stored in a variable called '<span class='mono'>repcount</span>'.</p>",
+            "<p>For example, if you repeat some statements seven times, repcount will take the values 0, 1, 2, 3, 4, 5, 6:</p>",
+            "<pre>bg yellow\nrpt 7 [\n  label :repcount\n  thick :repcount+1\n  color :repcount\n  fd 150\n  rt 360/7\n]</pre>"
          ]
       },
       {
@@ -249,7 +260,7 @@
          "media":"help/images/e13.png",
          "bg":"blue",
          "contents":[
-            "<h3>11. Loops continued</h3>",
+            "<h3>12. Loops continued</h3>",
             "<p>You can even program a loop inside another loop.</p>",
             "<p>This program &hellip;</p>",
             "<pre>rpt 360 [\n fd 1\n rt 1\n]</pre>",
@@ -264,7 +275,7 @@
          "media":"help/images/e4.png",
          "bg":"dkgreen",
          "contents":[
-            "<h3>12. Procedures and functions</h3>",
+            "<h3>13. Procedures and functions</h3>",
             "<p>We know that the turtle knows the meaning of the words <span class='mono'>make</span>, <span class='mono'>penup</span>, <span class='mono'>color</span> etc &hellip;</p>",
             "<p>A function or procedure is often thought of as telling the turtle the meaning of a new word, for example we could draw a square by defining a procedure called 'drawsquare' and then 'calling' that procedure.</p>",
             "<p>You use the <span class='mono'>to</span> keyword to define a procedure, and <span class='mono'>end</span> to mark the end:</p>",
@@ -278,7 +289,7 @@
          "media":"help/images/e5.png",
          "bg":"dkgreen",
          "contents":[
-            "<h3>13. Procedures and functions continued</h3>",
+            "<h3>14. Procedures and functions continued</h3>",
             "<p>Functions can optionally take some variables as input.  For example, you might want to re-use a block of commands more than once, with different lengths or angles each time.</p>",
             "<p>List the variables one by one after the name of the function as shown:</p>",
             "<pre>to drawpoly :len :n\n  rpt :n [\n    fd :len \n    rt (360/:n)\n  ]\nend\ndrawpoly 120 3\ndrawpoly 120 4\ndrawpoly 120 5\ndrawpoly 120 6\ndrawpoly 120 7</pre>",
@@ -291,7 +302,7 @@
          "media":"help/images/e6.png",
          "bg":"dkred",
          "contents":[
-            "<h3>14. Recursion</h3>",
+            "<h3>15. Recursion</h3>",
             "<p>Recursion happens when, inside a function, you call the same function, normally with different input.</p>",
             "<p>For example the program below defines a procedure which accepts one variable called <span class='mono'>dist</span> and repeatedly calls itself, increasing the value of <span class='mono'>dist</span> by 5 each time:</p>",
             "<pre>to drawspiral :dist\n  fd :dist\n  rt 90\n  drawspiral (:dist+5)\nend\n\ndrawspiral 10</pre>",
@@ -305,7 +316,7 @@
          "media":"help/images/e12.png",
          "bg":"blue",
          "contents":[
-            "<h3>15. Variable scope</h3>",
+            "<h3>16. Variable scope</h3>",
             "<p>The program below illustrates the concept of 'scope' in Logotacular.</p>",
             "<p>Every variable exists in a 'scope' depending on where you defined it, so you can have two variables with the same name that exist in different 'scopes'. For example:</p>",
             "<pre>make \"j 50\nto fn\n  fd :j\nend\nfn</pre>",
@@ -319,7 +330,7 @@
          "media":"help/images/e12.png",
          "bg":"blue",
          "contents":[
-            "<h3>16. Variable scope continued</h3>",
+            "<h3>17. Variable scope continued</h3>",
             "<p>You can also define variables inside functions, and then they will exist inside that function only:</p>",
             "<pre>make \"i 50\nto fn\n make \"i 100 fd :i\nend\nfn\nfd :i</pre>",
             "<p></p>",
@@ -333,7 +344,7 @@
          "media":"help/images/e15.png",
          "bg":"dkgreen",
          "contents":[
-            "<h3>17. Stopping</h3>",
+            "<h3>18. Stopping</h3>",
             "<p>You can use the keyword <span class='mono'>stop</span> to stop a function or loop executing.</p>",
             "<pre>rpt 4 [\n fd 100 rt 90\n stop\n]</pre>",
             "<p></p>",
@@ -346,7 +357,7 @@
          "media":"help/images/e15.png",
          "bg":"dkgreen",
          "contents":[
-            "<h3>18. Stopping continued</h3>",
+            "<h3>19. Stopping continued</h3>",
             "<p>In this second program the function <span class='mono'>drawoneline</span> is called, and the turtle goes forward.</p>",
             "<p>It reaches the <span class='mono'>stop</span> statement and the function stops executing immediately.</p>",
             "<p></p>",
@@ -360,7 +371,7 @@
          "media":"help/images/e16.png",
          "bg":"dkred",
          "contents":[
-            "<h3>19. Program control</h3>",
+            "<h3>20. Program control</h3>",
             "<p>Sometimes you only want to execute a line of code under certain circumstances - perhaps after checking the value of a variable for example. Logo uses the keywords <span class='mono'> if</span> and <span class='mono'> ifelse</span>. For example:</p>",
             "<pre>if :a < 1 [ fd 100 ]</pre>",
             "<p></p>",
@@ -378,7 +389,7 @@
          "media":"help/images/e17.png",
          "bg":"dkred",
          "contents":[
-            "<h3>20. Program control continued</h3>",
+            "<h3>21. Program control continued</h3>",
             "<p>Combining recursion with the <span class='mono'>stop</span> statement is a powerful way to create interesting designs. The function <span class='mono'>tree</span> will draw a tree <span class='mono'>d</span> branches high. It is called with an input value of '5' for a tree 5 branches high.</p>",
             "<p>The function goes forward and turns left 20 degrees, then it draws a tree with one fewer branches, turns right 40 degrees and draws another tree with one fewer branches.</p>",
             "<pre>make \"s 80\nto tree :d\n if :d=0 [stop]\n fd :s rt 340\n tree (:d-1)\n rt 40\n tree (:d-1)\n rt 160\n fd :s\n rt 180\nend\ntree 5</pre>",
@@ -390,7 +401,7 @@
          "media":"help/images/e20.png",
          "bg":"dkred",
          "contents":[
-            "<h3>21. Program control continued</h3>",
+            "<h3>22. Program control continued</h3>",
             "<p>The tree we drew is an example of a fractal, or a shape demonstrating 'self-similarity'. It consists of smaller copies of itself repeating at each step.</p>",
             "<p>Another famous fractal you can draw using Logotacular is the Sierpinski gasket or Sierpinski triangle, which consists of an equilateral triangle divided into smaller copies of the same triangle recursively.</p>",
             "<pre>to sier :n :len\nif :n=0 [stop]\nrpt 3 [sier :n-1 :len/2\nfd :len\nrt 120\n]\nend\nsier 5 250</pre>"
@@ -401,7 +412,7 @@
          "media":"help/images/ee.png",
          "bg":"dkgreen",
          "contents":[
-            "<h3>22. Errors and debugging</h3>",
+            "<h3>23. Errors and debugging</h3>",
             "<p>Errors are of two kinds: they can be in your code itself or they might only happen when you run your code.</p>",
             "<p>The first kind of errors include those such as missing out a bracket or forgetting to put <span class='mono'>end</span> at the end of a function definition.  The second kind of errors don't appear until you press 'Play'.  For example, you might try to use a variable or call a function that you haven't defined, or you might divide by zero by mistake.</p>",
             "<p>This program has an error of the first kind:</p>",
