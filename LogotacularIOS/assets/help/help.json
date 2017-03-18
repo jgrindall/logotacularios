@@ -25,7 +25,7 @@
             "<h3>Repeating, functions and advanced commands</h3>",
             "<table class='commands commands1'>",
             "<tr><th>Command</th><th>Example</th><th>What it does</th></tr>",
-            "<tr><td>rpt 10 [</br>...</br>]</td><td>rpt 10 [<br/>&nbsp;&nbsp;&nbsp;&nbsp;fd 100<br/>&nbsp;&nbsp;&nbsp;&nbsp;rt 36<br/>]</td><td>Repeat the commands inside<br/>the square brackets 10 times. The value of the counter is stored for you in a variable called 'repcount'</td></tr>",
+            "<tr><td>rpt 10 [</br>...</br>]</td><td>rpt 10 [<br/>&nbsp;&nbsp;&nbsp;&nbsp;fd 100<br/>&nbsp;&nbsp;&nbsp;&nbsp;rt 36<br/>&nbsp;&nbsp;&nbsp;&nbsp;label :repcount<br/>]</td><td>Repeat the commands inside the square brackets <br/>10 times. The value of the counter is stored for you<br/>in a variable called 'repcount'</td></tr>",
             "<tr><td>make \"varname</td><td>make \"num 16</td><td>Set the variable 'num' to 16</td></tr>",
             "<tr><td>label</td><td>label \"here<br/>label :num</td><td>Write the word 'here' or the value of the variable 'num' to the screen, at the turtle's position</td></tr>",
             "<tr><td>:varname</td><td>fd :num</td><td>Use the variable 'num' (for<br/>example go forward 16 units)</td></tr>",
