@@ -194,7 +194,7 @@ LG.logoParser = /*
         return f7;
         },
         peg$c16 = function(s) {
-            return s;
+        	return s;
         },
         peg$c17 = function(f5) {
         //TODO - why ?
@@ -276,7 +276,7 @@ LG.logoParser = /*
         return {"type":"labelstmt", "children":[c]};
         },
         peg$c75 = function(e) {
-            return e;
+        	return e;
         },
         peg$c76 = "bg",
         peg$c77 = peg$literalExpectation("bg", false),
@@ -289,10 +289,10 @@ LG.logoParser = /*
         return {"type":"thickstmt", "children":[e]};
         },
         peg$c82 = function(c) {
-            return {"type":"colorname", "name":c};
+        	return {"type":"colorname", "name":c};
         },
         peg$c83 = function(e) {
-            return {"type":"colorindex", "children":[e]};
+        	return {"type":"colorindex", "children":[e]};
         },
         peg$c84 = "turquoise",
         peg$c85 = peg$literalExpectation("turquoise", false),
@@ -619,19 +619,19 @@ LG.logoParser = /*
         return {type:"numberexpression", children:[v]};
         },
         peg$c294 = function(e) {
-            return {type:"sqrtexpression", children:[e]};
+        	return {type:"sqrtexpression", children:[e]};
         },
         peg$c295 = function(e) {
-            return {type:"sinexpression", children:[e]};
+        	return {type:"sinexpression", children:[e]};
         },
         peg$c296 = function(e) {
-            return {type:"cosexpression", children:[e]};
+        	return {type:"cosexpression", children:[e]};
         },
         peg$c297 = function(e) {
-            return {type:"tanexpression", children:[e]};
+        	return {type:"tanexpression", children:[e]};
         },
         peg$c298 = function() {
-            return {type:"number",value:"random"};
+        	return {type:"number",value:"random"};
         },
         peg$c299 = ".",
         peg$c300 = peg$literalExpectation(".", false),
@@ -663,7 +663,7 @@ LG.logoParser = /*
         return {type:"usevar",name:v.name};
         },
         peg$c309 = function(s) {
-            return s.join("");
+        	return s.join("");
         },
         peg$c310 = function(c0, c1) {
         return {type:"varname",name:c0.join("").toString()+c1.join("").toString()};
@@ -5440,4 +5440,4 @@ LG.logoParser = /*
     SyntaxError: peg$SyntaxError,
     parse:       peg$parse
   };
-})();
+})()
