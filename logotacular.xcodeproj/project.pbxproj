@@ -494,6 +494,13 @@
 			name = Turtle;
 			sourceTree = "<group>";
 		};
+		524A78851E8FDBAD005C119C /* Code */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Code;
+			sourceTree = "<group>";
+		};
 		525167DD19FFB0C500814B16 /* Log */ = {
 			isa = PBXGroup;
 			children = (
@@ -835,6 +842,7 @@
 		52B5B31219FD7D4600EF531F /* LogotacularIOS */ = {
 			isa = PBXGroup;
 			children = (
+				524A78851E8FDBAD005C119C /* Code */,
 				521C66421E32B30B001F325A /* Utils */,
 				5272DE4219FE5776006E717F /* InjectionModule.h */,
 				5272DE4319FE5776006E717F /* InjectionModule.m */,

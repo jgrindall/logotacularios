@@ -35,6 +35,7 @@
 static float const maxAllowed = 2000000000.0;
 static float const minAllowed = -2000000000.0;
 
+NSString* const ARC_KEYWORD				= @"arc";
 NSString* const FD_KEYWORD				= @"fd";
 NSString* const SETXY_KEYWORD			= @"setxy";
 NSString* const LABEL_KEYWORD			= @"label";
@@ -404,6 +405,27 @@ NSString* const THICK_KEYWORD			= @"thick";
 	}
 }
 
+- (void) arcWithAngle:(NSNumber*) angle andRadius:(NSNumber*) radius{
+	if ([angle isKindOfClass:[NSNull class]] || [radius isKindOfClass:[NSNull class]]){
+		[self numericalOverflow];
+	}
+	else{
+		float fAngle = [angle floatValue];
+		float fRad = [radius floatValue];
+		if(fAngle > maxAllowed || fAngle < minAllowed || fRad > maxAllowed || fRad < minAllowed){
+			[self numericalOverflow];
+		}
+		else{
+			CGPoint p0 = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
+			[[self getTurtleModel] moveFdBy:fAngle];
+			if([[[self getTurtleModel] getVal:TURTLE_PEN_DOWN] boolValue]){
+				CGPoint p1 = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
+				[self drawLineFrom:p0 to: p1];
+			}
+		}
+	}
+}
+
 - (void) queueCommand:(NSDictionary*)data{
 	[self.cmds addObject:data];
 	[self executeCommand];
@@ -413,6 +435,9 @@ NSString* const THICK_KEYWORD			= @"thick";
 	NSString* name = (NSString*)dic[@"name"];
 	if([name isEqualToString:FD_KEYWORD]){
 		[self fd:(NSNumber*)dic[@"amount"]];
+	}
+	else if([name isEqualToString:ARC_KEYWORD]){
+		[self arcWithAngle:(NSNumber*)dic[@"angle"] andRadius:(NSNumber*)dic[@"radius"]];
 	}
 	else if([name isEqualToString:SETXY_KEYWORD]){
 		[self setxyWithX:(NSNumber*)dic[@"amountX"] andY:(NSNumber*)dic[@"amountY"]];

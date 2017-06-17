@@ -17,6 +17,11 @@ insidestmt
 
 insidestmt =
 
+sep* f1:arcstmt sep*
+{
+return {type:"arcstmt", children:[f1]};
+}
+/
 sep* f1:fdstmt sep*
 {
 return {type:"insidestmt", children:[f1]};
@@ -218,6 +223,11 @@ fdstmt  = ('fd' / 'forward') sep* num:expression eoline
 return {type:"fdstmt", children:[num]};
 }
 
+arcstmt  = ('arc') sep* num1:expression sep* num2:expression eoline
+{
+return {type:"arcstmt", children:[num1, num2]};
+}
+
 bkstmt  = ('bk' / 'back') sep* num:expression eoline
 {
 return {type:"bkstmt", children:[num]};
@@ -340,7 +350,7 @@ expressionspace = sep* e:expression ' '
 return e;
 }
 
-keyword = 'to' / 'fd' / 'rt' / 'end' / 'penup' / 'pu' / 'pd' / 'pendown' / 'color' / 'bg' / 'thick' / 'stop' / 'home' / 'setxy' / 'sqrt' / 'label' / 'random' / 'sin' / 'cos' / 'tan'
+keyword = 'to' / 'fd' / 'arc' / 'rt' / 'end' / 'penup' / 'pu' / 'pd' / 'pendown' / 'color' / 'bg' / 'thick' / 'stop' / 'home' / 'setxy' / 'sqrt' / 'label' / 'random' / 'sin' / 'cos' / 'tan'
 
 fnname = !keyword c0:([a-zA-Z])+ c1:[a-zA-Z0-9_]*
 {

@@ -46,6 +46,13 @@ function visitfdstmt(node){
 	self.postMessage({ "type":"command", "name":"fd", "amount":amount });
 }
 
+function visitarcstmt(node){
+	visitchildren(node);
+	var amount1 = stack.pop();
+	var amount2 = stack.pop();
+	self.postMessage({ "type":"command", "name":"arc", "angle":amount1, "radius":amount2 });
+}
+
 function visitbkstmt(node){
 	visitchildren(node);
 	var amount = stack.pop();
@@ -442,6 +449,9 @@ function visitNode(node){
 	}
 	else if(t=="fdstmt"){
 		visitfdstmt(node);
+	}
+	else if(t=="arcstmt"){
+		visitarcstmt(node);
 	}
 	else if(t=="bkstmt"){
 		visitbkstmt(node);
