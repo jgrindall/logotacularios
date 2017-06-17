@@ -84,6 +84,10 @@
 	[self.linesView drawLineFrom:p0 to:p1 withColor:clr andThickness:thickness];
 }
 
+- (void) drawArcUsingAngle:(float)a andRadius:(float)r andCentre:(CGPoint) c andStartAngle:(float) a0 withColor:(UIColor *)clr andThickness:(NSInteger)thickness{
+	[self.linesView drawArcUsingAngle:a andRadius:r andCentre:(CGPoint) c andStartAngle:(float) a0 withColor:clr andThickness:thickness];
+}
+
 - (void)clickTriangle:(BOOL)hideTri{
 	[self.linesView clickTriangle:hideTri];
 }

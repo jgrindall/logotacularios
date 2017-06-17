@@ -19,7 +19,7 @@ insidestmt =
 
 sep* f1:arcstmt sep*
 {
-return {type:"arcstmt", children:[f1]};
+return {type:"insidestmt", children:[f1]};
 }
 /
 sep* f1:fdstmt sep*
@@ -225,7 +225,7 @@ return {type:"fdstmt", children:[num]};
 
 arcstmt  = ('arc') sep* num1:expression sep* num2:expression eoline
 {
-return {type:"arcstmt", children:[num1, num2]};
+return {type:"arcstmt", a:1, children:[num1, num2]};
 }
 
 bkstmt  = ('bk' / 'back') sep* num:expression eoline

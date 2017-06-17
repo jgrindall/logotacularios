@@ -385,6 +385,14 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[self.paintView drawLineFrom:p0 to:p1 withColor:clr andThickness:[thick integerValue]];
 }
 
+- (void) drawArcUsingAngle: (float)a andRadius: (float)r{
+	NSNumber* thick = [[self getTurtleModel] getVal:TURTLE_PEN_THICK];
+	UIColor* clr = [[self getTurtleModel] getVal:TURTLE_COLOR];
+	CGPoint p0 = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
+	float a0 = [[[self getTurtleModel] getVal:TURTLE_HEADING] floatValue];
+	[self.paintView drawArcUsingAngle:a andRadius:r andCentre:p0 andStartAngle:(float) a0 withColor:clr andThickness:[thick integerValue]];
+}
+
 - (void) fd:(NSNumber*) amount{
 	if ([amount isKindOfClass:[NSNull class]]){
 		[self numericalOverflow];
@@ -416,12 +424,7 @@ NSString* const THICK_KEYWORD			= @"thick";
 			[self numericalOverflow];
 		}
 		else{
-			CGPoint p0 = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
-			[[self getTurtleModel] moveFdBy:fAngle];
-			if([[[self getTurtleModel] getVal:TURTLE_PEN_DOWN] boolValue]){
-				CGPoint p1 = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
-				[self drawLineFrom:p0 to: p1];
-			}
+			[self drawArcUsingAngle:fAngle andRadius: fRad];
 		}
 	}
 }
@@ -437,6 +440,7 @@ NSString* const THICK_KEYWORD			= @"thick";
 		[self fd:(NSNumber*)dic[@"amount"]];
 	}
 	else if([name isEqualToString:ARC_KEYWORD]){
+		NSLog(@"dic %@ %@", (NSNumber*)dic[@"angle"], (NSNumber*)dic[@"radius"]);
 		[self arcWithAngle:(NSNumber*)dic[@"angle"] andRadius:(NSNumber*)dic[@"radius"]];
 	}
 	else if([name isEqualToString:SETXY_KEYWORD]){

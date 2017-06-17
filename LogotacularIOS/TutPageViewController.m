@@ -21,7 +21,7 @@
 @implementation TutPageViewController
 
 - (instancetype)initWithStart:(NSInteger)startPage{
-	self = [super initWithChildClass:[TutSectionViewController class] andNumPages:23 andStartPage:startPage andDelegate:self];
+	self = [super initWithChildClass:[TutSectionViewController class] andNumPages:24 andStartPage:startPage andDelegate:self];
 	if(self){
 		self.title = @"Tutorial";
 	}

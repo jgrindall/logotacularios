@@ -47,10 +47,11 @@ function visitfdstmt(node){
 }
 
 function visitarcstmt(node){
+	console.log(node);
 	visitchildren(node);
 	var amount1 = stack.pop();
 	var amount2 = stack.pop();
-	self.postMessage({ "type":"command", "name":"arc", "angle":amount1, "radius":amount2 });
+	self.postMessage({ "type":"command", "name":"arc", "angle":amount2, "radius":amount1 });
 }
 
 function visitbkstmt(node){
@@ -568,4 +569,3 @@ function visitNode(node){
 		visitlabelstmt(node);
 	}
 }
-

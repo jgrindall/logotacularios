@@ -12,6 +12,8 @@
 
 - (void) drawLineFrom:(CGPoint)fromPos to:(CGPoint) toPos withColor:(UIColor*) clr andThickness:(NSInteger)thickness;
 
+- (void) drawArcUsingAngle:(float)a andRadius:(float) r andCentre:(CGPoint) c andStartAngle:(float) a0 withColor:(UIColor*) clr andThickness:(NSInteger)thickness;
+
 - (void) drawTextAt:(CGPoint)p withColor:(UIColor*) clr andString:(NSString*)s;
 
 - (void) drawTriangleAt:(CGPoint)p withHeading:(float)h withColor:(UIColor*)clr;
