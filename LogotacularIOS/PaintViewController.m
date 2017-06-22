@@ -511,15 +511,12 @@ NSString* const THICK_KEYWORD			= @"thick";
 		[self fd:(NSNumber*)dic[@"amount"]];
 	}
 	else if([name isEqualToString:ARC_KEYWORD]){
-		NSLog(@"dic %@ %@", (NSNumber*)dic[@"angle"], (NSNumber*)dic[@"radius"]);
 		[self arcWithAngle:(NSNumber*)dic[@"angle"] andRadius:(NSNumber*)dic[@"radius"]];
 	}
 	else if([name isEqualToString:ARCRT_KEYWORD]){
-		NSLog(@"dic %@ %@", (NSNumber*)dic[@"angle"], (NSNumber*)dic[@"radius"]);
 		[self arcRtWithAngle:(NSNumber*)dic[@"angle"] andRadius:(NSNumber*)dic[@"radius"]];
 	}
 	else if([name isEqualToString:ARCLT_KEYWORD]){
-		NSLog(@"dic %@ %@", (NSNumber*)dic[@"angle"], (NSNumber*)dic[@"radius"]);
 		[self arcLtWithAngle:(NSNumber*)dic[@"angle"] andRadius:(NSNumber*)dic[@"radius"]];
 	}
 	else if([name isEqualToString:SETXY_KEYWORD]){
