@@ -13,7 +13,8 @@
 
 extern NSString* const FD_KEYWORD;
 extern NSString* const ARC_KEYWORD;
-extern NSString* const ARCFD_KEYWORD;
+extern NSString* const ARCRT_KEYWORD;
+extern NSString* const ARCLT_KEYWORD;
 extern NSString* const RT_KEYWORD;
 extern NSString* const PENUP_KEYWORD;
 extern NSString* const HOME_KEYWORD;

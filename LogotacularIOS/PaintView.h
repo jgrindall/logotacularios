@@ -12,7 +12,7 @@
 
 - (void) drawLineFrom:(CGPoint)p0 to:(CGPoint)p1 withColor:(UIColor *)clr andThickness:(NSInteger)thickness;
 
-- (void) drawArcUsingAngle:(float)a andRadius:(float)r andCentre:(CGPoint) c andStartAngle:(float) a0 withColor:(UIColor *)clr andThickness:(NSInteger)thickness;
+- (void) drawArcUsingAngle:(float)a andRadius:(float)r andCentre:(CGPoint) c andStartAngle:(float) a0 withColor:(UIColor *)clr andThickness:(NSInteger)thickness andCW:(int) cw;
 
 - (void) drawTextAt:(CGPoint)p withColor:(UIColor*) clr andString:(NSString*)s;
 

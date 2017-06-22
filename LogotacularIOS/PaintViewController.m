@@ -36,7 +36,8 @@ static float const maxAllowed = 2000000000.0;
 static float const minAllowed = -2000000000.0;
 
 NSString* const ARC_KEYWORD				= @"arc";
-NSString* const ARCFD_KEYWORD			= @"arcfd";
+NSString* const ARCRT_KEYWORD			= @"arcrt";
+NSString* const ARCLT_KEYWORD			= @"arclt";
 NSString* const FD_KEYWORD				= @"fd";
 NSString* const SETXY_KEYWORD			= @"setxy";
 NSString* const LABEL_KEYWORD			= @"label";
@@ -387,24 +388,47 @@ NSString* const THICK_KEYWORD			= @"thick";
 }
 
 - (void) drawArcUsingAngle: (float)a andRadius: (float)r{
-	NSNumber* thick = [[self getTurtleModel] getVal:TURTLE_PEN_THICK];
-	UIColor* clr = [[self getTurtleModel] getVal:TURTLE_COLOR];
-	CGPoint p0 = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
-	float a0 = [[[self getTurtleModel] getVal:TURTLE_HEADING] floatValue];
-	[self.paintView drawArcUsingAngle:a andRadius:r andCentre:p0 andStartAngle:(float) a0 withColor:clr andThickness:[thick integerValue]];
+	bool isDown = [[[self getTurtleModel] getVal:TURTLE_PEN_DOWN] boolValue];
+	if(isDown){
+		NSNumber* thick = [[self getTurtleModel] getVal:TURTLE_PEN_THICK];
+		UIColor* clr = [[self getTurtleModel] getVal:TURTLE_COLOR];
+		CGPoint p0 = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
+		float a0 = [[[self getTurtleModel] getVal:TURTLE_HEADING] floatValue];
+		[self.paintView drawArcUsingAngle:a andRadius:r andCentre:p0 andStartAngle:(float) a0 withColor:clr andThickness:[thick integerValue] andCW:0];
+	}
 }
 
-- (void) drawArcFdUsingAngle: (float)a andRadius: (float)r{
-	NSNumber* thick = [[self getTurtleModel] getVal:TURTLE_PEN_THICK];
-	UIColor* clr = [[self getTurtleModel] getVal:TURTLE_COLOR];
-	CGPoint p0 = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
-	float a0 = [[[self getTurtleModel] getVal:TURTLE_HEADING] floatValue];
-	float angleRot = a0 + 90.0f;
-	CGPoint cen = CGPointMake(p0.x + r*cosf(angleRot), p0.y - r*sinf(angleRot));
-	[self.paintView drawArcUsingAngle:a andRadius:r andCentre:cen andStartAngle:(float) (a0 - 90.0f) withColor:clr andThickness:[thick integerValue]];
-	float endX = cen.x + r*cosf(a + a0 - 90.0f);
-	float endY = cen.y + r*sinf(a + a0 - 90.0f);
-	[self setxyWithX:[NSNumber numberWithFloat:endX] andY:[NSNumber numberWithFloat:endY]];
+- (void) drawArcLtUsingAngle: (float)a andRadius: (float)r{
+	NSNumber* thick =	[[self getTurtleModel]	getVal:TURTLE_PEN_THICK];
+	UIColor* clr =		[[self getTurtleModel]	getVal:TURTLE_COLOR];
+	CGPoint p0 =		[[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
+	float a0 =			[[[self getTurtleModel] getVal:TURTLE_HEADING] floatValue];
+	bool isDown =		[[[self getTurtleModel] getVal:TURTLE_PEN_DOWN] boolValue];
+	CGPoint cen = CGPointMake(p0.x + r*sinf(a0*M_PI/180.0f), p0.y - r*cosf(a0*M_PI/180.0f));
+	float a1 = (90.0f - a + a0) * M_PI/180.0f;
+	float endX = cen.x + r*cosf(a1);
+	float endY = cen.y + r*sinf(a1);
+	if(isDown){
+		[self.paintView drawArcUsingAngle:a andRadius:r andCentre:cen andStartAngle:(float)(90.0f - a + a0) withColor:clr andThickness:[thick integerValue] andCW:0];
+	}
+	[[self getTurtleModel] setVal:[NSValue valueWithCGPoint:CGPointMake(endX, endY)] forKey:TURTLE_POS];
+	[self turn:[NSNumber numberWithFloat:-a]];
+}
+
+- (void) drawArcRtUsingAngle: (float)a andRadius: (float)r{
+	NSNumber* thick =	[[self getTurtleModel]	getVal:TURTLE_PEN_THICK];
+	UIColor* clr =		[[self getTurtleModel]	getVal:TURTLE_COLOR];
+	CGPoint p0 =		[[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
+	float a0 =			[[[self getTurtleModel] getVal:TURTLE_HEADING] floatValue];
+	bool isDown =		[[[self getTurtleModel] getVal:TURTLE_PEN_DOWN] boolValue];
+	CGPoint cen = CGPointMake(p0.x - r*sinf(a0*M_PI/180.0f), p0.y + r*cosf(a0*M_PI/180.0f));
+	float a1 = (a + a0 - 90.0f) * M_PI/180.0f;
+	float endX = cen.x + r*cosf(a1);
+	float endY = cen.y + r*sinf(a1);
+	if(isDown){
+		[self.paintView drawArcUsingAngle:a andRadius:r andCentre:cen andStartAngle:(float) (a0 - 90.0f) withColor:clr andThickness:[thick integerValue] andCW:0];
+	}
+	[[self getTurtleModel] setVal:[NSValue valueWithCGPoint:CGPointMake(endX, endY)] forKey:TURTLE_POS];
 	[self turn:[NSNumber numberWithFloat:a]];
 }
 
@@ -428,7 +452,7 @@ NSString* const THICK_KEYWORD			= @"thick";
 	}
 }
 
-- (void) arcFdWithAngle:(NSNumber*) angle andRadius:(NSNumber*) radius{
+- (void) arcRtWithAngle:(NSNumber*) angle andRadius:(NSNumber*) radius{
 	if ([angle isKindOfClass:[NSNull class]] || [radius isKindOfClass:[NSNull class]]){
 		[self numericalOverflow];
 	}
@@ -439,7 +463,23 @@ NSString* const THICK_KEYWORD			= @"thick";
 			[self numericalOverflow];
 		}
 		else{
-			[self drawArcFdUsingAngle:fAngle andRadius: fRad];
+			[self drawArcRtUsingAngle:fAngle andRadius: fRad];
+		}
+	}
+}
+
+- (void) arcLtWithAngle:(NSNumber*) angle andRadius:(NSNumber*) radius{
+	if ([angle isKindOfClass:[NSNull class]] || [radius isKindOfClass:[NSNull class]]){
+		[self numericalOverflow];
+	}
+	else{
+		float fAngle = [angle floatValue];
+		float fRad = [radius floatValue];
+		if(fAngle > maxAllowed || fAngle < minAllowed || fRad > maxAllowed || fRad < minAllowed){
+			[self numericalOverflow];
+		}
+		else{
+			[self drawArcLtUsingAngle:fAngle andRadius: fRad];
 		}
 	}
 }
@@ -474,9 +514,13 @@ NSString* const THICK_KEYWORD			= @"thick";
 		NSLog(@"dic %@ %@", (NSNumber*)dic[@"angle"], (NSNumber*)dic[@"radius"]);
 		[self arcWithAngle:(NSNumber*)dic[@"angle"] andRadius:(NSNumber*)dic[@"radius"]];
 	}
-	else if([name isEqualToString:ARCFD_KEYWORD]){
+	else if([name isEqualToString:ARCRT_KEYWORD]){
 		NSLog(@"dic %@ %@", (NSNumber*)dic[@"angle"], (NSNumber*)dic[@"radius"]);
-		[self arcFdWithAngle:(NSNumber*)dic[@"angle"] andRadius:(NSNumber*)dic[@"radius"]];
+		[self arcRtWithAngle:(NSNumber*)dic[@"angle"] andRadius:(NSNumber*)dic[@"radius"]];
+	}
+	else if([name isEqualToString:ARCLT_KEYWORD]){
+		NSLog(@"dic %@ %@", (NSNumber*)dic[@"angle"], (NSNumber*)dic[@"radius"]);
+		[self arcLtWithAngle:(NSNumber*)dic[@"angle"] andRadius:(NSNumber*)dic[@"radius"]];
 	}
 	else if([name isEqualToString:SETXY_KEYWORD]){
 		[self setxyWithX:(NSNumber*)dic[@"amountX"] andY:(NSNumber*)dic[@"amountY"]];

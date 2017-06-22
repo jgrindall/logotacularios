@@ -134,24 +134,28 @@
 	}
 }
 
-- (void) drawArcUsingAngle:(float)a andRadius:(float) r andCentre:(CGPoint) c andStartAngle:(float) a0 withColor:(UIColor*) clr andThickness:(NSInteger)thickness{
+- (void) drawArcUsingAngle:(float)a andRadius:(float) r andCentre:(CGPoint) c andStartAngle:(float) a0 withColor:(UIColor*) clr andThickness:(NSInteger)thickness andCW:(int) cw{
 	UIColor * __autoreleasing _color = clr;
-	CGContextSetStrokeColorWithColor(self.cacheContext, _color.CGColor);
-	float thickness1 = thickness * [self getScale:self.flushedTransform];
-	CGContextSetLineWidth(self.cacheContext, thickness1);
-	if(isnan(c.x) || isnan(c.y) || isnan(c.x) || isnan(c.y) || isnan(a) || isnan(r)){
-		return;
+	if(cw == 0 || cw == 1){
+		CGContextSetStrokeColorWithColor(self.cacheContext, _color.CGColor);
+		float thickness1 = thickness * [self getScale:self.flushedTransform];
+		CGContextSetLineWidth(self.cacheContext, thickness1);
+		if(isnan(c.x) || isnan(c.y) || isnan(c.x) || isnan(c.y) || isnan(a) || isnan(r)){
+			return;
+		}
+		float scale = [self getScale:self.flushedTransform];
+		r = r*scale;
+		a0 = a0 * M_PI/180;
+		a = a * M_PI/180;
+		CGPoint c1 = [self getFlushedPoint:c];
+		CGContextMoveToPoint(self.cacheContext, c1.x + r*cosf(a0), c1.y + r*sinf(a0));
+		CGContextAddArc(self.cacheContext, c1.x, c1.y, r, a0, a0 + a, cw);
+		CGContextStrokePath(self.cacheContext);
+		[self setNeedsDisplay];
 	}
-	float scale = [self getScale:self.flushedTransform];
-	r = r*scale;
-	a0 = a0 * M_PI/180;
-	a = a * M_PI/180;
-	CGPoint c1 = [self getFlushedPoint:c];
-	NSLog(@"angle %f rad %f, centre %f %f  startAngle %f", a, r, c.x, c.y, a0);
-	CGContextMoveToPoint(self.cacheContext, c1.x + r*cosf(a0), c1.y + r*sinf(a0));
-	CGContextAddArc(self.cacheContext, c1.x, c1.y, r, a0, a0 + a, 0);
-	CGContextStrokePath(self.cacheContext);
-	[self setNeedsDisplay];
+	else{
+		NSLog(@"cw error");
+	}
 }
 
 - (void) drawLineFrom:(CGPoint)fromPos to:(CGPoint) toPos withColor:(UIColor*) clr andThickness:(NSInteger)thickness {

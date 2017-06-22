@@ -53,11 +53,18 @@ function visitarcstmt(node){
 	self.postMessage({ "type":"command", "name":"arc", "angle":amount2, "radius":amount1 });
 }
 
-function visitarcfdstmt(node){
+function visitarcrtstmt(node){
 	visitchildren(node);
 	var amount1 = stack.pop();
 	var amount2 = stack.pop();
-	self.postMessage({ "type":"command", "name":"arcfd", "angle":amount2, "radius":amount1 });
+	self.postMessage({ "type":"command", "name":"arcrt", "angle":amount2, "radius":amount1 });
+}
+
+function visitarcltstmt(node){
+	visitchildren(node);
+	var amount1 = stack.pop();
+	var amount2 = stack.pop();
+	self.postMessage({ "type":"command", "name":"arclt", "angle":amount2, "radius":amount1 });
 }
 
 function visitbkstmt(node){
@@ -460,8 +467,11 @@ function visitNode(node){
 	else if(t=="arcstmt"){
 		visitarcstmt(node);
 	}
-	else if(t=="arcfdstmt"){
-		visitarcfdstmt(node);
+	else if(t=="arcrtstmt"){
+		visitarcrtstmt(node);
+	}
+	else if(t=="arcltstmt"){
+		visitarcltstmt(node);
 	}
 	else if(t=="bkstmt"){
 		visitbkstmt(node);

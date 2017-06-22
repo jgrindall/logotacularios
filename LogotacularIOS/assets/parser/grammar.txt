@@ -17,7 +17,12 @@ insidestmt
 
 insidestmt =
 
-sep* f1:arcfdstmt sep*
+sep* f1:arcltstmt sep*
+{
+return {type:"insidestmt", children:[f1]};
+}
+/
+sep* f1:arcrtstmt sep*
 {
 return {type:"insidestmt", children:[f1]};
 }
@@ -233,9 +238,14 @@ arcstmt  = ('arc') sep* num1:expression sep* num2:expression eoline
 return {type:"arcstmt", a:1, children:[num1, num2]};
 }
 
-arcfdstmt  = ('arcfd') sep* num1:expression sep* num2:expression eoline
+arcrtstmt  = ('arcrt') sep* num1:expression sep* num2:expression eoline
 {
-return {type:"arcfdstmt", a:1, children:[num1, num2]};
+return {type:"arcrtstmt", a:1, children:[num1, num2]};
+}
+
+arcltstmt  = ('arclt') sep* num1:expression sep* num2:expression eoline
+{
+return {type:"arcltstmt", a:1, children:[num1, num2]};
 }
 
 bkstmt  = ('bk' / 'back') sep* num:expression eoline
@@ -360,7 +370,7 @@ expressionspace = sep* e:expression ' '
 return e;
 }
 
-keyword = 'to' / 'fd' / 'arc' / 'arcfd' / 'rt' / 'end' / 'penup' / 'pu' / 'pd' / 'pendown' / 'color' / 'bg' / 'thick' / 'stop' / 'home' / 'setxy' / 'sqrt' / 'label' / 'random' / 'sin' / 'cos' / 'tan'
+keyword = 'to' / 'fd' / 'arc' / 'arcrt' / 'arclt' / 'rt' / 'end' / 'penup' / 'pu' / 'pd' / 'pendown' / 'color' / 'bg' / 'thick' / 'stop' / 'home' / 'setxy' / 'sqrt' / 'label' / 'random' / 'sin' / 'cos' / 'tan'
 
 fnname = !keyword c0:([a-zA-Z])+ c1:[a-zA-Z0-9_]*
 {

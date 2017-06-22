@@ -9,8 +9,8 @@
             "<tr><td>fd, bk</td><td>fd 100<br/>bk 100</td><td>Move forwards or backwards 100 units</td></tr>",
             "<tr><td>rt, lt</td><td>rt 90<br/>lt 90</td><td>Turn right or left 90 degrees</td></tr>",
             "<tr><td>home</td><td>home</td><td>Reset the turtle's position to where it started</td></tr>",
-            "<tr><td>penup/pu</td><td>penup</td><td>Lift the pen off the paper</td></tr>",
-            "<tr><td>pendown/pd</td><td>pendown</td><td>Place the pen back down on the paper</td></tr>",
+            "<tr><td>penup/pu<br/><br/>pendown/pd</td><td>penup fd 100 pendown</td><td>Lift the pen, or place the pen back down on the paper</td></tr>",
+            "<tr><td>arcrt/arclt/arc</td><td>arcrt 30 100</td><td>Draw an arc of a circle. Choose whether to turn right, left, or to place the turtle at the centre of the arc.</td></tr>",
             "<tr><td>color/colour</td><td>color yellow / color 17</td><td>Change the color of the pen</td></tr>",
             "<tr><td>bg</td><td>bg blue / bg 8</td><td>Change the color of the background</td></tr>",
             "<tr><td>thick</td><td>thick 8</td><td>Change the thickness of the lines<br/>(from 1 to 20)</td></tr>",
@@ -167,16 +167,18 @@
          ]
       },
       {
-         "file":"bg yellow color blue\nthick 4\narc 30 100\narc 90 200",
+         "file":"bg yellow color blue\nthick 12\narcrt 180 100\nthick 6\narclt 180 100\nthick 2\narc 90 75",
          "media":"help/images/e95.png",
          "bg":"blue",
          "contents":[
             "<h3>6. Drawing arcs</h3>",
-            "<p>You can draw arcs (parts of circles) with the command <span class='mono'>arc</span>)",
-            "<pre>arc 30 100\narc 90 200</pre>",
-            "<p>The first parameter is the angle that you would like the arc (for example 30 degrees and 90 degrees in the above examples)</p>",
-            "<p>The second command is the radius of the arc - 200 units in the above examples.</p>",
-            "<pre>color random fd 100</pre>"
+            "<p>You can draw arcs (parts of circles) with the commands <span class='mono'>arc</span>, <span class='mono'>arcrt</span>, and <span class='mono'>arclt</span>. For example:",
+            "<pre>thick 12 arcrt 180 100\nthick 6 arclt 180 100\nthick 2 arc 90 75</pre>",
+            "<p></p>",
+            "<p><span class='mono'>arcrt</span> draws an arc towards the right of the 'turtle' (clockwise). The first parameter is the angle of the arc and the second parameter is the radius.</p>",
+            "<p><span class='mono'>arclt</span> is similar and takes the same parameters, but draws an arc towards the left of the 'turtle', or anti-clockwise.</p>",
+            "<p></p>",
+            "<p>A slightly different command, <span class='mono'>arc a r</span>, draws an arc with the turtle at the centre and radius 'r'. The arc begins in the direction the 'turtle' is facing and proceeds clockwise (or 'right') by an amount 'a' degrees.</p>"
          ]
       },
       {
