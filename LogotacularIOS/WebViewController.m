@@ -8,6 +8,7 @@
 
 #import "WebViewController.h"
 #import <JavaScriptCore/JavaScriptCore.h>
+#import <WebKit/WebKit.h>
 #import "PLogoModel.h"
 #import "SymmNotifications.h"
 #import "PDrawingModel.h"
@@ -18,8 +19,10 @@
 
 @interface WebViewController ()
 
-@property UIWebView* webView;
+@property WKWebView* webView;
 @property id <PCommandConsumer> _commandConsumer;
+@property WKUserContentController* controller;
+@property WKWebViewConfiguration* conf;
 
 @end
 
@@ -46,22 +49,33 @@
 	logo = [self clean:logo];
 	NSString* fnCall = [NSString stringWithFormat:@"LG.getTree('%@')", logo];
 	if(self.webView){
-		[self.webView stringByEvaluatingJavaScriptFromString:fnCall];
+		[self.webView evaluateJavaScript:fnCall completionHandler:^(id _Nullable id, NSError * _Nullable error) {
+			//
+		}];
 	}
 }
 
 - (void) addWebView{
-	self.webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+	self.conf = [[WKWebViewConfiguration alloc] init];
+	self.controller = [[WKUserContentController alloc] init];
+	self.conf.userContentController = self.controller;
+	[self.controller addScriptMessageHandler:self name:@"iosCallback"];
+	
+	self.webView = [[WKWebView alloc] initWithFrame:(CGRect)CGRectZero configuration:self.conf];
 	NSString* path;
 	NSBundle* thisBundle = [NSBundle mainBundle];
-	path = [thisBundle pathForResource:@"assets/parser/index" ofType:@"html"];
+	path = [thisBundle pathForResource:@"assets/parser/index2" ofType:@"html"];
 	if(path){
 		NSURL* instructionsURL = [NSURL fileURLWithPath:path];
 		NSString* htmlString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-		self.webView.delegate = self;
+		self.webView.navigationDelegate = self;
 		[self.webView loadHTMLString:htmlString baseURL:instructionsURL];
 		[self.view addSubview:self.webView];
 	}
+}
+
+- (void) iosCallbacks:(NSDictionary*) jsonObj{
+	
 }
 
 - (void) iosCallback:(NSDictionary*) jsonObj{
@@ -122,7 +136,9 @@
 - (void) stop{
 	NSString* fnCall = @"LG.stop()";
 	if(self.webView){
-		[self.webView stringByEvaluatingJavaScriptFromString:fnCall];
+		[self.webView evaluateJavaScript:fnCall completionHandler:^(id _Nullable id, NSError * _Nullable error) {
+			//
+		}];
 	}
 }
 
@@ -152,22 +168,32 @@
 	logo = [self clean:logo];
 	NSString* fnCall = [NSString stringWithFormat:@"LG.draw('%@')", logo];
 	if(self.webView){
-		[self.webView stringByEvaluatingJavaScriptFromString:fnCall];
+		[self.webView evaluateJavaScript:fnCall completionHandler:^(id _Nullable id, NSError * _Nullable error) {
+			//
+		}];
 	}
 }
 
-- (void)webViewDidFinishLoad:(UIWebView*)theWebView{
-	JSContext *context =  [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
-	context[@"iosCallback"] = ^(NSString* param) {
-		NSError* error;
-		NSData* data = [param dataUsingEncoding:NSUTF8StringEncoding];
-		NSDictionary* jsonObj = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-		[self iosCallback:jsonObj];
-	};
+- (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation{
+	NSLog(@"loaded");
+	[self onWebLoaded];
 }
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
-	NSLog(@"didFailLoadWithError");
+- (void)onWebLoaded{
+	//WKUserScript* s = [[WKUserScript alloc] initWithSource:@"alert('hi')" injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
+	//[self.controller addUserScript:s];
+	
+	//WKUserScript* s2 = [[WKUserScript alloc] initWithSource:@"window.LG.test()" injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
+	//[self.controller addUserScript:s2];
+	//JSContext *context =  [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
+	//context[@"iosCallback"] = ^(NSString* param) {
+		//NSError* error;
+		//NSData* data = [param dataUsingEncoding:NSUTF8StringEncoding];
+		//NSDictionary* jsonObj = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+		//[self iosCallback:jsonObj];
+	//};
+	
+	
 }
 
 - (void) removeListeners{
@@ -186,6 +212,14 @@
 	[self removeListeners];
 	[self.webView removeFromSuperview];
 	self.webView = nil;
+}
+
+- (void)userContentController:(nonnull WKUserContentController *)userContentController didReceiveScriptMessage:(nonnull WKScriptMessage *)message {
+	NSLog(@"msg");
+	//NSLog(message);
+	NSLog(message.name);
+	NSLog(message.body);
+	
 }
 
 @end

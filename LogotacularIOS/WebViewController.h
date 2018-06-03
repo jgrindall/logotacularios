@@ -8,8 +8,9 @@
 
 #import "BaseViewController_protected.h"
 #import "PCommandConsumer.h"
+#import <WebKit/WebKit.h>
 
-@interface WebViewController : BaseViewController <UIWebViewDelegate>
+@interface WebViewController : BaseViewController <WKNavigationDelegate, WKScriptMessageHandler>
 
 - (void) setCommandConsumer:(id<PCommandConsumer>)commandConsumer;
 

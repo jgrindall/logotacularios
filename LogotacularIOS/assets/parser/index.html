@@ -4,12 +4,25 @@
 	<head>
 		
 		<script>
+			
 			window.LG = {};
+			
+			window.LG.test = function(){
+				webkit.messageHandlers.iosCallback.postMessage("Hello from JavaScript");
+			};
+		
+			setInterval(function(){
+					
+				try {
+					webkit.messageHandlers.iosCallback.postMessage("Hello from JavaScript");
+				} catch(err) {
+					console.log('The native context does not exist yet');
+				}
+					
+					
+			}, 2000);
+		
 		</script>
-		
-		<script src="parser.js"></script>
-		
-		<script src="main.js"></script>
 		
 	</head>
 	

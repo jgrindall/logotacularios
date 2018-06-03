@@ -1,4 +1,5 @@
 
+
 LG.stop = function(){
 	try{
 		LG.worker.terminate();
@@ -11,8 +12,8 @@ LG.stop = function(){
 
 LG.onError = function(e){
 	var s = JSON.stringify({"error":e});
-	if(window.iosCallback){
-		iosCallback(s);
+	if(webkit.messageHandlers.iosCallback.postMessage){
+		webkit.messageHandlers.iosCallback.postMessage(s);
 	}
 	else{
 		console.log("to ios "+s);
@@ -27,8 +28,8 @@ LG.onMessage = function(msg){
 	else{
 		s = JSON.stringify(msg);
 	}
-	if(window.iosCallback){
-		iosCallback(s);
+	if(webkit.messageHandlers.iosCallback.postMessage){
+		webkit.messageHandlers.iosCallback.postMessage(s);
 	}
 	else{
 		console.log("to ios "+s);
