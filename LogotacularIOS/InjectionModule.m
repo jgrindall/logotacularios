@@ -22,6 +22,7 @@
 @property id<PEventDispatcher> eventDispatcher;
 @property id<PCommandMap> commandMap;
 @property id<PFileModel> fileModel;
+@property id<PProcessingModel> procModel;
 @property id<PDrawingModel> drawingModel;
 @property id<PLogoModel> logoModel;
 @property id<PMenuModel> menuModel;
@@ -87,6 +88,8 @@
 - (void) bindModels{
 	self.fileModel = [[FileModel alloc] init];
 	[self bind:self.fileModel toProtocol:@protocol(PFileModel)];
+	self.procModel = [[ProcessingModel alloc] init];
+	[self bind:self.procModel toProtocol:@protocol(PProcessingModel)];
 	self.drawingModel = [[DrawingModel alloc] init];
 	[self bind:self.drawingModel toProtocol:@protocol(PDrawingModel)];
 	self.logoModel = [[LogoModel alloc] init];

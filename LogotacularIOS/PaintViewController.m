@@ -15,8 +15,9 @@
 #import "Colors.h"
 #import "PBgModel.h"
 #import "ImageUtils.h"
-#import "PDrawingModel.h"
+#import "PProcessingModel.h"
 #import "AbstractModel.h"
+#import "PDrawingModel.h"
 
 @interface PaintViewController ()
 
@@ -27,7 +28,10 @@
 @property NSMutableArray* cmds;
 @property CGAffineTransform currentTransform;
 @property CGAffineTransform startTransform;
-
+@property NSString* status;
+@property NSInteger executionPointerStarted;
+@property NSInteger executionPointerFinished;
+@property NSTimer* pauseTimer;
 @end
 
 @implementation PaintViewController
@@ -40,6 +44,7 @@ NSString* const ARCRT_KEYWORD			= @"arcrt";
 NSString* const ARCLT_KEYWORD			= @"arclt";
 NSString* const FD_KEYWORD				= @"fd";
 NSString* const SETXY_KEYWORD			= @"setxy";
+NSString* const SETHEADING_KEYWORD		= @"setheading";
 NSString* const LABEL_KEYWORD			= @"label";
 NSString* const RT_KEYWORD				= @"rt";
 NSString* const PENUP_KEYWORD			= @"penup";
@@ -48,12 +53,16 @@ NSString* const PENDOWN_KEYWORD			= @"pendown";
 NSString* const BG_KEYWORD				= @"bg";
 NSString* const COLOR_KEYWORD			= @"color";
 NSString* const THICK_KEYWORD			= @"thick";
+NSString* const WAIT_KEYWORD			= @"wait";
+NSString* const CLEAN_KEYWORD			= @"clean";
 
 - (instancetype) init{
 	self = [super init];
 	if(self){
 		_currentTransform = CGAffineTransformIdentity;
 		_cmds = [NSMutableArray array];
+		_executionPointerStarted = -1;
+		_executionPointerFinished = -1;
 		[[self getTurtleModel] reset];
 		[self addListeners];
 	}
@@ -186,13 +195,29 @@ NSString* const THICK_KEYWORD			= @"thick";
 	return [[JSObjection defaultInjector] getObject:@protocol(POptionsModel)];
 }
 
+- (id<PProcessingModel>) getProcessingModel{
+	return [[JSObjection defaultInjector] getObject:@protocol(PProcessingModel)];
+}
+
 - (id<PDrawingModel>) getDrawingModel{
+	return [[JSObjection defaultInjector] getObject:@protocol(PDrawingModel)];
+}
+
+- (id<PDrawingModel>) getPDrawingModel{
 	return [[JSObjection defaultInjector] getObject:@protocol(PDrawingModel)];
 }
 
 - (void) grab{
 	UIImage* img = [self getImage];
 	[[self getScreenGrabModel] setVal:img forKey:SCREEN_GRAB];
+}
+
+- (void) onStop{
+	NSLog(@"onStop!!");
+	if(self.pauseTimer != nil){
+		[self.pauseTimer invalidate];
+		self.pauseTimer = nil;
+	}
 }
 
 - (UIImage*)getImage{
@@ -215,12 +240,39 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[self.paintView reset];
 }
 
+- (void) processQueue{
+	NSLog(@"process");
+	if(_executionPointerStarted == _executionPointerFinished){
+		if(_executionPointerStarted + 1 <= self.cmds.count - 1){
+			NSLog(@"ex now!! %i %i %i", _executionPointerStarted, _executionPointerFinished, self.cmds.count);
+			_executionPointerStarted++;
+			NSLog(@"ex: %i %i", self.executionPointerStarted, self.executionPointerFinished);
+			[self executeCommandAtIndex:_executionPointerStarted];
+			[self processQueue];
+		}
+		else{
+			id<PProcessingModel> model = [self getProcessingModel];
+			NSLog(@"DONE?? %i", [[model getVal:PROCESSING_ISPROCESSING] boolValue]);
+			if(![[model getVal:PROCESSING_ISPROCESSING] boolValue]){
+				NSLog(@"DONE!!");
+				[[self getEventDispatcher] dispatch:SYMM_NOTIF_DRAWING_FINISHED withData:nil];
+			}
+		}
+	}
+	else{
+		NSLog(@"waiting");
+	}
+}
+
 - (void)consume:(NSDictionary*) data{
-	[self queueCommand:data];
+	[self.cmds addObject:data];
+	NSLog(@"consumed %i %i %i", self.cmds.count, self.executionPointerStarted, self.executionPointerFinished);
+	[self processQueue];
 }
 
 - (void) addListeners{
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_SCREENGRAB toFunction:@selector(grab) withContext:self];
+	[[self getEventDispatcher] addListener:SYMM_NOTIF_STOP toFunction:@selector(onStop) withContext:self];
 	[[self getEventDispatcher] addListener: SYMM_NOTIF_RESET toFunction:@selector(reset) withContext:self];
 	[[self getEventDispatcher] addListener: SYMM_NOTIF_RESET_ZOOM toFunction:@selector(resetZoom) withContext:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_RESTART_QUEUE toFunction:@selector(restart) withContext:self];
@@ -235,6 +287,7 @@ NSString* const THICK_KEYWORD			= @"thick";
 
 - (void) removeListeners{
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_SCREENGRAB toFunction:@selector(grab) withContext:self];
+	[[self getEventDispatcher] removeListener:SYMM_NOTIF_STOP toFunction:@selector(onStop) withContext:self];
 	[[self getEventDispatcher] removeListener: SYMM_NOTIF_RESET toFunction:@selector(reset) withContext:self];
 	[[self getEventDispatcher] removeListener: SYMM_NOTIF_RESET_ZOOM toFunction:@selector(resetZoom) withContext:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_RESTART_QUEUE toFunction:@selector(restart) withContext:self];
@@ -268,19 +321,21 @@ NSString* const THICK_KEYWORD			= @"thick";
 	CGPoint p = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
 	float heading = [[[self getTurtleModel] getVal:TURTLE_HEADING] floatValue];
 	UIColor* clr = [[self getTurtleModel] getVal:TURTLE_COLOR];
+	NSLog(@"onTri %f %f , %f", p.x, p.y, heading);
 	[self.paintView drawTriangleAt:p withHeading:heading withColor:clr];
-	
 	[self.paintView drawGrid];
 }
 
 - (void)clrQueue{
+	_executionPointerStarted = -1;
+	_executionPointerFinished = -1;
 	[self.cmds removeAllObjects];
 }
 
 - (void) restart{
-	for (NSDictionary* dic in self.cmds) {
-		[self executeOneCommandAsDic:dic];
-	}
+	self.executionPointerStarted = -1;
+	self.executionPointerFinished = -1;
+	[self processQueue];
 }
 
 - (void) changeBg{
@@ -354,6 +409,13 @@ NSString* const THICK_KEYWORD			= @"thick";
 	CGPoint p0 = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
 	UIColor* clr = [[self getTurtleModel] getVal:TURTLE_COLOR];
 	[self drawTextAt:p0 withColor:clr andString:contents];
+}
+
+- (void) setHeading:(NSNumber*) h{
+	float currentHF = [[[self getTurtleModel] getVal:TURTLE_HEADING] floatValue];
+	float amountToAddF = -1.0*(currentHF + 90.0) + [h floatValue];
+	NSNumber* amountToAdd = [NSNumber numberWithFloat:amountToAddF];
+	[self turn:amountToAdd];
 }
 
 - (void) setxyWithX:(NSNumber*) x andY:(NSNumber*) y{
@@ -432,7 +494,30 @@ NSString* const THICK_KEYWORD			= @"thick";
 	[self turn:[NSNumber numberWithFloat:a]];
 }
 
+- (void) wait{
+	NSLog(@"wait");
+	[self onTri];
+	//[self performSelector:@selector(unpause) withObject:self afterDelay:5.0];
+	if(self.pauseTimer != nil){
+		[self.pauseTimer invalidate];
+		self.pauseTimer = nil;
+	}
+	self.pauseTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(unpause) userInfo:nil repeats:NO];
+}
+
+- (void) unpause{
+	NSLog(@"--- unpause");
+	self.executionPointerFinished = self.executionPointerStarted;
+	[self processQueue];
+	[self onTri];
+}
+
+- (void) clean{
+	[self.paintView clean];
+}
+
 - (void) fd:(NSNumber*) amount{
+	NSLog(@"do: fd %@", amount);
 	if ([amount isKindOfClass:[NSNull class]]){
 		[self numericalOverflow];
 	}
@@ -444,6 +529,7 @@ NSString* const THICK_KEYWORD			= @"thick";
 		else{
 			CGPoint p0 = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
 			[[self getTurtleModel] moveFdBy:f];
+			NSLog(@"move turtle by %f", f);
 			if([[[self getTurtleModel] getVal:TURTLE_PEN_DOWN] boolValue]){
 				CGPoint p1 = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
 				[self drawLineFrom:p0 to: p1];
@@ -500,15 +586,16 @@ NSString* const THICK_KEYWORD			= @"thick";
 	}
 }
 
-- (void) queueCommand:(NSDictionary*)data{
-	[self.cmds addObject:data];
-	[self executeCommand];
-}
-
 - (void) executeOneCommandAsDic:(NSDictionary*)dic{
 	NSString* name = (NSString*)dic[@"name"];
 	if([name isEqualToString:FD_KEYWORD]){
 		[self fd:(NSNumber*)dic[@"amount"]];
+	}
+	else if([name isEqualToString:WAIT_KEYWORD]){
+		[self wait];
+	}
+	else if([name isEqualToString:CLEAN_KEYWORD]){
+		[self clean];
 	}
 	else if([name isEqualToString:ARC_KEYWORD]){
 		[self arcWithAngle:(NSNumber*)dic[@"angle"] andRadius:(NSNumber*)dic[@"radius"]];
@@ -521,6 +608,9 @@ NSString* const THICK_KEYWORD			= @"thick";
 	}
 	else if([name isEqualToString:SETXY_KEYWORD]){
 		[self setxyWithX:(NSNumber*)dic[@"amountX"] andY:(NSNumber*)dic[@"amountY"]];
+	}
+	else if([name isEqualToString:SETHEADING_KEYWORD]){
+		[self setHeading:(NSNumber*)dic[@"heading"]];
 	}
 	else if([name isEqualToString:LABEL_KEYWORD]){
 		[self label:(NSString*)dic[@"contents"]];
@@ -546,10 +636,15 @@ NSString* const THICK_KEYWORD			= @"thick";
 	else if([name isEqualToString:PENDOWN_KEYWORD]){
 		[[self getTurtleModel] setVal:[NSNumber numberWithBool:YES] forKey:TURTLE_PEN_DOWN];
 	}
+	if(![name isEqualToString:WAIT_KEYWORD]){
+		_executionPointerFinished = _executionPointerStarted;
+		NSLog(@"increment -> %i %i", _executionPointerStarted, _executionPointerFinished);
+	}
 }
 
-- (void) executeCommand{
-	NSDictionary* dic = self.cmds[self.cmds.count - 1]; // top one
+- (void) executeCommandAtIndex:(NSInteger)n{
+	NSDictionary* dic = self.cmds[n];
+	NSLog(@"EX %i", n);
 	[self executeOneCommandAsDic:dic];
 }
 

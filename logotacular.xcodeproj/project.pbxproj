@@ -35,7 +35,7 @@
 		525167E419FFC19F00814B16 /* Assets.m in Sources */ = {isa = PBXBuildFile; fileRef = 525167E319FFC19F00814B16 /* Assets.m */; };
 		525167E819FFCEB000814B16 /* AContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 525167E719FFCEB000814B16 /* AContainerViewController.m */; };
 		525167EC19FFD36C00814B16 /* AbstractModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 525167EB19FFD36C00814B16 /* AbstractModel.m */; };
-		525167F019FFEE6400814B16 /* ClickPlayCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 525167EF19FFEE6400814B16 /* ClickPlayCommand.m */; };
+		525167F019FFEE6400814B16 /* ClickPlayOrStopCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 525167EF19FFEE6400814B16 /* ClickPlayOrStopCommand.m */; };
 		5257F1F41E7C93D800AB2DB7 /* InsertCharCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5257F1F31E7C93D800AB2DB7 /* InsertCharCommand.m */; };
 		5257F3431A012F9500757C77 /* ClickMenuCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5257F3421A012F9500757C77 /* ClickMenuCommand.m */; };
 		5257F3461A0131F000757C77 /* HideMenuCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5257F3451A0131F000757C77 /* HideMenuCommand.m */; };
@@ -76,7 +76,7 @@
 		52B228981A00E73D001CC355 /* MenuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B228971A00E73D001CC355 /* MenuModel.m */; };
 		52B2289B1A00E749001CC355 /* FileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B2289A1A00E749001CC355 /* FileModel.m */; };
 		52B2289E1A00E751001CC355 /* LogoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B2289D1A00E751001CC355 /* LogoModel.m */; };
-		52B228A11A00E75C001CC355 /* DrawingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B228A01A00E75C001CC355 /* DrawingModel.m */; };
+		52B228A11A00E75C001CC355 /* ProcessingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B228A01A00E75C001CC355 /* ProcessingModel.m */; };
 		52B274161A115D2D00D3EA3B /* HelpSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B274151A115D2D00D3EA3B /* HelpSectionViewController.m */; };
 		52B274541A11785200D3EA3B /* SyntaxErrorCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B274531A11785200D3EA3B /* SyntaxErrorCommand.m */; };
 		52B44EFE1A0B9D4800B99FD2 /* ToastUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B44EFD1A0B9D4800B99FD2 /* ToastUtils.m */; };
@@ -118,6 +118,8 @@
 		52CF55FB1A08411900F01D3A /* FileBrowserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52CF55FA1A08411900F01D3A /* FileBrowserModel.m */; };
 		52D08C541CCB8A7300EAAF81 /* TriView.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D08C531CCB8A7300EAAF81 /* TriView.m */; };
 		52D08C5B1CCBBA2600EAAF81 /* ClickCameraCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D08C5A1CCBBA2600EAAF81 /* ClickCameraCommand.m */; };
+		52D2C1BF217B98C500A155FD /* DrawingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D2C1BE217B98C400A155FD /* DrawingModel.m */; };
+		52D2C1C3217B9CAA00A155FD /* DrawingFinishedCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D2C1C1217B9CAA00A155FD /* DrawingFinishedCommand.m */; };
 		52D3D9951CCCE44500197451 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D3D9941CCCE44500197451 /* MessageUI.framework */; };
 		52D3D9971CCCE44D00197451 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D3D9961CCCE44D00197451 /* Social.framework */; };
 		52D3D99A1CCCE50A00197451 /* FacebookService.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D3D9991CCCE50A00197451 /* FacebookService.m */; };
@@ -197,8 +199,8 @@
 		525167E719FFCEB000814B16 /* AContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AContainerViewController.m; sourceTree = "<group>"; };
 		525167EA19FFD36C00814B16 /* AbstractModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractModel.h; sourceTree = "<group>"; };
 		525167EB19FFD36C00814B16 /* AbstractModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractModel.m; sourceTree = "<group>"; };
-		525167EE19FFEE6400814B16 /* ClickPlayCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickPlayCommand.h; sourceTree = "<group>"; };
-		525167EF19FFEE6400814B16 /* ClickPlayCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickPlayCommand.m; sourceTree = "<group>"; };
+		525167EE19FFEE6400814B16 /* ClickPlayOrStopCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickPlayOrStopCommand.h; sourceTree = "<group>"; };
+		525167EF19FFEE6400814B16 /* ClickPlayOrStopCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickPlayOrStopCommand.m; sourceTree = "<group>"; };
 		5257F1F21E7C93D800AB2DB7 /* InsertCharCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsertCharCommand.h; sourceTree = "<group>"; };
 		5257F1F31E7C93D800AB2DB7 /* InsertCharCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsertCharCommand.m; sourceTree = "<group>"; };
 		5257F1F51E7C9F7100AB2DB7 /* PHelpDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PHelpDelegate.h; sourceTree = "<group>"; };
@@ -286,12 +288,12 @@
 		52B2289A1A00E749001CC355 /* FileModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileModel.m; sourceTree = "<group>"; };
 		52B2289C1A00E751001CC355 /* LogoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogoModel.h; sourceTree = "<group>"; };
 		52B2289D1A00E751001CC355 /* LogoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogoModel.m; sourceTree = "<group>"; };
-		52B2289F1A00E75C001CC355 /* DrawingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingModel.h; sourceTree = "<group>"; };
-		52B228A01A00E75C001CC355 /* DrawingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingModel.m; sourceTree = "<group>"; };
+		52B2289F1A00E75C001CC355 /* ProcessingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProcessingModel.h; sourceTree = "<group>"; };
+		52B228A01A00E75C001CC355 /* ProcessingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProcessingModel.m; sourceTree = "<group>"; };
 		52B228A21A00EBB6001CC355 /* PMenuModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMenuModel.h; sourceTree = "<group>"; };
 		52B228A31A00EBC2001CC355 /* PFileModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFileModel.h; sourceTree = "<group>"; };
 		52B228A41A00EBCC001CC355 /* PLogoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLogoModel.h; sourceTree = "<group>"; };
-		52B228A51A00EBD6001CC355 /* PDrawingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDrawingModel.h; sourceTree = "<group>"; };
+		52B228A51A00EBD6001CC355 /* PProcessingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PProcessingModel.h; sourceTree = "<group>"; };
 		52B228A61A00EBF1001CC355 /* PAbstractModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAbstractModel.h; sourceTree = "<group>"; };
 		52B228AD1A00EE99001CC355 /* Models.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Models.h; sourceTree = "<group>"; };
 		52B274141A115D2C00D3EA3B /* HelpSectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpSectionViewController.h; sourceTree = "<group>"; };
@@ -383,6 +385,11 @@
 		52D08C531CCB8A7300EAAF81 /* TriView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TriView.m; sourceTree = "<group>"; };
 		52D08C591CCBBA2600EAAF81 /* ClickCameraCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickCameraCommand.h; sourceTree = "<group>"; };
 		52D08C5A1CCBBA2600EAAF81 /* ClickCameraCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickCameraCommand.m; sourceTree = "<group>"; };
+		52D2C1BD217B98C400A155FD /* DrawingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingModel.h; sourceTree = "<group>"; };
+		52D2C1BE217B98C400A155FD /* DrawingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingModel.m; sourceTree = "<group>"; };
+		52D2C1C0217B990900A155FD /* PDrawingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDrawingModel.h; sourceTree = "<group>"; };
+		52D2C1C1217B9CAA00A155FD /* DrawingFinishedCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingFinishedCommand.m; sourceTree = "<group>"; };
+		52D2C1C2217B9CAA00A155FD /* DrawingFinishedCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingFinishedCommand.h; sourceTree = "<group>"; };
 		52D3D9941CCCE44500197451 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		52D3D9961CCCE44D00197451 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		52D3D9981CCCE50A00197451 /* FacebookService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookService.h; sourceTree = "<group>"; };
@@ -574,6 +581,8 @@
 		5272DE3319FE4799006E717F /* Commands */ = {
 			isa = PBXGroup;
 			children = (
+				52D2C1C2217B9CAA00A155FD /* DrawingFinishedCommand.h */,
+				52D2C1C1217B9CAA00A155FD /* DrawingFinishedCommand.m */,
 				5257F1F21E7C93D800AB2DB7 /* InsertCharCommand.h */,
 				5257F1F31E7C93D800AB2DB7 /* InsertCharCommand.m */,
 				5248C58B1E350826006F4C4D /* EditGridClrCommand.h */,
@@ -597,8 +606,8 @@
 				5257F3501A01358400757C77 /* Base */,
 				52815C731A050EB1005AFA93 /* ClickOpenCommand.h */,
 				52815C741A050EB1005AFA93 /* ClickOpenCommand.m */,
-				525167EE19FFEE6400814B16 /* ClickPlayCommand.h */,
-				525167EF19FFEE6400814B16 /* ClickPlayCommand.m */,
+				525167EE19FFEE6400814B16 /* ClickPlayOrStopCommand.h */,
+				525167EF19FFEE6400814B16 /* ClickPlayOrStopCommand.m */,
 				527D42F81A0ADBEF008AE82A /* ClickSaveCommand.h */,
 				527D42F91A0ADBEF008AE82A /* ClickSaveCommand.m */,
 				5257F3411A012F9500757C77 /* ClickMenuCommand.h */,
@@ -802,9 +811,12 @@
 		52B228AB1A00ECCB001CC355 /* Drawing */ = {
 			isa = PBXGroup;
 			children = (
-				52B228A51A00EBD6001CC355 /* PDrawingModel.h */,
-				52B2289F1A00E75C001CC355 /* DrawingModel.h */,
-				52B228A01A00E75C001CC355 /* DrawingModel.m */,
+				52D2C1C0217B990900A155FD /* PDrawingModel.h */,
+				52D2C1BD217B98C400A155FD /* DrawingModel.h */,
+				52D2C1BE217B98C400A155FD /* DrawingModel.m */,
+				52B228A51A00EBD6001CC355 /* PProcessingModel.h */,
+				52B2289F1A00E75C001CC355 /* ProcessingModel.h */,
+				52B228A01A00E75C001CC355 /* ProcessingModel.m */,
 			);
 			name = Drawing;
 			sourceTree = "<group>";
@@ -1139,7 +1151,7 @@
 		52B5B30819FD7D4600EF531F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = jgrindall;
 				TargetAttributes = {
 					52B5B30F19FD7D4600EF531F = {
@@ -1251,7 +1263,7 @@
 				52B5B35319FD7E1400EF531F /* Colors.m in Sources */,
 				52CC891D1A1642E00046615F /* AbstractHelpPageViewController.m in Sources */,
 				52DD4AA61C2ACA1E0039A052 /* ClickTutCommand.m in Sources */,
-				525167F019FFEE6400814B16 /* ClickPlayCommand.m in Sources */,
+				525167F019FFEE6400814B16 /* ClickPlayOrStopCommand.m in Sources */,
 				52B274541A11785200D3EA3B /* SyntaxErrorCommand.m in Sources */,
 				52CBC9C11A0D2EBD00C229C8 /* AlertManager.m in Sources */,
 				52420E271A1ADF710069D4AC /* StartCommand.m in Sources */,
@@ -1262,6 +1274,7 @@
 				525167EC19FFD36C00814B16 /* AbstractModel.m in Sources */,
 				5257F3431A012F9500757C77 /* ClickMenuCommand.m in Sources */,
 				52D08C5B1CCBBA2600EAAF81 /* ClickCameraCommand.m in Sources */,
+				52D2C1C3217B9CAA00A155FD /* DrawingFinishedCommand.m in Sources */,
 				52244C151A25341500505F6D /* ClickResetZoomCommand.m in Sources */,
 				521C663C1E315C76001F325A /* OptionsModel.m in Sources */,
 				527D42FA1A0ADBEF008AE82A /* ClickSaveCommand.m in Sources */,
@@ -1274,7 +1287,7 @@
 				52B2289B1A00E749001CC355 /* FileModel.m in Sources */,
 				52B5B35519FD7E1400EF531F /* ImageUtils.m in Sources */,
 				5236E8751A1D67CB0057E9B3 /* TextLayout.m in Sources */,
-				52B228A11A00E75C001CC355 /* DrawingModel.m in Sources */,
+				52B228A11A00E75C001CC355 /* ProcessingModel.m in Sources */,
 				52CC89301A1681810046615F /* LoadFromHelpCommand.m in Sources */,
 				527D42EB1A0ABED5008AE82A /* FileListModel.m in Sources */,
 				522E91CD1A1CAA60000AB933 /* AlertLayout.m in Sources */,
@@ -1315,6 +1328,7 @@
 				5216535D1E2B9BDD0094AE94 /* SignatureViewController.m in Sources */,
 				5248C5861E33A857006F4C4D /* EditFontSizeCommand.m in Sources */,
 				527D42F11A0AD75D008AE82A /* PerformOpenCommand.m in Sources */,
+				52D2C1BF217B98C500A155FD /* DrawingModel.m in Sources */,
 				52DF36BC1E30035500D86479 /* GridView.m in Sources */,
 				522E91C71A1CA6C2000AB933 /* FileLayout.m in Sources */,
 				52D08C541CCB8A7300EAAF81 /* TriView.m in Sources */,
@@ -1359,14 +1373,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1406,14 +1426,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

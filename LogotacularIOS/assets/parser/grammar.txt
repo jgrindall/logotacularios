@@ -57,6 +57,11 @@ sep* f25:setstmt sep*
 return f25;
 }
 /
+sep* f26:sethstmt sep*
+{
+return f26;
+}
+/
 sep* f3:rptstmt sep*
 {
 return {type:"insidestmt", children:[f3]};
@@ -120,6 +125,16 @@ sep* f5:callfnstmt sep*
 {
 //TODO - why ?
 return {type:"insidestmt", children:[f5]};
+}
+/
+sep* f6:cleanstmt sep*
+{
+return f6;
+}
+/
+sep* f7:waitstmt sep*
+{
+return f7;
 }
 
 
@@ -203,6 +218,17 @@ bgstmt = sep* 'bg' sep* c:color eoline
 return {"type":"bgstmt", "color":c};
 }
 
+cleanstmt = sep* 'clean' sep* eoline
+{
+return {"type":"cleanstmt"};
+}
+
+waitstmt = sep* 'wait' sep* eoline
+{
+return {"type":"waitstmt"};
+}
+
+
 thickstmt = sep* 'thick'  sep* e:expression eoline
 {
 return {"type":"thickstmt", "children":[e]};
@@ -266,6 +292,11 @@ return {type:"ltstmt", children:[num]};
 setstmt = 'setxy' sep* numx:expression sep* numy:expression sep*
 {
 return {type:"setxy", children:[numx,numy]};
+}
+
+sethstmt = 'setheading' sep* h:expression sep*
+{
+return {type:"setheading", children:[h]};
 }
 
 rptstmt  = 'rpt' sep* num:expression sep* '[' sep* list:insidefnlist sep* ']' sep*
@@ -370,7 +401,7 @@ expressionspace = sep* e:expression ' '
 return e;
 }
 
-keyword = 'to' / 'fd' / 'arc' / 'arcrt' / 'arclt' / 'rt' / 'end' / 'penup' / 'pu' / 'pd' / 'pendown' / 'color' / 'bg' / 'thick' / 'stop' / 'home' / 'setxy' / 'sqrt' / 'label' / 'random' / 'sin' / 'cos' / 'tan'
+keyword = 'to' / 'fd' / 'arc' / 'arcrt' / 'arclt' / 'rt' / 'end' / 'penup' / 'pu' / 'pd' / 'pendown' / 'color' / 'bg' / 'thick' / 'stop' / 'home' / 'setxy' / 'sqrt' / 'label' / 'random' / 'sin' / 'cos' / 'tan' / 'clean' / 'wait'
 
 fnname = !keyword c0:([a-zA-Z])+ c1:[a-zA-Z0-9_]*
 {

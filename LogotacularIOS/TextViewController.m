@@ -19,9 +19,10 @@
 #import "Assets.h"
 #import "ErrorObject.h"
 #import "Appearance.h"
+#import "PProcessingModel.h"
 #import "PDrawingModel.h"
 #import "PLogoModel.h"
-#import "PDrawingModel.h"
+#import "PProcessingModel.h"
 #import "PTextVisibleModel.h"
 #import "POptionsModel.h"
 
@@ -132,7 +133,7 @@ int const EXCLAM_SIZE = 36;
 	[[self getOptionsModel] addListener:@selector(optionChanged) forKey:FONT_SIZE withTarget:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_DISMISS_KEY toFunction:@selector(dismissKeyboard) withContext:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_DO_INSERT_CHAR toFunction:@selector(insertChar:) withContext:self];
-	[[self getDrawingModel] addListener:@selector(drawingChanged) forKey:DRAWING_ISDRAWING withTarget:self];
+	[[self getProcessingModel] addListener:@selector(procChanged) forKey:PROCESSING_ISPROCESSING withTarget:self];
 	[[self getTextVisModel] addListener:@selector(visChanged) forKey:TEXT_VISIBLE_VIS withTarget:self];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardDidHide:) name:UIKeyboardDidHideNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardDidShow:) name:UIKeyboardDidShowNotification object:nil];
@@ -160,7 +161,7 @@ int const EXCLAM_SIZE = 36;
 	}
 }
 
-- (void) drawingChanged{
+- (void) procChanged{
 	[self updateUndoRedo];
 }
 
@@ -280,6 +281,10 @@ int const EXCLAM_SIZE = 36;
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.char3Button attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual		toItem:self.container		attribute:NSLayoutAttributeLeading				multiplier:1.0 constant:120.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.char3Button attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual		toItem:nil					attribute:NSLayoutAttributeNotAnAttribute		multiplier:0.0 constant:40.0]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.char3Button attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual		toItem:nil					attribute:NSLayoutAttributeNotAnAttribute		multiplier:0.0 constant:30.0]];
+}
+
+- (id<PProcessingModel>) getProcessingModel{
+	return [[JSObjection defaultInjector] getObject:@protocol(PProcessingModel)];
 }
 
 - (id<PDrawingModel>) getDrawingModel{
@@ -480,7 +485,7 @@ int const EXCLAM_SIZE = 36;
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_INSERT_CHAR toFunction:@selector(insertChar:) withContext:self];
 	[[self getErrorModel] removeListener:@selector(errorChanged) forKey:LOGO_ERROR_ERROR withTarget:self];
 	[[self getOptionsModel] removeListener:@selector(optionChanged) forKey:FONT_SIZE withTarget:self];
-	[[self getDrawingModel] removeListener:@selector(drawingChanged) forKey:DRAWING_ISDRAWING withTarget:self];
+	[[self getProcessingModel] removeListener:@selector(procChanged) forKey:PROCESSING_ISPROCESSING withTarget:self];
 	[[self getTextVisModel] removeListener:@selector(visChanged) forKey:TEXT_VISIBLE_VIS withTarget:self];
 	[self.exclamView removeGestureRecognizer:self.exclamTap];
 	[self.exclamView setUserInteractionEnabled:NO];

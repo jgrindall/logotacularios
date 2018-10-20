@@ -10,10 +10,11 @@
 #import "PLogoModel.h"
 #import "LogoModel.h"
 #import "PMenuModel.h"
+#import "PDrawingModel.h"
 #import "MenuModel.h"
 #import "OptionsModel.h"
-#import "PDrawingModel.h"
-#import "DrawingModel.h"
+#import "PProcessingModel.h"
+#import "ProcessingModel.h"
 #import "PFileModel.h"
 #import "FileModel.h"
 #import "LogoErrorModel.h"
@@ -30,6 +31,7 @@
 #import "TextVisibleModel.h"
 #import "BgModel.h"
 #import "PBgModel.h"
+#import "DrawingModel.h"
 
 @interface Models
 

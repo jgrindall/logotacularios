@@ -9,14 +9,14 @@
 #import "ClearCommand.h"
 #import "SymmNotifications.h"
 #import "PLogoModel.h"
-#import "PDrawingModel.h"
+#import "PProcessingModel.h"
 #import "LogoErrorModel.h"
 #import "PBgModel.h"
 
 @implementation ClearCommand
 
 - (void) execute:(id) payload{
-	BOOL drawing = [[[self getDrawingModel] getVal:DRAWING_ISDRAWING] boolValue];
+	BOOL drawing = [[[self getProcessingModel] getVal:PROCESSING_ISPROCESSING] boolValue];
 	if(drawing){
 		[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_PLAY withData:nil];
 	}
@@ -36,8 +36,8 @@
 	return [[JSObjection defaultInjector] getObject:@protocol(PLogoErrorModel)];
 }
 
-- (id<PDrawingModel>) getDrawingModel{
-	return [[JSObjection defaultInjector] getObject:@protocol(PDrawingModel)];
+- (id<PProcessingModel>) getProcessingModel{
+	return [[JSObjection defaultInjector] getObject:@protocol(PProcessingModel)];
 }
 
 @end

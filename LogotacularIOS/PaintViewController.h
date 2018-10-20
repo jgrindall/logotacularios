@@ -22,10 +22,10 @@ extern NSString* const PENDOWN_KEYWORD;
 extern NSString* const BG_KEYWORD;
 extern NSString* const COLOR_KEYWORD;
 extern NSString* const THICK_KEYWORD;
+extern NSString* const CLEAN_KEYWORD;
+extern NSString* const WAIT_KEYWORD;
 
 - (void) reset;
-
-- (void) queueCommand:(NSDictionary*)dic;
 
 - (UIImage*)getImage;
 

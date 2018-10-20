@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ClickMenuCommand.h"
-#import "ClickPlayCommand.h"
+#import "ClickPlayOrStopCommand.h"
 #import "ClickMenuCommand.h"
 #import "ClickGridMenuCommand.h"
 #import "EditFontSizeCommand.h"
@@ -45,6 +45,7 @@
 #import "ClickResetZoomCommand.h"
 #import "ClickWipeCommand.h"
 #import "InsertCharCommand.h"
+#import "DrawingFinishedCommand.h"
 
 @interface Commands : NSObject
 

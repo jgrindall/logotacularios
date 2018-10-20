@@ -10,7 +10,7 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "PLogoModel.h"
 #import "SymmNotifications.h"
-#import "PDrawingModel.h"
+#import "PProcessingModel.h"
 #import "ToastUtils.h"
 #import "PLogoErrorModel.h"
 #import <Objection/Objection.h>
@@ -88,7 +88,8 @@
 }
 
 - (void) finished{
-	[[self getDrawingModel] setVal:@NO forKey:DRAWING_ISDRAWING];
+	NSLog(@"finished");
+	[[self getProcessingModel] setVal:@NO forKey:PROCESSING_ISPROCESSING];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_TRI withData:nil];
 }
 
@@ -115,8 +116,8 @@
 	return [[JSObjection defaultInjector] getObject:@protocol(PLogoModel)];
 }
 
-- (id<PDrawingModel>) getDrawingModel{
-	return [[JSObjection defaultInjector] getObject:@protocol(PDrawingModel)];
+- (id<PProcessingModel>) getProcessingModel{
+	return [[JSObjection defaultInjector] getObject:@protocol(PProcessingModel)];
 }
 
 - (void) stop{

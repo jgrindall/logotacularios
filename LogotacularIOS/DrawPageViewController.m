@@ -19,8 +19,9 @@
 #import "WebViewController.h"
 #import "MenuViewController.h"
 #import "GridMenuViewController.h"
-#import "PDrawingModel.h"
+#import "PProcessingModel.h"
 #import "PLogoModel.h"
+#import "PDrawingModel.h"
 #import "FilenameViewController.h"
 #import "FileLoader.h"
 #import "AlertManager.h"
@@ -65,7 +66,7 @@
 	[super viewDidAppear:animated];
 	[self layoutAll];
 	[self fileTitleChanged:nil];
-	[self drawingChanged];
+	[self drawChanged];
 	[self showWelcome];
 }
 
@@ -104,7 +105,7 @@
 
 - (void) addListeners{
 	[[self getFileModel] addGlobalListener:@selector(fileTitleChanged:) withTarget:self];
-	[[self getDrawingModel] addListener:@selector(drawingChanged) forKey:DRAWING_ISDRAWING withTarget:self];
+	[[self getDrawingModel] addListener:@selector(drawChanged) forKey:DRAWING_ISDRAWING withTarget:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_SHOW_FILENAME toFunction:@selector(showFilename) withContext:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_SHOW_FILENAME_AS toFunction:@selector(showFilenameAs) withContext:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_CHECK_SAVE toFunction:@selector(showCheckSave) withContext:self];
@@ -169,9 +170,10 @@
 	return [[JSObjection defaultInjector] getObject:@protocol(PLogoModel)];
 }
 
-- (void) drawingChanged{
-	BOOL drawing = [[[self getDrawingModel] getVal:DRAWING_ISDRAWING] boolValue];
-	if(drawing){
+- (void) drawChanged{
+	BOOL d = [[[self getDrawingModel] getVal:DRAWING_ISDRAWING] boolValue];
+	NSLog(@"dc %i", d);
+	if(d){
 		[[self getBarButton:self.playButton] setImage:[UIImage imageNamed:STOP_ICON] forState:UIControlStateNormal];
 		[[self getBarButton:self.playButton] setTitle:@" Stop" forState:UIControlStateNormal];
 	}
@@ -179,13 +181,13 @@
 		[[self getBarButton:self.playButton] setImage:[UIImage imageNamed:PLAY_ICON] forState:UIControlStateNormal];
 		[[self getBarButton:self.playButton] setTitle:@" Play" forState:UIControlStateNormal];
 	}
-	[[self getBarButton:self.listButton] setEnabled:!drawing];
-	[[self getBarButton:self.gridButton] setEnabled:!drawing];
-	[[self getBarButton:self.saveButton] setEnabled:!drawing];
-	[[self getBarButton:self.clearButton] setEnabled:!drawing];
-	[[self getBarButton:self.resetButton] setEnabled:!drawing];
-	[[self getBarButton:self.triButton] setEnabled:!drawing];
-	[[self getBarButton:self.wipeButton] setEnabled:!drawing];
+	[[self getBarButton:self.listButton] setEnabled:!d];
+	[[self getBarButton:self.gridButton] setEnabled:!d];
+	[[self getBarButton:self.saveButton] setEnabled:!d];
+	[[self getBarButton:self.clearButton] setEnabled:!d];
+	[[self getBarButton:self.resetButton] setEnabled:!d];
+	[[self getBarButton:self.triButton] setEnabled:!d];
+	[[self getBarButton:self.wipeButton] setEnabled:!d];
 }
 
 -(UIButton*)getBarButton: (UIBarButtonItem*) item{
@@ -481,7 +483,7 @@
 
 - (void) removeListeners{
 	[[self getFileModel] removeGlobalListener:@selector(setTitle:) withTarget:self];
-	[[self getDrawingModel] removeListener:@selector(drawingChanged) forKey:DRAWING_ISDRAWING withTarget:self];
+	[[self getDrawingModel] removeListener:@selector(drawChanged) forKey:DRAWING_ISDRAWING withTarget:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_SHOW_FILENAME toFunction:@selector(showFilename) withContext:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_CHECK_SAVE toFunction:@selector(showCheckSave) withContext:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_SHOW_FILENAME_AS toFunction:@selector(showFilenameAs) withContext:self];

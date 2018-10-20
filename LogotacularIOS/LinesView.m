@@ -17,7 +17,6 @@
 @property TriView* triView;
 @property BOOL hideTri;
 @property CGContextRef cacheContext;
-
 @end
 
 @implementation LinesView
@@ -36,6 +35,11 @@
 		[self setBackgroundColor:[UIColor clearColor]];
 	}
 	return self;
+}
+
+- (void) clean{
+	[self initContext];
+	[self setNeedsDisplay];
 }
 
 - (void) reset{

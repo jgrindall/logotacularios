@@ -22,6 +22,8 @@
 
 - (void) reset;
 
+- (void) clean;
+
 - (void) onViewDidLoad;
 
 - (void)clickTriangle:(BOOL)hideTri;

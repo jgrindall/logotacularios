@@ -30,8 +30,16 @@
 	return self;
 }
 
+- (void) forceUpdate{
+	[self.linesView setNeedsDisplay];
+}
+
 - (void) reset{
 	[self.linesView reset];
+}
+
+- (void) clean{
+	[self.linesView clean];
 }
 
 - (void) drawTriangleAt:(CGPoint)p withHeading:(float) h withColor:(UIColor*)clr{

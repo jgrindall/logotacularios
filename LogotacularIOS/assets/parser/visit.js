@@ -312,6 +312,20 @@ function visitsetxy(node){
 	self.postMessage({ "type":"command", "name":"setxy", "amountX":amountX, "amountY":amountY });
 }
 
+function visitsetheading(node){
+	visitchildren(node);
+	var h = stack.pop();
+	self.postMessage({ "type":"command", "name":"setheading", "heading":h});
+}
+
+function visitcleanstmt(node){
+	self.postMessage({ "type":"command", "name":"clean" });
+}
+
+function visitwaitstmt(node){
+	self.postMessage({ "type":"command", "name":"wait" });
+}
+
 function visitlabelstmt(node){
 	var child, contents;
 	child = node.children[0];
@@ -572,6 +586,9 @@ function visitNode(node){
 	else if(t=="setxy"){
 		visitsetxy(node);
 	}
+	else if(t=="setheading"){
+		visitsetheading(node);
+	}
 	else if(t=="sqrtexpression"){
 		visitsqrtexpression(node);
 	}
@@ -586,5 +603,11 @@ function visitNode(node){
 	}
 	else if(t=="labelstmt"){
 		visitlabelstmt(node);
+	}
+	else if(t=="waitstmt"){
+		visitwaitstmt(node);
+	}
+	else if(t=="cleanstmt"){
+		visitcleanstmt(node);
 	}
 }

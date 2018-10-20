@@ -8,8 +8,8 @@
 #import <Foundation/Foundation.h>
 #import "PAbstractModel.h"
 
-@protocol PDrawingModel <PAbstractModel>
+@protocol PProcessingModel <PAbstractModel>
 
-extern NSString* const DRAWING_ISDRAWING;
+extern NSString* const PROCESSING_ISPROCESSING;
 
 @end

@@ -10,6 +10,7 @@
 #import "PMenuModel.h"
 #import "PLogoErrorModel.h"
 #import "PTurtleModel.h"
+#import "PProcessingModel.h"
 #import "PDrawingModel.h"
 
 @implementation RestartCommand
@@ -34,6 +35,10 @@
 
 - (id<PMenuModel>) getMenuModel{
 	return [[JSObjection defaultInjector] getObject:@protocol(PMenuModel)];
+}
+
+- (id<PProcessingModel>) getProcessingModel{
+	return [[JSObjection defaultInjector] getObject:@protocol(PProcessingModel)];
 }
 
 - (id<PDrawingModel>) getDrawingModel{

@@ -29,7 +29,15 @@
 	[self setDefaults];
 	[self startInjection];
 	[self start];
+	
+	[self performSelector:@selector(test) withObject:nil afterDelay:5.0];
+	[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(test) object:nil];
+	
 	return YES;
+}
+
+- (void)test{
+	NSLog(@"TEST");
 }
 
 - (void) start{
@@ -53,7 +61,8 @@
 }
 
 - (void) startCommands{
-	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLICK_PLAY toCommandClass:[ClickPlayCommand class]];
+	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLICK_PLAY toCommandClass:[ClickPlayOrStopCommand class]];
+	[[self getCommandMap] mapEventName:SYMM_NOTIF_DRAWING_FINISHED toCommandClass:[DrawingFinishedCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLICK_MENU toCommandClass:[ClickMenuCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLICK_GRID_MENU toCommandClass:[ClickGridMenuCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_HIDE_MENU toCommandClass:[HideMenuCommand class]];

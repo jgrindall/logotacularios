@@ -11,6 +11,7 @@
 #import "PLogoErrorModel.h"
 #import "PTurtleModel.h"
 #import "PDrawingModel.h"
+#import "PProcessingModel.h"
 
 @implementation StartCommand
 
@@ -18,6 +19,7 @@
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLEAR_QUEUE withData:nil];
 	[[self getMenuModel] setVal:@NO forKey:MENU_SHOWN];
 	[[self getTurtleModel] reset];
+	[[self getProcessingModel] setVal:@YES forKey:PROCESSING_ISPROCESSING];
 	[[self getDrawingModel] setVal:@YES forKey:DRAWING_ISDRAWING];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_DISMISS_KEY withData:nil];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_RESET withData:nil];
@@ -30,6 +32,10 @@
 
 - (id<PMenuModel>) getMenuModel{
 	return [[JSObjection defaultInjector] getObject:@protocol(PMenuModel)];
+}
+
+- (id<PProcessingModel>) getProcessingModel{
+	return [[JSObjection defaultInjector] getObject:@protocol(PProcessingModel)];
 }
 
 - (id<PDrawingModel>) getDrawingModel{

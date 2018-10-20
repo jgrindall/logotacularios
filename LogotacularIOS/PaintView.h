@@ -18,6 +18,8 @@
 
 - (void) reset;
 
+- (void) clean;
+
 - (void) bg:(UIColor*)clr;
 
 - (void) transformWith:(CGAffineTransform)t;
@@ -37,6 +39,8 @@
 - (void) onViewDidLoad;
 
 - (void)hideTriangle;
+
+- (void) forceUpdate;
 
 - (void)clickTriangle:(BOOL)hideTri;
 

@@ -6,11 +6,12 @@
 //  Copyright (c) 2014 jgrindall. All rights reserved.
 //
 
-#import "ClickPlayCommand.h"
+#import "ClickPlayOrStopCommand.h"
 #import "SymmNotifications.h"
+#import "PProcessingModel.h"
 #import "PDrawingModel.h"
 
-@implementation ClickPlayCommand
+@implementation ClickPlayOrStopCommand
 
 - (void) execute:(id) payload{
 	id<PDrawingModel> drawingModel = [self getDrawingModel];
