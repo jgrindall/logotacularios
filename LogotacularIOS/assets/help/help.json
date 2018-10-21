@@ -9,12 +9,13 @@
             "<tr><td>fd, bk</td><td>fd 100<br/>bk 100</td><td>Move forwards or backwards 100 units</td></tr>",
             "<tr><td>rt, lt</td><td>rt 90<br/>lt 90</td><td>Turn right or left 90 degrees</td></tr>",
             "<tr><td>home</td><td>home</td><td>Reset the turtle's position to where it started</td></tr>",
+            "<tr><td>clean</td><td>clean</td><td>Erase all lines drawn (do not move the turtle)</td></tr>",
             "<tr><td>penup/pu<br/><br/>pendown/pd</td><td>penup fd 100 pendown</td><td>Lift the pen, or place the pen back down on the paper</td></tr>",
             "<tr><td>arcrt/arclt/arc</td><td>arcrt 30 100</td><td>Draw an arc of a circle. Choose whether to turn right, left, or to place the turtle at the centre of the arc.</td></tr>",
             "<tr><td>color/colour</td><td>color yellow / color 17</td><td>Change the color of the pen</td></tr>",
             "<tr><td>bg</td><td>bg blue / bg 8</td><td>Change the color of the background</td></tr>",
             "<tr><td>thick</td><td>thick 8</td><td>Change the thickness of the lines<br/>(from 1 to 20)</td></tr>",
-            "<tr><td>setxy</td><td>setxy 100 100</td><td>Move the turtle to the co-ordinates (100, 100)</td></tr>",
+            "<tr><td>setxy/setheading</td><td>setxy 100 100 / setheading 90</td><td>Move the turtle to the co-ordinates (100, 100) / Set its heading to 90 degrees</td></tr>",
             "<tr><td>random</td><td>color random<br/>fd random</td><td>Choose a random color and then go forward a random amount (between 0 and 100)</td></tr>",
             "</table>"
          ]
@@ -40,6 +41,7 @@
             "<h3>Program control</h3>",
             "<table class='commands commands2'>",
             "<tr><th>Command</th><th>Example</th><th>What it does</th></tr>",
+            "<tr><td>wait</td><td>drawcar wait clean drawcar wait clean...</td><td>Pause execution. Useful to ensure that lines are seen before being erased.</td></tr>",
             "<tr><td>stop</td><td>to drawpoly :n<br/>if :n = 0 [stop]<br/>...<br/>end<br/>drawpoly 10</td><td>Stop a function or loop from finishing execution</td></tr>",
             "<tr><td>if ... [...]</td><td>if (:a < 1) [fd 100]</td><td>Execute the statements in the square brackets only when 'a' is less than one.<br/>You can use the following operators:<br/>= (equal to)<br/>< (less than)<br/>> (greater than)<br/><= (less than or equal to)<br/>>= (greater than or equal to)</td></tr>",
             "<tr><td>ifelse ... [...] [...]</td><td>ifelse (:a <= 1) [fd 100] [fd -100]</td><td>Execute the statements in the first square brackets only when 'a' is less than or equal to one, and the statements in the second square brackets otherwise.</td></tr>",
@@ -139,11 +141,26 @@
          ]
       },
       {
+         "file":"setxy 100 0\nsetxy 100 100\nsetxy 0 100\nsetxy 0 0\nsetheading 45\nfd 141 bk 70.5\nsetheading -45\nfd 70.5 bk 141",
+         "media":"help/images/e42.png",
+         "bg":"dkred",
+         "contents":[
+            "<h3>4. Setting position and heading</h3>",
+            "<p>You can manually position the turtle's position using the keyword <span class='mono'>setxy</span>, and you can set its direction using <span class='mono'>setheading</span>.</p>",
+            "<p>For example, <span class='mono'>setxy 100 0</span> will immediately move the turtle to the point with co-ordinates x=100, y = 0. This command doesn't lift the pen though, so lines will be drawn when the turtle moves to its new position.</p>",
+            "<p>Notice that the <span class='mono'>home</span> command does lift the pen, so <span class='mono'>home</span> is equivalent to:</p>",
+            "<pre>pu setxy 0 0 setheading 0 pd</pre>",
+            "<p></p>",
+            "<p>See if you can figure out what this code will draw on the screen:</p>",
+            "<pre>setxy 100 0\nsetxy 100 100\nsetxy 0 100\nsetxy 0 0\nsetheading 45\nfd 141 bk 70.5\nsetheading -45\nfd 70.5 bk 141</pre>"
+         ]
+      },
+      {
          "file":"fd 100\nrt 90\nfd 100\nrt 90\nfd 100\nrt 90\nfd 100\nrt 90",
          "media":"help/images/e102.png",
          "bg":"dkred",
          "contents":[
-            "<h3>4. Basic controls</h3>",
+            "<h3>5. Basic controls</h3>",
             "<p>The five icons along the top-left of the app comprise the following:</p>",
             "<ul><li>Open a drop down menu containing links to make a new file, save your file, and other useful actions such as saving a screenshot.<br/></li><li>The cross-hairs button resets the viewport, useful if you have scrolled or scaled the view.<br/></li><li>The eraser button clears the drawing area (but not your code!)<br/></li><li>The triangular tick and cross button lets you show and hide the turtle. Seeing where the turtle is can be useful, but you might want to hide it when you're done.</br></li><li>The wrench icon opens a menu where you can change various settings - such as showing a grid and changing the font size. </li></ul>",
             "<br/><p>The icons at the top-right comprise:</p>",
@@ -155,7 +172,7 @@
          "media":"help/images/e9.png",
          "bg":"blue",
          "contents":[
-            "<h3>5. Drawing with colors</h3>",
+            "<h3>6. Drawing with colors</h3>",
             "<p>You can change the color of the lines, as well as the background color of the page by using the <span class='mono'>color</span> (or <span class='mono'>colour</span>) and <span class='mono'>bg</span> commands:</p>",
             "<pre>bg yellow / bg 17</pre>\n<pre>color blue / color 8</pre>",
             "<p></p>",
@@ -171,7 +188,7 @@
          "media":"help/images/e95.png",
          "bg":"blue",
          "contents":[
-            "<h3>6. Drawing arcs</h3>",
+            "<h3>7. Drawing arcs</h3>",
             "<p>You can draw arcs (parts of circles) with the commands <span class='mono'>arc</span>, <span class='mono'>arcrt</span>, and <span class='mono'>arclt</span>. For example:",
             "<pre>thick 12 arcrt 180 100\nthick 6 arclt 180 100\nthick 2 arc 90 75</pre>",
             "<p></p>",
@@ -186,7 +203,7 @@
          "media":"help/images/e11.png",
          "bg":"dkgreen",
          "contents":[
-            "<h3>7. Using variables</h3>",
+            "<h3>8. Using variables</h3>",
             "<p>Variables let you define a number so you can use it in many places later. Not only do they let you re-use a value, but later on you only have to change them one place if you need to. Use the <span class='mono'>make</span> command to set the value of a variable:</p>",
             "<pre>make \"side 200</pre>",
             "<p>You must put a <span class='mono'>\"</span> symbol in front when you set a variable. To use the variable, put a colon <span class='mono'>:</span> in front:</p>",
@@ -203,7 +220,7 @@
          "media":"help/images/e2.png",
          "bg":"dkred",
          "contents":[
-            "<h3>8. Doing arithmetic</h3>",
+            "<h3>9. Doing arithmetic</h3>",
             "<p>You can do normal arithmetic using numbers or variables.</p>",
             "<p>Like most computer programs, you must write <span class='mono'>*</span> for multiply (or times) and <span class='mono'>/</span> for divide.</p>",
             "<p>You can use <span class='mono'>+</span> and <span class='mono'>-</span> and round brackets <span class='mono'>( )</span> like you normally would.</p>",
@@ -219,7 +236,7 @@
          "media":"help/images/e14_2.png",
          "bg":"dkred",
          "contents":[
-            "<h3>9. Labels</h3>",
+            "<h3>10. Labels</h3>",
             "<p>You can write text to the screen using the command <span class='mono'>label</span>:</p>",
             "<pre>make \"a 0\nfd 100\nlabel \"PointA\nmake \"a :a + 5\nrt 90 fd 100\nlabel \"PointB\nmake \"a :a + 5\nrt 90 fd 100\nlabel \"PointC\nmake \"a :a + 5\nrt 90 fd 50\nlabel :a",
             "<p></p>",
@@ -232,7 +249,7 @@
          "media":"help/images/e3.png",
          "bg":"blue",
          "contents":[
-            "<h3>10. Loops</h3>",
+            "<h3>11. Loops</h3>",
             "<p>Loops can be programmed by use of the <span class='mono'>rpt</span> (repeat) command which tells the turtle to execute the commands inside the square brackets a specific number of times.</p>",
             "<pre>rpt 10 [ put your commands here and they will be executed 10 times! ]</pre>",
             "<p></p>",
@@ -250,7 +267,7 @@
          "media":"help/images/e14.png",
          "bg":"blue",
          "contents":[
-            "<h3>11. Loops continued</h3>",
+            "<h3>12. Loops continued</h3>",
             "<p>By turning right a small amount and repeating many hundreds of times we can create curves. Interesting effects can be created by modifying the value of a variable inside a loop.</p>",
             "<p>For example, in the program below, the variable <span class='mono'>a</span> is increased by one in each step of the loop, which is repeated 300 times to create a spiral shape.</p>",
             "<pre>make \"a 3\nrpt 300 [\n  fd 20\n  rt :a/4\n  make \"a :a + 1\n]</pre>",
@@ -263,7 +280,7 @@
          "media":"help/images/e145.png",
          "bg":"blue",
          "contents":[
-            "<h3>12. Loops continued</h3>",
+            "<h3>13. Loops continued</h3>",
             "<p>Inside any <span class='mono'>rpt</span> loop you can access the current value of the loop's 'counter'.</p>",
             "<p>The value is automatically stored in a variable called '<span class='mono'>repcount</span>'.</p>",
             "<p>For example, if you repeat some statements seven times, repcount will take the values 0, 1, 2, 3, 4, 5, 6:</p>",
@@ -275,7 +292,7 @@
          "media":"help/images/e13.png",
          "bg":"blue",
          "contents":[
-            "<h3>13. Loops continued</h3>",
+            "<h3>14. Loops continued</h3>",
             "<p>You can even program a loop inside another loop.</p>",
             "<p>This program &hellip;</p>",
             "<pre>rpt 360 [\n fd 1\n rt 1\n]</pre>",
@@ -290,7 +307,7 @@
          "media":"help/images/e4.png",
          "bg":"dkgreen",
          "contents":[
-            "<h3>14. Procedures and functions</h3>",
+            "<h3>15. Procedures and functions</h3>",
             "<p>We know that the turtle knows the meaning of the words <span class='mono'>make</span>, <span class='mono'>penup</span>, <span class='mono'>color</span> etc &hellip;</p>",
             "<p>A function or procedure is often thought of as telling the turtle the meaning of a new word, for example we could draw a square by defining a procedure called 'drawsquare' and then 'calling' that procedure.</p>",
             "<p>You use the <span class='mono'>to</span> keyword to define a procedure, and <span class='mono'>end</span> to mark the end:</p>",
@@ -304,7 +321,7 @@
          "media":"help/images/e5.png",
          "bg":"dkgreen",
          "contents":[
-            "<h3>15. Procedures and functions continued</h3>",
+            "<h3>16. Procedures and functions continued</h3>",
             "<p>Functions can optionally take some variables as input.  For example, you might want to re-use a block of commands more than once, with different lengths or angles each time.</p>",
             "<p>List the variables one by one after the name of the function as shown:</p>",
             "<pre>to drawpoly :len :n\n  rpt :n [\n    fd :len \n    rt (360/:n)\n  ]\nend\ndrawpoly 120 3\ndrawpoly 120 4\ndrawpoly 120 5\ndrawpoly 120 6\ndrawpoly 120 7</pre>",
@@ -317,7 +334,7 @@
          "media":"help/images/e6.png",
          "bg":"dkred",
          "contents":[
-            "<h3>16. Recursion</h3>",
+            "<h3>18. Recursion</h3>",
             "<p>Recursion happens when, inside a function, you call the same function, normally with different input.</p>",
             "<p>For example the program below defines a procedure which accepts one variable called <span class='mono'>dist</span> and repeatedly calls itself, increasing the value of <span class='mono'>dist</span> by 5 each time:</p>",
             "<pre>to drawspiral :dist\n  fd :dist\n  rt 90\n  drawspiral (:dist+5)\nend\n\ndrawspiral 10</pre>",
@@ -331,7 +348,7 @@
          "media":"help/images/e12.png",
          "bg":"blue",
          "contents":[
-            "<h3>17. Variable scope</h3>",
+            "<h3>19. Variable scope</h3>",
             "<p>The program below illustrates the concept of 'scope' in Logotacular.</p>",
             "<p>Every variable exists in a 'scope' depending on where you defined it, so you can have two variables with the same name that exist in different 'scopes'. For example:</p>",
             "<pre>make \"j 50\nto fn\n  fd :j\nend\nfn</pre>",
@@ -345,7 +362,7 @@
          "media":"help/images/e12.png",
          "bg":"blue",
          "contents":[
-            "<h3>18. Variable scope continued</h3>",
+            "<h3>20. Variable scope continued</h3>",
             "<p>You can also define variables inside functions, and then they will exist inside that function only:</p>",
             "<pre>make \"i 50\nto fn\n make \"i 100 fd :i\nend\nfn\nfd :i</pre>",
             "<p></p>",
@@ -355,11 +372,24 @@
          ]
       },
       {
+         "file":"bg midnight color green\nto drawcar\nfd 20 rt 90 fd 20 lt 60 fd 30 rt 60 fd 60 rt 50 fd 35 lt 50 fd 30 rt 90 fd 20 rt 90 fd 147 rt 90\nend\nrpt 20[\n drawcar\n wait\n clean\n pu setxy :repcount*20 0 pd\n]",
+         "media":"help/images/e172.png",
+         "bg":"dkgreen",
+         "contents":[
+            "<h3>21. Waiting and clearing</h3>",
+            "<p>You can clear the screen of all drawing using the command <span class='mono'>clean</span>. This is useful if you have drawn something but want to erase everything and start afresh. You can even achieve basic animation by drawing an object, clearing the screen and drawing the same object in a different position.</p>",
+            "<p>The following code draws a car, waits so that the car is seen clearly, clears the screen and then draws another car further along.</p>",
+            "<pre>to drawcar\nfd 20 rt 90 fd 20 lt 60 fd 30 rt 60 fd 60 rt 50 fd 35 lt 50 fd 30 rt 90 fd 20 rt 90 fd 147 rt 90\nend\nrpt 20[\n drawcar\n wait\n clean\n pu setxy :repcount*20 0 pd\n]</p>",
+            "<p></p>",
+            "<p>Try it yourself!</p>"
+         ]
+      },
+      {
          "file":"bg midnight\ncolor green\nrpt 4 [\n fd 100 rt 90\n stop\n]",
          "media":"help/images/e15.png",
          "bg":"dkgreen",
          "contents":[
-            "<h3>19. Stopping</h3>",
+            "<h3>22. Stopping</h3>",
             "<p>You can use the keyword <span class='mono'>stop</span> to stop a function or loop executing.</p>",
             "<pre>rpt 4 [\n fd 100 rt 90\n stop\n]</pre>",
             "<p></p>",
@@ -372,7 +402,7 @@
          "media":"help/images/e15.png",
          "bg":"dkgreen",
          "contents":[
-            "<h3>20. Stopping continued</h3>",
+            "<h3>23. Stopping continued</h3>",
             "<p>In this second program the function <span class='mono'>drawoneline</span> is called, and the turtle goes forward.</p>",
             "<p>It reaches the <span class='mono'>stop</span> statement and the function stops executing immediately.</p>",
             "<p></p>",
@@ -386,7 +416,7 @@
          "media":"help/images/e16.png",
          "bg":"dkred",
          "contents":[
-            "<h3>21. Program control</h3>",
+            "<h3>24. Program control</h3>",
             "<p>Sometimes you only want to execute a line of code under certain circumstances - perhaps after checking the value of a variable for example. Logo uses the keywords <span class='mono'> if</span> and <span class='mono'> ifelse</span>. For example:</p>",
             "<pre>if :a < 1 [ fd 100 ]</pre>",
             "<p></p>",
@@ -404,7 +434,7 @@
          "media":"help/images/e17.png",
          "bg":"dkred",
          "contents":[
-            "<h3>22. Program control continued</h3>",
+            "<h3>25. Program control continued</h3>",
             "<p>Combining recursion with the <span class='mono'>stop</span> statement is a powerful way to create interesting designs. The function <span class='mono'>tree</span> will draw a tree <span class='mono'>d</span> branches high. It is called with an input value of '5' for a tree 5 branches high.</p>",
             "<p>The function goes forward and turns left 20 degrees, then it draws a tree with one fewer branches, turns right 40 degrees and draws another tree with one fewer branches.</p>",
             "<pre>make \"s 80\nto tree :d\n if :d=0 [stop]\n fd :s rt 340\n tree (:d-1)\n rt 40\n tree (:d-1)\n rt 160\n fd :s\n rt 180\nend\ntree 5</pre>",
@@ -416,7 +446,7 @@
          "media":"help/images/e20.png",
          "bg":"dkred",
          "contents":[
-            "<h3>23. Program control continued</h3>",
+            "<h3>26. Program control continued</h3>",
             "<p>The tree we drew is an example of a fractal, or a shape demonstrating 'self-similarity'. It consists of smaller copies of itself repeating at each step.</p>",
             "<p>Another famous fractal you can draw using Logotacular is the Sierpinski gasket or Sierpinski triangle, which consists of an equilateral triangle divided into smaller copies of the same triangle recursively.</p>",
             "<pre>to sier :n :len\nif :n=0 [stop]\nrpt 3 [sier :n-1 :len/2\nfd :len\nrt 120\n]\nend\nsier 5 250</pre>"
@@ -427,7 +457,7 @@
          "media":"help/images/ee.png",
          "bg":"dkgreen",
          "contents":[
-            "<h3>24. Errors and debugging</h3>",
+            "<h3>27. Errors and debugging</h3>",
             "<p>Errors are of two kinds: they can be in your code itself or they might only happen when you run your code.</p>",
             "<p>The first kind of errors include those such as missing out a bracket or forgetting to put <span class='mono'>end</span> at the end of a function definition.  The second kind of errors don't appear until you press 'Play'.  For example, you might try to use a variable or call a function that you haven't defined, or you might divide by zero by mistake.</p>",
             "<p>This program has an error of the first kind:</p>",

@@ -475,7 +475,7 @@ return {type:"plusexpression", children:[m]};
 }
 
 
-minusexpression = sep* '-' sep* m:multexpression
+minusexpression = sep* '-' sep+ m:multexpression
 {
 return {type:"minusexpression", children:[m]};
 }

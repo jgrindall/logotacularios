@@ -137,7 +137,6 @@
 }
 
 - (void) setVal:(id)val forKey:(NSString*)key{
-	NSLog(@"set val for key    key = %@    val = %@   ", key, val);
 	[self.propHash setValue:val forKey:key];
 }
 

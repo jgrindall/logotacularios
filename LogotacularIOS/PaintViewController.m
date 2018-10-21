@@ -39,6 +39,8 @@
 static float const maxAllowed = 2000000000.0;
 static float const minAllowed = -2000000000.0;
 
+static float const WAIT = 0.5;
+
 NSString* const ARC_KEYWORD				= @"arc";
 NSString* const ARCRT_KEYWORD			= @"arcrt";
 NSString* const ARCLT_KEYWORD			= @"arclt";
@@ -213,7 +215,6 @@ NSString* const CLEAN_KEYWORD			= @"clean";
 }
 
 - (void) onStop{
-	NSLog(@"onStop!!");
 	if(self.pauseTimer != nil){
 		[self.pauseTimer invalidate];
 		self.pauseTimer = nil;
@@ -238,6 +239,20 @@ NSString* const CLEAN_KEYWORD			= @"clean";
 
 - (void) reset{
 	[self.paintView reset];
+}
+
+- (void) cleanQueue{
+	NSInteger len = self.executionPointerFinished + 1; // eg. if finished = 0, take 1
+	if(len > self.cmds.count){
+		len = self.cmds.count;
+	}
+	NSRange r = NSMakeRange(0, len);
+	NSArray* newCmds = [self.cmds subarrayWithRange:r];
+	newCmds = [newCmds filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id object, NSDictionary *bindings) {
+		NSDictionary* dic = object;
+		return ![dic[@"name"] isEqualToString:WAIT_KEYWORD];
+	}]];
+	self.cmds = [[NSMutableArray alloc] initWithArray:newCmds];
 }
 
 - (void) processQueue{
@@ -283,6 +298,7 @@ NSString* const CLEAN_KEYWORD			= @"clean";
 	[[self getBgModel] addListener:@selector(changeBg) forKey:BG_COLOR withTarget:self];
 	[[self getOptionsModel] addListener:@selector(changeGrid) forKey:GRID_TYPE withTarget:self];
 	[[self getOptionsModel] addListener:@selector(changeGrid) forKey:GRID_CLR withTarget:self];
+	[[self getProcessingModel] addListener:@selector(changeProc) forKey:PROCESSING_ISPROCESSING withTarget:self];
 }
 
 - (void) removeListeners{
@@ -298,6 +314,14 @@ NSString* const CLEAN_KEYWORD			= @"clean";
 	[[self getBgModel] removeListener:@selector(changeBg) forKey:BG_COLOR withTarget:self];
 	[[self getOptionsModel] removeListener:@selector(changeGrid) forKey:GRID_TYPE withTarget:self];
 	[[self getOptionsModel] removeListener:@selector(changeGrid) forKey:GRID_CLR withTarget:self];
+	[[self getProcessingModel] removeListener:@selector(changeProc) forKey:PROCESSING_ISPROCESSING withTarget:self];
+}
+
+- (void) changeProc{
+	bool isProc = [[[self getProcessingModel] getVal:PROCESSING_ISPROCESSING] boolValue];
+	if(!isProc && _executionPointerStarted == _executionPointerFinished){
+		[[self getEventDispatcher] dispatch:SYMM_NOTIF_DRAWING_FINISHED withData:nil];
+	}
 }
 
 - (void) changeGrid{
@@ -333,6 +357,7 @@ NSString* const CLEAN_KEYWORD			= @"clean";
 }
 
 - (void) restart{
+	[self cleanQueue];
 	self.executionPointerStarted = -1;
 	self.executionPointerFinished = -1;
 	[self processQueue];
@@ -497,12 +522,11 @@ NSString* const CLEAN_KEYWORD			= @"clean";
 - (void) wait{
 	NSLog(@"wait");
 	[self onTri];
-	//[self performSelector:@selector(unpause) withObject:self afterDelay:5.0];
 	if(self.pauseTimer != nil){
 		[self.pauseTimer invalidate];
 		self.pauseTimer = nil;
 	}
-	self.pauseTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(unpause) userInfo:nil repeats:NO];
+	self.pauseTimer = [NSTimer scheduledTimerWithTimeInterval:WAIT target:self selector:@selector(unpause) userInfo:nil repeats:NO];
 }
 
 - (void) unpause{
