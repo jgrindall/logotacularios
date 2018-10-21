@@ -256,33 +256,41 @@ NSString* const CLEAN_KEYWORD			= @"clean";
 }
 
 - (void) processQueue{
-	NSLog(@"process");
-	if(_executionPointerStarted == _executionPointerFinished){
+	if(![self isDrawing]){
+		return;
+	}
+	else if(_executionPointerStarted == _executionPointerFinished){
 		if(_executionPointerStarted + 1 <= self.cmds.count - 1){
-			NSLog(@"ex now!! %i %i %i", _executionPointerStarted, _executionPointerFinished, self.cmds.count);
 			_executionPointerStarted++;
-			NSLog(@"ex: %i %i", self.executionPointerStarted, self.executionPointerFinished);
 			[self executeCommandAtIndex:_executionPointerStarted];
 			[self processQueue];
 		}
 		else{
-			id<PProcessingModel> model = [self getProcessingModel];
-			NSLog(@"DONE?? %i", [[model getVal:PROCESSING_ISPROCESSING] boolValue]);
-			if(![[model getVal:PROCESSING_ISPROCESSING] boolValue]){
-				NSLog(@"DONE!!");
+			if(![self isProcessing]){
 				[[self getEventDispatcher] dispatch:SYMM_NOTIF_DRAWING_FINISHED withData:nil];
 			}
 		}
 	}
 	else{
-		NSLog(@"waiting");
+		//waiting...
 	}
 }
 
+- (BOOL) isDrawing{
+	id<PDrawingModel> model = [self getDrawingModel];
+	return [[model getVal:DRAWING_ISDRAWING] boolValue];
+}
+
+- (BOOL) isProcessing{
+	id<PProcessingModel> model = [self getProcessingModel];
+	return [[model getVal:PROCESSING_ISPROCESSING] boolValue];
+}
+
 - (void)consume:(NSDictionary*) data{
-	[self.cmds addObject:data];
-	NSLog(@"consumed %i %i %i", self.cmds.count, self.executionPointerStarted, self.executionPointerFinished);
-	[self processQueue];
+	if([self isProcessing]){
+		[self.cmds addObject:data];
+		[self processQueue];
+	}
 }
 
 - (void) addListeners{
@@ -318,8 +326,7 @@ NSString* const CLEAN_KEYWORD			= @"clean";
 }
 
 - (void) changeProc{
-	bool isProc = [[[self getProcessingModel] getVal:PROCESSING_ISPROCESSING] boolValue];
-	if(!isProc && _executionPointerStarted == _executionPointerFinished){
+	if(![self isProcessing] && _executionPointerStarted == _executionPointerFinished){
 		[[self getEventDispatcher] dispatch:SYMM_NOTIF_DRAWING_FINISHED withData:nil];
 	}
 }
@@ -345,7 +352,6 @@ NSString* const CLEAN_KEYWORD			= @"clean";
 	CGPoint p = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
 	float heading = [[[self getTurtleModel] getVal:TURTLE_HEADING] floatValue];
 	UIColor* clr = [[self getTurtleModel] getVal:TURTLE_COLOR];
-	NSLog(@"onTri %f %f , %f", p.x, p.y, heading);
 	[self.paintView drawTriangleAt:p withHeading:heading withColor:clr];
 	[self.paintView drawGrid];
 }
@@ -520,7 +526,6 @@ NSString* const CLEAN_KEYWORD			= @"clean";
 }
 
 - (void) wait{
-	NSLog(@"wait");
 	[self onTri];
 	if(self.pauseTimer != nil){
 		[self.pauseTimer invalidate];
@@ -530,7 +535,6 @@ NSString* const CLEAN_KEYWORD			= @"clean";
 }
 
 - (void) unpause{
-	NSLog(@"--- unpause");
 	self.executionPointerFinished = self.executionPointerStarted;
 	[self processQueue];
 	[self onTri];
@@ -541,7 +545,6 @@ NSString* const CLEAN_KEYWORD			= @"clean";
 }
 
 - (void) fd:(NSNumber*) amount{
-	NSLog(@"do: fd %@", amount);
 	if ([amount isKindOfClass:[NSNull class]]){
 		[self numericalOverflow];
 	}
@@ -553,7 +556,6 @@ NSString* const CLEAN_KEYWORD			= @"clean";
 		else{
 			CGPoint p0 = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
 			[[self getTurtleModel] moveFdBy:f];
-			NSLog(@"move turtle by %f", f);
 			if([[[self getTurtleModel] getVal:TURTLE_PEN_DOWN] boolValue]){
 				CGPoint p1 = [[[self getTurtleModel] getVal:TURTLE_POS] CGPointValue];
 				[self drawLineFrom:p0 to: p1];
@@ -662,13 +664,11 @@ NSString* const CLEAN_KEYWORD			= @"clean";
 	}
 	if(![name isEqualToString:WAIT_KEYWORD]){
 		_executionPointerFinished = _executionPointerStarted;
-		NSLog(@"increment -> %i %i", _executionPointerStarted, _executionPointerFinished);
 	}
 }
 
 - (void) executeCommandAtIndex:(NSInteger)n{
 	NSDictionary* dic = self.cmds[n];
-	NSLog(@"EX %i", n);
 	[self executeOneCommandAsDic:dic];
 }
 

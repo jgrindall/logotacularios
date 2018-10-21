@@ -376,7 +376,7 @@
          "media":"help/images/e172.png",
          "bg":"dkgreen",
          "contents":[
-            "<h3>21. Waiting and clearing</h3>",
+            "<h3>21. Waiting and cleaning</h3>",
             "<p>You can clear the screen of all drawing using the command <span class='mono'>clean</span>. This is useful if you have drawn something but want to erase everything and start afresh. You can even achieve basic animation by drawing an object, clearing the screen and drawing the same object in a different position.</p>",
             "<p>The following code draws a car, waits so that the car is seen clearly, clears the screen and then draws another car further along.</p>",
             "<pre>to drawcar\nfd 20 rt 90 fd 20 lt 60 fd 30 rt 60 fd 60 rt 50 fd 35 lt 50 fd 30 rt 90 fd 20 rt 90 fd 147 rt 90\nend\nrpt 20[\n drawcar\n wait\n clean\n pu setxy :repcount*20 0 pd\n]</p>",
