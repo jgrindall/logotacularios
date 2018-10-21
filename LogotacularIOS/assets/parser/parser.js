@@ -5222,13 +5222,9 @@ LG.logoParser = /*
         if (s2 !== peg$FAILED) {
           s3 = [];
           s4 = peg$parsesep();
-          if (s4 !== peg$FAILED) {
-            while (s4 !== peg$FAILED) {
-              s3.push(s4);
-              s4 = peg$parsesep();
-            }
-          } else {
-            s3 = peg$FAILED;
+          while (s4 !== peg$FAILED) {
+            s3.push(s4);
+            s4 = peg$parsesep();
           }
           if (s3 !== peg$FAILED) {
             s4 = peg$parsemultexpression();
