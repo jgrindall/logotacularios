@@ -7,12 +7,14 @@
 //
 
 #import "PaintView.h"
+#import "BgImageView.h"
 #import "LinesView.h"
 #import "Appearance.h"
 #import "GridView.h"
 
 @interface PaintView ()
 
+@property BgImageView* bgImgView;
 @property UIView* bgView;
 @property LinesView* linesView;
 @property GridView* gridView;
@@ -59,7 +61,9 @@
 	self.bgView.backgroundColor = [Appearance bgColor];
 	self.linesView = [[LinesView alloc] initWithFrame:self.frame];
 	self.gridView = [[GridView alloc] initWithFrame:self.frame];
+	self.bgImgView = [[BgImageView alloc] initWithFrame:self.frame];
 	[self addSubview:self.bgView];
+	[self addSubview:self.bgImgView];
 	[self addSubview:self.gridView];
 	[self addSubview:self.linesView];
 }
@@ -80,6 +84,7 @@
 - (void) setFlushedTransform:(CGAffineTransform)t{
 	self.linesView.flushedTransform = t;
 	self.gridView.flushedTransform = t;
+	self.bgImgView.flushedTransform = t;
 	[self.gridView redraw];
 }
 
@@ -113,6 +118,7 @@
 
 - (void) transformWith:(CGAffineTransform)t{
 	self.linesView.transform = t;
+	[self.bgImgView setTransformWith:t];
 }
 
 - (void) dealloc{
