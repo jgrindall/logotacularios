@@ -366,7 +366,9 @@ NSString* const CLEAN_KEYWORD			= @"clean";
 	[self cleanQueue];
 	self.executionPointerStarted = -1;
 	self.executionPointerFinished = -1;
-	[self processQueue];
+	if([self.cmds count] >= 1){
+		[self processQueue];
+	}
 }
 
 - (void) changeBg{
