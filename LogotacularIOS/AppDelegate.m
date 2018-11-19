@@ -72,7 +72,9 @@
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_INSERT_CHAR toCommandClass:[InsertCharCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLEAR toCommandClass:[ClearCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLICK_OPEN toCommandClass:[ClickOpenCommand class]];
+	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLICK_IMG toCommandClass:[ClickImgCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_LOAD_FILES toCommandClass:[LoadFilesCommand class]];
+	[[self getCommandMap] mapEventName:SYMM_NOTIF_LOAD_IMGS toCommandClass:[LoadImgsCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_PERFORM_OPEN toCommandClass:[PerformOpenCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLICK_SAVE toCommandClass:[ClickSaveCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_PERFORM_DEL toCommandClass:[PerformDelCommand class]];
@@ -99,6 +101,7 @@
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_EDIT_FONT_SIZE toCommandClass:[EditFontSizeCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_EDIT_GRID_TYPE toCommandClass:[EditGridTypeCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_EDIT_GRID_OPACITY toCommandClass:[EditGridClrCommand class]];
+	[[self getCommandMap] mapEventName:SYMM_NOTIF_PERFORM_ADD_IMG toCommandClass:[AddImgCommand class]];
 }
 
 - (id<PCommandMap>)getCommandMap{

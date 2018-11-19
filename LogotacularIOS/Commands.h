@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ClickMenuCommand.h"
+#import "AddImgCommand.h"
 #import "ClickPlayOrStopCommand.h"
 #import "ClickMenuCommand.h"
 #import "ClickGridMenuCommand.h"
@@ -20,7 +21,9 @@
 #import "RedoCommand.h"
 #import "ClearCommand.h"
 #import "ClickOpenCommand.h"
+#import "ClickImgCommand.h"
 #import "LoadFilesCommand.h"
+#import "LoadImgsCommand.h"
 #import "PerformOpenCommand.h"
 #import "ClickSaveCommand.h"
 #import "ClickSaveAsCommand.h"

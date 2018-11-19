@@ -11,9 +11,9 @@
 @implementation MenuLayout
 
 int const MENU_LAYOUT_WIDTH =	215;
-int const MENU_LAYOUT_HEIGHT =	384;
+int const MENU_LAYOUT_HEIGHT =	432;
 
-// 48 * 8
+// 48 * 9
 
 
 

@@ -23,6 +23,7 @@
 + (NSString*) getFileNameTakenMessage;
 + (NSString*) getFileDeleteCurrentFileErrorMessage;
 + (NSString*) getFileListLoadErrorMessage;
++ (NSString*) getImgListLoadErrorMessage;
 + (NSString*) getFileNameErrorMessage;
 + (NSString*) getCameraErrorMessage;
 + (NSString*) getCameraSuccessMessage;

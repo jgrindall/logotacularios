@@ -14,6 +14,8 @@
 		521C663C1E315C76001F325A /* OptionsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 521C663B1E315C76001F325A /* OptionsModel.m */; };
 		521C66411E315D9D001F325A /* HideGridMenuCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 521C66401E315D9D001F325A /* HideGridMenuCommand.m */; };
 		521C66451E32B37F001F325A /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 521C66441E32B37F001F325A /* Utils.m */; };
+		521F10D221A35D7400728EA8 /* ImgBrowserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 521F10D021A35D7300728EA8 /* ImgBrowserModel.m */; };
+		521F10D621A3622000728EA8 /* AddImgCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 521F10D521A3622000728EA8 /* AddImgCommand.m */; };
 		52244C151A25341500505F6D /* ClickResetZoomCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52244C141A25341500505F6D /* ClickResetZoomCommand.m */; };
 		52244C1C1A2555C100505F6D /* HelpLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 52244C1B1A2555C100505F6D /* HelpLayout.m */; };
 		522E91C71A1CA6C2000AB933 /* FileLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 522E91C61A1CA6C2000AB933 /* FileLayout.m */; };
@@ -71,7 +73,15 @@
 		5297CF061A01137100CC5CB3 /* PaintViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5297CF051A01137100CC5CB3 /* PaintViewController.m */; };
 		5297CF0A1A01240600CC5CB3 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5297CF091A01240600CC5CB3 /* WebViewController.m */; };
 		5297CF0E1A01263200CC5CB3 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5297CF0D1A01263200CC5CB3 /* MenuViewController.m */; };
+		529A8F61218268D800D32AE4 /* BgImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 529A8F5F218268D700D32AE4 /* BgImageView.m */; };
 		52A185451A01004C005D8208 /* TextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A185441A01004C005D8208 /* TextViewController.m */; };
+		52A2C07121839A2D0024A148 /* ClickImgCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A2C07021839A2D0024A148 /* ClickImgCommand.m */; };
+		52A54D3F21862AB600DF0ADD /* ImgPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A54D3D21862AB600DF0ADD /* ImgPageController.m */; };
+		52A54D4721862CCD00DF0ADD /* ImgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A54D4121862CCC00DF0ADD /* ImgCell.m */; };
+		52A54D4821862CCD00DF0ADD /* ImgListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A54D4421862CCC00DF0ADD /* ImgListModel.m */; };
+		52A54D4921862CCD00DF0ADD /* ImgLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A54D4621862CCC00DF0ADD /* ImgLayout.m */; };
+		52A54D4F21862DBD00DF0ADD /* ImgController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A54D4E21862DBD00DF0ADD /* ImgController.m */; };
+		52ADC825218632B000E77E3A /* LoadImgsCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52ADC823218632AF00E77E3A /* LoadImgsCommand.m */; };
 		52AE1ED01C62B96400CEDDE5 /* RestartCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AE1ECF1C62B96400CEDDE5 /* RestartCommand.m */; };
 		52B228981A00E73D001CC355 /* MenuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B228971A00E73D001CC355 /* MenuModel.m */; };
 		52B2289B1A00E749001CC355 /* FileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B2289A1A00E749001CC355 /* FileModel.m */; };
@@ -152,6 +162,11 @@
 		521C66431E32B37F001F325A /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		521C66441E32B37F001F325A /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		521DA06F1CD3EBBC00B09D7E /* PCommandConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCommandConsumer.h; sourceTree = "<group>"; };
+		521F10CF21A35D7300728EA8 /* ImgBrowserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImgBrowserModel.h; sourceTree = "<group>"; };
+		521F10D021A35D7300728EA8 /* ImgBrowserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImgBrowserModel.m; sourceTree = "<group>"; };
+		521F10D121A35D7400728EA8 /* PImgBrowserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PImgBrowserModel.h; sourceTree = "<group>"; };
+		521F10D421A3622000728EA8 /* AddImgCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddImgCommand.h; sourceTree = "<group>"; };
+		521F10D521A3622000728EA8 /* AddImgCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddImgCommand.m; sourceTree = "<group>"; };
 		52244C131A25341500505F6D /* ClickResetZoomCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickResetZoomCommand.h; sourceTree = "<group>"; };
 		52244C141A25341500505F6D /* ClickResetZoomCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickResetZoomCommand.m; sourceTree = "<group>"; };
 		52244C161A25502800505F6D /* AbstractHelpSectionViewController_protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractHelpSectionViewController_protected.h; sourceTree = "<group>"; };
@@ -278,8 +293,26 @@
 		5297CF091A01240600CC5CB3 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		5297CF0C1A01263200CC5CB3 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		5297CF0D1A01263200CC5CB3 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		529A8F5F218268D700D32AE4 /* BgImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BgImageView.m; sourceTree = "<group>"; };
+		529A8F60218268D800D32AE4 /* BgImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BgImageView.h; sourceTree = "<group>"; };
 		52A185431A01004C005D8208 /* TextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewController.h; sourceTree = "<group>"; };
 		52A185441A01004C005D8208 /* TextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewController.m; sourceTree = "<group>"; };
+		52A2C06F21839A2B0024A148 /* ClickImgCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickImgCommand.h; sourceTree = "<group>"; };
+		52A2C07021839A2D0024A148 /* ClickImgCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickImgCommand.m; sourceTree = "<group>"; };
+		52A54D3D21862AB600DF0ADD /* ImgPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImgPageController.m; sourceTree = "<group>"; };
+		52A54D3E21862AB600DF0ADD /* ImgPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImgPageController.h; sourceTree = "<group>"; };
+		52A54D4121862CCC00DF0ADD /* ImgCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImgCell.m; sourceTree = "<group>"; };
+		52A54D4221862CCC00DF0ADD /* ImgListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImgListModel.h; sourceTree = "<group>"; };
+		52A54D4321862CCC00DF0ADD /* ImgCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImgCell.h; sourceTree = "<group>"; };
+		52A54D4421862CCC00DF0ADD /* ImgListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImgListModel.m; sourceTree = "<group>"; };
+		52A54D4521862CCC00DF0ADD /* ImgLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImgLayout.h; sourceTree = "<group>"; };
+		52A54D4621862CCC00DF0ADD /* ImgLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImgLayout.m; sourceTree = "<group>"; };
+		52A54D4B21862D6400DF0ADD /* PImgListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PImgListModel.h; sourceTree = "<group>"; };
+		52A54D4C21862DBD00DF0ADD /* ImgController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImgController.h; sourceTree = "<group>"; };
+		52A54D4D21862DBD00DF0ADD /* ImgController_Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImgController_Protected.h; sourceTree = "<group>"; };
+		52A54D4E21862DBD00DF0ADD /* ImgController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImgController.m; sourceTree = "<group>"; };
+		52ADC823218632AF00E77E3A /* LoadImgsCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadImgsCommand.m; sourceTree = "<group>"; };
+		52ADC824218632AF00E77E3A /* LoadImgsCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadImgsCommand.h; sourceTree = "<group>"; };
 		52AE1ECE1C62B96400CEDDE5 /* RestartCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestartCommand.h; sourceTree = "<group>"; };
 		52AE1ECF1C62B96400CEDDE5 /* RestartCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestartCommand.m; sourceTree = "<group>"; };
 		52B228961A00E73D001CC355 /* MenuModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuModel.h; sourceTree = "<group>"; };
@@ -455,6 +488,16 @@
 			name = Utils;
 			sourceTree = "<group>";
 		};
+		521F10D321A35D7E00728EA8 /* ImgBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				521F10CF21A35D7300728EA8 /* ImgBrowserModel.h */,
+				521F10D021A35D7300728EA8 /* ImgBrowserModel.m */,
+				521F10D121A35D7400728EA8 /* PImgBrowserModel.h */,
+			);
+			path = ImgBrowser;
+			sourceTree = "<group>";
+		};
 		523067BC1A1E1F4F0055B8A5 /* Bg */ = {
 			isa = PBXGroup;
 			children = (
@@ -542,6 +585,8 @@
 		525167ED19FFD37500814B16 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				521F10D321A35D7E00728EA8 /* ImgBrowser */,
+				52A54D4A21862D5300DF0ADD /* Img */,
 				521C663D1E315C79001F325A /* Grid */,
 				52C1714C1A0C4387000865DD /* ScreenGrab */,
 				527D42EC1A0ABED8008AE82A /* FilesModel */,
@@ -581,6 +626,12 @@
 		5272DE3319FE4799006E717F /* Commands */ = {
 			isa = PBXGroup;
 			children = (
+				521F10D421A3622000728EA8 /* AddImgCommand.h */,
+				521F10D521A3622000728EA8 /* AddImgCommand.m */,
+				52ADC824218632AF00E77E3A /* LoadImgsCommand.h */,
+				52ADC823218632AF00E77E3A /* LoadImgsCommand.m */,
+				52A2C06F21839A2B0024A148 /* ClickImgCommand.h */,
+				52A2C07021839A2D0024A148 /* ClickImgCommand.m */,
 				52D2C1C2217B9CAA00A155FD /* DrawingFinishedCommand.h */,
 				52D2C1C1217B9CAA00A155FD /* DrawingFinishedCommand.m */,
 				5257F1F21E7C93D800AB2DB7 /* InsertCharCommand.h */,
@@ -765,6 +816,32 @@
 			name = Text;
 			sourceTree = "<group>";
 		};
+		52A54D4021862C6900DF0ADD /* Img */ = {
+			isa = PBXGroup;
+			children = (
+				52A54D4D21862DBD00DF0ADD /* ImgController_Protected.h */,
+				52A54D4C21862DBD00DF0ADD /* ImgController.h */,
+				52A54D4E21862DBD00DF0ADD /* ImgController.m */,
+				52A54D4321862CCC00DF0ADD /* ImgCell.h */,
+				52A54D4121862CCC00DF0ADD /* ImgCell.m */,
+				52A54D4521862CCC00DF0ADD /* ImgLayout.h */,
+				52A54D4621862CCC00DF0ADD /* ImgLayout.m */,
+				52A54D3E21862AB600DF0ADD /* ImgPageController.h */,
+				52A54D3D21862AB600DF0ADD /* ImgPageController.m */,
+			);
+			name = Img;
+			sourceTree = "<group>";
+		};
+		52A54D4A21862D5300DF0ADD /* Img */ = {
+			isa = PBXGroup;
+			children = (
+				52A54D4221862CCC00DF0ADD /* ImgListModel.h */,
+				52A54D4421862CCC00DF0ADD /* ImgListModel.m */,
+				52A54D4B21862D6400DF0ADD /* PImgListModel.h */,
+			);
+			name = Img;
+			sourceTree = "<group>";
+		};
 		52B228A71A00ECB9001CC355 /* Abstract */ = {
 			isa = PBXGroup;
 			children = (
@@ -928,6 +1005,7 @@
 		52B5B35D19FD7E7300EF531F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				52A54D4021862C6900DF0ADD /* Img */,
 				521DA06F1CD3EBBC00B09D7E /* PCommandConsumer.h */,
 				52D3D9A21CCCF98300197451 /* Social */,
 				52815C6F1A04F39B005AFA93 /* Files */,
@@ -951,6 +1029,8 @@
 		52B5B35E19FD7E8300EF531F /* Paint */ = {
 			isa = PBXGroup;
 			children = (
+				529A8F60218268D800D32AE4 /* BgImageView.h */,
+				529A8F5F218268D700D32AE4 /* BgImageView.m */,
 				52D08C521CCB8A7300EAAF81 /* TriView.h */,
 				52DF36BA1E30035500D86479 /* GridView.h */,
 				52DF36BB1E30035500D86479 /* GridView.m */,
@@ -1236,11 +1316,13 @@
 				52CF4A081A102414003197B2 /* ErrorHitCommand.m in Sources */,
 				527D42F71A0ADB0B008AE82A /* PerformDelCommand.m in Sources */,
 				52B2289E1A00E751001CC355 /* LogoModel.m in Sources */,
+				529A8F61218268D800D32AE4 /* BgImageView.m in Sources */,
 				5297CF061A01137100CC5CB3 /* PaintViewController.m in Sources */,
 				52B5B35119FD7E1400EF531F /* AppDelegate.m in Sources */,
 				52D426FB1A2CFF97002E8B2F /* AbstractOverlayController.m in Sources */,
 				52D427021A2D0B3F002E8B2F /* WelcomeLayout.m in Sources */,
 				523B6DB31C517FDA00A4C0C9 /* ClickWipeCommand.m in Sources */,
+				52A54D4921862CCD00DF0ADD /* ImgLayout.m in Sources */,
 				5257F34F1A01357F00757C77 /* ClearCommand.m in Sources */,
 				527D42E51A0ABBE3008AE82A /* FilePageController.m in Sources */,
 				5297CF0E1A01263200CC5CB3 /* MenuViewController.m in Sources */,
@@ -1266,6 +1348,7 @@
 				525167F019FFEE6400814B16 /* ClickPlayOrStopCommand.m in Sources */,
 				52B274541A11785200D3EA3B /* SyntaxErrorCommand.m in Sources */,
 				52CBC9C11A0D2EBD00C229C8 /* AlertManager.m in Sources */,
+				52ADC825218632B000E77E3A /* LoadImgsCommand.m in Sources */,
 				52420E271A1ADF710069D4AC /* StartCommand.m in Sources */,
 				5287B9AD1A1BBAE600082DE1 /* FilenameAsViewController.m in Sources */,
 				52D3D99E1CCCE83600197451 /* ShareCommand.m in Sources */,
@@ -1292,9 +1375,11 @@
 				527D42EB1A0ABED5008AE82A /* FileListModel.m in Sources */,
 				522E91CD1A1CAA60000AB933 /* AlertLayout.m in Sources */,
 				52CF4A0B1A103AF2003197B2 /* HelpPageViewController.m in Sources */,
+				52A54D3F21862AB600DF0ADD /* ImgPageController.m in Sources */,
 				52B274161A115D2D00D3EA3B /* HelpSectionViewController.m in Sources */,
 				527D42F41A0ADAE6008AE82A /* PerformSaveCommand.m in Sources */,
 				5248C58F1E350826006F4C4D /* EditGridClrCommand.m in Sources */,
+				52A54D4721862CCD00DF0ADD /* ImgCell.m in Sources */,
 				52B512391A13855600B14D0D /* ErrorObject.m in Sources */,
 				5287B9AA1A1BB30D00082DE1 /* AbstractFileNameViewController.m in Sources */,
 				52244C1C1A2555C100505F6D /* HelpLayout.m in Sources */,
@@ -1302,18 +1387,22 @@
 				5272DE3B19FE485F006E717F /* EventDispatcher.m in Sources */,
 				5287B9BA1A1C1BC600082DE1 /* TextVisibleModel.m in Sources */,
 				5272DE3219FE45F5006E717F /* CommandMap.m in Sources */,
+				52A2C07121839A2D0024A148 /* ClickImgCommand.m in Sources */,
 				52B5B35B19FD7E1400EF531F /* SymmNotifications.m in Sources */,
 				52CF55FB1A08411900F01D3A /* FileBrowserModel.m in Sources */,
 				52B5B35619FD7E1400EF531F /* LinesView.m in Sources */,
 				521C66361E315736001F325A /* GridMenuViewController.m in Sources */,
 				52CBC9BA1A0D2B1300C229C8 /* AbstractAlertController.m in Sources */,
 				52B5B35219FD7E1400EF531F /* Appearance.m in Sources */,
+				521F10D621A3622000728EA8 /* AddImgCommand.m in Sources */,
 				52D3D99A1CCCE50A00197451 /* FacebookService.m in Sources */,
 				52B228981A00E73D001CC355 /* MenuModel.m in Sources */,
 				52C687251A025011008FCBDB /* FileLoader.m in Sources */,
 				5257F34C1A01357500757C77 /* RedoCommand.m in Sources */,
+				52A54D4821862CCD00DF0ADD /* ImgListModel.m in Sources */,
 				52D426FF1A2D01EE002E8B2F /* WelcomeViewController.m in Sources */,
 				523067C81A1E9DF80055B8A5 /* ReferencePageViewController.m in Sources */,
+				52A54D4F21862DBD00DF0ADD /* ImgController.m in Sources */,
 				52B5B31619FD7D4600EF531F /* main.m in Sources */,
 				52AE1ED01C62B96400CEDDE5 /* RestartCommand.m in Sources */,
 				5272DE4719FE5845006E717F /* Logger.m in Sources */,
@@ -1339,6 +1428,7 @@
 				525167E819FFCEB000814B16 /* AContainerViewController.m in Sources */,
 				52CF4A121A103CB2003197B2 /* ClickHelpCommand.m in Sources */,
 				5257F3491A01356C00757C77 /* UndoCommand.m in Sources */,
+				521F10D221A35D7400728EA8 /* ImgBrowserModel.m in Sources */,
 				52DD4AAD1C2ACAA40039A052 /* TutSectionViewController.m in Sources */,
 				5272DE4419FE5776006E717F /* InjectionModule.m in Sources */,
 				521C66391E3158C1001F325A /* ClickGridMenuCommand.m in Sources */,

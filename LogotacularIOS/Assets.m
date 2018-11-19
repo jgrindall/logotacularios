@@ -16,6 +16,7 @@ NSString* const TRI_ICON =			@"assets/icons/tri.png";
 NSString* const NO_TRI_ICON =		@"assets/icons/notri.png";
 NSString* const BOOK_ICON =			@"assets/icons/book.png";
 NSString* const BRIEFCASE_ICON =	@"assets/icons/briefcase.png";
+NSString* const IMG_ICON =			@"assets/icons/img.png";
 NSString* const BULB_ICON =			@"assets/icons/bulb.png";
 NSString* const CAMERA_ICON =		@"assets/icons/camera41.png";
 NSString* const SHARE_ICON =		@"assets/icons/share.png";

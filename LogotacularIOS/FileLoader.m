@@ -14,6 +14,7 @@
 
 @property NSFileManager* fileManager;
 @property NSURL* savesFolder;
+@property NSURL* saveImgsFolder;
 @property BOOL enabled;
 
 @end
@@ -46,6 +47,7 @@
 	NSError* error;
 	NSString* bundle = [[NSBundle mainBundle] bundleIdentifier];
 	NSURL* folder = [dir URLByAppendingPathComponent:bundle];
+	NSURL* imgsFolder = [folder URLByAppendingPathComponent:@"imgs"];
 	BOOL folderExists = [self.fileManager fileExistsAtPath:[folder path]];
 	if(!folderExists){
 		[self.fileManager createDirectoryAtURL:folder withIntermediateDirectories:YES attributes:nil error:&error];
@@ -53,7 +55,15 @@
 			return NO;
 		}
 	}
+	BOOL imgsFolderExists = [self.fileManager fileExistsAtPath:[imgsFolder path]];
+	if(!imgsFolderExists){
+		[self.fileManager createDirectoryAtURL:imgsFolder withIntermediateDirectories:YES attributes:nil error:&error];
+		if(error) {
+			return NO;
+		}
+	}
 	self.savesFolder = folder;
+	self.saveImgsFolder = imgsFolder;
 	return YES;
 }
 
@@ -178,6 +188,31 @@
 			callback(FileLoaderResultError, nil);
 		}
 	}];
+}
+
+- (void) getYourImgsWithCallback:(void(^)(FileLoaderResults result, id data))callback{
+	NSNumber* isDir;
+	NSError* error;
+	NSMutableArray* files = [NSMutableArray array];
+	NSArray* keys = @[NSURLNameKey, NSURLFileSizeKey, NSURLIsDirectoryKey, NSURLContentModificationDateKey];
+	NSDirectoryEnumerator* enumerator = [self.fileManager enumeratorAtURL:self.saveImgsFolder includingPropertiesForKeys:keys options:0 errorHandler:^BOOL(NSURL *url, NSError *error) {
+		return YES;
+	}];
+	for(NSURL* url in enumerator){
+		[url getResourceValue:&isDir forKey:NSURLIsDirectoryKey error:&error];
+		[url getResourceValue:&isDir forKey:NSURLContentModificationDateKey error:&error];
+		if([url.pathExtension isEqualToString:@"png"] || [url.pathExtension isEqualToString:@"jpg"]){
+			[files addObject:url];
+		}
+	}
+	[files sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+		NSURL* url1 = (NSURL*) obj1;
+		NSURL* url2 = (NSURL*) obj2;
+		NSString* name1 = [[url1 lastPathComponent] stringByDeletingPathExtension];
+		NSString* name2 = [[url2 lastPathComponent] stringByDeletingPathExtension];
+		return [name1 compare:name2];
+	}];
+	callback(FileLoaderResultOk, files);
 }
 
 - (void) getYourFilesWithCallback:(void(^)(FileLoaderResults result, id data))callback{

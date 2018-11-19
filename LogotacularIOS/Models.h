@@ -20,6 +20,8 @@
 #import "LogoErrorModel.h"
 #import "PLogoErrorModel.h"
 #import "PFileBrowserModel.h"
+#import "PImgBrowserModel.h"
+#import "ImgBrowserModel.h"
 #import "FileBrowserModel.h"
 #import "FileListModel.h"
 #import "PFileListModel.h"

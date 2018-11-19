@@ -19,6 +19,7 @@
 
 @property UIButton* fileButton;
 @property UIButton* helpButton;
+@property UIButton* imgButton;
 @property UIButton* saveAsButton;
 @property UIButton* openButton;
 @property UIButton* refButton;
@@ -55,14 +56,16 @@
 	self.fileButton = [self getButton:ADD_ICON withAction:@selector(onClickNew)				withLabel:@" New file"			atNum:0];
 	self.saveAsButton = [self getButton:FLOPPY_ICON_AS withAction:@selector(onClickSaveAs)	withLabel:@" Save as"			atNum:1];
 	self.helpButton = [self getButton:HELP_ICON withAction:@selector(onClickHelp)			withLabel:@" About"				atNum:2];
-	self.openButton = [self getButton:BRIEFCASE_ICON withAction:@selector(onClickOpen)		withLabel:@" Your files"		atNum:3];
-	self.refButton = [self getButton:BOOK_ICON withAction:@selector(onClickRef)				withLabel:@" Quick reference"	atNum:4];
-	self.tutButton = [self getButton:BULB_ICON withAction:@selector(onClickTut)				withLabel:@" Tutorial"			atNum:5];
-	self.cameraButton = [self getButton:CAMERA_ICON withAction:@selector(onClickCamera)		withLabel:@" Save to device"	atNum:6];
-	self.shareButton = [self getButton:SHARE_ICON withAction:@selector(onClickShare)		withLabel:@" Share"				atNum:7];
+	self.imgButton = [self getButton:BRIEFCASE_ICON withAction:@selector(onClickOpen)		withLabel:@" Your files"		atNum:3];
+	self.openButton = [self getButton:IMG_ICON withAction:@selector(onClickImg)				withLabel:@" Your images"		atNum:4];
+	self.refButton = [self getButton:BOOK_ICON withAction:@selector(onClickRef)				withLabel:@" Quick reference"	atNum:5];
+	self.tutButton = [self getButton:BULB_ICON withAction:@selector(onClickTut)				withLabel:@" Tutorial"			atNum:6];
+	self.cameraButton = [self getButton:CAMERA_ICON withAction:@selector(onClickCamera)		withLabel:@" Save to device"	atNum:7];
+	self.shareButton = [self getButton:SHARE_ICON withAction:@selector(onClickShare)		withLabel:@" Share"				atNum:8];
 	
 	[self.view addSubview:self.fileButton];
 	[self.view addSubview:self.helpButton];
+	[self.view addSubview:self.imgButton];
 	[self.view addSubview:self.saveAsButton];
 	[self.view addSubview:self.openButton];
 	[self.view addSubview:self.refButton];
@@ -134,6 +137,12 @@
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_OPEN withData:nil];
 }
 
+- (void) onClickImg{
+	[self closeMenu];
+	NSLog(@"to img");
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_IMG withData:nil];
+}
+
 - (UIButton*) getButton:(NSString*) imageUrl withAction:(SEL)action withLabel:(NSString*)label atNum:(int)num{
 	UIImage* img = [UIImage imageNamed:imageUrl];
 	UIButton* btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -194,12 +203,14 @@
 	[self removeListeners];
 	[self.fileButton removeFromSuperview];
 	[self.helpButton removeFromSuperview];
+	[self.imgButton removeFromSuperview];
 	[self.saveAsButton removeFromSuperview];
 	[self.openButton removeFromSuperview];
 	[self.refButton removeFromSuperview];
 	[self.tutButton removeFromSuperview];
 	self.fileButton = nil;
 	self.helpButton = nil;
+	self.imgButton = nil;
 	self.saveAsButton = nil;
 	self.openButton = nil;
 	self.refButton = nil;

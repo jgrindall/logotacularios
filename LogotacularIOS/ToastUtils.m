@@ -75,6 +75,10 @@
 	return @"Failed to load your files";
 }
 
++ (NSString*) getImgListLoadErrorMessage{
+	return @"Failed to load your images";
+}
+
 + (NSString*) getFileNameErrorMessage{
 	return @"An error occurred while saving your file";
 }

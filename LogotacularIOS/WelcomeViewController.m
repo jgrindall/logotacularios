@@ -100,7 +100,7 @@
 }
 
 - (void) show{
-	NSTimeInterval interval = 0.25;
+	NSTimeInterval interval = 0.0;
 	[self performSelector:@selector(showObject:) withObject:self.label afterDelay:0.0];
 	[self performSelector:@selector(showObject:) withObject:self.subTitle afterDelay:interval];
 	[self performSelector:@selector(showObject:) withObject:self.button0 afterDelay:2*interval];

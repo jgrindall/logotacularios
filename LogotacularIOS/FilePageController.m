@@ -9,7 +9,6 @@
 #import "FilePageController.h"
 #import "FileLoader.h"
 #import "FileCell.h"
-#import "FileLoader.h"
 #import "FilesController.h"
 #import "PFileListModel.h"
 #import "Assets.h"

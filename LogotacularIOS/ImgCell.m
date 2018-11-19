@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 jgrindall. All rights reserved.
 //
 
-#import "FileCell.h"
+#import "ImgCell.h"
 #import "Appearance.h"
 #import "ImageUtils.h"
 
-@interface FileCell()
+@interface ImgCell()
 
 @property UIImageView* imageView;
 @property UILabel* textView;
@@ -21,9 +21,7 @@
 
 @end
 
-@implementation FileCell
-
-
+@implementation ImgCell
 
 - (void)prepareForReuse{
 	[super prepareForReuse];
@@ -129,6 +127,7 @@
 
 -  (void) addTextView{
 	int top = 35;
+	float padding = 6;
 	if(!self.textView){
 		self.textView = [[UILabel alloc] initWithFrame:self.frame];
 		[self.textView setTextAlignment:NSTextAlignmentCenter];

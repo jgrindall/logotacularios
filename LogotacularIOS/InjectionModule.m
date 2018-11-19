@@ -29,6 +29,7 @@
 @property id<POptionsModel> optionsModel;
 @property id<PLogoErrorModel> logoErrorModel;
 @property id<PFileBrowserModel> browserModel;
+@property id<PImgBrowserModel> imgBrowserModel;
 @property id<PFileListModel> fileListModel;
 @property id<PScreenGrabModel> screenGrabModel;
 @property id<PTurtleModel> turtleModel;
@@ -102,6 +103,8 @@
 	[self bind:self.logoErrorModel toProtocol:@protocol(PLogoErrorModel)];
 	self.browserModel = [[FileBrowserModel alloc] init];
 	[self bind:self.browserModel toProtocol:@protocol(PFileBrowserModel)];
+	self.imgBrowserModel = [[ImgBrowserModel alloc] init];
+	[self bind:self.imgBrowserModel toProtocol:@protocol(PImgBrowserModel)];
 	self.fileListModel = [[FileListModel alloc] init];
 	[self bind:self.fileListModel toProtocol:@protocol(PFileListModel)];
 	self.screenGrabModel = [[ScreenGrabModel alloc] init];
