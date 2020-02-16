@@ -10,23 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LogotacularIOS/PaintViewController.m"
-            timestampString = "603569721.635464"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "372"
-            endingLineNumber = "372"
-            landmarkName = "-restart"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LogotacularIOS/PaintViewController.m"
-            timestampString = "603569721.635868"
+            timestampString = "603573012.787017"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "262"
@@ -42,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LogotacularIOS/PaintViewController.m"
-            timestampString = "603569721.635955"
+            timestampString = "603573012.787488"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "269"
@@ -58,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LogotacularIOS/PaintViewController.m"
-            timestampString = "603569721.636026"
+            timestampString = "603573012.787608"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "272"
@@ -74,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LogotacularIOS/PaintViewController.m"
-            timestampString = "603569721.636117"
+            timestampString = "603573012.787696"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "265"
@@ -90,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LogotacularIOS/PaintViewController.m"
-            timestampString = "603569721.6361851"
+            timestampString = "603573012.7877851"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "266"
@@ -106,7 +90,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LogotacularIOS/BgImageView.m"
-            timestampString = "603569721.636284"
+            timestampString = "603573012.787881"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "23"
@@ -170,7 +154,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LogotacularIOS/ImgPageController.m"
-            timestampString = "603569721.636776"
+            timestampString = "603573012.7883101"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "153"
@@ -186,7 +170,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LogotacularIOS/ClickImgCommand.m"
-            timestampString = "603562987.158321"
+            timestampString = "603570366.224492"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "24"
@@ -202,7 +186,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LogotacularIOS/FileLoader.m"
-            timestampString = "603569721.63695"
+            timestampString = "603573012.788494"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "42"
@@ -218,7 +202,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LogotacularIOS/FileLoader.m"
-            timestampString = "603569721.637285"
+            timestampString = "603573012.788818"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "67"
@@ -234,7 +218,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LogotacularIOS/FileLoader.m"
-            timestampString = "603569721.637426"
+            timestampString = "603573012.788965"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "44"
@@ -298,7 +282,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LogotacularIOS/ImgPageController.m"
-            timestampString = "603569721.637746"
+            timestampString = "603573012.789229"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "88"
@@ -344,7 +328,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LogotacularIOS/ImgPageController.m"
-            timestampString = "603569721.638124"
+            timestampString = "603573012.789615"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "72"
@@ -356,11 +340,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LogotacularIOS/AddImgCommand.m"
-            timestampString = "603569721.638206"
+            timestampString = "603573012.7897151"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "25"
@@ -369,14 +353,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "__25-[AddImgCommand execute:]_block_invoke"
                   moduleName = "logotacular"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/john/Documents/ios/LogotacularIOS/LogotacularIOS/AddImgCommand.m"
-                  timestampString = "603569721.716767"
+                  timestampString = "603570106.236809"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "25"
@@ -384,14 +368,14 @@
                   offsetFromSymbolStart = "222">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "__copy_helper_block_"
                   moduleName = "logotacular"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/john/Documents/ios/LogotacularIOS/LogotacularIOS/AddImgCommand.m"
-                  timestampString = "603569721.7210979"
+                  timestampString = "603570106.241257"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "25"
@@ -399,14 +383,14 @@
                   offsetFromSymbolStart = "108">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "__destroy_helper_block_"
                   moduleName = "logotacular"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/john/Documents/ios/LogotacularIOS/LogotacularIOS/AddImgCommand.m"
-                  timestampString = "603569721.725262"
+                  timestampString = "603570106.246534"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "25"
@@ -423,7 +407,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LogotacularIOS/ImgPageController.m"
-            timestampString = "603569721.638449"
+            timestampString = "603573012.789973"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "-clickButtonAt:withPayload:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LogotacularIOS/ImgPageController.m"
+            timestampString = "603573012.790055"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "67"
@@ -438,24 +438,8 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LogotacularIOS/ImgPageController.m"
-            timestampString = "603569721.638522"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "-clickButtonAt:withPayload:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "LogotacularIOS/AddImgCommand.m"
-            timestampString = "603569721.638606"
+            timestampString = "603573012.790133"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "18"
@@ -464,14 +448,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "-[AddImgCommand execute:]"
                   moduleName = "logotacular"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/john/Documents/ios/LogotacularIOS/LogotacularIOS/AddImgCommand.m"
-                  timestampString = "603569721.737478"
+                  timestampString = "603570106.256923"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "18"
@@ -479,14 +463,14 @@
                   offsetFromSymbolStart = "62">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "__25-[AddImgCommand execute:]_block_invoke"
                   moduleName = "logotacular"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/john/Documents/ios/LogotacularIOS/LogotacularIOS/AddImgCommand.m"
-                  timestampString = "603569721.741357"
+                  timestampString = "603570106.261076"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "19"
@@ -503,12 +487,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LogotacularIOS/FileLoader.m"
-            timestampString = "603569721.638672"
+            timestampString = "603573012.790213"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
-            landmarkName = "-saveImg:withImage:withCallback:"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "-saveFile:withBg:withFileName:withImage:withCallback:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -519,12 +503,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LogotacularIOS/FileLoader.m"
-            timestampString = "603569721.6387579"
+            timestampString = "603573012.7903039"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
-            landmarkName = "-saveImg:withImage:withCallback:"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
+            landmarkName = "-saveFile:withBg:withFileName:withImage:withCallback:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -535,13 +519,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LogotacularIOS/FileLoader.m"
-            timestampString = "603569721.63884"
+            timestampString = "603573012.790401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
-            landmarkName = "-saveImg:withImage:withCallback:"
-            landmarkType = "7">
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "FileLoader"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -551,11 +535,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LogotacularIOS/FileLoader.m"
-            timestampString = "603569721.638921"
+            timestampString = "603573012.790504"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
             landmarkName = "-saveImg:withImage:withCallback:"
             landmarkType = "7">
          </BreakpointContent>
@@ -567,7 +551,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LogotacularIOS/PerformOpenImgCommand.m"
-            timestampString = "603569721.6390049"
+            timestampString = "603573012.790602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "24"
@@ -582,40 +566,8 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LogotacularIOS/PaintViewController.m"
-            timestampString = "603569721.63925"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "380"
-            endingLineNumber = "380"
-            landmarkName = "-changeBg"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LogotacularIOS/PaintViewController.m"
-            timestampString = "603569721.639336"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "379"
-            endingLineNumber = "379"
-            landmarkName = "-changeBg"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "LogotacularIOS/ImgPageController.m"
-            timestampString = "603569721.639407"
+            timestampString = "603573012.790858"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "139"
@@ -631,7 +583,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LogotacularIOS/ImgPageController.m"
-            timestampString = "603569721.639474"
+            timestampString = "603573012.790936"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "138"
@@ -647,7 +599,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LogotacularIOS/PaintView.m"
-            timestampString = "603569721.639542"
+            timestampString = "603573012.791023"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "120"
@@ -659,11 +611,11 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LogotacularIOS/AbstractPerformSaveCommand.m"
-            timestampString = "603569721.639768"
+            timestampString = "603573012.791272"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "26"
@@ -672,14 +624,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "-[AbstractPerformSaveCommand execute:]"
                   moduleName = "logotacular"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/john/Documents/ios/LogotacularIOS/LogotacularIOS/AbstractPerformSaveCommand.m"
-                  timestampString = "603569721.759221"
+                  timestampString = "603569944.829802"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "26"
@@ -687,14 +639,14 @@
                   offsetFromSymbolStart = "400">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "__38-[AbstractPerformSaveCommand execute:]_block_invoke"
                   moduleName = "logotacular"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/john/Documents/ios/LogotacularIOS/LogotacularIOS/AbstractPerformSaveCommand.m"
-                  timestampString = "603569721.763374"
+                  timestampString = "603569944.833491"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "27"
@@ -711,7 +663,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LogotacularIOS/PerformOpenCommand.m"
-            timestampString = "603569721.6400239"
+            timestampString = "603573012.791521"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "34"
@@ -727,7 +679,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LogotacularIOS/PerformOpenCommand.m"
-            timestampString = "603569721.640234"
+            timestampString = "603573012.7917759"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "34"
@@ -743,7 +695,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LogotacularIOS/PerformOpenCommand.m"
-            timestampString = "603569721.640299"
+            timestampString = "603573012.7918611"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "33"
@@ -759,7 +711,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LogotacularIOS/PerformFileSetupCommand.m"
-            timestampString = "603569721.640365"
+            timestampString = "603573012.791931"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "22"
@@ -775,7 +727,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LogotacularIOS/PerformFileSetupCommand.m"
-            timestampString = "603569721.641023"
+            timestampString = "603573012.7921799"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "28"
@@ -791,7 +743,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LogotacularIOS/PerformFileSetupCommand.m"
-            timestampString = "603569721.641309"
+            timestampString = "603573012.792268"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "40"
@@ -807,7 +759,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LogotacularIOS/PerformFileSetupCommand.m"
-            timestampString = "603569721.64171"
+            timestampString = "603573012.792338"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "43"
@@ -819,32 +771,144 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LogotacularIOS/FileLoader.m"
-            timestampString = "603569721.642025"
+            filePath = "LogotacularIOS/AddImgCommand.m"
+            timestampString = "603573012.792418"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "+getImgName:"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "-execute:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LogotacularIOS/FileLoader.m"
-            timestampString = "603569721.642096"
+            filePath = "LogotacularIOS/PerformDelImgCommand.m"
+            timestampString = "603573012.792491"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "+getDatContents:withBg:"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "-execute:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LogotacularIOS/PerformDelImgCommand.m"
+            timestampString = "603573012.792732"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "-execute:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LogotacularIOS/PerformDelImgCommand.m"
+            timestampString = "603573012.79281"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "-execute:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LogotacularIOS/PerformDelImgCommand.m"
+            timestampString = "603573012.792879"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "-execute:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[PerformDelImgCommand execute:]"
+                  moduleName = "logotacular"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/john/Documents/ios/LogotacularIOS/LogotacularIOS/PerformDelImgCommand.m"
+                  timestampString = "603571912.438862"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "617">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__32-[PerformDelImgCommand execute:]_block_invoke"
+                  moduleName = "logotacular"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/john/Documents/ios/LogotacularIOS/LogotacularIOS/PerformDelImgCommand.m"
+                  timestampString = "603571912.442536"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LogotacularIOS/PerformDelImgCommand.m"
+            timestampString = "603573012.792949"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "-execute:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LogotacularIOS/ClickWipeImgCommand.m"
+            timestampString = "603573012.793033"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "-execute:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

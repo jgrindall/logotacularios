@@ -103,7 +103,7 @@
 	NSRegularExpression* regEx = [[NSRegularExpression alloc] initWithPattern:regExPattern options:NSRegularExpressionDotMatchesLineSeparators error:nil];
 	NSArray* r = [regEx matchesInString:data options:0 range:NSMakeRange(0, [data length])];
 	NSString* logo = data;
-	NSString* bg = @"nil";
+	NSString* bg = [FileLoader getNilImgName];
 	if([r count] == 1){
 		NSTextCheckingResult* match = r[0];
 		NSUInteger numberOfRanges = [match numberOfRanges];
@@ -117,6 +117,10 @@
 		bg, @"bg",
 		nil
 	];
+}
+
++ (NSString*) getNilImgName{
+	return @"(nil)";
 }
 
 - (void) saveFile:(NSString*) logo withBg:(NSString*) bg withFileName:(NSString*) fileName withImage:(UIImage*)img withCallback:(void(^)(FileLoaderResults result))callback{
@@ -158,13 +162,18 @@
 	return scaledImage;
 }
 
+- (void) deleteImg:(NSURL*)url withCallback:(void(^)(FileLoaderResults result))callback{
+	NSError* error = nil;
+	[self.fileManager removeItemAtURL:url error:&error];
+	callback(FileLoaderResultOk);
+}
+
 - (void) deleteFileAtItem:(NSInteger) item withCallback:(void(^)(FileLoaderResults result))callback{
 	[self getYourFilesWithCallback:^(FileLoaderResults result, id data) {
 		if(result == FileLoaderResultOk){
 			NSArray* files = (NSArray*)data;
 			NSURL* url = files[item];
 			NSError* error = nil;
-			// check if it is the open file!
 			[self.fileManager removeItemAtURL:url error:&error];
 			if(error){
 				callback(FileLoaderResultError);

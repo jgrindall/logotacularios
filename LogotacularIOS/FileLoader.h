@@ -23,7 +23,9 @@
 - (void) getYourImgsWithCallback:(void(^)(FileLoaderResults result, id data))callback;
 - (void) filenameOk:(NSString*)name withCallback:(void(^)(FileLoaderResults result, id data))callback;
 - (void) getFileNameAtIndex:(NSInteger)i withCallback:(void(^)(FileLoaderResults result, id data))callback;
+- (void) deleteImg:(NSURL*)url withCallback:(void(^)(FileLoaderResults result))callback;
 + (NSString*) getDatContents: (NSString*) logo withBg:(NSString*) bg;
++ (NSString*) getNilImgName;
 - (NSURL*) getAbsoluteBgImageURL:(NSString*) fileName;
 + (NSString*) getImgName:(NSURL*) bg;
 + (NSDictionary*) parseDatContents: (NSString*) data;

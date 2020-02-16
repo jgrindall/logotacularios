@@ -16,12 +16,14 @@
 + (NSString*) getFileOpenErrorMessage;
 + (NSString*) getFileOpenAlreadyMessage;
 + (NSString*) getFileSaveSuccessMessage;
++ (NSString*) getImgAddedSuccessMessage;
 + (NSString*) getFileSaveErrorMessage;
 + (NSString*) getFileDeleteSuccessMessage;
 + (NSString*) getFileDeleteErrorMessage;
 + (NSString*) getFileNameInvalidMessage;
 + (NSString*) getFileNameTakenMessage;
 + (NSString*) getFileDeleteCurrentFileErrorMessage;
++ (NSString*) getFileDeleteCurrentImgErrorMessage;
 + (NSString*) getFileListLoadErrorMessage;
 + (NSString*) getImgListLoadErrorMessage;
 + (NSString*) getFileNameErrorMessage;

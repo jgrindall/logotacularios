@@ -49,6 +49,7 @@ NSString* const SYMM_NOTIF_CLEAR =				@"Symm::clear";
 NSString* const SYMM_NOTIF_DISMISS_KEY =		@"Symm::dismissKey";
 NSString* const SYMM_NOTIF_CLICK_OPEN =			@"Symm::clickOpen";
 NSString* const SYMM_NOTIF_CLICK_IMG =			@"Symm::clickImg";
+NSString* const SYMM_NOTIF_CLICK_WIPE_IMG =		@"Symm::clickWipeImg";
 NSString* const SYMM_NOTIF_LOAD_FILES =			@"Symm::loadFiles";
 NSString* const SYMM_NOTIF_LOAD_IMGS =			@"Symm::loadImgs";
 NSString* const SYMM_NOTIF_PERFORM_OPEN =		@"Symm::performOpen";

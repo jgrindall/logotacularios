@@ -50,6 +50,8 @@
 #import "InsertCharCommand.h"
 #import "DrawingFinishedCommand.h"
 #import "PerformOpenImgCommand.h"
+#import "PerformDelImgCommand.h"
+#import "ClickWipeImgCommand.h"
 
 @interface Commands : NSObject
 

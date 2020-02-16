@@ -31,7 +31,7 @@
 	}
 	[bgModel reset];
 	NSURL* bg;
-	if([bgStr isEqualToString:@"nil"]){
+	if([bgStr isEqualToString:[FileLoader getNilImgName]]){
 		bg = nil;
 	}
 	else{

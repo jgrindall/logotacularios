@@ -71,12 +71,14 @@
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLEAR toCommandClass:[ClearCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLICK_OPEN toCommandClass:[ClickOpenCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLICK_IMG toCommandClass:[ClickImgCommand class]];
+	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLICK_WIPE_IMG toCommandClass:[ClickWipeImgCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_LOAD_FILES toCommandClass:[LoadFilesCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_LOAD_IMGS toCommandClass:[LoadImgsCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_PERFORM_OPEN toCommandClass:[PerformOpenCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLICK_SAVE toCommandClass:[ClickSaveCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_PERFORM_OPEN_IMG toCommandClass:[PerformOpenImgCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_PERFORM_DEL toCommandClass:[PerformDelCommand class]];
+	[[self getCommandMap] mapEventName:SYMM_NOTIF_PERFORM_DEL_IMG toCommandClass:[PerformDelImgCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_PERFORM_SAVE toCommandClass:[PerformSaveCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_PERFORM_SAVE_AS toCommandClass:[PerformSaveAsCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_TEXT_EDITED toCommandClass:[TextEditedCommand class]];

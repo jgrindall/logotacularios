@@ -45,6 +45,7 @@ extern NSString* const SYMM_NOTIF_CLICK_REF;
 extern NSString* const SYMM_NOTIF_DISMISS_KEY;
 extern NSString* const SYMM_NOTIF_CLICK_OPEN;
 extern NSString* const SYMM_NOTIF_CLICK_IMG;
+extern NSString* const SYMM_NOTIF_CLICK_WIPE_IMG;
 extern NSString* const SYMM_NOTIF_LOAD_FILES;
 extern NSString* const SYMM_NOTIF_LOAD_IMGS;
 extern NSString* const SYMM_NOTIF_PERFORM_OPEN;

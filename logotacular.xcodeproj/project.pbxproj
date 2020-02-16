@@ -54,6 +54,8 @@
 		5272DE4419FE5776006E717F /* InjectionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 5272DE4319FE5776006E717F /* InjectionModule.m */; };
 		5272DE4719FE5845006E717F /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 5272DE4619FE5845006E717F /* Logger.m */; };
 		5278EFB323F9967F00741F91 /* PerformOpenImgCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5278EFB123F9967F00741F91 /* PerformOpenImgCommand.m */; };
+		5278EFB823F9C30200741F91 /* PerformDelImgCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5278EFB723F9C30100741F91 /* PerformDelImgCommand.m */; };
+		5278EFBB23F9C94700741F91 /* ClickWipeImgCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5278EFBA23F9C94700741F91 /* ClickWipeImgCommand.m */; };
 		527D42E51A0ABBE3008AE82A /* FilePageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 527D42E41A0ABBE3008AE82A /* FilePageController.m */; };
 		527D42E81A0ABE38008AE82A /* LoadFilesCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 527D42E71A0ABE38008AE82A /* LoadFilesCommand.m */; };
 		527D42EB1A0ABED5008AE82A /* FileListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 527D42EA1A0ABED5008AE82A /* FileListModel.m */; };
@@ -251,6 +253,10 @@
 		5272DE4919FE650A006E717F /* PCommandMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCommandMap.h; sourceTree = "<group>"; };
 		5278EFB123F9967F00741F91 /* PerformOpenImgCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerformOpenImgCommand.m; sourceTree = "<group>"; };
 		5278EFB223F9967F00741F91 /* PerformOpenImgCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerformOpenImgCommand.h; sourceTree = "<group>"; };
+		5278EFB523F9C2D700741F91 /* PerformDelImgCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerformDelImgCommand.h; sourceTree = "<group>"; };
+		5278EFB723F9C30100741F91 /* PerformDelImgCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerformDelImgCommand.m; sourceTree = "<group>"; };
+		5278EFB923F9C94600741F91 /* ClickWipeImgCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickWipeImgCommand.h; sourceTree = "<group>"; };
+		5278EFBA23F9C94700741F91 /* ClickWipeImgCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickWipeImgCommand.m; sourceTree = "<group>"; };
 		527D42E31A0ABBE3008AE82A /* FilePageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilePageController.h; sourceTree = "<group>"; };
 		527D42E41A0ABBE3008AE82A /* FilePageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilePageController.m; sourceTree = "<group>"; };
 		527D42E61A0ABE38008AE82A /* LoadFilesCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadFilesCommand.h; sourceTree = "<group>"; };
@@ -629,6 +635,10 @@
 		5272DE3319FE4799006E717F /* Commands */ = {
 			isa = PBXGroup;
 			children = (
+				5278EFB923F9C94600741F91 /* ClickWipeImgCommand.h */,
+				5278EFBA23F9C94700741F91 /* ClickWipeImgCommand.m */,
+				5278EFB723F9C30100741F91 /* PerformDelImgCommand.m */,
+				5278EFB523F9C2D700741F91 /* PerformDelImgCommand.h */,
 				5278EFB223F9967F00741F91 /* PerformOpenImgCommand.h */,
 				5278EFB123F9967F00741F91 /* PerformOpenImgCommand.m */,
 				521F10D421A3622000728EA8 /* AddImgCommand.h */,
@@ -1325,6 +1335,7 @@
 				5297CF061A01137100CC5CB3 /* PaintViewController.m in Sources */,
 				52B5B35119FD7E1400EF531F /* AppDelegate.m in Sources */,
 				52D426FB1A2CFF97002E8B2F /* AbstractOverlayController.m in Sources */,
+				5278EFBB23F9C94700741F91 /* ClickWipeImgCommand.m in Sources */,
 				52D427021A2D0B3F002E8B2F /* WelcomeLayout.m in Sources */,
 				523B6DB31C517FDA00A4C0C9 /* ClickWipeCommand.m in Sources */,
 				52A54D4921862CCD00DF0ADD /* ImgLayout.m in Sources */,
@@ -1439,6 +1450,7 @@
 				5272DE4419FE5776006E717F /* InjectionModule.m in Sources */,
 				521C66391E3158C1001F325A /* ClickGridMenuCommand.m in Sources */,
 				522E91CA1A1CA9FC000AB933 /* MenuLayout.m in Sources */,
+				5278EFB823F9C30200741F91 /* PerformDelImgCommand.m in Sources */,
 				5287B9A71A1B7B4300082DE1 /* ClickSaveAsCommand.m in Sources */,
 				52815C751A050EB1005AFA93 /* ClickOpenCommand.m in Sources */,
 				52CBC9C51A0D33A300C229C8 /* SaveCurrentViewController.m in Sources */,

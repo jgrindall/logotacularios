@@ -57,7 +57,6 @@
 	if(self){
 		[[self getImgListModel] addListener:@selector(imgsChanged) forKey:IMG_LIST_LIST withTarget:self];
 		[[self getImgBrowserModel] addGlobalListener:@selector(selChanged) withTarget:self];
-		[[self getEventDispatcher] addListener:SYMM_NOTIF_IMG_LOADED toFunction:@selector(imgLoaded) withContext:self];
 	}
 	return self;
 }
@@ -156,10 +155,6 @@
 	self.alert = [AlertManager addAlert:[FilenameViewController class] intoController:self withDelegate:self withOptions:options];
 }
 
-- (void) imgLoaded{
-	//[self.navigationController popViewControllerAnimated:YES];
-}
-
 -(UIButton*)getBarButton: (UIBarButtonItem*) item{
 	return item.customView.subviews[0];
 }
@@ -215,7 +210,6 @@
 - (void) dealloc{
 	[[self getImgListModel] removeListener:@selector(imgsChanged) forKey:IMG_LIST_LIST withTarget:self];
 	[[self getImgBrowserModel] removeGlobalListener:@selector(selChanged) withTarget:self];
-	[[self getEventDispatcher] removeListener:SYMM_NOTIF_IMG_LOADED toFunction:@selector(imgLoaded) withContext:self];
 	[self removeChildFrom:self.imgsContainer withController:self.imgsController];
 	[self.imgsContainer removeFromSuperview];
 	self.imgsContainer = nil;

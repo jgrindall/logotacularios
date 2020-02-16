@@ -47,6 +47,10 @@
 	return @"Your file has been saved";
 }
 
++ (NSString*) getImgAddedSuccessMessage{
+	return @"Your image has been added";
+}
+
 + (NSString*) getImgSaveSuccessMessage{
 	return @"Your image has been saved";
 }
@@ -73,6 +77,10 @@
 
 + (NSString*) getFileDeleteCurrentFileErrorMessage{
 	return @"You cannot delete an open file, please close it first";
+}
+
++ (NSString*) getFileDeleteCurrentImgErrorMessage{
+	return @"Image is in use";
 }
 
 + (NSString*) getFileListLoadErrorMessage{

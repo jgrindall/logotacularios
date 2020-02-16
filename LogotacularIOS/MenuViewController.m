@@ -22,6 +22,7 @@
 @property UIButton* imgButton;
 @property UIButton* saveAsButton;
 @property UIButton* openButton;
+@property UIButton* wipeBgButton;
 @property UIButton* refButton;
 @property UIButton* tutButton;
 @property UIButton* cameraButton;
@@ -58,16 +59,18 @@
 	self.helpButton = [self getButton:HELP_ICON withAction:@selector(onClickHelp)			withLabel:@" About"				atNum:2];
 	self.imgButton = [self getButton:BRIEFCASE_ICON withAction:@selector(onClickOpen)		withLabel:@" Your files"		atNum:3];
 	self.openButton = [self getButton:IMG_ICON withAction:@selector(onClickImg)				withLabel:@" Your images"		atNum:4];
-	self.refButton = [self getButton:BOOK_ICON withAction:@selector(onClickRef)				withLabel:@" Quick reference"	atNum:5];
-	self.tutButton = [self getButton:BULB_ICON withAction:@selector(onClickTut)				withLabel:@" Tutorial"			atNum:6];
-	self.cameraButton = [self getButton:CAMERA_ICON withAction:@selector(onClickCamera)		withLabel:@" Save to device"	atNum:7];
-	self.shareButton = [self getButton:SHARE_ICON withAction:@selector(onClickShare)		withLabel:@" Share"				atNum:8];
+	self.wipeBgButton = [self getButton:CLEAR_ICON withAction:@selector(onClickWipe)			withLabel:@" Clear image"		atNum:5];
+	self.refButton = [self getButton:BOOK_ICON withAction:@selector(onClickRef)				withLabel:@" Quick reference"	atNum:6];
+	self.tutButton = [self getButton:BULB_ICON withAction:@selector(onClickTut)				withLabel:@" Tutorial"			atNum:7];
+	self.cameraButton = [self getButton:CAMERA_ICON withAction:@selector(onClickCamera)		withLabel:@" Save to device"	atNum:8];
+	self.shareButton = [self getButton:SHARE_ICON withAction:@selector(onClickShare)		withLabel:@" Share"				atNum:9];
 	
 	[self.view addSubview:self.fileButton];
 	[self.view addSubview:self.helpButton];
 	[self.view addSubview:self.imgButton];
 	[self.view addSubview:self.saveAsButton];
 	[self.view addSubview:self.openButton];
+	[self.view addSubview:self.wipeBgButton];
 	[self.view addSubview:self.refButton];
 	[self.view addSubview:self.tutButton];
 	[self.view addSubview:self.cameraButton];
@@ -139,8 +142,12 @@
 
 - (void) onClickImg{
 	[self closeMenu];
-	NSLog(@"to img");
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_IMG withData:nil];
+}
+
+- (void) onClickWipe{
+	[self closeMenu];
+	[[self getEventDispatcher] dispatch:SYMM_NOTIF_CLICK_WIPE_IMG withData:nil];
 }
 
 - (UIButton*) getButton:(NSString*) imageUrl withAction:(SEL)action withLabel:(NSString*)label atNum:(int)num{

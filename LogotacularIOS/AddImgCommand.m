@@ -26,9 +26,7 @@
 }
 
 -  (void) fileSaved:(NSString*)filename{
-	[ToastUtils showToastInController:nil withMessage:[ToastUtils getFileSaveSuccessMessage] withType:TSMessageNotificationTypeSuccess];
-	
-	//[[self getEventDispatcher] dispatch:SYMM_NOTIF_SAVED withData:nil];
+	[ToastUtils showToastInController:nil withMessage:[ToastUtils getImgAddedSuccessMessage] withType:TSMessageNotificationTypeSuccess];
 }
 
 @end
