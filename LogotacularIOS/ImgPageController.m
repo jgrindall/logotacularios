@@ -66,6 +66,7 @@
 	if (i==0){
 		NSDictionary* data = @{@"image":self.selectedImage, @"name":(NSString*)payload};
 		[[self getEventDispatcher] dispatch:SYMM_NOTIF_PERFORM_ADD_IMG withData:data];
+		[[self getEventDispatcher] dispatch:SYMM_NOTIF_LOAD_IMGS withData:nil];
 		[AlertManager removeAlert];
 	}
 	self.alert = nil;
@@ -151,7 +152,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
 	UIImage* image = info[UIImagePickerControllerOriginalImage];
 	self.selectedImage = image;
-	NSDictionary* options = @{@"buttons":@[@"Ok", TICK_ICON, @"Cancel", CLEAR_ICON], @"title":@"Choose name"};
+	NSDictionary* options = @{@"buttons":@[@"Ok", TICK_ICON, @"Cancel", CLEAR_ICON], @"title":@"Choose a name"};
 	self.alert = [AlertManager addAlert:[FilenameViewController class] intoController:self withDelegate:self withOptions:options];
 }
 
