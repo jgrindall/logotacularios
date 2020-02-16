@@ -53,6 +53,7 @@
 		5272DE4119FE518F006E717F /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5272DE4019FE518F006E717F /* BaseViewController.m */; };
 		5272DE4419FE5776006E717F /* InjectionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 5272DE4319FE5776006E717F /* InjectionModule.m */; };
 		5272DE4719FE5845006E717F /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = 5272DE4619FE5845006E717F /* Logger.m */; };
+		5278EFB323F9967F00741F91 /* PerformOpenImgCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 5278EFB123F9967F00741F91 /* PerformOpenImgCommand.m */; };
 		527D42E51A0ABBE3008AE82A /* FilePageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 527D42E41A0ABBE3008AE82A /* FilePageController.m */; };
 		527D42E81A0ABE38008AE82A /* LoadFilesCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 527D42E71A0ABE38008AE82A /* LoadFilesCommand.m */; };
 		527D42EB1A0ABED5008AE82A /* FileListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 527D42EA1A0ABED5008AE82A /* FileListModel.m */; };
@@ -248,6 +249,8 @@
 		5272DE4619FE5845006E717F /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
 		5272DE4819FE58DC006E717F /* PLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLogger.h; sourceTree = "<group>"; };
 		5272DE4919FE650A006E717F /* PCommandMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCommandMap.h; sourceTree = "<group>"; };
+		5278EFB123F9967F00741F91 /* PerformOpenImgCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerformOpenImgCommand.m; sourceTree = "<group>"; };
+		5278EFB223F9967F00741F91 /* PerformOpenImgCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerformOpenImgCommand.h; sourceTree = "<group>"; };
 		527D42E31A0ABBE3008AE82A /* FilePageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilePageController.h; sourceTree = "<group>"; };
 		527D42E41A0ABBE3008AE82A /* FilePageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilePageController.m; sourceTree = "<group>"; };
 		527D42E61A0ABE38008AE82A /* LoadFilesCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadFilesCommand.h; sourceTree = "<group>"; };
@@ -626,6 +629,8 @@
 		5272DE3319FE4799006E717F /* Commands */ = {
 			isa = PBXGroup;
 			children = (
+				5278EFB223F9967F00741F91 /* PerformOpenImgCommand.h */,
+				5278EFB123F9967F00741F91 /* PerformOpenImgCommand.m */,
 				521F10D421A3622000728EA8 /* AddImgCommand.h */,
 				521F10D521A3622000728EA8 /* AddImgCommand.m */,
 				52ADC824218632AF00E77E3A /* LoadImgsCommand.h */,
@@ -1374,6 +1379,7 @@
 				52CC89301A1681810046615F /* LoadFromHelpCommand.m in Sources */,
 				527D42EB1A0ABED5008AE82A /* FileListModel.m in Sources */,
 				522E91CD1A1CAA60000AB933 /* AlertLayout.m in Sources */,
+				5278EFB323F9967F00741F91 /* PerformOpenImgCommand.m in Sources */,
 				52CF4A0B1A103AF2003197B2 /* HelpPageViewController.m in Sources */,
 				52A54D3F21862AB600DF0ADD /* ImgPageController.m in Sources */,
 				52B274161A115D2D00D3EA3B /* HelpSectionViewController.m in Sources */,
