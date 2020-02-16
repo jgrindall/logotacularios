@@ -1,0 +1,597 @@
+start = sep* st:outsidestmt* sep*
+{
+var obj={type:"start", children:[]};
+for(var i=0;i<=st.length-1;i++){
+obj.children.push(st[i]);
+}
+return obj;
+}
+
+
+outsidestmt =
+
+definefnstmt
+/
+insidestmt
+
+onlyinsidefnstmt =
+
+insidestmt
+/
+outputstmt
+
+insidestmt =
+
+sep* f1:arcltstmt sep*
+{
+return {type:"insidestmt", children:[f1]};
+}
+/
+sep* f1:arcrtstmt sep*
+{
+return {type:"insidestmt", children:[f1]};
+}
+/
+sep* f1:arcstmt sep*
+{
+return {type:"insidestmt", children:[f1]};
+}
+/
+sep* f1:fdstmt sep*
+{
+return {type:"insidestmt", children:[f1]};
+}
+/
+sep* b1:bkstmt sep*
+{
+return {type:"insidestmt", children:[b1]};
+}
+/
+sep* f2:rtstmt sep*
+{
+return {type:"insidestmt", children:[f2]};
+}
+/
+sep* l2:ltstmt sep*
+{
+return {type:"insidestmt", children:[l2]};
+}
+/
+sep* f25:setstmt sep*
+{
+return f25;
+}
+/
+sep* f26:sethstmt sep*
+{
+return f26;
+}
+/
+sep* f3:rptstmt sep*
+{
+return {type:"insidestmt", children:[f3]};
+}
+/
+sep* f4:makestmt sep*
+{
+return {type:"insidestmt", children:[f4]};
+}
+/
+sep* h:homestmt sep*
+{
+return h;
+}
+/sep* p:penupstmt sep*
+{
+return p;
+}
+/
+sep* p:pendownstmt sep*
+{
+return p;
+}
+/
+sep* c:colorstmt sep*
+{
+return c;
+}
+/
+sep* lb:labelstmt sep*
+{
+return lb;
+}
+/
+sep* b:bgstmt sep*
+{
+return b;
+}
+/
+sep* t:thickstmt sep*
+{
+return t;
+}
+/
+sep* f6:booleanstmt sep*
+{
+return f6;
+}
+/
+sep* f7:compoundbooleanstmt sep*
+{
+return f7;
+}
+/
+sep* s:stopstmt sep*
+{
+	return s;
+}
+/
+sep* f5:callfnstmt sep*
+{
+//TODO - why ?
+return {type:"insidestmt", children:[f5]};
+}
+/
+sep* f6:cleanstmt sep*
+{
+return f6;
+}
+/
+sep* f7:waitstmt sep*
+{
+return f7;
+}
+
+
+stopstmt = sep* "stop" sep*
+{
+return {type:"stopstmt"};
+}
+
+booleanstmt = sep* "if" sep* b:booleanval sep* "[" sep* iftrue:insidestmt* sep* "]"
+{
+return {type:"booleanstmt", toEval:b, iftrue:{children:iftrue}};
+}
+
+compoundbooleanstmt = sep* "ifelse" sep* b:booleanval sep* "[" sep* iftrue:insidestmt* sep* "]" sep* "[" sep* iffalse:insidestmt* sep* "]"
+{
+return {type:"compoundbooleanstmt", toEval:b, iftrue:{children:iftrue}, iffalse:{children:iffalse}};
+}
+
+booleanval = sep* lhs:expression sep* op:booleanoperator sep* rhs:expression
+{
+return {type:"booleanval", children: [lhs, rhs], "op":op}
+}
+
+booleanoperator =
+"==" {return "="}
+/
+"=" {return "="}
+/
+"<=" {return "<="}
+/
+">=" {return ">="}
+/
+"<>" {return "!="}
+/
+"<" {return "<"}
+/
+">" {return ">"}
+/
+"!=" {return "!="}
+
+
+
+
+penupstmt = sep* ('penup' / 'pu') eoline
+{
+return {"type":"penupstmt"};
+}
+
+homestmt = sep* ('home') eoline
+{
+return {"type":"homestmt"};
+}
+
+pendownstmt = sep* ('pendown' / 'pd') eoline
+{
+return {"type":"pendownstmt"};
+}
+
+colorstmt = sep* ('color' / 'colour') sep* c:color eoline
+{
+return {"type":"colorstmt", "color":c};
+}
+labelstmt = sep* 'label' sep* c:labelcontents
+{
+return {"type":"labelstmt", "children":[c]};
+}
+
+labelcontents =
+sep* e:expression sep*
+{
+	return e;
+}
+/
+sep* s:stringlit sep*
+{
+	return s;
+}
+
+bgstmt = sep* 'bg' sep* c:color eoline
+{
+return {"type":"bgstmt", "color":c};
+}
+
+cleanstmt = sep* 'clean' sep* eoline
+{
+return {"type":"cleanstmt"};
+}
+
+waitstmt = sep* 'wait' sep* eoline
+{
+return {"type":"waitstmt"};
+}
+
+
+thickstmt = sep* 'thick'  sep* e:expression eoline
+{
+return {"type":"thickstmt", "children":[e]};
+}
+
+color =
+
+c:colorname
+{
+	return {"type":"colorname", "name":c};
+}
+/
+e:expression
+{
+	return {"type":"colorindex", "children":[e]};
+}
+
+colorname = 'turquoise' / 'turq'/ 'pink' / 'ltblue' / 'lightblue' / 'dkpurple' / 'darkpurple' / 'violet' / 'indigo' / 'green' / 'blue' / 'dkblue' / 'darkblue' / 'purple' / 'midnight' / 'darkkturqoise' / 'dkturq'/ 'dkturquoise'/ 'darkgreen'/ 'dkgreen' / 'yellow' / 'carrot' / 'orange' / 'org' / 'red' / 'snow' / 'gray' / 'grey' / 'ltorange' / 'lightorange' / 'lightorg' / 'ltorg' / 'dkorange' / 'darkorg' / 'dkorg' / 'darkorange' / 'terracotta' / 'dkred' / 'darkred' / 'ltgray'/ 'ltgrey' / 'lightgray' / 'lightgrey' / 'darkgray' / 'darkgrey' / 'dkgrey' / 'dkgray' / 'white' / 'black' / 'fuchsia' / 'wisteria' / 'cyan' / 'sage'  / 'emerald' / 'brown' / 'chocolate' / 'applegreen'
+
+callfnstmt = sep* f:fnname sep* a:expressionlist eoline
+{
+return {type:"callfnstmt", name:f.name, args:a};
+}
+
+
+fdstmt  = ('fd' / 'forward') sep* num:expression eoline
+{
+return {type:"fdstmt", children:[num]};
+}
+
+arcstmt  = ('arc') sep* num1:expression sep* num2:expression eoline
+{
+return {type:"arcstmt", a:1, children:[num1, num2]};
+}
+
+arcrtstmt  = ('arcrt') sep* num1:expression sep* num2:expression eoline
+{
+return {type:"arcrtstmt", a:1, children:[num1, num2]};
+}
+
+arcltstmt  = ('arclt') sep* num1:expression sep* num2:expression eoline
+{
+return {type:"arcltstmt", a:1, children:[num1, num2]};
+}
+
+bkstmt  = ('bk' / 'back') sep* num:expression eoline
+{
+return {type:"bkstmt", children:[num]};
+}
+
+rtstmt  = ('rt' / 'right') sep* num:expression eoline
+{
+return {type:"rtstmt", children:[num]};
+}
+
+ltstmt  = ('lt' / 'left') sep* num:expression eoline
+{
+return {type:"ltstmt", children:[num]};
+}
+
+setstmt = 'setxy' sep* numx:expression sep* numy:expression sep*
+{
+return {type:"setxy", children:[numx,numy]};
+}
+
+sethstmt = 'setheading' sep* h:expression sep*
+{
+return {type:"setheading", children:[h]};
+}
+
+rptstmt  = 'rpt' sep* num:expression sep* '[' sep* list:insidefnlist sep* ']' sep*
+{
+return {type:"rptstmt", children:[num,list]};
+}
+
+insidefnlist = sep* l:insidestmt*
+{
+var obj={};
+obj.type="insidefnlist";
+obj.children=[];
+for(var i=0;i<=l.length-1;i++){
+obj.children.push(l[i]);
+}
+return obj;
+}
+
+makestmt = 'make' sep* v:vardef sep* e:expression eoline
+{
+return {type:"makestmt", children:[v,e]};
+}
+
+definefnstmt =
+'to' sep+ f:fnname sep* a:arglist sep* s:insidefnlist 'end' sep*
+{
+return {type:"definefnstmt", name:f.name, args:a, stmts:s};
+}
+/
+'to' sep+ f:fnname sep* s:insidefnlist 'end' sep*
+{
+return {type:"definefnstmt", name:f.name, args:null, stmts:s};
+}
+
+vardef = '"' !keyword c0:([a-zA-Z])+ c1:[a-zA-Z0-9_]*
+{
+return {type:"vardef", name:c0.join("") + c1.join("")};
+}
+
+
+expressionlist =
+c:separatedexpressionlist e:expression? sep*
+{
+var allchildren = c.children;
+if(e){
+allchildren.push(e);
+}
+return {type:"expressionlist", children:allchildren};
+}
+/
+sep* e:expression sep*
+{
+return {type:"expressionlist", children:[e]};
+}
+/
+sep*
+{
+return {type:"expressionlist", children:[]};
+}
+
+
+arglist =
+c:separatedarglist v:usevar? sep*
+{
+var allchildren = c.children;
+if(v){
+allchildren.push(v);
+}
+return {type:"arglist", children:allchildren};
+}
+/
+sep* v:usevar sep*
+{
+return {type:"arglist", children:[v]};
+}
+/
+sep*
+{
+return {type:"arglist", children:[]};
+}
+
+
+
+separatedarglist = v:varnamespace+
+{
+return {type:"separatedarglist", children:v};
+}
+
+separatedexpressionlist = e:expressionspace+
+{
+return {type:"separatedexpressionlist", children:e};
+}
+
+
+varnamespace = sep* v:usevar ' ' sep*
+{
+return {type:"usevar", name:v.name};
+}
+
+expressionspace = sep* e:expression ' '
+{
+return e;
+}
+
+keyword = 'to' / 'fd' / 'arc' / 'arcrt' / 'arclt' / 'rt' / 'end' / 'penup' / 'pu' / 'pd' / 'pendown' / 'color' / 'bg' / 'thick' / 'stop' / 'home' / 'setxy' / 'sqrt' / 'label' / 'random' / 'sin' / 'cos' / 'tan' / 'clean' / 'wait'
+
+fnname = !keyword c0:([a-zA-Z])+ c1:[a-zA-Z0-9_]*
+{
+return {type:"fnname", name:c0.join("") + c1.join("")};
+}
+
+
+expression = m:multexpression pm:plusorminus*
+{
+var obj={};
+obj.type="expression";
+obj.children=[];
+obj.children.push(m);
+for(var i=0;i<=pm.length-1;i++){
+obj.children.push(pm[i]);
+}
+return obj;
+}
+
+
+plusorminus =
+
+p:plusexpression
+{
+return {type:"plusorminus", children:[p]};
+}
+/  m:minusexpression
+{
+return {type:"plusorminus", children:[m]};
+}
+
+
+multexpression = u:unaryexpression td:timesordivterms
+{
+var obj={};
+obj.type="multexpression";
+obj.children=[];
+obj.children.push(u);
+if(td.children.length >= 1){
+obj.children.push(td);
+}
+return obj;
+}
+
+
+timesordivterms = t:timesordivterm*
+{
+var obj={};
+obj.type="timesordivterms";
+obj.children=[];
+for(var i=0;i<=t.length-1;i++){
+obj.children.push(t[i]);
+}
+return obj;
+}
+
+
+timesordivterm = sep* t:timesterm sep*
+{
+return {type:"timesordivterm", children:[t]};
+}
+/ d:divterm
+{
+return {type:"timesordivterm", children:[d]};
+}
+
+
+plusexpression = sep* '+' sep* m:multexpression
+{
+return {type:"plusexpression", children:[m]};
+}
+
+
+minusexpression = sep* '-' sep* m:multexpression
+{
+return {type:"minusexpression", children:[m]};
+}
+
+
+unaryexpression = n:negate
+{
+return {type:"unaryexpression", children:[n]};
+}
+/ num:numberexpression
+{
+return {type:"unaryexpression", children:[num]};
+}
+
+
+negate = sep* '-' sep* n:numberexpression
+{
+return {type:"negate", children:[n]};
+}
+
+
+timesterm = sep* '*' sep* u:unaryexpression
+{
+return {type:"timesterm", children:[u]};
+}
+
+
+divterm =  sep* '/' sep* u:unaryexpression
+{
+return {type:"divterm", children:[u]};
+}
+
+
+numberexpression = n:number
+{
+return {type:"numberexpression", children:[n]};
+}
+/ '(' e:expression ')'
+{
+return {type:"numberexpression", children:[e]};
+}
+/ v:usevar
+{
+return {type:"numberexpression", children:[v]};
+}
+/ 'sqrt' sep* e:expression sep*
+{
+	return {type:"sqrtexpression", children:[e]};
+}
+/ 'sin' sep* e:expression sep*
+{
+	return {type:"sinexpression", children:[e]};
+}
+/ 'cos' sep* e:expression sep*
+{
+	return {type:"cosexpression", children:[e]};
+}
+/ 'tan' sep* e:expression sep*
+{
+	return {type:"tanexpression", children:[e]};
+}
+/ sep* 'random' sep*
+{
+	return {type:"number",value:"random"};
+}
+
+
+
+
+number =
+'.' d: ([0-9]+)
+{
+var s = "0.", i;
+for(i = 0; i <= d.length-1; i++){
+s+=d[i];
+}
+return {type:"number",value:parseFloat(s, 10)  };
+}
+/
+d1:([0-9]+) '.' d2: ([0-9]+)
+{
+var s1 = "", s2 = "", i;
+for(i = 0; i<=d1.length-1;i++){
+s1+=d1[i];
+}
+for(i = 0; i<=d2.length-1;i++){
+s2+=d2[i];
+}
+return {type:"number",value:parseFloat(s1+'.'+s2, 10)  };
+}
+/
+d: ([0-9]+)
+{
+return {type:"number",value:parseInt(d.join(""), 10)};
+}
+
+usevar = ':' v:varname
+{
+return {type:"usevar",name:v.name};
+}
+
+stringlit = '"'s:([a-zA-Z0-9_]*)
+{
+	return s.join("");
+}
+
+varname = !keyword c0:([a-zA-Z])+ c1:[a-zA-Z0-9_]*
+{
+return {type:"varname",name:c0.join("").toString()+c1.join("").toString()};
+}
+
+sep = [ \t\r\n]
+
+eoline = sep*
