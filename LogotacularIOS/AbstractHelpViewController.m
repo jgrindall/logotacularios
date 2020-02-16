@@ -47,7 +47,7 @@
 }
 
 - (void) reloadPos{
-	[self gotoPage:self.currentPage];
+	[self gotoPage:(int)self.currentPage];
 }
 
 - (void) gotoPage:(int)index{
@@ -66,7 +66,7 @@
 		}
 	}
 	else{
-		for (int i = oldPageIndex; i >= index; i--){
+		for (int i = (int)oldPageIndex; i >= index; i--){
 			if (i == index) {
 				[self setViewControllers:@[viewController] direction:direction animated:YES completion:nil];
 			}
