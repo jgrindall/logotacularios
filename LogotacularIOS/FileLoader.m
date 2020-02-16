@@ -91,6 +91,9 @@
 }
 
 + (NSString*) getImgName:(NSURL*) bg{
+	if(bg == nil){
+		return @"nil";
+	}
 	NSString* bgStr = [bg absoluteString];
 	return [[bgStr lastPathComponent] stringByDeletingPathExtension];
 }
