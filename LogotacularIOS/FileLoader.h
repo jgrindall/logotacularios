@@ -14,7 +14,8 @@
 
 + (FileLoader*) sharedInstance;
 
-- (void) saveFile:(NSString*) logo withFileName:(NSString*) fileName withImage:(UIImage*)img withCallback:(void(^)(FileLoaderResults result))callback;
+- (void) saveFile:(NSString*) logo withBg:(NSString*) bg withFileName:(NSString*) fileName withImage:(UIImage*)img withCallback:(void(^)(FileLoaderResults result))callback;
+- (void) saveImg:(NSString*) fileName withImage:(UIImage*)img withCallback:(void(^)(FileLoaderResults result))callback;
 - (void) deleteFileAtItem:(NSInteger) item withCallback:(void(^)(FileLoaderResults result))callback;
 - (void) openFile: (NSString*) fileName withCallback:(void(^)(FileLoaderResults result, id data))callback;
 - (void) openFileAtIndex:(NSInteger)i withCallback:(void(^)(FileLoaderResults result, id data))callback;
@@ -22,6 +23,10 @@
 - (void) getYourImgsWithCallback:(void(^)(FileLoaderResults result, id data))callback;
 - (void) filenameOk:(NSString*)name withCallback:(void(^)(FileLoaderResults result, id data))callback;
 - (void) getFileNameAtIndex:(NSInteger)i withCallback:(void(^)(FileLoaderResults result, id data))callback;
++ (NSString*) getDatContents: (NSString*) logo withBg:(NSString*) bg;
+- (NSURL*) getAbsoluteBgImageURL:(NSString*) fileName;
++ (NSString*) getImgName:(NSURL*) bg;
++ (NSDictionary*) parseDatContents: (NSString*) data;
 - (NSString*)getFileNameFromPath:(NSURL*)path;
 - (NSString*)getImagePathFromPath:(NSURL*)path;
 

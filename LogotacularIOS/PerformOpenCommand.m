@@ -29,8 +29,9 @@
 						[ToastUtils showToastInController:nil withMessage:[ToastUtils getFileOpenAlreadyMessage] withType:TSMessageNotificationTypeError];
 					}
 					else{
-						NSString* logo = (NSString*)data;
-						[[self getEventDispatcher] dispatch:SYMM_NOTIF_PERFORM_FILE_SETUP withData:@{@"filename":filename, @"logo":logo}];
+						NSString* datContents = (NSString*)data;
+						NSDictionary* fileData = [FileLoader parseDatContents:datContents];
+						[[self getEventDispatcher] dispatch:SYMM_NOTIF_PERFORM_FILE_SETUP withData:@{@"filename":filename, @"logo":fileData[@"logo"], @"bg":fileData[@"bg"]}];
 					}
 				}
 				else{

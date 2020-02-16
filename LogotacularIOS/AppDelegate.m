@@ -29,10 +29,8 @@
 	[self setDefaults];
 	[self startInjection];
 	[self start];
-	
 	[self performSelector:@selector(test) withObject:nil afterDelay:5.0];
 	[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(test) object:nil];
-	
 	return YES;
 }
 
@@ -77,6 +75,7 @@
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_LOAD_IMGS toCommandClass:[LoadImgsCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_PERFORM_OPEN toCommandClass:[PerformOpenCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_CLICK_SAVE toCommandClass:[ClickSaveCommand class]];
+	[[self getCommandMap] mapEventName:SYMM_NOTIF_PERFORM_OPEN_IMG toCommandClass:[PerformOpenImgCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_PERFORM_DEL toCommandClass:[PerformDelCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_PERFORM_SAVE toCommandClass:[PerformSaveCommand class]];
 	[[self getCommandMap] mapEventName:SYMM_NOTIF_PERFORM_SAVE_AS toCommandClass:[PerformSaveAsCommand class]];

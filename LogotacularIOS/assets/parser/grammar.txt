@@ -14,6 +14,17 @@ definefnstmt
 /
 insidestmt
 
+onlyinsidefnstmt =
+
+insidestmt
+/
+outputstmt
+
+
+outputstmt = sep* 'output' sep* ex:expression sep*
+{
+return {type:"outputstmt", children:[ex]};
+}
 
 insidestmt =
 
@@ -304,7 +315,7 @@ rptstmt  = 'rpt' sep* num:expression sep* '[' sep* list:insidefnlist sep* ']' se
 return {type:"rptstmt", children:[num,list]};
 }
 
-insidefnlist = sep* l:insidestmt*
+insidefnlist = sep* l:onlyinsidefnstmt*
 {
 var obj={};
 obj.type="insidefnlist";
@@ -401,7 +412,7 @@ expressionspace = sep* e:expression ' '
 return e;
 }
 
-keyword = 'to' / 'fd' / 'arc' / 'arcrt' / 'arclt' / 'rt' / 'end' / 'penup' / 'pu' / 'pd' / 'pendown' / 'color' / 'bg' / 'thick' / 'stop' / 'home' / 'setxy' / 'sqrt' / 'label' / 'random' / 'sin' / 'cos' / 'tan' / 'clean' / 'wait'
+keyword = 'to' / 'fd' / 'arc' / 'arcrt' / 'arclt' / 'rt' / 'end' / 'penup' / 'pu' / 'pd' / 'pendown' / 'color' / 'bg' / 'thick' / 'stop' / 'home' / 'setxy' / 'sqrt' / 'label' / 'random' / 'sin' / 'cos' / 'tan' / 'clean' / 'wait' / 'output'
 
 fnname = !keyword c0:([a-zA-Z])+ c1:[a-zA-Z0-9_]*
 {

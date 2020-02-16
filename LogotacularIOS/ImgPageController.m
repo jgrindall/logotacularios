@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 jgrindall. All rights reserved.
 //
 
+
+#import "PLogoAlertDelegate.h"
 #import "ImgPageController.h"
 #import "Assets.h"
 #import "Appearance.h"
@@ -15,6 +17,8 @@
 #import "PImgBrowserModel.h"
 #import "ImgController.h"
 #import "SymmNotifications.h"
+#import "AlertManager.h"
+#import "FilenameViewController.h"
 
 @interface ImgPageController ()
 
@@ -23,9 +27,11 @@
 @property UIBarButtonItem* openButton;
 @property UIBarButtonItem* delButton;
 @property UIBarButtonItem* addButton;
+@property UIImage* selectedImage;
 @property UILabel* emptyLabel;
 @property NSArray* constraints;
 @property UIPopoverController* popController;
+@property AbstractOverlayController* alert;
 
 @end
 
@@ -54,6 +60,16 @@
 		[[self getEventDispatcher] addListener:SYMM_NOTIF_IMG_LOADED toFunction:@selector(imgLoaded) withContext:self];
 	}
 	return self;
+}
+
+- (void) clickButtonAt:(NSInteger)i withPayload:(id)payload{
+	if (i==0){
+		NSDictionary* data = @{@"image":self.selectedImage, @"name":(NSString*)payload};
+		[[self getEventDispatcher] dispatch:SYMM_NOTIF_PERFORM_ADD_IMG withData:data];
+		[AlertManager removeAlert];
+	}
+	self.alert = nil;
+	self.selectedImage = nil;
 }
 
 - (void) selChanged{
@@ -98,10 +114,10 @@
 }
 
 - (void) addRightBarButtons{
-	self.openButton = [self getBarButtonItem:WASTE_ICON withAction:@selector(onClickDelete)];
-	self.delButton = [self getBarButtonItem:TICK_ICON withAction:@selector(onClickOpen)];
+	self.delButton = [self getBarButtonItem:WASTE_ICON withAction:@selector(onClickDelete)];
+	self.openButton = [self getBarButtonItem:TICK_ICON withAction:@selector(onClickOpen)];
 	self.addButton = [self getBarButtonItem:ADD_ICON withAction:@selector(onClickAdd)];
-	self.navigationItem.rightBarButtonItems = @[self.addButton, self.openButton, self.delButton];
+	self.navigationItem.rightBarButtonItems = @[self.addButton, self.delButton, self.openButton];
 }
 
 - (NSInteger) getSelected{
@@ -121,10 +137,10 @@
 -(void)onClickOpen{
 	NSNumber* n = @([self getSelected]);
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_PERFORM_OPEN_IMG withData:n];
+	[[self navigationController] popViewControllerAnimated:YES];
 }
 
 -(void)onClickAdd{
-	[[self getEventDispatcher] dispatch:SYMM_NOTIF_PERFORM_ADD_IMG withData:nil];
 	UIImagePickerController* imagePickerController = [[UIImagePickerController alloc] init];
 	imagePickerController.delegate = self;
 	imagePickerController.sourceType= UIImagePickerControllerSourceTypePhotoLibrary;
@@ -133,9 +149,10 @@
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-	UIImage *image = info[UIImagePickerControllerOriginalImage];
-	// Do something with picked image
-	NSLog(@"picked");
+	UIImage* image = info[UIImagePickerControllerOriginalImage];
+	self.selectedImage = image;
+	NSDictionary* options = @{@"buttons":@[@"Ok", TICK_ICON, @"Cancel", CLEAR_ICON], @"title":@"Choose name"};
+	self.alert = [AlertManager addAlert:[FilenameViewController class] intoController:self withDelegate:self withOptions:options];
 }
 
 - (void) imgLoaded{
@@ -158,6 +175,7 @@
 	self.imgsContainer.backgroundColor = [UIColor clearColor];
 	self.imgsContainer.translatesAutoresizingMaskIntoConstraints = NO;
 	self.view.backgroundColor = [Colors getColorForString:[Colors getDark:@"images"]];
+	self.view.backgroundColor = [Appearance bgColor];
 	[self.view addSubview:self.imgsContainer];
 	UICollectionViewFlowLayout* aFlowLayout = [[UICollectionViewFlowLayout alloc] init];
 	[aFlowLayout setItemSize:CGSizeMake(IMG_LAYOUT_CELL_WIDTH, IMG_LAYOUT_CELL_HEIGHT)];
@@ -175,6 +193,7 @@
 
 - (void) viewDidLoad{
 	[super viewDidLoad];
+	self.view.backgroundColor = [Appearance bgColor];
 	[self addCollection];
 	[self addLabel];
 	[self addRightBarButtons];

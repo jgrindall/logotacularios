@@ -21,6 +21,7 @@
 - (void) clean;
 
 - (void) bg:(UIColor*)clr;
+- (void) bgImg:(NSURL*)img;
 
 - (void) transformWith:(CGAffineTransform)t;
 

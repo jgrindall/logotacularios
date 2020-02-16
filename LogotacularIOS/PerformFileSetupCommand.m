@@ -10,6 +10,7 @@
 #import "PLogoModel.h"
 #import "PFileModel.h"
 #import "PBgModel.h"
+#import "FileLoader.h"
 
 @implementation PerformFileSetupCommand
 
@@ -17,6 +18,7 @@
 	NSDictionary* dic = (NSDictionary*)payload;
 	NSString* filename = nil;
 	NSString* logo = dic[@"logo"];
+	NSString* bgStr = dic[@"bg"];
 	BOOL dirty = YES;
 	BOOL real = NO;
 	id<PLogoModel> logoModel = [self getLogoModel];
@@ -28,6 +30,14 @@
 		real = YES;
 	}
 	[bgModel reset];
+	NSURL* bg;
+	if([bgStr isEqualToString:@"nil"]){
+		bg = nil;
+	}
+	else{
+		bg = [[FileLoader sharedInstance] getAbsoluteBgImageURL:bgStr];
+	}
+	[bgModel setVal:bg forKey:BG_IMAGE];
 	[fileModel setVal:filename forKey:FILE_FILENAME];
 	[fileModel setVal:@(dirty) forKey:FILE_DIRTY];
 	[fileModel setVal:@(real) forKey:FILE_REAL];

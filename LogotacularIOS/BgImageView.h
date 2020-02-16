@@ -11,6 +11,7 @@
 @interface BgImageView : UIView
 
 - (void) reset;
+- (void) setImg:(NSURL*) bgImg;
 - (void) setTransformWith:(CGAffineTransform)transform;
 
 @property CGAffineTransform flushedTransform;

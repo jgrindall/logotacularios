@@ -21,11 +21,20 @@
 	if (self) {
 		_flushedTransform = CGAffineTransformIdentity;
 		self.imgView = [[UIImageView alloc] initWithFrame:self.frame];
-		self.imgView.image = [UIImage imageNamed:@"assets/bg.jpg"];
 		[self addSubview:self.imgView];
 		[self setBackgroundColor:[UIColor clearColor]];
 	}
 	return self;
+}
+
+- (void) setImg:(NSURL*) bgImg{
+	NSData* imageData = [NSData dataWithContentsOfURL:bgImg];
+	if(bgImg == nil){
+		self.imgView.image = nil;
+	}
+	else{
+		self.imgView.image = [UIImage imageWithData:imageData];
+	}
 }
 
 - (void) reset{

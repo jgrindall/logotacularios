@@ -7,7 +7,8 @@
 //
 
 #import "AContainerViewController_Protected.h"
+#import "PLogoAlertDelegate.h"
 
-@interface ImgPageController : AContainerViewController
+@interface ImgPageController : AContainerViewController <PLogoAlertDelegate>
 
 @end

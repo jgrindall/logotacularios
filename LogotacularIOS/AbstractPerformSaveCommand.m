@@ -12,15 +12,18 @@
 #import "PScreenGrabModel.h"
 #import "FileLoader.h"
 #import "ToastUtils.h"
+#import "PBgModel.h"
 
 @implementation AbstractPerformSaveCommand
 
 - (void) execute:(id) payload{
 	NSString* filename = (NSString*)payload;
 	NSString* logo = [[self getLogoModel] get];
+	NSURL* bg = [[self getBgModel] getVal:BG_IMAGE];
 	[[self getEventDispatcher] dispatch:SYMM_NOTIF_SCREENGRAB withData:nil];
 	UIImage* img = [[self getScreenGrabModel] getVal:SCREEN_GRAB];
-	[[FileLoader sharedInstance] saveFile:logo withFileName:filename withImage:img withCallback:^(FileLoaderResults result) {
+	NSString* bgStr = [FileLoader getImgName:bg];
+	[[FileLoader sharedInstance] saveFile:logo withBg:bgStr withFileName:filename withImage:img withCallback:^(FileLoaderResults result) {
 		if(result == FileLoaderResultOk){
 			[self fileSaved:filename];
 		}
@@ -40,6 +43,10 @@
 
 - (id<PScreenGrabModel>) getScreenGrabModel{
 	return [[JSObjection defaultInjector] getObject:@protocol(PScreenGrabModel)];
+}
+
+- (id<PBgModel>)getBgModel{
+	return [[JSObjection defaultInjector] getObject:@protocol(PBgModel)];
 }
 
 - (id<PLogoModel>) getLogoModel{

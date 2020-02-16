@@ -304,6 +304,7 @@ NSString* const CLEAN_KEYWORD			= @"clean";
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_HIDE_TRI toFunction:@selector(onHideTri) withContext:self];
 	[[self getEventDispatcher] addListener:SYMM_NOTIF_CLICK_TRI toFunction:@selector(onClickTri:) withContext:self];
 	[[self getBgModel] addListener:@selector(changeBg) forKey:BG_COLOR withTarget:self];
+	[[self getBgModel] addListener:@selector(changeBg) forKey:BG_IMAGE withTarget:self];
 	[[self getOptionsModel] addListener:@selector(changeGrid) forKey:GRID_TYPE withTarget:self];
 	[[self getOptionsModel] addListener:@selector(changeGrid) forKey:GRID_CLR withTarget:self];
 	[[self getProcessingModel] addListener:@selector(changeProc) forKey:PROCESSING_ISPROCESSING withTarget:self];
@@ -320,6 +321,7 @@ NSString* const CLEAN_KEYWORD			= @"clean";
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_HIDE_TRI toFunction:@selector(onHideTri) withContext:self];
 	[[self getEventDispatcher] removeListener:SYMM_NOTIF_CLICK_TRI toFunction:@selector(onClickTri:) withContext:self];
 	[[self getBgModel] removeListener:@selector(changeBg) forKey:BG_COLOR withTarget:self];
+	[[self getBgModel] removeListener:@selector(changeBg) forKey:BG_IMAGE withTarget:self];
 	[[self getOptionsModel] removeListener:@selector(changeGrid) forKey:GRID_TYPE withTarget:self];
 	[[self getOptionsModel] removeListener:@selector(changeGrid) forKey:GRID_CLR withTarget:self];
 	[[self getProcessingModel] removeListener:@selector(changeProc) forKey:PROCESSING_ISPROCESSING withTarget:self];
@@ -374,6 +376,8 @@ NSString* const CLEAN_KEYWORD			= @"clean";
 - (void) changeBg{
 	UIColor* clr = [Colors getColorForString:[[self getBgModel] getVal:BG_COLOR]];
 	[self.paintView bg:clr];
+	NSURL* img = [[self getBgModel] getVal:BG_IMAGE];
+	[self.paintView bgImg:img];
 }
 
 - (void) turn:(NSNumber*) amount{

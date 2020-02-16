@@ -47,6 +47,10 @@
 	return @"Your file has been saved";
 }
 
++ (NSString*) getImgSaveSuccessMessage{
+	return @"Your image has been saved";
+}
+
 + (NSString*) getFileSaveErrorMessage{
 	return @"An error occurred while saving your file";
 }

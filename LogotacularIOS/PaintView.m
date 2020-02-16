@@ -116,6 +116,10 @@
 	}];
 }
 
+- (void) bgImg:(NSURL*) bgImg{
+	[self.bgImgView setImg:bgImg];
+}
+
 - (void) transformWith:(CGAffineTransform)t{
 	self.linesView.transform = t;
 	[self.bgImgView setTransformWith:t];

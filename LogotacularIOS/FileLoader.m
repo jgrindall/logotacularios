@@ -81,14 +81,67 @@
 	return [self.savesFolder URLByAppendingPathComponent:fullName];
 }
 
-- (void) saveFile:(NSString*) logo withFileName:(NSString*) fileName withImage:(UIImage*)img withCallback:(void(^)(FileLoaderResults result))callback{
+- (NSURL*) getAbsoluteBgImageURL:(NSString*) fileName{
+	NSString* fullName = [NSString stringWithFormat:@"%@%@", fileName, @".png"];
+	return [self.saveImgsFolder URLByAppendingPathComponent:fullName];
+}
+
++ (NSString*) getDatContents: (NSString*) logo withBg:(NSString*) bg{
+	return [NSString stringWithFormat:@"@logo\n%@\n@bg\n%@", logo, bg];
+}
+
++ (NSString*) getImgName:(NSURL*) bg{
+	NSString* bgStr = [bg absoluteString];
+	return [[bgStr lastPathComponent] stringByDeletingPathExtension];
+}
+
++ (NSDictionary*) parseDatContents: (NSString*) data{
+	NSString* regExPattern = @"@logo\\n(.*)@bg\\n(.*)";
+	NSRegularExpression* regEx = [[NSRegularExpression alloc] initWithPattern:regExPattern options:NSRegularExpressionDotMatchesLineSeparators error:nil];
+	NSArray* r = [regEx matchesInString:data options:0 range:NSMakeRange(0, [data length])];
+	NSString* logo = data;
+	NSString* bg = @"nil";
+	if([r count] == 1){
+		NSTextCheckingResult* match = r[0];
+		NSUInteger numberOfRanges = [match numberOfRanges];
+		if(numberOfRanges == 3){
+			logo = [data substringWithRange: [match rangeAtIndex:1]];
+			bg = [data substringWithRange: [match rangeAtIndex:2]];
+		}
+	}
+	return [NSDictionary dictionaryWithObjectsAndKeys:
+		logo, @"logo",
+		bg, @"bg",
+		nil
+	];
+}
+
+- (void) saveFile:(NSString*) logo withBg:(NSString*) bg withFileName:(NSString*) fileName withImage:(UIImage*)img withCallback:(void(^)(FileLoaderResults result))callback{
 	NSURL* fullPath = [self getAbsoluteURL: fileName];
 	NSURL* fullImagePath = [self getAbsoluteImageURL: fileName];
 	NSError* error;
-	[logo writeToURL:fullPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
+	[[FileLoader getDatContents:logo withBg:bg] writeToURL:fullPath atomically:YES encoding:NSUTF8StringEncoding error:&error];
 	NSData *imageData = UIImagePNGRepresentation([FileLoader scaledImage:img]);
 	[imageData writeToURL:fullImagePath atomically:YES];
 	callback(FileLoaderResultOk);
+}
+
+- (void) saveImg: (NSString*) fileName withImage:(UIImage*)img withCallback:(void(^)(FileLoaderResults result))callback{
+	NSURL* fullImagePath = [self getAbsoluteBgImageURL: fileName];
+	NSData *imageData = UIImagePNGRepresentation([FileLoader scaledBgImage:img]);
+	[imageData writeToURL:fullImagePath atomically:YES];
+	callback(FileLoaderResultOk);
+}
+
++ (UIImage*) scaledBgImage:(UIImage*)imageIn{
+	UIImage* scaledImage;
+	CGSize imageSize = CGSizeMake(1024, 768);
+	if([ImageUtils createContextWithSize:imageSize]){
+		[imageIn drawInRect:CGRectMake(0,0,imageSize.width, imageSize.height)];
+		scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+		UIGraphicsEndImageContext();
+	}
+	return scaledImage;
 }
 
 + (UIImage*) scaledImage:(UIImage*)imageIn{

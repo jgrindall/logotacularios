@@ -49,6 +49,7 @@
 #import "ClickWipeCommand.h"
 #import "InsertCharCommand.h"
 #import "DrawingFinishedCommand.h"
+#import "PerformOpenImgCommand.h"
 
 @interface Commands : NSObject
 

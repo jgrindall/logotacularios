@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PLogoAlertDelegate.h"
 
 @interface ImgController : UICollectionViewController <UIGestureRecognizerDelegate>
 

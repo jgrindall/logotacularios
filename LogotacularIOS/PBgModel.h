@@ -12,6 +12,7 @@
 @protocol PBgModel <PAbstractModel>
 
 extern NSString* const BG_COLOR;
+extern NSString* const BG_IMAGE;
 
 - (void) reset;
 
