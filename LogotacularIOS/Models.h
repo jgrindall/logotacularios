@@ -23,6 +23,8 @@
 #import "PImgBrowserModel.h"
 #import "ImgBrowserModel.h"
 #import "FileBrowserModel.h"
+#import "ImgListModel.h"
+#import "PImgListModel.h"
 #import "FileListModel.h"
 #import "PFileListModel.h"
 #import "PScreenGrabModel.h"
