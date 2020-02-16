@@ -190,7 +190,11 @@
 	}];
 }
 
-- (void) getYourImgsWithCallback:(void(^)(FileLoaderResults result, id data))callback{
+- (UIImage*) getBgWithName{
+	return [UIImage imageNamed:@"123.png"];
+}
+
+- (void) getImgsWithCallback:(NSURL*)folder withCallback: (void (^)(FileLoaderResults, id))callback{
 	NSNumber* isDir;
 	NSError* error;
 	NSMutableArray* files = [NSMutableArray array];
@@ -213,6 +217,10 @@
 		return [name1 compare:name2];
 	}];
 	callback(FileLoaderResultOk, files);
+}
+
+- (void) getYourImgsWithCallback:(void(^)(FileLoaderResults result, id data))callback{
+	[self getImgsWithCallback:self.saveImgsFolder withCallback:callback];
 }
 
 - (void) getYourFilesWithCallback:(void(^)(FileLoaderResults result, id data))callback{
