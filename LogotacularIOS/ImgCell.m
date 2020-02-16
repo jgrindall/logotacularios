@@ -127,7 +127,6 @@
 
 -  (void) addTextView{
 	int top = 35;
-	float padding = 6;
 	if(!self.textView){
 		self.textView = [[UILabel alloc] initWithFrame:self.frame];
 		[self.textView setTextAlignment:NSTextAlignmentCenter];
