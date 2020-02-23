@@ -116,7 +116,7 @@
 	}];
 }
 
-- (void) bgImg:(NSURL*) bgImg{
+- (void) bgImg:(NSData*) bgImg{
 	[self.bgImgView setImg:bgImg];
 }
 

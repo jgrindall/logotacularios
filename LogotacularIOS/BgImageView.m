@@ -27,13 +27,12 @@
 	return self;
 }
 
-- (void) setImg:(NSURL*) bgImg{
-	NSData* imageData = [NSData dataWithContentsOfURL:bgImg];
+- (void) setImg:(NSData*) bgImg{
 	if(bgImg == nil){
 		self.imgView.image = nil;
 	}
 	else{
-		self.imgView.image = [UIImage imageWithData:imageData];
+		self.imgView.image = [UIImage imageWithData:bgImg];
 	}
 }
 

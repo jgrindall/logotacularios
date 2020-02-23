@@ -18,6 +18,7 @@
 #import "PProcessingModel.h"
 #import "AbstractModel.h"
 #import "PDrawingModel.h"
+#import "ToastUtils.h"
 
 @interface PaintViewController ()
 
@@ -377,7 +378,14 @@ NSString* const CLEAN_KEYWORD			= @"clean";
 	UIColor* clr = [Colors getColorForString:[[self getBgModel] getVal:BG_COLOR]];
 	[self.paintView bg:clr];
 	NSURL* img = [[self getBgModel] getVal:BG_IMAGE];
-	[self.paintView bgImg:img];
+	NSData* imageData = [NSData dataWithContentsOfURL:img];
+	[self.paintView bgImg:imageData];
+	if(img != nil && imageData == nil){
+		NSString* filename = [[img lastPathComponent] stringByDeletingPathExtension];
+		NSString* msg = [NSString stringWithFormat:@"'%@': %@", [ToastUtils getImgInvalidMessage], filename];
+		[ToastUtils showToastInController:self withMessage:msg withType:TSMessageNotificationTypeError];
+	}
+	
 }
 
 - (void) turn:(NSNumber*) amount{
