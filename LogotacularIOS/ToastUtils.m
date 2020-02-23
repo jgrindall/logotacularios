@@ -131,4 +131,8 @@
 	return @"Sorry that is incorrect.";
 }
 
++ (NSString*) getImgInvalidMessage{
+	return @"Background image not found";
+}
+
 @end

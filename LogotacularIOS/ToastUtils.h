@@ -36,5 +36,6 @@
 + (NSString*) getNoTwitterErrorMessage;
 + (NSString*) getTwitterErrorMessage;
 + (NSString*) getParentalGateInvalidMessage;
++ (NSString*) getImgInvalidMessage;
 
 @end
