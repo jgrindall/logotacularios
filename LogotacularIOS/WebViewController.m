@@ -78,10 +78,14 @@
 		else{
 			NSString* type = jsonObj[@"type"];
 			if([type isEqualToString:@"command"]){
-				[self receivedCommand:jsonObj];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					[self receivedCommand:jsonObj];
+				});
 			}
 			else if([type isEqualToString:@"end"]){
-				[self finished];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					[self finished];
+				});
 			}
 		}
 	}
