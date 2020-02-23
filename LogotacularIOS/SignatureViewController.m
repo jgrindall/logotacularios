@@ -93,7 +93,7 @@
 	[self.panel addSubview:self.cancelButton];
 	self.switchButton = [[UISwitch alloc] init];
 	[self.panel addSubview:self.switchButton];
-	[self.switchButton setOnTintColor:[UIColor colorWithRed:200 green:200 blue:200 alpha:0.5]];
+	[self.switchButton setOnTintColor:[UIColor colorWithRed:200.0/255.0 green:200.0/255.0 blue:200.0/255.0 alpha:0.5]];
 	[self.switchButton addTarget:self action:@selector(updateState) forControlEvents:UIControlEventValueChanged];
 	self.switchButton.translatesAutoresizingMaskIntoConstraints = NO;
 }
