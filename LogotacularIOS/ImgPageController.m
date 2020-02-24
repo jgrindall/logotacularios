@@ -92,7 +92,7 @@
 	self.emptyLabel = [[UILabel alloc] initWithFrame:self.view.frame];
 	[self.emptyLabel setText:@"No files found"];
 	self.emptyLabel.font = [Appearance fontOfSize:SYMM_FONT_SIZE_LARGE];
-	self.emptyLabel.textColor = [UIColor whiteColor];
+	self.emptyLabel.textColor = [Appearance grayColor];
 	self.emptyLabel.translatesAutoresizingMaskIntoConstraints = NO;
 	self.emptyLabel.textAlignment = NSTextAlignmentCenter;
 	[self.view addSubview:self.emptyLabel];
@@ -114,9 +114,9 @@
 }
 
 - (void) addRightBarButtons{
-	self.delButton = [self getBarButtonItem:WASTE_ICON withAction:@selector(onClickDelete)];
-	self.openButton = [self getBarButtonItem:TICK_ICON withAction:@selector(onClickOpen)];
-	self.addButton = [self getBarButtonItem:ADD_ICON withAction:@selector(onClickAdd)];
+	self.delButton = [self getBarButtonItem:WASTE_ICON withLabel:@"Delete" withAction:@selector(onClickDelete)];
+	self.openButton = [self getBarButtonItem:TICK_ICON withLabel:@"Use" withAction:@selector(onClickOpen)];
+	self.addButton = [self getBarButtonItem:ADD_ICON withLabel:@"Add" withAction:@selector(onClickAdd)];
 	self.navigationItem.rightBarButtonItems = @[self.addButton, self.delButton, self.openButton];
 }
 
@@ -159,9 +159,10 @@
 	return item.customView.subviews[0];
 }
 
--(UIBarButtonItem*)getBarButtonItem: (NSString*) imageUrl withAction:(SEL)action{
-	UIBarButtonItem* item = [Appearance getBarButton:imageUrl withLabel:nil];
+-(UIBarButtonItem*)getBarButtonItem: (NSString*) imageUrl withLabel:(NSString*) label withAction:(SEL)action{
+	UIBarButtonItem* item = [Appearance getBarButton:imageUrl withLabel:label];
 	UIButton* btn = [self getBarButton:item];
+	[btn setTitle:label forState:UIControlStateNormal];
 	[btn addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
 	return item;
 }

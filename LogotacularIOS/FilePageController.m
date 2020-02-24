@@ -88,8 +88,8 @@
 }
 
 - (void) addRightBarButtons{
-	self.openButton = [self getBarButtonItem:WASTE_ICON withAction:@selector(onClickDelete)];
-	self.delButton = [self getBarButtonItem:TICK_ICON withAction:@selector(onClickOpen)];
+	self.openButton = [self getBarButtonItem:WASTE_ICON withLabel: @"Delete" withAction:@selector(onClickDelete)];
+	self.delButton = [self getBarButtonItem:TICK_ICON withLabel: @"Open" withAction:@selector(onClickOpen)];
 	self.navigationItem.rightBarButtonItems = @[self.openButton, self.delButton];
 }
 
@@ -111,9 +111,10 @@
 	return item.customView.subviews[0];
 }
 
--(UIBarButtonItem*)getBarButtonItem: (NSString*) imageUrl withAction:(SEL)action{
-	UIBarButtonItem* item = [Appearance getBarButton:imageUrl withLabel:nil];
+-(UIBarButtonItem*)getBarButtonItem: (NSString*) imageUrl withLabel:(NSString*) label withAction:(SEL)action{
+	UIBarButtonItem* item = [Appearance getBarButton:imageUrl withLabel:label];
 	UIButton* btn = [self getBarButton:item];
+	[btn setTitle:label forState:UIControlStateNormal];
 	[btn addTarget:self action:action forControlEvents:UIControlEventTouchUpInside];
 	return item;
 }
@@ -122,7 +123,7 @@
 	self.emptyLabel = [[UILabel alloc] initWithFrame:self.view.frame];
 	[self.emptyLabel setText:@"No files found"];
 	self.emptyLabel.font = [Appearance fontOfSize:SYMM_FONT_SIZE_LARGE];
-	self.emptyLabel.textColor = [UIColor whiteColor];
+	self.emptyLabel.textColor = [Appearance grayColor];
 	self.emptyLabel.translatesAutoresizingMaskIntoConstraints = NO;
 	self.emptyLabel.textAlignment = NSTextAlignmentCenter;
 	[self.view addSubview:self.emptyLabel];
