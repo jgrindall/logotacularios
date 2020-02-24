@@ -120,10 +120,11 @@
 
 - (void) setupWindow{
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-	self.rootViewController = [[DrawPageViewController alloc] init];
+	AContainerViewController* vc = [[DrawPageViewController alloc] init];
+	self.rootViewController = vc;
 	self.navigationController = [[NavController alloc] initWithRootViewController:self.rootViewController];
 	[self.window setRootViewController:self.navigationController];
-	[self.window addSubview:self.navigationController.view];
+	//[self.window addSubview:self.navigationController.view];
 	[self.window makeKeyAndVisible];
 }
 	
