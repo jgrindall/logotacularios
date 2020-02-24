@@ -9,6 +9,6 @@
 #import "AContainerViewController_Protected.h"
 #import "PLogoAlertDelegate.h"
 
-@interface ImgPageController : AContainerViewController <PLogoAlertDelegate>
+@interface ImgPageController : AContainerViewController <PLogoAlertDelegate, UIImagePickerControllerDelegate>
 
 @end
