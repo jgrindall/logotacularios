@@ -92,7 +92,7 @@
 
 + (NSString*) getImgName:(NSURL*) bg{
 	if(bg == nil){
-		return @"nil";
+		return [FileLoader getNilImgName];
 	}
 	NSString* bgStr = [bg absoluteString];
 	return [[bgStr lastPathComponent] stringByDeletingPathExtension];
@@ -253,10 +253,6 @@
 			callback(FileLoaderResultError, nil);
 		}
 	}];
-}
-
-- (UIImage*) getBgWithName{
-	return [UIImage imageNamed:@"123.png"];
 }
 
 - (void) getImgsWithCallback:(NSURL*)folder withCallback: (void (^)(FileLoaderResults, id))callback{
